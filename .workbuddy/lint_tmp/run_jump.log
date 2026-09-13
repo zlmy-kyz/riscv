@@ -1,0 +1,28 @@
+COMPILE_EXIT=0
+
+=== jump / next_pc functional check ===
+  [ ok ] pc = 00000000
+  [ ok ] pc = 00000004
+  [ ok ] pc = 00000010
+  [ ok ] pc = 00000018
+  [ ok ] pc = 00000020
+  [ ok ] pc = 00000024
+  [ ok ] pc = 00000028
+  [ ok ] pc = 0000002c
+  [ ok ] pc = 00000030
+  [ ok ] pc = 00000034
+-- taken ??? --
+  [ ok ] x1  addi ran = 00000005
+  [ ok ] x5  jal  link = pc4 = 00000014
+  [ ok ] x7  jalr link = pc4 = 0000001c
+  [ ok ] x9  addi ran = 00000001
+-- ?????? filler ?????? 0 --
+  [ ok ] x20 0x08 skipped = 00000000
+  [ ok ] x21 0x0c skipped = 00000000
+  [ ok ] x22 0x14 skipped = 00000000
+  [ ok ] x23 0x1c skipped = 00000000
+-- not-taken ??? --
+  [ ok ] x24 bne NOT taken, fell through = fffff999
+  [ ok ] x25 beq NOT taken, fell through = fffffaaa
+=== PASS ===
+

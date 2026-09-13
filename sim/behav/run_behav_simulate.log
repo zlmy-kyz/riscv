@@ -1,0 +1,99 @@
+# Reading D:/modelsim/modelsimm/tcl/vsim/pref.tcl
+# //  ModelSim SE-64 10.4 Dec  3 2014 
+# //
+# //  Copyright 1991-2014 Mentor Graphics Corporation
+# //  All Rights Reserved.
+# //
+# //  THIS WORK CONTAINS TRADE SECRET AND PROPRIETARY INFORMATION
+# //  WHICH IS THE PROPERTY OF MENTOR GRAPHICS CORPORATION OR ITS
+# //  LICENSORS AND IS SUBJECT TO LICENSE TERMS.
+# //  THIS DOCUMENT CONTAINS TRADE SECRETS AND COMMERCIAL OR FINANCIAL
+# //  INFORMATION THAT ARE PRIVILEGED, CONFIDENTIAL, AND EXEMPT FROM
+# //  DISCLOSURE UNDER THE FREEDOM OF INFORMATION ACT, 5 U.S.C. SECTION 552.
+# //  FURTHERMORE, THIS INFORMATION IS PROHIBITED FROM DISCLOSURE UNDER
+# //  THE TRADE SECRETS ACT, 18 U.S.C. SECTION 1905.
+# //
+# do {run_behav_compile.tcl}
+# ** Error: (vlib-35) Failed to create directory "work".
+# 
+# File exists. (errno = EEXIST)
+# Model Technology ModelSim SE-64 vmap 10.4 Lib Mapping Utility 2014.12 Dec  3 2014
+# vmap -modelsim_quiet work ./work 
+# Modifying modelsim.ini
+# Model Technology ModelSim SE-64 vmap 10.4 Lib Mapping Utility 2014.12 Dec  3 2014
+# vmap -modelsim_quiet usim D:/modelsim/modelsimm/pango_sim_libraries/usim 
+# Modifying modelsim.ini
+# Model Technology ModelSim SE-64 vmap 10.4 Lib Mapping Utility 2014.12 Dec  3 2014
+# vmap -modelsim_quiet adc_e2 D:/modelsim/modelsimm/pango_sim_libraries/adc_e2 
+# Modifying modelsim.ini
+# Model Technology ModelSim SE-64 vmap 10.4 Lib Mapping Utility 2014.12 Dec  3 2014
+# vmap -modelsim_quiet ddc_e2 D:/modelsim/modelsimm/pango_sim_libraries/ddc_e2 
+# Modifying modelsim.ini
+# Model Technology ModelSim SE-64 vmap 10.4 Lib Mapping Utility 2014.12 Dec  3 2014
+# vmap -modelsim_quiet dll_e2 D:/modelsim/modelsimm/pango_sim_libraries/dll_e2 
+# Modifying modelsim.ini
+# Model Technology ModelSim SE-64 vmap 10.4 Lib Mapping Utility 2014.12 Dec  3 2014
+# vmap -modelsim_quiet hsstlp_lane D:/modelsim/modelsimm/pango_sim_libraries/hsstlp_lane 
+# Modifying modelsim.ini
+# Model Technology ModelSim SE-64 vmap 10.4 Lib Mapping Utility 2014.12 Dec  3 2014
+# vmap -modelsim_quiet hsstlp_pll D:/modelsim/modelsimm/pango_sim_libraries/hsstlp_pll 
+# Modifying modelsim.ini
+# Model Technology ModelSim SE-64 vmap 10.4 Lib Mapping Utility 2014.12 Dec  3 2014
+# vmap -modelsim_quiet iolhr_dft D:/modelsim/modelsimm/pango_sim_libraries/iolhr_dft 
+# Modifying modelsim.ini
+# Model Technology ModelSim SE-64 vmap 10.4 Lib Mapping Utility 2014.12 Dec  3 2014
+# vmap -modelsim_quiet ipal_e1 D:/modelsim/modelsimm/pango_sim_libraries/ipal_e1 
+# Modifying modelsim.ini
+# Model Technology ModelSim SE-64 vmap 10.4 Lib Mapping Utility 2014.12 Dec  3 2014
+# vmap -modelsim_quiet ipal_e2 D:/modelsim/modelsimm/pango_sim_libraries/ipal_e2 
+# Modifying modelsim.ini
+# Model Technology ModelSim SE-64 vmap 10.4 Lib Mapping Utility 2014.12 Dec  3 2014
+# vmap -modelsim_quiet iserdes_e2 D:/modelsim/modelsimm/pango_sim_libraries/iserdes_e2 
+# Modifying modelsim.ini
+# Model Technology ModelSim SE-64 vmap 10.4 Lib Mapping Utility 2014.12 Dec  3 2014
+# vmap -modelsim_quiet oserdes_e2 D:/modelsim/modelsimm/pango_sim_libraries/oserdes_e2 
+# Modifying modelsim.ini
+# Model Technology ModelSim SE-64 vmap 10.4 Lib Mapping Utility 2014.12 Dec  3 2014
+# vmap -modelsim_quiet pciegen2 D:/modelsim/modelsimm/pango_sim_libraries/pciegen2 
+# Modifying modelsim.ini
+# Model Technology ModelSim SE-64 vlog 10.4 Compiler 2014.12 Dec  3 2014
+# Start time: 08:07:50 on Sep 13,2026
+# vlog -reportprogress 300 -work work D:/riscv/RISCV/myriscv/topcpu_instrom.v D:/riscv/RISCV/ipcore/inst_rom/rtl/ipm2l_rom_v1_8_inst_rom.v D:/riscv/RISCV/ipcore/inst_rom/rtl/ipm2l_spram_v1_8_inst_rom.v D:/riscv/RISCV/ipcore/inst_rom/inst_rom.v D:/riscv/RISCV/ipcore/data_ram/rtl/ipm2l_spram_v1_8_data_ram.v D:/riscv/RISCV/ipcore/data_ram/data_ram.v D:/riscv/RISCV/source/tb_topcpu_instrom.v 
+# -- Compiling module topcpu_instrom
+# -- Compiling module ipm2l_rom_v1_8_inst_rom
+# -- Compiling module ipm2l_spram_v1_8_inst_rom
+# -- Compiling module inst_rom
+# -- Compiling module ipm2l_spram_v1_8_data_ram
+# -- Compiling module data_ram
+# -- Compiling module tb_topcpu_instrom
+# 
+# Top level modules:
+# 	tb_topcpu_instrom
+# End time: 08:07:50 on Sep 13,2026, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# do {run_behav_simulate.tcl}
+# vsim -gui -do "do {run_behav_compile.tcl};do {run_behav_simulate.tcl}" -l run_behav_simulate.log 
+# Start time: 08:07:50 on Sep 13,2026
+# ** Warning: (vsim-8891) All optimizations are turned off because the -novopt switch is in effect. This will cause your simulation to run very slowly. If you are using this switch to preserve visibility for Debug or PLI features please see the User's Manual section on Preserving Object Visibility with vopt.
+# 
+# Refreshing D:/riscv/RISCV/sim/behav/work.tb_topcpu_instrom
+# Loading work.tb_topcpu_instrom
+# Refreshing D:/riscv/RISCV/sim/behav/work.topcpu_instrom
+# Loading work.topcpu_instrom
+# Refreshing D:/riscv/RISCV/sim/behav/work.inst_rom
+# Loading work.inst_rom
+# Refreshing D:/riscv/RISCV/sim/behav/work.ipm2l_rom_v1_8_inst_rom
+# Loading work.ipm2l_rom_v1_8_inst_rom
+# Refreshing D:/riscv/RISCV/sim/behav/work.ipm2l_spram_v1_8_inst_rom
+# Loading work.ipm2l_spram_v1_8_inst_rom
+# Refreshing D:/riscv/RISCV/sim/behav/work.data_ram
+# Loading work.data_ram
+# Refreshing D:/riscv/RISCV/sim/behav/work.ipm2l_spram_v1_8_data_ram
+# Loading work.ipm2l_spram_v1_8_data_ram
+# Loading usim.GTP_GRS
+# Loading usim.GTP_DRM36K_E1
+# .main_pane.wave.interior.cs.body.pw.wf
+# .main_pane.structure.interior.cs.body.struct
+# .main_pane.objects.interior.cs.body.tree
+# End time: 16:10:20 on Sep 13,2026, Elapsed time: 8:02:30
+# Errors: 0, Warnings: 1

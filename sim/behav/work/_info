@@ -1,0 +1,145 @@
+m255
+K4
+z2
+13
+!s112 1.1
+!i10d 8192
+!i10e 25
+!i10f 100
+cModel Technology
+Z0 dD:/riscv/RISCV/sim/behav
+vdata_ram
+Z1 VDg1SIo80bB@j0V0VzS_@n1
+r1
+!s85 0
+31
+!i10b 1
+!s100 RBdR4I`403a7d<2n1fC9F0
+Iz4B;z;;h]do2;YY9KUog:3
+R0
+Z2 w1789279036
+8D:/riscv/RISCV/ipcore/data_ram/data_ram.v
+FD:/riscv/RISCV/ipcore/data_ram/data_ram.v
+Z3 L0 16
+Z4 OL;L;10.4;61
+Z5 !s108 1789258070.332000
+Z6 !s107 D:\riscv\RISCV\ipcore\data_ram\rtl\data_ram_init_param.v|D:\riscv\RISCV\ipcore\inst_rom\rtl\inst_rom_init_param.v|D:/riscv/RISCV/source/tb_topcpu_instrom.v|D:/riscv/RISCV/ipcore/data_ram/data_ram.v|D:/riscv/RISCV/ipcore/data_ram/rtl/ipm2l_spram_v1_8_data_ram.v|D:/riscv/RISCV/ipcore/inst_rom/inst_rom.v|D:/riscv/RISCV/ipcore/inst_rom/rtl/ipm2l_spram_v1_8_inst_rom.v|D:/riscv/RISCV/ipcore/inst_rom/rtl/ipm2l_rom_v1_8_inst_rom.v|D:/riscv/RISCV/myriscv/topcpu_instrom.v|
+Z7 !s90 -reportprogress|300|-work|work|D:/riscv/RISCV/myriscv/topcpu_instrom.v|D:/riscv/RISCV/ipcore/inst_rom/rtl/ipm2l_rom_v1_8_inst_rom.v|D:/riscv/RISCV/ipcore/inst_rom/rtl/ipm2l_spram_v1_8_inst_rom.v|D:/riscv/RISCV/ipcore/inst_rom/inst_rom.v|D:/riscv/RISCV/ipcore/data_ram/rtl/ipm2l_spram_v1_8_data_ram.v|D:/riscv/RISCV/ipcore/data_ram/data_ram.v|D:/riscv/RISCV/source/tb_topcpu_instrom.v|
+!i113 0
+Z8 o-work work -L mtiAvm -L mtiRnm -L mtiOvm -L mtiUvm -L mtiUPF -L infact
+vinst_rom
+R1
+r1
+!s85 0
+31
+!i10b 1
+!s100 I5Y^H`Jg8Jig4A0EMoM?f0
+Il_^4gEK50ziUbc9XfgPb:3
+R0
+Z9 w1788611347
+8D:/riscv/RISCV/ipcore/inst_rom/inst_rom.v
+FD:/riscv/RISCV/ipcore/inst_rom/inst_rom.v
+R3
+R4
+R5
+R6
+R7
+!i113 0
+R8
+vipm2l_rom_v1_8_inst_rom
+R1
+r1
+!s85 0
+31
+!i10b 1
+!s100 >Qlbh7b`CTkLBXF34BK8X3
+I@WjhQ4eQK?3h8>J1lQ<lj1
+R0
+R9
+8D:/riscv/RISCV/ipcore/inst_rom/rtl/ipm2l_rom_v1_8_inst_rom.v
+FD:/riscv/RISCV/ipcore/inst_rom/rtl/ipm2l_rom_v1_8_inst_rom.v
+L0 18
+R4
+R5
+R6
+R7
+!i113 0
+R8
+vipm2l_spram_v1_8_data_ram
+R1
+r1
+!s85 0
+31
+!i10b 1
+!s100 n[9I;hC]5^a`LBCQZ>IeP0
+Ij?M?F7X<e=CdUaJa:`A^k2
+R0
+R2
+8D:/riscv/RISCV/ipcore/data_ram/rtl/ipm2l_spram_v1_8_data_ram.v
+FD:/riscv/RISCV/ipcore/data_ram/rtl/ipm2l_spram_v1_8_data_ram.v
+FD:\riscv\RISCV\ipcore\data_ram\rtl\data_ram_init_param.v
+Z10 L0 17
+R4
+R5
+R6
+R7
+!i113 0
+R8
+vipm2l_spram_v1_8_inst_rom
+R1
+r1
+!s85 0
+31
+!i10b 1
+!s100 zlGIe1GX07IJH?`a7ZUQ_0
+IL_;Fa=BN6ngPPmM2S>09^1
+R0
+R9
+8D:/riscv/RISCV/ipcore/inst_rom/rtl/ipm2l_spram_v1_8_inst_rom.v
+FD:/riscv/RISCV/ipcore/inst_rom/rtl/ipm2l_spram_v1_8_inst_rom.v
+FD:\riscv\RISCV\ipcore\inst_rom\rtl\inst_rom_init_param.v
+R10
+R4
+R5
+R6
+R7
+!i113 0
+R8
+vtb_topcpu_instrom
+R1
+r1
+!s85 0
+31
+!i10b 1
+!s100 ^aADk6iY9bW:I`T2Wj43a1
+I9bfBTSoEnodcnYR0ciQ`73
+R0
+w1789257895
+8D:/riscv/RISCV/source/tb_topcpu_instrom.v
+FD:/riscv/RISCV/source/tb_topcpu_instrom.v
+L0 2
+R4
+R5
+R6
+R7
+!i113 0
+R8
+vtopcpu_instrom
+R1
+r1
+!s85 0
+31
+!i10b 1
+!s100 hCO_BPbml1Nio]m561DO[1
+I@M50=G6:8aNDIQYNITogl3
+R0
+w1789255487
+8D:/riscv/RISCV/myriscv/topcpu_instrom.v
+FD:/riscv/RISCV/myriscv/topcpu_instrom.v
+L0 3
+R4
+R5
+R6
+R7
+!i113 0
+R8

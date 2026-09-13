@@ -1,0 +1,24 @@
+t(ns) | addr | cs0 cs1 cs2 | ipm.wr_en web | clk_en ceb | csb_reg web_reg | write_en_a | rd_data
+t=0  start
+VCD info: dumpfile dram.vcd opened for output.
+   91 |    0 |  0   0   0  |    0      0  |   1      0  |    0        0    |   0     | 1         0
+t=91000  addr=0 wr_en=0 wr_data=00000000 rst=1 | rd_data=00000000
+t=101000  addr=0 wr_en=0 wr_data=bbbbbbbb rst=0 | rd_data=00000001
+  101 |    0 |  0   0   0  |    0      0  |   1      0  |    0        0    |   0     | 0         1
+  111 |    1 |  0   0   0  |    0      0  |   1      0  |    0        0    |   0     | 0         2
+t=111000  addr=1 wr_en=0 wr_data=bbbbbbbb rst=0 | rd_data=00000002
+t=121000  addr=1 wr_en=1 wr_data=aaaaaaaa rst=0 | rd_data=00000002
+  121 |    1 |  0   0   0  |    1      0  |   1      0  |    0        0    |   1     | 0         2
+  131 |    1 |  0   0   0  |    0      0  |   1      0  |    0        0    |   0     | 03149642683
+t=131000  addr=1 wr_en=0 wr_data=aaaaaaaa rst=0 | rd_data=bbbbbbbb
+t=141000  addr=1 wr_en=0 wr_data=aaaaaaaa rst=0 | rd_data=bbbbbbbb
+  141 |    1 |  0   0   0  |    0      0  |   1      0  |    0        0    |   0     | 03149642683
+  151 |    1 |  0   0   0  |    0      0  |   1      0  |    0        0    |   0     | 03149642683
+  161 |    1 |  0   0   0  |    0      0  |   1      0  |    0        0    |   0     | 03149642683
+--- read-back through the port ---
+t=190000  READ addr=0 -> rd_data=00000001
+addr=0 -> 00000001
+t=210000  READ addr=1 -> rd_data=bbbbbbbb
+addr=1 -> bbbbbbbb
+addr=2 -> 00000003
+addr=3 -> 00000004

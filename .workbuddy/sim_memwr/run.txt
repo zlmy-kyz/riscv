@@ -1,0 +1,23 @@
+﻿
+   t(ns) | phase | valid wen ren |  addr    | RAM.wr_en wr_data | RAM rd_data
+   ------+-------+--------------+----------+-------------------+------------
+     101 |       |   0     0   0  | 00000000 |     0     00000000 | 00000001
+
+   [105000 ns] EX issues WRITE request : addr=00000004  data=deadbeef  wr_en=0
+   [111000 ns] ==> RAM writes on this edge : ram[1] = deadbeef
+     111 |       |   1     1   0  | 00000004 |     1     deadbeef | 00000001
+     121 |       |   0     0   0  | 00000000 |     0     00000000 | 00000001
+   [125000 ns] EX issues READ  request : addr=00000004  rd_en=0
+     131 |       |   1     0   1  | 00000004 |     0     00000000 | deadbeef
+     141 |       |   1     0   1  | 00000004 |     0     00000000 | deadbeef
+
+   ================= RESULT =================
+     RAM read-back    = deadbeef
+     MEM stage value  = deadbeef
+     PASS: written value read back correctly
+   ==========================================
+
+     151 |       |   1     0   1  | 00000004 |     0     00000000 | deadbeef
+     161 |       |   1     0   1  | 00000004 |     0     00000000 | deadbeef
+     171 |       |   1     0   1  | 00000004 |     0     00000000 | deadbeef
+     181 |       |   1     0   1  | 00000004 |     0     00000000 | deadbeef

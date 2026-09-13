@@ -1,0 +1,23 @@
+EXIT=2
+iverilog.exe : D:\riscv\RISCV\myriscv\mycpu_sync.v:233: warning: implicit defin
+ition of wire 'debug_wb_pc'.
+???? ?:456 ??: 6
++ $r = & "D:\iverilog\bin\iverilog.exe" @args 2>&1 | Out-String
++      ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (D:\riscv\RISCV\... 'debug_wb_pc'. 
+   :String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+ 
+D:\riscv\RISCV\myriscv\mycpu_sync.v:234: warning: implicit definition of wire '
+debug_wb_rf_we'.
+D:\riscv\RISCV\myriscv\mycpu_sync.v:235: warning: implicit definition of wire '
+debug_wb_rf_wnum'.
+D:\riscv\RISCV\myriscv\mycpu_sync.v:236: warning: implicit definition of wire '
+debug_wb_rf_wdata'.
+D:\riscv\RISCV\.workbuddy\review_sync\stubs.v:4: Module alu was already declare
+d here: D:\riscv\RISCV\myriscv\alu.v:1
+
+D:\riscv\RISCV\.workbuddy\review_sync\stubs.v:8: Module l_alu was already decla
+red here: D:\riscv\RISCV\myriscv\l_alu.v:1
+
+

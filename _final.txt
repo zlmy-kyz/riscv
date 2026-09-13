@@ -1,0 +1,15 @@
+\src
+\sim.log
+\sim_fix.log
+\sim_gate.log
+\tb_probe.v
+\tb_probe_fix.v
+\tb_probe_gate.v
+\topcpu_fix.v
+\topcpu_gate.v
+\_chk.txt
+\_ls.txt
+\src\inst_rom.v
+\src\inst_rom_init_param.v
+\src\ipm2l_rom_v1_8_inst_rom.v
+\src\ipm2l_spram_v1_8_inst_rom.v

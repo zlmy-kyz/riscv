@@ -1,0 +1,30 @@
+EXIT=6
+iverilog.exe : D:\riscv\RISCV\myriscv\mycpu_sync.v:129: error: port ``rst_n'' i
+s not a port of u_regfile.
+???? ?:445 ??: 83
++ ... v\'; $out = & "D:\iverilog\bin\iverilog.exe" -g2012 -t null -s mycpu_ ...
++                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (D:\riscv\RISCV\...t of u_regfile. 
+   :String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+ 
+D:\riscv\RISCV\myriscv\mycpu_sync.v:172: warning: Port 1 (alu_op) of alu expect
+s 12 bits, got 11.
+D:\riscv\RISCV\myriscv\mycpu_sync.v:172:        : Padding 1 high bits of the po
+rt.
+D:\riscv\RISCV\myriscv\mycpu_sync.v:182: error: Unable to bind wire/reg/memory 
+`valid' in `mycpu_single_async'
+D:\riscv\RISCV\myriscv\mycpu_sync.v:182: error: Concatenation/replication may n
+ot have zero width in this context.
+D:\riscv\RISCV\myriscv\mycpu_sync.v:182: error: Unable to elaborate r-value: (s
+t_we)&({'sd4{valid}})
+D:\riscv\RISCV\myriscv\mycpu_sync.v:187: warning: Port 3 (data_sram_rdata) of l
+_alu expects 32 bits, got 1.
+D:\riscv\RISCV\myriscv\mycpu_sync.v:187:        : Padding 31 high bits of the p
+ort.
+D:\riscv\RISCV\myriscv\mycpu_sync.v:197: error: Unable to bind wire/reg/memory 
+`valid' in `mycpu_single_async'
+D:\riscv\RISCV\myriscv\mycpu_sync.v:197: error: Unable to elaborate r-value: (g
+f_we)&(valid)
+6 error(s) during elaboration.
+

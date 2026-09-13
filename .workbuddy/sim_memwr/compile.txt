@@ -1,0 +1,15 @@
+﻿iverilog.exe : D:\riscv\RISCV\.workbuddy\sim_memwr\ipm2l_spram_FIXED.v:314: war
+ning: @* found no sensitivities so it will never trigger.
+所在位置 行:447 字符: 6
++ $c = & "D:\iverilog\bin\iverilog.exe" -g2005 -o "$d\memwr.vvp" -s tb_ ...
++      ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (D:\riscv\RISCV\... never trigger. 
+   :String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+ 
+D:\riscv\RISCV\.workbuddy\sim_memwr\ipm2l_spram_FIXED.v:382: warning: @* found 
+no sensitivities so it will never trigger.
+D:\riscv\RISCV\.workbuddy\sim_memwr\ipm2l_spram_FIXED.v:389: warning: @* found 
+no sensitivities so it will never trigger.
+D:\riscv\RISCV\.workbuddy\sim_memwr\ipm2l_spram_FIXED.v:396: warning: @* found 
+no sensitivities so it will never trigger.

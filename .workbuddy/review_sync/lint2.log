@@ -1,0 +1,17 @@
+EXIT=0
+iverilog.exe : D:\riscv\RISCV\.workbuddy\review_sync\mycpu_sync_fixed.v:172: wa
+rning: Port 1 (alu_op) of alu expects 12 bits, got 11.
+???? ?:445 ??: 83
++ ... v\'; $out = & "D:\iverilog\bin\iverilog.exe" -g2012 -t null -s mycpu_ ...
++                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (D:\riscv\RISCV\...2 bits, got 11. 
+   :String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+ 
+D:\riscv\RISCV\.workbuddy\review_sync\mycpu_sync_fixed.v:172:        : Padding 
+1 high bits of the port.
+D:\riscv\RISCV\.workbuddy\review_sync\mycpu_sync_fixed.v:187: warning: Port 3 (
+data_sram_rdata) of l_alu expects 32 bits, got 1.
+D:\riscv\RISCV\.workbuddy\review_sync\mycpu_sync_fixed.v:187:        : Padding 
+31 high bits of the port.
+

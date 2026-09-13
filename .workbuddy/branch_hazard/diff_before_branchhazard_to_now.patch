@@ -1,0 +1,140 @@
+diff --git "a/D:\\riscv\\RISCV\\.workbuddy\\branch_hazard\\mycpu_sync_before_hazard.v" "b/D:\\riscv\\RISCV\\myriscv\\mycpu_sync.v"
+index 59b9854..0cb1533 100644
+--- "a/D:\\riscv\\RISCV\\.workbuddy\\branch_hazard\\mycpu_sync_before_hazard.v"
++++ "b/D:\\riscv\\RISCV\\myriscv\\mycpu_sync.v"
+@@ -14,5 +14,5 @@ module mycpu_single_async (
+     end
+     wire [31:0] inst_sram_addr;
+-    wire [31:0] inst;
++    wire [31:0] inst_if;        // IF 级:ROM 取回的原始指令(同步读,1 拍延迟)
+ 
+     inst_rom u_inst_rom(
+@@ -20,5 +20,5 @@ module mycpu_single_async (
+         .clk(clk),
+         .rst(!resetn),
+-        .rd_data(inst)
++        .rd_data(inst_if)
+     );
+     reg[31:0] pc;
+@@ -34,4 +34,7 @@ module mycpu_single_async (
+         end
+     end
++    // ---------- IF/ID 流水寄存器 = ID 级的输入 ----------
++    // 气泡三个来源:① 复位(!valid) ② 分支/跳转冲刷(flush) ③ 下游阻塞(stall,暂未做)
++    // 约定:气泡的唯一标志是 if_id_valid=0;指令/PC 字段只填"安全兜底值",不参与判断
+     reg [31:0] if_id_inst;
+     reg [31:0] if_id_pc;
+@@ -43,6 +46,11 @@ module mycpu_single_async (
+             if_id_valid <= 1'b0;
+         end
++        else if(flush)begin                                    // ★ 分支冒险:冲掉错取的指令
++            if_id_inst <= 32'h0000_0013;                       // NOP(addi x0,x0,0)兜底
++            if_id_pc <= 32'hFFFF_FFFF;                         // 哨兵:波形上一眼认出气泡
++            if_id_valid <= 1'b0;
++        end
+         else begin
+-            if_id_inst <= inst;
++            if_id_inst <= inst_if;
+             if_id_pc <= pc;
+             if_id_valid <= 1'b1;
+@@ -50,24 +58,28 @@ module mycpu_single_async (
+     end
+ 
+-    // ================= 跳转地址 / next_pc 逻辑 =================
+-    // 顺序后继:既是默认 next_pc,也是 jal/jalr 的链接值(写回 rd)
+-    wire [31:0] pc4    = pc + 32'h4;
+-
+-    // 三种跳转目标(全部当拍组合算出,满足 ROM 地址口 setup)
+-    wire [31:0] b_pc    = pc + imm_b;                  // B 型:分支目标 = pc + imm_b
+-    wire [31:0] jal_pc  = pc + imm_j;                  // J 型:jal 目标 = pc + imm_j
+-    wire [31:0] jalr_pc = (rdata1 + imm_i) & ~32'h1;   // I 型:jalr 目标 = (rs1+imm_i) 清最低位
++    // ID 级及其后各级看到的指令 = IF/ID 寄存器输出。
++    // 沿用旧名 inst → 下方整套译码/立即数代码一行都不用改。
++    wire [31:0] inst = if_id_inst;
+ 
+-    // 分支目标与跳转目标合并(按指令选通)
++    // ============ 分支冒险:ID 级组合判定 → 冲刷 + PC 重定向 ============
++    // 为什么有冒险:ID 级执行的是 if_id_inst(IF/ID 寄存器输出),而此刻 IF 已经把
++    //   顺延的那条指令取回来了。分支一旦命中,那条"错取"的指令必须冲掉,同时把 pc
++    //   重定向到目标 —— 本段就是干这个。
++    // 为什么目标/链接值用 if_id_pc:分支自己停在 ID 级,它的 PC = if_id_pc;
++    //   而 IF 级的 pc 已经领先一条(即原注释里的"差异1 / 差异2")。
++    wire [31:0] pc4     = if_id_pc + 32'h4;                // 顺序后继 = jal/jalr 链接值
++    // 目标复用同一个 imm(B→imm_b、J→imm_j):分支与 jal 共用一个加法器,省掉 b_pc/jal_pc 那层 mux
++    wire [31:0] jalr_pc = (rdata1 + imm) & ~32'h1;         // I 型:jalr rs1+imm_i,清 bit0
+     wire [31:0] bj_pc   = inst_jalr ? jalr_pc
+-                        : inst_jal  ? jal_pc
+-                        :             b_pc;            // 默认 = 分支目标
++                                    : (if_id_pc + imm);    // B/J 型:if_id_pc + 对应立即数
+ 
+-    // 跳转使能:分支条件成立(br_alu 组合输出)| jal | jalr
+-    // 注:非分支指令 inst_6b 全 0,br_taken 必为 0,故可安全相或
+-    wire        pc_sel  = br_taken | inst_jal | inst_jalr;
++    // ID 级命中:分支条件成立(br_alu 组合输出)| jal | jalr
++    // 注:非分支指令 inst_6b 全 0 → br_taken 必 0,可安全相或
++    wire        id_taken = br_taken | inst_jal | inst_jalr;
++    // 只有"ID 级真的在跑一条有效指令"时才冲刷(气泡绝不能触发重定向)
++    wire        flush    = id_taken & if_id_valid;
+ 
+-    assign next_pc = pc_sel ? bj_pc : pc4;             // 跳转取目标,否则顺序 +4
+-    // =========================================================
++    assign next_pc = flush ? bj_pc : pc + 32'h4;           // 命中→重定向;否则顺序 +4
++    // ===================================================================
+ 
+     // ---- 译码(与 topcpu.v 完全相同)----
+@@ -139,5 +151,18 @@ module mycpu_single_async (
+     wire [31:0] imm_j = {{11{inst[31]}}, inst[31], inst[19:12], inst[20], inst[30:21], 1'b0};
+     wire [4:0] zimm = inst[19:15];
+-    
++
++    // ---- 立即数统一生成:六类编码两两互斥 → 按位或合并 ----
++    // 为什么可以直接"或":各编码的 opcode 互不相同 ——
++    //   U(0110111/0010111) I(0010011/0000011) S(0100011) B(1100011) J(1101111) jalr(1100111);
++    //   唯一共用 0010011 的 i_I 与 i_shamt 由 funct3 区分(000/010/011/100/110/111 vs 001/101)。
++    // 与优先级链相比:少了 3 级级联 mux,而且生成了唯一一个 imm,分支目标也能复用它。
++    wire imm_i_sel = i_I | i_l | inst_jalr;      // jalr 的目标同样吃 I 型立即数
++    wire [31:0] imm = ({32{i_u}}       & imm_u)
++                    | ({32{imm_i_sel}} & imm_i)
++                    | ({32{inst_s}}    & imm_s)
++                    | ({32{i_shamt}}   & shamt)
++                    | ({32{inst_b}}    & imm_b)
++                    | ({32{inst_jal}}  & imm_j);
++
+     wire wmem;
+     wire gf_we;
+@@ -184,10 +209,8 @@ module mycpu_single_async (
+ 
+ 
+-    wire [31:0] alu_src1 = inst_auipc ? pc : rdata1;
+-    wire [31:0] alu_src2 = i_u ? imm_u
+-                         : (i_I | i_l) ? imm_i
+-                         : inst_s ? imm_s
+-                         : i_shamt ? shamt
+-                         : rdata2;
++    wire [31:0] alu_src1 = inst_auipc ? if_id_pc : rdata1;   // auipc 用 ID 级指令自己的 PC
++    // ALU 第二操作数:吃立即数的那五类统一选 imm,其余(R 型 / jal / jalr)用 rdata2
++    wire use_imm = i_u | i_I | i_l | inst_s | i_shamt;
++    wire [31:0] alu_src2 = use_imm ? imm : rdata2;
+     wire [31:0] alu_result;
+     alu u_alu (.alu_op(alu_op), .alu_src1(alu_src1), .alu_src2(alu_src2), .alu_result(alu_result));
+@@ -203,5 +226,5 @@ module mycpu_single_async (
+                       : inst_sb ? (4'b0001 << st_off)
+                       : 4'b0000;
+-    assign data_sram_we   = st_we & {4{valid}};
++    assign data_sram_we   = st_we & {4{if_id_valid}};   // 气泡绝不发写请求(闸门=当级 valid)
+     assign data_sram_addr = alu_result;
+     assign data_sram_wdata = rdata2 << {2'b00, alu_result[1:0], 3'b000};
+@@ -229,5 +252,5 @@ module mycpu_single_async (
+     
+                      
+-    assign rf_we    = gf_we & valid;
++    assign rf_we    = gf_we & if_id_valid;         // 气泡/被冲刷的指令不写回
+     assign rf_waddr = rd;
+     assign rf_wdata = i_l ? mem_result            
+@@ -237,5 +260,5 @@ module mycpu_single_async (
+  
+ 
+-    assign debug_wb_pc     = pc;
++    assign debug_wb_pc     = if_id_pc;   // 该沿提交的是 ID 级这条指令
+     assign debug_wb_rf_we  = {4{rf_we}};
+     assign debug_wb_rf_wnum = rf_waddr;

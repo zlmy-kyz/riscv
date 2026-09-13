@@ -1,0 +1,12 @@
+
+
+
+
+
+
+D:/riscv/RISCV/ipcore/inst_rom/rtl/ipm2l_spram_v1_8_inst_rom.v|D:/riscv/RISCV/ipcore/inst_rom/rtl/inst_rom_init_param.v|
+
+
+D:/riscv/RISCV/ipcore/data_ram/rtl/ipm2l_spram_v1_8_data_ram.v|D:/riscv/RISCV/ipcore/data_ram/rtl/data_ram_init_param.v|
+
+

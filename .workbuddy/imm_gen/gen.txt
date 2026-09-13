@@ -1,0 +1,13 @@
+mem[0] = 32'h12345537;  // 0x00  lui   x10, 0x12345
+mem[1] = 32'h00001597;  // 0x04  auipc x11, 0x1
+mem[2] = 32'hFFF00613;  // 0x08  addi  x12, x0, -1
+mem[3] = 32'h00160693;  // 0x0C  addi  x13, x12, 1
+mem[4] = 32'h00461713;  // 0x10  slli  x14, x12, 4
+mem[5] = 32'h01C65793;  // 0x14  srli  x15, x12, 28
+mem[6] = 32'h00E02423;  // 0x18  sw    x14, 8(x0)
+mem[7] = 32'h00402803;  // 0x1C  lw    x16, 4(x0)
+
+exp checks:
+x10 = 0x12345000 ; x11 = 0x1004 ; x12 = 0xFFFFFFFF ; x13 = 0x00000000
+x14 = 0xFFFFFFF0 ; x15 = 0x0000000F ; sw addr = 8 ; lw addr = 4
+
