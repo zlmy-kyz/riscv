@@ -220,6 +220,9 @@ module mycpu_sync (
     assign i_shamt= inst_slli | inst_srli | inst_srai;
     wire i_I;
     assign i_I    = inst_slti | inst_sltiu | inst_addi | inst_andi | inst_ori | inst_xori;
+    wire i_R;
+    assign i_R    = inst_add | inst_sub | inst_and | inst_or | inst_xor |
+                    inst_sll | inst_slt | inst_sltu | inst_srl | inst_sra;
     wire inst_s;
     assign inst_s = inst_sw | inst_sh | inst_sb;
     wire inst_b;
@@ -321,10 +324,15 @@ module mycpu_sync (
     // EX 里是 load、而 ID 这条要用它的结果 —— 此时 load 的数据还在 RAM 里没出来(下一拍才到 MEM),
     //   所以 EX 无法前递, 只能把 ID 这条按在译码级等一拍(下一拍从 MEM 前递)。
     // 这就是书本说的"引入前递之后, 译码级唯一的阻塞条件"。
-    // 注意这里是按 rs1/rs2 字段直接比, 不看该指令是否真的读这两个字段 —— 假命中只会多停一拍,
-    //   不会算错(比如 lui 的 rs1 字段其实装的是立即数)。
+    // 只比较当前指令实际读取的源寄存器。U/J 型的相同位段是立即数,
+    // I 型的 rs2 位段也是立即数, 不能因为位模式碰巧等于 load.rd 而停顿。
+    wire uses_rs1;
+    wire uses_rs2;
+    assign uses_rs1 = i_R | i_I | i_shamt | i_l | inst_s | inst_b | inst_jalr;
+    assign uses_rs2 = i_R | inst_s | inst_b;
     assign load_use = id_ex_valid & id_ex_i_l & id_ex_gf_we & (id_ex_rd != 5'd0) &
-                      ((id_ex_rd == rs1) | (id_ex_rd == rs2));
+                      ((uses_rs1 & (id_ex_rd == rs1)) |
+                       (uses_rs2 & (id_ex_rd == rs2)));
 
     // ---------- ID/EX 时序块 ----------
     // 优先级: !valid > load_use(插气泡) > if_id_valid(正常) > 气泡
