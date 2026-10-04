@@ -68,17 +68,25 @@ __pycache__/
 # Local development notes and experiments; retain files locally.
 /.workbuddy/
 
+# Board-focused GitHub repository; these materials remain available locally.
+# Keep constraint_check/temp_constraint_file.fdc: it is the active PDS input.
+/bug/
+/difftest/
+/constraints/
+/doc/
+/fdc/
+/ip_backup/
+/rv32i_table.txt
+# Revisit /doc/ when selected public documentation is added later.
+
 # Intentionally retain:
 # - constraint_check/temp_constraint_file.fdc (referenced by RISCV.pds)
 # - myriscv/, source/, IP rtl/ and sim_lib/, sim/ scripts and TBs
 # - MyCpu_test/ images, dumps, binaries, manifests and independent test IPs
-# - difftest/ sources and golden models, doc/ images and verification records
 # - selected regression logs and CSV summaries (no global *.log or *.csv rule)
 # - modelsim.ini until portable library setup replaces its local mappings
 
 # Optional exclusions: migrate useful scripts/evidence and fix references first.
-# /ip_backup/
 # /impl.tcl
-# /fdc/constraint_backup/
 # /ipcore/data_ram/ram_test.dat.bak
 # /sim/board_boot_fix_20261003/before/
