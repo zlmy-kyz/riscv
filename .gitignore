@@ -1,0 +1,82 @@
+# PDS build outputs (keep RISCV.pds and all source constraints).
+/compile/
+/synthesize/
+/device_map/
+/place_route/
+/generate_netlist/
+/generate_bitstream/
+/report_timing/
+/report_power/
+/log/
+/logbackup/
+*.pds.lock
+/constraint_check/*.ccr
+
+# Build outputs inside isolated PDS validation projects.
+/sim/**/compile/
+/sim/**/synthesize/
+/sim/**/device_map/
+/sim/**/place_route/
+/sim/**/generate_netlist/
+/sim/**/generate_bitstream/
+/sim/**/report_timing/
+/sim/**/report_power/
+/sim/**/logbackup/
+
+# ModelSim compiled libraries. Keep Tcl, TBs, file lists and IP sim_lib sources.
+/sim/**/work/
+/sim/**/*_work/
+/ipcore/ddr3/sim/modelsim/work/
+/ipcore/ddr3/sim/modelsim/*_work/
+/ipcore/ddr3/sim/modelsim/sim/**/work/
+/ipcore/ddr3/sim/modelsim/sim/**/*_work/
+
+# Simulation executables, waveforms and console scratch output.
+*.vvp
+*.wlf
+*.vcd
+/sim/**/transcript
+/ipcore/ddr3/sim/modelsim/**/transcript
+/difftest/build/
+/tmp/
+# Derived DDR model recreated by sim/compile_ddr3_physical_model.tcl.
+/sim/ddr_physical_model/
+
+# Python cache.
+__pycache__/
+*.pyc
+*.pyo
+
+# IP generation metadata; retain IDF, RTL and generated initialization sources.
+/ipcore/**/.last_generated
+/ipcore/**/generate.log
+/MyCpu_test/**/ipcore/**/.last_generated
+/MyCpu_test/**/ipcore/**/generate.log
+
+# Root-level tool logs and inspected temporary output.
+/pds.log
+/run.log
+/flow.log
+/pne.log
+/stdout.log
+/stderr.log
+/_final.txt
+/_ls.txt
+/_rom.txt
+/data.wf
+
+# Intentionally retain:
+# - constraint_check/temp_constraint_file.fdc (referenced by RISCV.pds)
+# - myriscv/, source/, IP rtl/ and sim_lib/, sim/ scripts and TBs
+# - MyCpu_test/ images, dumps, binaries, manifests and independent test IPs
+# - difftest/ sources and golden models, doc/ images and verification records
+# - selected regression logs and CSV summaries (no global *.log or *.csv rule)
+# - modelsim.ini until portable library setup replaces its local mappings
+
+# Optional exclusions: migrate useful scripts/evidence and fix references first.
+# /.workbuddy/
+# /ip_backup/
+# /impl.tcl
+# /fdc/constraint_backup/
+# /ipcore/data_ram/ram_test.dat.bak
+# /sim/board_boot_fix_20261003/before/

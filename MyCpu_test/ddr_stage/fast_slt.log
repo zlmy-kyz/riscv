@@ -1,0 +1,2 @@
+CHECK: slt CPU loaded 420 words into DDR
+RESULT: PASS slt DDR RV32I tohost=1 cycles=6303

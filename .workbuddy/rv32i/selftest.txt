@@ -1,0 +1,18 @@
+﻿=== 缂栫爜/璇戠爜 寰€杩旇嚜妫€ ===
+  [FAIL] @0x00000080  nop                          -> 0x00000013 -> addi x0, x0, 0x0
+  [FAIL] @0x00000084  li    x5, 0                  -> 0x00000293 -> addi x5, x0, 0x0
+  [FAIL] @0x00000088  inc   x6                     -> 0x00130313 -> addi x6, x6, 0x1
+  [FAIL] @0x0000008C  dec   x7                     -> 0xFFF38393 -> addi x7, x7, -1
+  [FAIL] @0x00000090  mv    x8, x9                 -> 0x00048413 -> addi x8, x9, 0x0
+  [FAIL] @0x00000094  ret                          -> 0x00008067 -> jalr x0, 0x0(x1)
+閫氳繃 34 鏉?澶辫触 6 鏉?
+--- 杈圭晫缂栫爜 ---
+  0x00000013  addi x0, x0, 0x0         I
+  0x00000000  <闈炴硶鎸囦护 0x00000000>        ?
+  0xFFFFFFFF  <鏈疄鐜?闈炴硶缂栫爜>               ?
+  0x00008067  jalr x0, 0x0(x1)         I
+  0x00000073  ecall                    I
+  0x00100073  ebreak                   I
+  0x80000093  addi x1, x0, -2048       I
+  0xFF9FF0EF  jal x1, -8               J
+  0xFE110EE3  beq x2, x1, -4           B

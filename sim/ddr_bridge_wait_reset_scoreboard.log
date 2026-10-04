@@ -1,0 +1,35 @@
+CHECK: reset phase=1 canceled outstanding bridge work
+CHECK: reset phase=2 canceled outstanding bridge work
+CHECK: reset phase=3 canceled outstanding bridge work
+CHECK: reset phase=4 canceled outstanding bridge work
+CHECK: reset phase=5 canceled outstanding bridge work
+CHECK: reset phase=6 canceled outstanding bridge work
+RESULT: PASS bridge wait/reset scoreboard seed=1 transactions=165 writes=56 reads=109 resets=6
+CHECK: reset phase=1 canceled outstanding bridge work
+CHECK: reset phase=2 canceled outstanding bridge work
+CHECK: reset phase=3 canceled outstanding bridge work
+CHECK: reset phase=4 canceled outstanding bridge work
+CHECK: reset phase=5 canceled outstanding bridge work
+CHECK: reset phase=6 canceled outstanding bridge work
+RESULT: PASS bridge wait/reset scoreboard seed=17 transactions=165 writes=56 reads=109 resets=6
+CHECK: reset phase=1 canceled outstanding bridge work
+CHECK: reset phase=2 canceled outstanding bridge work
+CHECK: reset phase=3 canceled outstanding bridge work
+CHECK: reset phase=4 canceled outstanding bridge work
+CHECK: reset phase=5 canceled outstanding bridge work
+CHECK: reset phase=6 canceled outstanding bridge work
+RESULT: PASS bridge wait/reset scoreboard seed=2026 transactions=165 writes=56 reads=109 resets=6
+CHECK: reset phase=1 canceled outstanding bridge work
+CHECK: reset phase=2 canceled outstanding bridge work
+CHECK: reset phase=3 canceled outstanding bridge work
+CHECK: reset phase=4 canceled outstanding bridge work
+CHECK: reset phase=5 canceled outstanding bridge work
+CHECK: reset phase=6 canceled outstanding bridge work
+RESULT: PASS bridge wait/reset scoreboard seed=65535 transactions=165 writes=56 reads=109 resets=6
+CHECK: reset phase=1 canceled outstanding bridge work
+CHECK: reset phase=2 canceled outstanding bridge work
+CHECK: reset phase=3 canceled outstanding bridge work
+CHECK: reset phase=4 canceled outstanding bridge work
+CHECK: reset phase=5 canceled outstanding bridge work
+CHECK: reset phase=6 canceled outstanding bridge work
+RESULT: PASS bridge wait/reset scoreboard seed=2147483647 transactions=165 writes=56 reads=109 resets=6

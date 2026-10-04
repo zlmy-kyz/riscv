@@ -1,0 +1,2 @@
+CHECK: srli CPU loaded 282 words into DDR
+RESULT: PASS srli DDR RV32I tohost=1 cycles=4078

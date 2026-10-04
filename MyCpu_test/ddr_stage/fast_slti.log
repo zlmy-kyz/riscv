@@ -1,0 +1,2 @@
+CHECK: slti CPU loaded 271 words into DDR
+RESULT: PASS slti DDR RV32I tohost=1 cycles=3916

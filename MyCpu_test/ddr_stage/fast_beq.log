@@ -1,0 +1,2 @@
+CHECK: beq CPU loaded 290 words into DDR
+RESULT: PASS beq DDR RV32I tohost=1 cycles=4342

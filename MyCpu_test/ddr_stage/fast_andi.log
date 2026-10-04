@@ -1,0 +1,2 @@
+CHECK: andi CPU loaded 226 words into DDR
+RESULT: PASS andi DDR RV32I tohost=1 cycles=3310

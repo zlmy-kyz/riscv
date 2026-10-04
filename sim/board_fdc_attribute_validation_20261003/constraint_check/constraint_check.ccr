@@ -1,0 +1,99 @@
+##### Written on 2026/10/03 01:11:48 ###############################
+
+
+##### INFO ##################################################
+
+Current device : 
+	PG2L100H-6FBG484
+
+Top Module : 
+	board_top
+
+Constraint File(s) : 
+	D:/riscv/RISCV/constraints/board_top.fdc
+
+##### SUMMARY ######################################################
+
+Found 51 error(s), 7 critical warning(s), 0 warning(s), out of 173 constraint(s)
+
+
+Inapplicable constraints(except overwritten constraints):
+********************************************
+
+define_attribute {p:resetn} {PAP_IO_LOC} {M15}
+	C: ConstraintEditor-2002: [D:/riscv/RISCV/constraints/board_top.fdc(line number: 20)] | Port resetn has been placed at location M15, whose type is share pin.
+
+
+Constraints with issues:
+********************************************
+
+
+Issues without commands:
+********************************************
+
+E: ConstraintEditor-0040: p:mem_a[0] lack attribute PAP_IO_VCCIO, IO constraints should contains both LOC and VCCIO and IOSTANDARD.
+E: ConstraintEditor-0040: p:ddr_ref_clk_p lack attribute PAP_IO_VCCIO, IO constraints should contains both LOC and VCCIO and IOSTANDARD.
+E: ConstraintEditor-0040: p:ddr_ref_clk_n lack attribute PAP_IO_VCCIO, IO constraints should contains both LOC and VCCIO and IOSTANDARD.
+C: ConstraintEditor-2009: p:led_clk_alive is lack of PAP_IO_DRIVE, OUTPUT or INOUT PORT had better set PAP_IO_DRIVE, the optional value is {4, 8, 12, 16, 24}.
+C: ConstraintEditor-2009: p:led_clk_alive is lack of PAP_IO_SLEW, OUTPUT or INOUT PORT had better set PAP_IO_SLEW, the optional value is {FAST, SLOW}.
+C: ConstraintEditor-2009: p:led_ddr_ready is lack of PAP_IO_DRIVE, OUTPUT or INOUT PORT had better set PAP_IO_DRIVE, the optional value is {4, 8, 12, 16, 24}.
+C: ConstraintEditor-2009: p:led_ddr_ready is lack of PAP_IO_SLEW, OUTPUT or INOUT PORT had better set PAP_IO_SLEW, the optional value is {FAST, SLOW}.
+C: ConstraintEditor-2009: p:led_selftest is lack of PAP_IO_DRIVE, OUTPUT or INOUT PORT had better set PAP_IO_DRIVE, the optional value is {4, 8, 12, 16, 24}.
+C: ConstraintEditor-2009: p:led_selftest is lack of PAP_IO_SLEW, OUTPUT or INOUT PORT had better set PAP_IO_SLEW, the optional value is {FAST, SLOW}.
+E: ConstraintEditor-0040: p:mem_a[1] lack attribute PAP_IO_VCCIO, IO constraints should contains both LOC and VCCIO and IOSTANDARD.
+E: ConstraintEditor-0040: p:mem_a[2] lack attribute PAP_IO_VCCIO, IO constraints should contains both LOC and VCCIO and IOSTANDARD.
+E: ConstraintEditor-0040: p:mem_a[3] lack attribute PAP_IO_VCCIO, IO constraints should contains both LOC and VCCIO and IOSTANDARD.
+E: ConstraintEditor-0040: p:mem_a[4] lack attribute PAP_IO_VCCIO, IO constraints should contains both LOC and VCCIO and IOSTANDARD.
+E: ConstraintEditor-0040: p:mem_a[5] lack attribute PAP_IO_VCCIO, IO constraints should contains both LOC and VCCIO and IOSTANDARD.
+E: ConstraintEditor-0040: p:mem_a[6] lack attribute PAP_IO_VCCIO, IO constraints should contains both LOC and VCCIO and IOSTANDARD.
+E: ConstraintEditor-0040: p:mem_a[7] lack attribute PAP_IO_VCCIO, IO constraints should contains both LOC and VCCIO and IOSTANDARD.
+E: ConstraintEditor-0040: p:mem_a[8] lack attribute PAP_IO_VCCIO, IO constraints should contains both LOC and VCCIO and IOSTANDARD.
+E: ConstraintEditor-0040: p:mem_a[9] lack attribute PAP_IO_VCCIO, IO constraints should contains both LOC and VCCIO and IOSTANDARD.
+E: ConstraintEditor-0040: p:mem_a[10] lack attribute PAP_IO_VCCIO, IO constraints should contains both LOC and VCCIO and IOSTANDARD.
+E: ConstraintEditor-0040: p:mem_a[11] lack attribute PAP_IO_VCCIO, IO constraints should contains both LOC and VCCIO and IOSTANDARD.
+E: ConstraintEditor-0040: p:mem_a[12] lack attribute PAP_IO_VCCIO, IO constraints should contains both LOC and VCCIO and IOSTANDARD.
+E: ConstraintEditor-0040: p:mem_a[13] lack attribute PAP_IO_VCCIO, IO constraints should contains both LOC and VCCIO and IOSTANDARD.
+E: ConstraintEditor-0040: p:mem_a[14] lack attribute PAP_IO_VCCIO, IO constraints should contains both LOC and VCCIO and IOSTANDARD.
+E: ConstraintEditor-0040: p:mem_ba[0] lack attribute PAP_IO_VCCIO, IO constraints should contains both LOC and VCCIO and IOSTANDARD.
+E: ConstraintEditor-0040: p:mem_ba[1] lack attribute PAP_IO_VCCIO, IO constraints should contains both LOC and VCCIO and IOSTANDARD.
+E: ConstraintEditor-0040: p:mem_ba[2] lack attribute PAP_IO_VCCIO, IO constraints should contains both LOC and VCCIO and IOSTANDARD.
+E: ConstraintEditor-0040: p:mem_ck lack attribute PAP_IO_VCCIO, IO constraints should contains both LOC and VCCIO and IOSTANDARD.
+E: ConstraintEditor-0040: p:mem_ck_n lack attribute PAP_IO_VCCIO, IO constraints should contains both LOC and VCCIO and IOSTANDARD.
+E: ConstraintEditor-0040: p:mem_cs_n lack attribute PAP_IO_VCCIO, IO constraints should contains both LOC and VCCIO and IOSTANDARD.
+E: ConstraintEditor-0040: p:mem_rst_n lack attribute PAP_IO_VCCIO, IO constraints should contains both LOC and VCCIO and IOSTANDARD.
+E: ConstraintEditor-0040: p:mem_cke lack attribute PAP_IO_VCCIO, IO constraints should contains both LOC and VCCIO and IOSTANDARD.
+E: ConstraintEditor-0040: p:mem_ras_n lack attribute PAP_IO_VCCIO, IO constraints should contains both LOC and VCCIO and IOSTANDARD.
+E: ConstraintEditor-0040: p:mem_cas_n lack attribute PAP_IO_VCCIO, IO constraints should contains both LOC and VCCIO and IOSTANDARD.
+E: ConstraintEditor-0040: p:mem_we_n lack attribute PAP_IO_VCCIO, IO constraints should contains both LOC and VCCIO and IOSTANDARD.
+E: ConstraintEditor-0040: p:mem_odt lack attribute PAP_IO_VCCIO, IO constraints should contains both LOC and VCCIO and IOSTANDARD.
+E: ConstraintEditor-0040: p:mem_dm[0] lack attribute PAP_IO_VCCIO, IO constraints should contains both LOC and VCCIO and IOSTANDARD.
+E: ConstraintEditor-0040: p:mem_dm[1] lack attribute PAP_IO_VCCIO, IO constraints should contains both LOC and VCCIO and IOSTANDARD.
+E: ConstraintEditor-0040: p:mem_dq[0] lack attribute PAP_IO_VCCIO, IO constraints should contains both LOC and VCCIO and IOSTANDARD.
+E: ConstraintEditor-0040: p:mem_dq[1] lack attribute PAP_IO_VCCIO, IO constraints should contains both LOC and VCCIO and IOSTANDARD.
+E: ConstraintEditor-0040: p:mem_dq[2] lack attribute PAP_IO_VCCIO, IO constraints should contains both LOC and VCCIO and IOSTANDARD.
+E: ConstraintEditor-0040: p:mem_dq[3] lack attribute PAP_IO_VCCIO, IO constraints should contains both LOC and VCCIO and IOSTANDARD.
+E: ConstraintEditor-0040: p:mem_dq[4] lack attribute PAP_IO_VCCIO, IO constraints should contains both LOC and VCCIO and IOSTANDARD.
+E: ConstraintEditor-0040: p:mem_dq[5] lack attribute PAP_IO_VCCIO, IO constraints should contains both LOC and VCCIO and IOSTANDARD.
+E: ConstraintEditor-0040: p:mem_dq[6] lack attribute PAP_IO_VCCIO, IO constraints should contains both LOC and VCCIO and IOSTANDARD.
+E: ConstraintEditor-0040: p:mem_dq[7] lack attribute PAP_IO_VCCIO, IO constraints should contains both LOC and VCCIO and IOSTANDARD.
+E: ConstraintEditor-0040: p:mem_dq[8] lack attribute PAP_IO_VCCIO, IO constraints should contains both LOC and VCCIO and IOSTANDARD.
+E: ConstraintEditor-0040: p:mem_dq[9] lack attribute PAP_IO_VCCIO, IO constraints should contains both LOC and VCCIO and IOSTANDARD.
+E: ConstraintEditor-0040: p:mem_dq[10] lack attribute PAP_IO_VCCIO, IO constraints should contains both LOC and VCCIO and IOSTANDARD.
+E: ConstraintEditor-0040: p:mem_dq[11] lack attribute PAP_IO_VCCIO, IO constraints should contains both LOC and VCCIO and IOSTANDARD.
+E: ConstraintEditor-0040: p:mem_dq[12] lack attribute PAP_IO_VCCIO, IO constraints should contains both LOC and VCCIO and IOSTANDARD.
+E: ConstraintEditor-0040: p:mem_dq[13] lack attribute PAP_IO_VCCIO, IO constraints should contains both LOC and VCCIO and IOSTANDARD.
+E: ConstraintEditor-0040: p:mem_dq[14] lack attribute PAP_IO_VCCIO, IO constraints should contains both LOC and VCCIO and IOSTANDARD.
+E: ConstraintEditor-0040: p:mem_dq[15] lack attribute PAP_IO_VCCIO, IO constraints should contains both LOC and VCCIO and IOSTANDARD.
+E: ConstraintEditor-0040: p:mem_dqs[0] lack attribute PAP_IO_VCCIO, IO constraints should contains both LOC and VCCIO and IOSTANDARD.
+E: ConstraintEditor-0040: p:mem_dqs_n[0] lack attribute PAP_IO_VCCIO, IO constraints should contains both LOC and VCCIO and IOSTANDARD.
+E: ConstraintEditor-0040: p:mem_dqs[1] lack attribute PAP_IO_VCCIO, IO constraints should contains both LOC and VCCIO and IOSTANDARD.
+E: ConstraintEditor-0040: p:mem_dqs_n[1] lack attribute PAP_IO_VCCIO, IO constraints should contains both LOC and VCCIO and IOSTANDARD.
+
+Unconstrained ports:
+********************************************
+
+
+Constraints with matching wildcard expressions:
+********************************************
+
+

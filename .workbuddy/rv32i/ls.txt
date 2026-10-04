@@ -1,0 +1,7 @@
+﻿
+FullName                                        Length
+--------                                        ------
+D:\riscv\RISCV\doc\RV32I指令速查表.md                  5555
+D:\riscv\RISCV\.workbuddy\rv32i\rv32i_table.txt  12352
+
+

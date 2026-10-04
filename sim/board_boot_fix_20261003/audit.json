@@ -1,0 +1,19 @@
+{
+  "inst_rom": {
+    "INIT_FILE": [
+      "D:/riscv/RISCV/MyCpu_test/ddr_stage/boot_rom.dat",
+      "D:/riscv/RISCV/MyCpu_test/board_selftest/boot_rom.dat"
+    ]
+  },
+  "data_ram": {
+    "INIT_FILE": [
+      "D:/riscv/RISCV/MyCpu_test/ddr_stage/ld_st.dat",
+      "D:/riscv/RISCV/MyCpu_test/board_selftest/ddr_selftest.dat"
+    ]
+  },
+  "bitstream": {
+    "path": "D:\\riscv\\RISCV\\generate_bitstream\\board_top.sbit",
+    "sha256": "FEB49D7C56D650E7F113A14218689B766305689A35AC18E5BF57C4C13B26F4B7",
+    "bytes": 3791112
+  }
+}

@@ -1,0 +1,5 @@
+CHECK: debounce threshold=1 checks=43 PASS
+CHECK: debounce threshold=2 checks=49 PASS
+CHECK: debounce threshold=8 checks=85 PASS
+CHECK: debounce threshold=9 checks=91 PASS
+RESULT: PASS reset debounce, 1/2/8/9 cycles, real default release=20000012.000000 ns

@@ -1,0 +1,5 @@
+VERIFIED after ModelSim exit
+add PASS # RESULT: PASS add DDR RV32I tohost=1 cycles=26145; Errors=0, Warnings=353
+lb PASS # RESULT: PASS lb DDR RV32I tohost=1 cycles=16738; Errors=0, Warnings=353
+ld_st PASS # RESULT: PASS ld_st DDR RV32I tohost=1 cycles=67203; Errors=0, Warnings=353
+TOTAL pass=3 fail=0

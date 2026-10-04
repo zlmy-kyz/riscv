@@ -1,0 +1,2 @@
+CHECK: addi CPU loaded 276 words into DDR
+RESULT: PASS addi DDR RV32I tohost=1 cycles=3986

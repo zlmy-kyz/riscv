@@ -1,0 +1,2 @@
+CHECK: lb CPU loaded 273 words into DDR
+RESULT: PASS lb DDR RV32I tohost=1 cycles=4094

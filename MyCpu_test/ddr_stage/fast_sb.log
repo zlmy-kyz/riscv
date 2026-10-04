@@ -1,0 +1,2 @@
+CHECK: sb CPU loaded 403 words into DDR
+RESULT: PASS sb DDR RV32I tohost=1 cycles=6356

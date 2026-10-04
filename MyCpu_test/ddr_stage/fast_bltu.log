@@ -1,0 +1,2 @@
+CHECK: bltu CPU loaded 303 words into DDR
+RESULT: PASS bltu DDR RV32I tohost=1 cycles=4572

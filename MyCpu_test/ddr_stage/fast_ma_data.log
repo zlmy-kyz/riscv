@@ -1,0 +1,2 @@
+CHECK: ma_data CPU loaded 549 words into DDR
+RESULT: FAIL ma_data DDR RV32I tohost=00000539 failed_test=668 cycles=5930

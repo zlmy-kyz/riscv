@@ -1,0 +1,75 @@
+### compile TEST_B
+iverilog.exe : D:\riscv\RISCV\myriscv\mycpu_sync.v:66: warning: timescale for m
+ycpu_sync inherited from another file.
+???? D:\riscv\RISCV\.workbuddy\pipeline5\run.ps1:19 ??: 10
++ $log += (& $iv @cargs 2>&1 | Out-String)
++          ~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (D:\riscv\RISCV\...m another file. 
+   :String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+ 
+D:\riscv\RISCV\.workbuddy\pipeline5\tb_pipe5.v:1: ...: The inherited timescale 
+is here.
+D:\riscv\RISCV\myriscv\regfile.v:1: warning: timescale for regfile inherited fr
+om another file.
+D:\riscv\RISCV\.workbuddy\pipeline5\tb_pipe5.v:1: ...: The inherited timescale 
+is here.
+D:\riscv\RISCV\myriscv\alu.v:1: warning: timescale for alu inherited from anoth
+er file.
+D:\riscv\RISCV\.workbuddy\pipeline5\tb_pipe5.v:1: ...: The inherited timescale 
+is here.
+D:\riscv\RISCV\myriscv\l_alu.v:1: warning: timescale for l_alu inherited from a
+nother file.
+D:\riscv\RISCV\.workbuddy\pipeline5\tb_pipe5.v:1: ...: The inherited timescale 
+is here.
+D:\riscv\RISCV\myriscv\br_alu.v:7: warning: timescale for br_alu inherited from
+ another file.
+D:\riscv\RISCV\.workbuddy\pipeline5\tb_pipe5.v:1: ...: The inherited timescale 
+is here.
+EXIT_COMPILE=0
+### run
+=== TEST B: ?????rd==0 / ????????rd ===
+  [wb] t=86000 pc=00000000 we=1 rd=x1 data=000007ff                            
+  [wb] t=96000 pc=00000000 we=1 rd=x1 data=000007ff                            
+  [wb] t=106000 pc=00000004 we=1 rd=x0 data=00000123                            
+  [wb] t=116000 pc=00000008 we=1 rd=x2 data=00005000                            
+  [wb] t=126000 pc=0000000c we=1 rd=x3 data=00005000                            
+  [wb] t=136000 pc=00000010 we=1 rd=x4 data=00000055                            
+  [wb] t=146000 pc=00000014 we=1 rd=x0 data=00000000                            
+  [wb] t=156000 pc=00000018 we=1 rd=x0 data=00000000                            
+  [wb] t=166000 pc=0000001c we=1 rd=x0 data=00000000                            
+  [wb] t=176000 pc=00000020 we=1 rd=x0 data=00000000                            
+  [wb] t=186000 pc=00000024 we=1 rd=x0 data=00000000                            
+  [wb] t=196000 pc=00000028 we=1 rd=x0 data=00000000                            
+  [wb] t=206000 pc=0000002c we=1 rd=x0 data=00000000                            
+  [wb] t=216000 pc=00000030 we=1 rd=x0 data=00000000                            
+  [wb] t=226000 pc=00000034 we=1 rd=x0 data=00000000                            
+  [wb] t=236000 pc=00000038 we=1 rd=x0 data=00000000                            
+  [wb] t=246000 pc=0000003c we=1 rd=x0 data=00000000                            
+  [wb] t=256000 pc=00000040 we=1 rd=x0 data=00000000                            
+  [wb] t=266000 pc=00000044 we=1 rd=x0 data=00000000                            
+  [wb] t=276000 pc=00000048 we=1 rd=x0 data=00000000                            
+  [wb] t=286000 pc=0000004c we=1 rd=x0 data=00000000                            
+  [wb] t=296000 pc=00000050 we=1 rd=x0 data=00000000                            
+  [wb] t=306000 pc=00000054 we=1 rd=x0 data=00000000                            
+  [wb] t=316000 pc=00000058 we=1 rd=x0 data=00000000                            
+  [wb] t=326000 pc=0000005c we=1 rd=x0 data=00000000                            
+  [wb] t=336000 pc=00000060 we=1 rd=x0 data=00000000                            
+  [wb] t=346000 pc=00000064 we=1 rd=x0 data=00000000                            
+  [wb] t=356000 pc=00000068 we=1 rd=x0 data=00000000                            
+  [wb] t=366000 pc=0000006c we=1 rd=x0 data=00000000                            
+  [wb] t=376000 pc=00000070 we=1 rd=x0 data=00000000                            
+  [wb] t=386000 pc=00000074 we=1 rd=x0 data=00000000                            
+  [wb] t=396000 pc=00000078 we=1 rd=x0 data=00000000                            
+  [wb] t=406000 pc=0000007c we=1 rd=x0 data=00000000                            
+  [wb] t=416000 pc=00000080 we=1 rd=x0 data=00000000                            
+  [wb] t=426000 pc=00000084 we=1 rd=x0 data=00000000                            
+  [wb] t=436000 pc=00000088 we=1 rd=x0 data=00000000                            
+  [ ok ] ????????0??????????????? = 00000000
+  [ ok ] x1 addi 0x7FF = 000007ff
+  [ ok ] x2 lui 0x5 = 00005000
+  [ ok ] x3 lui 0?????x????????? = 00005000
+  [ ok ] x4 addi 0x55 = 00000055
+=== PASS ===
+EXIT_RUN=0
+

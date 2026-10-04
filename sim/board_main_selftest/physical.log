@@ -1,0 +1,659 @@
+# ** Warning: (vsim-53) Cannot suppress or change severity level of message number 1.
+# vsim -suppress 3486,3680,3781 "+nowarn1" -sva -lib board_top_physical_work -L usim -L adc_e2 -L ddc_e2 -L dll_e2 -L hsstlp_lane -L hsstlp_pll -L iolhr_dft -L ipal_e1 -L ipal_e2 -L iserdes_e2 -L oserdes_e2 -L pciegen2 tb_board_top_selftest "+TEST=ddr_selftest" "+TOHOST=40001000" "+EXPECTED_WRITES=245" "+CHECK_SELFTEST_LED" -l D:/riscv/RISCV/sim/board_main_selftest/physical.log 
+# Start time: 18:48:32 on Oct 03,2026
+# //  ModelSim DE-64 10.6c Jul 26 2017
+# //
+# //  Copyright 1991-2017 Mentor Graphics Corporation
+# //  All Rights Reserved.
+# //
+# //  ModelSim DE-64 and its associated documentation contain trade
+# //  secrets and commercial or financial information that are the property of
+# //  Mentor Graphics Corporation and are privileged, confidential,
+# //  and exempt from disclosure under the Freedom of Information Act,
+# //  5 U.S.C. Section 552. Furthermore, this information
+# //  is prohibited from disclosure under the Trade Secrets Act,
+# //  18 U.S.C. Section 1905.
+# //
+# Loading sv_std.std
+# Loading board_top_physical_work.tb_board_top_selftest
+# Loading usim.GTP_GRS
+# Loading board_top_physical_work.board_top
+# Loading usim.GTP_INBUFDS
+# Loading usim.GTP_CLKBUFG
+# Loading board_top_physical_work.reset_button_debounce
+# Loading board_top_physical_work.soc_ddr3_top
+# Loading board_top_physical_work.soc_ddr3_leds
+# Loading board_top_physical_work.soc_top
+# Loading board_top_physical_work.mycpu_sync
+# Loading board_top_physical_work.regfile
+# Loading board_top_physical_work.alu
+# Loading board_top_physical_work.l_alu
+# Loading board_top_physical_work.csr_file
+# Loading board_top_physical_work.br_alu
+# Loading board_top_physical_work.inst_bus_interconnect
+# Loading board_top_physical_work.inst_bram_adapter
+# Loading board_top_physical_work.inst_rom
+# Loading board_top_physical_work.ipm2l_rom_v1_8_inst_rom
+# Loading board_top_physical_work.ipm2l_spram_v1_8_inst_rom
+# Loading board_top_physical_work.data_bus_interconnect
+# Loading board_top_physical_work.data_bram_adapter
+# Loading board_top_physical_work.data_ram
+# Loading board_top_physical_work.ipm2l_spram_v1_8_data_ram
+# Loading board_top_physical_work.simple_mmio
+# Loading board_top_physical_work.ddr3_test_top_tb_v_unit
+# Loading board_top_physical_work.ddr3
+# Loading board_top_physical_work.ddr3_ddrphy_top
+# Loading usim.GTP_CLKBUFM
+# Loading usim.GTP_GPLL
+# Loading usim.GTP_CLKPD
+# Loading board_top_physical_work.ddr3_slice_top_v1_10
+# Loading usim.GTP_OSERDES_E2
+# Loading usim.GTP_IODELAY_E2
+# Loading usim.GTP_OUTBUFTCO
+# Loading usim.GTP_OUTBUFT
+# Loading board_top_physical_work.ddr3_mem
+# Loading usim.GTP_DRM36K_E1
+# Loading board_top_physical_work.dual_sram_to_pango_ddr_bridge
+# Loading usim.GTP_CLKBUFR
+# Loading usim.GTP_PPLL
+# Loading usim.GTP_IOCLKDIV_E3
+# Loading usim.GTP_DDC_E2
+# Loading usim.GTP_DLL_E2
+# Loading usim.GTP_IOBUFCO
+# Loading usim.GTP_ISERDES_E2
+# Loading usim.GTP_IOBUF
+# ** Warning: (vsim-3017) ./../../ddr3.v(323): [TFMPC] - Too few port connections. Expected 51, found 49.
+#    Time: 0 fs  Iteration: 0  Instance: /tb_board_top_selftest/dut/u_soc/u_ddr3/u_ips_ddrc_top File: ./../../sim_lib/mcdq_ctrl/ips2l_mcdq_wrapper_v1_2b.vp
+# ** Warning: (vsim-3722) ./../../ddr3.v(323): [TFMPC] - Missing connection for port 'ddr_zqcs_req'.
+# ** Warning: (vsim-3722) ./../../ddr3.v(323): [TFMPC] - Missing connection for port 'ddr_zqcs_ack'.
+# ** Warning: (vsim-3015) <protected>(<protected>): [PCDPC] - Port size (<protected>) does not match connection size (<protected>) for <protected>.<protected>
+#    Time: 0 fs  Iteration: 0  Protected: /tb_board_top_selftest/dut/u_soc/u_ddr3/u_ips_ddrc_top/<protected>/<protected>/<protected> File: ./../../sim_lib/mcdq_ctrl/syn_mod/ips2l_mcdq_timing_rd_pass_v1_2.vp
+# ** Warning: (vsim-3015) <protected>(<protected>): [PCDPC] - Port size (<protected>) does not match connection size (<protected>) for <protected>.<protected>
+#    Time: 0 fs  Iteration: 0  Protected: /tb_board_top_selftest/dut/u_soc/u_ddr3/u_ips_ddrc_top/<protected>/<protected>/<protected> File: ./../../sim_lib/mcdq_ctrl/syn_mod/ips2l_mcdq_timing_wr_pass_v1_2.vp
+# ** Warning: (vsim-3015) <protected>(<protected>): [PCDPC] - Port size (<protected>) does not match connection size (<protected>) for <protected>.<protected>
+#    Time: 0 fs  Iteration: 0  Protected: /tb_board_top_selftest/dut/u_soc/u_ddr3/u_ips_ddrc_top/<protected>/<protected>/<protected>/<protected> File: ./../../sim_lib/mcdq_ctrl/syn_mod/ips2l_mcdq_timing_pre_pass_v1_2.vp
+# ** Warning: (vsim-3015) <protected>(<protected>): [PCDPC] - Port size (<protected>) does not match connection size (<protected>) for <protected>.<protected>
+#    Time: 0 fs  Iteration: 0  Protected: /tb_board_top_selftest/dut/u_soc/u_ddr3/u_ips_ddrc_top/<protected>/<protected>/<protected>/<protected> File: ./../../sim_lib/mcdq_ctrl/syn_mod/ips2l_mcdq_timing_pre_pass_v1_2.vp
+# ** Warning: (vsim-3015) <protected>(<protected>): [PCDPC] - Port size (<protected>) does not match connection size (<protected>) for <protected>.<protected>
+#    Time: 0 fs  Iteration: 0  Protected: /tb_board_top_selftest/dut/u_soc/u_ddr3/u_ips_ddrc_top/<protected>/<protected>/<protected>/<protected> File: ./../../sim_lib/mcdq_ctrl/syn_mod/ips2l_mcdq_timing_pre_pass_v1_2.vp
+# ** Warning: (vsim-3015) <protected>(<protected>): [PCDPC] - Port size (<protected>) does not match connection size (<protected>) for <protected>.<protected>
+#    Time: 0 fs  Iteration: 0  Protected: /tb_board_top_selftest/dut/u_soc/u_ddr3/u_ips_ddrc_top/<protected>/<protected>/<protected>/<protected> File: ./../../sim_lib/mcdq_ctrl/syn_mod/ips2l_mcdq_timing_pre_pass_v1_2.vp
+# ** Warning: (vsim-3015) <protected>(<protected>): [PCDPC] - Port size (<protected>) does not match connection size (<protected>) for <protected>.<protected>
+#    Time: 0 fs  Iteration: 0  Protected: /tb_board_top_selftest/dut/u_soc/u_ddr3/u_ips_ddrc_top/<protected>/<protected>/<protected>/<protected> File: ./../../sim_lib/mcdq_ctrl/syn_mod/ips2l_mcdq_timing_pre_pass_v1_2.vp
+# ** Warning: (vsim-3015) <protected>(<protected>): [PCDPC] - Port size (<protected>) does not match connection size (<protected>) for <protected>.<protected>
+#    Time: 0 fs  Iteration: 0  Protected: /tb_board_top_selftest/dut/u_soc/u_ddr3/u_ips_ddrc_top/<protected>/<protected>/<protected>/<protected> File: ./../../sim_lib/mcdq_ctrl/syn_mod/ips2l_mcdq_timing_pre_pass_v1_2.vp
+# ** Warning: (vsim-3015) <protected>(<protected>): [PCDPC] - Port size (<protected>) does not match connection size (<protected>) for <protected>.<protected>
+#    Time: 0 fs  Iteration: 0  Protected: /tb_board_top_selftest/dut/u_soc/u_ddr3/u_ips_ddrc_top/<protected>/<protected>/<protected>/<protected> File: ./../../sim_lib/mcdq_ctrl/syn_mod/ips2l_mcdq_timing_pre_pass_v1_2.vp
+# ** Warning: (vsim-3015) <protected>(<protected>): [PCDPC] - Port size (<protected>) does not match connection size (<protected>) for <protected>.<protected>
+#    Time: 0 fs  Iteration: 0  Protected: /tb_board_top_selftest/dut/u_soc/u_ddr3/u_ips_ddrc_top/<protected>/<protected>/<protected>/<protected> File: ./../../sim_lib/mcdq_ctrl/syn_mod/ips2l_mcdq_timing_pre_pass_v1_2.vp
+# ** Warning: (vsim-3015) <protected>(<protected>): [PCDPC] - Port size (<protected>) does not match connection size (<protected>) for <protected>.<protected>
+#    Time: 0 fs  Iteration: 0  Protected: /tb_board_top_selftest/dut/u_soc/u_ddr3/u_ips_ddrc_top/<protected>/<protected>/<protected> File: ./../../sim_lib/mcdq_ctrl/syn_mod/ips2l_mcdq_timing_pre_pass_v1_2.vp
+# ** Warning: (vsim-3015) <protected>(<protected>): [PCDPC] - Port size (<protected>) does not match connection size (<protected>) for <protected>.<protected>
+#    Time: 0 fs  Iteration: 0  Protected: /tb_board_top_selftest/dut/u_soc/u_ddr3/u_ips_ddrc_top/<protected>/<protected>/<protected> File: ./../../sim_lib/mcdq_ctrl/syn_mod/ips2l_mcdq_timing_ref_pass_v1_2.vp
+# ** Warning: (vsim-3015) <protected>(<protected>): [PCDPC] - Port size (<protected>) does not match connection size (<protected>) for <protected>.<protected>
+#    Time: 0 fs  Iteration: 0  Protected: /tb_board_top_selftest/dut/u_soc/u_ddr3/u_ips_ddrc_top/<protected>/<protected>/<protected> File: ./../../sim_lib/mcdq_ctrl/syn_mod/ips2l_mcdq_timing_ref_pass_v1_2.vp
+# ** Warning: (vsim-3015) <protected>(<protected>): [PCDPC] - Port size (<protected>) does not match connection size (<protected>) for <protected>.<protected>
+#    Time: 0 fs  Iteration: 0  Protected: /tb_board_top_selftest/dut/u_soc/u_ddr3/u_ips_ddrc_top/<protected>/<protected>/<protected> File: ./../../sim_lib/mcdq_ctrl/syn_mod/ips2l_mcdq_timing_ref_pass_v1_2.vp
+# ** Warning: (vsim-3015) <protected>(<protected>): [PCDPC] - Port size (<protected>) does not match connection size (<protected>) for <protected>.<protected>
+#    Time: 0 fs  Iteration: 0  Protected: /tb_board_top_selftest/dut/u_soc/u_ddr3/u_ips_ddrc_top/<protected>/<protected>/<protected> File: ./../../sim_lib/mcdq_ctrl/syn_mod/ips2l_mcdq_timing_act_pass_v1_2.vp
+# ** Warning: (vsim-3015) <protected>(<protected>): [PCDPC] - Port size (<protected>) does not match connection size (<protected>) for <protected>.<protected>
+#    Time: 0 fs  Iteration: 0  Protected: /tb_board_top_selftest/dut/u_soc/u_ddr3/u_ips_ddrc_top/<protected>/<protected>/<protected> File: ./../../sim_lib/mcdq_ctrl/syn_mod/ips2l_mcdq_timing_act_pass_v1_2.vp
+# ** Warning: (vsim-3015) <protected>(<protected>): [PCDPC] - Port size (<protected>) does not match connection size (<protected>) for <protected>.<protected>
+#    Time: 0 fs  Iteration: 0  Protected: /tb_board_top_selftest/dut/u_soc/u_ddr3/u_ips_ddrc_top/<protected>/<protected>/<protected> File: ./../../sim_lib/mcdq_ctrl/syn_mod/ips2l_mcdq_timing_act_pass_v1_2.vp
+# ** Warning: (vsim-3015) C:/pango/PDS_2022.2-SP6.4/arch/vendor/pango/verilog/simulation/GTP_DDC_E2.v(393): [PCDPC] - Port size (2) does not match connection size (1) for port 'ldo_ctrl'. The port definition is at: nofile(23).
+#    Time: 0 fs  Iteration: 0  Instance: /tb_board_top_selftest/dut/u_soc/u_ddr3/u_ddrphy_top/ddrphy_slice_top/i_dqs_group[0]/ddrphy_data_slice/<protected>/dly_chain0 File: C:/pango/PDS_2022.2-SP6.4/arch/vendor/pango/verilog/simulation/modelsim10.2c/./ddc_e2_source_codes/ddc_e2_dly_chain.vp
+# ** Warning: (vsim-3015) C:/pango/PDS_2022.2-SP6.4/arch/vendor/pango/verilog/simulation/GTP_DDC_E2.v(394): [PCDPC] - Port size (2) does not match connection size (1) for port 'ldo_ctrl'. The port definition is at: nofile(23).
+#    Time: 0 fs  Iteration: 0  Instance: /tb_board_top_selftest/dut/u_soc/u_ddr3/u_ddrphy_top/ddrphy_slice_top/i_dqs_group[0]/ddrphy_data_slice/<protected>/dly_chain1 File: C:/pango/PDS_2022.2-SP6.4/arch/vendor/pango/verilog/simulation/modelsim10.2c/./ddc_e2_source_codes/ddc_e2_dly_chain.vp
+# ** Warning: (vsim-3015) C:/pango/PDS_2022.2-SP6.4/arch/vendor/pango/verilog/simulation/GTP_DDC_E2.v(395): [PCDPC] - Port size (2) does not match connection size (1) for port 'ldo_ctrl'. The port definition is at: nofile(23).
+#    Time: 0 fs  Iteration: 0  Instance: /tb_board_top_selftest/dut/u_soc/u_ddr3/u_ddrphy_top/ddrphy_slice_top/i_dqs_group[0]/ddrphy_data_slice/<protected>/dly_chain2 File: C:/pango/PDS_2022.2-SP6.4/arch/vendor/pango/verilog/simulation/modelsim10.2c/./ddc_e2_source_codes/ddc_e2_dly_chain.vp
+# ** Warning: (vsim-3015) C:/pango/PDS_2022.2-SP6.4/arch/vendor/pango/verilog/simulation/GTP_DDC_E2.v(397): [PCDPC] - Port size (2) does not match connection size (1) for port 'ldo_ctrl'. The port definition is at: nofile(23).
+#    Time: 0 fs  Iteration: 0  Instance: /tb_board_top_selftest/dut/u_soc/u_ddr3/u_ddrphy_top/ddrphy_slice_top/i_dqs_group[0]/ddrphy_data_slice/<protected>/dly_chain3 File: C:/pango/PDS_2022.2-SP6.4/arch/vendor/pango/verilog/simulation/modelsim10.2c/./ddc_e2_source_codes/ddc_e2_dly_chain.vp
+# ** Warning: (vsim-3015) C:/pango/PDS_2022.2-SP6.4/arch/vendor/pango/verilog/simulation/GTP_DDC_E2.v(739): [PCDPC] - Port size (2) does not match connection size (1) for port 'ldo_ctrl'. The port definition is at: nofile(23).
+#    Time: 0 fs  Iteration: 0  Instance: /tb_board_top_selftest/dut/u_soc/u_ddr3/u_ddrphy_top/ddrphy_slice_top/i_dqs_group[0]/ddrphy_data_slice/<protected>/dly_chain4 File: C:/pango/PDS_2022.2-SP6.4/arch/vendor/pango/verilog/simulation/modelsim10.2c/./ddc_e2_source_codes/ddc_e2_dly_chain.vp
+# ** Warning: (vsim-3015) C:/pango/PDS_2022.2-SP6.4/arch/vendor/pango/verilog/simulation/GTP_DDC_E2.v(740): [PCDPC] - Port size (2) does not match connection size (1) for port 'ldo_ctrl'. The port definition is at: nofile(23).
+#    Time: 0 fs  Iteration: 0  Instance: /tb_board_top_selftest/dut/u_soc/u_ddr3/u_ddrphy_top/ddrphy_slice_top/i_dqs_group[0]/ddrphy_data_slice/<protected>/dly_chain5 File: C:/pango/PDS_2022.2-SP6.4/arch/vendor/pango/verilog/simulation/modelsim10.2c/./ddc_e2_source_codes/ddc_e2_dly_chain.vp
+# ** Warning: (vsim-3017) <protected>(<protected>): [TFMPC] - Too few port connections. Expected <protected>, found <protected>.
+#    Time: 0 fs  Iteration: 0  Protected: /tb_board_top_selftest/dut/u_soc/u_ddr3/u_ddrphy_top/ddrphy_slice_top/i_dqs_group[0]/ddrphy_data_slice/<protected> File: C:/pango/PDS_2022.2-SP6.4/arch/vendor/pango/verilog/simulation/GTP_OSERDES_E2.v
+# ** Warning: (vsim-3722) <protected>(<protected>): [TFMPC] - Missing connection for port '<protected>'.
+# ** Warning: (vsim-3722) <protected>(<protected>): [TFMPC] - Missing connection for port '<protected>'.
+# ** Warning: (vsim-3015) C:/pango/PDS_2022.2-SP6.4/arch/vendor/pango/verilog/simulation/GTP_OSERDES_E2.v(692): [PCDPC] - Port size (2) does not match connection size (8) for port 'ts_ctrl'. The port definition is at: nofile(23).
+#    Time: 0 fs  Iteration: 0  Instance: /tb_board_top_selftest/dut/u_soc/u_ddr3/u_ddrphy_top/ddrphy_slice_top/i_dqs_group[0]/ddrphy_data_slice/<protected>/genblk1/xoserdes_e2_iolhr_ol File: C:/pango/PDS_2022.2-SP6.4/arch/vendor/pango/verilog/simulation/modelsim10.2c/./oserdes_e2_source_codes/oserdes_e2_iolhr_ol.vp
+# ** Warning: (vsim-3017) <protected>(<protected>): [TFMPC] - Too few port connections. Expected <protected>, found <protected>.
+#    Time: 0 fs  Iteration: 0  Protected: /tb_board_top_selftest/dut/u_soc/u_ddr3/u_ddrphy_top/ddrphy_slice_top/i_dqs_group[0]/ddrphy_data_slice/<protected> File: C:/pango/PDS_2022.2-SP6.4/arch/vendor/pango/verilog/simulation/GTP_OSERDES_E2.v
+# ** Warning: (vsim-3722) <protected>(<protected>): [TFMPC] - Missing connection for port '<protected>'.
+# ** Warning: (vsim-3722) <protected>(<protected>): [TFMPC] - Missing connection for port '<protected>'.
+# ** Warning: (vsim-3015) C:/pango/PDS_2022.2-SP6.4/arch/vendor/pango/verilog/simulation/GTP_OSERDES_E2.v(692): [PCDPC] - Port size (2) does not match connection size (8) for port 'ts_ctrl'. The port definition is at: nofile(23).
+#    Time: 0 fs  Iteration: 0  Instance: /tb_board_top_selftest/dut/u_soc/u_ddr3/u_ddrphy_top/ddrphy_slice_top/i_dqs_group[0]/ddrphy_data_slice/<protected>/genblk1/xoserdes_e2_iolhr_ol File: C:/pango/PDS_2022.2-SP6.4/arch/vendor/pango/verilog/simulation/modelsim10.2c/./oserdes_e2_source_codes/oserdes_e2_iolhr_ol.vp
+# ** Warning: (vsim-3017) <protected>(<protected>): [TFMPC] - Too few port connections. Expected <protected>, found <protected>.
+#    Time: 0 fs  Iteration: 0  Protected: /tb_board_top_selftest/dut/u_soc/u_ddr3/u_ddrphy_top/ddrphy_slice_top/i_dqs_group[0]/ddrphy_data_slice/<protected> File: C:/pango/PDS_2022.2-SP6.4/arch/vendor/pango/verilog/simulation/GTP_OSERDES_E2.v
+# ** Warning: (vsim-3722) <protected>(<protected>): [TFMPC] - Missing connection for port '<protected>'.
+# ** Warning: (vsim-3722) <protected>(<protected>): [TFMPC] - Missing connection for port '<protected>'.
+# ** Warning: (vsim-3015) C:/pango/PDS_2022.2-SP6.4/arch/vendor/pango/verilog/simulation/GTP_OSERDES_E2.v(692): [PCDPC] - Port size (2) does not match connection size (8) for port 'ts_ctrl'. The port definition is at: nofile(23).
+#    Time: 0 fs  Iteration: 0  Instance: /tb_board_top_selftest/dut/u_soc/u_ddr3/u_ddrphy_top/ddrphy_slice_top/i_dqs_group[0]/ddrphy_data_slice/<protected>/genblk1/xoserdes_e2_iolhr_ol File: C:/pango/PDS_2022.2-SP6.4/arch/vendor/pango/verilog/simulation/modelsim10.2c/./oserdes_e2_source_codes/oserdes_e2_iolhr_ol.vp
+# ** Warning: (vsim-3017) <protected>(<protected>): [TFMPC] - Too few port connections. Expected <protected>, found <protected>.
+#    Time: 0 fs  Iteration: 0  Protected: /tb_board_top_selftest/dut/u_soc/u_ddr3/u_ddrphy_top/ddrphy_slice_top/i_dqs_group[0]/ddrphy_data_slice/<protected>/<protected> File: C:/pango/PDS_2022.2-SP6.4/arch/vendor/pango/verilog/simulation/GTP_OSERDES_E2.v
+# ** Warning: (vsim-3722) <protected>(<protected>): [TFMPC] - Missing connection for port '<protected>'.
+# ** Warning: (vsim-3722) <protected>(<protected>): [TFMPC] - Missing connection for port '<protected>'.
+# ** Warning: (vsim-3015) C:/pango/PDS_2022.2-SP6.4/arch/vendor/pango/verilog/simulation/GTP_OSERDES_E2.v(692): [PCDPC] - Port size (2) does not match connection size (8) for port 'ts_ctrl'. The port definition is at: nofile(23).
+#    Time: 0 fs  Iteration: 0  Instance: /tb_board_top_selftest/dut/u_soc/u_ddr3/u_ddrphy_top/ddrphy_slice_top/i_dqs_group[0]/ddrphy_data_slice/<protected>/<protected>/genblk1/xoserdes_e2_iolhr_ol File: C:/pango/PDS_2022.2-SP6.4/arch/vendor/pango/verilog/simulation/modelsim10.2c/./oserdes_e2_source_codes/oserdes_e2_iolhr_ol.vp
+# ** Warning: (vsim-3017) <protected>(<protected>): [TFMPC] - Too few port connections. Expected <protected>, found <protected>.
+#    Time: 0 fs  Iteration: 0  Protected: /tb_board_top_selftest/dut/u_soc/u_ddr3/u_ddrphy_top/ddrphy_slice_top/i_dqs_group[0]/ddrphy_data_slice/<protected>/<protected> File: C:/pango/PDS_2022.2-SP6.4/arch/vendor/pango/verilog/simulation/GTP_IODELAY_E2.v
+# ** Warning: (vsim-3722) <protected>(<protected>): [TFMPC] - Missing connection for port '<protected>'.
+# ** Warning: (vsim-3017) <protected>(<protected>): [TFMPC] - Too few port connections. Expected <protected>, found <protected>.
+#    Time: 0 fs  Iteration: 0  Protected: /tb_board_top_selftest/dut/u_soc/u_ddr3/u_ddrphy_top/ddrphy_slice_top/i_dqs_group[0]/ddrphy_data_slice/<protected>/<protected> File: C:/pango/PDS_2022.2-SP6.4/arch/vendor/pango/verilog/simulation/GTP_OSERDES_E2.v
+# ** Warning: (vsim-3722) <protected>(<protected>): [TFMPC] - Missing connection for port '<protected>'.
+# ** Warning: (vsim-3722) <protected>(<protected>): [TFMPC] - Missing connection for port '<protected>'.
+# ** Warning: (vsim-3015) C:/pango/PDS_2022.2-SP6.4/arch/vendor/pango/verilog/simulation/GTP_OSERDES_E2.v(692): [PCDPC] - Port size (2) does not match connection size (8) for port 'ts_ctrl'. The port definition is at: nofile(23).
+#    Time: 0 fs  Iteration: 0  Instance: /tb_board_top_selftest/dut/u_soc/u_ddr3/u_ddrphy_top/ddrphy_slice_top/i_dqs_group[0]/ddrphy_data_slice/<protected>/<protected>/genblk1/xoserdes_e2_iolhr_ol File: C:/pango/PDS_2022.2-SP6.4/arch/vendor/pango/verilog/simulation/modelsim10.2c/./oserdes_e2_source_codes/oserdes_e2_iolhr_ol.vp
+# ** Warning: (vsim-3017) <protected>(<protected>): [TFMPC] - Too few port connections. Expected <protected>, found <protected>.
+#    Time: 0 fs  Iteration: 0  Protected: /tb_board_top_selftest/dut/u_soc/u_ddr3/u_ddrphy_top/ddrphy_slice_top/i_dqs_group[0]/ddrphy_data_slice/<protected>/<protected> File: C:/pango/PDS_2022.2-SP6.4/arch/vendor/pango/verilog/simulation/GTP_IODELAY_E2.v
+# ** Warning: (vsim-3722) <protected>(<protected>): [TFMPC] - Missing connection for port '<protected>'.
+# ** Warning: (vsim-3017) <protected>(<protected>): [TFMPC] - Too few port connections. Expected <protected>, found <protected>.
+#    Time: 0 fs  Iteration: 0  Protected: /tb_board_top_selftest/dut/u_soc/u_ddr3/u_ddrphy_top/ddrphy_slice_top/i_dqs_group[0]/ddrphy_data_slice/<protected>/<protected> File: C:/pango/PDS_2022.2-SP6.4/arch/vendor/pango/verilog/simulation/GTP_OSERDES_E2.v
+# ** Warning: (vsim-3722) <protected>(<protected>): [TFMPC] - Missing connection for port '<protected>'.
+# ** Warning: (vsim-3722) <protected>(<protected>): [TFMPC] - Missing connection for port '<protected>'.
+# ** Warning: (vsim-3015) C:/pango/PDS_2022.2-SP6.4/arch/vendor/pango/verilog/simulation/GTP_OSERDES_E2.v(692): [PCDPC] - Port size (2) does not match connection size (8) for port 'ts_ctrl'. The port definition is at: nofile(23).
+#    Time: 0 fs  Iteration: 0  Instance: /tb_board_top_selftest/dut/u_soc/u_ddr3/u_ddrphy_top/ddrphy_slice_top/i_dqs_group[0]/ddrphy_data_slice/<protected>/<protected>/genblk1/xoserdes_e2_iolhr_ol File: C:/pango/PDS_2022.2-SP6.4/arch/vendor/pango/verilog/simulation/modelsim10.2c/./oserdes_e2_source_codes/oserdes_e2_iolhr_ol.vp
+# ** Warning: (vsim-3017) <protected>(<protected>): [TFMPC] - Too few port connections. Expected <protected>, found <protected>.
+#    Time: 0 fs  Iteration: 0  Protected: /tb_board_top_selftest/dut/u_soc/u_ddr3/u_ddrphy_top/ddrphy_slice_top/i_dqs_group[0]/ddrphy_data_slice/<protected>/<protected> File: C:/pango/PDS_2022.2-SP6.4/arch/vendor/pango/verilog/simulation/GTP_IODELAY_E2.v
+# ** Warning: (vsim-3722) <protected>(<protected>): [TFMPC] - Missing connection for port '<protected>'.
+# ** Warning: (vsim-3017) <protected>(<protected>): [TFMPC] - Too few port connections. Expected <protected>, found <protected>.
+#    Time: 0 fs  Iteration: 0  Protected: /tb_board_top_selftest/dut/u_soc/u_ddr3/u_ddrphy_top/ddrphy_slice_top/i_dqs_group[0]/ddrphy_data_slice/<protected>/<protected> File: C:/pango/PDS_2022.2-SP6.4/arch/vendor/pango/verilog/simulation/GTP_OSERDES_E2.v
+# ** Warning: (vsim-3722) <protected>(<protected>): [TFMPC] - Missing connection for port '<protected>'.
+# ** Warning: (vsim-3722) <protected>(<protected>): [TFMPC] - Missing connection for port '<protected>'.
+# ** Warning: (vsim-3015) C:/pango/PDS_2022.2-SP6.4/arch/vendor/pango/verilog/simulation/GTP_OSERDES_E2.v(692): [PCDPC] - Port size (2) does not match connection size (8) for port 'ts_ctrl'. The port definition is at: nofile(23).
+#    Time: 0 fs  Iteration: 0  Instance: /tb_board_top_selftest/dut/u_soc/u_ddr3/u_ddrphy_top/ddrphy_slice_top/i_dqs_group[0]/ddrphy_data_slice/<protected>/<protected>/genblk1/xoserdes_e2_iolhr_ol File: C:/pango/PDS_2022.2-SP6.4/arch/vendor/pango/verilog/simulation/modelsim10.2c/./oserdes_e2_source_codes/oserdes_e2_iolhr_ol.vp
+# ** Warning: (vsim-3017) <protected>(<protected>): [TFMPC] - Too few port connections. Expected <protected>, found <protected>.
+#    Time: 0 fs  Iteration: 0  Protected: /tb_board_top_selftest/dut/u_soc/u_ddr3/u_ddrphy_top/ddrphy_slice_top/i_dqs_group[0]/ddrphy_data_slice/<protected>/<protected> File: C:/pango/PDS_2022.2-SP6.4/arch/vendor/pango/verilog/simulation/GTP_IODELAY_E2.v
+# ** Warning: (vsim-3722) <protected>(<protected>): [TFMPC] - Missing connection for port '<protected>'.
+# ** Warning: (vsim-3017) <protected>(<protected>): [TFMPC] - Too few port connections. Expected <protected>, found <protected>.
+#    Time: 0 fs  Iteration: 0  Protected: /tb_board_top_selftest/dut/u_soc/u_ddr3/u_ddrphy_top/ddrphy_slice_top/i_dqs_group[0]/ddrphy_data_slice/<protected>/<protected> File: C:/pango/PDS_2022.2-SP6.4/arch/vendor/pango/verilog/simulation/GTP_OSERDES_E2.v
+# ** Warning: (vsim-3722) <protected>(<protected>): [TFMPC] - Missing connection for port '<protected>'.
+# ** Warning: (vsim-3722) <protected>(<protected>): [TFMPC] - Missing connection for port '<protected>'.
+# ** Warning: (vsim-3015) C:/pango/PDS_2022.2-SP6.4/arch/vendor/pango/verilog/simulation/GTP_OSERDES_E2.v(692): [PCDPC] - Port size (2) does not match connection size (8) for port 'ts_ctrl'. The port definition is at: nofile(23).
+#    Time: 0 fs  Iteration: 0  Instance: /tb_board_top_selftest/dut/u_soc/u_ddr3/u_ddrphy_top/ddrphy_slice_top/i_dqs_group[0]/ddrphy_data_slice/<protected>/<protected>/genblk1/xoserdes_e2_iolhr_ol File: C:/pango/PDS_2022.2-SP6.4/arch/vendor/pango/verilog/simulation/modelsim10.2c/./oserdes_e2_source_codes/oserdes_e2_iolhr_ol.vp
+# ** Warning: (vsim-3017) <protected>(<protected>): [TFMPC] - Too few port connections. Expected <protected>, found <protected>.
+#    Time: 0 fs  Iteration: 0  Protected: /tb_board_top_selftest/dut/u_soc/u_ddr3/u_ddrphy_top/ddrphy_slice_top/i_dqs_group[0]/ddrphy_data_slice/<protected>/<protected> File: C:/pango/PDS_2022.2-SP6.4/arch/vendor/pango/verilog/simulation/GTP_IODELAY_E2.v
+# ** Warning: (vsim-3722) <protected>(<protected>): [TFMPC] - Missing connection for port '<protected>'.
+# ** Warning: (vsim-3017) <protected>(<protected>): [TFMPC] - Too few port connections. Expected <protected>, found <protected>.
+#    Time: 0 fs  Iteration: 0  Protected: /tb_board_top_selftest/dut/u_soc/u_ddr3/u_ddrphy_top/ddrphy_slice_top/i_dqs_group[0]/ddrphy_data_slice/<protected>/<protected> File: C:/pango/PDS_2022.2-SP6.4/arch/vendor/pango/verilog/simulation/GTP_OSERDES_E2.v
+# ** Warning: (vsim-3722) <protected>(<protected>): [TFMPC] - Missing connection for port '<protected>'.
+# ** Warning: (vsim-3722) <protected>(<protected>): [TFMPC] - Missing connection for port '<protected>'.
+# ** Warning: (vsim-3015) C:/pango/PDS_2022.2-SP6.4/arch/vendor/pango/verilog/simulation/GTP_OSERDES_E2.v(692): [PCDPC] - Port size (2) does not match connection size (8) for port 'ts_ctrl'. The port definition is at: nofile(23).
+#    Time: 0 fs  Iteration: 0  Instance: /tb_board_top_selftest/dut/u_soc/u_ddr3/u_ddrphy_top/ddrphy_slice_top/i_dqs_group[0]/ddrphy_data_slice/<protected>/<protected>/genblk1/xoserdes_e2_iolhr_ol File: C:/pango/PDS_2022.2-SP6.4/arch/vendor/pango/verilog/simulation/modelsim10.2c/./oserdes_e2_source_codes/oserdes_e2_iolhr_ol.vp
+# ** Warning: (vsim-3017) <protected>(<protected>): [TFMPC] - Too few port connections. Expected <protected>, found <protected>.
+#    Time: 0 fs  Iteration: 0  Protected: /tb_board_top_selftest/dut/u_soc/u_ddr3/u_ddrphy_top/ddrphy_slice_top/i_dqs_group[0]/ddrphy_data_slice/<protected>/<protected> File: C:/pango/PDS_2022.2-SP6.4/arch/vendor/pango/verilog/simulation/GTP_IODELAY_E2.v
+# ** Warning: (vsim-3722) <protected>(<protected>): [TFMPC] - Missing connection for port '<protected>'.
+# ** Warning: (vsim-3017) <protected>(<protected>): [TFMPC] - Too few port connections. Expected <protected>, found <protected>.
+#    Time: 0 fs  Iteration: 0  Protected: /tb_board_top_selftest/dut/u_soc/u_ddr3/u_ddrphy_top/ddrphy_slice_top/i_dqs_group[0]/ddrphy_data_slice/<protected>/<protected> File: C:/pango/PDS_2022.2-SP6.4/arch/vendor/pango/verilog/simulation/GTP_OSERDES_E2.v
+# ** Warning: (vsim-3722) <protected>(<protected>): [TFMPC] - Missing connection for port '<protected>'.
+# ** Warning: (vsim-3722) <protected>(<protected>): [TFMPC] - Missing connection for port '<protected>'.
+# ** Warning: (vsim-3015) C:/pango/PDS_2022.2-SP6.4/arch/vendor/pango/verilog/simulation/GTP_OSERDES_E2.v(692): [PCDPC] - Port size (2) does not match connection size (8) for port 'ts_ctrl'. The port definition is at: nofile(23).
+#    Time: 0 fs  Iteration: 0  Instance: /tb_board_top_selftest/dut/u_soc/u_ddr3/u_ddrphy_top/ddrphy_slice_top/i_dqs_group[0]/ddrphy_data_slice/<protected>/<protected>/genblk1/xoserdes_e2_iolhr_ol File: C:/pango/PDS_2022.2-SP6.4/arch/vendor/pango/verilog/simulation/modelsim10.2c/./oserdes_e2_source_codes/oserdes_e2_iolhr_ol.vp
+# ** Warning: (vsim-3017) <protected>(<protected>): [TFMPC] - Too few port connections. Expected <protected>, found <protected>.
+#    Time: 0 fs  Iteration: 0  Protected: /tb_board_top_selftest/dut/u_soc/u_ddr3/u_ddrphy_top/ddrphy_slice_top/i_dqs_group[0]/ddrphy_data_slice/<protected>/<protected> File: C:/pango/PDS_2022.2-SP6.4/arch/vendor/pango/verilog/simulation/GTP_IODELAY_E2.v
+# ** Warning: (vsim-3722) <protected>(<protected>): [TFMPC] - Missing connection for port '<protected>'.
+# ** Warning: (vsim-3017) <protected>(<protected>): [TFMPC] - Too few port connections. Expected <protected>, found <protected>.
+#    Time: 0 fs  Iteration: 0  Protected: /tb_board_top_selftest/dut/u_soc/u_ddr3/u_ddrphy_top/ddrphy_slice_top/i_dqs_group[0]/ddrphy_data_slice/<protected>/<protected> File: C:/pango/PDS_2022.2-SP6.4/arch/vendor/pango/verilog/simulation/GTP_OSERDES_E2.v
+# ** Warning: (vsim-3722) <protected>(<protected>): [TFMPC] - Missing connection for port '<protected>'.
+# ** Warning: (vsim-3722) <protected>(<protected>): [TFMPC] - Missing connection for port '<protected>'.
+# ** Warning: (vsim-3015) C:/pango/PDS_2022.2-SP6.4/arch/vendor/pango/verilog/simulation/GTP_OSERDES_E2.v(692): [PCDPC] - Port size (2) does not match connection size (8) for port 'ts_ctrl'. The port definition is at: nofile(23).
+#    Time: 0 fs  Iteration: 0  Instance: /tb_board_top_selftest/dut/u_soc/u_ddr3/u_ddrphy_top/ddrphy_slice_top/i_dqs_group[0]/ddrphy_data_slice/<protected>/<protected>/genblk1/xoserdes_e2_iolhr_ol File: C:/pango/PDS_2022.2-SP6.4/arch/vendor/pango/verilog/simulation/modelsim10.2c/./oserdes_e2_source_codes/oserdes_e2_iolhr_ol.vp
+# ** Warning: (vsim-3017) <protected>(<protected>): [TFMPC] - Too few port connections. Expected <protected>, found <protected>.
+#    Time: 0 fs  Iteration: 0  Protected: /tb_board_top_selftest/dut/u_soc/u_ddr3/u_ddrphy_top/ddrphy_slice_top/i_dqs_group[0]/ddrphy_data_slice/<protected>/<protected> File: C:/pango/PDS_2022.2-SP6.4/arch/vendor/pango/verilog/simulation/GTP_IODELAY_E2.v
+# ** Warning: (vsim-3722) <protected>(<protected>): [TFMPC] - Missing connection for port '<protected>'.
+# ** Warning: (vsim-3017) <protected>(<protected>): [TFMPC] - Too few port connections. Expected <protected>, found <protected>.
+#    Time: 0 fs  Iteration: 0  Protected: /tb_board_top_selftest/dut/u_soc/u_ddr3/u_ddrphy_top/ddrphy_slice_top/i_dqs_group[0]/ddrphy_data_slice/<protected> File: C:/pango/PDS_2022.2-SP6.4/arch/vendor/pango/verilog/simulation/GTP_OSERDES_E2.v
+# ** Warning: (vsim-3722) <protected>(<protected>): [TFMPC] - Missing connection for port '<protected>'.
+# ** Warning: (vsim-3722) <protected>(<protected>): [TFMPC] - Missing connection for port '<protected>'.
+# ** Warning: (vsim-3015) C:/pango/PDS_2022.2-SP6.4/arch/vendor/pango/verilog/simulation/GTP_OSERDES_E2.v(692): [PCDPC] - Port size (2) does not match connection size (8) for port 'ts_ctrl'. The port definition is at: nofile(23).
+#    Time: 0 fs  Iteration: 0  Instance: /tb_board_top_selftest/dut/u_soc/u_ddr3/u_ddrphy_top/ddrphy_slice_top/i_dqs_group[0]/ddrphy_data_slice/<protected>/genblk1/xoserdes_e2_iolhr_ol File: C:/pango/PDS_2022.2-SP6.4/arch/vendor/pango/verilog/simulation/modelsim10.2c/./oserdes_e2_source_codes/oserdes_e2_iolhr_ol.vp
+# ** Warning: (vsim-3015) C:/pango/PDS_2022.2-SP6.4/arch/vendor/pango/verilog/simulation/GTP_DDC_E2.v(393): [PCDPC] - Port size (2) does not match connection size (1) for port 'ldo_ctrl'. The port definition is at: nofile(23).
+#    Time: 0 fs  Iteration: 0  Instance: /tb_board_top_selftest/dut/u_soc/u_ddr3/u_ddrphy_top/ddrphy_slice_top/i_dqs_group[1]/ddrphy_data_slice/<protected>/dly_chain0 File: C:/pango/PDS_2022.2-SP6.4/arch/vendor/pango/verilog/simulation/modelsim10.2c/./ddc_e2_source_codes/ddc_e2_dly_chain.vp
+# ** Warning: (vsim-3015) C:/pango/PDS_2022.2-SP6.4/arch/vendor/pango/verilog/simulation/GTP_DDC_E2.v(394): [PCDPC] - Port size (2) does not match connection size (1) for port 'ldo_ctrl'. The port definition is at: nofile(23).
+#    Time: 0 fs  Iteration: 0  Instance: /tb_board_top_selftest/dut/u_soc/u_ddr3/u_ddrphy_top/ddrphy_slice_top/i_dqs_group[1]/ddrphy_data_slice/<protected>/dly_chain1 File: C:/pango/PDS_2022.2-SP6.4/arch/vendor/pango/verilog/simulation/modelsim10.2c/./ddc_e2_source_codes/ddc_e2_dly_chain.vp
+# ** Warning: (vsim-3015) C:/pango/PDS_2022.2-SP6.4/arch/vendor/pango/verilog/simulation/GTP_DDC_E2.v(395): [PCDPC] - Port size (2) does not match connection size (1) for port 'ldo_ctrl'. The port definition is at: nofile(23).
+#    Time: 0 fs  Iteration: 0  Instance: /tb_board_top_selftest/dut/u_soc/u_ddr3/u_ddrphy_top/ddrphy_slice_top/i_dqs_group[1]/ddrphy_data_slice/<protected>/dly_chain2 File: C:/pango/PDS_2022.2-SP6.4/arch/vendor/pango/verilog/simulation/modelsim10.2c/./ddc_e2_source_codes/ddc_e2_dly_chain.vp
+# ** Warning: (vsim-3015) C:/pango/PDS_2022.2-SP6.4/arch/vendor/pango/verilog/simulation/GTP_DDC_E2.v(397): [PCDPC] - Port size (2) does not match connection size (1) for port 'ldo_ctrl'. The port definition is at: nofile(23).
+#    Time: 0 fs  Iteration: 0  Instance: /tb_board_top_selftest/dut/u_soc/u_ddr3/u_ddrphy_top/ddrphy_slice_top/i_dqs_group[1]/ddrphy_data_slice/<protected>/dly_chain3 File: C:/pango/PDS_2022.2-SP6.4/arch/vendor/pango/verilog/simulation/modelsim10.2c/./ddc_e2_source_codes/ddc_e2_dly_chain.vp
+# ** Warning: (vsim-3015) C:/pango/PDS_2022.2-SP6.4/arch/vendor/pango/verilog/simulation/GTP_DDC_E2.v(739): [PCDPC] - Port size (2) does not match connection size (1) for port 'ldo_ctrl'. The port definition is at: nofile(23).
+#    Time: 0 fs  Iteration: 0  Instance: /tb_board_top_selftest/dut/u_soc/u_ddr3/u_ddrphy_top/ddrphy_slice_top/i_dqs_group[1]/ddrphy_data_slice/<protected>/dly_chain4 File: C:/pango/PDS_2022.2-SP6.4/arch/vendor/pango/verilog/simulation/modelsim10.2c/./ddc_e2_source_codes/ddc_e2_dly_chain.vp
+# ** Warning: (vsim-3015) C:/pango/PDS_2022.2-SP6.4/arch/vendor/pango/verilog/simulation/GTP_DDC_E2.v(740): [PCDPC] - Port size (2) does not match connection size (1) for port 'ldo_ctrl'. The port definition is at: nofile(23).
+#    Time: 0 fs  Iteration: 0  Instance: /tb_board_top_selftest/dut/u_soc/u_ddr3/u_ddrphy_top/ddrphy_slice_top/i_dqs_group[1]/ddrphy_data_slice/<protected>/dly_chain5 File: C:/pango/PDS_2022.2-SP6.4/arch/vendor/pango/verilog/simulation/modelsim10.2c/./ddc_e2_source_codes/ddc_e2_dly_chain.vp
+# ** Warning: (vsim-3017) <protected>(<protected>): [TFMPC] - Too few port connections. Expected <protected>, found <protected>.
+#    Time: 0 fs  Iteration: 0  Protected: /tb_board_top_selftest/dut/u_soc/u_ddr3/u_ddrphy_top/ddrphy_slice_top/i_dqs_group[1]/ddrphy_data_slice/<protected> File: C:/pango/PDS_2022.2-SP6.4/arch/vendor/pango/verilog/simulation/GTP_OSERDES_E2.v
+# ** Warning: (vsim-3722) <protected>(<protected>): [TFMPC] - Missing connection for port '<protected>'.
+# ** Warning: (vsim-3722) <protected>(<protected>): [TFMPC] - Missing connection for port '<protected>'.
+# ** Warning: (vsim-3015) C:/pango/PDS_2022.2-SP6.4/arch/vendor/pango/verilog/simulation/GTP_OSERDES_E2.v(692): [PCDPC] - Port size (2) does not match connection size (8) for port 'ts_ctrl'. The port definition is at: nofile(23).
+#    Time: 0 fs  Iteration: 0  Instance: /tb_board_top_selftest/dut/u_soc/u_ddr3/u_ddrphy_top/ddrphy_slice_top/i_dqs_group[1]/ddrphy_data_slice/<protected>/genblk1/xoserdes_e2_iolhr_ol File: C:/pango/PDS_2022.2-SP6.4/arch/vendor/pango/verilog/simulation/modelsim10.2c/./oserdes_e2_source_codes/oserdes_e2_iolhr_ol.vp
+# ** Warning: (vsim-3017) <protected>(<protected>): [TFMPC] - Too few port connections. Expected <protected>, found <protected>.
+#    Time: 0 fs  Iteration: 0  Protected: /tb_board_top_selftest/dut/u_soc/u_ddr3/u_ddrphy_top/ddrphy_slice_top/i_dqs_group[1]/ddrphy_data_slice/<protected> File: C:/pango/PDS_2022.2-SP6.4/arch/vendor/pango/verilog/simulation/GTP_OSERDES_E2.v
+# ** Warning: (vsim-3722) <protected>(<protected>): [TFMPC] - Missing connection for port '<protected>'.
+# ** Warning: (vsim-3722) <protected>(<protected>): [TFMPC] - Missing connection for port '<protected>'.
+# ** Warning: (vsim-3015) C:/pango/PDS_2022.2-SP6.4/arch/vendor/pango/verilog/simulation/GTP_OSERDES_E2.v(692): [PCDPC] - Port size (2) does not match connection size (8) for port 'ts_ctrl'. The port definition is at: nofile(23).
+#    Time: 0 fs  Iteration: 0  Instance: /tb_board_top_selftest/dut/u_soc/u_ddr3/u_ddrphy_top/ddrphy_slice_top/i_dqs_group[1]/ddrphy_data_slice/<protected>/genblk1/xoserdes_e2_iolhr_ol File: C:/pango/PDS_2022.2-SP6.4/arch/vendor/pango/verilog/simulation/modelsim10.2c/./oserdes_e2_source_codes/oserdes_e2_iolhr_ol.vp
+# ** Warning: (vsim-3017) <protected>(<protected>): [TFMPC] - Too few port connections. Expected <protected>, found <protected>.
+#    Time: 0 fs  Iteration: 0  Protected: /tb_board_top_selftest/dut/u_soc/u_ddr3/u_ddrphy_top/ddrphy_slice_top/i_dqs_group[1]/ddrphy_data_slice/<protected> File: C:/pango/PDS_2022.2-SP6.4/arch/vendor/pango/verilog/simulation/GTP_OSERDES_E2.v
+# ** Warning: (vsim-3722) <protected>(<protected>): [TFMPC] - Missing connection for port '<protected>'.
+# ** Warning: (vsim-3722) <protected>(<protected>): [TFMPC] - Missing connection for port '<protected>'.
+# ** Warning: (vsim-3015) C:/pango/PDS_2022.2-SP6.4/arch/vendor/pango/verilog/simulation/GTP_OSERDES_E2.v(692): [PCDPC] - Port size (2) does not match connection size (8) for port 'ts_ctrl'. The port definition is at: nofile(23).
+#    Time: 0 fs  Iteration: 0  Instance: /tb_board_top_selftest/dut/u_soc/u_ddr3/u_ddrphy_top/ddrphy_slice_top/i_dqs_group[1]/ddrphy_data_slice/<protected>/genblk1/xoserdes_e2_iolhr_ol File: C:/pango/PDS_2022.2-SP6.4/arch/vendor/pango/verilog/simulation/modelsim10.2c/./oserdes_e2_source_codes/oserdes_e2_iolhr_ol.vp
+# ** Warning: (vsim-3017) <protected>(<protected>): [TFMPC] - Too few port connections. Expected <protected>, found <protected>.
+#    Time: 0 fs  Iteration: 0  Protected: /tb_board_top_selftest/dut/u_soc/u_ddr3/u_ddrphy_top/ddrphy_slice_top/i_dqs_group[1]/ddrphy_data_slice/<protected>/<protected> File: C:/pango/PDS_2022.2-SP6.4/arch/vendor/pango/verilog/simulation/GTP_OSERDES_E2.v
+# ** Warning: (vsim-3722) <protected>(<protected>): [TFMPC] - Missing connection for port '<protected>'.
+# ** Warning: (vsim-3722) <protected>(<protected>): [TFMPC] - Missing connection for port '<protected>'.
+# ** Warning: (vsim-3015) C:/pango/PDS_2022.2-SP6.4/arch/vendor/pango/verilog/simulation/GTP_OSERDES_E2.v(692): [PCDPC] - Port size (2) does not match connection size (8) for port 'ts_ctrl'. The port definition is at: nofile(23).
+#    Time: 0 fs  Iteration: 0  Instance: /tb_board_top_selftest/dut/u_soc/u_ddr3/u_ddrphy_top/ddrphy_slice_top/i_dqs_group[1]/ddrphy_data_slice/<protected>/<protected>/genblk1/xoserdes_e2_iolhr_ol File: C:/pango/PDS_2022.2-SP6.4/arch/vendor/pango/verilog/simulation/modelsim10.2c/./oserdes_e2_source_codes/oserdes_e2_iolhr_ol.vp
+# ** Warning: (vsim-3017) <protected>(<protected>): [TFMPC] - Too few port connections. Expected <protected>, found <protected>.
+#    Time: 0 fs  Iteration: 0  Protected: /tb_board_top_selftest/dut/u_soc/u_ddr3/u_ddrphy_top/ddrphy_slice_top/i_dqs_group[1]/ddrphy_data_slice/<protected>/<protected> File: C:/pango/PDS_2022.2-SP6.4/arch/vendor/pango/verilog/simulation/GTP_IODELAY_E2.v
+# ** Warning: (vsim-3722) <protected>(<protected>): [TFMPC] - Missing connection for port '<protected>'.
+# ** Warning: (vsim-3017) <protected>(<protected>): [TFMPC] - Too few port connections. Expected <protected>, found <protected>.
+#    Time: 0 fs  Iteration: 0  Protected: /tb_board_top_selftest/dut/u_soc/u_ddr3/u_ddrphy_top/ddrphy_slice_top/i_dqs_group[1]/ddrphy_data_slice/<protected>/<protected> File: C:/pango/PDS_2022.2-SP6.4/arch/vendor/pango/verilog/simulation/GTP_OSERDES_E2.v
+# ** Warning: (vsim-3722) <protected>(<protected>): [TFMPC] - Missing connection for port '<protected>'.
+# ** Warning: (vsim-3722) <protected>(<protected>): [TFMPC] - Missing connection for port '<protected>'.
+# ** Warning: (vsim-3015) C:/pango/PDS_2022.2-SP6.4/arch/vendor/pango/verilog/simulation/GTP_OSERDES_E2.v(692): [PCDPC] - Port size (2) does not match connection size (8) for port 'ts_ctrl'. The port definition is at: nofile(23).
+#    Time: 0 fs  Iteration: 0  Instance: /tb_board_top_selftest/dut/u_soc/u_ddr3/u_ddrphy_top/ddrphy_slice_top/i_dqs_group[1]/ddrphy_data_slice/<protected>/<protected>/genblk1/xoserdes_e2_iolhr_ol File: C:/pango/PDS_2022.2-SP6.4/arch/vendor/pango/verilog/simulation/modelsim10.2c/./oserdes_e2_source_codes/oserdes_e2_iolhr_ol.vp
+# ** Warning: (vsim-3017) <protected>(<protected>): [TFMPC] - Too few port connections. Expected <protected>, found <protected>.
+#    Time: 0 fs  Iteration: 0  Protected: /tb_board_top_selftest/dut/u_soc/u_ddr3/u_ddrphy_top/ddrphy_slice_top/i_dqs_group[1]/ddrphy_data_slice/<protected>/<protected> File: C:/pango/PDS_2022.2-SP6.4/arch/vendor/pango/verilog/simulation/GTP_IODELAY_E2.v
+# ** Warning: (vsim-3722) <protected>(<protected>): [TFMPC] - Missing connection for port '<protected>'.
+# ** Warning: (vsim-3017) <protected>(<protected>): [TFMPC] - Too few port connections. Expected <protected>, found <protected>.
+#    Time: 0 fs  Iteration: 0  Protected: /tb_board_top_selftest/dut/u_soc/u_ddr3/u_ddrphy_top/ddrphy_slice_top/i_dqs_group[1]/ddrphy_data_slice/<protected>/<protected> File: C:/pango/PDS_2022.2-SP6.4/arch/vendor/pango/verilog/simulation/GTP_OSERDES_E2.v
+# ** Warning: (vsim-3722) <protected>(<protected>): [TFMPC] - Missing connection for port '<protected>'.
+# ** Warning: (vsim-3722) <protected>(<protected>): [TFMPC] - Missing connection for port '<protected>'.
+# ** Warning: (vsim-3015) C:/pango/PDS_2022.2-SP6.4/arch/vendor/pango/verilog/simulation/GTP_OSERDES_E2.v(692): [PCDPC] - Port size (2) does not match connection size (8) for port 'ts_ctrl'. The port definition is at: nofile(23).
+#    Time: 0 fs  Iteration: 0  Instance: /tb_board_top_selftest/dut/u_soc/u_ddr3/u_ddrphy_top/ddrphy_slice_top/i_dqs_group[1]/ddrphy_data_slice/<protected>/<protected>/genblk1/xoserdes_e2_iolhr_ol File: C:/pango/PDS_2022.2-SP6.4/arch/vendor/pango/verilog/simulation/modelsim10.2c/./oserdes_e2_source_codes/oserdes_e2_iolhr_ol.vp
+# ** Warning: (vsim-3017) <protected>(<protected>): [TFMPC] - Too few port connections. Expected <protected>, found <protected>.
+#    Time: 0 fs  Iteration: 0  Protected: /tb_board_top_selftest/dut/u_soc/u_ddr3/u_ddrphy_top/ddrphy_slice_top/i_dqs_group[1]/ddrphy_data_slice/<protected>/<protected> File: C:/pango/PDS_2022.2-SP6.4/arch/vendor/pango/verilog/simulation/GTP_IODELAY_E2.v
+# ** Warning: (vsim-3722) <protected>(<protected>): [TFMPC] - Missing connection for port '<protected>'.
+# ** Warning: (vsim-3017) <protected>(<protected>): [TFMPC] - Too few port connections. Expected <protected>, found <protected>.
+#    Time: 0 fs  Iteration: 0  Protected: /tb_board_top_selftest/dut/u_soc/u_ddr3/u_ddrphy_top/ddrphy_slice_top/i_dqs_group[1]/ddrphy_data_slice/<protected>/<protected> File: C:/pango/PDS_2022.2-SP6.4/arch/vendor/pango/verilog/simulation/GTP_OSERDES_E2.v
+# ** Warning: (vsim-3722) <protected>(<protected>): [TFMPC] - Missing connection for port '<protected>'.
+# ** Warning: (vsim-3722) <protected>(<protected>): [TFMPC] - Missing connection for port '<protected>'.
+# ** Warning: (vsim-3015) C:/pango/PDS_2022.2-SP6.4/arch/vendor/pango/verilog/simulation/GTP_OSERDES_E2.v(692): [PCDPC] - Port size (2) does not match connection size (8) for port 'ts_ctrl'. The port definition is at: nofile(23).
+#    Time: 0 fs  Iteration: 0  Instance: /tb_board_top_selftest/dut/u_soc/u_ddr3/u_ddrphy_top/ddrphy_slice_top/i_dqs_group[1]/ddrphy_data_slice/<protected>/<protected>/genblk1/xoserdes_e2_iolhr_ol File: C:/pango/PDS_2022.2-SP6.4/arch/vendor/pango/verilog/simulation/modelsim10.2c/./oserdes_e2_source_codes/oserdes_e2_iolhr_ol.vp
+# ** Warning: (vsim-3017) <protected>(<protected>): [TFMPC] - Too few port connections. Expected <protected>, found <protected>.
+#    Time: 0 fs  Iteration: 0  Protected: /tb_board_top_selftest/dut/u_soc/u_ddr3/u_ddrphy_top/ddrphy_slice_top/i_dqs_group[1]/ddrphy_data_slice/<protected>/<protected> File: C:/pango/PDS_2022.2-SP6.4/arch/vendor/pango/verilog/simulation/GTP_IODELAY_E2.v
+# ** Warning: (vsim-3722) <protected>(<protected>): [TFMPC] - Missing connection for port '<protected>'.
+# ** Warning: (vsim-3017) <protected>(<protected>): [TFMPC] - Too few port connections. Expected <protected>, found <protected>.
+#    Time: 0 fs  Iteration: 0  Protected: /tb_board_top_selftest/dut/u_soc/u_ddr3/u_ddrphy_top/ddrphy_slice_top/i_dqs_group[1]/ddrphy_data_slice/<protected>/<protected> File: C:/pango/PDS_2022.2-SP6.4/arch/vendor/pango/verilog/simulation/GTP_OSERDES_E2.v
+# ** Warning: (vsim-3722) <protected>(<protected>): [TFMPC] - Missing connection for port '<protected>'.
+# ** Warning: (vsim-3722) <protected>(<protected>): [TFMPC] - Missing connection for port '<protected>'.
+# ** Warning: (vsim-3015) C:/pango/PDS_2022.2-SP6.4/arch/vendor/pango/verilog/simulation/GTP_OSERDES_E2.v(692): [PCDPC] - Port size (2) does not match connection size (8) for port 'ts_ctrl'. The port definition is at: nofile(23).
+#    Time: 0 fs  Iteration: 0  Instance: /tb_board_top_selftest/dut/u_soc/u_ddr3/u_ddrphy_top/ddrphy_slice_top/i_dqs_group[1]/ddrphy_data_slice/<protected>/<protected>/genblk1/xoserdes_e2_iolhr_ol File: C:/pango/PDS_2022.2-SP6.4/arch/vendor/pango/verilog/simulation/modelsim10.2c/./oserdes_e2_source_codes/oserdes_e2_iolhr_ol.vp
+# ** Warning: (vsim-3017) <protected>(<protected>): [TFMPC] - Too few port connections. Expected <protected>, found <protected>.
+#    Time: 0 fs  Iteration: 0  Protected: /tb_board_top_selftest/dut/u_soc/u_ddr3/u_ddrphy_top/ddrphy_slice_top/i_dqs_group[1]/ddrphy_data_slice/<protected>/<protected> File: C:/pango/PDS_2022.2-SP6.4/arch/vendor/pango/verilog/simulation/GTP_IODELAY_E2.v
+# ** Warning: (vsim-3722) <protected>(<protected>): [TFMPC] - Missing connection for port '<protected>'.
+# ** Warning: (vsim-3017) <protected>(<protected>): [TFMPC] - Too few port connections. Expected <protected>, found <protected>.
+#    Time: 0 fs  Iteration: 0  Protected: /tb_board_top_selftest/dut/u_soc/u_ddr3/u_ddrphy_top/ddrphy_slice_top/i_dqs_group[1]/ddrphy_data_slice/<protected>/<protected> File: C:/pango/PDS_2022.2-SP6.4/arch/vendor/pango/verilog/simulation/GTP_OSERDES_E2.v
+# ** Warning: (vsim-3722) <protected>(<protected>): [TFMPC] - Missing connection for port '<protected>'.
+# ** Warning: (vsim-3722) <protected>(<protected>): [TFMPC] - Missing connection for port '<protected>'.
+# ** Warning: (vsim-3015) C:/pango/PDS_2022.2-SP6.4/arch/vendor/pango/verilog/simulation/GTP_OSERDES_E2.v(692): [PCDPC] - Port size (2) does not match connection size (8) for port 'ts_ctrl'. The port definition is at: nofile(23).
+#    Time: 0 fs  Iteration: 0  Instance: /tb_board_top_selftest/dut/u_soc/u_ddr3/u_ddrphy_top/ddrphy_slice_top/i_dqs_group[1]/ddrphy_data_slice/<protected>/<protected>/genblk1/xoserdes_e2_iolhr_ol File: C:/pango/PDS_2022.2-SP6.4/arch/vendor/pango/verilog/simulation/modelsim10.2c/./oserdes_e2_source_codes/oserdes_e2_iolhr_ol.vp
+# ** Warning: (vsim-3017) <protected>(<protected>): [TFMPC] - Too few port connections. Expected <protected>, found <protected>.
+#    Time: 0 fs  Iteration: 0  Protected: /tb_board_top_selftest/dut/u_soc/u_ddr3/u_ddrphy_top/ddrphy_slice_top/i_dqs_group[1]/ddrphy_data_slice/<protected>/<protected> File: C:/pango/PDS_2022.2-SP6.4/arch/vendor/pango/verilog/simulation/GTP_IODELAY_E2.v
+# ** Warning: (vsim-3722) <protected>(<protected>): [TFMPC] - Missing connection for port '<protected>'.
+# ** Warning: (vsim-3017) <protected>(<protected>): [TFMPC] - Too few port connections. Expected <protected>, found <protected>.
+#    Time: 0 fs  Iteration: 0  Protected: /tb_board_top_selftest/dut/u_soc/u_ddr3/u_ddrphy_top/ddrphy_slice_top/i_dqs_group[1]/ddrphy_data_slice/<protected>/<protected> File: C:/pango/PDS_2022.2-SP6.4/arch/vendor/pango/verilog/simulation/GTP_OSERDES_E2.v
+# ** Warning: (vsim-3722) <protected>(<protected>): [TFMPC] - Missing connection for port '<protected>'.
+# ** Warning: (vsim-3722) <protected>(<protected>): [TFMPC] - Missing connection for port '<protected>'.
+# ** Warning: (vsim-3015) C:/pango/PDS_2022.2-SP6.4/arch/vendor/pango/verilog/simulation/GTP_OSERDES_E2.v(692): [PCDPC] - Port size (2) does not match connection size (8) for port 'ts_ctrl'. The port definition is at: nofile(23).
+#    Time: 0 fs  Iteration: 0  Instance: /tb_board_top_selftest/dut/u_soc/u_ddr3/u_ddrphy_top/ddrphy_slice_top/i_dqs_group[1]/ddrphy_data_slice/<protected>/<protected>/genblk1/xoserdes_e2_iolhr_ol File: C:/pango/PDS_2022.2-SP6.4/arch/vendor/pango/verilog/simulation/modelsim10.2c/./oserdes_e2_source_codes/oserdes_e2_iolhr_ol.vp
+# ** Warning: (vsim-3017) <protected>(<protected>): [TFMPC] - Too few port connections. Expected <protected>, found <protected>.
+#    Time: 0 fs  Iteration: 0  Protected: /tb_board_top_selftest/dut/u_soc/u_ddr3/u_ddrphy_top/ddrphy_slice_top/i_dqs_group[1]/ddrphy_data_slice/<protected>/<protected> File: C:/pango/PDS_2022.2-SP6.4/arch/vendor/pango/verilog/simulation/GTP_IODELAY_E2.v
+# ** Warning: (vsim-3722) <protected>(<protected>): [TFMPC] - Missing connection for port '<protected>'.
+# ** Warning: (vsim-3017) <protected>(<protected>): [TFMPC] - Too few port connections. Expected <protected>, found <protected>.
+#    Time: 0 fs  Iteration: 0  Protected: /tb_board_top_selftest/dut/u_soc/u_ddr3/u_ddrphy_top/ddrphy_slice_top/i_dqs_group[1]/ddrphy_data_slice/<protected>/<protected> File: C:/pango/PDS_2022.2-SP6.4/arch/vendor/pango/verilog/simulation/GTP_OSERDES_E2.v
+# ** Warning: (vsim-3722) <protected>(<protected>): [TFMPC] - Missing connection for port '<protected>'.
+# ** Warning: (vsim-3722) <protected>(<protected>): [TFMPC] - Missing connection for port '<protected>'.
+# ** Warning: (vsim-3015) C:/pango/PDS_2022.2-SP6.4/arch/vendor/pango/verilog/simulation/GTP_OSERDES_E2.v(692): [PCDPC] - Port size (2) does not match connection size (8) for port 'ts_ctrl'. The port definition is at: nofile(23).
+#    Time: 0 fs  Iteration: 0  Instance: /tb_board_top_selftest/dut/u_soc/u_ddr3/u_ddrphy_top/ddrphy_slice_top/i_dqs_group[1]/ddrphy_data_slice/<protected>/<protected>/genblk1/xoserdes_e2_iolhr_ol File: C:/pango/PDS_2022.2-SP6.4/arch/vendor/pango/verilog/simulation/modelsim10.2c/./oserdes_e2_source_codes/oserdes_e2_iolhr_ol.vp
+# ** Warning: (vsim-3017) <protected>(<protected>): [TFMPC] - Too few port connections. Expected <protected>, found <protected>.
+#    Time: 0 fs  Iteration: 0  Protected: /tb_board_top_selftest/dut/u_soc/u_ddr3/u_ddrphy_top/ddrphy_slice_top/i_dqs_group[1]/ddrphy_data_slice/<protected>/<protected> File: C:/pango/PDS_2022.2-SP6.4/arch/vendor/pango/verilog/simulation/GTP_IODELAY_E2.v
+# ** Warning: (vsim-3722) <protected>(<protected>): [TFMPC] - Missing connection for port '<protected>'.
+# ** Warning: (vsim-3017) <protected>(<protected>): [TFMPC] - Too few port connections. Expected <protected>, found <protected>.
+#    Time: 0 fs  Iteration: 0  Protected: /tb_board_top_selftest/dut/u_soc/u_ddr3/u_ddrphy_top/ddrphy_slice_top/i_dqs_group[1]/ddrphy_data_slice/<protected> File: C:/pango/PDS_2022.2-SP6.4/arch/vendor/pango/verilog/simulation/GTP_OSERDES_E2.v
+# ** Warning: (vsim-3722) <protected>(<protected>): [TFMPC] - Missing connection for port '<protected>'.
+# ** Warning: (vsim-3722) <protected>(<protected>): [TFMPC] - Missing connection for port '<protected>'.
+# ** Warning: (vsim-3015) C:/pango/PDS_2022.2-SP6.4/arch/vendor/pango/verilog/simulation/GTP_OSERDES_E2.v(692): [PCDPC] - Port size (2) does not match connection size (8) for port 'ts_ctrl'. The port definition is at: nofile(23).
+#    Time: 0 fs  Iteration: 0  Instance: /tb_board_top_selftest/dut/u_soc/u_ddr3/u_ddrphy_top/ddrphy_slice_top/i_dqs_group[1]/ddrphy_data_slice/<protected>/genblk1/xoserdes_e2_iolhr_ol File: C:/pango/PDS_2022.2-SP6.4/arch/vendor/pango/verilog/simulation/modelsim10.2c/./oserdes_e2_source_codes/oserdes_e2_iolhr_ol.vp
+# ** Warning: (vsim-3015) C:/pango/PDS_2022.2-SP6.4/arch/vendor/pango/verilog/simulation/GTP_DDC_E2.v(393): [PCDPC] - Port size (2) does not match connection size (1) for port 'ldo_ctrl'. The port definition is at: nofile(23).
+#    Time: 0 fs  Iteration: 0  Instance: /tb_board_top_selftest/dut/u_soc/u_ddr3/u_ddrphy_top/ddrphy_slice_top/i_ca_group[0]/u_ddc_ca/dly_chain0 File: C:/pango/PDS_2022.2-SP6.4/arch/vendor/pango/verilog/simulation/modelsim10.2c/./ddc_e2_source_codes/ddc_e2_dly_chain.vp
+# ** Warning: (vsim-3015) C:/pango/PDS_2022.2-SP6.4/arch/vendor/pango/verilog/simulation/GTP_DDC_E2.v(394): [PCDPC] - Port size (2) does not match connection size (1) for port 'ldo_ctrl'. The port definition is at: nofile(23).
+#    Time: 0 fs  Iteration: 0  Instance: /tb_board_top_selftest/dut/u_soc/u_ddr3/u_ddrphy_top/ddrphy_slice_top/i_ca_group[0]/u_ddc_ca/dly_chain1 File: C:/pango/PDS_2022.2-SP6.4/arch/vendor/pango/verilog/simulation/modelsim10.2c/./ddc_e2_source_codes/ddc_e2_dly_chain.vp
+# ** Warning: (vsim-3015) C:/pango/PDS_2022.2-SP6.4/arch/vendor/pango/verilog/simulation/GTP_DDC_E2.v(395): [PCDPC] - Port size (2) does not match connection size (1) for port 'ldo_ctrl'. The port definition is at: nofile(23).
+#    Time: 0 fs  Iteration: 0  Instance: /tb_board_top_selftest/dut/u_soc/u_ddr3/u_ddrphy_top/ddrphy_slice_top/i_ca_group[0]/u_ddc_ca/dly_chain2 File: C:/pango/PDS_2022.2-SP6.4/arch/vendor/pango/verilog/simulation/modelsim10.2c/./ddc_e2_source_codes/ddc_e2_dly_chain.vp
+# ** Warning: (vsim-3015) C:/pango/PDS_2022.2-SP6.4/arch/vendor/pango/verilog/simulation/GTP_DDC_E2.v(397): [PCDPC] - Port size (2) does not match connection size (1) for port 'ldo_ctrl'. The port definition is at: nofile(23).
+#    Time: 0 fs  Iteration: 0  Instance: /tb_board_top_selftest/dut/u_soc/u_ddr3/u_ddrphy_top/ddrphy_slice_top/i_ca_group[0]/u_ddc_ca/dly_chain3 File: C:/pango/PDS_2022.2-SP6.4/arch/vendor/pango/verilog/simulation/modelsim10.2c/./ddc_e2_source_codes/ddc_e2_dly_chain.vp
+# ** Warning: (vsim-3015) C:/pango/PDS_2022.2-SP6.4/arch/vendor/pango/verilog/simulation/GTP_DDC_E2.v(739): [PCDPC] - Port size (2) does not match connection size (1) for port 'ldo_ctrl'. The port definition is at: nofile(23).
+#    Time: 0 fs  Iteration: 0  Instance: /tb_board_top_selftest/dut/u_soc/u_ddr3/u_ddrphy_top/ddrphy_slice_top/i_ca_group[0]/u_ddc_ca/dly_chain4 File: C:/pango/PDS_2022.2-SP6.4/arch/vendor/pango/verilog/simulation/modelsim10.2c/./ddc_e2_source_codes/ddc_e2_dly_chain.vp
+# ** Warning: (vsim-3015) C:/pango/PDS_2022.2-SP6.4/arch/vendor/pango/verilog/simulation/GTP_DDC_E2.v(740): [PCDPC] - Port size (2) does not match connection size (1) for port 'ldo_ctrl'. The port definition is at: nofile(23).
+#    Time: 0 fs  Iteration: 0  Instance: /tb_board_top_selftest/dut/u_soc/u_ddr3/u_ddrphy_top/ddrphy_slice_top/i_ca_group[0]/u_ddc_ca/dly_chain5 File: C:/pango/PDS_2022.2-SP6.4/arch/vendor/pango/verilog/simulation/modelsim10.2c/./ddc_e2_source_codes/ddc_e2_dly_chain.vp
+# ** Warning: (vsim-3017) ./../../sim_lib/ddrphy/ddr3_slice_top_v1_10.v(853): [TFMPC] - Too few port connections. Expected 20, found 18.
+#    Time: 0 fs  Iteration: 0  Instance: /tb_board_top_selftest/dut/u_soc/u_ddr3/u_ddrphy_top/ddrphy_slice_top/i_ca_group[0]/u_tserdes_ca0 File: C:/pango/PDS_2022.2-SP6.4/arch/vendor/pango/verilog/simulation/GTP_OSERDES_E2.v
+# ** Warning: (vsim-3722) ./../../sim_lib/ddrphy/ddr3_slice_top_v1_10.v(853): [TFMPC] - Missing connection for port 'TFB'.
+# ** Warning: (vsim-3722) ./../../sim_lib/ddrphy/ddr3_slice_top_v1_10.v(853): [TFMPC] - Missing connection for port 'TERM_FB'.
+# ** Warning: (vsim-3015) C:/pango/PDS_2022.2-SP6.4/arch/vendor/pango/verilog/simulation/GTP_OSERDES_E2.v(692): [PCDPC] - Port size (2) does not match connection size (8) for port 'ts_ctrl'. The port definition is at: nofile(23).
+#    Time: 0 fs  Iteration: 0  Instance: /tb_board_top_selftest/dut/u_soc/u_ddr3/u_ddrphy_top/ddrphy_slice_top/i_ca_group[0]/u_tserdes_ca0/genblk1/xoserdes_e2_iolhr_ol File: C:/pango/PDS_2022.2-SP6.4/arch/vendor/pango/verilog/simulation/modelsim10.2c/./oserdes_e2_source_codes/oserdes_e2_iolhr_ol.vp
+# ** Warning: (vsim-3017) ./../../sim_lib/ddrphy/ddr3_slice_top_v1_10.v(895): [TFMPC] - Too few port connections. Expected 20, found 18.
+#    Time: 0 fs  Iteration: 0  Instance: /tb_board_top_selftest/dut/u_soc/u_ddr3/u_ddrphy_top/ddrphy_slice_top/i_ca_group[0]/u_tserdes_ca1 File: C:/pango/PDS_2022.2-SP6.4/arch/vendor/pango/verilog/simulation/GTP_OSERDES_E2.v
+# ** Warning: (vsim-3722) ./../../sim_lib/ddrphy/ddr3_slice_top_v1_10.v(895): [TFMPC] - Missing connection for port 'TFB'.
+# ** Warning: (vsim-3722) ./../../sim_lib/ddrphy/ddr3_slice_top_v1_10.v(895): [TFMPC] - Missing connection for port 'TERM_FB'.
+# ** Warning: (vsim-3015) C:/pango/PDS_2022.2-SP6.4/arch/vendor/pango/verilog/simulation/GTP_OSERDES_E2.v(692): [PCDPC] - Port size (2) does not match connection size (8) for port 'ts_ctrl'. The port definition is at: nofile(23).
+#    Time: 0 fs  Iteration: 0  Instance: /tb_board_top_selftest/dut/u_soc/u_ddr3/u_ddrphy_top/ddrphy_slice_top/i_ca_group[0]/u_tserdes_ca1/genblk1/xoserdes_e2_iolhr_ol File: C:/pango/PDS_2022.2-SP6.4/arch/vendor/pango/verilog/simulation/modelsim10.2c/./oserdes_e2_source_codes/oserdes_e2_iolhr_ol.vp
+# ** Warning: (vsim-3015) C:/pango/PDS_2022.2-SP6.4/arch/vendor/pango/verilog/simulation/GTP_DDC_E2.v(393): [PCDPC] - Port size (2) does not match connection size (1) for port 'ldo_ctrl'. The port definition is at: nofile(23).
+#    Time: 0 fs  Iteration: 0  Instance: /tb_board_top_selftest/dut/u_soc/u_ddr3/u_ddrphy_top/ddrphy_slice_top/i_ca_group[1]/u_ddc_ca/dly_chain0 File: C:/pango/PDS_2022.2-SP6.4/arch/vendor/pango/verilog/simulation/modelsim10.2c/./ddc_e2_source_codes/ddc_e2_dly_chain.vp
+# ** Warning: (vsim-3015) C:/pango/PDS_2022.2-SP6.4/arch/vendor/pango/verilog/simulation/GTP_DDC_E2.v(394): [PCDPC] - Port size (2) does not match connection size (1) for port 'ldo_ctrl'. The port definition is at: nofile(23).
+#    Time: 0 fs  Iteration: 0  Instance: /tb_board_top_selftest/dut/u_soc/u_ddr3/u_ddrphy_top/ddrphy_slice_top/i_ca_group[1]/u_ddc_ca/dly_chain1 File: C:/pango/PDS_2022.2-SP6.4/arch/vendor/pango/verilog/simulation/modelsim10.2c/./ddc_e2_source_codes/ddc_e2_dly_chain.vp
+# ** Warning: (vsim-3015) C:/pango/PDS_2022.2-SP6.4/arch/vendor/pango/verilog/simulation/GTP_DDC_E2.v(395): [PCDPC] - Port size (2) does not match connection size (1) for port 'ldo_ctrl'. The port definition is at: nofile(23).
+#    Time: 0 fs  Iteration: 0  Instance: /tb_board_top_selftest/dut/u_soc/u_ddr3/u_ddrphy_top/ddrphy_slice_top/i_ca_group[1]/u_ddc_ca/dly_chain2 File: C:/pango/PDS_2022.2-SP6.4/arch/vendor/pango/verilog/simulation/modelsim10.2c/./ddc_e2_source_codes/ddc_e2_dly_chain.vp
+# ** Warning: (vsim-3015) C:/pango/PDS_2022.2-SP6.4/arch/vendor/pango/verilog/simulation/GTP_DDC_E2.v(397): [PCDPC] - Port size (2) does not match connection size (1) for port 'ldo_ctrl'. The port definition is at: nofile(23).
+#    Time: 0 fs  Iteration: 0  Instance: /tb_board_top_selftest/dut/u_soc/u_ddr3/u_ddrphy_top/ddrphy_slice_top/i_ca_group[1]/u_ddc_ca/dly_chain3 File: C:/pango/PDS_2022.2-SP6.4/arch/vendor/pango/verilog/simulation/modelsim10.2c/./ddc_e2_source_codes/ddc_e2_dly_chain.vp
+# ** Warning: (vsim-3015) C:/pango/PDS_2022.2-SP6.4/arch/vendor/pango/verilog/simulation/GTP_DDC_E2.v(739): [PCDPC] - Port size (2) does not match connection size (1) for port 'ldo_ctrl'. The port definition is at: nofile(23).
+#    Time: 0 fs  Iteration: 0  Instance: /tb_board_top_selftest/dut/u_soc/u_ddr3/u_ddrphy_top/ddrphy_slice_top/i_ca_group[1]/u_ddc_ca/dly_chain4 File: C:/pango/PDS_2022.2-SP6.4/arch/vendor/pango/verilog/simulation/modelsim10.2c/./ddc_e2_source_codes/ddc_e2_dly_chain.vp
+# ** Warning: (vsim-3015) C:/pango/PDS_2022.2-SP6.4/arch/vendor/pango/verilog/simulation/GTP_DDC_E2.v(740): [PCDPC] - Port size (2) does not match connection size (1) for port 'ldo_ctrl'. The port definition is at: nofile(23).
+#    Time: 0 fs  Iteration: 0  Instance: /tb_board_top_selftest/dut/u_soc/u_ddr3/u_ddrphy_top/ddrphy_slice_top/i_ca_group[1]/u_ddc_ca/dly_chain5 File: C:/pango/PDS_2022.2-SP6.4/arch/vendor/pango/verilog/simulation/modelsim10.2c/./ddc_e2_source_codes/ddc_e2_dly_chain.vp
+# ** Warning: (vsim-3017) ./../../sim_lib/ddrphy/ddr3_slice_top_v1_10.v(853): [TFMPC] - Too few port connections. Expected 20, found 18.
+#    Time: 0 fs  Iteration: 0  Instance: /tb_board_top_selftest/dut/u_soc/u_ddr3/u_ddrphy_top/ddrphy_slice_top/i_ca_group[1]/u_tserdes_ca0 File: C:/pango/PDS_2022.2-SP6.4/arch/vendor/pango/verilog/simulation/GTP_OSERDES_E2.v
+# ** Warning: (vsim-3722) ./../../sim_lib/ddrphy/ddr3_slice_top_v1_10.v(853): [TFMPC] - Missing connection for port 'TFB'.
+# ** Warning: (vsim-3722) ./../../sim_lib/ddrphy/ddr3_slice_top_v1_10.v(853): [TFMPC] - Missing connection for port 'TERM_FB'.
+# ** Warning: (vsim-3015) C:/pango/PDS_2022.2-SP6.4/arch/vendor/pango/verilog/simulation/GTP_OSERDES_E2.v(692): [PCDPC] - Port size (2) does not match connection size (8) for port 'ts_ctrl'. The port definition is at: nofile(23).
+#    Time: 0 fs  Iteration: 0  Instance: /tb_board_top_selftest/dut/u_soc/u_ddr3/u_ddrphy_top/ddrphy_slice_top/i_ca_group[1]/u_tserdes_ca0/genblk1/xoserdes_e2_iolhr_ol File: C:/pango/PDS_2022.2-SP6.4/arch/vendor/pango/verilog/simulation/modelsim10.2c/./oserdes_e2_source_codes/oserdes_e2_iolhr_ol.vp
+# ** Warning: (vsim-3017) ./../../sim_lib/ddrphy/ddr3_slice_top_v1_10.v(895): [TFMPC] - Too few port connections. Expected 20, found 18.
+#    Time: 0 fs  Iteration: 0  Instance: /tb_board_top_selftest/dut/u_soc/u_ddr3/u_ddrphy_top/ddrphy_slice_top/i_ca_group[1]/u_tserdes_ca1 File: C:/pango/PDS_2022.2-SP6.4/arch/vendor/pango/verilog/simulation/GTP_OSERDES_E2.v
+# ** Warning: (vsim-3722) ./../../sim_lib/ddrphy/ddr3_slice_top_v1_10.v(895): [TFMPC] - Missing connection for port 'TFB'.
+# ** Warning: (vsim-3722) ./../../sim_lib/ddrphy/ddr3_slice_top_v1_10.v(895): [TFMPC] - Missing connection for port 'TERM_FB'.
+# ** Warning: (vsim-3015) C:/pango/PDS_2022.2-SP6.4/arch/vendor/pango/verilog/simulation/GTP_OSERDES_E2.v(692): [PCDPC] - Port size (2) does not match connection size (8) for port 'ts_ctrl'. The port definition is at: nofile(23).
+#    Time: 0 fs  Iteration: 0  Instance: /tb_board_top_selftest/dut/u_soc/u_ddr3/u_ddrphy_top/ddrphy_slice_top/i_ca_group[1]/u_tserdes_ca1/genblk1/xoserdes_e2_iolhr_ol File: C:/pango/PDS_2022.2-SP6.4/arch/vendor/pango/verilog/simulation/modelsim10.2c/./oserdes_e2_source_codes/oserdes_e2_iolhr_ol.vp
+# ** Warning: (vsim-3015) C:/pango/PDS_2022.2-SP6.4/arch/vendor/pango/verilog/simulation/GTP_DDC_E2.v(393): [PCDPC] - Port size (2) does not match connection size (1) for port 'ldo_ctrl'. The port definition is at: nofile(23).
+#    Time: 0 fs  Iteration: 0  Instance: /tb_board_top_selftest/dut/u_soc/u_ddr3/u_ddrphy_top/ddrphy_slice_top/i_ca_group[2]/u_ddc_ca/dly_chain0 File: C:/pango/PDS_2022.2-SP6.4/arch/vendor/pango/verilog/simulation/modelsim10.2c/./ddc_e2_source_codes/ddc_e2_dly_chain.vp
+# ** Warning: (vsim-3015) C:/pango/PDS_2022.2-SP6.4/arch/vendor/pango/verilog/simulation/GTP_DDC_E2.v(394): [PCDPC] - Port size (2) does not match connection size (1) for port 'ldo_ctrl'. The port definition is at: nofile(23).
+#    Time: 0 fs  Iteration: 0  Instance: /tb_board_top_selftest/dut/u_soc/u_ddr3/u_ddrphy_top/ddrphy_slice_top/i_ca_group[2]/u_ddc_ca/dly_chain1 File: C:/pango/PDS_2022.2-SP6.4/arch/vendor/pango/verilog/simulation/modelsim10.2c/./ddc_e2_source_codes/ddc_e2_dly_chain.vp
+# ** Warning: (vsim-3015) C:/pango/PDS_2022.2-SP6.4/arch/vendor/pango/verilog/simulation/GTP_DDC_E2.v(395): [PCDPC] - Port size (2) does not match connection size (1) for port 'ldo_ctrl'. The port definition is at: nofile(23).
+#    Time: 0 fs  Iteration: 0  Instance: /tb_board_top_selftest/dut/u_soc/u_ddr3/u_ddrphy_top/ddrphy_slice_top/i_ca_group[2]/u_ddc_ca/dly_chain2 File: C:/pango/PDS_2022.2-SP6.4/arch/vendor/pango/verilog/simulation/modelsim10.2c/./ddc_e2_source_codes/ddc_e2_dly_chain.vp
+# ** Warning: (vsim-3015) C:/pango/PDS_2022.2-SP6.4/arch/vendor/pango/verilog/simulation/GTP_DDC_E2.v(397): [PCDPC] - Port size (2) does not match connection size (1) for port 'ldo_ctrl'. The port definition is at: nofile(23).
+#    Time: 0 fs  Iteration: 0  Instance: /tb_board_top_selftest/dut/u_soc/u_ddr3/u_ddrphy_top/ddrphy_slice_top/i_ca_group[2]/u_ddc_ca/dly_chain3 File: C:/pango/PDS_2022.2-SP6.4/arch/vendor/pango/verilog/simulation/modelsim10.2c/./ddc_e2_source_codes/ddc_e2_dly_chain.vp
+# ** Warning: (vsim-3015) C:/pango/PDS_2022.2-SP6.4/arch/vendor/pango/verilog/simulation/GTP_DDC_E2.v(739): [PCDPC] - Port size (2) does not match connection size (1) for port 'ldo_ctrl'. The port definition is at: nofile(23).
+#    Time: 0 fs  Iteration: 0  Instance: /tb_board_top_selftest/dut/u_soc/u_ddr3/u_ddrphy_top/ddrphy_slice_top/i_ca_group[2]/u_ddc_ca/dly_chain4 File: C:/pango/PDS_2022.2-SP6.4/arch/vendor/pango/verilog/simulation/modelsim10.2c/./ddc_e2_source_codes/ddc_e2_dly_chain.vp
+# ** Warning: (vsim-3015) C:/pango/PDS_2022.2-SP6.4/arch/vendor/pango/verilog/simulation/GTP_DDC_E2.v(740): [PCDPC] - Port size (2) does not match connection size (1) for port 'ldo_ctrl'. The port definition is at: nofile(23).
+#    Time: 0 fs  Iteration: 0  Instance: /tb_board_top_selftest/dut/u_soc/u_ddr3/u_ddrphy_top/ddrphy_slice_top/i_ca_group[2]/u_ddc_ca/dly_chain5 File: C:/pango/PDS_2022.2-SP6.4/arch/vendor/pango/verilog/simulation/modelsim10.2c/./ddc_e2_source_codes/ddc_e2_dly_chain.vp
+# ** Warning: (vsim-3017) ./../../sim_lib/ddrphy/ddr3_slice_top_v1_10.v(853): [TFMPC] - Too few port connections. Expected 20, found 18.
+#    Time: 0 fs  Iteration: 0  Instance: /tb_board_top_selftest/dut/u_soc/u_ddr3/u_ddrphy_top/ddrphy_slice_top/i_ca_group[2]/u_tserdes_ca0 File: C:/pango/PDS_2022.2-SP6.4/arch/vendor/pango/verilog/simulation/GTP_OSERDES_E2.v
+# ** Warning: (vsim-3722) ./../../sim_lib/ddrphy/ddr3_slice_top_v1_10.v(853): [TFMPC] - Missing connection for port 'TFB'.
+# ** Warning: (vsim-3722) ./../../sim_lib/ddrphy/ddr3_slice_top_v1_10.v(853): [TFMPC] - Missing connection for port 'TERM_FB'.
+# ** Warning: (vsim-3015) C:/pango/PDS_2022.2-SP6.4/arch/vendor/pango/verilog/simulation/GTP_OSERDES_E2.v(692): [PCDPC] - Port size (2) does not match connection size (8) for port 'ts_ctrl'. The port definition is at: nofile(23).
+#    Time: 0 fs  Iteration: 0  Instance: /tb_board_top_selftest/dut/u_soc/u_ddr3/u_ddrphy_top/ddrphy_slice_top/i_ca_group[2]/u_tserdes_ca0/genblk1/xoserdes_e2_iolhr_ol File: C:/pango/PDS_2022.2-SP6.4/arch/vendor/pango/verilog/simulation/modelsim10.2c/./oserdes_e2_source_codes/oserdes_e2_iolhr_ol.vp
+# ** Warning: (vsim-3017) ./../../sim_lib/ddrphy/ddr3_slice_top_v1_10.v(895): [TFMPC] - Too few port connections. Expected 20, found 18.
+#    Time: 0 fs  Iteration: 0  Instance: /tb_board_top_selftest/dut/u_soc/u_ddr3/u_ddrphy_top/ddrphy_slice_top/i_ca_group[2]/u_tserdes_ca1 File: C:/pango/PDS_2022.2-SP6.4/arch/vendor/pango/verilog/simulation/GTP_OSERDES_E2.v
+# ** Warning: (vsim-3722) ./../../sim_lib/ddrphy/ddr3_slice_top_v1_10.v(895): [TFMPC] - Missing connection for port 'TFB'.
+# ** Warning: (vsim-3722) ./../../sim_lib/ddrphy/ddr3_slice_top_v1_10.v(895): [TFMPC] - Missing connection for port 'TERM_FB'.
+# ** Warning: (vsim-3015) C:/pango/PDS_2022.2-SP6.4/arch/vendor/pango/verilog/simulation/GTP_OSERDES_E2.v(692): [PCDPC] - Port size (2) does not match connection size (8) for port 'ts_ctrl'. The port definition is at: nofile(23).
+#    Time: 0 fs  Iteration: 0  Instance: /tb_board_top_selftest/dut/u_soc/u_ddr3/u_ddrphy_top/ddrphy_slice_top/i_ca_group[2]/u_tserdes_ca1/genblk1/xoserdes_e2_iolhr_ol File: C:/pango/PDS_2022.2-SP6.4/arch/vendor/pango/verilog/simulation/modelsim10.2c/./oserdes_e2_source_codes/oserdes_e2_iolhr_ol.vp
+# ** Warning: (vsim-3017) ./../../sim_lib/ddrphy/ddr3_slice_top_v1_10.v(940): [TFMPC] - Too few port connections. Expected 20, found 18.
+#    Time: 0 fs  Iteration: 0  Instance: /tb_board_top_selftest/dut/u_soc/u_ddr3/u_ddrphy_top/ddrphy_slice_top/u_oserdes_ck File: C:/pango/PDS_2022.2-SP6.4/arch/vendor/pango/verilog/simulation/GTP_OSERDES_E2.v
+# ** Warning: (vsim-3722) ./../../sim_lib/ddrphy/ddr3_slice_top_v1_10.v(940): [TFMPC] - Missing connection for port 'TFB'.
+# ** Warning: (vsim-3722) ./../../sim_lib/ddrphy/ddr3_slice_top_v1_10.v(940): [TFMPC] - Missing connection for port 'TERM_FB'.
+# ** Warning: (vsim-3015) C:/pango/PDS_2022.2-SP6.4/arch/vendor/pango/verilog/simulation/GTP_OSERDES_E2.v(692): [PCDPC] - Port size (2) does not match connection size (8) for port 'ts_ctrl'. The port definition is at: nofile(23).
+#    Time: 0 fs  Iteration: 0  Instance: /tb_board_top_selftest/dut/u_soc/u_ddr3/u_ddrphy_top/ddrphy_slice_top/u_oserdes_ck/genblk1/xoserdes_e2_iolhr_ol File: C:/pango/PDS_2022.2-SP6.4/arch/vendor/pango/verilog/simulation/modelsim10.2c/./oserdes_e2_source_codes/oserdes_e2_iolhr_ol.vp
+# ** Warning: (vsim-3017) ./../../sim_lib/ddrphy/ddr3_slice_top_v1_10.v(975): [TFMPC] - Too few port connections. Expected 5, found 4.
+#    Time: 0 fs  Iteration: 0  Instance: /tb_board_top_selftest/dut/u_soc/u_ddr3/u_ddrphy_top/ddrphy_slice_top/u_iodelay_dq File: C:/pango/PDS_2022.2-SP6.4/arch/vendor/pango/verilog/simulation/GTP_IODELAY_E2.v
+# ** Warning: (vsim-3722) ./../../sim_lib/ddrphy/ddr3_slice_top_v1_10.v(975): [TFMPC] - Missing connection for port 'EN_N'.
+# ** Warning: (vsim-3017) ./../../sim_lib/ddrphy/ddr3_slice_top_v1_10.v(1012): [TFMPC] - Too few port connections. Expected 20, found 18.
+#    Time: 0 fs  Iteration: 0  Instance: /tb_board_top_selftest/dut/u_soc/u_ddr3/u_ddrphy_top/ddrphy_slice_top/u_oserdes_odt File: C:/pango/PDS_2022.2-SP6.4/arch/vendor/pango/verilog/simulation/GTP_OSERDES_E2.v
+# ** Warning: (vsim-3722) ./../../sim_lib/ddrphy/ddr3_slice_top_v1_10.v(1012): [TFMPC] - Missing connection for port 'TFB'.
+# ** Warning: (vsim-3722) ./../../sim_lib/ddrphy/ddr3_slice_top_v1_10.v(1012): [TFMPC] - Missing connection for port 'TERM_FB'.
+# ** Warning: (vsim-3015) C:/pango/PDS_2022.2-SP6.4/arch/vendor/pango/verilog/simulation/GTP_OSERDES_E2.v(692): [PCDPC] - Port size (2) does not match connection size (8) for port 'ts_ctrl'. The port definition is at: nofile(23).
+#    Time: 0 fs  Iteration: 0  Instance: /tb_board_top_selftest/dut/u_soc/u_ddr3/u_ddrphy_top/ddrphy_slice_top/u_oserdes_odt/genblk1/xoserdes_e2_iolhr_ol File: C:/pango/PDS_2022.2-SP6.4/arch/vendor/pango/verilog/simulation/modelsim10.2c/./oserdes_e2_source_codes/oserdes_e2_iolhr_ol.vp
+# ** Warning: (vsim-3017) ./../../sim_lib/ddrphy/ddr3_slice_top_v1_10.v(1036): [TFMPC] - Too few port connections. Expected 5, found 4.
+#    Time: 0 fs  Iteration: 0  Instance: /tb_board_top_selftest/dut/u_soc/u_ddr3/u_ddrphy_top/ddrphy_slice_top/u_odelay_odt File: C:/pango/PDS_2022.2-SP6.4/arch/vendor/pango/verilog/simulation/GTP_IODELAY_E2.v
+# ** Warning: (vsim-3722) ./../../sim_lib/ddrphy/ddr3_slice_top_v1_10.v(1036): [TFMPC] - Missing connection for port 'EN_N'.
+# ** Warning: (vsim-3017) ./../../sim_lib/ddrphy/ddr3_slice_top_v1_10.v(1071): [TFMPC] - Too few port connections. Expected 20, found 18.
+#    Time: 0 fs  Iteration: 0  Instance: /tb_board_top_selftest/dut/u_soc/u_ddr3/u_ddrphy_top/ddrphy_slice_top/u_oserdes_csn File: C:/pango/PDS_2022.2-SP6.4/arch/vendor/pango/verilog/simulation/GTP_OSERDES_E2.v
+# ** Warning: (vsim-3722) ./../../sim_lib/ddrphy/ddr3_slice_top_v1_10.v(1071): [TFMPC] - Missing connection for port 'TFB'.
+# ** Warning: (vsim-3722) ./../../sim_lib/ddrphy/ddr3_slice_top_v1_10.v(1071): [TFMPC] - Missing connection for port 'TERM_FB'.
+# ** Warning: (vsim-3015) C:/pango/PDS_2022.2-SP6.4/arch/vendor/pango/verilog/simulation/GTP_OSERDES_E2.v(692): [PCDPC] - Port size (2) does not match connection size (8) for port 'ts_ctrl'. The port definition is at: nofile(23).
+#    Time: 0 fs  Iteration: 0  Instance: /tb_board_top_selftest/dut/u_soc/u_ddr3/u_ddrphy_top/ddrphy_slice_top/u_oserdes_csn/genblk1/xoserdes_e2_iolhr_ol File: C:/pango/PDS_2022.2-SP6.4/arch/vendor/pango/verilog/simulation/modelsim10.2c/./oserdes_e2_source_codes/oserdes_e2_iolhr_ol.vp
+# ** Warning: (vsim-3017) ./../../sim_lib/ddrphy/ddr3_slice_top_v1_10.v(1095): [TFMPC] - Too few port connections. Expected 5, found 4.
+#    Time: 0 fs  Iteration: 0  Instance: /tb_board_top_selftest/dut/u_soc/u_ddr3/u_ddrphy_top/ddrphy_slice_top/u_odelay_csn File: C:/pango/PDS_2022.2-SP6.4/arch/vendor/pango/verilog/simulation/GTP_IODELAY_E2.v
+# ** Warning: (vsim-3722) ./../../sim_lib/ddrphy/ddr3_slice_top_v1_10.v(1095): [TFMPC] - Missing connection for port 'EN_N'.
+# ** Warning: (vsim-3017) ./../../sim_lib/ddrphy/ddr3_slice_top_v1_10.v(1130): [TFMPC] - Too few port connections. Expected 20, found 18.
+#    Time: 0 fs  Iteration: 0  Instance: /tb_board_top_selftest/dut/u_soc/u_ddr3/u_ddrphy_top/ddrphy_slice_top/u_oserdes_rasn File: C:/pango/PDS_2022.2-SP6.4/arch/vendor/pango/verilog/simulation/GTP_OSERDES_E2.v
+# ** Warning: (vsim-3722) ./../../sim_lib/ddrphy/ddr3_slice_top_v1_10.v(1130): [TFMPC] - Missing connection for port 'TFB'.
+# ** Warning: (vsim-3722) ./../../sim_lib/ddrphy/ddr3_slice_top_v1_10.v(1130): [TFMPC] - Missing connection for port 'TERM_FB'.
+# ** Warning: (vsim-3015) C:/pango/PDS_2022.2-SP6.4/arch/vendor/pango/verilog/simulation/GTP_OSERDES_E2.v(692): [PCDPC] - Port size (2) does not match connection size (8) for port 'ts_ctrl'. The port definition is at: nofile(23).
+#    Time: 0 fs  Iteration: 0  Instance: /tb_board_top_selftest/dut/u_soc/u_ddr3/u_ddrphy_top/ddrphy_slice_top/u_oserdes_rasn/genblk1/xoserdes_e2_iolhr_ol File: C:/pango/PDS_2022.2-SP6.4/arch/vendor/pango/verilog/simulation/modelsim10.2c/./oserdes_e2_source_codes/oserdes_e2_iolhr_ol.vp
+# ** Warning: (vsim-3017) ./../../sim_lib/ddrphy/ddr3_slice_top_v1_10.v(1154): [TFMPC] - Too few port connections. Expected 5, found 4.
+#    Time: 0 fs  Iteration: 0  Instance: /tb_board_top_selftest/dut/u_soc/u_ddr3/u_ddrphy_top/ddrphy_slice_top/u_odelay_rasn File: C:/pango/PDS_2022.2-SP6.4/arch/vendor/pango/verilog/simulation/GTP_IODELAY_E2.v
+# ** Warning: (vsim-3722) ./../../sim_lib/ddrphy/ddr3_slice_top_v1_10.v(1154): [TFMPC] - Missing connection for port 'EN_N'.
+# ** Warning: (vsim-3017) ./../../sim_lib/ddrphy/ddr3_slice_top_v1_10.v(1190): [TFMPC] - Too few port connections. Expected 20, found 18.
+#    Time: 0 fs  Iteration: 0  Instance: /tb_board_top_selftest/dut/u_soc/u_ddr3/u_ddrphy_top/ddrphy_slice_top/u_oserdes_casn File: C:/pango/PDS_2022.2-SP6.4/arch/vendor/pango/verilog/simulation/GTP_OSERDES_E2.v
+# ** Warning: (vsim-3722) ./../../sim_lib/ddrphy/ddr3_slice_top_v1_10.v(1190): [TFMPC] - Missing connection for port 'TFB'.
+# ** Warning: (vsim-3722) ./../../sim_lib/ddrphy/ddr3_slice_top_v1_10.v(1190): [TFMPC] - Missing connection for port 'TERM_FB'.
+# ** Warning: (vsim-3015) C:/pango/PDS_2022.2-SP6.4/arch/vendor/pango/verilog/simulation/GTP_OSERDES_E2.v(692): [PCDPC] - Port size (2) does not match connection size (8) for port 'ts_ctrl'. The port definition is at: nofile(23).
+#    Time: 0 fs  Iteration: 0  Instance: /tb_board_top_selftest/dut/u_soc/u_ddr3/u_ddrphy_top/ddrphy_slice_top/u_oserdes_casn/genblk1/xoserdes_e2_iolhr_ol File: C:/pango/PDS_2022.2-SP6.4/arch/vendor/pango/verilog/simulation/modelsim10.2c/./oserdes_e2_source_codes/oserdes_e2_iolhr_ol.vp
+# ** Warning: (vsim-3017) ./../../sim_lib/ddrphy/ddr3_slice_top_v1_10.v(1214): [TFMPC] - Too few port connections. Expected 5, found 4.
+#    Time: 0 fs  Iteration: 0  Instance: /tb_board_top_selftest/dut/u_soc/u_ddr3/u_ddrphy_top/ddrphy_slice_top/u_odelay_casn File: C:/pango/PDS_2022.2-SP6.4/arch/vendor/pango/verilog/simulation/GTP_IODELAY_E2.v
+# ** Warning: (vsim-3722) ./../../sim_lib/ddrphy/ddr3_slice_top_v1_10.v(1214): [TFMPC] - Missing connection for port 'EN_N'.
+# ** Warning: (vsim-3017) ./../../sim_lib/ddrphy/ddr3_slice_top_v1_10.v(1249): [TFMPC] - Too few port connections. Expected 20, found 18.
+#    Time: 0 fs  Iteration: 0  Instance: /tb_board_top_selftest/dut/u_soc/u_ddr3/u_ddrphy_top/ddrphy_slice_top/u_oserdes_wen File: C:/pango/PDS_2022.2-SP6.4/arch/vendor/pango/verilog/simulation/GTP_OSERDES_E2.v
+# ** Warning: (vsim-3722) ./../../sim_lib/ddrphy/ddr3_slice_top_v1_10.v(1249): [TFMPC] - Missing connection for port 'TFB'.
+# ** Warning: (vsim-3722) ./../../sim_lib/ddrphy/ddr3_slice_top_v1_10.v(1249): [TFMPC] - Missing connection for port 'TERM_FB'.
+# ** Warning: (vsim-3015) C:/pango/PDS_2022.2-SP6.4/arch/vendor/pango/verilog/simulation/GTP_OSERDES_E2.v(692): [PCDPC] - Port size (2) does not match connection size (8) for port 'ts_ctrl'. The port definition is at: nofile(23).
+#    Time: 0 fs  Iteration: 0  Instance: /tb_board_top_selftest/dut/u_soc/u_ddr3/u_ddrphy_top/ddrphy_slice_top/u_oserdes_wen/genblk1/xoserdes_e2_iolhr_ol File: C:/pango/PDS_2022.2-SP6.4/arch/vendor/pango/verilog/simulation/modelsim10.2c/./oserdes_e2_source_codes/oserdes_e2_iolhr_ol.vp
+# ** Warning: (vsim-3017) ./../../sim_lib/ddrphy/ddr3_slice_top_v1_10.v(1273): [TFMPC] - Too few port connections. Expected 5, found 4.
+#    Time: 0 fs  Iteration: 0  Instance: /tb_board_top_selftest/dut/u_soc/u_ddr3/u_ddrphy_top/ddrphy_slice_top/u_odelay_wen File: C:/pango/PDS_2022.2-SP6.4/arch/vendor/pango/verilog/simulation/GTP_IODELAY_E2.v
+# ** Warning: (vsim-3722) ./../../sim_lib/ddrphy/ddr3_slice_top_v1_10.v(1273): [TFMPC] - Missing connection for port 'EN_N'.
+# ** Warning: (vsim-3017) ./../../sim_lib/ddrphy/ddr3_slice_top_v1_10.v(1309): [TFMPC] - Too few port connections. Expected 20, found 18.
+#    Time: 0 fs  Iteration: 0  Instance: /tb_board_top_selftest/dut/u_soc/u_ddr3/u_ddrphy_top/ddrphy_slice_top/u_oserdes_cke File: C:/pango/PDS_2022.2-SP6.4/arch/vendor/pango/verilog/simulation/GTP_OSERDES_E2.v
+# ** Warning: (vsim-3722) ./../../sim_lib/ddrphy/ddr3_slice_top_v1_10.v(1309): [TFMPC] - Missing connection for port 'TFB'.
+# ** Warning: (vsim-3722) ./../../sim_lib/ddrphy/ddr3_slice_top_v1_10.v(1309): [TFMPC] - Missing connection for port 'TERM_FB'.
+# ** Warning: (vsim-3015) C:/pango/PDS_2022.2-SP6.4/arch/vendor/pango/verilog/simulation/GTP_OSERDES_E2.v(692): [PCDPC] - Port size (2) does not match connection size (8) for port 'ts_ctrl'. The port definition is at: nofile(23).
+#    Time: 0 fs  Iteration: 0  Instance: /tb_board_top_selftest/dut/u_soc/u_ddr3/u_ddrphy_top/ddrphy_slice_top/u_oserdes_cke/genblk1/xoserdes_e2_iolhr_ol File: C:/pango/PDS_2022.2-SP6.4/arch/vendor/pango/verilog/simulation/modelsim10.2c/./oserdes_e2_source_codes/oserdes_e2_iolhr_ol.vp
+# ** Warning: (vsim-3017) ./../../sim_lib/ddrphy/ddr3_slice_top_v1_10.v(1333): [TFMPC] - Too few port connections. Expected 5, found 4.
+#    Time: 0 fs  Iteration: 0  Instance: /tb_board_top_selftest/dut/u_soc/u_ddr3/u_ddrphy_top/ddrphy_slice_top/u_odelay_cke File: C:/pango/PDS_2022.2-SP6.4/arch/vendor/pango/verilog/simulation/GTP_IODELAY_E2.v
+# ** Warning: (vsim-3722) ./../../sim_lib/ddrphy/ddr3_slice_top_v1_10.v(1333): [TFMPC] - Missing connection for port 'EN_N'.
+# ** Warning: (vsim-3017) ./../../sim_lib/ddrphy/ddr3_slice_top_v1_10.v(1375): [TFMPC] - Too few port connections. Expected 20, found 18.
+#    Time: 0 fs  Iteration: 0  Instance: /tb_board_top_selftest/dut/u_soc/u_ddr3/u_ddrphy_top/ddrphy_slice_top/i_mem_addr_0[0]/u_oserdes_addr File: C:/pango/PDS_2022.2-SP6.4/arch/vendor/pango/verilog/simulation/GTP_OSERDES_E2.v
+# ** Warning: (vsim-3722) ./../../sim_lib/ddrphy/ddr3_slice_top_v1_10.v(1375): [TFMPC] - Missing connection for port 'TFB'.
+# ** Warning: (vsim-3722) ./../../sim_lib/ddrphy/ddr3_slice_top_v1_10.v(1375): [TFMPC] - Missing connection for port 'TERM_FB'.
+# ** Warning: (vsim-3015) C:/pango/PDS_2022.2-SP6.4/arch/vendor/pango/verilog/simulation/GTP_OSERDES_E2.v(692): [PCDPC] - Port size (2) does not match connection size (8) for port 'ts_ctrl'. The port definition is at: nofile(23).
+#    Time: 0 fs  Iteration: 0  Instance: /tb_board_top_selftest/dut/u_soc/u_ddr3/u_ddrphy_top/ddrphy_slice_top/i_mem_addr_0[0]/u_oserdes_addr/genblk1/xoserdes_e2_iolhr_ol File: C:/pango/PDS_2022.2-SP6.4/arch/vendor/pango/verilog/simulation/modelsim10.2c/./oserdes_e2_source_codes/oserdes_e2_iolhr_ol.vp
+# ** Warning: (vsim-3017) ./../../sim_lib/ddrphy/ddr3_slice_top_v1_10.v(1399): [TFMPC] - Too few port connections. Expected 5, found 4.
+#    Time: 0 fs  Iteration: 0  Instance: /tb_board_top_selftest/dut/u_soc/u_ddr3/u_ddrphy_top/ddrphy_slice_top/i_mem_addr_0[0]/u_odelay_addr File: C:/pango/PDS_2022.2-SP6.4/arch/vendor/pango/verilog/simulation/GTP_IODELAY_E2.v
+# ** Warning: (vsim-3722) ./../../sim_lib/ddrphy/ddr3_slice_top_v1_10.v(1399): [TFMPC] - Missing connection for port 'EN_N'.
+# ** Warning: (vsim-3017) ./../../sim_lib/ddrphy/ddr3_slice_top_v1_10.v(1375): [TFMPC] - Too few port connections. Expected 20, found 18.
+#    Time: 0 fs  Iteration: 0  Instance: /tb_board_top_selftest/dut/u_soc/u_ddr3/u_ddrphy_top/ddrphy_slice_top/i_mem_addr_0[1]/u_oserdes_addr File: C:/pango/PDS_2022.2-SP6.4/arch/vendor/pango/verilog/simulation/GTP_OSERDES_E2.v
+# ** Warning: (vsim-3722) ./../../sim_lib/ddrphy/ddr3_slice_top_v1_10.v(1375): [TFMPC] - Missing connection for port 'TFB'.
+# ** Warning: (vsim-3722) ./../../sim_lib/ddrphy/ddr3_slice_top_v1_10.v(1375): [TFMPC] - Missing connection for port 'TERM_FB'.
+# ** Warning: (vsim-3015) C:/pango/PDS_2022.2-SP6.4/arch/vendor/pango/verilog/simulation/GTP_OSERDES_E2.v(692): [PCDPC] - Port size (2) does not match connection size (8) for port 'ts_ctrl'. The port definition is at: nofile(23).
+#    Time: 0 fs  Iteration: 0  Instance: /tb_board_top_selftest/dut/u_soc/u_ddr3/u_ddrphy_top/ddrphy_slice_top/i_mem_addr_0[1]/u_oserdes_addr/genblk1/xoserdes_e2_iolhr_ol File: C:/pango/PDS_2022.2-SP6.4/arch/vendor/pango/verilog/simulation/modelsim10.2c/./oserdes_e2_source_codes/oserdes_e2_iolhr_ol.vp
+# ** Warning: (vsim-3017) ./../../sim_lib/ddrphy/ddr3_slice_top_v1_10.v(1399): [TFMPC] - Too few port connections. Expected 5, found 4.
+#    Time: 0 fs  Iteration: 0  Instance: /tb_board_top_selftest/dut/u_soc/u_ddr3/u_ddrphy_top/ddrphy_slice_top/i_mem_addr_0[1]/u_odelay_addr File: C:/pango/PDS_2022.2-SP6.4/arch/vendor/pango/verilog/simulation/GTP_IODELAY_E2.v
+# ** Warning: (vsim-3722) ./../../sim_lib/ddrphy/ddr3_slice_top_v1_10.v(1399): [TFMPC] - Missing connection for port 'EN_N'.
+# ** Warning: (vsim-3017) ./../../sim_lib/ddrphy/ddr3_slice_top_v1_10.v(1375): [TFMPC] - Too few port connections. Expected 20, found 18.
+#    Time: 0 fs  Iteration: 0  Instance: /tb_board_top_selftest/dut/u_soc/u_ddr3/u_ddrphy_top/ddrphy_slice_top/i_mem_addr_0[2]/u_oserdes_addr File: C:/pango/PDS_2022.2-SP6.4/arch/vendor/pango/verilog/simulation/GTP_OSERDES_E2.v
+# ** Warning: (vsim-3722) ./../../sim_lib/ddrphy/ddr3_slice_top_v1_10.v(1375): [TFMPC] - Missing connection for port 'TFB'.
+# ** Warning: (vsim-3722) ./../../sim_lib/ddrphy/ddr3_slice_top_v1_10.v(1375): [TFMPC] - Missing connection for port 'TERM_FB'.
+# ** Warning: (vsim-3015) C:/pango/PDS_2022.2-SP6.4/arch/vendor/pango/verilog/simulation/GTP_OSERDES_E2.v(692): [PCDPC] - Port size (2) does not match connection size (8) for port 'ts_ctrl'. The port definition is at: nofile(23).
+#    Time: 0 fs  Iteration: 0  Instance: /tb_board_top_selftest/dut/u_soc/u_ddr3/u_ddrphy_top/ddrphy_slice_top/i_mem_addr_0[2]/u_oserdes_addr/genblk1/xoserdes_e2_iolhr_ol File: C:/pango/PDS_2022.2-SP6.4/arch/vendor/pango/verilog/simulation/modelsim10.2c/./oserdes_e2_source_codes/oserdes_e2_iolhr_ol.vp
+# ** Warning: (vsim-3017) ./../../sim_lib/ddrphy/ddr3_slice_top_v1_10.v(1399): [TFMPC] - Too few port connections. Expected 5, found 4.
+#    Time: 0 fs  Iteration: 0  Instance: /tb_board_top_selftest/dut/u_soc/u_ddr3/u_ddrphy_top/ddrphy_slice_top/i_mem_addr_0[2]/u_odelay_addr File: C:/pango/PDS_2022.2-SP6.4/arch/vendor/pango/verilog/simulation/GTP_IODELAY_E2.v
+# ** Warning: (vsim-3722) ./../../sim_lib/ddrphy/ddr3_slice_top_v1_10.v(1399): [TFMPC] - Missing connection for port 'EN_N'.
+# ** Warning: (vsim-3017) ./../../sim_lib/ddrphy/ddr3_slice_top_v1_10.v(1375): [TFMPC] - Too few port connections. Expected 20, found 18.
+#    Time: 0 fs  Iteration: 0  Instance: /tb_board_top_selftest/dut/u_soc/u_ddr3/u_ddrphy_top/ddrphy_slice_top/i_mem_addr_0[3]/u_oserdes_addr File: C:/pango/PDS_2022.2-SP6.4/arch/vendor/pango/verilog/simulation/GTP_OSERDES_E2.v
+# ** Warning: (vsim-3722) ./../../sim_lib/ddrphy/ddr3_slice_top_v1_10.v(1375): [TFMPC] - Missing connection for port 'TFB'.
+# ** Warning: (vsim-3722) ./../../sim_lib/ddrphy/ddr3_slice_top_v1_10.v(1375): [TFMPC] - Missing connection for port 'TERM_FB'.
+# ** Warning: (vsim-3015) C:/pango/PDS_2022.2-SP6.4/arch/vendor/pango/verilog/simulation/GTP_OSERDES_E2.v(692): [PCDPC] - Port size (2) does not match connection size (8) for port 'ts_ctrl'. The port definition is at: nofile(23).
+#    Time: 0 fs  Iteration: 0  Instance: /tb_board_top_selftest/dut/u_soc/u_ddr3/u_ddrphy_top/ddrphy_slice_top/i_mem_addr_0[3]/u_oserdes_addr/genblk1/xoserdes_e2_iolhr_ol File: C:/pango/PDS_2022.2-SP6.4/arch/vendor/pango/verilog/simulation/modelsim10.2c/./oserdes_e2_source_codes/oserdes_e2_iolhr_ol.vp
+# ** Warning: (vsim-3017) ./../../sim_lib/ddrphy/ddr3_slice_top_v1_10.v(1399): [TFMPC] - Too few port connections. Expected 5, found 4.
+#    Time: 0 fs  Iteration: 0  Instance: /tb_board_top_selftest/dut/u_soc/u_ddr3/u_ddrphy_top/ddrphy_slice_top/i_mem_addr_0[3]/u_odelay_addr File: C:/pango/PDS_2022.2-SP6.4/arch/vendor/pango/verilog/simulation/GTP_IODELAY_E2.v
+# ** Warning: (vsim-3722) ./../../sim_lib/ddrphy/ddr3_slice_top_v1_10.v(1399): [TFMPC] - Missing connection for port 'EN_N'.
+# ** Warning: (vsim-3017) ./../../sim_lib/ddrphy/ddr3_slice_top_v1_10.v(1375): [TFMPC] - Too few port connections. Expected 20, found 18.
+#    Time: 0 fs  Iteration: 0  Instance: /tb_board_top_selftest/dut/u_soc/u_ddr3/u_ddrphy_top/ddrphy_slice_top/i_mem_addr_0[4]/u_oserdes_addr File: C:/pango/PDS_2022.2-SP6.4/arch/vendor/pango/verilog/simulation/GTP_OSERDES_E2.v
+# ** Warning: (vsim-3722) ./../../sim_lib/ddrphy/ddr3_slice_top_v1_10.v(1375): [TFMPC] - Missing connection for port 'TFB'.
+# ** Warning: (vsim-3722) ./../../sim_lib/ddrphy/ddr3_slice_top_v1_10.v(1375): [TFMPC] - Missing connection for port 'TERM_FB'.
+# ** Warning: (vsim-3015) C:/pango/PDS_2022.2-SP6.4/arch/vendor/pango/verilog/simulation/GTP_OSERDES_E2.v(692): [PCDPC] - Port size (2) does not match connection size (8) for port 'ts_ctrl'. The port definition is at: nofile(23).
+#    Time: 0 fs  Iteration: 0  Instance: /tb_board_top_selftest/dut/u_soc/u_ddr3/u_ddrphy_top/ddrphy_slice_top/i_mem_addr_0[4]/u_oserdes_addr/genblk1/xoserdes_e2_iolhr_ol File: C:/pango/PDS_2022.2-SP6.4/arch/vendor/pango/verilog/simulation/modelsim10.2c/./oserdes_e2_source_codes/oserdes_e2_iolhr_ol.vp
+# ** Warning: (vsim-3017) ./../../sim_lib/ddrphy/ddr3_slice_top_v1_10.v(1399): [TFMPC] - Too few port connections. Expected 5, found 4.
+#    Time: 0 fs  Iteration: 0  Instance: /tb_board_top_selftest/dut/u_soc/u_ddr3/u_ddrphy_top/ddrphy_slice_top/i_mem_addr_0[4]/u_odelay_addr File: C:/pango/PDS_2022.2-SP6.4/arch/vendor/pango/verilog/simulation/GTP_IODELAY_E2.v
+# ** Warning: (vsim-3722) ./../../sim_lib/ddrphy/ddr3_slice_top_v1_10.v(1399): [TFMPC] - Missing connection for port 'EN_N'.
+# ** Warning: (vsim-3017) ./../../sim_lib/ddrphy/ddr3_slice_top_v1_10.v(1375): [TFMPC] - Too few port connections. Expected 20, found 18.
+#    Time: 0 fs  Iteration: 0  Instance: /tb_board_top_selftest/dut/u_soc/u_ddr3/u_ddrphy_top/ddrphy_slice_top/i_mem_addr_0[5]/u_oserdes_addr File: C:/pango/PDS_2022.2-SP6.4/arch/vendor/pango/verilog/simulation/GTP_OSERDES_E2.v
+# ** Warning: (vsim-3722) ./../../sim_lib/ddrphy/ddr3_slice_top_v1_10.v(1375): [TFMPC] - Missing connection for port 'TFB'.
+# ** Warning: (vsim-3722) ./../../sim_lib/ddrphy/ddr3_slice_top_v1_10.v(1375): [TFMPC] - Missing connection for port 'TERM_FB'.
+# ** Warning: (vsim-3015) C:/pango/PDS_2022.2-SP6.4/arch/vendor/pango/verilog/simulation/GTP_OSERDES_E2.v(692): [PCDPC] - Port size (2) does not match connection size (8) for port 'ts_ctrl'. The port definition is at: nofile(23).
+#    Time: 0 fs  Iteration: 0  Instance: /tb_board_top_selftest/dut/u_soc/u_ddr3/u_ddrphy_top/ddrphy_slice_top/i_mem_addr_0[5]/u_oserdes_addr/genblk1/xoserdes_e2_iolhr_ol File: C:/pango/PDS_2022.2-SP6.4/arch/vendor/pango/verilog/simulation/modelsim10.2c/./oserdes_e2_source_codes/oserdes_e2_iolhr_ol.vp
+# ** Warning: (vsim-3017) ./../../sim_lib/ddrphy/ddr3_slice_top_v1_10.v(1399): [TFMPC] - Too few port connections. Expected 5, found 4.
+#    Time: 0 fs  Iteration: 0  Instance: /tb_board_top_selftest/dut/u_soc/u_ddr3/u_ddrphy_top/ddrphy_slice_top/i_mem_addr_0[5]/u_odelay_addr File: C:/pango/PDS_2022.2-SP6.4/arch/vendor/pango/verilog/simulation/GTP_IODELAY_E2.v
+# ** Warning: (vsim-3722) ./../../sim_lib/ddrphy/ddr3_slice_top_v1_10.v(1399): [TFMPC] - Missing connection for port 'EN_N'.
+# ** Warning: (vsim-3017) ./../../sim_lib/ddrphy/ddr3_slice_top_v1_10.v(1375): [TFMPC] - Too few port connections. Expected 20, found 18.
+#    Time: 0 fs  Iteration: 0  Instance: /tb_board_top_selftest/dut/u_soc/u_ddr3/u_ddrphy_top/ddrphy_slice_top/i_mem_addr_0[6]/u_oserdes_addr File: C:/pango/PDS_2022.2-SP6.4/arch/vendor/pango/verilog/simulation/GTP_OSERDES_E2.v
+# ** Warning: (vsim-3722) ./../../sim_lib/ddrphy/ddr3_slice_top_v1_10.v(1375): [TFMPC] - Missing connection for port 'TFB'.
+# ** Warning: (vsim-3722) ./../../sim_lib/ddrphy/ddr3_slice_top_v1_10.v(1375): [TFMPC] - Missing connection for port 'TERM_FB'.
+# ** Warning: (vsim-3015) C:/pango/PDS_2022.2-SP6.4/arch/vendor/pango/verilog/simulation/GTP_OSERDES_E2.v(692): [PCDPC] - Port size (2) does not match connection size (8) for port 'ts_ctrl'. The port definition is at: nofile(23).
+#    Time: 0 fs  Iteration: 0  Instance: /tb_board_top_selftest/dut/u_soc/u_ddr3/u_ddrphy_top/ddrphy_slice_top/i_mem_addr_0[6]/u_oserdes_addr/genblk1/xoserdes_e2_iolhr_ol File: C:/pango/PDS_2022.2-SP6.4/arch/vendor/pango/verilog/simulation/modelsim10.2c/./oserdes_e2_source_codes/oserdes_e2_iolhr_ol.vp
+# ** Warning: (vsim-3017) ./../../sim_lib/ddrphy/ddr3_slice_top_v1_10.v(1399): [TFMPC] - Too few port connections. Expected 5, found 4.
+#    Time: 0 fs  Iteration: 0  Instance: /tb_board_top_selftest/dut/u_soc/u_ddr3/u_ddrphy_top/ddrphy_slice_top/i_mem_addr_0[6]/u_odelay_addr File: C:/pango/PDS_2022.2-SP6.4/arch/vendor/pango/verilog/simulation/GTP_IODELAY_E2.v
+# ** Warning: (vsim-3722) ./../../sim_lib/ddrphy/ddr3_slice_top_v1_10.v(1399): [TFMPC] - Missing connection for port 'EN_N'.
+# ** Warning: (vsim-3017) ./../../sim_lib/ddrphy/ddr3_slice_top_v1_10.v(1375): [TFMPC] - Too few port connections. Expected 20, found 18.
+#    Time: 0 fs  Iteration: 0  Instance: /tb_board_top_selftest/dut/u_soc/u_ddr3/u_ddrphy_top/ddrphy_slice_top/i_mem_addr_0[7]/u_oserdes_addr File: C:/pango/PDS_2022.2-SP6.4/arch/vendor/pango/verilog/simulation/GTP_OSERDES_E2.v
+# ** Warning: (vsim-3722) ./../../sim_lib/ddrphy/ddr3_slice_top_v1_10.v(1375): [TFMPC] - Missing connection for port 'TFB'.
+# ** Warning: (vsim-3722) ./../../sim_lib/ddrphy/ddr3_slice_top_v1_10.v(1375): [TFMPC] - Missing connection for port 'TERM_FB'.
+# ** Warning: (vsim-3015) C:/pango/PDS_2022.2-SP6.4/arch/vendor/pango/verilog/simulation/GTP_OSERDES_E2.v(692): [PCDPC] - Port size (2) does not match connection size (8) for port 'ts_ctrl'. The port definition is at: nofile(23).
+#    Time: 0 fs  Iteration: 0  Instance: /tb_board_top_selftest/dut/u_soc/u_ddr3/u_ddrphy_top/ddrphy_slice_top/i_mem_addr_0[7]/u_oserdes_addr/genblk1/xoserdes_e2_iolhr_ol File: C:/pango/PDS_2022.2-SP6.4/arch/vendor/pango/verilog/simulation/modelsim10.2c/./oserdes_e2_source_codes/oserdes_e2_iolhr_ol.vp
+# ** Warning: (vsim-3017) ./../../sim_lib/ddrphy/ddr3_slice_top_v1_10.v(1399): [TFMPC] - Too few port connections. Expected 5, found 4.
+#    Time: 0 fs  Iteration: 0  Instance: /tb_board_top_selftest/dut/u_soc/u_ddr3/u_ddrphy_top/ddrphy_slice_top/i_mem_addr_0[7]/u_odelay_addr File: C:/pango/PDS_2022.2-SP6.4/arch/vendor/pango/verilog/simulation/GTP_IODELAY_E2.v
+# ** Warning: (vsim-3722) ./../../sim_lib/ddrphy/ddr3_slice_top_v1_10.v(1399): [TFMPC] - Missing connection for port 'EN_N'.
+# ** Warning: (vsim-3017) ./../../sim_lib/ddrphy/ddr3_slice_top_v1_10.v(1375): [TFMPC] - Too few port connections. Expected 20, found 18.
+#    Time: 0 fs  Iteration: 0  Instance: /tb_board_top_selftest/dut/u_soc/u_ddr3/u_ddrphy_top/ddrphy_slice_top/i_mem_addr_0[8]/u_oserdes_addr File: C:/pango/PDS_2022.2-SP6.4/arch/vendor/pango/verilog/simulation/GTP_OSERDES_E2.v
+# ** Warning: (vsim-3722) ./../../sim_lib/ddrphy/ddr3_slice_top_v1_10.v(1375): [TFMPC] - Missing connection for port 'TFB'.
+# ** Warning: (vsim-3722) ./../../sim_lib/ddrphy/ddr3_slice_top_v1_10.v(1375): [TFMPC] - Missing connection for port 'TERM_FB'.
+# ** Warning: (vsim-3015) C:/pango/PDS_2022.2-SP6.4/arch/vendor/pango/verilog/simulation/GTP_OSERDES_E2.v(692): [PCDPC] - Port size (2) does not match connection size (8) for port 'ts_ctrl'. The port definition is at: nofile(23).
+#    Time: 0 fs  Iteration: 0  Instance: /tb_board_top_selftest/dut/u_soc/u_ddr3/u_ddrphy_top/ddrphy_slice_top/i_mem_addr_0[8]/u_oserdes_addr/genblk1/xoserdes_e2_iolhr_ol File: C:/pango/PDS_2022.2-SP6.4/arch/vendor/pango/verilog/simulation/modelsim10.2c/./oserdes_e2_source_codes/oserdes_e2_iolhr_ol.vp
+# ** Warning: (vsim-3017) ./../../sim_lib/ddrphy/ddr3_slice_top_v1_10.v(1399): [TFMPC] - Too few port connections. Expected 5, found 4.
+#    Time: 0 fs  Iteration: 0  Instance: /tb_board_top_selftest/dut/u_soc/u_ddr3/u_ddrphy_top/ddrphy_slice_top/i_mem_addr_0[8]/u_odelay_addr File: C:/pango/PDS_2022.2-SP6.4/arch/vendor/pango/verilog/simulation/GTP_IODELAY_E2.v
+# ** Warning: (vsim-3722) ./../../sim_lib/ddrphy/ddr3_slice_top_v1_10.v(1399): [TFMPC] - Missing connection for port 'EN_N'.
+# ** Warning: (vsim-3017) ./../../sim_lib/ddrphy/ddr3_slice_top_v1_10.v(1375): [TFMPC] - Too few port connections. Expected 20, found 18.
+#    Time: 0 fs  Iteration: 0  Instance: /tb_board_top_selftest/dut/u_soc/u_ddr3/u_ddrphy_top/ddrphy_slice_top/i_mem_addr_0[9]/u_oserdes_addr File: C:/pango/PDS_2022.2-SP6.4/arch/vendor/pango/verilog/simulation/GTP_OSERDES_E2.v
+# ** Warning: (vsim-3722) ./../../sim_lib/ddrphy/ddr3_slice_top_v1_10.v(1375): [TFMPC] - Missing connection for port 'TFB'.
+# ** Warning: (vsim-3722) ./../../sim_lib/ddrphy/ddr3_slice_top_v1_10.v(1375): [TFMPC] - Missing connection for port 'TERM_FB'.
+# ** Warning: (vsim-3015) C:/pango/PDS_2022.2-SP6.4/arch/vendor/pango/verilog/simulation/GTP_OSERDES_E2.v(692): [PCDPC] - Port size (2) does not match connection size (8) for port 'ts_ctrl'. The port definition is at: nofile(23).
+#    Time: 0 fs  Iteration: 0  Instance: /tb_board_top_selftest/dut/u_soc/u_ddr3/u_ddrphy_top/ddrphy_slice_top/i_mem_addr_0[9]/u_oserdes_addr/genblk1/xoserdes_e2_iolhr_ol File: C:/pango/PDS_2022.2-SP6.4/arch/vendor/pango/verilog/simulation/modelsim10.2c/./oserdes_e2_source_codes/oserdes_e2_iolhr_ol.vp
+# ** Warning: (vsim-3017) ./../../sim_lib/ddrphy/ddr3_slice_top_v1_10.v(1399): [TFMPC] - Too few port connections. Expected 5, found 4.
+#    Time: 0 fs  Iteration: 0  Instance: /tb_board_top_selftest/dut/u_soc/u_ddr3/u_ddrphy_top/ddrphy_slice_top/i_mem_addr_0[9]/u_odelay_addr File: C:/pango/PDS_2022.2-SP6.4/arch/vendor/pango/verilog/simulation/GTP_IODELAY_E2.v
+# ** Warning: (vsim-3722) ./../../sim_lib/ddrphy/ddr3_slice_top_v1_10.v(1399): [TFMPC] - Missing connection for port 'EN_N'.
+# ** Warning: (vsim-3017) ./../../sim_lib/ddrphy/ddr3_slice_top_v1_10.v(1375): [TFMPC] - Too few port connections. Expected 20, found 18.
+#    Time: 0 fs  Iteration: 0  Instance: /tb_board_top_selftest/dut/u_soc/u_ddr3/u_ddrphy_top/ddrphy_slice_top/i_mem_addr_0[10]/u_oserdes_addr File: C:/pango/PDS_2022.2-SP6.4/arch/vendor/pango/verilog/simulation/GTP_OSERDES_E2.v
+# ** Warning: (vsim-3722) ./../../sim_lib/ddrphy/ddr3_slice_top_v1_10.v(1375): [TFMPC] - Missing connection for port 'TFB'.
+# ** Warning: (vsim-3722) ./../../sim_lib/ddrphy/ddr3_slice_top_v1_10.v(1375): [TFMPC] - Missing connection for port 'TERM_FB'.
+# ** Warning: (vsim-3015) C:/pango/PDS_2022.2-SP6.4/arch/vendor/pango/verilog/simulation/GTP_OSERDES_E2.v(692): [PCDPC] - Port size (2) does not match connection size (8) for port 'ts_ctrl'. The port definition is at: nofile(23).
+#    Time: 0 fs  Iteration: 0  Instance: /tb_board_top_selftest/dut/u_soc/u_ddr3/u_ddrphy_top/ddrphy_slice_top/i_mem_addr_0[10]/u_oserdes_addr/genblk1/xoserdes_e2_iolhr_ol File: C:/pango/PDS_2022.2-SP6.4/arch/vendor/pango/verilog/simulation/modelsim10.2c/./oserdes_e2_source_codes/oserdes_e2_iolhr_ol.vp
+# ** Warning: (vsim-3017) ./../../sim_lib/ddrphy/ddr3_slice_top_v1_10.v(1399): [TFMPC] - Too few port connections. Expected 5, found 4.
+#    Time: 0 fs  Iteration: 0  Instance: /tb_board_top_selftest/dut/u_soc/u_ddr3/u_ddrphy_top/ddrphy_slice_top/i_mem_addr_0[10]/u_odelay_addr File: C:/pango/PDS_2022.2-SP6.4/arch/vendor/pango/verilog/simulation/GTP_IODELAY_E2.v
+# ** Warning: (vsim-3722) ./../../sim_lib/ddrphy/ddr3_slice_top_v1_10.v(1399): [TFMPC] - Missing connection for port 'EN_N'.
+# ** Warning: (vsim-3017) ./../../sim_lib/ddrphy/ddr3_slice_top_v1_10.v(1375): [TFMPC] - Too few port connections. Expected 20, found 18.
+#    Time: 0 fs  Iteration: 0  Instance: /tb_board_top_selftest/dut/u_soc/u_ddr3/u_ddrphy_top/ddrphy_slice_top/i_mem_addr_0[11]/u_oserdes_addr File: C:/pango/PDS_2022.2-SP6.4/arch/vendor/pango/verilog/simulation/GTP_OSERDES_E2.v
+# ** Warning: (vsim-3722) ./../../sim_lib/ddrphy/ddr3_slice_top_v1_10.v(1375): [TFMPC] - Missing connection for port 'TFB'.
+# ** Warning: (vsim-3722) ./../../sim_lib/ddrphy/ddr3_slice_top_v1_10.v(1375): [TFMPC] - Missing connection for port 'TERM_FB'.
+# ** Warning: (vsim-3015) C:/pango/PDS_2022.2-SP6.4/arch/vendor/pango/verilog/simulation/GTP_OSERDES_E2.v(692): [PCDPC] - Port size (2) does not match connection size (8) for port 'ts_ctrl'. The port definition is at: nofile(23).
+#    Time: 0 fs  Iteration: 0  Instance: /tb_board_top_selftest/dut/u_soc/u_ddr3/u_ddrphy_top/ddrphy_slice_top/i_mem_addr_0[11]/u_oserdes_addr/genblk1/xoserdes_e2_iolhr_ol File: C:/pango/PDS_2022.2-SP6.4/arch/vendor/pango/verilog/simulation/modelsim10.2c/./oserdes_e2_source_codes/oserdes_e2_iolhr_ol.vp
+# ** Warning: (vsim-3017) ./../../sim_lib/ddrphy/ddr3_slice_top_v1_10.v(1399): [TFMPC] - Too few port connections. Expected 5, found 4.
+#    Time: 0 fs  Iteration: 0  Instance: /tb_board_top_selftest/dut/u_soc/u_ddr3/u_ddrphy_top/ddrphy_slice_top/i_mem_addr_0[11]/u_odelay_addr File: C:/pango/PDS_2022.2-SP6.4/arch/vendor/pango/verilog/simulation/GTP_IODELAY_E2.v
+# ** Warning: (vsim-3722) ./../../sim_lib/ddrphy/ddr3_slice_top_v1_10.v(1399): [TFMPC] - Missing connection for port 'EN_N'.
+# ** Warning: (vsim-3017) ./../../sim_lib/ddrphy/ddr3_slice_top_v1_10.v(1375): [TFMPC] - Too few port connections. Expected 20, found 18.
+#    Time: 0 fs  Iteration: 0  Instance: /tb_board_top_selftest/dut/u_soc/u_ddr3/u_ddrphy_top/ddrphy_slice_top/i_mem_addr_0[12]/u_oserdes_addr File: C:/pango/PDS_2022.2-SP6.4/arch/vendor/pango/verilog/simulation/GTP_OSERDES_E2.v
+# ** Warning: (vsim-3722) ./../../sim_lib/ddrphy/ddr3_slice_top_v1_10.v(1375): [TFMPC] - Missing connection for port 'TFB'.
+# ** Warning: (vsim-3722) ./../../sim_lib/ddrphy/ddr3_slice_top_v1_10.v(1375): [TFMPC] - Missing connection for port 'TERM_FB'.
+# ** Warning: (vsim-3015) C:/pango/PDS_2022.2-SP6.4/arch/vendor/pango/verilog/simulation/GTP_OSERDES_E2.v(692): [PCDPC] - Port size (2) does not match connection size (8) for port 'ts_ctrl'. The port definition is at: nofile(23).
+#    Time: 0 fs  Iteration: 0  Instance: /tb_board_top_selftest/dut/u_soc/u_ddr3/u_ddrphy_top/ddrphy_slice_top/i_mem_addr_0[12]/u_oserdes_addr/genblk1/xoserdes_e2_iolhr_ol File: C:/pango/PDS_2022.2-SP6.4/arch/vendor/pango/verilog/simulation/modelsim10.2c/./oserdes_e2_source_codes/oserdes_e2_iolhr_ol.vp
+# ** Warning: (vsim-3017) ./../../sim_lib/ddrphy/ddr3_slice_top_v1_10.v(1399): [TFMPC] - Too few port connections. Expected 5, found 4.
+#    Time: 0 fs  Iteration: 0  Instance: /tb_board_top_selftest/dut/u_soc/u_ddr3/u_ddrphy_top/ddrphy_slice_top/i_mem_addr_0[12]/u_odelay_addr File: C:/pango/PDS_2022.2-SP6.4/arch/vendor/pango/verilog/simulation/GTP_IODELAY_E2.v
+# ** Warning: (vsim-3722) ./../../sim_lib/ddrphy/ddr3_slice_top_v1_10.v(1399): [TFMPC] - Missing connection for port 'EN_N'.
+# ** Warning: (vsim-3017) ./../../sim_lib/ddrphy/ddr3_slice_top_v1_10.v(1375): [TFMPC] - Too few port connections. Expected 20, found 18.
+#    Time: 0 fs  Iteration: 0  Instance: /tb_board_top_selftest/dut/u_soc/u_ddr3/u_ddrphy_top/ddrphy_slice_top/i_mem_addr_0[13]/u_oserdes_addr File: C:/pango/PDS_2022.2-SP6.4/arch/vendor/pango/verilog/simulation/GTP_OSERDES_E2.v
+# ** Warning: (vsim-3722) ./../../sim_lib/ddrphy/ddr3_slice_top_v1_10.v(1375): [TFMPC] - Missing connection for port 'TFB'.
+# ** Warning: (vsim-3722) ./../../sim_lib/ddrphy/ddr3_slice_top_v1_10.v(1375): [TFMPC] - Missing connection for port 'TERM_FB'.
+# ** Warning: (vsim-3015) C:/pango/PDS_2022.2-SP6.4/arch/vendor/pango/verilog/simulation/GTP_OSERDES_E2.v(692): [PCDPC] - Port size (2) does not match connection size (8) for port 'ts_ctrl'. The port definition is at: nofile(23).
+#    Time: 0 fs  Iteration: 0  Instance: /tb_board_top_selftest/dut/u_soc/u_ddr3/u_ddrphy_top/ddrphy_slice_top/i_mem_addr_0[13]/u_oserdes_addr/genblk1/xoserdes_e2_iolhr_ol File: C:/pango/PDS_2022.2-SP6.4/arch/vendor/pango/verilog/simulation/modelsim10.2c/./oserdes_e2_source_codes/oserdes_e2_iolhr_ol.vp
+# ** Warning: (vsim-3017) ./../../sim_lib/ddrphy/ddr3_slice_top_v1_10.v(1399): [TFMPC] - Too few port connections. Expected 5, found 4.
+#    Time: 0 fs  Iteration: 0  Instance: /tb_board_top_selftest/dut/u_soc/u_ddr3/u_ddrphy_top/ddrphy_slice_top/i_mem_addr_0[13]/u_odelay_addr File: C:/pango/PDS_2022.2-SP6.4/arch/vendor/pango/verilog/simulation/GTP_IODELAY_E2.v
+# ** Warning: (vsim-3722) ./../../sim_lib/ddrphy/ddr3_slice_top_v1_10.v(1399): [TFMPC] - Missing connection for port 'EN_N'.
+# ** Warning: (vsim-3017) ./../../sim_lib/ddrphy/ddr3_slice_top_v1_10.v(1375): [TFMPC] - Too few port connections. Expected 20, found 18.
+#    Time: 0 fs  Iteration: 0  Instance: /tb_board_top_selftest/dut/u_soc/u_ddr3/u_ddrphy_top/ddrphy_slice_top/i_mem_addr_0[14]/u_oserdes_addr File: C:/pango/PDS_2022.2-SP6.4/arch/vendor/pango/verilog/simulation/GTP_OSERDES_E2.v
+# ** Warning: (vsim-3722) ./../../sim_lib/ddrphy/ddr3_slice_top_v1_10.v(1375): [TFMPC] - Missing connection for port 'TFB'.
+# ** Warning: (vsim-3722) ./../../sim_lib/ddrphy/ddr3_slice_top_v1_10.v(1375): [TFMPC] - Missing connection for port 'TERM_FB'.
+# ** Warning: (vsim-3015) C:/pango/PDS_2022.2-SP6.4/arch/vendor/pango/verilog/simulation/GTP_OSERDES_E2.v(692): [PCDPC] - Port size (2) does not match connection size (8) for port 'ts_ctrl'. The port definition is at: nofile(23).
+#    Time: 0 fs  Iteration: 0  Instance: /tb_board_top_selftest/dut/u_soc/u_ddr3/u_ddrphy_top/ddrphy_slice_top/i_mem_addr_0[14]/u_oserdes_addr/genblk1/xoserdes_e2_iolhr_ol File: C:/pango/PDS_2022.2-SP6.4/arch/vendor/pango/verilog/simulation/modelsim10.2c/./oserdes_e2_source_codes/oserdes_e2_iolhr_ol.vp
+# ** Warning: (vsim-3017) ./../../sim_lib/ddrphy/ddr3_slice_top_v1_10.v(1399): [TFMPC] - Too few port connections. Expected 5, found 4.
+#    Time: 0 fs  Iteration: 0  Instance: /tb_board_top_selftest/dut/u_soc/u_ddr3/u_ddrphy_top/ddrphy_slice_top/i_mem_addr_0[14]/u_odelay_addr File: C:/pango/PDS_2022.2-SP6.4/arch/vendor/pango/verilog/simulation/GTP_IODELAY_E2.v
+# ** Warning: (vsim-3722) ./../../sim_lib/ddrphy/ddr3_slice_top_v1_10.v(1399): [TFMPC] - Missing connection for port 'EN_N'.
+# ** Warning: (vsim-3017) ./../../sim_lib/ddrphy/ddr3_slice_top_v1_10.v(1440): [TFMPC] - Too few port connections. Expected 20, found 18.
+#    Time: 0 fs  Iteration: 0  Instance: /tb_board_top_selftest/dut/u_soc/u_ddr3/u_ddrphy_top/ddrphy_slice_top/k_mem_ba[0]/u_oserdes_ba File: C:/pango/PDS_2022.2-SP6.4/arch/vendor/pango/verilog/simulation/GTP_OSERDES_E2.v
+# ** Warning: (vsim-3722) ./../../sim_lib/ddrphy/ddr3_slice_top_v1_10.v(1440): [TFMPC] - Missing connection for port 'TFB'.
+# ** Warning: (vsim-3722) ./../../sim_lib/ddrphy/ddr3_slice_top_v1_10.v(1440): [TFMPC] - Missing connection for port 'TERM_FB'.
+# ** Warning: (vsim-3015) C:/pango/PDS_2022.2-SP6.4/arch/vendor/pango/verilog/simulation/GTP_OSERDES_E2.v(692): [PCDPC] - Port size (2) does not match connection size (8) for port 'ts_ctrl'. The port definition is at: nofile(23).
+#    Time: 0 fs  Iteration: 0  Instance: /tb_board_top_selftest/dut/u_soc/u_ddr3/u_ddrphy_top/ddrphy_slice_top/k_mem_ba[0]/u_oserdes_ba/genblk1/xoserdes_e2_iolhr_ol File: C:/pango/PDS_2022.2-SP6.4/arch/vendor/pango/verilog/simulation/modelsim10.2c/./oserdes_e2_source_codes/oserdes_e2_iolhr_ol.vp
+# ** Warning: (vsim-3017) ./../../sim_lib/ddrphy/ddr3_slice_top_v1_10.v(1464): [TFMPC] - Too few port connections. Expected 5, found 4.
+#    Time: 0 fs  Iteration: 0  Instance: /tb_board_top_selftest/dut/u_soc/u_ddr3/u_ddrphy_top/ddrphy_slice_top/k_mem_ba[0]/u_odelay_ba File: C:/pango/PDS_2022.2-SP6.4/arch/vendor/pango/verilog/simulation/GTP_IODELAY_E2.v
+# ** Warning: (vsim-3722) ./../../sim_lib/ddrphy/ddr3_slice_top_v1_10.v(1464): [TFMPC] - Missing connection for port 'EN_N'.
+# ** Warning: (vsim-3017) ./../../sim_lib/ddrphy/ddr3_slice_top_v1_10.v(1440): [TFMPC] - Too few port connections. Expected 20, found 18.
+#    Time: 0 fs  Iteration: 0  Instance: /tb_board_top_selftest/dut/u_soc/u_ddr3/u_ddrphy_top/ddrphy_slice_top/k_mem_ba[1]/u_oserdes_ba File: C:/pango/PDS_2022.2-SP6.4/arch/vendor/pango/verilog/simulation/GTP_OSERDES_E2.v
+# ** Warning: (vsim-3722) ./../../sim_lib/ddrphy/ddr3_slice_top_v1_10.v(1440): [TFMPC] - Missing connection for port 'TFB'.
+# ** Warning: (vsim-3722) ./../../sim_lib/ddrphy/ddr3_slice_top_v1_10.v(1440): [TFMPC] - Missing connection for port 'TERM_FB'.
+# ** Warning: (vsim-3015) C:/pango/PDS_2022.2-SP6.4/arch/vendor/pango/verilog/simulation/GTP_OSERDES_E2.v(692): [PCDPC] - Port size (2) does not match connection size (8) for port 'ts_ctrl'. The port definition is at: nofile(23).
+#    Time: 0 fs  Iteration: 0  Instance: /tb_board_top_selftest/dut/u_soc/u_ddr3/u_ddrphy_top/ddrphy_slice_top/k_mem_ba[1]/u_oserdes_ba/genblk1/xoserdes_e2_iolhr_ol File: C:/pango/PDS_2022.2-SP6.4/arch/vendor/pango/verilog/simulation/modelsim10.2c/./oserdes_e2_source_codes/oserdes_e2_iolhr_ol.vp
+# ** Warning: (vsim-3017) ./../../sim_lib/ddrphy/ddr3_slice_top_v1_10.v(1464): [TFMPC] - Too few port connections. Expected 5, found 4.
+#    Time: 0 fs  Iteration: 0  Instance: /tb_board_top_selftest/dut/u_soc/u_ddr3/u_ddrphy_top/ddrphy_slice_top/k_mem_ba[1]/u_odelay_ba File: C:/pango/PDS_2022.2-SP6.4/arch/vendor/pango/verilog/simulation/GTP_IODELAY_E2.v
+# ** Warning: (vsim-3722) ./../../sim_lib/ddrphy/ddr3_slice_top_v1_10.v(1464): [TFMPC] - Missing connection for port 'EN_N'.
+# ** Warning: (vsim-3017) ./../../sim_lib/ddrphy/ddr3_slice_top_v1_10.v(1440): [TFMPC] - Too few port connections. Expected 20, found 18.
+#    Time: 0 fs  Iteration: 0  Instance: /tb_board_top_selftest/dut/u_soc/u_ddr3/u_ddrphy_top/ddrphy_slice_top/k_mem_ba[2]/u_oserdes_ba File: C:/pango/PDS_2022.2-SP6.4/arch/vendor/pango/verilog/simulation/GTP_OSERDES_E2.v
+# ** Warning: (vsim-3722) ./../../sim_lib/ddrphy/ddr3_slice_top_v1_10.v(1440): [TFMPC] - Missing connection for port 'TFB'.
+# ** Warning: (vsim-3722) ./../../sim_lib/ddrphy/ddr3_slice_top_v1_10.v(1440): [TFMPC] - Missing connection for port 'TERM_FB'.
+# ** Warning: (vsim-3015) C:/pango/PDS_2022.2-SP6.4/arch/vendor/pango/verilog/simulation/GTP_OSERDES_E2.v(692): [PCDPC] - Port size (2) does not match connection size (8) for port 'ts_ctrl'. The port definition is at: nofile(23).
+#    Time: 0 fs  Iteration: 0  Instance: /tb_board_top_selftest/dut/u_soc/u_ddr3/u_ddrphy_top/ddrphy_slice_top/k_mem_ba[2]/u_oserdes_ba/genblk1/xoserdes_e2_iolhr_ol File: C:/pango/PDS_2022.2-SP6.4/arch/vendor/pango/verilog/simulation/modelsim10.2c/./oserdes_e2_source_codes/oserdes_e2_iolhr_ol.vp
+# ** Warning: (vsim-3017) ./../../sim_lib/ddrphy/ddr3_slice_top_v1_10.v(1464): [TFMPC] - Too few port connections. Expected 5, found 4.
+#    Time: 0 fs  Iteration: 0  Instance: /tb_board_top_selftest/dut/u_soc/u_ddr3/u_ddrphy_top/ddrphy_slice_top/k_mem_ba[2]/u_odelay_ba File: C:/pango/PDS_2022.2-SP6.4/arch/vendor/pango/verilog/simulation/GTP_IODELAY_E2.v
+# ** Warning: (vsim-3722) ./../../sim_lib/ddrphy/ddr3_slice_top_v1_10.v(1464): [TFMPC] - Missing connection for port 'EN_N'.
+# tb_board_top_selftest.mem_core.reset at time 11117650.0 ps WARNING: 200 us is required before RST_N goes inactive.
+# tb_board_top_selftest.mem_core.cmd_task at time 16268150.0 ps WARNING: 500 us is required after RST_N goes inactive before CKE goes active.
+# tb_board_top_selftest.mem_core.main: at time 18708150.0 ps WARNING: tWLH violation on DQS bit           0 positive edge.   Indeterminate CK capture is possible.
+# tb_board_top_selftest.mem_core.main: at time 18708150.0 ps WARNING: tWLH violation on DQS bit           1 positive edge.   Indeterminate CK capture is possible.
+# tb_board_top_selftest.mem_core.main: at time 19230817.0 ps WARNING: tWLH violation on DQS bit           0 positive edge.   Indeterminate CK capture is possible.
+# tb_board_top_selftest.mem_core.main: at time 19230817.0 ps WARNING: tWLH violation on DQS bit           1 positive edge.   Indeterminate CK capture is possible.
+# tb_board_top_selftest.mem_core.main: at time 19753483.0 ps WARNING: tWLH violation on DQS bit           0 positive edge.   Indeterminate CK capture is possible.
+# tb_board_top_selftest.mem_core.main: at time 19753483.0 ps WARNING: tWLH violation on DQS bit           1 positive edge.   Indeterminate CK capture is possible.
+# tb_board_top_selftest.mem_core.main: at time 20276150.0 ps WARNING: tWLH violation on DQS bit           0 positive edge.   Indeterminate CK capture is possible.
+# tb_board_top_selftest.mem_core.main: at time 20276150.0 ps WARNING: tWLH violation on DQS bit           1 positive edge.   Indeterminate CK capture is possible.
+# tb_board_top_selftest.mem_core.main: at time 20798817.0 ps WARNING: tWLH violation on DQS bit           0 positive edge.   Indeterminate CK capture is possible.
+# tb_board_top_selftest.mem_core.main: at time 20798817.0 ps WARNING: tWLH violation on DQS bit           1 positive edge.   Indeterminate CK capture is possible.
+# tb_board_top_selftest.mem_core.main: at time 21321483.0 ps WARNING: tWLH violation on DQS bit           0 positive edge.   Indeterminate CK capture is possible.
+# tb_board_top_selftest.mem_core.main: at time 21321483.0 ps WARNING: tWLH violation on DQS bit           1 positive edge.   Indeterminate CK capture is possible.
+# tb_board_top_selftest.mem_core.main: at time 21844150.0 ps WARNING: tWLH violation on DQS bit           0 positive edge.   Indeterminate CK capture is possible.
+# tb_board_top_selftest.mem_core.main: at time 21844150.0 ps WARNING: tWLH violation on DQS bit           1 positive edge.   Indeterminate CK capture is possible.
+# tb_board_top_selftest.mem_core.main: at time 22366817.0 ps WARNING: tWLH violation on DQS bit           0 positive edge.   Indeterminate CK capture is possible.
+# tb_board_top_selftest.mem_core.main: at time 22366817.0 ps WARNING: tWLH violation on DQS bit           1 positive edge.   Indeterminate CK capture is possible.
+# tb_board_top_selftest.mem_core.main: at time 22889483.0 ps WARNING: tWLH violation on DQS bit           0 positive edge.   Indeterminate CK capture is possible.
+# tb_board_top_selftest.mem_core.main: at time 22889483.0 ps WARNING: tWLH violation on DQS bit           1 positive edge.   Indeterminate CK capture is possible.
+# tb_board_top_selftest.mem_core.main: at time 23412150.0 ps WARNING: tWLH violation on DQS bit           0 positive edge.   Indeterminate CK capture is possible.
+# tb_board_top_selftest.mem_core.main: at time 23412150.0 ps WARNING: tWLH violation on DQS bit           1 positive edge.   Indeterminate CK capture is possible.
+# tb_board_top_selftest.mem_core.main: at time 23934817.0 ps WARNING: tWLH violation on DQS bit           0 positive edge.   Indeterminate CK capture is possible.
+# tb_board_top_selftest.mem_core.main: at time 23934817.0 ps WARNING: tWLH violation on DQS bit           1 positive edge.   Indeterminate CK capture is possible.
+# tb_board_top_selftest.mem_core.main: at time 24457483.0 ps WARNING: tWLH violation on DQS bit           0 positive edge.   Indeterminate CK capture is possible.
+# tb_board_top_selftest.mem_core.main: at time 24457483.0 ps WARNING: tWLH violation on DQS bit           1 positive edge.   Indeterminate CK capture is possible.
+# tb_board_top_selftest.mem_core.main: at time 24980150.0 ps WARNING: tWLH violation on DQS bit           0 positive edge.   Indeterminate CK capture is possible.
+# tb_board_top_selftest.mem_core.main: at time 24980150.0 ps WARNING: tWLH violation on DQS bit           1 positive edge.   Indeterminate CK capture is possible.
+# tb_board_top_selftest.mem_core.main: at time 25502817.0 ps WARNING: tWLH violation on DQS bit           0 positive edge.   Indeterminate CK capture is possible.
+# tb_board_top_selftest.mem_core.main: at time 25502817.0 ps WARNING: tWLH violation on DQS bit           1 positive edge.   Indeterminate CK capture is possible.
+# tb_board_top_selftest.mem_core.dqs_pos_timing_check: at time 26025483.0 ps WARNING: tWLS violation on DQS bit  1 positive edge.  Indeterminate CK capture is possible.
+# tb_board_top_selftest.mem_core.dqs_pos_timing_check: at time 26025483.0 ps WARNING: tWLS violation on DQS bit  0 positive edge.  Indeterminate CK capture is possible.
+# CHECK: board_top differential buffer, IRQ=0, core=93.75MHz, DDR=750Mbps
+# CHECK: ddr_selftest CPU copied 245 words then fetched from DDR
+# CHECK: MMIO selftest RUN
+# CHECK: MMIO selftest PASS LED=1
+# RESULT: PASS ddr_selftest DDR RV32I tohost=1 cycles=68928
+# ** Note: $finish    : D:/riscv/RISCV/sim/board_main_selftest/tb_board_top_selftest.v(257)
+#    Time: 815650833332 fs  Iteration: 4  Instance: /tb_board_top_selftest
+# Break in Module tb_board_top_selftest at D:/riscv/RISCV/sim/board_main_selftest/tb_board_top_selftest.v line 257
+# Stopped at D:/riscv/RISCV/sim/board_main_selftest/tb_board_top_selftest.v line 257
+# End time: 19:14:19 on Oct 03,2026, Elapsed time: 0:25:47
+# Errors: 0, Warnings: 353
+#  quit -f

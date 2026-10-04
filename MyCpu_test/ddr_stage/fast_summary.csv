@@ -1,0 +1,43 @@
+test,status,expectation,result
+add,PASS,supported,RESULT: PASS add DDR RV32I tohost=1 cycles=6387
+addi,PASS,supported,RESULT: PASS addi DDR RV32I tohost=1 cycles=3986
+and,PASS,supported,RESULT: PASS and DDR RV32I tohost=1 cycles=6367
+andi,PASS,supported,RESULT: PASS andi DDR RV32I tohost=1 cycles=3310
+auipc,PASS,supported,RESULT: PASS auipc DDR RV32I tohost=1 cycles=1796
+beq,PASS,supported,RESULT: PASS beq DDR RV32I tohost=1 cycles=4342
+bge,PASS,supported,RESULT: PASS bge DDR RV32I tohost=1 cycles=4663
+bgeu,PASS,supported,RESULT: PASS bgeu DDR RV32I tohost=1 cycles=4893
+blt,PASS,supported,RESULT: PASS blt DDR RV32I tohost=1 cycles=4342
+bltu,PASS,supported,RESULT: PASS bltu DDR RV32I tohost=1 cycles=4572
+bne,PASS,supported,RESULT: PASS bne DDR RV32I tohost=1 cycles=4354
+fence_i,FAIL,known_gap,RESULT: FAIL fence_i DDR RV32I tohost=00000539 failed_test=668 cycles=2228
+jal,PASS,supported,RESULT: PASS jal DDR RV32I tohost=1 cycles=1824
+jalr,PASS,supported,RESULT: PASS jalr DDR RV32I tohost=1 cycles=2474
+lb,PASS,supported,RESULT: PASS lb DDR RV32I tohost=1 cycles=4094
+lbu,PASS,supported,RESULT: PASS lbu DDR RV32I tohost=1 cycles=4094
+ld_st,PASS,supported,RESULT: PASS ld_st DDR RV32I tohost=1 cycles=16013
+lh,PASS,supported,RESULT: PASS lh DDR RV32I tohost=1 cycles=4278
+lhu,PASS,supported,RESULT: PASS lhu DDR RV32I tohost=1 cycles=4384
+lui,PASS,supported,RESULT: PASS lui DDR RV32I tohost=1 cycles=1892
+lw,PASS,supported,RESULT: PASS lw DDR RV32I tohost=1 cycles=4454
+ma_data,FAIL,known_gap,RESULT: FAIL ma_data DDR RV32I tohost=00000539 failed_test=668 cycles=5930
+or,PASS,supported,RESULT: PASS or DDR RV32I tohost=1 cycles=6409
+ori,PASS,supported,RESULT: PASS ori DDR RV32I tohost=1 cycles=3408
+sb,PASS,supported,RESULT: PASS sb DDR RV32I tohost=1 cycles=6356
+sh,PASS,supported,RESULT: PASS sh DDR RV32I tohost=1 cycles=6938
+simple,PASS,supported,RESULT: PASS simple DDR RV32I tohost=1 cycles=1485
+sll,PASS,supported,RESULT: PASS sll DDR RV32I tohost=1 cycles=6779
+slli,PASS,supported,RESULT: PASS slli DDR RV32I tohost=1 cycles=3972
+slt,PASS,supported,RESULT: PASS slt DDR RV32I tohost=1 cycles=6303
+slti,PASS,supported,RESULT: PASS slti DDR RV32I tohost=1 cycles=3916
+sltiu,PASS,supported,RESULT: PASS sltiu DDR RV32I tohost=1 cycles=3916
+sltu,PASS,supported,RESULT: PASS sltu DDR RV32I tohost=1 cycles=6303
+sra,PASS,supported,RESULT: PASS sra DDR RV32I tohost=1 cycles=7045
+srai,PASS,supported,RESULT: PASS srai DDR RV32I tohost=1 cycles=4162
+srl,PASS,supported,RESULT: PASS srl DDR RV32I tohost=1 cycles=6961
+srli,PASS,supported,RESULT: PASS srli DDR RV32I tohost=1 cycles=4078
+st_ld,PASS,supported,RESULT: PASS st_ld DDR RV32I tohost=1 cycles=8285
+sub,PASS,supported,RESULT: PASS sub DDR RV32I tohost=1 cycles=6275
+sw,PASS,supported,RESULT: PASS sw DDR RV32I tohost=1 cycles=7034
+xor,PASS,supported,RESULT: PASS xor DDR RV32I tohost=1 cycles=6395
+xori,PASS,supported,RESULT: PASS xori DDR RV32I tohost=1 cycles=3436

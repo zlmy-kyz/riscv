@@ -1,0 +1,2 @@
+CHECK: ori CPU loaded 233 words into DDR
+RESULT: PASS ori DDR RV32I tohost=1 cycles=3408

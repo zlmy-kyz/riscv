@@ -1,0 +1,2 @@
+CHECK: xori CPU loaded 235 words into DDR
+RESULT: PASS xori DDR RV32I tohost=1 cycles=3436

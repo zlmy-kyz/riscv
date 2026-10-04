@@ -1,0 +1,2 @@
+CHECK: lbu CPU loaded 273 words into DDR
+RESULT: PASS lbu DDR RV32I tohost=1 cycles=4094

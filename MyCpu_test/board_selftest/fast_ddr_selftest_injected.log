@@ -1,0 +1,9 @@
+CHECK: ddr_selftest_injected CPU loaded 245 words into DDR
+CHECK: MMIO selftest RUN
+CHECK: MMIO selftest FAIL
+DIAG: address=40002200
+DIAG: expected=11223345
+DIAG: observed=11223344
+DIAG: phase=5
+DIAG: checks=96
+RESULT: FAIL ddr_selftest_injected DDR RV32I tohost=00000002 failed_test=1 cycles=10764

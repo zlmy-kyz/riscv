@@ -1,0 +1,6 @@
+t=46 pc=0x0 addr=0x4 inst_if=0x12345537  mem[addr-4=0]=0x12345537  ??=True
+t=56 pc=0x4 addr=0x8 inst_if=0x12345537  mem[addr-4=1]=0x00001597  ??=False
+t=66 pc=0x8 addr=0xc inst_if=0x00001597  mem[addr-4=2]=0xfff00613  ??=False
+t=76 pc=0xc addr=0x10 inst_if=0xfff00613  mem[addr-4=3]=0x00461713  ??=False
+t=86 pc=0x10 addr=0x14 inst_if=0x00461713  mem[addr-4=4]=0x00000013  ??=False
+

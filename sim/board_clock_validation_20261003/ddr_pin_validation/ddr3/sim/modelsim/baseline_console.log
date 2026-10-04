@@ -1,0 +1,24 @@
+Reading D:/modelsim/tcl/vsim/pref.tcl
+
+# 10.6c
+
+# do soc_ddr3_sim.tcl
+# D:/riscv/RISCV/sim/board_clock_validation_20261003/ddr_pin_validation/ddr3/sim/modelsim
+# D:/riscv/RISCV
+# ** Error: Model Technology ModelSim DE-64 vmap 10.6c Lib Mapping Utility 2017.07 Jul 26 2017
+# vmap soc_ddr3_work soc_ddr3_work 
+# ** Error: (vmap-20) Cannot access for writing file "D:/modelsim/win64pe/../modelsim.ini".
+# Permission denied. (errno = EACCES)
+# ** Warning: modelsim.ini and default $MODEL_TECH/../modelsim.ini are the same file
+# Error in macro ./soc_ddr3_sim.tcl line 13
+# Model Technology ModelSim DE-64 vmap 10.6c Lib Mapping Utility 2017.07 Jul 26 2017
+# vmap soc_ddr3_work soc_ddr3_work 
+# ** Error: (vmap-20) Cannot access for writing file "D:/modelsim/win64pe/../modelsim.ini".
+# Permission denied. (errno = EACCES)
+# ** Warning: modelsim.ini and default $MODEL_TECH/../modelsim.ini are the same file
+#     while executing
+# "error [FixExecError $msg]"
+#     (procedure "vmap" line 29)
+#     invoked from within
+# "vmap soc_ddr3_work soc_ddr3_work"
+#  quit -f

@@ -1,0 +1,2 @@
+CHECK: lui CPU loaded 138 words into DDR
+RESULT: PASS lui DDR RV32I tohost=1 cycles=1892

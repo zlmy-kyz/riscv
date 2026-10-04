@@ -1,0 +1,17 @@
+Task started 2026-10-02; final physical test finished 2026-10-03 00:14:09 Asia/Shanghai.
+PDS Compile: PASS, board_top selected/elaborated, compile/board_top.cmr, no E:.
+Port/FDC audit: PASS, 21 groups / 55 uniquely located bits, DDR directions/widths preserved; Tcl syntax parsed.
+LED/MMIO: PASS, checks=106.
+Fast DDR self-test: 4/4 EXPECTED (3 normal PASS; injected case correctly FAIL/tohost=2).
+MMIO e2e: PASS, cycles=153, requests=5, scratch=1234aa78.
+Access fault e2e: PASS, cycles=445, errors=2, traps=2.
+Fast DDR RV32I: 40/42 PASS; fence_i and ma_data retain known_gap trap 00000539; no new failure.
+125MHz DDR baseline: PASS, Errors: 0, Warnings: 357.
+125MHz DDR regression: PASS, 14 data checks, Errors: 0, Warnings: 357.
+board_top + real ROM/isolated self-test RAM + DDR physical model: PASS, Errors: 0, Warnings: 353.
+  GTP_INBUFDS / IRQ=0 / core=93.75MHz / DDR=750Mbps checked.
+  CPU copied 245 words then fetched/executed from DDR, MMIO RUN -> PASS, LED=1, tohost=1, cycles=68928.
+  Runtime: 19m51s; physical log: sim/board_top_validation/physical.log.
+IP reference frequency=125MHz, desired DDR rate=800Mbps, actual DDR rate=750Mbps; IP config not modified.
+Hardware not signed off: electrical standards/supplies/termination; IP PAD/PHY constraints and DRAM timing;
+  real self-test image/address alignment; new synthesis/place-and-route/timing/download validation.

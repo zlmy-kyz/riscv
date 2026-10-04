@@ -1,0 +1,8 @@
+CHECK: inst_rom all 4096 generated initialization words match boot_rom.dat
+CHECK: inst_rom 4 DRM initialization banks in synthesized netlist match board image
+CHECK: data_ram all 4096 generated initialization words match ddr_selftest.dat
+CHECK: data_ram 4 DRM initialization banks in synthesized netlist match board image
+CHECK: unchanged constraint_check\temp_constraint_file.fdc
+CHECK: unchanged myriscv\board_top.v
+CHECK: unchanged ipcore\ddr3\ddr3.idf
+PASS: live IP, synthesis initialization and unchanged board/DDR/FDC audit

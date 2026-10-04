@@ -1,0 +1,2 @@
+CHECK: bgeu CPU loaded 327 words into DDR
+RESULT: PASS bgeu DDR RV32I tohost=1 cycles=4893

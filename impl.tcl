@@ -73,3 +73,288 @@ compile -top_module mycpu_single_async
 add_design "D:/riscv/RISCV/myriscv/l_alu.v"
 set_arch -family Logos2 -device PG2L100H -speedgrade -6 -package FBG484
 compile -top_module mycpu_single_async
+add_simulation "D:/riscv/tbtb/tb_mycpu_sync.v"
+remove_simulation "D:/riscv/tbtb/tb_mycpu_sync.v"
+add_simulation "D:/riscv/tbtb/tb_mycpu_sync.v"
+set_arch -family Logos2 -device PG2L100H -speedgrade -6 -package FBG484
+compile -top_module mycpu_sync
+remove_simulation "D:/riscv/tbtb/tb_mycpu_sync.v"
+add_simulation "D:/riscv/RISCV/source/tb_mycpu_sync.v"
+remove_design -verilog "D:/riscv/RISCV/myriscv/mycpu_sync.v"
+remove_design -verilog "D:/riscv/RISCV/myriscv/alu.v"
+remove_design -verilog "D:/riscv/RISCV/myriscv/br_alu.v"
+remove_design -verilog "D:/riscv/RISCV/myriscv/l_alu.v"
+remove_design -verilog "D:/riscv/RISCV/myriscv/regfile.v"
+remove_simulation "D:/riscv/RISCV/source/tb_mycpu_sync.v"
+add_design "D:/riscv/RISCV/myriscv/alu.v"
+add_design "D:/riscv/RISCV/myriscv/br_alu.v"
+add_design "D:/riscv/RISCV/myriscv/l_alu.v"
+add_design "D:/riscv/RISCV/myriscv/mux.v"
+add_design "D:/riscv/RISCV/myriscv/mycpu_sync.v"
+add_design "D:/riscv/RISCV/myriscv/regfile.v"
+remove_design -verilog "D:/riscv/RISCV/myriscv/mux.v"
+add_simulation "D:/riscv/RISCV/source/tb_topcpu_instrom.v"
+remove_simulation "D:/riscv/RISCV/source/tb_topcpu_instrom.v"
+add_simulation "D:/riscv/RISCV/source/tb_mycpu_sync.v"
+set_arch -family Logos2 -device PG2L100H -speedgrade -6 -package FBG484
+compile -top_module mycpu_sync
+remove_simulation "D:/riscv/RISCV/source/tb_mycpu_sync.v"
+set_arch -family Logos2 -device PG2L100H -speedgrade -6 -package FBG484
+compile -top_module mycpu_sync
+add_simulation "D:/riscv/RISCV/source/tb_mycpu_sync.v"
+add_simulation "D:/riscv/RISCV/myriscv/mycpu_sync.v"
+add_simulation "D:/riscv/RISCV/myriscv/alu.v"
+add_simulation "D:/riscv/RISCV/myriscv/br_alu.v"
+add_simulation "D:/riscv/RISCV/myriscv/l_alu.v"
+add_simulation "D:/riscv/RISCV/myriscv/regfile.v"
+set_arch -family Logos2 -device PG2L100H -speedgrade -6 -package FBG484
+compile -top_module mycpu_sync
+set_arch -family Logos2 -device PG2L100H -speedgrade -6 -package FBG484
+compile -top_module mycpu_sync
+add_design "D:/riscv/RISCV/myriscv/csr_defs.vh"
+set_arch -family Logos2 -device PG2L100H -speedgrade -6 -package FBG484
+compile -top_module mycpu_sync
+add_design "D:/riscv/RISCV/myriscv/csr_file.v"
+add_simulation "D:/riscv/RISCV/myriscv/csr_file.v"
+set_arch -family Logos2 -device PG2L100H -speedgrade -6 -package FBG484
+compile -top_module mycpu_sync
+set_arch -family Logos2 -device PG2L100H -speedgrade -6 -package FBG484
+compile -top_module mycpu_sync
+set_arch -family Logos2 -device PG2L100H -speedgrade -6 -package FBG484
+compile -top_module mycpu_sync
+set_arch -family Logos2 -device PG2L100H -speedgrade -6 -package FBG484
+compile -top_module mycpu_sync
+set_arch -family Logos2 -device PG2L100H -speedgrade -6 -package FBG484
+compile -top_module mycpu_sync
+set_arch -family Logos2 -device PG2L100H -speedgrade -6 -package FBG484
+compile -top_module mycpu_sync
+add_design D:/riscv/RISCV/ipcore/DDR3/DDR3.idf
+remove_design D:/riscv/RISCV/ipcore/DDR3/DDR3.idf
+set_arch -family Logos2 -device PG2L100H -speedgrade -6 -package FBG484
+compile -top_module mycpu_sync
+set_arch -family Logos2 -device PG2L100H -speedgrade -6 -package FBG484
+compile -top_module mycpu_sync
+add_design D:/riscv/RISCV/ipcore/ddr3/ddr3.idf
+set_arch -family Logos2 -device PG2L100H -speedgrade -6 -package FBG484
+compile -top_module mycpu_sync
+remove_design D:/riscv/RISCV/ipcore/ddr3/ddr3.idf
+add_design "D:/riscv/RISCV/myriscv/data_bram_adapter.v"
+add_design "D:/riscv/RISCV/myriscv/inst_bram_adapter.v"
+add_design "D:/riscv/RISCV/myriscv/soc_top.v"
+add_simulation "D:/riscv/RISCV/myriscv/data_bram_adapter.v"
+add_simulation "D:/riscv/RISCV/myriscv/inst_bram_adapter.v"
+add_simulation "D:/riscv/RISCV/myriscv/soc_top.v"
+add_simulation "D:/riscv/RISCV/source/tb_soc_top.v"
+remove_simulation "D:/riscv/RISCV/source/tb_mycpu_sync.v"
+set_arch -family Logos2 -device PG2L100H -speedgrade -6 -package FBG484
+compile -top_module soc_top
+add_design "D:/riscv/RISCV/myriscv/data_bus_interconnect.v"
+add_design "D:/riscv/RISCV/myriscv/simple_mmio.v"
+add_design "D:/riscv/RISCV/myriscv/inst_bus_interconnect.v"
+add_design "D:/riscv/RISCV/myriscv/dual_sram_to_pango_ddr_bridge.v"
+add_simulation "D:/riscv/RISCV/myriscv/dual_sram_to_pango_ddr_bridge.v"
+add_design "D:/riscv/RISCV/myriscv/dual_sram_to_pango_ddr_bridge.v"
+add_simulation "D:/riscv/RISCV/myriscv/dual_sram_to_pango_ddr_bridge.v"
+add_simulation "D:/riscv/RISCV/myriscv/soc_top.v"
+add_simulation "D:/riscv/RISCV/myriscv/mycpu_sync.v"
+add_simulation "D:/riscv/RISCV/myriscv/alu.v"
+add_simulation "D:/riscv/RISCV/myriscv/br_alu.v"
+add_simulation "D:/riscv/RISCV/myriscv/csr_file.v"
+add_simulation "D:/riscv/RISCV/myriscv/l_alu.v"
+add_simulation "D:/riscv/RISCV/myriscv/regfile.v"
+add_simulation "D:/riscv/RISCV/myriscv/data_bram_adapter.v"
+add_simulation "D:/riscv/RISCV/myriscv/data_bus_interconnect.v"
+add_simulation "D:/riscv/RISCV/myriscv/inst_bram_adapter.v"
+add_simulation "D:/riscv/RISCV/myriscv/inst_bus_interconnect.v"
+add_simulation "D:/riscv/RISCV/myriscv/simple_mmio.v"
+add_design D:/riscv/RISCV/ipcore/ddr3/ddr3.idf
+add_design "D:/riscv/RISCV/myriscv/soc_ddr3_top.v"
+add_simulation "D:/riscv/RISCV/myriscv/soc_ddr3_top.v"
+remove_simulation "D:/riscv/RISCV/myriscv/soc_ddr3_top.v"
+remove_design -verilog "D:/riscv/RISCV/myriscv/soc_ddr3_top.v"
+remove_design D:/riscv/RISCV/ipcore/ddr3/ddr3.idf
+add_design "D:/riscv/RISCV/myriscv/soc_ddr3_top.v"
+add_design "D:/riscv/RISCV/ipcore/ddr3/ddr3.idf"
+add_simulation "D:/riscv/RISCV/myriscv/soc_ddr3_top.v"
+add_simulation "D:/riscv/RISCV/source/tb_soc_ddr3_top.v"
+add_simulation "D:/riscv/RISCV/ipcore/ddr3/example_design/bench/mem/ddr3.v"
+add_simulation "D:/riscv/RISCV/ipcore/ddr3/example_design/bench/mem/ddr3_parameters.vh"
+remove_simulation "D:/riscv/RISCV/source/tb_soc_top.v"
+set_arch -family Logos2 -device PG2L100H -speedgrade -6 -package FBG484
+compile -top_module soc_ddr3_top
+remove_simulation "D:/riscv/RISCV/source/tb_soc_ddr3_top.v"
+remove_design D:/riscv/RISCV/ipcore/ddr3/ddr3.idf
+remove_design -verilog "D:/riscv/RISCV/myriscv/soc_ddr3_top.v"
+remove_simulation "D:/riscv/RISCV/myriscv/soc_ddr3_top.v"
+remove_simulation "D:/riscv/RISCV/ipcore/ddr3/example_design/bench/mem/ddr3.v"
+remove_simulation "D:/riscv/RISCV/ipcore/ddr3/example_design/bench/mem/ddr3_parameters.vh"
+add_simulation "D:/riscv/RISCV/source/tb_soc_top.v"
+add_design "D:/riscv/RISCV/ipcore/ddr3/ddr3.idf"
+add_design "D:/riscv/RISCV/myriscv/soc_ddr3_top.v"
+add_simulation "D:/riscv/RISCV/ipcore/ddr3/ddr3.v"
+add_simulation "D:/riscv/RISCV/ipcore/ddr3/ddr3_ddrphy_top.v"
+add_simulation "D:/riscv/RISCV/ipcore/ddr3/ddr3_tmpl.v"
+add_simulation "D:/riscv/RISCV/ipcore/ddr3/ddr3_tmpl.vhdl"
+remove_simulation "D:/riscv/RISCV/ipcore/ddr3/ddr3_tmpl.v"
+remove_simulation "D:/riscv/RISCV/ipcore/ddr3/ddr3_tmpl.vhdl"
+add_simulation "D:/riscv/RISCV/source/tb_soc_ddr3_top.v"
+remove_simulation "D:/riscv/RISCV/source/tb_soc_top.v"
+add_simulation "D:/riscv/RISCV/myriscv/soc_ddr3_top.v"
+add_simulation "D:/riscv/RISCV/source/tb_soc_ddr3_mem.v"
+remove_simulation "D:/riscv/RISCV/source/tb_soc_ddr3_top.v"
+remove_simulation "D:/riscv/RISCV/myriscv/soc_top.v"
+remove_simulation "D:/riscv/RISCV/myriscv/data_bram_adapter.v"
+remove_simulation "D:/riscv/RISCV/myriscv/data_bus_interconnect.v"
+remove_simulation "D:/riscv/RISCV/source/tb_soc_ddr3_mem.v"
+remove_simulation "D:/riscv/RISCV/myriscv/dual_sram_to_pango_ddr_bridge.v"
+remove_simulation "D:/riscv/RISCV/myriscv/inst_bram_adapter.v"
+remove_simulation "D:/riscv/RISCV/myriscv/inst_bus_interconnect.v"
+remove_simulation "D:/riscv/RISCV/source/tb_soc_ddr3_mem.v"
+remove_simulation "D:/riscv/RISCV/myriscv/regfile.v"
+remove_simulation "D:/riscv/RISCV/myriscv/alu.v"
+remove_simulation "D:/riscv/RISCV/myriscv/l_alu.v"
+remove_simulation "D:/riscv/RISCV/myriscv/csr_file.v"
+remove_simulation "D:/riscv/RISCV/myriscv/br_alu.v"
+remove_simulation "D:/riscv/RISCV/myriscv/mycpu_sync.v"
+remove_simulation "D:/riscv/RISCV/myriscv/soc_ddr3_top.v"
+remove_simulation "D:/riscv/RISCV/myriscv/simple_mmio.v"
+remove_simulation "D:/riscv/RISCV/ipcore/ddr3/ddr3_ddrphy_top.v"
+remove_simulation "D:/riscv/RISCV/ipcore/ddr3/ddr3.v"
+add_simulation "D:/riscv/RISCV/source/tb_soc_ddr3_top.v"
+add_simulation "D:/riscv/RISCV/myriscv/soc_ddr3_top.v"
+add_simulation "D:/riscv/RISCV/myriscv/alu.v"
+add_simulation "D:/riscv/RISCV/myriscv/br_alu.v"
+add_simulation "D:/riscv/RISCV/myriscv/csr_file.v"
+add_simulation "D:/riscv/RISCV/myriscv/data_bram_adapter.v"
+add_simulation "D:/riscv/RISCV/myriscv/data_bus_interconnect.v"
+add_simulation "D:/riscv/RISCV/myriscv/dual_sram_to_pango_ddr_bridge.v"
+add_simulation "D:/riscv/RISCV/myriscv/inst_bram_adapter.v"
+add_simulation "D:/riscv/RISCV/myriscv/inst_bus_interconnect.v"
+add_simulation "D:/riscv/RISCV/myriscv/l_alu.v"
+add_simulation "D:/riscv/RISCV/myriscv/mycpu_sync.v"
+add_simulation "D:/riscv/RISCV/myriscv/regfile.v"
+add_simulation "D:/riscv/RISCV/myriscv/simple_mmio.v"
+add_simulation "D:/riscv/RISCV/myriscv/soc_top.v"
+add_simulation "D:/riscv/RISCV/myriscv/topcpu_instrom.v"
+remove_simulation "D:/riscv/RISCV/myriscv/topcpu_instrom.v"
+add_simulation "D:/riscv/RISCV/ipcore/ddr3/example_design/bench/mem/ddr3.v"
+add_simulation "D:/riscv/RISCV/source/tb_soc_ddr3_pds_ip.v"
+remove_simulation "D:/riscv/RISCV/source/tb_soc_ddr3_top.v"
+set_arch -family Logos2 -device PG2L100H -speedgrade -6 -package FBG484
+compile -top_module soc_ddr3_top
+synthesize -ads -selected_syn_tool_opt 2 
+dev_map 
+set_arch -family Logos2 -device PG2L100H -speedgrade -6 -package FBG484
+compile -top_module soc_ddr3_top
+add_constraint "D:/riscv/RISCV/fdc/soc_ddr3.fdc"
+set_arch -family Logos2 -device PG2L100H -speedgrade -6 -package FBG484
+compile -top_module soc_ddr3_top
+set_arch -family Logos2 -device PG2L100H -speedgrade -6 -package FBG484
+compile -top_module board_top
+set_arch -family Logos2 -device PG2L100H -speedgrade -6 -package FBG484
+compile -top_module soc_ddr3_top
+add_design "D:/riscv/RISCV/myriscv/board_top.v"
+set_arch -family Logos2 -device PG2L100H -speedgrade -6 -package FBG484
+compile -top_module board_top
+remove_constraint  -logic -fdc "D:/riscv/RISCV/fdc/soc_ddr3.fdc"
+add_constraint "D:/riscv/RISCV/constraints/board_top.fdc"
+remove_constraint  -logic -fdc "D:/riscv/RISCV/constraints/board_top.fdc"
+add_constraint "D:/riscv/RISCV/constraints/board_top.fdc"
+set_arch -family Logos2 -device PG2L100H -speedgrade -6 -package FBG484
+compile -top_module board_top
+remove_constraint  -logic -fdc "D:/riscv/RISCV/constraints/board_top.fdc"
+add_constraint "D:/riscv/RISCV/constraints/board_top.fdc"
+synthesize -ads -selected_syn_tool_opt 2 
+remove_constraint  -logic -fdc "D:/riscv/RISCV/constraints/board_top.fdc"
+add_constraint "D:/riscv/RISCV/constraints/board_top.fdc"
+remove_constraint  -logic -fdc "D:/riscv/RISCV/constraints/board_top.fdc"
+add_constraint "D:/riscv/RISCV/constraints/board_top.fdc"
+remove_constraint  -logic -fdc "D:/riscv/RISCV/constraints/board_top.fdc"
+add_constraint "D:/riscv/RISCV/constraint_check/temp_constraint_file.fdc"
+synthesize -ads -selected_syn_tool_opt 2 
+synthesize -ads -selected_syn_tool_opt 2 
+synthesize -ads -selected_syn_tool_opt 2 
+dev_map 
+pnr 
+synthesize -ads -selected_syn_tool_opt 2 
+dev_map 
+pnr 
+set_arch -family Logos2 -device PG2L100H -speedgrade -6 -package FBG484
+compile -top_module board_top
+synthesize -ads -selected_syn_tool_opt 2 
+dev_map 
+pnr 
+set_arch -family Logos2 -device PG2L100H -speedgrade -6 -package FBG484
+compile -top_module board_top
+synthesize -ads -selected_syn_tool_opt 2 
+dev_map 
+pnr 
+report_timing 
+gen_bit_stream 
+set_arch -family Logos2 -device PG2L100H -speedgrade -6 -package FBG484
+compile -top_module board_top
+set_arch -family Logos2 -device PG2L100H -speedgrade -6 -package FBG484
+compile -top_module board_top
+set_arch -family Logos2 -device PG2L100H -speedgrade -6 -package FBG484
+compile -top_module board_top
+synthesize -ads -selected_syn_tool_opt 2 
+dev_map 
+pnr 
+set_arch -family Logos2 -device PG2L100H -speedgrade -6 -package FBG484
+compile -top_module board_top
+synthesize -ads -selected_syn_tool_opt 2 
+dev_map 
+pnr 
+set_arch -family Logos2 -device PG2L100H -speedgrade -6 -package FBG484
+compile -top_module board_top
+add_design "D:/riscv/RISCV/myriscv/reset_button_debounce.v"
+set_arch -family Logos2 -device PG2L100H -speedgrade -6 -package FBG484
+compile -top_module board_top
+set_arch -family Logos2 -device PG2L100H -speedgrade -6 -package FBG484
+compile -top_module board_top
+synthesize -ads -selected_syn_tool_opt 2 
+dev_map 
+pnr 
+report_timing 
+gen_bit_stream 
+set_arch -family Logos2 -device PG2L100H -speedgrade -6 -package FBG484
+compile -top_module board_top
+synthesize -ads -selected_syn_tool_opt 2 
+dev_map 
+pnr 
+report_timing 
+report_power 
+gen_netlist 
+gen_bit_stream 
+set_arch -family Logos2 -device PG2L100H -speedgrade -6 -package FBG484
+compile -top_module board_top
+synthesize -ads -selected_syn_tool_opt 2 
+dev_map 
+pnr 
+report_timing 
+gen_bit_stream 
+add_fic "D:/riscv/RISCV/synthesize/board_top_syn.fic"
+gen_bit_stream 
+dev_map 
+pnr 
+report_timing 
+gen_bit_stream 
+gen_bit_stream 
+set_arch -family Logos2 -device PG2L100H -speedgrade -6 -package FBG484
+compile -top_module board_top
+synthesize -ads -selected_syn_tool_opt 2 
+dev_map 
+pnr 
+report_timing 
+gen_bit_stream 
+set_arch -family Logos2 -device PG2L100H -speedgrade -6 -package FBG484
+compile -top_module board_top
+synthesize -ads -selected_syn_tool_opt 2 
+dev_map 
+pnr 
+report_timing 
+gen_bit_stream 
+dev_map 
+pnr 
+report_timing 
+gen_bit_stream 

@@ -1,0 +1,2 @@
+CHECK: xor CPU loaded 418 words into DDR
+RESULT: PASS xor DDR RV32I tohost=1 cycles=6395

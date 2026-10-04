@@ -1,0 +1,2 @@
+CHECK: sh CPU loaded 440 words into DDR
+RESULT: PASS sh DDR RV32I tohost=1 cycles=6938

@@ -1,0 +1,2 @@
+CHECK: jalr CPU loaded 175 words into DDR
+RESULT: PASS jalr DDR RV32I tohost=1 cycles=2474

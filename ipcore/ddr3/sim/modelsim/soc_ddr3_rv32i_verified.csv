@@ -1,0 +1,4 @@
+test,status,detail,log
+add,PASS,"# RESULT: PASS add DDR RV32I tohost=1 cycles=26145; Errors=0, Warnings=353",D:\riscv\RISCV\ipcore\ddr3\sim\modelsim\soc_ddr3_rv32i_add.log
+lb,PASS,"# RESULT: PASS lb DDR RV32I tohost=1 cycles=16738; Errors=0, Warnings=353",D:\riscv\RISCV\ipcore\ddr3\sim\modelsim\soc_ddr3_rv32i_lb.log
+ld_st,PASS,"# RESULT: PASS ld_st DDR RV32I tohost=1 cycles=67203; Errors=0, Warnings=353",D:\riscv\RISCV\ipcore\ddr3\sim\modelsim\soc_ddr3_rv32i_ld_st.log

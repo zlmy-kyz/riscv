@@ -1,0 +1,24 @@
+=== TEST D ?? ===
+=== TEST D: load-use ??? ===
+  [wb] t=86000 pc=00000000 we=1 rd=x1 data=0000001f                            
+  [wb] t=96000 pc=00000000 we=1 rd=x1 data=0000001f                            
+  [wb] t=106000 pc=00000004 we=0 rd=x4 data=00000004                            
+  [wb] t=116000 pc=00000008 we=1 rd=x2 data=0000001f                            
+  [wb] t=126000 pc=0000000c we=1 rd=x3 data=0000002f                            
+  [wb] t=136000 pc=00000010 we=1 rd=x4 data=0000001f                            
+  [wb] t=146000 pc=00000014 we=1 rd=x5 data=0000001f                            
+  [wb] t=156000 pc=00000018 we=1 rd=x6 data=00000021                            
+  [wb] t=166000 pc=0000001c we=1 rd=x0 data=00000000                            
+  [wb] t=176000 pc=00000020 we=1 rd=x0 data=00000000                            
+  [wb] t=186000 pc=00000024 we=1 rd=x0 data=00000000                            
+  [wb] t=196000 pc=00000028 we=1 rd=x0 data=00000000                            
+  [ ok ] x1 addi 0x1F = 0000001f
+  [ ok ] ?????x2 lw   -> 0x1F(load-use) = 0000001f
+  [ ok ] 2+0x10  -> 0x2F(load-use ???) = 0000002f
+  [ ok ] x4 lw = 0000001f
+  [ ok ] x5 lw = 0000001f
+  [ ok ]  = x5+2 -> 0x21(load-use ???) = 00000021
+=== PASS ===
+EXIT_RUN=0
+
+

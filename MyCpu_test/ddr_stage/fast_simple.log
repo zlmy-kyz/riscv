@@ -1,0 +1,2 @@
+CHECK: simple CPU loaded 107 words into DDR
+RESULT: PASS simple DDR RV32I tohost=1 cycles=1485

@@ -1,0 +1,2 @@
+CHECK: st_ld CPU loaded 576 words into DDR
+RESULT: PASS st_ld DDR RV32I tohost=1 cycles=8285

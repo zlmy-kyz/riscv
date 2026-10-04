@@ -1,0 +1,598 @@
+License checkout: fabric_shell from C:\pango\PDS_2022.2-SP6.4\license\new_pds_F4A80DA47D72.lic
+Compiling architecture definition.
+Analyzing project file 'D:/riscv/RISCV/RISCV.pds'.
+
+
+Process "Compile" started.
+Current time: Sat Oct  3 17:21:35 2026
+Compiling architecture definition.
+Analyzing project file 'D:/riscv/RISCV/RISCV.pds'.
+License checkout: fabric_ads from C:\pango\PDS_2022.2-SP6.4\license\new_pds_F4A80DA47D72.lic
+Compiling verification operator library.
+Loading technology operator library.
+Compiling technology operator library.
+Compiling technology operator (valence) library.
+I: Enable Verilog2k features and keywords
+Start rtl-analyze.
+Executing : .rtl_analyze -work work -include_path {D:/riscv/RISCV} D:/riscv/RISCV/myriscv/alu.v
+I: Verilog-0001: Analyzing file D:/riscv/RISCV/myriscv/alu.v
+I: Verilog-0002: [D:/riscv/RISCV/myriscv/alu.v(line number: 1)] Analyzing module alu (library work)
+Parsing done.
+Executing : .rtl_analyze -work work -include_path {D:/riscv/RISCV} D:/riscv/RISCV/myriscv/alu.v successfully.
+Executing : .rtl_analyze -work work -include_path {D:/riscv/RISCV} D:/riscv/RISCV/myriscv/br_alu.v
+I: Verilog-0001: Analyzing file D:/riscv/RISCV/myriscv/br_alu.v
+I: Verilog-0002: [D:/riscv/RISCV/myriscv/br_alu.v(line number: 7)] Analyzing module br_alu (library work)
+Parsing done.
+Executing : .rtl_analyze -work work -include_path {D:/riscv/RISCV} D:/riscv/RISCV/myriscv/br_alu.v successfully.
+Executing : .rtl_analyze -work work -include_path {D:/riscv/RISCV} D:/riscv/RISCV/myriscv/l_alu.v
+I: Verilog-0001: Analyzing file D:/riscv/RISCV/myriscv/l_alu.v
+I: Verilog-0002: [D:/riscv/RISCV/myriscv/l_alu.v(line number: 1)] Analyzing module l_alu (library work)
+Parsing done.
+Executing : .rtl_analyze -work work -include_path {D:/riscv/RISCV} D:/riscv/RISCV/myriscv/l_alu.v successfully.
+Executing : .rtl_analyze -work work -include_path {D:/riscv/RISCV} D:/riscv/RISCV/myriscv/mycpu_sync.v
+I: Verilog-0001: Analyzing file D:/riscv/RISCV/myriscv/mycpu_sync.v
+I: Found Verilog include file D:/riscv/RISCV/myriscv/csr_defs.vh
+I: Verilog-0002: [D:/riscv/RISCV/myriscv/mycpu_sync.v(line number: 3)] Analyzing module mycpu_sync (library work)
+Parsing done.
+Executing : .rtl_analyze -work work -include_path {D:/riscv/RISCV} D:/riscv/RISCV/myriscv/mycpu_sync.v successfully.
+W: Public-4030: File 'D:/riscv/RISCV/myriscv/csr_defs.vh' has been added. It is skipped.
+Executing : .rtl_analyze -work work -include_path {D:/riscv/RISCV} D:/riscv/RISCV/myriscv/csr_defs.vh
+I: Verilog-0001: Analyzing file D:/riscv/RISCV/myriscv/csr_defs.vh
+Parsing done.
+Executing : .rtl_analyze -work work -include_path {D:/riscv/RISCV} D:/riscv/RISCV/myriscv/csr_defs.vh successfully.
+Executing : .rtl_analyze -work work -include_path {D:/riscv/RISCV} D:/riscv/RISCV/myriscv/regfile.v
+I: Verilog-0001: Analyzing file D:/riscv/RISCV/myriscv/regfile.v
+I: Verilog-0002: [D:/riscv/RISCV/myriscv/regfile.v(line number: 1)] Analyzing module regfile (library work)
+Parsing done.
+Executing : .rtl_analyze -work work -include_path {D:/riscv/RISCV} D:/riscv/RISCV/myriscv/regfile.v successfully.
+Executing : .rtl_analyze -work work -include_path {D:/riscv/RISCV} D:/riscv/RISCV/myriscv/csr_file.v
+I: Verilog-0001: Analyzing file D:/riscv/RISCV/myriscv/csr_file.v
+I: Found Verilog include file D:/riscv/RISCV/myriscv/csr_defs.vh
+W: Public-4030: File 'D:/riscv/RISCV/myriscv/csr_defs.vh' has been added. It is skipped.
+I: Verilog-0002: [D:/riscv/RISCV/myriscv/csr_file.v(line number: 7)] Analyzing module csr_file (library work)
+Parsing done.
+Executing : .rtl_analyze -work work -include_path {D:/riscv/RISCV} D:/riscv/RISCV/myriscv/csr_file.v successfully.
+Executing : .rtl_analyze -work work -include_path {D:/riscv/RISCV} D:/riscv/RISCV/myriscv/data_bram_adapter.v
+I: Verilog-0001: Analyzing file D:/riscv/RISCV/myriscv/data_bram_adapter.v
+I: Verilog-0002: [D:/riscv/RISCV/myriscv/data_bram_adapter.v(line number: 10)] Analyzing module data_bram_adapter (library work)
+Parsing done.
+Executing : .rtl_analyze -work work -include_path {D:/riscv/RISCV} D:/riscv/RISCV/myriscv/data_bram_adapter.v successfully.
+Executing : .rtl_analyze -work work -include_path {D:/riscv/RISCV} D:/riscv/RISCV/myriscv/data_bus_interconnect.v
+I: Verilog-0001: Analyzing file D:/riscv/RISCV/myriscv/data_bus_interconnect.v
+I: Verilog-0002: [D:/riscv/RISCV/myriscv/data_bus_interconnect.v(line number: 13)] Analyzing module data_bus_interconnect (library work)
+Parsing done.
+Executing : .rtl_analyze -work work -include_path {D:/riscv/RISCV} D:/riscv/RISCV/myriscv/data_bus_interconnect.v successfully.
+Executing : .rtl_analyze -work work -include_path {D:/riscv/RISCV} D:/riscv/RISCV/myriscv/inst_bram_adapter.v
+I: Verilog-0001: Analyzing file D:/riscv/RISCV/myriscv/inst_bram_adapter.v
+I: Verilog-0002: [D:/riscv/RISCV/myriscv/inst_bram_adapter.v(line number: 6)] Analyzing module inst_bram_adapter (library work)
+Parsing done.
+Executing : .rtl_analyze -work work -include_path {D:/riscv/RISCV} D:/riscv/RISCV/myriscv/inst_bram_adapter.v successfully.
+Executing : .rtl_analyze -work work -include_path {D:/riscv/RISCV} D:/riscv/RISCV/myriscv/inst_bus_interconnect.v
+I: Verilog-0001: Analyzing file D:/riscv/RISCV/myriscv/inst_bus_interconnect.v
+I: Verilog-0002: [D:/riscv/RISCV/myriscv/inst_bus_interconnect.v(line number: 7)] Analyzing module inst_bus_interconnect (library work)
+Parsing done.
+Executing : .rtl_analyze -work work -include_path {D:/riscv/RISCV} D:/riscv/RISCV/myriscv/inst_bus_interconnect.v successfully.
+Executing : .rtl_analyze -work work -include_path {D:/riscv/RISCV} D:/riscv/RISCV/myriscv/simple_mmio.v
+I: Verilog-0001: Analyzing file D:/riscv/RISCV/myriscv/simple_mmio.v
+I: Verilog-0002: [D:/riscv/RISCV/myriscv/simple_mmio.v(line number: 11)] Analyzing module simple_mmio (library work)
+Parsing done.
+Executing : .rtl_analyze -work work -include_path {D:/riscv/RISCV} D:/riscv/RISCV/myriscv/simple_mmio.v successfully.
+Executing : .rtl_analyze -work work -include_path {D:/riscv/RISCV} D:/riscv/RISCV/myriscv/soc_top.v
+I: Verilog-0001: Analyzing file D:/riscv/RISCV/myriscv/soc_top.v
+I: Verilog-0002: [D:/riscv/RISCV/myriscv/soc_top.v(line number: 4)] Analyzing module soc_top (library work)
+Parsing done.
+Executing : .rtl_analyze -work work -include_path {D:/riscv/RISCV} D:/riscv/RISCV/myriscv/soc_top.v successfully.
+Executing : .rtl_analyze -work work -include_path {D:/riscv/RISCV} D:/riscv/RISCV/myriscv/dual_sram_to_pango_ddr_bridge.v
+I: Verilog-0001: Analyzing file D:/riscv/RISCV/myriscv/dual_sram_to_pango_ddr_bridge.v
+I: Verilog-0002: [D:/riscv/RISCV/myriscv/dual_sram_to_pango_ddr_bridge.v(line number: 19)] Analyzing module dual_sram_to_pango_ddr_bridge (library work)
+Parsing done.
+Executing : .rtl_analyze -work work -include_path {D:/riscv/RISCV} D:/riscv/RISCV/myriscv/dual_sram_to_pango_ddr_bridge.v successfully.
+Executing : .rtl_analyze -work work -include_path {D:/riscv/RISCV} D:/riscv/RISCV/myriscv/soc_ddr3_top.v
+I: Verilog-0001: Analyzing file D:/riscv/RISCV/myriscv/soc_ddr3_top.v
+I: Verilog-0002: [D:/riscv/RISCV/myriscv/soc_ddr3_top.v(line number: 7)] Analyzing module soc_ddr3_top (library work)
+I: Verilog-0002: [D:/riscv/RISCV/myriscv/soc_ddr3_top.v(line number: 222)] Analyzing module soc_ddr3_leds (library work)
+Parsing done.
+Executing : .rtl_analyze -work work -include_path {D:/riscv/RISCV} D:/riscv/RISCV/myriscv/soc_ddr3_top.v successfully.
+Executing : .rtl_analyze -work work -include_path {D:/riscv/RISCV} D:/riscv/RISCV/myriscv/board_top.v
+I: Verilog-0001: Analyzing file D:/riscv/RISCV/myriscv/board_top.v
+I: Verilog-0002: [D:/riscv/RISCV/myriscv/board_top.v(line number: 5)] Analyzing module board_top (library work)
+Parsing done.
+Executing : .rtl_analyze -work work -include_path {D:/riscv/RISCV} D:/riscv/RISCV/myriscv/board_top.v successfully.
+Executing : .rtl_analyze -include_path {D:/riscv/RISCV} D:/riscv/RISCV/ipcore/inst_rom/rtl/ipm2l_rom_v1_8_inst_rom.v
+I: Verilog-0001: Analyzing file D:/riscv/RISCV/ipcore/inst_rom/rtl/ipm2l_rom_v1_8_inst_rom.v
+I: Verilog-0002: [D:/riscv/RISCV/ipcore/inst_rom/rtl/ipm2l_rom_v1_8_inst_rom.v(line number: 18)] Analyzing module ipm2l_rom_v1_8_inst_rom (library work)
+Parsing done.
+Executing : .rtl_analyze -include_path {D:/riscv/RISCV} D:/riscv/RISCV/ipcore/inst_rom/rtl/ipm2l_rom_v1_8_inst_rom.v successfully.
+Executing : .rtl_analyze -include_path {D:/riscv/RISCV} D:/riscv/RISCV/ipcore/inst_rom/rtl/ipm2l_spram_v1_8_inst_rom.v
+I: Verilog-0001: Analyzing file D:/riscv/RISCV/ipcore/inst_rom/rtl/ipm2l_spram_v1_8_inst_rom.v
+I: Verilog-0002: [D:/riscv/RISCV/ipcore/inst_rom/rtl/ipm2l_spram_v1_8_inst_rom.v(line number: 17)] Analyzing module ipm2l_spram_v1_8_inst_rom (library work)
+I: Found Verilog include file D:/riscv/RISCV/ipcore/inst_rom/rtl/inst_rom_init_param.v
+W: Verilog-2008: [D:/riscv/RISCV/ipcore/inst_rom/rtl/ipm2l_spram_v1_8_inst_rom.v(line number: 133)] Ignore 'system task' $display
+W: Verilog-2008: [D:/riscv/RISCV/ipcore/inst_rom/rtl/ipm2l_spram_v1_8_inst_rom.v(line number: 137)] Ignore 'system task' $display
+W: Verilog-2008: [D:/riscv/RISCV/ipcore/inst_rom/rtl/ipm2l_spram_v1_8_inst_rom.v(line number: 145)] Ignore 'system task' $display
+W: Verilog-2008: [D:/riscv/RISCV/ipcore/inst_rom/rtl/ipm2l_spram_v1_8_inst_rom.v(line number: 146)] Ignore 'system task' $finish
+W: Verilog-2008: [D:/riscv/RISCV/ipcore/inst_rom/rtl/ipm2l_spram_v1_8_inst_rom.v(line number: 149)] Ignore 'system task' $display
+W: Verilog-2008: [D:/riscv/RISCV/ipcore/inst_rom/rtl/ipm2l_spram_v1_8_inst_rom.v(line number: 150)] Ignore 'system task' $finish
+W: Verilog-2008: [D:/riscv/RISCV/ipcore/inst_rom/rtl/ipm2l_spram_v1_8_inst_rom.v(line number: 153)] Ignore 'system task' $display
+W: Verilog-2008: [D:/riscv/RISCV/ipcore/inst_rom/rtl/ipm2l_spram_v1_8_inst_rom.v(line number: 154)] Ignore 'system task' $finish
+W: Verilog-2008: [D:/riscv/RISCV/ipcore/inst_rom/rtl/ipm2l_spram_v1_8_inst_rom.v(line number: 157)] Ignore 'system task' $display
+W: Verilog-2008: [D:/riscv/RISCV/ipcore/inst_rom/rtl/ipm2l_spram_v1_8_inst_rom.v(line number: 158)] Ignore 'system task' $finish
+W: Verilog-2008: [D:/riscv/RISCV/ipcore/inst_rom/rtl/ipm2l_spram_v1_8_inst_rom.v(line number: 161)] Ignore 'system task' $display
+W: Verilog-2008: [D:/riscv/RISCV/ipcore/inst_rom/rtl/ipm2l_spram_v1_8_inst_rom.v(line number: 162)] Ignore 'system task' $finish
+W: Verilog-2008: [D:/riscv/RISCV/ipcore/inst_rom/rtl/ipm2l_spram_v1_8_inst_rom.v(line number: 165)] Ignore 'system task' $display
+W: Verilog-2008: [D:/riscv/RISCV/ipcore/inst_rom/rtl/ipm2l_spram_v1_8_inst_rom.v(line number: 166)] Ignore 'system task' $finish
+W: Verilog-2008: [D:/riscv/RISCV/ipcore/inst_rom/rtl/ipm2l_spram_v1_8_inst_rom.v(line number: 169)] Ignore 'system task' $display
+W: Verilog-2008: [D:/riscv/RISCV/ipcore/inst_rom/rtl/ipm2l_spram_v1_8_inst_rom.v(line number: 170)] Ignore 'system task' $finish
+W: Verilog-2008: [D:/riscv/RISCV/ipcore/inst_rom/rtl/ipm2l_spram_v1_8_inst_rom.v(line number: 173)] Ignore 'system task' $display
+W: Verilog-2008: [D:/riscv/RISCV/ipcore/inst_rom/rtl/ipm2l_spram_v1_8_inst_rom.v(line number: 174)] Ignore 'system task' $finish
+W: Verilog-2008: [D:/riscv/RISCV/ipcore/inst_rom/rtl/ipm2l_spram_v1_8_inst_rom.v(line number: 177)] Ignore 'system task' $display
+W: Verilog-2008: [D:/riscv/RISCV/ipcore/inst_rom/rtl/ipm2l_spram_v1_8_inst_rom.v(line number: 178)] Ignore 'system task' $finish
+W: Verilog-2008: [D:/riscv/RISCV/ipcore/inst_rom/rtl/ipm2l_spram_v1_8_inst_rom.v(line number: 181)] Ignore 'system task' $display
+W: Verilog-2008: [D:/riscv/RISCV/ipcore/inst_rom/rtl/ipm2l_spram_v1_8_inst_rom.v(line number: 182)] Ignore 'system task' $finish
+W: Verilog-2008: [D:/riscv/RISCV/ipcore/inst_rom/rtl/ipm2l_spram_v1_8_inst_rom.v(line number: 185)] Ignore 'system task' $display
+W: Verilog-2008: [D:/riscv/RISCV/ipcore/inst_rom/rtl/ipm2l_spram_v1_8_inst_rom.v(line number: 186)] Ignore 'system task' $finish
+W: Verilog-2008: [D:/riscv/RISCV/ipcore/inst_rom/rtl/ipm2l_spram_v1_8_inst_rom.v(line number: 189)] Ignore 'system task' $display
+W: Verilog-2008: [D:/riscv/RISCV/ipcore/inst_rom/rtl/ipm2l_spram_v1_8_inst_rom.v(line number: 190)] Ignore 'system task' $finish
+W: Verilog-2008: [D:/riscv/RISCV/ipcore/inst_rom/rtl/ipm2l_spram_v1_8_inst_rom.v(line number: 194)] Ignore 'system task' $display
+W: Verilog-2008: [D:/riscv/RISCV/ipcore/inst_rom/rtl/ipm2l_spram_v1_8_inst_rom.v(line number: 195)] Ignore 'system task' $finish
+W: Verilog-2008: [D:/riscv/RISCV/ipcore/inst_rom/rtl/ipm2l_spram_v1_8_inst_rom.v(line number: 198)] Ignore 'system task' $display
+W: Verilog-2008: [D:/riscv/RISCV/ipcore/inst_rom/rtl/ipm2l_spram_v1_8_inst_rom.v(line number: 199)] Ignore 'system task' $finish
+W: Verilog-2008: [D:/riscv/RISCV/ipcore/inst_rom/rtl/ipm2l_spram_v1_8_inst_rom.v(line number: 203)] Ignore 'system task' $display
+W: Verilog-2008: [D:/riscv/RISCV/ipcore/inst_rom/rtl/ipm2l_spram_v1_8_inst_rom.v(line number: 204)] Ignore 'system task' $finish
+W: Verilog-2008: [D:/riscv/RISCV/ipcore/inst_rom/rtl/ipm2l_spram_v1_8_inst_rom.v(line number: 207)] Ignore 'system task' $display
+W: Verilog-2008: [D:/riscv/RISCV/ipcore/inst_rom/rtl/ipm2l_spram_v1_8_inst_rom.v(line number: 208)] Ignore 'system task' $finish
+Parsing done.
+Executing : .rtl_analyze -include_path {D:/riscv/RISCV} D:/riscv/RISCV/ipcore/inst_rom/rtl/ipm2l_spram_v1_8_inst_rom.v successfully.
+Executing : .rtl_analyze -include_path {D:/riscv/RISCV} D:/riscv/RISCV/ipcore/inst_rom/inst_rom.v
+I: Verilog-0001: Analyzing file D:/riscv/RISCV/ipcore/inst_rom/inst_rom.v
+I: Verilog-0002: [D:/riscv/RISCV/ipcore/inst_rom/inst_rom.v(line number: 16)] Analyzing module inst_rom (library work)
+Parsing done.
+Executing : .rtl_analyze -include_path {D:/riscv/RISCV} D:/riscv/RISCV/ipcore/inst_rom/inst_rom.v successfully.
+Executing : .rtl_analyze -include_path {D:/riscv/RISCV} D:/riscv/RISCV/ipcore/data_ram/rtl/ipm2l_spram_v1_8_data_ram.v
+I: Verilog-0001: Analyzing file D:/riscv/RISCV/ipcore/data_ram/rtl/ipm2l_spram_v1_8_data_ram.v
+I: Verilog-0002: [D:/riscv/RISCV/ipcore/data_ram/rtl/ipm2l_spram_v1_8_data_ram.v(line number: 17)] Analyzing module ipm2l_spram_v1_8_data_ram (library work)
+I: Found Verilog include file D:/riscv/RISCV/ipcore/data_ram/rtl/data_ram_init_param.v
+W: Verilog-2008: [D:/riscv/RISCV/ipcore/data_ram/rtl/ipm2l_spram_v1_8_data_ram.v(line number: 133)] Ignore 'system task' $display
+W: Verilog-2008: [D:/riscv/RISCV/ipcore/data_ram/rtl/ipm2l_spram_v1_8_data_ram.v(line number: 137)] Ignore 'system task' $display
+W: Verilog-2008: [D:/riscv/RISCV/ipcore/data_ram/rtl/ipm2l_spram_v1_8_data_ram.v(line number: 145)] Ignore 'system task' $display
+W: Verilog-2008: [D:/riscv/RISCV/ipcore/data_ram/rtl/ipm2l_spram_v1_8_data_ram.v(line number: 146)] Ignore 'system task' $finish
+W: Verilog-2008: [D:/riscv/RISCV/ipcore/data_ram/rtl/ipm2l_spram_v1_8_data_ram.v(line number: 149)] Ignore 'system task' $display
+W: Verilog-2008: [D:/riscv/RISCV/ipcore/data_ram/rtl/ipm2l_spram_v1_8_data_ram.v(line number: 150)] Ignore 'system task' $finish
+W: Verilog-2008: [D:/riscv/RISCV/ipcore/data_ram/rtl/ipm2l_spram_v1_8_data_ram.v(line number: 153)] Ignore 'system task' $display
+W: Verilog-2008: [D:/riscv/RISCV/ipcore/data_ram/rtl/ipm2l_spram_v1_8_data_ram.v(line number: 154)] Ignore 'system task' $finish
+W: Verilog-2008: [D:/riscv/RISCV/ipcore/data_ram/rtl/ipm2l_spram_v1_8_data_ram.v(line number: 157)] Ignore 'system task' $display
+W: Verilog-2008: [D:/riscv/RISCV/ipcore/data_ram/rtl/ipm2l_spram_v1_8_data_ram.v(line number: 158)] Ignore 'system task' $finish
+W: Verilog-2008: [D:/riscv/RISCV/ipcore/data_ram/rtl/ipm2l_spram_v1_8_data_ram.v(line number: 161)] Ignore 'system task' $display
+W: Verilog-2008: [D:/riscv/RISCV/ipcore/data_ram/rtl/ipm2l_spram_v1_8_data_ram.v(line number: 162)] Ignore 'system task' $finish
+W: Verilog-2008: [D:/riscv/RISCV/ipcore/data_ram/rtl/ipm2l_spram_v1_8_data_ram.v(line number: 165)] Ignore 'system task' $display
+W: Verilog-2008: [D:/riscv/RISCV/ipcore/data_ram/rtl/ipm2l_spram_v1_8_data_ram.v(line number: 166)] Ignore 'system task' $finish
+W: Verilog-2008: [D:/riscv/RISCV/ipcore/data_ram/rtl/ipm2l_spram_v1_8_data_ram.v(line number: 169)] Ignore 'system task' $display
+W: Verilog-2008: [D:/riscv/RISCV/ipcore/data_ram/rtl/ipm2l_spram_v1_8_data_ram.v(line number: 170)] Ignore 'system task' $finish
+W: Verilog-2008: [D:/riscv/RISCV/ipcore/data_ram/rtl/ipm2l_spram_v1_8_data_ram.v(line number: 173)] Ignore 'system task' $display
+W: Verilog-2008: [D:/riscv/RISCV/ipcore/data_ram/rtl/ipm2l_spram_v1_8_data_ram.v(line number: 174)] Ignore 'system task' $finish
+W: Verilog-2008: [D:/riscv/RISCV/ipcore/data_ram/rtl/ipm2l_spram_v1_8_data_ram.v(line number: 177)] Ignore 'system task' $display
+W: Verilog-2008: [D:/riscv/RISCV/ipcore/data_ram/rtl/ipm2l_spram_v1_8_data_ram.v(line number: 178)] Ignore 'system task' $finish
+W: Verilog-2008: [D:/riscv/RISCV/ipcore/data_ram/rtl/ipm2l_spram_v1_8_data_ram.v(line number: 181)] Ignore 'system task' $display
+W: Verilog-2008: [D:/riscv/RISCV/ipcore/data_ram/rtl/ipm2l_spram_v1_8_data_ram.v(line number: 182)] Ignore 'system task' $finish
+W: Verilog-2008: [D:/riscv/RISCV/ipcore/data_ram/rtl/ipm2l_spram_v1_8_data_ram.v(line number: 185)] Ignore 'system task' $display
+W: Verilog-2008: [D:/riscv/RISCV/ipcore/data_ram/rtl/ipm2l_spram_v1_8_data_ram.v(line number: 186)] Ignore 'system task' $finish
+W: Verilog-2008: [D:/riscv/RISCV/ipcore/data_ram/rtl/ipm2l_spram_v1_8_data_ram.v(line number: 189)] Ignore 'system task' $display
+W: Verilog-2008: [D:/riscv/RISCV/ipcore/data_ram/rtl/ipm2l_spram_v1_8_data_ram.v(line number: 190)] Ignore 'system task' $finish
+W: Verilog-2008: [D:/riscv/RISCV/ipcore/data_ram/rtl/ipm2l_spram_v1_8_data_ram.v(line number: 194)] Ignore 'system task' $display
+W: Verilog-2008: [D:/riscv/RISCV/ipcore/data_ram/rtl/ipm2l_spram_v1_8_data_ram.v(line number: 195)] Ignore 'system task' $finish
+W: Verilog-2008: [D:/riscv/RISCV/ipcore/data_ram/rtl/ipm2l_spram_v1_8_data_ram.v(line number: 198)] Ignore 'system task' $display
+W: Verilog-2008: [D:/riscv/RISCV/ipcore/data_ram/rtl/ipm2l_spram_v1_8_data_ram.v(line number: 199)] Ignore 'system task' $finish
+W: Verilog-2008: [D:/riscv/RISCV/ipcore/data_ram/rtl/ipm2l_spram_v1_8_data_ram.v(line number: 203)] Ignore 'system task' $display
+W: Verilog-2008: [D:/riscv/RISCV/ipcore/data_ram/rtl/ipm2l_spram_v1_8_data_ram.v(line number: 204)] Ignore 'system task' $finish
+W: Verilog-2008: [D:/riscv/RISCV/ipcore/data_ram/rtl/ipm2l_spram_v1_8_data_ram.v(line number: 207)] Ignore 'system task' $display
+W: Verilog-2008: [D:/riscv/RISCV/ipcore/data_ram/rtl/ipm2l_spram_v1_8_data_ram.v(line number: 208)] Ignore 'system task' $finish
+Parsing done.
+Executing : .rtl_analyze -include_path {D:/riscv/RISCV} D:/riscv/RISCV/ipcore/data_ram/rtl/ipm2l_spram_v1_8_data_ram.v successfully.
+Executing : .rtl_analyze -include_path {D:/riscv/RISCV} D:/riscv/RISCV/ipcore/data_ram/data_ram.v
+I: Verilog-0001: Analyzing file D:/riscv/RISCV/ipcore/data_ram/data_ram.v
+I: Verilog-0002: [D:/riscv/RISCV/ipcore/data_ram/data_ram.v(line number: 16)] Analyzing module data_ram (library work)
+Parsing done.
+Executing : .rtl_analyze -include_path {D:/riscv/RISCV} D:/riscv/RISCV/ipcore/data_ram/data_ram.v successfully.
+Executing : .rtl_analyze -include_path {D:/riscv/RISCV} D:/riscv/RISCV/ipcore/ddr3/rtl/ips2l_rst_sync_v1_3.vp
+I: Verilog-0001: Analyzing file D:/riscv/RISCV/ipcore/ddr3/rtl/ips2l_rst_sync_v1_3.vp
+I: Verilog-0002: [D:/riscv/RISCV/ipcore/ddr3/rtl/ips2l_rst_sync_v1_3.vp(line number: 59)] Analyzing module ips2l_rst_sync_v1_3 (library work)
+Parsing done.
+Executing : .rtl_analyze -include_path {D:/riscv/RISCV} D:/riscv/RISCV/ipcore/ddr3/rtl/ips2l_rst_sync_v1_3.vp successfully.
+Executing : .rtl_analyze -include_path {D:/riscv/RISCV} D:/riscv/RISCV/ipcore/ddr3/rtl/ddrphy/ips2l_ddrphy_wrlvl_v1_0.vp
+I: Verilog-0001: Analyzing file D:/riscv/RISCV/ipcore/ddr3/rtl/ddrphy/ips2l_ddrphy_wrlvl_v1_0.vp
+I: Verilog-0002: [D:/riscv/RISCV/ipcore/ddr3/rtl/ddrphy/ips2l_ddrphy_wrlvl_v1_0.vp(line number: 183)] Analyzing module ips2l_ddrphy_wrlvl_v1_0 (library work)
+Parsing done.
+Executing : .rtl_analyze -include_path {D:/riscv/RISCV} D:/riscv/RISCV/ipcore/ddr3/rtl/ddrphy/ips2l_ddrphy_wrlvl_v1_0.vp successfully.
+Executing : .rtl_analyze -include_path {D:/riscv/RISCV} D:/riscv/RISCV/ipcore/ddr3/rtl/ddrphy/ips2l_ddrphy_wrcal_v1_7.vp
+I: Verilog-0001: Analyzing file D:/riscv/RISCV/ipcore/ddr3/rtl/ddrphy/ips2l_ddrphy_wrcal_v1_7.vp
+I: Verilog-0002: [D:/riscv/RISCV/ipcore/ddr3/rtl/ddrphy/ips2l_ddrphy_wrcal_v1_7.vp(line number: 495)] Analyzing module ips2l_ddrphy_wrcal_v1_7 (library work)
+I: [D:/riscv/RISCV/ipcore/ddr3/rtl/ddrphy/ips2l_ddrphy_wrcal_v1_7.vp(line number: 514)] Convert attribute name from syn_preserve to PAP_PRESERVE
+I: [D:/riscv/RISCV/ipcore/ddr3/rtl/ddrphy/ips2l_ddrphy_wrcal_v1_7.vp(line number: 515)] Convert attribute name from syn_preserve to PAP_PRESERVE
+Parsing done.
+Executing : .rtl_analyze -include_path {D:/riscv/RISCV} D:/riscv/RISCV/ipcore/ddr3/rtl/ddrphy/ips2l_ddrphy_wrcal_v1_7.vp successfully.
+Executing : .rtl_analyze -include_path {D:/riscv/RISCV} D:/riscv/RISCV/ipcore/ddr3/rtl/ddrphy/ips2l_ddrphy_wdata_path_adj_v1_10.vp
+I: Verilog-0001: Analyzing file D:/riscv/RISCV/ipcore/ddr3/rtl/ddrphy/ips2l_ddrphy_wdata_path_adj_v1_10.vp
+I: Verilog-0002: [D:/riscv/RISCV/ipcore/ddr3/rtl/ddrphy/ips2l_ddrphy_wdata_path_adj_v1_10.vp(line number: 232)] Analyzing module ips2l_ddrphy_wdata_path_adj_v1_10 (library work)
+Parsing done.
+Executing : .rtl_analyze -include_path {D:/riscv/RISCV} D:/riscv/RISCV/ipcore/ddr3/rtl/ddrphy/ips2l_ddrphy_wdata_path_adj_v1_10.vp successfully.
+Executing : .rtl_analyze -include_path {D:/riscv/RISCV} D:/riscv/RISCV/ipcore/ddr3/rtl/ddrphy/ips2l_ddrphy_upcal_v1_0.vp
+I: Verilog-0001: Analyzing file D:/riscv/RISCV/ipcore/ddr3/rtl/ddrphy/ips2l_ddrphy_upcal_v1_0.vp
+I: Verilog-0002: [D:/riscv/RISCV/ipcore/ddr3/rtl/ddrphy/ips2l_ddrphy_upcal_v1_0.vp(line number: 151)] Analyzing module ips2l_ddrphy_upcal_v1_0 (library work)
+Parsing done.
+Executing : .rtl_analyze -include_path {D:/riscv/RISCV} D:/riscv/RISCV/ipcore/ddr3/rtl/ddrphy/ips2l_ddrphy_upcal_v1_0.vp successfully.
+Executing : .rtl_analyze -include_path {D:/riscv/RISCV} D:/riscv/RISCV/ipcore/ddr3/rtl/ddrphy/ips2l_ddrphy_training_ctrl_v1_0.vp
+I: Verilog-0001: Analyzing file D:/riscv/RISCV/ipcore/ddr3/rtl/ddrphy/ips2l_ddrphy_training_ctrl_v1_0.vp
+I: Verilog-0002: [D:/riscv/RISCV/ipcore/ddr3/rtl/ddrphy/ips2l_ddrphy_training_ctrl_v1_0.vp(line number: 83)] Analyzing module ips2l_ddrphy_training_ctrl_v1_0 (library work)
+Parsing done.
+Executing : .rtl_analyze -include_path {D:/riscv/RISCV} D:/riscv/RISCV/ipcore/ddr3/rtl/ddrphy/ips2l_ddrphy_training_ctrl_v1_0.vp successfully.
+Executing : .rtl_analyze -include_path {D:/riscv/RISCV} D:/riscv/RISCV/ipcore/ddr3/rtl/ddrphy/ips2l_ddrphy_slice_rddata_align_v1_0.vp
+I: Verilog-0001: Analyzing file D:/riscv/RISCV/ipcore/ddr3/rtl/ddrphy/ips2l_ddrphy_slice_rddata_align_v1_0.vp
+I: Verilog-0002: [D:/riscv/RISCV/ipcore/ddr3/rtl/ddrphy/ips2l_ddrphy_slice_rddata_align_v1_0.vp(line number: 108)] Analyzing module ips2l_ddrphy_slice_rddata_align_v1_0 (library work)
+Parsing done.
+Executing : .rtl_analyze -include_path {D:/riscv/RISCV} D:/riscv/RISCV/ipcore/ddr3/rtl/ddrphy/ips2l_ddrphy_slice_rddata_align_v1_0.vp successfully.
+Executing : .rtl_analyze -include_path {D:/riscv/RISCV} D:/riscv/RISCV/ipcore/ddr3/rtl/ddrphy/ips2l_ddrphy_reset_ctrl_v1_3.vp
+I: Verilog-0001: Analyzing file D:/riscv/RISCV/ipcore/ddr3/rtl/ddrphy/ips2l_ddrphy_reset_ctrl_v1_3.vp
+I: Verilog-0002: [D:/riscv/RISCV/ipcore/ddr3/rtl/ddrphy/ips2l_ddrphy_reset_ctrl_v1_3.vp(line number: 268)] Analyzing module ips2l_ddrphy_reset_ctrl_v1_3 (library work)
+I: [D:/riscv/RISCV/ipcore/ddr3/rtl/ddrphy/ips2l_ddrphy_reset_ctrl_v1_3.vp(line number: 298)] Convert attribute name from syn_preserve to PAP_PRESERVE
+Parsing done.
+Executing : .rtl_analyze -include_path {D:/riscv/RISCV} D:/riscv/RISCV/ipcore/ddr3/rtl/ddrphy/ips2l_ddrphy_reset_ctrl_v1_3.vp successfully.
+Executing : .rtl_analyze -include_path {D:/riscv/RISCV} D:/riscv/RISCV/ipcore/ddr3/rtl/ddrphy/ips2l_ddrphy_rdcal_v1_10.vp
+I: Verilog-0001: Analyzing file D:/riscv/RISCV/ipcore/ddr3/rtl/ddrphy/ips2l_ddrphy_rdcal_v1_10.vp
+I: Verilog-0002: [D:/riscv/RISCV/ipcore/ddr3/rtl/ddrphy/ips2l_ddrphy_rdcal_v1_10.vp(line number: 750)] Analyzing module ips2l_ddrphy_rdcal_v1_10 (library work)
+Parsing done.
+Executing : .rtl_analyze -include_path {D:/riscv/RISCV} D:/riscv/RISCV/ipcore/ddr3/rtl/ddrphy/ips2l_ddrphy_rdcal_v1_10.vp successfully.
+Executing : .rtl_analyze -include_path {D:/riscv/RISCV} D:/riscv/RISCV/ipcore/ddr3/rtl/ddrphy/ips2l_ddrphy_main_ctrl_v1_10.vp
+I: Verilog-0001: Analyzing file D:/riscv/RISCV/ipcore/ddr3/rtl/ddrphy/ips2l_ddrphy_main_ctrl_v1_10.vp
+I: Verilog-0002: [D:/riscv/RISCV/ipcore/ddr3/rtl/ddrphy/ips2l_ddrphy_main_ctrl_v1_10.vp(line number: 196)] Analyzing module ips2l_ddrphy_main_ctrl_v1_10 (library work)
+Parsing done.
+Executing : .rtl_analyze -include_path {D:/riscv/RISCV} D:/riscv/RISCV/ipcore/ddr3/rtl/ddrphy/ips2l_ddrphy_main_ctrl_v1_10.vp successfully.
+Executing : .rtl_analyze -include_path {D:/riscv/RISCV} D:/riscv/RISCV/ipcore/ddr3/rtl/ddrphy/ips2l_ddrphy_init_v1_0.vp
+I: Verilog-0001: Analyzing file D:/riscv/RISCV/ipcore/ddr3/rtl/ddrphy/ips2l_ddrphy_init_v1_0.vp
+I: Verilog-0002: [D:/riscv/RISCV/ipcore/ddr3/rtl/ddrphy/ips2l_ddrphy_init_v1_0.vp(line number: 577)] Analyzing module ips2l_ddrphy_init_v1_0 (library work)
+Parsing done.
+Executing : .rtl_analyze -include_path {D:/riscv/RISCV} D:/riscv/RISCV/ipcore/ddr3/rtl/ddrphy/ips2l_ddrphy_init_v1_0.vp successfully.
+Executing : .rtl_analyze -include_path {D:/riscv/RISCV} D:/riscv/RISCV/ipcore/ddr3/rtl/ddrphy/ips2l_ddrphy_info_v1_0.vp
+I: Verilog-0001: Analyzing file D:/riscv/RISCV/ipcore/ddr3/rtl/ddrphy/ips2l_ddrphy_info_v1_0.vp
+I: Verilog-0002: [D:/riscv/RISCV/ipcore/ddr3/rtl/ddrphy/ips2l_ddrphy_info_v1_0.vp(line number: 174)] Analyzing module ips2l_ddrphy_info_v1_0 (library work)
+Parsing done.
+Executing : .rtl_analyze -include_path {D:/riscv/RISCV} D:/riscv/RISCV/ipcore/ddr3/rtl/ddrphy/ips2l_ddrphy_info_v1_0.vp successfully.
+Executing : .rtl_analyze -include_path {D:/riscv/RISCV} D:/riscv/RISCV/ipcore/ddr3/rtl/ddrphy/ips2l_ddrphy_gatecal_v1_10.vp
+I: Verilog-0001: Analyzing file D:/riscv/RISCV/ipcore/ddr3/rtl/ddrphy/ips2l_ddrphy_gatecal_v1_10.vp
+I: Verilog-0002: [D:/riscv/RISCV/ipcore/ddr3/rtl/ddrphy/ips2l_ddrphy_gatecal_v1_10.vp(line number: 243)] Analyzing module ips2l_ddrphy_gatecal_v1_10 (library work)
+Parsing done.
+Executing : .rtl_analyze -include_path {D:/riscv/RISCV} D:/riscv/RISCV/ipcore/ddr3/rtl/ddrphy/ips2l_ddrphy_gatecal_v1_10.vp successfully.
+Executing : .rtl_analyze -include_path {D:/riscv/RISCV} D:/riscv/RISCV/ipcore/ddr3/rtl/ddrphy/ips2l_ddrphy_gate_update_ctrl_v1_3.vp
+I: Verilog-0001: Analyzing file D:/riscv/RISCV/ipcore/ddr3/rtl/ddrphy/ips2l_ddrphy_gate_update_ctrl_v1_3.vp
+I: Verilog-0002: [D:/riscv/RISCV/ipcore/ddr3/rtl/ddrphy/ips2l_ddrphy_gate_update_ctrl_v1_3.vp(line number: 100)] Analyzing module ips2l_ddrphy_gate_update_ctrl_v1_3 (library work)
+Parsing done.
+Executing : .rtl_analyze -include_path {D:/riscv/RISCV} D:/riscv/RISCV/ipcore/ddr3/rtl/ddrphy/ips2l_ddrphy_gate_update_ctrl_v1_3.vp successfully.
+Executing : .rtl_analyze -include_path {D:/riscv/RISCV} D:/riscv/RISCV/ipcore/ddr3/rtl/ddrphy/ips2l_ddrphy_eyecal_v1_5.vp
+I: Verilog-0001: Analyzing file D:/riscv/RISCV/ipcore/ddr3/rtl/ddrphy/ips2l_ddrphy_eyecal_v1_5.vp
+I: Verilog-0002: [D:/riscv/RISCV/ipcore/ddr3/rtl/ddrphy/ips2l_ddrphy_eyecal_v1_5.vp(line number: 228)] Analyzing module ips2l_ddrphy_eyecal_v1_5 (library work)
+Parsing done.
+Executing : .rtl_analyze -include_path {D:/riscv/RISCV} D:/riscv/RISCV/ipcore/ddr3/rtl/ddrphy/ips2l_ddrphy_eyecal_v1_5.vp successfully.
+Executing : .rtl_analyze -include_path {D:/riscv/RISCV} D:/riscv/RISCV/ipcore/ddr3/rtl/ddrphy/ips2l_ddrphy_drift_ctrl_v1_0.vp
+I: Verilog-0001: Analyzing file D:/riscv/RISCV/ipcore/ddr3/rtl/ddrphy/ips2l_ddrphy_drift_ctrl_v1_0.vp
+I: Verilog-0002: [D:/riscv/RISCV/ipcore/ddr3/rtl/ddrphy/ips2l_ddrphy_drift_ctrl_v1_0.vp(line number: 112)] Analyzing module ips2l_ddrphy_drift_ctrl_v1_0 (library work)
+Parsing done.
+Executing : .rtl_analyze -include_path {D:/riscv/RISCV} D:/riscv/RISCV/ipcore/ddr3/rtl/ddrphy/ips2l_ddrphy_drift_ctrl_v1_0.vp successfully.
+Executing : .rtl_analyze -include_path {D:/riscv/RISCV} D:/riscv/RISCV/ipcore/ddr3/rtl/ddrphy/ips2l_ddrphy_dqsi_rdel_cal_v1_3.vp
+I: Verilog-0001: Analyzing file D:/riscv/RISCV/ipcore/ddr3/rtl/ddrphy/ips2l_ddrphy_dqsi_rdel_cal_v1_3.vp
+I: Verilog-0002: [D:/riscv/RISCV/ipcore/ddr3/rtl/ddrphy/ips2l_ddrphy_dqsi_rdel_cal_v1_3.vp(line number: 395)] Analyzing module ips2l_ddrphy_dqsi_rdel_cal_v1_3 (library work)
+Parsing done.
+Executing : .rtl_analyze -include_path {D:/riscv/RISCV} D:/riscv/RISCV/ipcore/ddr3/rtl/ddrphy/ips2l_ddrphy_dqsi_rdel_cal_v1_3.vp successfully.
+Executing : .rtl_analyze -include_path {D:/riscv/RISCV} D:/riscv/RISCV/ipcore/ddr3/rtl/ddrphy/ips2l_ddrphy_dqs_rddata_align_v1_10.vp
+I: Verilog-0001: Analyzing file D:/riscv/RISCV/ipcore/ddr3/rtl/ddrphy/ips2l_ddrphy_dqs_rddata_align_v1_10.vp
+I: Verilog-0002: [D:/riscv/RISCV/ipcore/ddr3/rtl/ddrphy/ips2l_ddrphy_dqs_rddata_align_v1_10.vp(line number: 527)] Analyzing module ips2l_ddrphy_dqs_rddata_align_v1_10 (library work)
+Parsing done.
+Executing : .rtl_analyze -include_path {D:/riscv/RISCV} D:/riscv/RISCV/ipcore/ddr3/rtl/ddrphy/ips2l_ddrphy_dqs_rddata_align_v1_10.vp successfully.
+Executing : .rtl_analyze -include_path {D:/riscv/RISCV} D:/riscv/RISCV/ipcore/ddr3/rtl/ddrphy/ips2l_ddrphy_dqs_gate_coarse_cal_v1_0.vp
+I: Verilog-0001: Analyzing file D:/riscv/RISCV/ipcore/ddr3/rtl/ddrphy/ips2l_ddrphy_dqs_gate_coarse_cal_v1_0.vp
+I: Verilog-0002: [D:/riscv/RISCV/ipcore/ddr3/rtl/ddrphy/ips2l_ddrphy_dqs_gate_coarse_cal_v1_0.vp(line number: 173)] Analyzing module ips2l_ddrphy_dqs_gate_coarse_cal_v1_0 (library work)
+Parsing done.
+Executing : .rtl_analyze -include_path {D:/riscv/RISCV} D:/riscv/RISCV/ipcore/ddr3/rtl/ddrphy/ips2l_ddrphy_dqs_gate_coarse_cal_v1_0.vp successfully.
+Executing : .rtl_analyze -include_path {D:/riscv/RISCV} D:/riscv/RISCV/ipcore/ddr3/rtl/ddrphy/ips2l_ddrphy_dll_update_ctrl_v1_3.vp
+I: Verilog-0001: Analyzing file D:/riscv/RISCV/ipcore/ddr3/rtl/ddrphy/ips2l_ddrphy_dll_update_ctrl_v1_3.vp
+I: Verilog-0002: [D:/riscv/RISCV/ipcore/ddr3/rtl/ddrphy/ips2l_ddrphy_dll_update_ctrl_v1_3.vp(line number: 124)] Analyzing module ips2l_ddrphy_dll_update_ctrl_v1_3 (library work)
+Parsing done.
+Executing : .rtl_analyze -include_path {D:/riscv/RISCV} D:/riscv/RISCV/ipcore/ddr3/rtl/ddrphy/ips2l_ddrphy_dll_update_ctrl_v1_3.vp successfully.
+Executing : .rtl_analyze -include_path {D:/riscv/RISCV} D:/riscv/RISCV/ipcore/ddr3/rtl/ddrphy/ips2l_ddrphy_dfi_v1_3.vp
+I: Verilog-0001: Analyzing file D:/riscv/RISCV/ipcore/ddr3/rtl/ddrphy/ips2l_ddrphy_dfi_v1_3.vp
+I: Verilog-0002: [D:/riscv/RISCV/ipcore/ddr3/rtl/ddrphy/ips2l_ddrphy_dfi_v1_3.vp(line number: 320)] Analyzing module ips2l_ddrphy_dfi_v1_3 (library work)
+Parsing done.
+Executing : .rtl_analyze -include_path {D:/riscv/RISCV} D:/riscv/RISCV/ipcore/ddr3/rtl/ddrphy/ips2l_ddrphy_dfi_v1_3.vp successfully.
+Executing : .rtl_analyze -include_path {D:/riscv/RISCV} D:/riscv/RISCV/ipcore/ddr3/rtl/ddrphy/ips2l_ddrphy_gpll_phase_v1_0.vp
+I: Verilog-0001: Analyzing file D:/riscv/RISCV/ipcore/ddr3/rtl/ddrphy/ips2l_ddrphy_gpll_phase_v1_0.vp
+I: Verilog-0002: [D:/riscv/RISCV/ipcore/ddr3/rtl/ddrphy/ips2l_ddrphy_gpll_phase_v1_0.vp(line number: 69)] Analyzing module ips2l_ddrphy_gpll_phase_v1_0 (library work)
+Parsing done.
+Executing : .rtl_analyze -include_path {D:/riscv/RISCV} D:/riscv/RISCV/ipcore/ddr3/rtl/ddrphy/ips2l_ddrphy_gpll_phase_v1_0.vp successfully.
+Executing : .rtl_analyze -include_path {D:/riscv/RISCV} D:/riscv/RISCV/ipcore/ddr3/rtl/ddrphy/ips2l_ddrphy_data_slice_wrlvl_v1_10.vp
+I: Verilog-0001: Analyzing file D:/riscv/RISCV/ipcore/ddr3/rtl/ddrphy/ips2l_ddrphy_data_slice_wrlvl_v1_10.vp
+I: Verilog-0002: [D:/riscv/RISCV/ipcore/ddr3/rtl/ddrphy/ips2l_ddrphy_data_slice_wrlvl_v1_10.vp(line number: 292)] Analyzing module ips2l_ddrphy_data_slice_wrlvl_v1_10 (library work)
+Parsing done.
+Executing : .rtl_analyze -include_path {D:/riscv/RISCV} D:/riscv/RISCV/ipcore/ddr3/rtl/ddrphy/ips2l_ddrphy_data_slice_wrlvl_v1_10.vp successfully.
+Executing : .rtl_analyze -include_path {D:/riscv/RISCV} D:/riscv/RISCV/ipcore/ddr3/rtl/ddrphy/ips2l_ddrphy_data_slice_wrcal_v1_10.vp
+I: Verilog-0001: Analyzing file D:/riscv/RISCV/ipcore/ddr3/rtl/ddrphy/ips2l_ddrphy_data_slice_wrcal_v1_10.vp
+I: Verilog-0002: [D:/riscv/RISCV/ipcore/ddr3/rtl/ddrphy/ips2l_ddrphy_data_slice_wrcal_v1_10.vp(line number: 278)] Analyzing module ips2l_ddrphy_data_slice_wrcal_v1_10 (library work)
+Parsing done.
+Executing : .rtl_analyze -include_path {D:/riscv/RISCV} D:/riscv/RISCV/ipcore/ddr3/rtl/ddrphy/ips2l_ddrphy_data_slice_wrcal_v1_10.vp successfully.
+Executing : .rtl_analyze -include_path {D:/riscv/RISCV} D:/riscv/RISCV/ipcore/ddr3/rtl/ddrphy/ips2l_ddrphy_data_slice_v1_10.vp
+I: Verilog-0001: Analyzing file D:/riscv/RISCV/ipcore/ddr3/rtl/ddrphy/ips2l_ddrphy_data_slice_v1_10.vp
+I: Verilog-0002: [D:/riscv/RISCV/ipcore/ddr3/rtl/ddrphy/ips2l_ddrphy_data_slice_v1_10.vp(line number: 583)] Analyzing module ips2l_ddrphy_data_slice_v1_10 (library work)
+Parsing done.
+Executing : .rtl_analyze -include_path {D:/riscv/RISCV} D:/riscv/RISCV/ipcore/ddr3/rtl/ddrphy/ips2l_ddrphy_data_slice_v1_10.vp successfully.
+Executing : .rtl_analyze -include_path {D:/riscv/RISCV} D:/riscv/RISCV/ipcore/ddr3/rtl/ddrphy/ips2l_ddrphy_data_slice_dqs_gate_cal_v1_10.vp
+I: Verilog-0001: Analyzing file D:/riscv/RISCV/ipcore/ddr3/rtl/ddrphy/ips2l_ddrphy_data_slice_dqs_gate_cal_v1_10.vp
+I: Verilog-0002: [D:/riscv/RISCV/ipcore/ddr3/rtl/ddrphy/ips2l_ddrphy_data_slice_dqs_gate_cal_v1_10.vp(line number: 111)] Analyzing module ips2l_ddrphy_data_slice_dqs_gate_cal_v1_10 (library work)
+Parsing done.
+Executing : .rtl_analyze -include_path {D:/riscv/RISCV} D:/riscv/RISCV/ipcore/ddr3/rtl/ddrphy/ips2l_ddrphy_data_slice_dqs_gate_cal_v1_10.vp successfully.
+Executing : .rtl_analyze -include_path {D:/riscv/RISCV} D:/riscv/RISCV/ipcore/ddr3/rtl/ddrphy/ips2l_ddrphy_cpd_ctrl_v1_3.vp
+I: Verilog-0001: Analyzing file D:/riscv/RISCV/ipcore/ddr3/rtl/ddrphy/ips2l_ddrphy_cpd_ctrl_v1_3.vp
+I: Verilog-0002: [D:/riscv/RISCV/ipcore/ddr3/rtl/ddrphy/ips2l_ddrphy_cpd_ctrl_v1_3.vp(line number: 182)] Analyzing module ips2l_ddrphy_cpd_ctrl_v1_3 (library work)
+Parsing done.
+Executing : .rtl_analyze -include_path {D:/riscv/RISCV} D:/riscv/RISCV/ipcore/ddr3/rtl/ddrphy/ips2l_ddrphy_cpd_ctrl_v1_3.vp successfully.
+Executing : .rtl_analyze -include_path {D:/riscv/RISCV} D:/riscv/RISCV/ipcore/ddr3/rtl/ddrphy/ips2l_ddrphy_cpd_lock_v1_0.vp
+I: Verilog-0001: Analyzing file D:/riscv/RISCV/ipcore/ddr3/rtl/ddrphy/ips2l_ddrphy_cpd_lock_v1_0.vp
+I: Verilog-0002: [D:/riscv/RISCV/ipcore/ddr3/rtl/ddrphy/ips2l_ddrphy_cpd_lock_v1_0.vp(line number: 71)] Analyzing module ips2l_ddrphy_cpd_lock_v1_0 (library work)
+Parsing done.
+Executing : .rtl_analyze -include_path {D:/riscv/RISCV} D:/riscv/RISCV/ipcore/ddr3/rtl/ddrphy/ips2l_ddrphy_cpd_lock_v1_0.vp successfully.
+Executing : .rtl_analyze -include_path {D:/riscv/RISCV} D:/riscv/RISCV/ipcore/ddr3/rtl/ddrphy/ips2l_ddrphy_control_path_adj_v1_10.vp
+I: Verilog-0001: Analyzing file D:/riscv/RISCV/ipcore/ddr3/rtl/ddrphy/ips2l_ddrphy_control_path_adj_v1_10.vp
+I: Verilog-0002: [D:/riscv/RISCV/ipcore/ddr3/rtl/ddrphy/ips2l_ddrphy_control_path_adj_v1_10.vp(line number: 134)] Analyzing module ips2l_ddrphy_control_path_adj_v1_10 (library work)
+Parsing done.
+Executing : .rtl_analyze -include_path {D:/riscv/RISCV} D:/riscv/RISCV/ipcore/ddr3/rtl/ddrphy/ips2l_ddrphy_control_path_adj_v1_10.vp successfully.
+Executing : .rtl_analyze -include_path {D:/riscv/RISCV} D:/riscv/RISCV/ipcore/ddr3/rtl/ddrphy/ips2l_ddrphy_calib_top_v1_10.vp
+I: Verilog-0001: Analyzing file D:/riscv/RISCV/ipcore/ddr3/rtl/ddrphy/ips2l_ddrphy_calib_top_v1_10.vp
+I: Verilog-0002: [D:/riscv/RISCV/ipcore/ddr3/rtl/ddrphy/ips2l_ddrphy_calib_top_v1_10.vp(line number: 392)] Analyzing module ips2l_ddrphy_calib_top_v1_10 (library work)
+Parsing done.
+Executing : .rtl_analyze -include_path {D:/riscv/RISCV} D:/riscv/RISCV/ipcore/ddr3/rtl/ddrphy/ips2l_ddrphy_calib_top_v1_10.vp successfully.
+Executing : .rtl_analyze -include_path {D:/riscv/RISCV} D:/riscv/RISCV/ipcore/ddr3/rtl/ddrphy/ips2l_ddrphy_calib_mux_v1_0.vp
+I: Verilog-0001: Analyzing file D:/riscv/RISCV/ipcore/ddr3/rtl/ddrphy/ips2l_ddrphy_calib_mux_v1_0.vp
+I: Verilog-0002: [D:/riscv/RISCV/ipcore/ddr3/rtl/ddrphy/ips2l_ddrphy_calib_mux_v1_0.vp(line number: 199)] Analyzing module ips2l_ddrphy_calib_mux_v1_0 (library work)
+Parsing done.
+Executing : .rtl_analyze -include_path {D:/riscv/RISCV} D:/riscv/RISCV/ipcore/ddr3/rtl/ddrphy/ips2l_ddrphy_calib_mux_v1_0.vp successfully.
+Executing : .rtl_analyze -include_path {D:/riscv/RISCV} D:/riscv/RISCV/ipcore/ddr3/rtl/ddrphy/ips2l_ddrphy_rst_debounce_v1_0.vp
+I: Verilog-0001: Analyzing file D:/riscv/RISCV/ipcore/ddr3/rtl/ddrphy/ips2l_ddrphy_rst_debounce_v1_0.vp
+I: Verilog-0002: [D:/riscv/RISCV/ipcore/ddr3/rtl/ddrphy/ips2l_ddrphy_rst_debounce_v1_0.vp(line number: 84)] Analyzing module ips2l_ddrphy_rst_debounce_v1_0 (library work)
+Parsing done.
+Executing : .rtl_analyze -include_path {D:/riscv/RISCV} D:/riscv/RISCV/ipcore/ddr3/rtl/ddrphy/ips2l_ddrphy_rst_debounce_v1_0.vp successfully.
+Executing : .rtl_analyze -include_path {D:/riscv/RISCV} D:/riscv/RISCV/ipcore/ddr3/rtl/ddrphy/ips2l_ddrphy_rst_clk_phase_adj_v1_0.vp
+I: Verilog-0001: Analyzing file D:/riscv/RISCV/ipcore/ddr3/rtl/ddrphy/ips2l_ddrphy_rst_clk_phase_adj_v1_0.vp
+I: Verilog-0002: [D:/riscv/RISCV/ipcore/ddr3/rtl/ddrphy/ips2l_ddrphy_rst_clk_phase_adj_v1_0.vp(line number: 104)] Analyzing module ips2l_ddrphy_rst_clk_phase_adj_v1_0 (library work)
+Parsing done.
+Executing : .rtl_analyze -include_path {D:/riscv/RISCV} D:/riscv/RISCV/ipcore/ddr3/rtl/ddrphy/ips2l_ddrphy_rst_clk_phase_adj_v1_0.vp successfully.
+Executing : .rtl_analyze -include_path {D:/riscv/RISCV} D:/riscv/RISCV/ipcore/ddr3/rtl/pll/ips2l_ddrphy_gpll_v1_3.vp
+I: Verilog-0001: Analyzing file D:/riscv/RISCV/ipcore/ddr3/rtl/pll/ips2l_ddrphy_gpll_v1_3.vp
+I: Verilog-0002: [D:/riscv/RISCV/ipcore/ddr3/rtl/pll/ips2l_ddrphy_gpll_v1_3.vp(line number: 127)] Analyzing module ips2l_ddrphy_gpll_v1_3 (library work)
+W: Verilog-2006: [D:/riscv/RISCV/ipcore/ddr3/rtl/pll/ips2l_ddrphy_gpll_v1_3.vp(line number: 154)] Ansi_parameter force parameter in body to localparam
+W: Verilog-2006: [D:/riscv/RISCV/ipcore/ddr3/rtl/pll/ips2l_ddrphy_gpll_v1_3.vp(line number: 155)] Ansi_parameter force parameter in body to localparam
+W: Verilog-2006: [D:/riscv/RISCV/ipcore/ddr3/rtl/pll/ips2l_ddrphy_gpll_v1_3.vp(line number: 156)] Ansi_parameter force parameter in body to localparam
+W: Verilog-2006: [D:/riscv/RISCV/ipcore/ddr3/rtl/pll/ips2l_ddrphy_gpll_v1_3.vp(line number: 157)] Ansi_parameter force parameter in body to localparam
+W: Verilog-2006: [D:/riscv/RISCV/ipcore/ddr3/rtl/pll/ips2l_ddrphy_gpll_v1_3.vp(line number: 158)] Ansi_parameter force parameter in body to localparam
+Parsing done.
+Executing : .rtl_analyze -include_path {D:/riscv/RISCV} D:/riscv/RISCV/ipcore/ddr3/rtl/pll/ips2l_ddrphy_gpll_v1_3.vp successfully.
+Executing : .rtl_analyze -include_path {D:/riscv/RISCV} D:/riscv/RISCV/ipcore/ddr3/rtl/pll/ips2l_ddrphy_ppll_v1_0.vp
+I: Verilog-0001: Analyzing file D:/riscv/RISCV/ipcore/ddr3/rtl/pll/ips2l_ddrphy_ppll_v1_0.vp
+I: Verilog-0002: [D:/riscv/RISCV/ipcore/ddr3/rtl/pll/ips2l_ddrphy_ppll_v1_0.vp(line number: 242)] Analyzing module ips2l_ddrphy_ppll_v1_0 (library work)
+W: Verilog-2006: [D:/riscv/RISCV/ipcore/ddr3/rtl/pll/ips2l_ddrphy_ppll_v1_0.vp(line number: 261)] Ansi_parameter force parameter in body to localparam
+W: Verilog-2006: [D:/riscv/RISCV/ipcore/ddr3/rtl/pll/ips2l_ddrphy_ppll_v1_0.vp(line number: 262)] Ansi_parameter force parameter in body to localparam
+W: Verilog-2006: [D:/riscv/RISCV/ipcore/ddr3/rtl/pll/ips2l_ddrphy_ppll_v1_0.vp(line number: 263)] Ansi_parameter force parameter in body to localparam
+W: Verilog-2006: [D:/riscv/RISCV/ipcore/ddr3/rtl/pll/ips2l_ddrphy_ppll_v1_0.vp(line number: 264)] Ansi_parameter force parameter in body to localparam
+W: Verilog-2006: [D:/riscv/RISCV/ipcore/ddr3/rtl/pll/ips2l_ddrphy_ppll_v1_0.vp(line number: 265)] Ansi_parameter force parameter in body to localparam
+Parsing done.
+Executing : .rtl_analyze -include_path {D:/riscv/RISCV} D:/riscv/RISCV/ipcore/ddr3/rtl/pll/ips2l_ddrphy_ppll_v1_0.vp successfully.
+Executing : .rtl_analyze -include_path {D:/riscv/RISCV} D:/riscv/RISCV/ipcore/ddr3/rtl/mcdq_ctrl/ips2l_mcdq_apb_cross_v1_2.vp
+I: Verilog-0001: Analyzing file D:/riscv/RISCV/ipcore/ddr3/rtl/mcdq_ctrl/ips2l_mcdq_apb_cross_v1_2.vp
+I: Verilog-0002: [D:/riscv/RISCV/ipcore/ddr3/rtl/mcdq_ctrl/ips2l_mcdq_apb_cross_v1_2.vp(line number: 145)] Analyzing module ips2l_mcdq_apb_cross_v1_2 (library work)
+Parsing done.
+Executing : .rtl_analyze -include_path {D:/riscv/RISCV} D:/riscv/RISCV/ipcore/ddr3/rtl/mcdq_ctrl/ips2l_mcdq_apb_cross_v1_2.vp successfully.
+Executing : .rtl_analyze -include_path {D:/riscv/RISCV} D:/riscv/RISCV/ipcore/ddr3/rtl/mcdq_ctrl/ips2l_mcdq_calib_delay_v1_2.vp
+I: Verilog-0001: Analyzing file D:/riscv/RISCV/ipcore/ddr3/rtl/mcdq_ctrl/ips2l_mcdq_calib_delay_v1_2.vp
+I: Verilog-0002: [D:/riscv/RISCV/ipcore/ddr3/rtl/mcdq_ctrl/ips2l_mcdq_calib_delay_v1_2.vp(line number: 101)] Analyzing module ips2l_mcdq_calib_delay_v1_2 (library work)
+Parsing done.
+Executing : .rtl_analyze -include_path {D:/riscv/RISCV} D:/riscv/RISCV/ipcore/ddr3/rtl/mcdq_ctrl/ips2l_mcdq_calib_delay_v1_2.vp successfully.
+Executing : .rtl_analyze -include_path {D:/riscv/RISCV} D:/riscv/RISCV/ipcore/ddr3/rtl/mcdq_ctrl/ips2l_mcdq_cfg_apb_v1_2.vp
+I: Verilog-0001: Analyzing file D:/riscv/RISCV/ipcore/ddr3/rtl/mcdq_ctrl/ips2l_mcdq_cfg_apb_v1_2.vp
+I: Verilog-0002: [D:/riscv/RISCV/ipcore/ddr3/rtl/mcdq_ctrl/ips2l_mcdq_cfg_apb_v1_2.vp(line number: 559)] Analyzing module ips2l_mcdq_cfg_apb_v1_2 (library work)
+Parsing done.
+Executing : .rtl_analyze -include_path {D:/riscv/RISCV} D:/riscv/RISCV/ipcore/ddr3/rtl/mcdq_ctrl/ips2l_mcdq_cfg_apb_v1_2.vp successfully.
+Executing : .rtl_analyze -include_path {D:/riscv/RISCV} D:/riscv/RISCV/ipcore/ddr3/rtl/mcdq_ctrl/ips2l_mcdq_dcd_bm_v1_2.vp
+I: Verilog-0001: Analyzing file D:/riscv/RISCV/ipcore/ddr3/rtl/mcdq_ctrl/ips2l_mcdq_dcd_bm_v1_2.vp
+I: Verilog-0002: [D:/riscv/RISCV/ipcore/ddr3/rtl/mcdq_ctrl/ips2l_mcdq_dcd_bm_v1_2.vp(line number: 243)] Analyzing module ips2l_mcdq_dcd_bm_v1_2 (library work)
+Parsing done.
+Executing : .rtl_analyze -include_path {D:/riscv/RISCV} D:/riscv/RISCV/ipcore/ddr3/rtl/mcdq_ctrl/ips2l_mcdq_dcd_bm_v1_2.vp successfully.
+Executing : .rtl_analyze -include_path {D:/riscv/RISCV} D:/riscv/RISCV/ipcore/ddr3/rtl/mcdq_ctrl/ips2l_mcdq_dcd_rowaddr_v1_2.vp
+I: Verilog-0001: Analyzing file D:/riscv/RISCV/ipcore/ddr3/rtl/mcdq_ctrl/ips2l_mcdq_dcd_rowaddr_v1_2.vp
+I: Verilog-0002: [D:/riscv/RISCV/ipcore/ddr3/rtl/mcdq_ctrl/ips2l_mcdq_dcd_rowaddr_v1_2.vp(line number: 76)] Analyzing module ips2l_mcdq_dcd_rowaddr_v1_2 (library work)
+Parsing done.
+Executing : .rtl_analyze -include_path {D:/riscv/RISCV} D:/riscv/RISCV/ipcore/ddr3/rtl/mcdq_ctrl/ips2l_mcdq_dcd_rowaddr_v1_2.vp successfully.
+Executing : .rtl_analyze -include_path {D:/riscv/RISCV} D:/riscv/RISCV/ipcore/ddr3/rtl/mcdq_ctrl/ips2l_mcdq_dcd_sm_v1_2.vp
+I: Verilog-0001: Analyzing file D:/riscv/RISCV/ipcore/ddr3/rtl/mcdq_ctrl/ips2l_mcdq_dcd_sm_v1_2.vp
+I: Verilog-0002: [D:/riscv/RISCV/ipcore/ddr3/rtl/mcdq_ctrl/ips2l_mcdq_dcd_sm_v1_2.vp(line number: 209)] Analyzing module ips2l_mcdq_dcd_sm_v1_2 (library work)
+Parsing done.
+Executing : .rtl_analyze -include_path {D:/riscv/RISCV} D:/riscv/RISCV/ipcore/ddr3/rtl/mcdq_ctrl/ips2l_mcdq_dcd_sm_v1_2.vp successfully.
+Executing : .rtl_analyze -include_path {D:/riscv/RISCV} D:/riscv/RISCV/ipcore/ddr3/rtl/mcdq_ctrl/ips2l_mcdq_dcd_top_v1_2.vp
+I: Verilog-0001: Analyzing file D:/riscv/RISCV/ipcore/ddr3/rtl/mcdq_ctrl/ips2l_mcdq_dcd_top_v1_2.vp
+I: Verilog-0002: [D:/riscv/RISCV/ipcore/ddr3/rtl/mcdq_ctrl/ips2l_mcdq_dcd_top_v1_2.vp(line number: 174)] Analyzing module ips2l_mcdq_dcd_top_v1_2 (library work)
+Parsing done.
+Executing : .rtl_analyze -include_path {D:/riscv/RISCV} D:/riscv/RISCV/ipcore/ddr3/rtl/mcdq_ctrl/ips2l_mcdq_dcd_top_v1_2.vp successfully.
+Executing : .rtl_analyze -include_path {D:/riscv/RISCV} D:/riscv/RISCV/ipcore/ddr3/rtl/mcdq_ctrl/ips2l_mcdq_dcp_back_ctrl_v1_2.vp
+I: Verilog-0001: Analyzing file D:/riscv/RISCV/ipcore/ddr3/rtl/mcdq_ctrl/ips2l_mcdq_dcp_back_ctrl_v1_2.vp
+I: Verilog-0002: [D:/riscv/RISCV/ipcore/ddr3/rtl/mcdq_ctrl/ips2l_mcdq_dcp_back_ctrl_v1_2.vp(line number: 643)] Analyzing module ips2l_mcdq_dcp_back_ctrl_v1_2 (library work)
+Parsing done.
+Executing : .rtl_analyze -include_path {D:/riscv/RISCV} D:/riscv/RISCV/ipcore/ddr3/rtl/mcdq_ctrl/ips2l_mcdq_dcp_back_ctrl_v1_2.vp successfully.
+Executing : .rtl_analyze -include_path {D:/riscv/RISCV} D:/riscv/RISCV/ipcore/ddr3/rtl/mcdq_ctrl/ips2l_mcdq_dcp_buf_v1_2.vp
+I: Verilog-0001: Analyzing file D:/riscv/RISCV/ipcore/ddr3/rtl/mcdq_ctrl/ips2l_mcdq_dcp_buf_v1_2.vp
+I: Verilog-0002: [D:/riscv/RISCV/ipcore/ddr3/rtl/mcdq_ctrl/ips2l_mcdq_dcp_buf_v1_2.vp(line number: 298)] Analyzing module ips2l_mcdq_dcp_buf_v1_2 (library work)
+Parsing done.
+Executing : .rtl_analyze -include_path {D:/riscv/RISCV} D:/riscv/RISCV/ipcore/ddr3/rtl/mcdq_ctrl/ips2l_mcdq_dcp_buf_v1_2.vp successfully.
+Executing : .rtl_analyze -include_path {D:/riscv/RISCV} D:/riscv/RISCV/ipcore/ddr3/rtl/mcdq_ctrl/ips2l_mcdq_dcp_out_v1_2.vp
+I: Verilog-0001: Analyzing file D:/riscv/RISCV/ipcore/ddr3/rtl/mcdq_ctrl/ips2l_mcdq_dcp_out_v1_2.vp
+I: Verilog-0002: [D:/riscv/RISCV/ipcore/ddr3/rtl/mcdq_ctrl/ips2l_mcdq_dcp_out_v1_2.vp(line number: 210)] Analyzing module ips2l_mcdq_dcp_out_v1_2 (library work)
+Parsing done.
+Executing : .rtl_analyze -include_path {D:/riscv/RISCV} D:/riscv/RISCV/ipcore/ddr3/rtl/mcdq_ctrl/ips2l_mcdq_dcp_out_v1_2.vp successfully.
+Executing : .rtl_analyze -include_path {D:/riscv/RISCV} D:/riscv/RISCV/ipcore/ddr3/rtl/mcdq_ctrl/ips2l_mcdq_dcp_top_v1_2.vp
+I: Verilog-0001: Analyzing file D:/riscv/RISCV/ipcore/ddr3/rtl/mcdq_ctrl/ips2l_mcdq_dcp_top_v1_2.vp
+I: Verilog-0002: [D:/riscv/RISCV/ipcore/ddr3/rtl/mcdq_ctrl/ips2l_mcdq_dcp_top_v1_2.vp(line number: 329)] Analyzing module ips2l_mcdq_dcp_top_v1_2 (library work)
+Parsing done.
+Executing : .rtl_analyze -include_path {D:/riscv/RISCV} D:/riscv/RISCV/ipcore/ddr3/rtl/mcdq_ctrl/ips2l_mcdq_dcp_top_v1_2.vp successfully.
+Executing : .rtl_analyze -include_path {D:/riscv/RISCV} D:/riscv/RISCV/ipcore/ddr3/rtl/mcdq_ctrl/ips2l_mcdq_dfi_v1_2.vp
+I: Verilog-0001: Analyzing file D:/riscv/RISCV/ipcore/ddr3/rtl/mcdq_ctrl/ips2l_mcdq_dfi_v1_2.vp
+I: Verilog-0002: [D:/riscv/RISCV/ipcore/ddr3/rtl/mcdq_ctrl/ips2l_mcdq_dfi_v1_2.vp(line number: 432)] Analyzing module ips2l_mcdq_dfi_v1_2 (library work)
+Parsing done.
+Executing : .rtl_analyze -include_path {D:/riscv/RISCV} D:/riscv/RISCV/ipcore/ddr3/rtl/mcdq_ctrl/ips2l_mcdq_dfi_v1_2.vp successfully.
+Executing : .rtl_analyze -include_path {D:/riscv/RISCV} D:/riscv/RISCV/ipcore/ddr3/rtl/mcdq_ctrl/ips2l_mcdq_lp_v1_2.vp
+I: Verilog-0001: Analyzing file D:/riscv/RISCV/ipcore/ddr3/rtl/mcdq_ctrl/ips2l_mcdq_lp_v1_2.vp
+I: Verilog-0002: [D:/riscv/RISCV/ipcore/ddr3/rtl/mcdq_ctrl/ips2l_mcdq_lp_v1_2.vp(line number: 315)] Analyzing module ips2l_mcdq_lp_v1_2 (library work)
+Parsing done.
+Executing : .rtl_analyze -include_path {D:/riscv/RISCV} D:/riscv/RISCV/ipcore/ddr3/rtl/mcdq_ctrl/ips2l_mcdq_lp_v1_2.vp successfully.
+Executing : .rtl_analyze -include_path {D:/riscv/RISCV} D:/riscv/RISCV/ipcore/ddr3/rtl/mcdq_ctrl/ips2l_mcdq_mrs_v1_2.vp
+I: Verilog-0001: Analyzing file D:/riscv/RISCV/ipcore/ddr3/rtl/mcdq_ctrl/ips2l_mcdq_mrs_v1_2.vp
+I: Verilog-0002: [D:/riscv/RISCV/ipcore/ddr3/rtl/mcdq_ctrl/ips2l_mcdq_mrs_v1_2.vp(line number: 321)] Analyzing module ips2l_mcdq_mrs_v1_2 (library work)
+Parsing done.
+Executing : .rtl_analyze -include_path {D:/riscv/RISCV} D:/riscv/RISCV/ipcore/ddr3/rtl/mcdq_ctrl/ips2l_mcdq_mrs_v1_2.vp successfully.
+Executing : .rtl_analyze -include_path {D:/riscv/RISCV} D:/riscv/RISCV/ipcore/ddr3/rtl/mcdq_ctrl/ips2l_mcdq_prefetch_fifo_v1_2.vp
+I: Verilog-0001: Analyzing file D:/riscv/RISCV/ipcore/ddr3/rtl/mcdq_ctrl/ips2l_mcdq_prefetch_fifo_v1_2.vp
+I: Verilog-0002: [D:/riscv/RISCV/ipcore/ddr3/rtl/mcdq_ctrl/ips2l_mcdq_prefetch_fifo_v1_2.vp(line number: 95)] Analyzing module ips2l_mcdq_prefetch_fifo_v1_2 (library work)
+Parsing done.
+Executing : .rtl_analyze -include_path {D:/riscv/RISCV} D:/riscv/RISCV/ipcore/ddr3/rtl/mcdq_ctrl/ips2l_mcdq_prefetch_fifo_v1_2.vp successfully.
+Executing : .rtl_analyze -include_path {D:/riscv/RISCV} D:/riscv/RISCV/ipcore/ddr3/rtl/mcdq_ctrl/ips2l_mcdq_rdatapath_v1_2.vp
+I: Verilog-0001: Analyzing file D:/riscv/RISCV/ipcore/ddr3/rtl/mcdq_ctrl/ips2l_mcdq_rdatapath_v1_2.vp
+I: Verilog-0002: [D:/riscv/RISCV/ipcore/ddr3/rtl/mcdq_ctrl/ips2l_mcdq_rdatapath_v1_2.vp(line number: 83)] Analyzing module ips2l_mcdq_rdatapath_v1_2 (library work)
+Parsing done.
+Executing : .rtl_analyze -include_path {D:/riscv/RISCV} D:/riscv/RISCV/ipcore/ddr3/rtl/mcdq_ctrl/ips2l_mcdq_rdatapath_v1_2.vp successfully.
+Executing : .rtl_analyze -include_path {D:/riscv/RISCV} D:/riscv/RISCV/ipcore/ddr3/rtl/mcdq_ctrl/ips2l_mcdq_reg_fifo2_v1_2.vp
+I: Verilog-0001: Analyzing file D:/riscv/RISCV/ipcore/ddr3/rtl/mcdq_ctrl/ips2l_mcdq_reg_fifo2_v1_2.vp
+I: Verilog-0002: [D:/riscv/RISCV/ipcore/ddr3/rtl/mcdq_ctrl/ips2l_mcdq_reg_fifo2_v1_2.vp(line number: 78)] Analyzing module ips2l_mcdq_reg_fifo2_v1_2 (library work)
+Parsing done.
+Executing : .rtl_analyze -include_path {D:/riscv/RISCV} D:/riscv/RISCV/ipcore/ddr3/rtl/mcdq_ctrl/ips2l_mcdq_reg_fifo2_v1_2.vp successfully.
+Executing : .rtl_analyze -include_path {D:/riscv/RISCV} D:/riscv/RISCV/ipcore/ddr3/rtl/mcdq_ctrl/ips2l_mcdq_ui_axi_v1_2a.vp
+I: Verilog-0001: Analyzing file D:/riscv/RISCV/ipcore/ddr3/rtl/mcdq_ctrl/ips2l_mcdq_ui_axi_v1_2a.vp
+I: Verilog-0002: [D:/riscv/RISCV/ipcore/ddr3/rtl/mcdq_ctrl/ips2l_mcdq_ui_axi_v1_2a.vp(line number: 271)] Analyzing module ips2l_mcdq_ui_axi_v1_2a (library work)
+Parsing done.
+Executing : .rtl_analyze -include_path {D:/riscv/RISCV} D:/riscv/RISCV/ipcore/ddr3/rtl/mcdq_ctrl/ips2l_mcdq_ui_axi_v1_2a.vp successfully.
+Executing : .rtl_analyze -include_path {D:/riscv/RISCV} D:/riscv/RISCV/ipcore/ddr3/rtl/mcdq_ctrl/ips2l_mcdq_wdatapath_v1_2.vp
+I: Verilog-0001: Analyzing file D:/riscv/RISCV/ipcore/ddr3/rtl/mcdq_ctrl/ips2l_mcdq_wdatapath_v1_2.vp
+I: Verilog-0002: [D:/riscv/RISCV/ipcore/ddr3/rtl/mcdq_ctrl/ips2l_mcdq_wdatapath_v1_2.vp(line number: 171)] Analyzing module ips2l_mcdq_wdatapath_v1_2 (library work)
+Parsing done.
+Executing : .rtl_analyze -include_path {D:/riscv/RISCV} D:/riscv/RISCV/ipcore/ddr3/rtl/mcdq_ctrl/ips2l_mcdq_wdatapath_v1_2.vp successfully.
+Executing : .rtl_analyze -include_path {D:/riscv/RISCV} D:/riscv/RISCV/ipcore/ddr3/rtl/mcdq_ctrl/ips2l_mcdq_wdp_align_v1_2.vp
+I: Verilog-0001: Analyzing file D:/riscv/RISCV/ipcore/ddr3/rtl/mcdq_ctrl/ips2l_mcdq_wdp_align_v1_2.vp
+I: Verilog-0002: [D:/riscv/RISCV/ipcore/ddr3/rtl/mcdq_ctrl/ips2l_mcdq_wdp_align_v1_2.vp(line number: 140)] Analyzing module ips2l_mcdq_wdp_align_v1_2 (library work)
+Parsing done.
+Executing : .rtl_analyze -include_path {D:/riscv/RISCV} D:/riscv/RISCV/ipcore/ddr3/rtl/mcdq_ctrl/ips2l_mcdq_wdp_align_v1_2.vp successfully.
+Executing : .rtl_analyze -include_path {D:/riscv/RISCV} D:/riscv/RISCV/ipcore/ddr3/rtl/mcdq_ctrl/ips2l_mcdq_wdp_dcp_v1_2.vp
+I: Verilog-0001: Analyzing file D:/riscv/RISCV/ipcore/ddr3/rtl/mcdq_ctrl/ips2l_mcdq_wdp_dcp_v1_2.vp
+I: Verilog-0002: [D:/riscv/RISCV/ipcore/ddr3/rtl/mcdq_ctrl/ips2l_mcdq_wdp_dcp_v1_2.vp(line number: 133)] Analyzing module ips2l_mcdq_wdp_dcp_v1_2 (library work)
+Parsing done.
+Executing : .rtl_analyze -include_path {D:/riscv/RISCV} D:/riscv/RISCV/ipcore/ddr3/rtl/mcdq_ctrl/ips2l_mcdq_wdp_dcp_v1_2.vp successfully.
+Executing : .rtl_analyze -include_path {D:/riscv/RISCV} D:/riscv/RISCV/ipcore/ddr3/rtl/mcdq_ctrl/ips2l_mcdq_wrapper_v1_2b.vp
+I: Verilog-0001: Analyzing file D:/riscv/RISCV/ipcore/ddr3/rtl/mcdq_ctrl/ips2l_mcdq_wrapper_v1_2b.vp
+I: Verilog-0002: [D:/riscv/RISCV/ipcore/ddr3/rtl/mcdq_ctrl/ips2l_mcdq_wrapper_v1_2b.vp(line number: 619)] Analyzing module ips2l_mcdq_wrapper_v1_2b (library work)
+Parsing done.
+Executing : .rtl_analyze -include_path {D:/riscv/RISCV} D:/riscv/RISCV/ipcore/ddr3/rtl/mcdq_ctrl/ips2l_mcdq_wrapper_v1_2b.vp successfully.
+Executing : .rtl_analyze -include_path {D:/riscv/RISCV} D:/riscv/RISCV/ipcore/ddr3/rtl/mcdq_ctrl/syn_mod/ips2l_mcdq_com_timing_v1_2.vp
+I: Verilog-0001: Analyzing file D:/riscv/RISCV/ipcore/ddr3/rtl/mcdq_ctrl/syn_mod/ips2l_mcdq_com_timing_v1_2.vp
+I: Verilog-0002: [D:/riscv/RISCV/ipcore/ddr3/rtl/mcdq_ctrl/syn_mod/ips2l_mcdq_com_timing_v1_2.vp(line number: 102)] Analyzing module ips2l_mcdq_com_timing_v1_2 (library work)
+Parsing done.
+Executing : .rtl_analyze -include_path {D:/riscv/RISCV} D:/riscv/RISCV/ipcore/ddr3/rtl/mcdq_ctrl/syn_mod/ips2l_mcdq_com_timing_v1_2.vp successfully.
+Executing : .rtl_analyze -include_path {D:/riscv/RISCV} D:/riscv/RISCV/ipcore/ddr3/rtl/mcdq_ctrl/syn_mod/ips2l_mcdq_tfaw_timing_v1_2.vp
+I: Verilog-0001: Analyzing file D:/riscv/RISCV/ipcore/ddr3/rtl/mcdq_ctrl/syn_mod/ips2l_mcdq_tfaw_timing_v1_2.vp
+I: Verilog-0002: [D:/riscv/RISCV/ipcore/ddr3/rtl/mcdq_ctrl/syn_mod/ips2l_mcdq_tfaw_timing_v1_2.vp(line number: 128)] Analyzing module ips2l_mcdq_tfaw_timing_v1_2 (library work)
+Parsing done.
+Executing : .rtl_analyze -include_path {D:/riscv/RISCV} D:/riscv/RISCV/ipcore/ddr3/rtl/mcdq_ctrl/syn_mod/ips2l_mcdq_tfaw_timing_v1_2.vp successfully.
+Executing : .rtl_analyze -include_path {D:/riscv/RISCV} D:/riscv/RISCV/ipcore/ddr3/rtl/mcdq_ctrl/syn_mod/ips2l_mcdq_tfaw_v1_2.vp
+I: Verilog-0001: Analyzing file D:/riscv/RISCV/ipcore/ddr3/rtl/mcdq_ctrl/syn_mod/ips2l_mcdq_tfaw_v1_2.vp
+I: Verilog-0002: [D:/riscv/RISCV/ipcore/ddr3/rtl/mcdq_ctrl/syn_mod/ips2l_mcdq_tfaw_v1_2.vp(line number: 68)] Analyzing module ips2l_mcdq_tfaw_v1_2 (library work)
+Parsing done.
+Executing : .rtl_analyze -include_path {D:/riscv/RISCV} D:/riscv/RISCV/ipcore/ddr3/rtl/mcdq_ctrl/syn_mod/ips2l_mcdq_tfaw_v1_2.vp successfully.
+Executing : .rtl_analyze -include_path {D:/riscv/RISCV} D:/riscv/RISCV/ipcore/ddr3/rtl/mcdq_ctrl/syn_mod/ips2l_mcdq_timing_act2wr_pass_v1_2.vp
+I: Verilog-0001: Analyzing file D:/riscv/RISCV/ipcore/ddr3/rtl/mcdq_ctrl/syn_mod/ips2l_mcdq_timing_act2wr_pass_v1_2.vp
+I: Verilog-0002: [D:/riscv/RISCV/ipcore/ddr3/rtl/mcdq_ctrl/syn_mod/ips2l_mcdq_timing_act2wr_pass_v1_2.vp(line number: 115)] Analyzing module ips2l_mcdq_timing_act2wr_pass_v1_2 (library work)
+Parsing done.
+Executing : .rtl_analyze -include_path {D:/riscv/RISCV} D:/riscv/RISCV/ipcore/ddr3/rtl/mcdq_ctrl/syn_mod/ips2l_mcdq_timing_act2wr_pass_v1_2.vp successfully.
+Executing : .rtl_analyze -include_path {D:/riscv/RISCV} D:/riscv/RISCV/ipcore/ddr3/rtl/mcdq_ctrl/syn_mod/ips2l_mcdq_timing_act_pass_v1_2.vp
+I: Verilog-0001: Analyzing file D:/riscv/RISCV/ipcore/ddr3/rtl/mcdq_ctrl/syn_mod/ips2l_mcdq_timing_act_pass_v1_2.vp
+I: Verilog-0002: [D:/riscv/RISCV/ipcore/ddr3/rtl/mcdq_ctrl/syn_mod/ips2l_mcdq_timing_act_pass_v1_2.vp(line number: 92)] Analyzing module ips2l_mcdq_timing_act_pass_v1_2 (library work)
+Parsing done.
+Executing : .rtl_analyze -include_path {D:/riscv/RISCV} D:/riscv/RISCV/ipcore/ddr3/rtl/mcdq_ctrl/syn_mod/ips2l_mcdq_timing_act_pass_v1_2.vp successfully.
+Executing : .rtl_analyze -include_path {D:/riscv/RISCV} D:/riscv/RISCV/ipcore/ddr3/rtl/mcdq_ctrl/syn_mod/ips2l_mcdq_timing_pre_pass_v1_2.vp
+I: Verilog-0001: Analyzing file D:/riscv/RISCV/ipcore/ddr3/rtl/mcdq_ctrl/syn_mod/ips2l_mcdq_timing_pre_pass_v1_2.vp
+I: Verilog-0002: [D:/riscv/RISCV/ipcore/ddr3/rtl/mcdq_ctrl/syn_mod/ips2l_mcdq_timing_pre_pass_v1_2.vp(line number: 148)] Analyzing module ips2l_mcdq_timing_pre_pass_v1_2 (library work)
+Parsing done.
+Executing : .rtl_analyze -include_path {D:/riscv/RISCV} D:/riscv/RISCV/ipcore/ddr3/rtl/mcdq_ctrl/syn_mod/ips2l_mcdq_timing_pre_pass_v1_2.vp successfully.
+Executing : .rtl_analyze -include_path {D:/riscv/RISCV} D:/riscv/RISCV/ipcore/ddr3/rtl/mcdq_ctrl/syn_mod/ips2l_mcdq_timing_rd_pass_v1_2.vp
+I: Verilog-0001: Analyzing file D:/riscv/RISCV/ipcore/ddr3/rtl/mcdq_ctrl/syn_mod/ips2l_mcdq_timing_rd_pass_v1_2.vp
+I: Verilog-0002: [D:/riscv/RISCV/ipcore/ddr3/rtl/mcdq_ctrl/syn_mod/ips2l_mcdq_timing_rd_pass_v1_2.vp(line number: 128)] Analyzing module ips2l_mcdq_timing_rd_pass_v1_2 (library work)
+Parsing done.
+Executing : .rtl_analyze -include_path {D:/riscv/RISCV} D:/riscv/RISCV/ipcore/ddr3/rtl/mcdq_ctrl/syn_mod/ips2l_mcdq_timing_rd_pass_v1_2.vp successfully.
+Executing : .rtl_analyze -include_path {D:/riscv/RISCV} D:/riscv/RISCV/ipcore/ddr3/rtl/mcdq_ctrl/syn_mod/ips2l_mcdq_timing_ref_pass_v1_2.vp
+I: Verilog-0001: Analyzing file D:/riscv/RISCV/ipcore/ddr3/rtl/mcdq_ctrl/syn_mod/ips2l_mcdq_timing_ref_pass_v1_2.vp
+I: Verilog-0002: [D:/riscv/RISCV/ipcore/ddr3/rtl/mcdq_ctrl/syn_mod/ips2l_mcdq_timing_ref_pass_v1_2.vp(line number: 90)] Analyzing module ips2l_mcdq_timing_ref_pass_v1_2 (library work)
+Parsing done.
+Executing : .rtl_analyze -include_path {D:/riscv/RISCV} D:/riscv/RISCV/ipcore/ddr3/rtl/mcdq_ctrl/syn_mod/ips2l_mcdq_timing_ref_pass_v1_2.vp successfully.
+Executing : .rtl_analyze -include_path {D:/riscv/RISCV} D:/riscv/RISCV/ipcore/ddr3/rtl/mcdq_ctrl/syn_mod/ips2l_mcdq_timing_wr_pass_v1_2.vp
+I: Verilog-0001: Analyzing file D:/riscv/RISCV/ipcore/ddr3/rtl/mcdq_ctrl/syn_mod/ips2l_mcdq_timing_wr_pass_v1_2.vp
+I: Verilog-0002: [D:/riscv/RISCV/ipcore/ddr3/rtl/mcdq_ctrl/syn_mod/ips2l_mcdq_timing_wr_pass_v1_2.vp(line number: 127)] Analyzing module ips2l_mcdq_timing_wr_pass_v1_2 (library work)
+Parsing done.
+Executing : .rtl_analyze -include_path {D:/riscv/RISCV} D:/riscv/RISCV/ipcore/ddr3/rtl/mcdq_ctrl/syn_mod/ips2l_mcdq_timing_wr_pass_v1_2.vp successfully.
+Executing : .rtl_analyze -include_path {D:/riscv/RISCV} D:/riscv/RISCV/ipcore/ddr3/rtl/mcdq_ctrl/syn_mod/ips2l_mcdq_trc_timing_v1_2.vp
+I: Verilog-0001: Analyzing file D:/riscv/RISCV/ipcore/ddr3/rtl/mcdq_ctrl/syn_mod/ips2l_mcdq_trc_timing_v1_2.vp
+I: Verilog-0002: [D:/riscv/RISCV/ipcore/ddr3/rtl/mcdq_ctrl/syn_mod/ips2l_mcdq_trc_timing_v1_2.vp(line number: 149)] Analyzing module ips2l_mcdq_trc_timing_v1_2 (library work)
+Parsing done.
+Executing : .rtl_analyze -include_path {D:/riscv/RISCV} D:/riscv/RISCV/ipcore/ddr3/rtl/mcdq_ctrl/syn_mod/ips2l_mcdq_trc_timing_v1_2.vp successfully.
+Executing : .rtl_analyze -include_path {D:/riscv/RISCV} D:/riscv/RISCV/ipcore/ddr3/rtl/mcdq_ctrl/distributed_fifo/ips2l_distributed_fifo_v1_0.vp
+I: Verilog-0001: Analyzing file D:/riscv/RISCV/ipcore/ddr3/rtl/mcdq_ctrl/distributed_fifo/ips2l_distributed_fifo_v1_0.vp
+I: Verilog-0002: [D:/riscv/RISCV/ipcore/ddr3/rtl/mcdq_ctrl/distributed_fifo/ips2l_distributed_fifo_v1_0.vp(line number: 130)] Analyzing module ips2l_distributed_fifo_v1_0 (library work)
+Parsing done.
+Executing : .rtl_analyze -include_path {D:/riscv/RISCV} D:/riscv/RISCV/ipcore/ddr3/rtl/mcdq_ctrl/distributed_fifo/ips2l_distributed_fifo_v1_0.vp successfully.
+Executing : .rtl_analyze -include_path {D:/riscv/RISCV} D:/riscv/RISCV/ipcore/ddr3/rtl/mcdq_ctrl/distributed_fifo/rtl/ips2l_distributed_fifo_ctr_v1_0.vp
+I: Verilog-0001: Analyzing file D:/riscv/RISCV/ipcore/ddr3/rtl/mcdq_ctrl/distributed_fifo/rtl/ips2l_distributed_fifo_ctr_v1_0.vp
+I: Verilog-0002: [D:/riscv/RISCV/ipcore/ddr3/rtl/mcdq_ctrl/distributed_fifo/rtl/ips2l_distributed_fifo_ctr_v1_0.vp(line number: 269)] Analyzing module ips2l_distributed_fifo_ctr_v1_0 (library work)
+Parsing done.
+Executing : .rtl_analyze -include_path {D:/riscv/RISCV} D:/riscv/RISCV/ipcore/ddr3/rtl/mcdq_ctrl/distributed_fifo/rtl/ips2l_distributed_fifo_ctr_v1_0.vp successfully.
+Executing : .rtl_analyze -include_path {D:/riscv/RISCV} D:/riscv/RISCV/ipcore/ddr3/rtl/mcdq_ctrl/distributed_fifo/rtl/ips2l_distributed_fifo_v1_0_distributed_fifo_v1_0.vp
+I: Verilog-0001: Analyzing file D:/riscv/RISCV/ipcore/ddr3/rtl/mcdq_ctrl/distributed_fifo/rtl/ips2l_distributed_fifo_v1_0_distributed_fifo_v1_0.vp
+I: Verilog-0002: [D:/riscv/RISCV/ipcore/ddr3/rtl/mcdq_ctrl/distributed_fifo/rtl/ips2l_distributed_fifo_v1_0_distributed_fifo_v1_0.vp(line number: 130)] Analyzing module ips2l_distributed_fifo_v1_0_distributed_fifo_v1_0 (library work)
+Parsing done.
+Executing : .rtl_analyze -include_path {D:/riscv/RISCV} D:/riscv/RISCV/ipcore/ddr3/rtl/mcdq_ctrl/distributed_fifo/rtl/ips2l_distributed_fifo_v1_0_distributed_fifo_v1_0.vp successfully.
+Executing : .rtl_analyze -include_path {D:/riscv/RISCV} D:/riscv/RISCV/ipcore/ddr3/rtl/mcdq_ctrl/distributed_fifo/rtl/ips2l_distributed_sdpram_v1_0_distributed_fifo_v1_0.vp
+I: Verilog-0001: Analyzing file D:/riscv/RISCV/ipcore/ddr3/rtl/mcdq_ctrl/distributed_fifo/rtl/ips2l_distributed_sdpram_v1_0_distributed_fifo_v1_0.vp
+I: Verilog-0002: [D:/riscv/RISCV/ipcore/ddr3/rtl/mcdq_ctrl/distributed_fifo/rtl/ips2l_distributed_sdpram_v1_0_distributed_fifo_v1_0.vp(line number: 120)] Analyzing module ips2l_distributed_sdpram_v1_0_distributed_fifo_v1_0 (library work)
+I: [D:/riscv/RISCV/ipcore/ddr3/rtl/mcdq_ctrl/distributed_fifo/rtl/ips2l_distributed_sdpram_v1_0_distributed_fifo_v1_0.vp(line number: 129)] Convert attribute name from syn_ramstyle to PAP_RAM_STYLE
+Parsing done.
+Executing : .rtl_analyze -include_path {D:/riscv/RISCV} D:/riscv/RISCV/ipcore/ddr3/rtl/mcdq_ctrl/distributed_fifo/rtl/ips2l_distributed_sdpram_v1_0_distributed_fifo_v1_0.vp successfully.
+Executing : .rtl_analyze -include_path {D:/riscv/RISCV} D:/riscv/RISCV/ipcore/ddr3/ddr3.v
+I: Verilog-0001: Analyzing file D:/riscv/RISCV/ipcore/ddr3/ddr3.v
+I: Verilog-0002: [D:/riscv/RISCV/ipcore/ddr3/ddr3.v(line number: 12)] Analyzing module ddr3 (library work)
+Parsing done.
+Executing : .rtl_analyze -include_path {D:/riscv/RISCV} D:/riscv/RISCV/ipcore/ddr3/ddr3.v successfully.
+Executing : .rtl_analyze -include_path {D:/riscv/RISCV} D:/riscv/RISCV/ipcore/ddr3/ddr3_ddrphy_top.v
+I: Verilog-0001: Analyzing file D:/riscv/RISCV/ipcore/ddr3/ddr3_ddrphy_top.v
+I: Verilog-0002: [D:/riscv/RISCV/ipcore/ddr3/ddr3_ddrphy_top.v(line number: 12)] Analyzing module ddr3_ddrphy_top (library work)
+Parsing done.
+Executing : .rtl_analyze -include_path {D:/riscv/RISCV} D:/riscv/RISCV/ipcore/ddr3/ddr3_ddrphy_top.v successfully.
+Executing : .rtl_analyze -include_path {D:/riscv/RISCV} D:/riscv/RISCV/ipcore/ddr3/rtl/ddrphy/ddr3_slice_top_v1_10.v
+I: Verilog-0001: Analyzing file D:/riscv/RISCV/ipcore/ddr3/rtl/ddrphy/ddr3_slice_top_v1_10.v
+I: Verilog-0002: [D:/riscv/RISCV/ipcore/ddr3/rtl/ddrphy/ddr3_slice_top_v1_10.v(line number: 12)] Analyzing module ddr3_slice_top_v1_10 (library work)
+Parsing done.
+Executing : .rtl_analyze -include_path {D:/riscv/RISCV} D:/riscv/RISCV/ipcore/ddr3/rtl/ddrphy/ddr3_slice_top_v1_10.v successfully.
+I: Module "board_top" is set as top module.
+Executing : rtl-analyze successfully. Time elapsed: 2.258s wall, 0.344s user + 0.000s system = 0.344s CPU (15.2%)
+
+Start rtl-elaborate.
+I: Verilog-0003: [D:/riscv/RISCV/myriscv/board_top.v(line number: 5)] Elaborating module board_top
+I: Module instance {board_top} parameter value:
+    RESET_PC = 32'b00000000000000000000000000000000
+    DDR_BASE = 32'b01000000000000000000000000000000
+    CORE_CLK_HZ = 32'b00000101100101101000001011110000
+    SELFTEST_TIMEOUT_CYCLES = 32'b00011011111100001000111010110000
+    KEY_DEBOUNCE_CYCLES = 32'b00000000001001100010010110100000
+I: Verilog-0004: [D:/riscv/RISCV/myriscv/board_top.v(line number: 48)] Elaborating instance u_ddr_ref_clk_buf
+E: Verilog-4072: [D:/riscv/RISCV/myriscv/board_top.v(line number: 54)] reset_button_debounce is referenced to undefined module
+Program Error Out.
+Action compile: Real time elapsed is 0h:0m:4s
+Action compile: CPU time elapsed is 0h:0m:1s
+Action compile: Process CPU time elapsed is 0h:0m:1s
+Current time: Sat Oct  3 17:21:39 2026
+Action compile: Peak memory pool usage is 135 MB

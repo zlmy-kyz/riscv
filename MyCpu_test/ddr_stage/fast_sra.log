@@ -1,0 +1,2 @@
+CHECK: sra CPU loaded 473 words into DDR
+RESULT: PASS sra DDR RV32I tohost=1 cycles=7045

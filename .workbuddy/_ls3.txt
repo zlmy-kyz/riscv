@@ -1,0 +1,36 @@
+=== pipeline5\_env.txt ===
+iverilog: True
+inst_rom.v: True
+data_ram: D:\riscv\RISCV\ipcore\data_ram\data_ram.v; D:\riscv\RISCV\ipcore\data_ram\data_ram_tb.v; D:\riscv\RISCV\ipcore\data_ram\data_ram_tmpl.v; D:\riscv\RISCV\ipcore\data_ram\rtl\data_ram_init_param.v; D:\riscv\RISCV\ipcore\data_ram\rtl\data_ram_Reset_Value.v
+--- myriscv ---
+alu.v, br_alu.v, l_alu.v, mux.v, mycpu_sync.v, Reg.v, regfile.v, topcpu_instrom.v
+--- doc ---
+data_ram??????_bbbbbbbb??.md, inst_rom??????????.md, IP???_inst_rom?data_ram.md, mycpu_sync??????.md, ROM?RAM????????.md, ??ROM?????????_?????.md, ??????????.md
+
+=== sim\behav ===
+work  1
+modelsim.ini  90853
+run_behav.bat  301
+run_behav_compile.tcl  1466
+run_behav_simulate.log  5706
+run_behav_simulate.tcl  467
+vsim.wlf  49152
+=== sim\ip_tb ===
+run_ip_tb.tcl  959
+=== .workbuddy ?? ===
+backup  1
+branch_hazard  1
+imm_gen  1
+lint_tmp  1
+memory  1
+pipeline5  1
+review_sync  1
+sim_dram  1
+sim_memwr  1
+sim_nextpc  1
+sim_rom  1
+dram_fix.vcd  14951
+_ls2.txt  365
+_m.log  860
+_z.txt  11
+

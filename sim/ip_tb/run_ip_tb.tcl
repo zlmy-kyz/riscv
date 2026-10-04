@@ -12,7 +12,9 @@
 #   * 跑完看转录里的 "inst_rom 独立仿真报告"。
 # ----------------------------------------
 
-vlib  work
+if {![file isdirectory work]} {
+    vlib work
+}
 vmap  work ./work
 vmap  usim "D:/modelsim/modelsimm/pango_sim_libraries/usim"
 

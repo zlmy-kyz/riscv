@@ -1,0 +1,2 @@
+CHECK: fence_i CPU loaded 173 words into DDR
+RESULT: FAIL fence_i DDR RV32I tohost=00000539 failed_test=668 cycles=2228

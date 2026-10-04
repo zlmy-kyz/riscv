@@ -1,0 +1,2 @@
+CHECK: sw CPU loaded 447 words into DDR
+RESULT: PASS sw DDR RV32I tohost=1 cycles=7034

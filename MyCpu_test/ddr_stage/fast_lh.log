@@ -1,0 +1,2 @@
+CHECK: lh CPU loaded 285 words into DDR
+RESULT: PASS lh DDR RV32I tohost=1 cycles=4278

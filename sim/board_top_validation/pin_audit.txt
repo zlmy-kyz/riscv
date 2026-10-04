@@ -1,0 +1,74 @@
+PASS board_top/PDS audit: 21 port groups, 55 unique physical bits/locations
+PASS DDR physical port directions/widths match soc_ddr3_top
+PASS current PDS compile elaborated board_top with imported rk3568_board.fdc
+IP reference=125MHz, requested=800Mbps, actual=750Mbps, core=93.75MHz
+Pin Planner boundary (internal debug/status/IRQ are absent):
+ddr_ref_clk_p    input  width= 1 ddr_ref_clk_p=R4
+ddr_ref_clk_n    input  width= 1 ddr_ref_clk_n=T4
+resetn           input  width= 1 resetn=M15
+led_clk_alive    output width= 1 led_clk_alive=J16
+led_ddr_ready    output width= 1 led_ddr_ready=M17
+led_selftest     output width= 1 led_selftest=K17
+mem_cs_n         output width= 1 mem_cs_n=V5
+mem_rst_n        output width= 1 mem_rst_n=T3
+mem_ck           output width= 1 mem_ck=Y4
+mem_ck_n         output width= 1 mem_ck_n=AA4
+mem_cke          output width= 1 mem_cke=W4
+mem_ras_n        output width= 1 mem_ras_n=W5
+mem_cas_n        output width= 1 mem_cas_n=U6
+mem_we_n         output width= 1 mem_we_n=W6
+mem_odt          output width= 1 mem_odt=R6
+mem_a            output width=15 mem_a[0]=T1, mem_a[1]=U1, mem_a[2]=U2, mem_a[3]=V2, mem_a[4]=R3, mem_a[5]=R2, mem_a[6]=W2, mem_a[7]=Y2, mem_a[8]=W1, mem_a[9]=Y1, mem_a[10]=U3, mem_a[11]=AA1, mem_a[12]=AB1, mem_a[13]=AB3, mem_a[14]=AB2
+mem_ba           output width= 3 mem_ba[0]=AA3, mem_ba[1]=AA5, mem_ba[2]=AB5
+mem_dqs          inout  width= 2 mem_dqs[0]=P5, mem_dqs[1]=M1
+mem_dqs_n        inout  width= 2 mem_dqs_n[0]=P4, mem_dqs_n[1]=L1
+mem_dq           inout  width=16 mem_dq[0]=P6, mem_dq[1]=M5, mem_dq[2]=M6, mem_dq[3]=N2, mem_dq[4]=P2, mem_dq[5]=P1, mem_dq[6]=R1, mem_dq[7]=N4, mem_dq[8]=J6, mem_dq[9]=K6, mem_dq[10]=M2, mem_dq[11]=M3, mem_dq[12]=K3, mem_dq[13]=L3, mem_dq[14]=J4, mem_dq[15]=K4
+mem_dm           output width= 2 mem_dm[0]=N5, mem_dm[1]=L5
+IP PAD_* vs board locations (must reconcile before hardware implementation):
+TODO PAD_A0=AA4, board mem_a[0]=T1
+TODO PAD_CS=AB3, board mem_cs_n=V5
+TODO PAD_A2=AA5, board mem_a[2]=U2
+TODO PAD_DQSN0=D1, board mem_dqs_n[0]=P4
+TODO PAD_BA1=Y3, board mem_ba[1]=AA5
+TODO PAD_DQ5=F1, board mem_dq[5]=P1
+TODO PAD_CKE=T5, board mem_cke=W4
+TODO PAD_DQ7=E2, board mem_dq[7]=N4
+TODO PAD_DQ15=H4, board mem_dq[15]=K4
+TODO PAD_A9=U2, board mem_a[9]=Y1
+TODO PAD_A14=V3, board mem_a[14]=AB2
+TODO PAD_DQ14=K1, board mem_dq[14]=J4
+TODO PAD_ODT=U5, board mem_odt=R6
+TODO PAD_DQ10=H2, board mem_dq[10]=M2
+TODO PAD_DQS1=K2, board mem_dqs[1]=M1
+TODO PAD_RAS=V4, board mem_ras_n=W5
+TODO PAD_DQS0=E1, board mem_dqs[0]=P5
+TODO PAD_DQSN1=J2, board mem_dqs_n[1]=L1
+TODO PAD_DQ8=H3, board mem_dq[8]=J6
+TODO PAD_DQ4=B2, board mem_dq[4]=P2
+TODO PAD_WE=AA1, board mem_we_n=W6
+TODO PAD_DQ11=H5, board mem_dq[11]=M3
+TODO PAD_DQ13=J5, board mem_dq[13]=L3
+TODO PAD_DQ0=C2, board mem_dq[0]=P6
+TODO PAD_A10=Y1, board mem_a[10]=U3
+TODO PAD_CK=R3, board mem_ck=Y4
+TODO PAD_DM0=D2, board mem_dm[0]=N5
+TODO PAD_A7=T1, board mem_a[7]=Y2
+TODO PAD_A6=W1, board mem_a[6]=W2
+TODO PAD_DQ2=A1, board mem_dq[2]=M6
+TODO PAD_A13=U1, board mem_a[13]=AB3
+TODO PAD_A12=Y2, board mem_a[12]=AB1
+TODO PAD_DQ6=B1, board mem_dq[6]=R1
+TODO PAD_RESET=W6, board mem_rst_n=T3
+TODO PAD_A8=V2, board mem_a[8]=W1
+TODO PAD_DM1=G2, board mem_dm[1]=L5
+TODO PAD_A1=AB2, board mem_a[1]=U1
+TODO PAD_CAS=W4, board mem_cas_n=U6
+TODO PAD_DQ12=J1, board mem_dq[12]=K3
+TODO PAD_DQ3=F3, board mem_dq[3]=N2
+TODO PAD_A3=AB5, board mem_a[3]=V2
+TODO PAD_DQ1=G1, board mem_dq[1]=M5
+TODO PAD_BA2=Y4, board mem_ba[2]=AB5
+TODO PAD_DQ9=G3, board mem_dq[9]=K6
+TODO PAD_A11=W2, board mem_a[11]=AA1
+TODO PAD_A5=U3, board mem_a[5]=R2
+TODO PAD_A4=AB1, board mem_a[4]=R3

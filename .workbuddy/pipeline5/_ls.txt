@@ -1,0 +1,50 @@
+
+Name                       Length
+----                       ------
+diag.log                     5140
+diag.vvp                   160929
+diag2.log                    2606
+diag2.vvp                  163903
+diag3.log                    3122
+diag3.vvp                  163850
+gen5.py                      6966
+gen5.txt                     3519
+lint1.log                       9
+lint2.log                       9
+mycpu_sync_2stage_backup.v  13394
+reg_bh.log                    660
+run.ps1                       841
+run_A.log                    4578
+run_B.log                    4511
+run_C.log                    4672
+run_D.log                    4550
+run_E.log                    4286
+run_F.log                    4264
+run_G.log                    4316
+run_H.log                    4254
+tb_A.vvp                   177521
+tb_B.vvp                   176272
+tb_C.vvp                   178538
+tb_D.vvp                   176653
+tb_diag.v                    2132
+tb_diag2.v                   2543
+tb_diag3.v                   2453
+tb_E.vvp                   177063
+tb_F.vvp                   176462
+tb_G.vvp                   180687
+tb_H.vvp                   175536
+tb_pipe5.v                  12780
+_a2.txt                      2281
+_a3.txt                       452
+_all.txt                    16612
+_chk.txt                      389
+_chk2.txt                     593
+_d_detail.txt                1302
+_env.txt                      573
+_f_detail.txt                1016
+_ls.txt                        28
+_src.txt                       50
+_summary.txt                  513
+
+
+

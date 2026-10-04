@@ -1,0 +1,10 @@
+{
+  "inst_rom": {
+    "image": "D:/riscv/RISCV/MyCpu_test/board_selftest/boot_rom.dat",
+    "sha256": "d0a73b92ec0cbd4a0d1e59e6c1c14443cbe8617d744271a1861c0b2e8a7b892d"
+  },
+  "data_ram": {
+    "image": "D:/riscv/RISCV/MyCpu_test/board_selftest/ddr_selftest.dat",
+    "sha256": "da227a17b5b2b4ce5c75462b8beb58e4d8dde2e08a54f1a4081bef620a366006"
+  }
+}

@@ -1,0 +1,2 @@
+CHECK: bne CPU loaded 291 words into DDR
+RESULT: PASS bne DDR RV32I tohost=1 cycles=4354

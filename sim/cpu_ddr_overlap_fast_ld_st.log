@@ -1,0 +1,3 @@
+CHECK: ld_st CPU loaded 1056 words into DDR
+RESULT: PASS ld_st DDR RV32I tohost=1 cycles=16013
+OBS: CPU origin both=1445 DDR both=387 idle_priority=387 inst_grants=1012 inst=3116 data=2169 inst_wait=2104 data_wait=726 pending_inst_with_data=1782 first_inst=000001ac first_data=00003000

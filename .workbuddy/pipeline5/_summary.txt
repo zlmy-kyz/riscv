@@ -1,0 +1,12 @@
+TEST A : EXIT_COMPILE=0 | === PASS ===
+TEST B : EXIT_COMPILE=0 | === PASS ===
+TEST C : EXIT_COMPILE=0 | === PASS ===
+TEST D : EXIT_COMPILE=0 | === PASS ===
+TEST E : EXIT_COMPILE=0 | === PASS ===
+TEST F : EXIT_COMPILE=0 | === PASS ===
+TEST G : EXIT_COMPILE=0 | === FAIL: 3 mismatch ===
+    [FAIL] x3 = 7(jal ?????0x10 ??? got=00000000 exp=00000007
+    [FAIL] ?????x???????????????????got=00000444 exp=00000000
+    [FAIL] ??? 0x25 ??bit0 ??= 0x24) got=00000000 exp=00000009
+TEST H : EXIT_COMPILE=0 | === PASS ===
+

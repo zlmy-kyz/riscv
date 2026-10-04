@@ -1,0 +1,5 @@
+CHECK: ddr_selftest CPU loaded 245 words into DDR
+CHECK: MMIO selftest RUN
+DIAG: checks=112
+CHECK: MMIO selftest PASS LED=1
+RESULT: PASS ddr_selftest DDR RV32I tohost=1 cycles=11388
