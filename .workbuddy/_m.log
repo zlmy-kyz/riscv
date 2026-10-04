@@ -1,4 +1,0 @@
-﻿FAILED: D:\riscv\RISCV\difftest\_final_check.log -> [safe-delete][SAFE_DELETE_FAIL_CLOSED] {"target":"D:\\riscv\\RISCV\\difftest\\_final_check.log","reason":"trash-failed","detail":"OK D:\\riscv\\RISCV\\difftest\\_final_check.log"}
-FAILED: D:\riscv\RISCV\difftest\_matrix.log -> [safe-delete][SAFE_DELETE_FAIL_CLOSED] {"target":"D:\\riscv\\RISCV\\difftest\\_matrix.log","reason":"trash-failed","detail":"OK D:\\riscv\\RISCV\\difftest\\_matrix.log"}
-FAILED: D:\riscv\RISCV\difftest\build0 -> [safe-delete][SAFE_DELETE_FAIL_CLOSED] {"target":"D:\\riscv\\RISCV\\difftest\\build0","reason":"trash-failed","detail":"OK D:\\riscv\\RISCV\\difftest\\build0"}
-FAILED: D:\riscv\RISCV\difftest\build1 -> [safe-delete][SAFE_DELETE_FAIL_CLOSED] {"target":"D:\\riscv\\RISCV\\difftest\\build1","reason":"trash-failed","detail":"OK D:\\riscv\\RISCV\\difftest\\build1"}

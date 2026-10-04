@@ -65,6 +65,9 @@ __pycache__/
 /_rom.txt
 /data.wf
 
+# Local development notes and experiments; retain files locally.
+/.workbuddy/
+
 # Intentionally retain:
 # - constraint_check/temp_constraint_file.fdc (referenced by RISCV.pds)
 # - myriscv/, source/, IP rtl/ and sim_lib/, sim/ scripts and TBs
@@ -74,7 +77,6 @@ __pycache__/
 # - modelsim.ini until portable library setup replaces its local mappings
 
 # Optional exclusions: migrate useful scripts/evidence and fix references first.
-# /.workbuddy/
 # /ip_backup/
 # /impl.tcl
 # /fdc/constraint_backup/
