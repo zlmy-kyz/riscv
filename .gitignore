@@ -73,11 +73,13 @@ __pycache__/
 /bug/
 /difftest/
 /constraints/
-/doc/
+# Publish only the selected documents; keep other documentation local.
+/doc/*
+!/doc/SoC结构说明_2026-10-04.md
+!/doc/AI加速多方案比较与推荐实施方案.md
 /fdc/
 /ip_backup/
 /rv32i_table.txt
-# Revisit /doc/ when selected public documentation is added later.
 
 # Intentionally retain:
 # - constraint_check/temp_constraint_file.fdc (referenced by RISCV.pds)
