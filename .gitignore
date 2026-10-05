@@ -39,6 +39,7 @@
 /sim/uart_mmio/*_console.log
 /sim/uart_mmio/bus_regression_compile.log
 /sim/uart_mmio/cpu_image/
+/sim/uart_irq/build/
 /sim/uart_mmio/uart_synth/constraint_check/
 /sim/uart_mmio/uart_synth/flow.log
 /sim/uart_mmio/uart_synth/impl.tcl
@@ -95,6 +96,8 @@ __pycache__/
 !/doc/UART发送模块阶段1_2026-10-05.md
 !/doc/UART接收FIFO与环回阶段2_2026-10-05.md
 !/doc/UART_MMIO与CPU轮询阶段3_2026-10-05.md
+!/doc/UART顶层接入与DebugCore准备_2026-10-05.md
+!/doc/CPU中断验收与UART_RX_IRQ_2026-10-05.md
 !/doc/SoC结构图_UART阶段3_2026-10-05.png
 !/doc/SoC结构图_UART阶段3_2026-10-05.svg
 !/doc/draw_soc_uart_stage3.py

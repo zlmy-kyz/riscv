@@ -38,6 +38,7 @@ module tb_soc_ddr3_pds_ip;
 `endif
         .ddr_ref_clk(ddr_ref_clk),
         .resetn(resetn),
+        .uart_rx(1'b1), .uart_tx(),
         .irq_external(1'b0),
         .irq_software(1'b0),
         .irq_timer(1'b0),

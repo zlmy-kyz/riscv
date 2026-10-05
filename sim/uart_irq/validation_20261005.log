@@ -1,0 +1,401 @@
+Validation 2026-10-05: actual simulation output, no PDS execution.
+
+[external]
+CHECK: target retired pc=00000038 count=1
+CHECK: trap mepc=0000003c mcause=8000000b mtval=00000000 MIE=0 MPIE=1 PASS
+CHECK: MRET pc=0000003c MIE=1 MPIE=1 PASS
+CHECK: following CSR retired pc=0000003c count=1
+RESULT: PASS CPU IRQ case=0 IRQ=1 fault=0 MRET=1 req=2 rsp=2 target_req=0 target_retire=1 DDR_W=0 DDR_R=0 wait_overlap=1
+
+[global_mask]
+CHECK: target retired pc=00000038 count=1
+CHECK: trap mepc=0000003c mcause=8000000b mtval=00000000 MIE=0 MPIE=1 PASS
+CHECK: MRET pc=0000003c MIE=1 MPIE=1 PASS
+CHECK: following CSR retired pc=0000003c count=1
+RESULT: PASS CPU IRQ case=1 IRQ=1 fault=0 MRET=1 req=2 rsp=2 target_req=0 target_retire=1 DDR_W=0 DDR_R=0 wait_overlap=1
+
+[local_mask]
+CHECK: target retired pc=00000038 count=1
+CHECK: trap mepc=0000003c mcause=8000000b mtval=00000000 MIE=0 MPIE=1 PASS
+CHECK: MRET pc=0000003c MIE=1 MPIE=1 PASS
+CHECK: following CSR retired pc=0000003c count=1
+RESULT: PASS CPU IRQ case=2 IRQ=1 fault=0 MRET=1 req=2 rsp=2 target_req=0 target_retire=1 DDR_W=0 DDR_R=0 wait_overlap=1
+
+[ddr_store_wait]
+CHECK: target retired pc=00000038 count=1
+CHECK: trap mepc=0000003c mcause=8000000b mtval=00000000 MIE=0 MPIE=1 PASS
+CHECK: MRET pc=0000003c MIE=1 MPIE=1 PASS
+CHECK: following CSR retired pc=0000003c count=1
+RESULT: PASS CPU IRQ case=3 IRQ=1 fault=0 MRET=1 req=3 rsp=3 target_req=1 target_retire=1 DDR_W=1 DDR_R=0 wait_overlap=37
+
+[ddr_load_wait]
+CHECK: target retired pc=00000038 count=1
+CHECK: trap mepc=0000003c mcause=8000000b mtval=00000000 MIE=0 MPIE=1 PASS
+CHECK: MRET pc=0000003c MIE=1 MPIE=1 PASS
+CHECK: following CSR retired pc=0000003c count=1
+RESULT: PASS CPU IRQ case=4 IRQ=1 fault=0 MRET=1 req=3 rsp=3 target_req=1 target_retire=1 DDR_W=0 DDR_R=1 wait_overlap=50
+
+[store_response_boundary]
+CHECK: target retired pc=00000038 count=1
+CHECK: trap mepc=0000003c mcause=8000000b mtval=00000000 MIE=0 MPIE=1 PASS
+CHECK: MRET pc=0000003c MIE=1 MPIE=1 PASS
+CHECK: following CSR retired pc=0000003c count=1
+RESULT: PASS CPU IRQ case=5 IRQ=1 fault=0 MRET=1 req=3 rsp=3 target_req=1 target_retire=1 DDR_W=1 DDR_R=0 wait_overlap=0
+
+[load_response_boundary]
+CHECK: target retired pc=00000038 count=1
+CHECK: trap mepc=0000003c mcause=8000000b mtval=00000000 MIE=0 MPIE=1 PASS
+CHECK: MRET pc=0000003c MIE=1 MPIE=1 PASS
+CHECK: following CSR retired pc=0000003c count=1
+RESULT: PASS CPU IRQ case=6 IRQ=1 fault=0 MRET=1 req=3 rsp=3 target_req=1 target_retire=1 DDR_W=0 DDR_R=1 wait_overlap=0
+
+[mmio_wait]
+CHECK: target retired pc=00000038 count=1
+CHECK: trap mepc=0000003c mcause=8000000b mtval=00000000 MIE=0 MPIE=1 PASS
+CHECK: MRET pc=0000003c MIE=1 MPIE=1 PASS
+CHECK: following CSR retired pc=0000003c count=1
+RESULT: PASS CPU IRQ case=7 IRQ=1 fault=0 MRET=1 req=3 rsp=3 target_req=1 target_retire=1 DDR_W=0 DDR_R=0 wait_overlap=10000
+
+[mmio_response_boundary]
+CHECK: target retired pc=00000038 count=1
+CHECK: trap mepc=0000003c mcause=8000000b mtval=00000000 MIE=0 MPIE=1 PASS
+CHECK: MRET pc=0000003c MIE=1 MPIE=1 PASS
+CHECK: following CSR retired pc=0000003c count=1
+RESULT: PASS CPU IRQ case=8 IRQ=1 fault=0 MRET=1 req=3 rsp=3 target_req=1 target_retire=1 DDR_W=0 DDR_R=0 wait_overlap=0
+
+[misaligned_exception_priority]
+CHECK: trap mepc=00000038 mcause=00000004 mtval=40000001 MIE=0 MPIE=1 PASS
+CHECK: MRET pc=0000003c MIE=1 MPIE=1 PASS
+CHECK: trap mepc=0000003c mcause=8000000b mtval=00000000 MIE=0 MPIE=1 PASS
+CHECK: MRET pc=0000003c MIE=1 MPIE=1 PASS
+CHECK: following CSR retired pc=0000003c count=1
+RESULT: PASS CPU IRQ case=9 IRQ=1 fault=1 MRET=2 req=2 rsp=2 target_req=0 target_retire=0 DDR_W=0 DDR_R=0 wait_overlap=1
+
+[mmio_fault_priority]
+CHECK: trap mepc=00000038 mcause=00000007 mtval=10000004 MIE=0 MPIE=1 PASS
+CHECK: MRET pc=0000003c MIE=1 MPIE=1 PASS
+CHECK: trap mepc=0000003c mcause=8000000b mtval=00000000 MIE=0 MPIE=1 PASS
+CHECK: MRET pc=0000003c MIE=1 MPIE=1 PASS
+CHECK: following CSR retired pc=0000003c count=1
+RESULT: PASS CPU IRQ case=10 IRQ=1 fault=1 MRET=2 req=3 rsp=3 target_req=1 target_retire=0 DDR_W=0 DDR_R=0 wait_overlap=0
+
+[withdrawn_during_wait]
+CHECK: target retired pc=00000038 count=1
+CHECK: following CSR retired pc=0000003c count=1
+RESULT: PASS CPU IRQ case=11 IRQ=0 fault=0 MRET=0 req=3 rsp=3 target_req=1 target_retire=1 DDR_W=1 DDR_R=0 wait_overlap=2
+
+[sustained_level]
+CHECK: target retired pc=00000038 count=1
+CHECK: trap mepc=0000003c mcause=8000000b mtval=00000000 MIE=0 MPIE=1 PASS
+CHECK: MRET pc=0000003c MIE=1 MPIE=1 PASS
+CHECK: trap mepc=0000003c mcause=8000000b mtval=00000000 MIE=0 MPIE=1 PASS
+CHECK: MRET pc=0000003c MIE=1 MPIE=1 PASS
+CHECK: following CSR retired pc=0000003c count=1
+RESULT: PASS CPU IRQ case=12 IRQ=2 fault=0 MRET=2 req=2 rsp=2 target_req=0 target_retire=1 DDR_W=0 DDR_R=0 wait_overlap=1
+
+[software]
+CHECK: target retired pc=00000038 count=1
+CHECK: trap mepc=0000003c mcause=80000003 mtval=00000000 MIE=0 MPIE=1 PASS
+CHECK: MRET pc=0000003c MIE=1 MPIE=1 PASS
+CHECK: following CSR retired pc=0000003c count=1
+RESULT: PASS CPU IRQ case=13 IRQ=1 fault=0 MRET=1 req=2 rsp=2 target_req=0 target_retire=1 DDR_W=0 DDR_R=0 wait_overlap=1
+
+[timer]
+CHECK: target retired pc=00000038 count=1
+CHECK: trap mepc=0000003c mcause=80000007 mtval=00000000 MIE=0 MPIE=1 PASS
+CHECK: MRET pc=0000003c MIE=1 MPIE=1 PASS
+CHECK: following CSR retired pc=0000003c count=1
+RESULT: PASS CPU IRQ case=14 IRQ=1 fault=0 MRET=1 req=2 rsp=2 target_req=0 target_retire=1 DDR_W=0 DDR_R=0 wait_overlap=1
+
+[three_source_priority]
+CHECK: target retired pc=00000038 count=1
+CHECK: trap mepc=0000003c mcause=8000000b mtval=00000000 MIE=0 MPIE=1 PASS
+CHECK: MRET pc=0000003c MIE=1 MPIE=1 PASS
+CHECK: trap mepc=0000003c mcause=80000003 mtval=00000000 MIE=0 MPIE=1 PASS
+CHECK: MRET pc=0000003c MIE=1 MPIE=1 PASS
+CHECK: trap mepc=0000003c mcause=80000007 mtval=00000000 MIE=0 MPIE=1 PASS
+CHECK: MRET pc=0000003c MIE=1 MPIE=1 PASS
+CHECK: following CSR retired pc=0000003c count=1
+RESULT: PASS CPU IRQ case=15 IRQ=3 fault=0 MRET=3 req=2 rsp=2 target_req=0 target_retire=1 DDR_W=0 DDR_R=0 wait_overlap=1
+
+[external_ddr_code]
+CHECK: target retired pc=40001038 count=1
+CHECK: trap mepc=4000103c mcause=8000000b mtval=00000000 MIE=0 MPIE=1 PASS
+CHECK: MRET pc=4000103c MIE=1 MPIE=1 PASS
+CHECK: following CSR retired pc=4000103c count=1
+RESULT: PASS CPU IRQ case=0 IRQ=1 fault=0 MRET=1 req=2 rsp=2 target_req=0 target_retire=1 DDR_W=0 DDR_R=0 wait_overlap=1
+
+[global_mask_ddr_code]
+CHECK: target retired pc=40001038 count=1
+CHECK: trap mepc=4000103c mcause=8000000b mtval=00000000 MIE=0 MPIE=1 PASS
+CHECK: MRET pc=4000103c MIE=1 MPIE=1 PASS
+CHECK: following CSR retired pc=4000103c count=1
+RESULT: PASS CPU IRQ case=1 IRQ=1 fault=0 MRET=1 req=2 rsp=2 target_req=0 target_retire=1 DDR_W=0 DDR_R=0 wait_overlap=1
+
+[local_mask_ddr_code]
+CHECK: target retired pc=40001038 count=1
+CHECK: trap mepc=4000103c mcause=8000000b mtval=00000000 MIE=0 MPIE=1 PASS
+CHECK: MRET pc=4000103c MIE=1 MPIE=1 PASS
+CHECK: following CSR retired pc=4000103c count=1
+RESULT: PASS CPU IRQ case=2 IRQ=1 fault=0 MRET=1 req=2 rsp=2 target_req=0 target_retire=1 DDR_W=0 DDR_R=0 wait_overlap=1
+
+[ddr_store_wait_ddr_code]
+CHECK: target retired pc=40001038 count=1
+CHECK: trap mepc=4000103c mcause=8000000b mtval=00000000 MIE=0 MPIE=1 PASS
+CHECK: MRET pc=4000103c MIE=1 MPIE=1 PASS
+CHECK: following CSR retired pc=4000103c count=1
+RESULT: PASS CPU IRQ case=3 IRQ=1 fault=0 MRET=1 req=3 rsp=3 target_req=1 target_retire=1 DDR_W=1 DDR_R=0 wait_overlap=37
+
+[ddr_load_wait_ddr_code]
+CHECK: target retired pc=40001038 count=1
+CHECK: trap mepc=4000103c mcause=8000000b mtval=00000000 MIE=0 MPIE=1 PASS
+CHECK: MRET pc=4000103c MIE=1 MPIE=1 PASS
+CHECK: following CSR retired pc=4000103c count=1
+RESULT: PASS CPU IRQ case=4 IRQ=1 fault=0 MRET=1 req=3 rsp=3 target_req=1 target_retire=1 DDR_W=0 DDR_R=1 wait_overlap=50
+
+[store_response_boundary_ddr_code]
+CHECK: target retired pc=40001038 count=1
+CHECK: following CSR retired pc=4000103c count=1
+CHECK: trap mepc=40001040 mcause=8000000b mtval=00000000 MIE=0 MPIE=1 PASS
+CHECK: MRET pc=40001040 MIE=1 MPIE=1 PASS
+RESULT: PASS CPU IRQ case=5 IRQ=1 fault=0 MRET=1 req=3 rsp=3 target_req=1 target_retire=1 DDR_W=1 DDR_R=0 wait_overlap=0
+
+[load_response_boundary_ddr_code]
+CHECK: target retired pc=40001038 count=1
+CHECK: following CSR retired pc=4000103c count=1
+CHECK: trap mepc=40001040 mcause=8000000b mtval=00000000 MIE=0 MPIE=1 PASS
+CHECK: MRET pc=40001040 MIE=1 MPIE=1 PASS
+RESULT: PASS CPU IRQ case=6 IRQ=1 fault=0 MRET=1 req=3 rsp=3 target_req=1 target_retire=1 DDR_W=0 DDR_R=1 wait_overlap=0
+
+[mmio_wait_ddr_code]
+CHECK: target retired pc=40001038 count=1
+CHECK: trap mepc=4000103c mcause=8000000b mtval=00000000 MIE=0 MPIE=1 PASS
+CHECK: MRET pc=4000103c MIE=1 MPIE=1 PASS
+CHECK: following CSR retired pc=4000103c count=1
+RESULT: PASS CPU IRQ case=7 IRQ=1 fault=0 MRET=1 req=3 rsp=3 target_req=1 target_retire=1 DDR_W=0 DDR_R=0 wait_overlap=10000
+
+[mmio_response_boundary_ddr_code]
+CHECK: target retired pc=40001038 count=1
+CHECK: trap mepc=4000103c mcause=8000000b mtval=00000000 MIE=0 MPIE=1 PASS
+CHECK: MRET pc=4000103c MIE=1 MPIE=1 PASS
+CHECK: following CSR retired pc=4000103c count=1
+RESULT: PASS CPU IRQ case=8 IRQ=1 fault=0 MRET=1 req=3 rsp=3 target_req=1 target_retire=1 DDR_W=0 DDR_R=0 wait_overlap=0
+
+[misaligned_exception_priority_ddr_code]
+CHECK: trap mepc=40001038 mcause=00000004 mtval=40000001 MIE=0 MPIE=1 PASS
+CHECK: MRET pc=4000103c MIE=1 MPIE=1 PASS
+CHECK: trap mepc=4000103c mcause=8000000b mtval=00000000 MIE=0 MPIE=1 PASS
+CHECK: MRET pc=4000103c MIE=1 MPIE=1 PASS
+CHECK: following CSR retired pc=4000103c count=1
+RESULT: PASS CPU IRQ case=9 IRQ=1 fault=1 MRET=2 req=2 rsp=2 target_req=0 target_retire=0 DDR_W=0 DDR_R=0 wait_overlap=1
+
+[mmio_fault_priority_ddr_code]
+CHECK: trap mepc=40001038 mcause=00000007 mtval=10000004 MIE=0 MPIE=1 PASS
+CHECK: MRET pc=4000103c MIE=1 MPIE=1 PASS
+CHECK: trap mepc=4000103c mcause=8000000b mtval=00000000 MIE=0 MPIE=1 PASS
+CHECK: MRET pc=4000103c MIE=1 MPIE=1 PASS
+CHECK: following CSR retired pc=4000103c count=1
+RESULT: PASS CPU IRQ case=10 IRQ=1 fault=1 MRET=2 req=3 rsp=3 target_req=1 target_retire=0 DDR_W=0 DDR_R=0 wait_overlap=0
+
+[withdrawn_during_wait_ddr_code]
+CHECK: target retired pc=40001038 count=1
+CHECK: following CSR retired pc=4000103c count=1
+RESULT: PASS CPU IRQ case=11 IRQ=0 fault=0 MRET=0 req=3 rsp=3 target_req=1 target_retire=1 DDR_W=1 DDR_R=0 wait_overlap=2
+
+[sustained_level_ddr_code]
+CHECK: target retired pc=40001038 count=1
+CHECK: trap mepc=4000103c mcause=8000000b mtval=00000000 MIE=0 MPIE=1 PASS
+CHECK: MRET pc=4000103c MIE=1 MPIE=1 PASS
+CHECK: trap mepc=4000103c mcause=8000000b mtval=00000000 MIE=0 MPIE=1 PASS
+CHECK: MRET pc=4000103c MIE=1 MPIE=1 PASS
+CHECK: following CSR retired pc=4000103c count=1
+RESULT: PASS CPU IRQ case=12 IRQ=2 fault=0 MRET=2 req=2 rsp=2 target_req=0 target_retire=1 DDR_W=0 DDR_R=0 wait_overlap=1
+
+[software_ddr_code]
+CHECK: target retired pc=40001038 count=1
+CHECK: trap mepc=4000103c mcause=80000003 mtval=00000000 MIE=0 MPIE=1 PASS
+CHECK: MRET pc=4000103c MIE=1 MPIE=1 PASS
+CHECK: following CSR retired pc=4000103c count=1
+RESULT: PASS CPU IRQ case=13 IRQ=1 fault=0 MRET=1 req=2 rsp=2 target_req=0 target_retire=1 DDR_W=0 DDR_R=0 wait_overlap=1
+
+[timer_ddr_code]
+CHECK: target retired pc=40001038 count=1
+CHECK: trap mepc=4000103c mcause=80000007 mtval=00000000 MIE=0 MPIE=1 PASS
+CHECK: MRET pc=4000103c MIE=1 MPIE=1 PASS
+CHECK: following CSR retired pc=4000103c count=1
+RESULT: PASS CPU IRQ case=14 IRQ=1 fault=0 MRET=1 req=2 rsp=2 target_req=0 target_retire=1 DDR_W=0 DDR_R=0 wait_overlap=1
+
+[three_source_priority_ddr_code]
+CHECK: target retired pc=40001038 count=1
+CHECK: trap mepc=4000103c mcause=8000000b mtval=00000000 MIE=0 MPIE=1 PASS
+CHECK: MRET pc=4000103c MIE=1 MPIE=1 PASS
+CHECK: trap mepc=4000103c mcause=80000003 mtval=00000000 MIE=0 MPIE=1 PASS
+CHECK: MRET pc=4000103c MIE=1 MPIE=1 PASS
+CHECK: trap mepc=4000103c mcause=80000007 mtval=00000000 MIE=0 MPIE=1 PASS
+CHECK: MRET pc=4000103c MIE=1 MPIE=1 PASS
+CHECK: following CSR retired pc=4000103c count=1
+RESULT: PASS CPU IRQ case=15 IRQ=3 fault=0 MRET=3 req=2 rsp=2 target_req=0 target_retire=1 DDR_W=0 DDR_R=0 wait_overlap=1
+
+[uart_rx_closed_loop]
+CHECK: trap mepc=00000084 mcause=8000000b mtval=00000000 MIE=0 MPIE=1 PASS
+CHECK: MRET pc=00000084 MIE=1 MPIE=1 PASS
+CHECK: trap mepc=0000009c mcause=8000000b mtval=00000000 MIE=0 MPIE=1 PASS
+CHECK: MRET pc=0000009c MIE=1 MPIE=1 PASS
+CHECK: target retired pc=000000b0 count=1
+CHECK: trap mepc=000000b4 mcause=8000000b mtval=00000000 MIE=0 MPIE=1 PASS
+CHECK: MRET pc=000000b4 MIE=1 MPIE=1 PASS
+CHECK: following CSR retired pc=000000b4 count=1
+CHECK: trap mepc=000000d0 mcause=8000000b mtval=00000000 MIE=0 MPIE=1 PASS
+CHECK: MRET pc=000000d0 MIE=1 MPIE=1 PASS
+RESULT: PASS UART RX IRQ: pin_bytes=10 pops=10 ISR=4 MRET=4 FIFO_peak=5 DDR_store_IRQ_wait=6246 MMIO_load_IRQ_wait=2249 DDR_W=1 DDR_R=1 req=50 rsp=50
+
+[uart_rx_closed_loop_ddr_code]
+CHECK: trap mepc=40001084 mcause=8000000b mtval=00000000 MIE=0 MPIE=1 PASS
+CHECK: MRET pc=40001084 MIE=1 MPIE=1 PASS
+CHECK: trap mepc=4000109c mcause=8000000b mtval=00000000 MIE=0 MPIE=1 PASS
+CHECK: MRET pc=4000109c MIE=1 MPIE=1 PASS
+CHECK: target retired pc=400010b0 count=1
+CHECK: following CSR retired pc=400010b4 count=1
+CHECK: trap mepc=400010b8 mcause=8000000b mtval=00000000 MIE=0 MPIE=1 PASS
+CHECK: MRET pc=400010b8 MIE=1 MPIE=1 PASS
+CHECK: trap mepc=400010cc mcause=8000000b mtval=00000000 MIE=0 MPIE=1 PASS
+CHECK: MRET pc=400010cc MIE=1 MPIE=1 PASS
+RESULT: PASS UART RX IRQ: pin_bytes=10 pops=10 ISR=4 MRET=4 FIFO_peak=5 DDR_store_IRQ_wait=6246 MMIO_load_IRQ_wait=2249 DDR_W=1 DDR_R=1 req=50 rsp=50
+
+New IRQ tests: 34/34 PASS
+
+[sim/uart_tx/uart_tx.log]
+# Errors: 0, Warnings: 0
+# RESULT: PASS uart_tx Hello + 00/ff/55/aa/01/80 + reset recovery; decoded=12 bit_cycle_checks=99309
+# Errors: 0, Warnings: 0
+
+[sim/uart_rx/uart_rx.log]
+# Errors: 0, Warnings: 0
+# RESULT: PASS uart_rx + fifo + loopback; good=75 frame_errors=1 overflow=4 writes=71 reads=70
+# Errors: 0, Warnings: 0
+
+[sim/uart_mmio/uart_mmio.log]
+# Errors: 0, Warnings: 0
+# RESULT: PASS uart_mmio; TX=9 requests=8247 responses=8247 pops=26
+# Errors: 0, Warnings: 0
+
+[sim/uart_mmio/soc_uart_cpu.log]
+# Errors: 0, Warnings: 0
+# RESULT: PASS soc_uart_cpu; real CPU SB/SH/SW TX Hello, LBU/LB/LHU/LH/LW RX Hello; polls=2014
+# Errors: 0, Warnings: 0
+
+[sim/uart_mmio/tb_data_bus_interconnect.log]
+# RESULT: PASS data_bus_interconnect
+
+[sim/uart_mmio/tb_ddr_bus_path.log]
+# Errors: 0, Warnings: 9
+# RESULT: PASS ddr_bus_path
+# Errors: 0, Warnings: 0
+
+[ipcore/ddr3/sim/modelsim/soc_ddr3_sim.log]
+# RESULT: PASS soc_ddr3_top DDR store/load/fetch at 81584000.0 ps
+# Errors: 0, Warnings: 357
+
+[ipcore/ddr3/sim/modelsim/soc_ddr3_regress_sim.log]
+# RESULT: PASS DDR regression lanes/masks/boundary/DDR-code at 90704000.0 ps
+# Errors: 0, Warnings: 357
+
+[difftest/build/prog0_alu/sim.log]
+RESULT: PASS
+
+[difftest/build/prog1_mem/sim.log]
+RESULT: PASS
+
+[difftest/build/prog2_hazard_precision/sim.log]
+RESULT: PASS
+
+[difftest/build/mmio_e2e/sim.log]
+RESULT: PASS mmio_e2e cycles=153 mmio_req=5 ram_req=1 scratch=1234aa78
+
+[difftest/build/access_fault_e2e/sim.log]
+RESULT: PASS access_fault_e2e cycles=445 unmapped=2 errors=2 traps=2
+
+[difftest/build/inst_access_fault_e2e/sim.log]
+RESULT: PASS inst_access_fault_e2e cycles=193 unmapped_fetch=3 errors=3 traps=1
+
+[sim/cpu_ddr_overlap_fast_ld_st.log]
+RESULT: PASS ld_st DDR RV32I tohost=1 cycles=16013
+OBS: CPU origin both=1445 DDR both=387 idle_priority=387 inst_grants=1012 inst=3116 data=2169 inst_wait=2104 data_wait=726 pending_inst_with_data=1782 first_inst=000001ac first_data=00003000
+
+[sim/cpu_ddr_overlap_fast_lb.log]
+RESULT: PASS lb DDR RV32I tohost=1 cycles=4094
+OBS: CPU origin both=300 DDR both=25 idle_priority=25 inst_grants=302 inst=658 data=373 inst_wait=356 data_wait=75 pending_inst_with_data=348 first_inst=000001ac first_data=00002000
+
+[sim/cpu_ddr_overlap_fast_st_ld.log]
+RESULT: PASS st_ld DDR RV32I tohost=1 cycles=8285
+OBS: CPU origin both=677 DDR both=99 idle_priority=99 inst_grants=532 inst=1340 data=825 inst_wait=808 data_wait=150 pending_inst_with_data=726 first_inst=000001ac first_data=00002000
+
+[sim/cpu_ddr_overlap_fast_sw.log]
+RESULT: PASS sw DDR RV32I tohost=1 cycles=7034
+OBS: CPU origin both=518 DDR both=69 idle_priority=69 inst_grants=563 inst=1311 data=624 inst_wait=748 data_wait=108 pending_inst_with_data=555 first_inst=000001b8 first_data=00002000
+
+[sim/cpu_ddr_overlap_fast_lw.log]
+RESULT: PASS lw DDR RV32I tohost=1 cycles=4454
+OBS: CPU origin both=324 DDR both=25 idle_priority=25 inst_grants=332 inst=718 data=397 inst_wait=386 data_wait=75 pending_inst_with_data=372 first_inst=000001b0 first_data=00002000
+
+[sim/cpu_ddr_backpressure_fast_ld_st.log]
+RESULT: PASS ld_st DDR RV32I tohost=1 cycles=16014
+
+[DDR RV32I fast]
+add: PASS (supported) RESULT: PASS add DDR RV32I tohost=1 cycles=6387
+addi: PASS (supported) RESULT: PASS addi DDR RV32I tohost=1 cycles=3986
+and: PASS (supported) RESULT: PASS and DDR RV32I tohost=1 cycles=6367
+andi: PASS (supported) RESULT: PASS andi DDR RV32I tohost=1 cycles=3310
+auipc: PASS (supported) RESULT: PASS auipc DDR RV32I tohost=1 cycles=1796
+beq: PASS (supported) RESULT: PASS beq DDR RV32I tohost=1 cycles=4342
+bge: PASS (supported) RESULT: PASS bge DDR RV32I tohost=1 cycles=4663
+bgeu: PASS (supported) RESULT: PASS bgeu DDR RV32I tohost=1 cycles=4893
+blt: PASS (supported) RESULT: PASS blt DDR RV32I tohost=1 cycles=4342
+bltu: PASS (supported) RESULT: PASS bltu DDR RV32I tohost=1 cycles=4572
+bne: PASS (supported) RESULT: PASS bne DDR RV32I tohost=1 cycles=4354
+fence_i: FAIL (known_gap) RESULT: FAIL fence_i DDR RV32I tohost=00000539 failed_test=668 cycles=2228
+jal: PASS (supported) RESULT: PASS jal DDR RV32I tohost=1 cycles=1824
+jalr: PASS (supported) RESULT: PASS jalr DDR RV32I tohost=1 cycles=2474
+lb: PASS (supported) RESULT: PASS lb DDR RV32I tohost=1 cycles=4094
+lbu: PASS (supported) RESULT: PASS lbu DDR RV32I tohost=1 cycles=4094
+ld_st: PASS (supported) RESULT: PASS ld_st DDR RV32I tohost=1 cycles=16013
+lh: PASS (supported) RESULT: PASS lh DDR RV32I tohost=1 cycles=4278
+lhu: PASS (supported) RESULT: PASS lhu DDR RV32I tohost=1 cycles=4384
+lui: PASS (supported) RESULT: PASS lui DDR RV32I tohost=1 cycles=1892
+lw: PASS (supported) RESULT: PASS lw DDR RV32I tohost=1 cycles=4454
+ma_data: FAIL (known_gap) RESULT: FAIL ma_data DDR RV32I tohost=00000539 failed_test=668 cycles=5930
+or: PASS (supported) RESULT: PASS or DDR RV32I tohost=1 cycles=6409
+ori: PASS (supported) RESULT: PASS ori DDR RV32I tohost=1 cycles=3408
+sb: PASS (supported) RESULT: PASS sb DDR RV32I tohost=1 cycles=6356
+sh: PASS (supported) RESULT: PASS sh DDR RV32I tohost=1 cycles=6938
+simple: PASS (supported) RESULT: PASS simple DDR RV32I tohost=1 cycles=1485
+sll: PASS (supported) RESULT: PASS sll DDR RV32I tohost=1 cycles=6779
+slli: PASS (supported) RESULT: PASS slli DDR RV32I tohost=1 cycles=3972
+slt: PASS (supported) RESULT: PASS slt DDR RV32I tohost=1 cycles=6303
+slti: PASS (supported) RESULT: PASS slti DDR RV32I tohost=1 cycles=3916
+sltiu: PASS (supported) RESULT: PASS sltiu DDR RV32I tohost=1 cycles=3916
+sltu: PASS (supported) RESULT: PASS sltu DDR RV32I tohost=1 cycles=6303
+sra: PASS (supported) RESULT: PASS sra DDR RV32I tohost=1 cycles=7045
+srai: PASS (supported) RESULT: PASS srai DDR RV32I tohost=1 cycles=4162
+srl: PASS (supported) RESULT: PASS srl DDR RV32I tohost=1 cycles=6961
+srli: PASS (supported) RESULT: PASS srli DDR RV32I tohost=1 cycles=4078
+st_ld: PASS (supported) RESULT: PASS st_ld DDR RV32I tohost=1 cycles=8285
+sub: PASS (supported) RESULT: PASS sub DDR RV32I tohost=1 cycles=6275
+sw: PASS (supported) RESULT: PASS sw DDR RV32I tohost=1 cycles=7034
+xor: PASS (supported) RESULT: PASS xor DDR RV32I tohost=1 cycles=6395
+xori: PASS (supported) RESULT: PASS xori DDR RV32I tohost=1 cycles=3436
+
+[Start-of-task SHA256 comparison]
+myriscv/mycpu_sync.v: UNCHANGED SHA256=2226D52930E61C76C6CB4F9952E6E0365E79895544A47B9A1B941D50EB4628B9
+myriscv/csr_file.v: UNCHANGED SHA256=C0C105873D9AB2F8D309EBFD723CF59097ADF3D5DBFA6FA2E7E1900EAFFB4499
+myriscv/uart_tx.v: UNCHANGED SHA256=BC132B3A229FEA8894B52FE60BFED0F376A4097B0A3F074FAB48E02BFE15AB4F
+myriscv/uart_rx.v: UNCHANGED SHA256=D602552BFC6269C1ED87EF2C4F094BD4F7D600F3AC81DB1B860C485FA6A2BB4E
+myriscv/uart_rx_fifo.v: UNCHANGED SHA256=E0377AEBB6B43B8C76BCAF1B5854D14BA9E1E5141FDA60BFEDC558EAC9728047
+myriscv/uart_mmio.v: EXPECTED EDIT SHA256=688622FD03979D3512FDBEF445714A80876C309690253594595EFF780C1D13E1
+myriscv/soc_top.v: EXPECTED EDIT SHA256=D376F49F5BDE963492F58E7E591FD8D813FAC29AEEBBD05951821A8F5CEF2523
+RISCV.pds: EXTERNAL CHANGE, not edited by this task SHA256=FB14F617BCD389F5F1B587D82126BBA39EA1E790C3C93F39F60FE195CCDC3B74
+impl.tcl: EXTERNAL CHANGE, not edited by this task SHA256=2B8D2FB8392ADB3416EBE9FFDA874FADB06478DDD78BDA9226FC6A111E42EF7F
+multiseed_summary.csv: UNCHANGED SHA256=3C17BB9FCD0121DC9C00624F75B7A4DDED7B0572B6FD0EE99CE891CBFC1ED345
+.gitignore: EXPECTED EDIT SHA256=A482AFF5E29A6C597C3F0720CC2D160AAFB5DDB5EF09E47A74C87FF35F07C9E4
+AGENTS.md: EXPECTED EDIT SHA256=9AAD1BED977E4FDB9135F7FE1846850E96D5BB25699ECA9411D687391F06503C
+doc/SoC结构说明_2026-10-04.md: EXPECTED EDIT SHA256=3F02A3F44C7FFE233ADF9C355DB0E5C14CF206D6AA8F11A1AACE36FEEC51EEA2

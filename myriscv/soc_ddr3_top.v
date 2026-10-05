@@ -40,7 +40,9 @@ module soc_ddr3_top #(
     output wire [ 1:0] mem_dm,
     output wire        led_clk_alive,
     output wire        led_ddr_ready,
-    output wire        led_selftest
+    output wire        led_selftest,
+    output wire        uart_tx,
+    input  wire        uart_rx
 );
     wire pll_lock;
     wire [1:0] selftest_status;
@@ -93,8 +95,7 @@ module soc_ddr3_top #(
     ) u_soc (
         .clk(core_clk),
         .resetn(soc_resetn),
-        // Stage 3 has no physical UART pins: hold RX idle, keep TX internal.
-        .uart_rx(1'b1), .uart_tx(),
+        .uart_rx(uart_rx), .uart_tx(uart_tx),
         .irq_external(irq_external),
         .irq_software(irq_software),
         .irq_timer(irq_timer),

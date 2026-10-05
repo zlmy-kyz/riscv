@@ -1,7 +1,7 @@
-# End time: 01:17:18 on Oct 05,2026, Elapsed time: 0:00:01
+# End time: 15:46:17 on Oct 05,2026, Elapsed time: 0:00:01
 # Errors: 0, Warnings: 9
 # vsim -lib D:/riscv/RISCV/sim/uart_mmio/bus_regression_work tb_ddr_bus_path -l D:/riscv/RISCV/sim/uart_mmio/tb_ddr_bus_path.log
-# Start time: 01:17:18 on Oct 05,2026
+# Start time: 15:46:17 on Oct 05,2026
 # Loading sv_std.std
 # Loading D:/riscv/RISCV/sim/uart_mmio/bus_regression_work.tb_ddr_bus_path
 # Loading D:/riscv/RISCV/sim/uart_mmio/bus_regression_work.inst_bus_interconnect
@@ -21,5 +21,5 @@
 #    Time: 330 ns  Iteration: 1  Instance: /tb_ddr_bus_path
 # Break in Module tb_ddr_bus_path at D:/riscv/RISCV/source/tb_ddr_bus_path.v line 269
 # Stopped at D:/riscv/RISCV/source/tb_ddr_bus_path.v line 269
-# End time: 01:17:19 on Oct 05,2026, Elapsed time: 0:00:01
+# End time: 15:46:18 on Oct 05,2026, Elapsed time: 0:00:01
 # Errors: 0, Warnings: 0

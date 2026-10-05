@@ -15,18 +15,18 @@
 - `board_top.v` 负责板级引脚、`GTP_INBUFDS` 差分参考时钟缓冲、`GTP_CLKBUFG` 消抖时钟及 `reset_button_debounce`。KEY0 按下立即复位，释放稳定 20 ms 后解除；消抖使用参考时钟，不能改用复位期间可能停下的 DDR `core_clk`。
 - `soc_ddr3_top.v` 例化 `soc_top u_soc`、`ddr3 u_ddr3` 和同文件内的 `soc_ddr3_leds u_leds`，并向 `soc_top` 设置 `ENABLE_DDR=1`。DDR `ddr_init_done && pll_lock` 经 `core_clk` 两拍同步后释放 `soc_resetn`。当前参考为 125 MHz，DDR IP 输出 `core_clk=93.75 MHz`；CPU、互连、片内存储、MMIO 和桥均在该域，LED 计时参数须与实际时钟一致。
 - 指令路径：`mycpu_sync → inst_bus_interconnect → inst_bram_adapter → inst_rom`，或经译码进入共享 DDR 桥；数据路径：`mycpu_sync → data_bus_interconnect → data_bram_adapter → data_ram`，或进入 `simple_mmio` / `uart_mmio` / 共享 DDR 桥。片内 ROM 仅接指令总线，片内 RAM/MMIO/UART 仅接数据总线；DDR 内容由两条总线共同访问。
-- `soc_top` 例化 `uart_mmio u_uart_mmio`，内部为 `uart_tx u_tx`、`uart_rx u_rx`、`uart_rx_fifo u_fifo`（16 字节）。UART 使用 93.75 MHz、115200 8N1、814 clk/bit、idle high、LSB first；`UART_CLK_HZ` 必须与实际输入时钟一致。当前 `soc_top` 暴露 TX/RX 供仿真，`soc_ddr3_top` 将 RX 接 1、TX 未引出，`board_top` 尚无 UART 引脚或约束；内部 MMIO 接入不等于板级串口可用。
+- `soc_top` 例化 `uart_mmio u_uart_mmio`，内部为 `uart_tx u_tx`、`uart_rx u_rx`、`uart_rx_fifo u_fifo`（16 字节）。UART 使用 93.75 MHz、115200 8N1、814 clk/bit、idle high、LSB first；`UART_CLK_HZ` 必须与实际输入时钟一致。TX/RX 通过 `soc_ddr3_top` 直连至 `board_top.uart_tx/uart_rx`；物理引脚约束必须另核官方原理图/Pin Map，逻辑接通不能据此认定 USB-TTL 实板通信可用。非 UART TB 把新增 RX 接 idle high。当前板级启动镜像仍是 DDR 自检，未发送 UART 字符；DebugCore 准备与镜像停止条件见 `doc/UART顶层接入与DebugCore准备_2026-10-05.md`。
 - `mycpu_sync` 的 IF/ID/EX/MEM/WB 流水寄存器及控制逻辑直接写在核内，子模块为 `regfile`、`alu`、`br_alu`、`l_alu`、`csr_file`。分支判定在 ID，访存请求在 EX 发射，MEM 等待响应，WB 写回及提交 CSR/异常事件；前递、load-use、等待和冲刷不可绕过。
 - `dual_sram_to_pango_ddr_bridge` 当前一次处理一笔单拍 DDR 事务，两路同时请求时数据优先。`ddr3` IP 内主要子模块为控制器 `ips2l_mcdq_wrapper_v1_2b` 和 PHY `ddr3_ddrphy_top`；厂家 UART/BIST 例程及仿真物理模型不属于当前板级 SoC 路径。
-- CPU 保留 external/software/timer 三路 IRQ，但当前 `board_top` 全接 0；UART 采用软件轮询，未连接中断。当前路径未接 Cache、DMA、CLINT、PLIC 或 RK3568 通信接口。不能把 CPU 的中断支持等同于已有板级中断源。
+- CPU 保留 external/software/timer 三路 IRQ；`board_top` 的三个外部输入仍接 0，`soc_top` 将原 external 输入与 `uart_mmio.uart_irq` 做 OR 后送 CPU。UART RX IRQ 为同 core_clk 域电平 `rx_irq_enable && !fifo_empty`，复位默认禁用；软件读空 FIFO 后自动撤销。软件轮询仍可用，当前无 TX IRQ、Cache、DMA、CLINT、PLIC 或 RK3568 通信接口。RTL/仿真接通不能等同于已有实板中断验证。
 - 当前模块实例表、连接图及启动说明见 `doc/SoC结构说明_2026-10-04.md`（文件名保留首次建立日期，核对日期见文内）；UART 开发与验证记录见 `doc/UART_MMIO与CPU轮询阶段3_2026-10-05.md`。后续修改仍须以实际 RTL/PDS/IP 配置核对。
 
 ## 地址及硬件边界
 
 - `soc_top` 默认 `RESET_PC=0`，`INST_ROM_BASE=DATA_RAM_BASE=RESET_PC`；两块存储器分挂指令、数据总线，各 16 KiB，可以在两条分离总线上同基址。TB 可覆盖复位地址，不能误认为 RTL 默认值也改变了。
 - MMIO：`0x1000_0000` 起 4 KiB，当前 `simple_mmio` 寄存器偏移为 `0x0 SCRATCH`、`0x4 ID`、`0x8 CYCLE`、`0xC STATUS`、`0x10 TEST_STATUS`。自检状态 0/1/2/3 表示 IDLE/RUN/PASS/FAIL，PASS/FAIL 锁存至复位；LED 上报和超时约定见 `doc/LED状态指示与MMIO自检上报_2026-10-02.md`。
-- UART：默认 `UART_BASE=0x1000_1000`，精确覆盖 `0x1000_1000–0x1000_100F`，基址须 16 字节对齐；偏移 `0x0 TX_DATA`（W）、`0x4 RX_DATA`（R）、`0x8 STATUS`（R）、`0xC CONTROL`（W1C，读 0）。STATUS bit0–5 为 TX_READY/TX_BUSY/RX_NOT_EMPTY/RX_FULL/FRAME_ERROR/RX_OVERFLOW；CONTROL bit0/1 清两种 sticky error，同周期新事件优先。`soc_top` 启用 UART，独立 `data_bus_interconnect` 的 `ENABLE_UART` 默认 0；不要扩大译码窗口或改动原 MMIO/DDR 地址。
-- UART 副作用仅在 `req_valid && req_ready` 接受边沿执行；RX_DATA 低字节地址读取锁存队首并 pop 一次，empty 返回 0 且不 pop，等待响应期间不能重复操作。低 lane TX_DATA 写仅在 TX_READY 时发送，busy 写丢弃新字节并返回既有总线 error；SB/SH/SW 须遵守移位数据和 write strobe，上 lane 访问不消费 RX、不启动 TX、不清错误。软件应先轮询 STATUS，非法偏移/访问遵循既有 access-fault 机制。
+- UART：默认 `UART_BASE=0x1000_1000`，精确覆盖 `0x1000_1000–0x1000_100F`，基址须 16 字节对齐；偏移 `0x0 TX_DATA`（W）、`0x4 RX_DATA`（R）、`0x8 STATUS`（R）、`0xC CONTROL`（命令写，读 0）。STATUS bit0–5 为 TX_READY/TX_BUSY/RX_NOT_EMPTY/RX_FULL/FRAME_ERROR/RX_OVERFLOW；bit6 为 RX_IRQ_ENABLE，bit7 为使能后的 UART IRQ 电平。CONTROL bit0/1 清两种 sticky error，同周期新事件优先；bit8 写 1 使能 RX IRQ，bit9 写 1 禁用（同时写 1 时禁用优先），需要 write strobe lane1。写 0/原低字节 W1C 不改变 IRQ 使能。`soc_top` 启用 UART，独立 `data_bus_interconnect` 的 `ENABLE_UART` 默认 0；不要扩大译码窗口或改动原 MMIO/DDR 地址。
+- UART 副作用仅在 `req_valid && req_ready` 接受边沿执行；RX_DATA 低字节地址读取锁存队首并 pop 一次，empty 返回 0 且不 pop，等待响应期间不能重复操作。低 lane TX_DATA 写仅在 TX_READY 时发送，busy 写丢弃新字节并返回既有总线 error；SB/SH/SW 须遵守移位数据和 write strobe，上 lane 访问不消费 RX、不启动 TX、不清错误，只有 CONTROL lane1 的 bit8/9 执行 IRQ 命令。软件应先轮询 STATUS，非法偏移/访问遵循既有 access-fault 机制。
 - DDR CPU 窗口：`0x4000_0000` 起 512 MiB，只有 `ENABLE_DDR=1` 才启用；Pango IP 用户数据拍 128 位，桥在其中选择 32 位槽位并扩展写字节使能。DDR 用户地址按 16 位字计，不是 CPU 字节地址。
 - 普通 `soc_top` 默认 `ENABLE_DDR=0`；DDR 集成版是 `soc_ddr3_top`。不要仅凭 IP 文件存在就认定当前 PDS 顶层已接入 DDR。
 - 板级启动由 CPU 执行片内 ROM 的装载程序，将片内 RAM 中预置的程序复制到 DDR 后跳转执行；没有独立 DMA 装载器。当前主 IP 镜像入口在 `MyCpu_test/board_selftest/`，具体 `INIT_FILE` 以两块 IP 的 IDF 和生成初始化内容为准。更换镜像或 DDR 基址时，核对 ROM 装载目标、RAM 清单、程序链接地址、诊断/自检区及跳转入口的一致性，并重新生成相关存储 IP。
@@ -47,6 +47,7 @@
 - 改 CPU、互连、桥、DDR 顶层或共用 TB 后，至少重新运行两条 DDR 定向脚本，并按影响范围运行当前 `soc_top` 的 RV32I/异常等回归。记录脚本、日志路径、日期与结果；历史 PASS 不等于新代码 PASS。
 - UART 仿真入口：在 `sim/uart_tx` 执行 `do run_uart_tx.tcl`；在 `sim/uart_rx` 执行 `do run_uart_rx.tcl`；在 `sim/uart_mmio` 执行 `do run_uart_mmio.tcl` / `do run_soc_uart_cpu.tcl`。CPU 测试先从根目录用 `python difftest/golden/rvtool.py asm sim/uart_mmio/uart_poll.S sim/uart_mmio/cpu_image` 生成独立仿真镜像。检查自动串行解码、结果比较、`RESULT: PASS`、无 FAIL 和 `Errors: 0`，不能只看波形；修改底层 UART 后重跑 TX 与 RX/FIFO/loopback，修改共享互连后还须运行 DDR、原 MMIO 和 access-fault 回归。
 - 编译 `soc_top` 的脚本须包含 `uart_tx.v`、`uart_rx.v`、`uart_rx_fifo.v`、`uart_mmio.v`；未使用串口的 TB 将 RX 明确接 idle high，不能悬空。MMIO 或板级接线应沿用既有 UART 接口，避免无必要重写已验证的底层收发/FIFO。
+- CPU IRQ/真实 UART IRQ 定向入口：根目录执行 `python sim/uart_irq/run_irq.py --stage cpu`，再执行 `--stage uart`；各加 `--ddr-code` 覆盖 DDR 取指，ISR 在片内 ROM。生成镜像仅在 `sim/uart_irq/build/`，不改板级 boot flow；`--case N --wave` 可保存单个 CPU 用例 VCD。修改中断相关连接/MMIO 后须重跑这些验收及 UART、CPU、DDR、access-fault 回归。结构、精确退休检查和未覆盖范围见 `doc/CPU中断验收与UART_RX_IRQ_2026-10-05.md`。
 
 ## 协作约束
 

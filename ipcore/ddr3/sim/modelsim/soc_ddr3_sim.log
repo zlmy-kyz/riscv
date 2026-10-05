@@ -1,6 +1,6 @@
 # ** Warning: (vsim-53) Cannot suppress or change severity level of message number 1.
-# vsim -suppress 3486,3680,3781 "+nowarn1" -c -sva -lib soc_ddr3_work tb_soc_ddr3_top -l soc_ddr3_sim.log 
-# Start time: 01:15:05 on Oct 05,2026
+# vsim -suppress 3486,3680,3781 "+nowarn1" -c -sva -lib soc_ddr3_work tb_soc_ddr3_top -l soc_ddr3_sim.log
+# Start time: 15:44:24 on Oct 05,2026
 # //  ModelSim DE-64 10.6c Jul 26 2017
 # //
 # //  Copyright 1991-2017 Mentor Graphics Corporation
@@ -59,7 +59,7 @@
 # Loading soc_ddr3_work.GTP_IOBUFCO
 # Loading soc_ddr3_work.GTP_ISERDES_E2
 # Loading soc_ddr3_work.GTP_IOBUF
-# ** Warning: (vsim-3017) D:/riscv/RISCV/source/tb_soc_ddr3_top.v(36): [TFMPC] - Too few port connections. Expected 31, found 28.
+# ** Warning: (vsim-3017) D:/riscv/RISCV/source/tb_soc_ddr3_top.v(36): [TFMPC] - Too few port connections. Expected 33, found 30.
 #    Time: 0 fs  Iteration: 0  Instance: /tb_soc_ddr3_top/dut File: D:/riscv/RISCV/myriscv/soc_ddr3_top.v
 # ** Warning: (vsim-3722) D:/riscv/RISCV/source/tb_soc_ddr3_top.v(36): [TFMPC] - Missing connection for port 'led_clk_alive'.
 # ** Warning: (vsim-3722) D:/riscv/RISCV/source/tb_soc_ddr3_top.v(36): [TFMPC] - Missing connection for port 'led_ddr_ready'.
@@ -721,10 +721,10 @@
 # tb_soc_ddr3_top.mem_core.cmd_task: at time 26425483.0 ps INFO: Load Mode 1 Write Levelization = Disabled
 # tb_soc_ddr3_top.mem_core.cmd_task: at time 26425483.0 ps INFO: Load Mode 1 TDQS Enable = Disabled
 # tb_soc_ddr3_top.mem_core.cmd_task: at time 26425483.0 ps INFO: Load Mode 1 Qoff = Enabled
-# tb_soc_ddr3_top.mem_core.cmd_task: at time 26692150.0 ps INFO: Refresh  
-# tb_soc_ddr3_top.mem_core.cmd_task: at time 27033483.0 ps INFO: Refresh  
-# tb_soc_ddr3_top.mem_core.cmd_task: at time 27374817.0 ps INFO: Refresh  
-# tb_soc_ddr3_top.mem_core.cmd_task: at time 27716150.0 ps INFO: Refresh  
+# tb_soc_ddr3_top.mem_core.cmd_task: at time 26692150.0 ps INFO: Refresh
+# tb_soc_ddr3_top.mem_core.cmd_task: at time 27033483.0 ps INFO: Refresh
+# tb_soc_ddr3_top.mem_core.cmd_task: at time 27374817.0 ps INFO: Refresh
+# tb_soc_ddr3_top.mem_core.cmd_task: at time 27716150.0 ps INFO: Refresh
 # tb_soc_ddr3_top.mem_core.cmd_task: at time 28057483.0 ps INFO: Activate  bank 0 row 0000
 # tb_soc_ddr3_top.mem_core.cmd_task: at time 28089483.0 ps INFO: Write     bank 0 col 000, auto precharge 0
 # tb_soc_ddr3_top.mem_core.cmd_task: at time 28100150.0 ps INFO: Write     bank 0 col 008, auto precharge 0
@@ -3841,10 +3841,10 @@
 # tb_soc_ddr3_top.mem_core.cmd_task: at time 48153483.0 ps INFO: Load Mode 3
 # tb_soc_ddr3_top.mem_core.cmd_task: at time 48153483.0 ps INFO: Load Mode 3 MultiPurpose Register Select = Pre-defined pattern
 # tb_soc_ddr3_top.mem_core.cmd_task: at time 48153483.0 ps INFO: Load Mode 3 MultiPurpose Register Enable = Disabled
-# tb_soc_ddr3_top.mem_core.cmd_task: at time 48377483.0 ps INFO: Refresh  
-# tb_soc_ddr3_top.mem_core.cmd_task: at time 48718817.0 ps INFO: Refresh  
-# tb_soc_ddr3_top.mem_core.cmd_task: at time 49060150.0 ps INFO: Refresh  
-# tb_soc_ddr3_top.mem_core.cmd_task: at time 49401483.0 ps INFO: Refresh  
+# tb_soc_ddr3_top.mem_core.cmd_task: at time 48377483.0 ps INFO: Refresh
+# tb_soc_ddr3_top.mem_core.cmd_task: at time 48718817.0 ps INFO: Refresh
+# tb_soc_ddr3_top.mem_core.cmd_task: at time 49060150.0 ps INFO: Refresh
+# tb_soc_ddr3_top.mem_core.cmd_task: at time 49401483.0 ps INFO: Refresh
 # tb_soc_ddr3_top.mem_core.cmd_task: at time 49742817.0 ps INFO: Activate  bank 0 row 0000
 # tb_soc_ddr3_top.mem_core.cmd_task: at time 49774817.0 ps INFO: Write     bank 0 col 000, auto precharge 0
 # tb_soc_ddr3_top.mem_core.cmd_task: at time 49785483.0 ps INFO: Write     bank 0 col 008, auto precharge 0
@@ -4003,10 +4003,10 @@
 # tb_soc_ddr3_top.mem_core.data_task: at time 53745483.0 ps INFO: READ @ DQS= bank = 0 row = 0000 col = 0000000f data = ffff
 # tb_soc_ddr3_top.mem_core.cmd_task: at time 53849483.0 ps INFO: Precharge All
 # tb_soc_ddr3_top.mem_core.cmd_task: at time 53849483.0 ps INFO: Precharge bank   0
-# tb_soc_ddr3_top.mem_core.cmd_task: at time 53956150.0 ps INFO: Refresh  
-# tb_soc_ddr3_top.mem_core.cmd_task: at time 54297483.0 ps INFO: Refresh  
-# tb_soc_ddr3_top.mem_core.cmd_task: at time 54638817.0 ps INFO: Refresh  
-# tb_soc_ddr3_top.mem_core.cmd_task: at time 54980150.0 ps INFO: Refresh  
+# tb_soc_ddr3_top.mem_core.cmd_task: at time 53956150.0 ps INFO: Refresh
+# tb_soc_ddr3_top.mem_core.cmd_task: at time 54297483.0 ps INFO: Refresh
+# tb_soc_ddr3_top.mem_core.cmd_task: at time 54638817.0 ps INFO: Refresh
+# tb_soc_ddr3_top.mem_core.cmd_task: at time 54980150.0 ps INFO: Refresh
 # tb_soc_ddr3_top.mem_core.cmd_task: at time 55321483.0 ps INFO: Activate  bank 0 row 0000
 # tb_soc_ddr3_top.mem_core.cmd_task: at time 55353483.0 ps INFO: Write     bank 0 col 000, auto precharge 0
 # tb_soc_ddr3_top.mem_core.cmd_task: at time 55364150.0 ps INFO: Write     bank 0 col 008, auto precharge 0
@@ -4048,10 +4048,10 @@
 # tb_soc_ddr3_top.mem_core.main: at time 55468150.0 ps INFO: Sync On Die Termination Rtt_NOM =          0 Ohm
 # tb_soc_ddr3_top.mem_core.cmd_task: at time 55545483.0 ps INFO: Precharge All
 # tb_soc_ddr3_top.mem_core.cmd_task: at time 55545483.0 ps INFO: Precharge bank   0
-# tb_soc_ddr3_top.mem_core.cmd_task: at time 55790817.0 ps INFO: Refresh  
-# tb_soc_ddr3_top.mem_core.cmd_task: at time 56132150.0 ps INFO: Refresh  
-# tb_soc_ddr3_top.mem_core.cmd_task: at time 56473483.0 ps INFO: Refresh  
-# tb_soc_ddr3_top.mem_core.cmd_task: at time 56814817.0 ps INFO: Refresh  
+# tb_soc_ddr3_top.mem_core.cmd_task: at time 55790817.0 ps INFO: Refresh
+# tb_soc_ddr3_top.mem_core.cmd_task: at time 56132150.0 ps INFO: Refresh
+# tb_soc_ddr3_top.mem_core.cmd_task: at time 56473483.0 ps INFO: Refresh
+# tb_soc_ddr3_top.mem_core.cmd_task: at time 56814817.0 ps INFO: Refresh
 # tb_soc_ddr3_top.mem_core.cmd_task: at time 57156150.0 ps INFO: Activate  bank 0 row 0000
 # tb_soc_ddr3_top.mem_core.cmd_task: at time 57188150.0 ps INFO: Read      bank 0 col 000, auto precharge 0
 # tb_soc_ddr3_top.mem_core.cmd_task: at time 57198817.0 ps INFO: Read      bank 0 col 008, auto precharge 0
@@ -5295,7 +5295,7 @@
 # tb_soc_ddr3_top.mem_core.data_task: at time 81488150.0 ps INFO: READ @ DQS= bank = 0 row = 0000 col = 00000016 data = 5555
 # tb_soc_ddr3_top.mem_core.data_task: at time 81489483.0 ps INFO: READ @ DQS= bank = 0 row = 0000 col = 00000017 data = 5f5f
 # RESULT: PASS soc_ddr3_top DDR store/load/fetch at 81584000.0 ps
-# ** Note: $finish    : D:/riscv/RISCV/source/tb_soc_ddr3_top.v(404)
+# ** Note: $finish    : D:/riscv/RISCV/source/tb_soc_ddr3_top.v(405)
 #    Time: 81584166664 fs  Iteration: 4  Instance: /tb_soc_ddr3_top
-# End time: 01:16:58 on Oct 05,2026, Elapsed time: 0:01:53
+# End time: 15:46:59 on Oct 05,2026, Elapsed time: 0:02:35
 # Errors: 0, Warnings: 357

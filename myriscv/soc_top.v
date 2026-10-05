@@ -88,6 +88,10 @@ module soc_top #(
     wire        data_rsp_valid;
     wire [31:0] data_rsp_rdata;
     wire        data_rsp_error;
+    wire        uart_irq;
+    // Preserve the existing generic external source; board_top ties it low.
+    // UART is synchronous to this same core_clk domain and holds a level.
+    wire        cpu_irq_external = irq_external | uart_irq;
 
     wire        ram_bus_req_valid;
     wire        ram_bus_req_write;
@@ -152,7 +156,7 @@ module soc_top #(
     ) u_cpu (
         .clk               (clk),
         .resetn            (resetn),
-        .irq_external      (irq_external),
+        .irq_external      (cpu_irq_external),
         .irq_software      (irq_software),
         .irq_timer         (irq_timer),
         .inst_req_valid    (inst_req_valid),
@@ -349,7 +353,7 @@ module soc_top #(
         .req_addr(uart_req_addr), .req_wdata(uart_req_wdata), .req_wstrb(uart_req_wstrb),
         .req_ready(uart_req_ready), .rsp_valid(uart_rsp_valid),
         .rsp_rdata(uart_rsp_rdata), .rsp_error(uart_rsp_error),
-        .uart_rx(uart_rx), .uart_tx(uart_tx)
+        .uart_rx(uart_rx), .uart_tx(uart_tx), .uart_irq(uart_irq)
     );
 
     generate

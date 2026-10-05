@@ -1,7 +1,8 @@
 `timescale 1ns / 1ps
 
 // SRAM-like MMIO: each req_valid && req_ready edge causes one side effect.
-// 00 TX_DATA (W), 04 RX_DATA (R), 08 STATUS (R), 0c CONTROL (W1C/read zero).
+// 00 TX_DATA (W), 04 RX_DATA (R), 08 STATUS (R), 0c CONTROL (commands/read zero).
+// CONTROL bit8 sets RX IRQ enable, bit9 clears it (clear wins); low W1C unchanged.
 // Busy TX writes return bus error. RX reads latch the head and pop only once.
 module uart_mmio #(
     parameter integer CLK_HZ = 93_750_000,
@@ -17,18 +18,21 @@ module uart_mmio #(
     output wire [31:0] rsp_rdata,
     output wire rsp_error,
     input wire uart_rx,
-    output wire uart_tx
+    output wire uart_tx,
+    output wire uart_irq
 );
     localparam [1:0] TX_DATA = 2'd0, RX_DATA = 2'd1,
                      STATUS = 2'd2, CONTROL = 2'd3;
     reg pending;
     reg [31:0] wait_count, response_data;
     reg response_error, frame_error_status, overflow_status;
+    reg rx_irq_enable;
     wire tx_ready, tx_busy;
     wire [7:0] rx_data, fifo_data;
     wire rx_valid, frame_error, fifo_empty, fifo_full, overflow;
     wire [4:0] fifo_count;
     wire req_fire, access_valid, tx_send, fifo_pop, clear_frame, clear_overflow;
+    wire irq_control_write;
     wire [31:0] status_word;
 
     assign req_ready = resetn && !pending;
@@ -48,7 +52,11 @@ module uart_mmio #(
                          req_addr[3:2] == CONTROL && req_wstrb[0] && req_wdata[0];
     assign clear_overflow = req_fire && access_valid && req_write &&
                             req_addr[3:2] == CONTROL && req_wstrb[0] && req_wdata[1];
-    assign status_word = {26'd0, overflow_status, frame_error_status,
+    assign irq_control_write = req_fire && access_valid && req_write &&
+                               req_addr[3:2] == CONTROL && req_wstrb[1];
+    // FIFO occupancy holds the IRQ until software drains it; never use rx_valid.
+    assign uart_irq = rx_irq_enable && !fifo_empty;
+    assign status_word = {24'd0, uart_irq, rx_irq_enable, overflow_status, frame_error_status,
                           fifo_full, !fifo_empty, tx_busy, tx_ready};
 
     uart_tx #(.CLK_HZ(CLK_HZ), .BAUD(BAUD)) u_tx (
@@ -73,10 +81,15 @@ module uart_mmio #(
             response_error <= 1'b0;
             frame_error_status <= 1'b0;
             overflow_status <= 1'b0;
+            rx_irq_enable <= 1'b0;
         end else begin
             // New events win over simultaneous software W1C.
             frame_error_status <= frame_error || (frame_error_status && !clear_frame);
             overflow_status <= overflow || (overflow_status && !clear_overflow);
+            if (irq_control_write) begin
+                if (req_wdata[9]) rx_irq_enable <= 1'b0;
+                else if (req_wdata[8]) rx_irq_enable <= 1'b1;
+            end
             if (pending && wait_count != 0) wait_count <= wait_count - 1'b1;
             if (rsp_valid) pending <= 1'b0;
             if (req_fire) begin
@@ -95,7 +108,7 @@ module uart_mmio #(
                             response_data <= status_word;
                             response_error <= req_write;
                         end
-                        CONTROL: begin end // W1C above; other byte lanes ignored
+                        CONTROL: begin end // Commands above; read remains zero
                     endcase
                 end
             end

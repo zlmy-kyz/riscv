@@ -1,15 +1,15 @@
 # Model Technology ModelSim DE-64 vlog 10.6c Compiler 2017.07 Jul 26 2017
-# Start time: 01:15:01 on Oct 05,2026
+# Start time: 15:42:19 on Oct 05,2026
 # vlog -sv -work D:/riscv/RISCV/sim/uart_tx/uart_tx_work D:/riscv/RISCV/myriscv/uart_tx.v D:/riscv/RISCV/source/tb_uart_tx.v
 # -- Compiling module uart_tx
 # -- Compiling module tb_uart_tx
 #
 # Top level modules:
 # 	tb_uart_tx
-# End time: 01:15:01 on Oct 05,2026, Elapsed time: 0:00:00
+# End time: 15:42:20 on Oct 05,2026, Elapsed time: 0:00:01
 # Errors: 0, Warnings: 0
 # vsim -t 1fs -lib D:/riscv/RISCV/sim/uart_tx/uart_tx_work tb_uart_tx
-# Start time: 01:15:01 on Oct 05,2026
+# Start time: 15:42:20 on Oct 05,2026
 # //  ModelSim DE-64 10.6c Jul 26 2017
 # //
 # //  Copyright 1991-2017 Mentor Graphics Corporation
@@ -45,5 +45,5 @@
 #    Time: 1580693234540 fs  Iteration: 1  Instance: /tb_uart_tx
 # Break in Module tb_uart_tx at D:/riscv/RISCV/source/tb_uart_tx.v line 224
 # Stopped at D:/riscv/RISCV/source/tb_uart_tx.v line 224
-# End time: 01:15:02 on Oct 05,2026, Elapsed time: 0:00:01
+# End time: 15:42:21 on Oct 05,2026, Elapsed time: 0:00:01
 # Errors: 0, Warnings: 0

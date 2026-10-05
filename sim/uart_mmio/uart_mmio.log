@@ -1,5 +1,5 @@
 # Model Technology ModelSim DE-64 vlog 10.6c Compiler 2017.07 Jul 26 2017
-# Start time: 01:12:31 on Oct 05,2026
+# Start time: 15:45:42 on Oct 05,2026
 # vlog -sv -work D:/riscv/RISCV/sim/uart_mmio/uart_mmio_work D:/riscv/RISCV/myriscv/data_bus_interconnect.v D:/riscv/RISCV/myriscv/simple_mmio.v D:/riscv/RISCV/myriscv/uart_tx.v D:/riscv/RISCV/myriscv/uart_rx.v D:/riscv/RISCV/myriscv/uart_rx_fifo.v D:/riscv/RISCV/myriscv/uart_mmio.v D:/riscv/RISCV/source/tb_uart_mmio.v
 # -- Compiling module data_bus_interconnect
 # -- Compiling module simple_mmio
@@ -11,10 +11,10 @@
 #
 # Top level modules:
 # 	tb_uart_mmio
-# End time: 01:12:31 on Oct 05,2026, Elapsed time: 0:00:00
+# End time: 15:45:42 on Oct 05,2026, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 0
 # vsim -t 1fs -lib D:/riscv/RISCV/sim/uart_mmio/uart_mmio_work tb_uart_mmio
-# Start time: 01:12:31 on Oct 05,2026
+# Start time: 15:45:43 on Oct 05,2026
 # //  ModelSim DE-64 10.6c Jul 26 2017
 # //
 # //  Copyright 1991-2017 Mentor Graphics Corporation
@@ -40,10 +40,11 @@
 # CHECK: pin RX Hello/FIFO order/held A B C read/empty/status side effects PASS
 # CHECK: frame/overflow sticky/W1C 0 1 2 3/set priority/full old-data preservation PASS
 # CHECK: 16-byte decode/unmapped/access permissions/old RAM MMIO DDR PASS
-# RESULT: PASS uart_mmio; TX=9 requests=8230 responses=8230 pops=24
-# ** Note: $finish    : D:/riscv/RISCV/source/tb_uart_mmio.v(276)
-#    Time: 3662790444253 fs  Iteration: 0  Instance: /tb_uart_mmio
-# Break in Module tb_uart_mmio at D:/riscv/RISCV/source/tb_uart_mmio.v line 276
-# Stopped at D:/riscv/RISCV/source/tb_uart_mmio.v line 276
-# End time: 01:12:32 on Oct 05,2026, Elapsed time: 0:00:01
+# CHECK: RX IRQ reset/SB SH SW/lane mask/invalid access/W1C compatibility/held level/last pop/disable priority PASS
+# RESULT: PASS uart_mmio; TX=9 requests=8247 responses=8247 pops=26
+# ** Note: $finish    : D:/riscv/RISCV/source/tb_uart_mmio.v(310)
+#    Time: 3937926427057 fs  Iteration: 0  Instance: /tb_uart_mmio
+# Break in Module tb_uart_mmio at D:/riscv/RISCV/source/tb_uart_mmio.v line 310
+# Stopped at D:/riscv/RISCV/source/tb_uart_mmio.v line 310
+# End time: 15:45:44 on Oct 05,2026, Elapsed time: 0:00:01
 # Errors: 0, Warnings: 0

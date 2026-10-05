@@ -11,7 +11,7 @@ module tb_uart_mmio;
     reg [1:0] size = 2;
     reg [31:0] addr = 0, wdata = 0;
     reg [3:0] strb = 0;
-    wire ready, rsp_valid, rsp_error, tx;
+    wire ready, rsp_valid, rsp_error, tx, uart_irq;
     wire [31:0] rdata;
     wire uv, uw, ur, usv, uart_rsp_err;
     wire [1:0] usize;
@@ -53,7 +53,7 @@ module tb_uart_mmio;
     uart_mmio #(.RSP_DELAY_CYCLES(6)) uart (
         .clk(clk), .resetn(resetn), .req_valid(uv), .req_write(uw), .req_size(usize),
         .req_addr(ua), .req_wdata(ud), .req_wstrb(ust), .req_ready(ur),
-        .rsp_valid(usv), .rsp_rdata(usd), .rsp_error(uart_rsp_err), .uart_rx(rx), .uart_tx(tx)
+        .rsp_valid(usv), .rsp_rdata(usd), .rsp_error(uart_rsp_err), .uart_rx(rx), .uart_tx(tx), .uart_irq(uart_irq)
     );
     simple_mmio old_mmio (
         .clk(clk), .resetn(resetn), .req_valid(mv), .req_write(mw), .req_size(msize),
@@ -119,7 +119,7 @@ module tb_uart_mmio;
     task read_status;
         begin
             transact(0, BASE+8, 0, 0, 2, 0);
-            check(!result_error && result[31:6] == 0, "STATUS read/reserved bits");
+            check(!result_error && result[31:8] == 0, "STATUS read/reserved bits");
         end
     endtask
     task put_byte;
@@ -269,9 +269,43 @@ module tb_uart_mmio;
         transact(1,32'h10000000,32'habcd,15,2,0); check(!result_error, "old MMIO write");
         transact(0,32'h10000000,0,0,2,0); check(!result_error && result==32'habcd, "old MMIO read");
         transact(0,32'h20000000,0,0,2,0); check(result_error, "unmapped response unchanged");
+        $display("CHECK: 16-byte decode/unmapped/access permissions/old RAM MMIO DDR PASS");
+
+        // RX IRQ commands use byte lane 1, leaving the old low W1C independent.
+        transact(0,BASE+12,0,0,2,0); check(result==0, "CONTROL still reads zero");
+        transact(1,BASE+12,32'h100,1,2,0);
+        check(!uart_irq && !uart.rx_irq_enable, "masked IRQ set command ignored");
+        transact(1,BASE+12,32'h100,4,2,0);
+        check(!uart.rx_irq_enable, "upper lanes cannot change IRQ enable");
+        transact(1,BASE+13,32'h100,2,2,0);
+        check(result_error && !uart.rx_irq_enable, "invalid aligned access cannot enable IRQ");
+        transact(1,BASE+13,32'h100,2,0,5);
+        read_status; check(result==32'h41 && !uart_irq, "SB enable with empty FIFO");
+        wave("Q",1);
+        read_status; check(result==32'hc5 && uart_irq, "RX data holds enabled level IRQ");
+        control(0); control(3);
+        check(uart_irq && uart.rx_irq_enable, "old low W1C and zero preserve enable");
+        control(32'h200);
+        read_status; check(result==5 && !uart_irq, "disable preserves FIFO for polling");
+        get_byte("Q",5);
+        wave("R",1);
+        check(!uart_irq, "disabled plus data must not assert IRQ");
+        transact(1,BASE+12,32'h100,3,1,5);
+        check(uart_irq, "SH enable acts on already queued data");
+        get_byte("R",5);
+        check(!uart_irq && uart.rx_irq_enable, "last pop drops IRQ while enable stays set");
+        control(32'h300);
+        check(!uart.rx_irq_enable, "disable wins over simultaneous set/clear");
+        control(32'h100); wave("S",1);
+        check(uart_irq, "nonempty IRQ before reset");
+        @(negedge clk) resetn=0;
+        repeat(5) @(negedge clk);
+        check(!uart_irq && uart.fifo_empty && tx==1 && !uart.rx_irq_enable, "reset clears IRQ enable and FIFO");
+        resetn=1;
+        read_status; check(result==1, "polling reset STATUS unchanged");
+        $display("CHECK: RX IRQ reset/SB SH SW/lane mask/invalid access/W1C compatibility/held level/last pop/disable priority PASS");
         #(12*BIT_NS);
         check(decoded==9 && starts==9 && responses==accepted, "no lost/duplicate TX or bus response");
-        $display("CHECK: 16-byte decode/unmapped/access permissions/old RAM MMIO DDR PASS");
         $display("RESULT: PASS uart_mmio; TX=%0d requests=%0d responses=%0d pops=%0d",decoded,accepted,responses,pops);
         test_pass=1; $finish;
     end

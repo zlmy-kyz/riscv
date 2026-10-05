@@ -37,6 +37,7 @@ module tb_board_top_selftest;
 `endif
         .ddr_ref_clk_p(ddr_ref_clk), .ddr_ref_clk_n(~ddr_ref_clk),
         .resetn(resetn),
+        .uart_rx(1'b1), .uart_tx(),
         .led_clk_alive(led_clk_alive),
         .led_ddr_ready(led_ddr_ready),
         .led_selftest(led_selftest),

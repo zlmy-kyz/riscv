@@ -134,7 +134,9 @@ module soc_ddr3_top #(
     output wire [2:0] mem_ba,
     output wire [1:0] mem_dm,
     inout wire [15:0] mem_dq,
-    inout wire [1:0] mem_dqs, mem_dqs_n
+    inout wire [1:0] mem_dqs, mem_dqs_n,
+    output wire uart_tx,
+    input wire uart_rx
 );
     // Model the important dependency: no core clock until reset is released.
     assign core_clk = resetn ? ddr_ref_clk : 1'b0;
@@ -146,7 +148,8 @@ module tb_board_key_reset;
     wire soc_resetn;
     integer releases = 0, i;
     board_top #(.KEY_DEBOUNCE_CYCLES(8)) dut (
-        .ddr_ref_clk_p(ref_clk), .ddr_ref_clk_n(~ref_clk), .resetn(keyn)
+        .ddr_ref_clk_p(ref_clk), .ddr_ref_clk_n(~ref_clk), .resetn(keyn),
+        .uart_rx(1'b1), .uart_tx()
     );
     always #4 ref_clk = ~ref_clk;
     always @(posedge dut.u_soc.resetn) releases = releases + 1;

@@ -29,7 +29,9 @@ module board_top #(
     inout  wire [ 1:0] mem_dqs,
     inout  wire [ 1:0] mem_dqs_n,
     inout  wire [15:0] mem_dq,
-    output wire [ 1:0] mem_dm
+    output wire [ 1:0] mem_dm,
+    output wire        uart_tx,
+    input  wire        uart_rx
 );
     wire ddr_ref_clk;
     wire key_ref_clk;
@@ -72,6 +74,7 @@ module board_top #(
         .SELFTEST_TIMEOUT_CYCLES(SELFTEST_TIMEOUT_CYCLES)
     ) u_soc (
         .ddr_ref_clk(ddr_ref_clk), .resetn(key_resetn),
+        .uart_tx(uart_tx), .uart_rx(uart_rx),
         .irq_external(1'b0), .irq_software(1'b0), .irq_timer(1'b0),
         .core_clk(core_clk), .ddr_init_done(ddr_init_done),
         .soc_resetn(soc_resetn),

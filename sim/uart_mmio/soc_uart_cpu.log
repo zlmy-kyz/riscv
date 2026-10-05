@@ -2,7 +2,7 @@
 # D:/riscv/RISCV/myriscv/alu.v D:/riscv/RISCV/myriscv/br_alu.v D:/riscv/RISCV/myriscv/l_alu.v D:/riscv/RISCV/myriscv/regfile.v D:/riscv/RISCV/myriscv/csr_file.v D:/riscv/RISCV/myriscv/mycpu_sync.v D:/riscv/RISCV/myriscv/inst_bus_interconnect.v D:/riscv/RISCV/myriscv/data_bus_interconnect.v D:/riscv/RISCV/myriscv/inst_bram_adapter.v D:/riscv/RISCV/myriscv/data_bram_adapter.v D:/riscv/RISCV/myriscv/simple_mmio.v D:/riscv/RISCV/myriscv/dual_sram_to_pango_ddr_bridge.v D:/riscv/RISCV/myriscv/uart_tx.v D:/riscv/RISCV/myriscv/uart_rx.v D:/riscv/RISCV/myriscv/uart_rx_fifo.v D:/riscv/RISCV/myriscv/uart_mmio.v D:/riscv/RISCV/myriscv/soc_top.v D:/riscv/RISCV/difftest/model/inst_rom.v D:/riscv/RISCV/difftest/model/data_ram.v
 # D:/riscv/RISCV/myriscv/alu.v D:/riscv/RISCV/myriscv/br_alu.v D:/riscv/RISCV/myriscv/l_alu.v D:/riscv/RISCV/myriscv/regfile.v D:/riscv/RISCV/myriscv/csr_file.v D:/riscv/RISCV/myriscv/mycpu_sync.v D:/riscv/RISCV/myriscv/inst_bus_interconnect.v D:/riscv/RISCV/myriscv/data_bus_interconnect.v D:/riscv/RISCV/myriscv/inst_bram_adapter.v D:/riscv/RISCV/myriscv/data_bram_adapter.v D:/riscv/RISCV/myriscv/simple_mmio.v D:/riscv/RISCV/myriscv/dual_sram_to_pango_ddr_bridge.v D:/riscv/RISCV/myriscv/uart_tx.v D:/riscv/RISCV/myriscv/uart_rx.v D:/riscv/RISCV/myriscv/uart_rx_fifo.v D:/riscv/RISCV/myriscv/uart_mmio.v D:/riscv/RISCV/myriscv/soc_top.v D:/riscv/RISCV/difftest/model/inst_rom.v D:/riscv/RISCV/difftest/model/data_ram.v D:/riscv/RISCV/source/tb_soc_uart_cpu.v
 # Model Technology ModelSim DE-64 vlog 10.6c Compiler 2017.07 Jul 26 2017
-# Start time: 01:14:27 on Oct 05,2026
+# Start time: 15:46:16 on Oct 05,2026
 # vlog -sv -work D:/riscv/RISCV/sim/uart_mmio/soc_uart_cpu_work "+incdir+D:/riscv/RISCV/myriscv" D:/riscv/RISCV/myriscv/alu.v D:/riscv/RISCV/myriscv/br_alu.v D:/riscv/RISCV/myriscv/l_alu.v D:/riscv/RISCV/myriscv/regfile.v D:/riscv/RISCV/myriscv/csr_file.v D:/riscv/RISCV/myriscv/mycpu_sync.v D:/riscv/RISCV/myriscv/inst_bus_interconnect.v D:/riscv/RISCV/myriscv/data_bus_interconnect.v D:/riscv/RISCV/myriscv/inst_bram_adapter.v D:/riscv/RISCV/myriscv/data_bram_adapter.v D:/riscv/RISCV/myriscv/simple_mmio.v D:/riscv/RISCV/myriscv/dual_sram_to_pango_ddr_bridge.v D:/riscv/RISCV/myriscv/uart_tx.v D:/riscv/RISCV/myriscv/uart_rx.v D:/riscv/RISCV/myriscv/uart_rx_fifo.v D:/riscv/RISCV/myriscv/uart_mmio.v D:/riscv/RISCV/myriscv/soc_top.v D:/riscv/RISCV/difftest/model/inst_rom.v D:/riscv/RISCV/difftest/model/data_ram.v D:/riscv/RISCV/source/tb_soc_uart_cpu.v
 # -- Compiling module alu
 # -- Compiling module br_alu
@@ -27,10 +27,10 @@
 #
 # Top level modules:
 # 	tb_soc_uart_cpu
-# End time: 01:14:27 on Oct 05,2026, Elapsed time: 0:00:00
+# End time: 15:46:16 on Oct 05,2026, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 0
 # vsim -t 1fs -lib D:/riscv/RISCV/sim/uart_mmio/soc_uart_cpu_work tb_soc_uart_cpu
-# Start time: 01:14:27 on Oct 05,2026
+# Start time: 15:46:16 on Oct 05,2026
 # //  ModelSim DE-64 10.6c Jul 26 2017
 # //
 # //  Copyright 1991-2017 Mentor Graphics Corporation
@@ -69,5 +69,5 @@
 #    Time: 535895922620 fs  Iteration: 0  Instance: /tb_soc_uart_cpu
 # Break in Module tb_soc_uart_cpu at D:/riscv/RISCV/source/tb_soc_uart_cpu.v line 81
 # Stopped at D:/riscv/RISCV/source/tb_soc_uart_cpu.v line 81
-# End time: 01:14:28 on Oct 05,2026, Elapsed time: 0:00:01
+# End time: 15:46:17 on Oct 05,2026, Elapsed time: 0:00:01
 # Errors: 0, Warnings: 0
