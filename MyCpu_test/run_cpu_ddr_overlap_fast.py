@@ -23,6 +23,7 @@ SOURCES = (
     "myriscv/inst_bus_interconnect.v", "myriscv/data_bus_interconnect.v",
     "myriscv/inst_bram_adapter.v", "myriscv/data_bram_adapter.v",
     "myriscv/simple_mmio.v", "myriscv/dual_sram_to_pango_ddr_bridge.v",
+    "myriscv/uart_tx.v", "myriscv/uart_rx.v", "myriscv/uart_rx_fifo.v", "myriscv/uart_mmio.v",
     "myriscv/soc_top.v",
 )
 

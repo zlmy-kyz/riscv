@@ -1,6 +1,6 @@
 `timescale 1ns / 1ps
 
-// 单主机、RAM/MMIO/DDR 数据总线互连。
+// 单主机、RAM/MMIO/UART/DDR 数据总线互连。
 //
 // 地址空间：
 //   RAM   : (地址 & RAM_ADDR_MASK)  == RAM_BASE
@@ -17,7 +17,9 @@ module data_bus_interconnect #(
     parameter [31:0] MMIO_ADDR_MASK = 32'hffff_f000, // 4 KiB
     parameter integer ENABLE_DDR    = 0,
     parameter [31:0] DDR_BASE       = 32'h4000_0000,
-    parameter [31:0] DDR_ADDR_MASK  = 32'he000_0000  // 512 MiB
+    parameter [31:0] DDR_ADDR_MASK  = 32'he000_0000, // 512 MiB
+    parameter integer ENABLE_UART  = 0,
+    parameter [31:0] UART_BASE      = 32'h1000_1000 // 16-byte aligned, 16 bytes
 ) (
     input  wire        clk,
     input  wire        resetn,
@@ -64,20 +66,32 @@ module data_bus_interconnect #(
     input  wire        ddr_req_ready,
     input  wire        ddr_rsp_valid,
     input  wire [31:0] ddr_rsp_rdata,
-    input  wire        ddr_rsp_error
+    input  wire        ddr_rsp_error,
+    output wire        uart_req_valid,
+    output wire        uart_req_write,
+    output wire [ 1:0] uart_req_size,
+    output wire [31:0] uart_req_addr,
+    output wire [31:0] uart_req_wdata,
+    output wire [ 3:0] uart_req_wstrb,
+    input  wire        uart_req_ready,
+    input  wire        uart_rsp_valid,
+    input  wire [31:0] uart_rsp_rdata,
+    input  wire        uart_rsp_error
 );
 
-    localparam [1:0] TARGET_RAM   = 2'd0;
-    localparam [1:0] TARGET_MMIO  = 2'd1;
-    localparam [1:0] TARGET_DDR   = 2'd2;
-    localparam [1:0] TARGET_ERROR = 2'd3;
+    localparam [2:0] TARGET_RAM   = 3'd0;
+    localparam [2:0] TARGET_MMIO  = 3'd1;
+    localparam [2:0] TARGET_DDR   = 3'd2;
+    localparam [2:0] TARGET_ERROR = 3'd3;
+    localparam [2:0] TARGET_UART  = 3'd4;
 
     wire ram_select;
     wire mmio_select;
     wire ddr_select;
+    wire uart_select;
     wire req_fire;
     reg  pending;
-    reg [1:0] response_target;
+    reg [2:0] response_target;
 
     assign ram_select  = ((m_req_addr & RAM_ADDR_MASK) ==
                           (RAM_BASE & RAM_ADDR_MASK));
@@ -85,13 +99,16 @@ module data_bus_interconnect #(
     assign mmio_select = !ram_select &&
                          ((m_req_addr & MMIO_ADDR_MASK) ==
                           (MMIO_BASE & MMIO_ADDR_MASK));
-    assign ddr_select = (ENABLE_DDR != 0) && !ram_select && !mmio_select &&
+    assign uart_select = (ENABLE_UART != 0) && !ram_select && !mmio_select &&
+                         (m_req_addr[31:4] == UART_BASE[31:4]);
+    assign ddr_select = (ENABLE_DDR != 0) && !ram_select && !mmio_select && !uart_select &&
                         ((m_req_addr & DDR_ADDR_MASK) ==
                          (DDR_BASE & DDR_ADDR_MASK));
 
     assign m_req_ready = !pending &&
                          (ram_select  ? ram_req_ready  :
                           mmio_select ? mmio_req_ready :
+                          uart_select ? uart_req_ready :
                           ddr_select  ? ddr_req_ready  : 1'b1);
     assign req_fire = m_req_valid && m_req_ready;
 
@@ -116,20 +133,30 @@ module data_bus_interconnect #(
     assign ddr_req_wdata = m_req_wdata;
     assign ddr_req_wstrb = m_req_wstrb;
 
+    assign uart_req_valid = !pending && m_req_valid && uart_select;
+    assign uart_req_write = m_req_write;
+    assign uart_req_size  = m_req_size;
+    assign uart_req_addr  = m_req_addr - UART_BASE;
+    assign uart_req_wdata = m_req_wdata;
+    assign uart_req_wstrb = m_req_wstrb;
+
     // 未映射地址也先完成请求握手，再在下一拍返回 error，避免 CPU 死等。
     assign m_rsp_valid = pending &&
                          ((response_target == TARGET_RAM)  ? ram_rsp_valid  :
                           (response_target == TARGET_MMIO) ? mmio_rsp_valid :
                           (response_target == TARGET_DDR)  ? ddr_rsp_valid  :
+                          (response_target == TARGET_UART) ? uart_rsp_valid :
                                                               1'b1);
     assign m_rsp_rdata = (response_target == TARGET_RAM)  ? ram_rsp_rdata  :
                          (response_target == TARGET_MMIO) ? mmio_rsp_rdata :
                          (response_target == TARGET_DDR)  ? ddr_rsp_rdata  :
+                         (response_target == TARGET_UART) ? uart_rsp_rdata :
                                                            32'b0;
     assign m_rsp_error = m_rsp_valid &&
                          ((response_target == TARGET_RAM)  ? ram_rsp_error  :
                           (response_target == TARGET_MMIO) ? mmio_rsp_error :
                           (response_target == TARGET_DDR)  ? ddr_rsp_error  :
+                          (response_target == TARGET_UART) ? uart_rsp_error :
                                                             1'b1);
 
     always @(posedge clk) begin
@@ -148,6 +175,8 @@ module data_bus_interconnect #(
                     response_target <= TARGET_MMIO;
                 else if (ddr_select)
                     response_target <= TARGET_DDR;
+                else if (uart_select)
+                    response_target <= TARGET_UART;
                 else
                     response_target <= TARGET_ERROR;
             end

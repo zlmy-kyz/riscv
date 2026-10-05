@@ -1,0 +1,45 @@
+# vsim -lib D:/riscv/RISCV/sim/uart_mmio/bus_regression_work tb_data_bus_interconnect -l D:/riscv/RISCV/sim/uart_mmio/tb_data_bus_interconnect.log
+# Start time: 01:17:17 on Oct 05,2026
+# //  ModelSim DE-64 10.6c Jul 26 2017
+# //
+# //  Copyright 1991-2017 Mentor Graphics Corporation
+# //  All Rights Reserved.
+# //
+# //  ModelSim DE-64 and its associated documentation contain trade
+# //  secrets and commercial or financial information that are the property of
+# //  Mentor Graphics Corporation and are privileged, confidential,
+# //  and exempt from disclosure under the Freedom of Information Act,
+# //  5 U.S.C. Section 552. Furthermore, this information
+# //  is prohibited from disclosure under the Trade Secrets Act,
+# //  18 U.S.C. Section 1905.
+# //
+# Loading sv_std.std
+# Loading D:/riscv/RISCV/sim/uart_mmio/bus_regression_work.tb_data_bus_interconnect
+# Loading D:/riscv/RISCV/sim/uart_mmio/bus_regression_work.data_bus_interconnect
+# Loading D:/riscv/RISCV/sim/uart_mmio/bus_regression_work.simple_mmio
+# ** Warning: (vsim-3017) D:/riscv/RISCV/source/tb_data_bus_interconnect.v(53): [TFMPC] - Too few port connections. Expected 52, found 46.
+#    Time: 0 ps  Iteration: 0  Instance: /tb_data_bus_interconnect/dut File: D:/riscv/RISCV/myriscv/data_bus_interconnect.v
+# ** Warning: (vsim-3722) D:/riscv/RISCV/source/tb_data_bus_interconnect.v(53): [TFMPC] - Missing connection for port 'ddr_req_valid'.
+# ** Warning: (vsim-3722) D:/riscv/RISCV/source/tb_data_bus_interconnect.v(53): [TFMPC] - Missing connection for port 'ddr_req_write'.
+# ** Warning: (vsim-3722) D:/riscv/RISCV/source/tb_data_bus_interconnect.v(53): [TFMPC] - Missing connection for port 'ddr_req_size'.
+# ** Warning: (vsim-3722) D:/riscv/RISCV/source/tb_data_bus_interconnect.v(53): [TFMPC] - Missing connection for port 'ddr_req_addr'.
+# ** Warning: (vsim-3722) D:/riscv/RISCV/source/tb_data_bus_interconnect.v(53): [TFMPC] - Missing connection for port 'ddr_req_wdata'.
+# ** Warning: (vsim-3722) D:/riscv/RISCV/source/tb_data_bus_interconnect.v(53): [TFMPC] - Missing connection for port 'ddr_req_wstrb'.
+# ** Warning: (vsim-3017) D:/riscv/RISCV/source/tb_data_bus_interconnect.v(96): [TFMPC] - Too few port connections. Expected 13, found 12.
+#    Time: 0 ps  Iteration: 0  Instance: /tb_data_bus_interconnect/u_mmio File: D:/riscv/RISCV/myriscv/simple_mmio.v
+# ** Warning: (vsim-3722) D:/riscv/RISCV/source/tb_data_bus_interconnect.v(96): [TFMPC] - Missing connection for port 'test_status'.
+# PASS: RAM base address translation
+# PASS: RAM upper boundary
+# PASS: MMIO scratch write
+# PASS: MMIO scratch read
+# PASS: MMIO byte write
+# PASS: MMIO byte write result
+# PASS: MMIO ID register
+# PASS: MMIO read-only write error
+# PASS: Address immediately above RAM
+# PASS: Unmapped address error
+# RESULT: PASS data_bus_interconnect
+# ** Note: $finish    : D:/riscv/RISCV/source/tb_data_bus_interconnect.v(229)
+#    Time: 230 ns  Iteration: 1  Instance: /tb_data_bus_interconnect
+# Break in Module tb_data_bus_interconnect at D:/riscv/RISCV/source/tb_data_bus_interconnect.v line 229
+# Stopped at D:/riscv/RISCV/source/tb_data_bus_interconnect.v line 229

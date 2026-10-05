@@ -13,7 +13,10 @@ module soc_top #(
     parameter integer INST_REQ_STALL_CYCLES = 0,
     parameter integer INST_RSP_DELAY_CYCLES = 0,
     parameter integer DATA_REQ_STALL_CYCLES = 0,
-    parameter integer DATA_RSP_DELAY_CYCLES = 0
+    parameter integer DATA_RSP_DELAY_CYCLES = 0,
+    parameter [31:0] UART_BASE = 32'h1000_1000,
+    parameter integer UART_CLK_HZ = 93_750_000,
+    parameter integer UART_RSP_DELAY_CYCLES = 0
 ) (
     input  wire        clk,
     input  wire        resetn,
@@ -49,7 +52,9 @@ module soc_top #(
     input  wire [ 3:0] ddr_axi_rid,
     input  wire        ddr_axi_rlast,
     input  wire        ddr_axi_rvalid,
-    output wire [ 1:0] selftest_status
+    output wire [ 1:0] selftest_status,
+    input  wire        uart_rx,
+    output wire        uart_tx
 );
 
     // CPU 使用字节地址；ROM/RAM IP 使用 32 位字地址。
@@ -116,6 +121,12 @@ module soc_top #(
     wire        mmio_rsp_valid;
     wire [31:0] mmio_rsp_rdata;
     wire        mmio_rsp_error;
+
+    wire uart_req_valid, uart_req_write, uart_req_ready;
+    wire [1:0] uart_req_size;
+    wire [31:0] uart_req_addr, uart_req_wdata, uart_rsp_rdata;
+    wire [3:0] uart_req_wstrb;
+    wire uart_rsp_valid, uart_rsp_error;
 
     wire [11:0] data_ram_addr;
     wire [31:0] data_ram_wdata;
@@ -229,7 +240,9 @@ module soc_top #(
         .MMIO_ADDR_MASK(32'hffff_f000),
         .ENABLE_DDR    (ENABLE_DDR),
         .DDR_BASE      (DDR_BASE),
-        .DDR_ADDR_MASK (DDR_ADDR_MASK)
+        .DDR_ADDR_MASK (DDR_ADDR_MASK),
+        .ENABLE_UART   (1),
+        .UART_BASE     (UART_BASE)
     ) u_data_bus_interconnect (
         .clk            (clk),
         .resetn         (resetn),
@@ -272,7 +285,12 @@ module soc_top #(
         .ddr_req_ready  (data_ddr_req_ready),
         .ddr_rsp_valid  (data_ddr_rsp_valid),
         .ddr_rsp_rdata  (data_ddr_rsp_rdata),
-        .ddr_rsp_error  (data_ddr_rsp_error)
+        .ddr_rsp_error  (data_ddr_rsp_error),
+        .uart_req_valid(uart_req_valid), .uart_req_write(uart_req_write),
+        .uart_req_size(uart_req_size), .uart_req_addr(uart_req_addr),
+        .uart_req_wdata(uart_req_wdata), .uart_req_wstrb(uart_req_wstrb),
+        .uart_req_ready(uart_req_ready), .uart_rsp_valid(uart_rsp_valid),
+        .uart_rsp_rdata(uart_rsp_rdata), .uart_rsp_error(uart_rsp_error)
     );
 
     data_bram_adapter #(
@@ -323,6 +341,15 @@ module soc_top #(
         .rsp_rdata (mmio_rsp_rdata),
         .rsp_error (mmio_rsp_error),
         .test_status(selftest_status)
+    );
+
+    uart_mmio #(.CLK_HZ(UART_CLK_HZ), .RSP_DELAY_CYCLES(UART_RSP_DELAY_CYCLES)) u_uart_mmio (
+        .clk(clk), .resetn(resetn), .req_valid(uart_req_valid),
+        .req_write(uart_req_write), .req_size(uart_req_size),
+        .req_addr(uart_req_addr), .req_wdata(uart_req_wdata), .req_wstrb(uart_req_wstrb),
+        .req_ready(uart_req_ready), .rsp_valid(uart_rsp_valid),
+        .rsp_rdata(uart_rsp_rdata), .rsp_error(uart_rsp_error),
+        .uart_rx(uart_rx), .uart_tx(uart_tx)
     );
 
     generate

@@ -19,6 +19,7 @@ module tb_soc_top();
               .DATA_RSP_DELAY_CYCLES(7)) u_soc(
         .clk(clk),
         .resetn(resetn),
+        .uart_rx(1'b1), .uart_tx(),
         .irq_external(1'b0),
         .irq_software(1'b0),
         .irq_timer(1'b0),

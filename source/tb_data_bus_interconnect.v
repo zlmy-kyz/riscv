@@ -84,6 +84,10 @@ module tb_data_bus_interconnect;
         .mmio_rsp_rdata (mmio_rsp_rdata),
         .mmio_rsp_error (mmio_rsp_error),
         .ddr_req_ready  (1'b0),
+        .uart_req_valid(), .uart_req_write(), .uart_req_size(),
+        .uart_req_addr(), .uart_req_wdata(), .uart_req_wstrb(),
+        .uart_req_ready(1'b0), .uart_rsp_valid(1'b0),
+        .uart_rsp_rdata(32'd0), .uart_rsp_error(1'b0),
         .ddr_rsp_valid  (1'b0),
         .ddr_rsp_rdata  (32'b0),
         .ddr_rsp_error  (1'b0)

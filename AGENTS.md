@@ -1,11 +1,11 @@
 # RISCV 工程长期约定
 
-本文件只放跨阶段仍适用的工程入口和约束。当前进度、最近 PASS/FAIL、
+本文件只放跨阶段仍适用的工程入口和约束。当前进度、最近 PASS/FAIL 和阶段验证细节记录在 `doc/`，不在本文件堆叠。
 
 ## 工程入口
 
 - 根目录：`D:/riscv/RISCV`；PDS 工程：`RISCV.pds`。
-- `myriscv/`：CPU 与 SoC RTL。`mycpu_sync.v` 是五级流水 CPU，具有分离的指令/数据类 SRAM 请求-响应接口；`soc_top.v` 连接两路互连、片内 ROM/RAM、MMIO 和可选 DDR 桥；`soc_ddr3_top.v` 例化 `soc_top` 与 Pango `ddr3` IP。
+- `myriscv/`：CPU 与 SoC RTL。`mycpu_sync.v` 是五级流水 CPU，具有分离的指令/数据类 SRAM 请求-响应接口；`soc_top.v` 连接两路互连、片内 ROM/RAM、`simple_mmio`、`uart_mmio` 和可选 DDR 桥；`soc_ddr3_top.v` 例化 `soc_top` 与 Pango `ddr3` IP。
 - `myriscv/inst_bus_interconnect.v`、`data_bus_interconnect.v` 负责译码；`inst_bram_adapter.v`、`data_bram_adapter.v` 接片内 IP；`dual_sram_to_pango_ddr_bridge.v` 把两路类 SRAM 接口仲裁/转换到 Pango DDR 用户口。该用户口是 AXI-like，不能直接当标准 AXI4。
 - `source/`：SoC、总线和 DDR 联仿 TB；`ipcore/`：PDS 生成的 ROM、RAM、DDR3 IP 与厂家例程；`MyCpu_test/dat/`：指令测试的 ROM 镜像，部分测试另有同名 RAM 镜像；`difftest/`：轨迹/异常等定向验证；`doc/`：设计与复现记录。
 
@@ -14,16 +14,19 @@
 - 当前板级层次为 `board_top → soc_ddr3_top → soc_top → mycpu_sync`；`RISCV.pds` 当前设计顶层为 `board_top`。设计顶层与仿真顶层分别核对，旧 `topcpu_instrom` 或 TB 的存在不能作为当前工程入口依据。
 - `board_top.v` 负责板级引脚、`GTP_INBUFDS` 差分参考时钟缓冲、`GTP_CLKBUFG` 消抖时钟及 `reset_button_debounce`。KEY0 按下立即复位，释放稳定 20 ms 后解除；消抖使用参考时钟，不能改用复位期间可能停下的 DDR `core_clk`。
 - `soc_ddr3_top.v` 例化 `soc_top u_soc`、`ddr3 u_ddr3` 和同文件内的 `soc_ddr3_leds u_leds`，并向 `soc_top` 设置 `ENABLE_DDR=1`。DDR `ddr_init_done && pll_lock` 经 `core_clk` 两拍同步后释放 `soc_resetn`。当前参考为 125 MHz，DDR IP 输出 `core_clk=93.75 MHz`；CPU、互连、片内存储、MMIO 和桥均在该域，LED 计时参数须与实际时钟一致。
-- 指令路径：`mycpu_sync → inst_bus_interconnect → inst_bram_adapter → inst_rom`，或经译码进入共享 DDR 桥；数据路径：`mycpu_sync → data_bus_interconnect → data_bram_adapter → data_ram`，或进入 `simple_mmio` / 共享 DDR 桥。片内 ROM 仅接指令总线，片内 RAM/MMIO 仅接数据总线；DDR 内容由两条总线共同访问。
+- 指令路径：`mycpu_sync → inst_bus_interconnect → inst_bram_adapter → inst_rom`，或经译码进入共享 DDR 桥；数据路径：`mycpu_sync → data_bus_interconnect → data_bram_adapter → data_ram`，或进入 `simple_mmio` / `uart_mmio` / 共享 DDR 桥。片内 ROM 仅接指令总线，片内 RAM/MMIO/UART 仅接数据总线；DDR 内容由两条总线共同访问。
+- `soc_top` 例化 `uart_mmio u_uart_mmio`，内部为 `uart_tx u_tx`、`uart_rx u_rx`、`uart_rx_fifo u_fifo`（16 字节）。UART 使用 93.75 MHz、115200 8N1、814 clk/bit、idle high、LSB first；`UART_CLK_HZ` 必须与实际输入时钟一致。当前 `soc_top` 暴露 TX/RX 供仿真，`soc_ddr3_top` 将 RX 接 1、TX 未引出，`board_top` 尚无 UART 引脚或约束；内部 MMIO 接入不等于板级串口可用。
 - `mycpu_sync` 的 IF/ID/EX/MEM/WB 流水寄存器及控制逻辑直接写在核内，子模块为 `regfile`、`alu`、`br_alu`、`l_alu`、`csr_file`。分支判定在 ID，访存请求在 EX 发射，MEM 等待响应，WB 写回及提交 CSR/异常事件；前递、load-use、等待和冲刷不可绕过。
 - `dual_sram_to_pango_ddr_bridge` 当前一次处理一笔单拍 DDR 事务，两路同时请求时数据优先。`ddr3` IP 内主要子模块为控制器 `ips2l_mcdq_wrapper_v1_2b` 和 PHY `ddr3_ddrphy_top`；厂家 UART/BIST 例程及仿真物理模型不属于当前板级 SoC 路径。
-- CPU 保留 external/software/timer 三路 IRQ，但当前 `board_top` 全接 0；当前路径未接 Cache、DMA、UART、CLINT、PLIC 或 RK3568 通信接口。不能把 CPU 的中断支持等同于已有板级中断源。
-- 当前模块实例表、连接图及启动说明见 `doc/SoC结构说明_2026-10-04.md`；该文档是日期快照，后续修改仍须以实际 RTL/PDS/IP 配置核对。
+- CPU 保留 external/software/timer 三路 IRQ，但当前 `board_top` 全接 0；UART 采用软件轮询，未连接中断。当前路径未接 Cache、DMA、CLINT、PLIC 或 RK3568 通信接口。不能把 CPU 的中断支持等同于已有板级中断源。
+- 当前模块实例表、连接图及启动说明见 `doc/SoC结构说明_2026-10-04.md`（文件名保留首次建立日期，核对日期见文内）；UART 开发与验证记录见 `doc/UART_MMIO与CPU轮询阶段3_2026-10-05.md`。后续修改仍须以实际 RTL/PDS/IP 配置核对。
 
 ## 地址及硬件边界
 
 - `soc_top` 默认 `RESET_PC=0`，`INST_ROM_BASE=DATA_RAM_BASE=RESET_PC`；两块存储器分挂指令、数据总线，各 16 KiB，可以在两条分离总线上同基址。TB 可覆盖复位地址，不能误认为 RTL 默认值也改变了。
 - MMIO：`0x1000_0000` 起 4 KiB，当前 `simple_mmio` 寄存器偏移为 `0x0 SCRATCH`、`0x4 ID`、`0x8 CYCLE`、`0xC STATUS`、`0x10 TEST_STATUS`。自检状态 0/1/2/3 表示 IDLE/RUN/PASS/FAIL，PASS/FAIL 锁存至复位；LED 上报和超时约定见 `doc/LED状态指示与MMIO自检上报_2026-10-02.md`。
+- UART：默认 `UART_BASE=0x1000_1000`，精确覆盖 `0x1000_1000–0x1000_100F`，基址须 16 字节对齐；偏移 `0x0 TX_DATA`（W）、`0x4 RX_DATA`（R）、`0x8 STATUS`（R）、`0xC CONTROL`（W1C，读 0）。STATUS bit0–5 为 TX_READY/TX_BUSY/RX_NOT_EMPTY/RX_FULL/FRAME_ERROR/RX_OVERFLOW；CONTROL bit0/1 清两种 sticky error，同周期新事件优先。`soc_top` 启用 UART，独立 `data_bus_interconnect` 的 `ENABLE_UART` 默认 0；不要扩大译码窗口或改动原 MMIO/DDR 地址。
+- UART 副作用仅在 `req_valid && req_ready` 接受边沿执行；RX_DATA 低字节地址读取锁存队首并 pop 一次，empty 返回 0 且不 pop，等待响应期间不能重复操作。低 lane TX_DATA 写仅在 TX_READY 时发送，busy 写丢弃新字节并返回既有总线 error；SB/SH/SW 须遵守移位数据和 write strobe，上 lane 访问不消费 RX、不启动 TX、不清错误。软件应先轮询 STATUS，非法偏移/访问遵循既有 access-fault 机制。
 - DDR CPU 窗口：`0x4000_0000` 起 512 MiB，只有 `ENABLE_DDR=1` 才启用；Pango IP 用户数据拍 128 位，桥在其中选择 32 位槽位并扩展写字节使能。DDR 用户地址按 16 位字计，不是 CPU 字节地址。
 - 普通 `soc_top` 默认 `ENABLE_DDR=0`；DDR 集成版是 `soc_ddr3_top`。不要仅凭 IP 文件存在就认定当前 PDS 顶层已接入 DDR。
 - 板级启动由 CPU 执行片内 ROM 的装载程序，将片内 RAM 中预置的程序复制到 DDR 后跳转执行；没有独立 DMA 装载器。当前主 IP 镜像入口在 `MyCpu_test/board_selftest/`，具体 `INIT_FILE` 以两块 IP 的 IDF 和生成初始化内容为准。更换镜像或 DDR 基址时，核对 ROM 装载目标、RAM 清单、程序链接地址、诊断/自检区及跳转入口的一致性，并重新生成相关存储 IP。
@@ -42,6 +45,8 @@
 - 在 PowerShell 中也可从同一目录调用：`& 'D:\modelsim\win64pe\vsim.exe' -c -do 'do soc_ddr3_regress_sim.tcl; quit -f'`；基线脚本同理。两个脚本各用独立库和日志。判断通过需同时检查相应 `RESULT: PASS`、无 `RESULT: FAIL`、ModelSim `Errors: 0`；厂家原语 warning 不必为零。
 - PDS 默认行为仿真入口由 `RISCV.pds` 的仿真顶层及 `sim/behav/run_behav.bat`/`run_behav_*.tcl` 决定；它与上述独立 DDR 联仿不是同一个测试。运行 RV32I 镜像前，逐一核对 ROM/RAM 初始化文件和 TB 标注的测试名，不能只看写死的 PASS 文本。
 - 改 CPU、互连、桥、DDR 顶层或共用 TB 后，至少重新运行两条 DDR 定向脚本，并按影响范围运行当前 `soc_top` 的 RV32I/异常等回归。记录脚本、日志路径、日期与结果；历史 PASS 不等于新代码 PASS。
+- UART 仿真入口：在 `sim/uart_tx` 执行 `do run_uart_tx.tcl`；在 `sim/uart_rx` 执行 `do run_uart_rx.tcl`；在 `sim/uart_mmio` 执行 `do run_uart_mmio.tcl` / `do run_soc_uart_cpu.tcl`。CPU 测试先从根目录用 `python difftest/golden/rvtool.py asm sim/uart_mmio/uart_poll.S sim/uart_mmio/cpu_image` 生成独立仿真镜像。检查自动串行解码、结果比较、`RESULT: PASS`、无 FAIL 和 `Errors: 0`，不能只看波形；修改底层 UART 后重跑 TX 与 RX/FIFO/loopback，修改共享互连后还须运行 DDR、原 MMIO 和 access-fault 回归。
+- 编译 `soc_top` 的脚本须包含 `uart_tx.v`、`uart_rx.v`、`uart_rx_fifo.v`、`uart_mmio.v`；未使用串口的 TB 将 RX 明确接 idle high，不能悬空。MMIO 或板级接线应沿用既有 UART 接口，避免无必要重写已验证的底层收发/FIFO。
 
 ## 协作约束
 

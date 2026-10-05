@@ -1,0 +1,158 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1800" height="1580" viewBox="0 0 1800 1580">
+<title>当前 RISC-V SoC：UART MMIO 阶段 3</title>
+<desc>board_top、soc_ddr3_top、soc_top 层次；独立指令和数据互连、ROM、RAM、MMIO、UART、共享 DDR 桥、DDR IP 与板外 DDR3。UART RX 固定为高，TX 未引出。</desc>
+<rect width="100%" height="100%" fill="white"/>
+<text x="900" y="45" text-anchor="middle" dominant-baseline="middle" font-family="Microsoft YaHei, Noto Sans CJK SC, sans-serif" font-size="34" font-weight="700" fill="#18334e">当前 RISC-V SoC 结构 · UART MMIO 阶段 3</text>
+<text x="900" y="88" text-anchor="middle" dominant-baseline="middle" font-family="Microsoft YaHei, Noto Sans CJK SC, sans-serif" font-size="22" font-weight="400" fill="#18334e">单核 RV32I · 指令/数据分离 · DDR 用户时钟 93.75 MHz · UART 115200 8N1</text>
+<polyline points="95,123 170,123" fill="none" stroke="#306acb" stroke-width="3" stroke-linejoin="round" />
+<polygon points="170,123 157.0,117.0 157.0,129.0" fill="#306acb"/>
+<text x="187" y="123" text-anchor="start" dominant-baseline="middle" font-family="Microsoft YaHei, Noto Sans CJK SC, sans-serif" font-size="19" font-weight="400" fill="#306acb">访问 / 数据路径（响应省略）</text>
+<polyline points="635,123 710,123" fill="none" stroke="#13836c" stroke-width="3" stroke-linejoin="round" stroke-dasharray="9 7" />
+<polygon points="710,123 697.0,117.0 697.0,129.0" fill="#13836c"/>
+<text x="727" y="123" text-anchor="start" dominant-baseline="middle" font-family="Microsoft YaHei, Noto Sans CJK SC, sans-serif" font-size="19" font-weight="400" fill="#13836c">时钟</text>
+<polyline points="845,123 920,123" fill="none" stroke="#c44b59" stroke-width="3" stroke-linejoin="round" stroke-dasharray="9 7" />
+<polygon points="920,123 907.0,117.0 907.0,129.0" fill="#c44b59"/>
+<text x="937" y="123" text-anchor="start" dominant-baseline="middle" font-family="Microsoft YaHei, Noto Sans CJK SC, sans-serif" font-size="19" font-weight="400" fill="#c44b59">复位控制</text>
+<rect x="40" y="150" width="1720" height="1260" rx="20" fill="#f8fafc" stroke="#70879e" stroke-width="2"/>
+<text x="62" y="174" text-anchor="start" dominant-baseline="middle" font-family="Microsoft YaHei, Noto Sans CJK SC, sans-serif" font-size="23" font-weight="700" fill="#70879e">board_top · 当前 PDS 设计顶层 / FPGA 板级边界</text>
+<rect x="70" y="325" width="1660" height="1010" rx="20" fill="#f5f8fc" stroke="#70879e" stroke-width="2"/>
+<text x="92" y="349" text-anchor="start" dominant-baseline="middle" font-family="Microsoft YaHei, Noto Sans CJK SC, sans-serif" font-size="23" font-weight="700" fill="#70879e">soc_ddr3_top · SoC + DDR IP + 复位同步 + LED</text>
+<rect x="100" y="385" width="1350" height="720" rx="20" fill="#edf5ff" stroke="#306acb" stroke-width="2"/>
+<text x="122" y="409" text-anchor="start" dominant-baseline="middle" font-family="Microsoft YaHei, Noto Sans CJK SC, sans-serif" font-size="23" font-weight="700" fill="#306acb">soc_top · CPU、互连、存储与外设</text>
+<text x="900" y="409" text-anchor="start" dominant-baseline="middle" font-family="Microsoft YaHei, Noto Sans CJK SC, sans-serif" font-size="21" font-weight="400" fill="#13836c">统一时钟域：core_clk = 93.75 MHz</text>
+<rect x="885" y="800" width="490" height="275" rx="20" fill="#fff6e9" stroke="#b77d22" stroke-width="2"/>
+<text x="907" y="824" text-anchor="start" dominant-baseline="middle" font-family="Microsoft YaHei, Noto Sans CJK SC, sans-serif" font-size="23" font-weight="700" fill="#b77d22">uart_mmio · 内部轮询外设</text>
+<polyline points="350,230 405,230" fill="none" stroke="#13836c" stroke-width="3" stroke-linejoin="round" stroke-dasharray="9 7" />
+<polygon points="405,230 392.0,224.0 392.0,236.0" fill="#13836c"/>
+<polyline points="680,230 730,230" fill="none" stroke="#13836c" stroke-width="3" stroke-linejoin="round" stroke-dasharray="9 7" />
+<polygon points="730,230 717.0,224.0 717.0,236.0" fill="#13836c"/>
+<polyline points="70,230 55,230 55,1205 190,1205" fill="none" stroke="#13836c" stroke-width="3" stroke-linejoin="round" stroke-dasharray="9 7" />
+<polygon points="190,1205 177.0,1199.0 177.0,1211.0" fill="#13836c"/>
+<polyline points="220,1160 220,1135 85,1135 85,465 100,465" fill="none" stroke="#13836c" stroke-width="3" stroke-linejoin="round" stroke-dasharray="9 7" />
+<polygon points="100,465 87.0,459.0 87.0,471.0" fill="#13836c"/>
+<polyline points="1035,270 1035,300 1480,300 1480,480 1500,480" fill="none" stroke="#c44b59" stroke-width="3" stroke-linejoin="round" stroke-dasharray="9 7" />
+<polygon points="1500,480 1487.0,474.0 1487.0,486.0" fill="#c44b59"/>
+<polyline points="1500,455 1450,455" fill="none" stroke="#c44b59" stroke-width="3" stroke-linejoin="round" stroke-dasharray="9 7" />
+<polygon points="1450,455 1463.0,461.0 1463.0,449.0" fill="#c44b59"/>
+<polyline points="1035,270 1035,300 1480,300 1480,1215 1150,1215" fill="none" stroke="#c44b59" stroke-width="3" stroke-linejoin="round" stroke-dasharray="9 7" />
+<polygon points="1150,1215 1163.0,1221.0 1163.0,1209.0" fill="#c44b59"/>
+<polyline points="1150,1190 1460,1190 1460,535 1500,535" fill="none" stroke="#c44b59" stroke-width="3" stroke-linejoin="round" stroke-dasharray="9 7" />
+<polygon points="1500,535 1487.0,529.0 1487.0,541.0" fill="#c44b59"/>
+<polyline points="620,520 620,542 340,542 340,565" fill="none" stroke="#306acb" stroke-width="3" stroke-linejoin="round" />
+<polygon points="340,565 346.0,552.0 334.0,552.0" fill="#306acb"/>
+<polyline points="730,520 730,542 1045,542 1045,565" fill="none" stroke="#306acb" stroke-width="3" stroke-linejoin="round" />
+<polygon points="1045,565 1051.0,552.0 1039.0,552.0" fill="#306acb"/>
+<polyline points="340,635 340,690" fill="none" stroke="#306acb" stroke-width="3" stroke-linejoin="round" />
+<polygon points="340,690 346.0,677.0 334.0,677.0" fill="#306acb"/>
+<polyline points="340,760 340,810" fill="none" stroke="#306acb" stroke-width="3" stroke-linejoin="round" />
+<polygon points="340,810 346.0,797.0 334.0,797.0" fill="#306acb"/>
+<polyline points="490,600 515,600 515,970" fill="none" stroke="#306acb" stroke-width="3" stroke-linejoin="round" />
+<polygon points="515,970 521.0,957.0 509.0,957.0" fill="#306acb"/>
+<polyline points="1045,635 1045,665 695,665 695,690" fill="none" stroke="#306acb" stroke-width="3" stroke-linejoin="round" />
+<polygon points="695,690 701.0,677.0 689.0,677.0" fill="#306acb"/>
+<polyline points="1135,635 1135,690" fill="none" stroke="#306acb" stroke-width="3" stroke-linejoin="round" />
+<polygon points="1135,690 1141.0,677.0 1129.0,677.0" fill="#306acb"/>
+<polyline points="695,760 695,810" fill="none" stroke="#306acb" stroke-width="3" stroke-linejoin="round" />
+<polygon points="695,810 701.0,797.0 689.0,797.0" fill="#306acb"/>
+<polyline points="865,635 865,1015 835,1015" fill="none" stroke="#306acb" stroke-width="3" stroke-linejoin="round" />
+<polygon points="835,1015 848.0,1021.0 848.0,1009.0" fill="#306acb"/>
+<polyline points="1260,600 1400,600 1400,883 1345,883" fill="none" stroke="#306acb" stroke-width="3" stroke-linejoin="round" />
+<polygon points="1345,883 1358.0,889.0 1358.0,877.0" fill="#306acb"/>
+<polyline points="515,1060 515,1160" fill="none" stroke="#306acb" stroke-width="3" stroke-linejoin="round" />
+<polygon points="515,1160 521.0,1147.0 509.0,1147.0" fill="#306acb"/>
+<polyline points="1375,733 1500,733" fill="none" stroke="#306acb" stroke-width="3" stroke-linejoin="round" />
+<polygon points="1500,733 1487.0,727.0 1487.0,739.0" fill="#306acb"/>
+<polyline points="985,916 985,965" fill="none" stroke="#306acb" stroke-width="3" stroke-linejoin="round" />
+<polygon points="985,965 991.0,952.0 979.0,952.0" fill="#306acb"/>
+<polyline points="1200,995 1225,995" fill="none" stroke="#306acb" stroke-width="3" stroke-linejoin="round" />
+<polygon points="1225,995 1212.0,989.0 1212.0,1001.0" fill="#306acb"/>
+<polyline points="1290,965 1290,916" fill="none" stroke="#306acb" stroke-width="3" stroke-linejoin="round" />
+<polygon points="1290,916 1284.0,929.0 1296.0,929.0" fill="#306acb"/>
+<polyline points="670,1255 670,1435" fill="none" stroke="#306acb" stroke-width="3" stroke-linejoin="round" />
+<polygon points="670,1435 676.0,1422.0 664.0,1422.0" fill="#306acb"/>
+<rect x="70" y="190" width="280" height="80" rx="16" fill="white" stroke="#91a8c2" stroke-width="2"/>
+<text x="210.0" y="216.0" text-anchor="middle" dominant-baseline="middle" font-family="Microsoft YaHei, Noto Sans CJK SC, sans-serif" font-size="23" font-weight="700" fill="#18334e">GTP_INBUFDS</text>
+<text x="210.0" y="245.5" text-anchor="middle" dominant-baseline="middle" font-family="Microsoft YaHei, Noto Sans CJK SC, sans-serif" font-size="20" font-weight="400" fill="#18334e">125 MHz 差分参考输入</text>
+<rect x="405" y="190" width="275" height="80" rx="16" fill="white" stroke="#91a8c2" stroke-width="2"/>
+<text x="542.5" y="216.0" text-anchor="middle" dominant-baseline="middle" font-family="Microsoft YaHei, Noto Sans CJK SC, sans-serif" font-size="23" font-weight="700" fill="#18334e">GTP_CLKBUFG</text>
+<text x="542.5" y="245.5" text-anchor="middle" dominant-baseline="middle" font-family="Microsoft YaHei, Noto Sans CJK SC, sans-serif" font-size="20" font-weight="400" fill="#18334e">KEY0 消抖参考时钟</text>
+<rect x="730" y="190" width="340" height="80" rx="16" fill="white" stroke="#91a8c2" stroke-width="2"/>
+<text x="900.0" y="217.5" text-anchor="middle" dominant-baseline="middle" font-family="Microsoft YaHei, Noto Sans CJK SC, sans-serif" font-size="21" font-weight="700" fill="#18334e">reset_button_debounce</text>
+<text x="900.0" y="244.5" text-anchor="middle" dominant-baseline="middle" font-family="Microsoft YaHei, Noto Sans CJK SC, sans-serif" font-size="17" font-weight="400" fill="#18334e">KEY0：按下复位 / 释放稳定 20 ms</text>
+<rect x="1150" y="190" width="580" height="80" rx="16" fill="#fff6e9" stroke="#d4a75d" stroke-width="2"/>
+<text x="1440.0" y="217.0" text-anchor="middle" dominant-baseline="middle" font-family="Microsoft YaHei, Noto Sans CJK SC, sans-serif" font-size="23" font-weight="700" fill="#18334e">阶段 3 边界：UART 仅在 SoC 内部接入</text>
+<text x="1440.0" y="245.5" text-anchor="middle" dominant-baseline="middle" font-family="Microsoft YaHei, Noto Sans CJK SC, sans-serif" font-size="18" font-weight="400" fill="#18334e">RX 接高 / TX 未引出 · 无板级 UART 引脚 / 中断</text>
+<rect x="1500" y="430" width="195" height="150" rx="16" fill="#fff1f2" stroke="#d28a93" stroke-width="2"/>
+<text x="1597.5" y="467.5" text-anchor="middle" dominant-baseline="middle" font-family="Microsoft YaHei, Noto Sans CJK SC, sans-serif" font-size="21" font-weight="700" fill="#18334e">复位释放同步</text>
+<text x="1597.5" y="494.0" text-anchor="middle" dominant-baseline="middle" font-family="Microsoft YaHei, Noto Sans CJK SC, sans-serif" font-size="16" font-weight="400" fill="#18334e">DDR ready &amp;&amp; lock</text>
+<text x="1597.5" y="519.0" text-anchor="middle" dominant-baseline="middle" font-family="Microsoft YaHei, Noto Sans CJK SC, sans-serif" font-size="18" font-weight="400" fill="#18334e">core_clk 两拍</text>
+<text x="1597.5" y="544.5" text-anchor="middle" dominant-baseline="middle" font-family="Microsoft YaHei, Noto Sans CJK SC, sans-serif" font-size="17" font-weight="400" fill="#18334e">输出 soc_resetn</text>
+<rect x="500" y="430" width="350" height="90" rx="16" fill="#dceaff" stroke="#306acb" stroke-width="2"/>
+<text x="675.0" y="462.0" text-anchor="middle" dominant-baseline="middle" font-family="Microsoft YaHei, Noto Sans CJK SC, sans-serif" font-size="24" font-weight="700" fill="#18334e">mycpu_sync · RV32I CPU</text>
+<text x="675.0" y="491.0" text-anchor="middle" dominant-baseline="middle" font-family="Microsoft YaHei, Noto Sans CJK SC, sans-serif" font-size="18" font-weight="400" fill="#18334e">五级流水：IF / ID / EX / MEM / WB</text>
+<rect x="190" y="565" width="300" height="70" rx="16" fill="white" stroke="#91a8c2" stroke-width="2"/>
+<text x="340.0" y="587.0" text-anchor="middle" dominant-baseline="middle" font-family="Microsoft YaHei, Noto Sans CJK SC, sans-serif" font-size="21" font-weight="700" fill="#18334e">inst_bus_interconnect</text>
+<text x="340.0" y="614.5" text-anchor="middle" dominant-baseline="middle" font-family="Microsoft YaHei, Noto Sans CJK SC, sans-serif" font-size="18" font-weight="400" fill="#18334e">指令地址译码：ROM / DDR</text>
+<rect x="830" y="565" width="430" height="70" rx="16" fill="white" stroke="#91a8c2" stroke-width="2"/>
+<text x="1045.0" y="587.0" text-anchor="middle" dominant-baseline="middle" font-family="Microsoft YaHei, Noto Sans CJK SC, sans-serif" font-size="23" font-weight="700" fill="#18334e">data_bus_interconnect</text>
+<text x="1045.0" y="615.5" text-anchor="middle" dominant-baseline="middle" font-family="Microsoft YaHei, Noto Sans CJK SC, sans-serif" font-size="18" font-weight="400" fill="#18334e">数据地址译码：RAM / MMIO / UART / DDR</text>
+<rect x="190" y="690" width="300" height="70" rx="16" fill="white" stroke="#91a8c2" stroke-width="2"/>
+<text x="340.0" y="712.0" text-anchor="middle" dominant-baseline="middle" font-family="Microsoft YaHei, Noto Sans CJK SC, sans-serif" font-size="22" font-weight="700" fill="#18334e">inst_bram_adapter</text>
+<text x="340.0" y="740.0" text-anchor="middle" dominant-baseline="middle" font-family="Microsoft YaHei, Noto Sans CJK SC, sans-serif" font-size="18" font-weight="400" fill="#18334e">请求响应 → 同步 ROM 端口</text>
+<rect x="540" y="690" width="310" height="70" rx="16" fill="white" stroke="#91a8c2" stroke-width="2"/>
+<text x="695.0" y="712.0" text-anchor="middle" dominant-baseline="middle" font-family="Microsoft YaHei, Noto Sans CJK SC, sans-serif" font-size="22" font-weight="700" fill="#18334e">data_bram_adapter</text>
+<text x="695.0" y="740.0" text-anchor="middle" dominant-baseline="middle" font-family="Microsoft YaHei, Noto Sans CJK SC, sans-serif" font-size="18" font-weight="400" fill="#18334e">请求响应 → RAM / 字节使能</text>
+<rect x="190" y="810" width="300" height="95" rx="16" fill="#e8f3ed" stroke="#91a8c2" stroke-width="2"/>
+<text x="340.0" y="832.0" text-anchor="middle" dominant-baseline="middle" font-family="Microsoft YaHei, Noto Sans CJK SC, sans-serif" font-size="24" font-weight="700" fill="#18334e">inst_rom · 16 KiB</text>
+<text x="340.0" y="861.0" text-anchor="middle" dominant-baseline="middle" font-family="Microsoft YaHei, Noto Sans CJK SC, sans-serif" font-size="18" font-weight="400" fill="#18334e">指令总线上的启动 ROM</text>
+<text x="340.0" y="886.5" text-anchor="middle" dominant-baseline="middle" font-family="Microsoft YaHei, Noto Sans CJK SC, sans-serif" font-size="17" font-weight="400" fill="#18334e">0x00000000–0x00003FFF</text>
+<rect x="540" y="810" width="310" height="95" rx="16" fill="#e8f3ed" stroke="#91a8c2" stroke-width="2"/>
+<text x="695.0" y="832.0" text-anchor="middle" dominant-baseline="middle" font-family="Microsoft YaHei, Noto Sans CJK SC, sans-serif" font-size="24" font-weight="700" fill="#18334e">data_ram · 16 KiB</text>
+<text x="695.0" y="861.0" text-anchor="middle" dominant-baseline="middle" font-family="Microsoft YaHei, Noto Sans CJK SC, sans-serif" font-size="18" font-weight="400" fill="#18334e">数据 RAM / DDR 程序装载源</text>
+<text x="695.0" y="886.5" text-anchor="middle" dominant-baseline="middle" font-family="Microsoft YaHei, Noto Sans CJK SC, sans-serif" font-size="17" font-weight="400" fill="#18334e">0x00000000–0x00003FFF</text>
+<rect x="895" y="690" width="480" height="85" rx="16" fill="white" stroke="#91a8c2" stroke-width="2"/>
+<text x="1135.0" y="707.5" text-anchor="middle" dominant-baseline="middle" font-family="Microsoft YaHei, Noto Sans CJK SC, sans-serif" font-size="24" font-weight="700" fill="#18334e">simple_mmio</text>
+<text x="1135.0" y="736.5" text-anchor="middle" dominant-baseline="middle" font-family="Microsoft YaHei, Noto Sans CJK SC, sans-serif" font-size="18" font-weight="400" fill="#18334e">0x10000000–0x10000FFF</text>
+<text x="1135.0" y="761.5" text-anchor="middle" dominant-baseline="middle" font-family="Microsoft YaHei, Noto Sans CJK SC, sans-serif" font-size="16" font-weight="400" fill="#18334e">SCRATCH / ID / CYCLE / STATUS / TEST_STATUS</text>
+<rect x="915" y="850" width="430" height="66" rx="16" fill="#fffdf7" stroke="#d4a75d" stroke-width="2"/>
+<text x="1130.0" y="871.0" text-anchor="middle" dominant-baseline="middle" font-family="Microsoft YaHei, Noto Sans CJK SC, sans-serif" font-size="23" font-weight="700" fill="#18334e">MMIO 寄存器 / 请求响应</text>
+<text x="1130.0" y="898.5" text-anchor="middle" dominant-baseline="middle" font-family="Microsoft YaHei, Noto Sans CJK SC, sans-serif" font-size="16" font-weight="400" fill="#18334e">0x10001000–0x1000100F · TX/RX/STATUS/CONTROL</text>
+<rect x="915" y="965" width="145" height="60" rx="16" fill="white" stroke="#d4a75d" stroke-width="2"/>
+<text x="987.5" y="982.0" text-anchor="middle" dominant-baseline="middle" font-family="Microsoft YaHei, Noto Sans CJK SC, sans-serif" font-size="22" font-weight="700" fill="#18334e">uart_tx</text>
+<text x="987.5" y="1010.0" text-anchor="middle" dominant-baseline="middle" font-family="Microsoft YaHei, Noto Sans CJK SC, sans-serif" font-size="18" font-weight="400" fill="#18334e">TX 未引出</text>
+<rect x="1085" y="965" width="115" height="60" rx="16" fill="white" stroke="#d4a75d" stroke-width="2"/>
+<text x="1142.5" y="983.0" text-anchor="middle" dominant-baseline="middle" font-family="Microsoft YaHei, Noto Sans CJK SC, sans-serif" font-size="20" font-weight="700" fill="#18334e">uart_rx</text>
+<text x="1142.5" y="1009.0" text-anchor="middle" dominant-baseline="middle" font-family="Microsoft YaHei, Noto Sans CJK SC, sans-serif" font-size="16" font-weight="400" fill="#18334e">RX 固定 1</text>
+<rect x="1225" y="965" width="125" height="60" rx="16" fill="white" stroke="#d4a75d" stroke-width="2"/>
+<text x="1287.5" y="982.5" text-anchor="middle" dominant-baseline="middle" font-family="Microsoft YaHei, Noto Sans CJK SC, sans-serif" font-size="20" font-weight="700" fill="#18334e">RX FIFO</text>
+<text x="1287.5" y="1009.0" text-anchor="middle" dominant-baseline="middle" font-family="Microsoft YaHei, Noto Sans CJK SC, sans-serif" font-size="17" font-weight="400" fill="#18334e">16 字节</text>
+<rect x="190" y="970" width="645" height="90" rx="16" fill="#e5edfa" stroke="#306acb" stroke-width="2"/>
+<text x="512.5" y="988.5" text-anchor="middle" dominant-baseline="middle" font-family="Microsoft YaHei, Noto Sans CJK SC, sans-serif" font-size="25" font-weight="700" fill="#18334e">dual_sram_to_pango_ddr_bridge</text>
+<text x="512.5" y="1018.5" text-anchor="middle" dominant-baseline="middle" font-family="Microsoft YaHei, Noto Sans CJK SC, sans-serif" font-size="19" font-weight="400" fill="#18334e">指令/数据共享 · 单拍事务 · 同时请求数据优先</text>
+<text x="512.5" y="1045.0" text-anchor="middle" dominant-baseline="middle" font-family="Microsoft YaHei, Noto Sans CJK SC, sans-serif" font-size="18" font-weight="400" fill="#18334e">DDR 窗口：0x40000000–0x5FFFFFFF</text>
+<rect x="1500" y="690" width="195" height="100" rx="16" fill="white" stroke="#91a8c2" stroke-width="2"/>
+<text x="1597.5" y="714.0" text-anchor="middle" dominant-baseline="middle" font-family="Microsoft YaHei, Noto Sans CJK SC, sans-serif" font-size="19" font-weight="700" fill="#18334e">soc_ddr3_leds</text>
+<text x="1597.5" y="740.5" text-anchor="middle" dominant-baseline="middle" font-family="Microsoft YaHei, Noto Sans CJK SC, sans-serif" font-size="18" font-weight="400" fill="#18334e">心跳 / DDR 就绪</text>
+<text x="1597.5" y="766.5" text-anchor="middle" dominant-baseline="middle" font-family="Microsoft YaHei, Noto Sans CJK SC, sans-serif" font-size="18" font-weight="400" fill="#18334e">自检 PASS/FAIL</text>
+<rect x="190" y="1160" width="960" height="95" rx="16" fill="#e6f4f0" stroke="#13836c" stroke-width="2"/>
+<text x="670.0" y="1180.0" text-anchor="middle" dominant-baseline="middle" font-family="Microsoft YaHei, Noto Sans CJK SC, sans-serif" font-size="25" font-weight="700" fill="#18334e">ddr3 · Pango 控制器 + PHY</text>
+<text x="670.0" y="1210.5" text-anchor="middle" dominant-baseline="middle" font-family="Microsoft YaHei, Noto Sans CJK SC, sans-serif" font-size="20" font-weight="400" fill="#18334e">ips2l_mcdq_wrapper_v1_2b / ddr3_ddrphy_top</text>
+<text x="670.0" y="1238.0" text-anchor="middle" dominant-baseline="middle" font-family="Microsoft YaHei, Noto Sans CJK SC, sans-serif" font-size="19" font-weight="400" fill="#18334e">128-bit AXI-like 用户口 · 750 Mb/s · 输出 core_clk = 93.75 MHz</text>
+<rect x="190" y="1435" width="960" height="80" rx="16" fill="#f1f4f8" stroke="#70879e" stroke-width="2"/>
+<text x="670.0" y="1461.0" text-anchor="middle" dominant-baseline="middle" font-family="Microsoft YaHei, Noto Sans CJK SC, sans-serif" font-size="25" font-weight="700" fill="#18334e">板外 x16 DDR3 芯片</text>
+<text x="670.0" y="1491.5" text-anchor="middle" dominant-baseline="middle" font-family="Microsoft YaHei, Noto Sans CJK SC, sans-serif" font-size="20" font-weight="400" fill="#18334e">通过 FPGA DDR3 物理引脚连接</text>
+<text x="1330" y="455" text-anchor="start" dominant-baseline="middle" font-family="Microsoft YaHei, Noto Sans CJK SC, sans-serif" font-size="18" font-weight="400" fill="#c44b59">soc_resetn</text>
+<text x="1500" y="910" text-anchor="start" dominant-baseline="middle" font-family="Microsoft YaHei, Noto Sans CJK SC, sans-serif" font-size="17" font-weight="400" fill="#c44b59">ready / lock</text>
+<text x="1492" y="1060" text-anchor="start" dominant-baseline="middle" font-family="Microsoft YaHei, Noto Sans CJK SC, sans-serif" font-size="18" font-weight="400" fill="#c44b59">key_resetn</text>
+<text x="70" y="1185" text-anchor="start" dominant-baseline="middle" font-family="Microsoft YaHei, Noto Sans CJK SC, sans-serif" font-size="16" font-weight="400" fill="#13836c">125 MHz 参考</text>
+<text x="105" y="1115" text-anchor="start" dominant-baseline="middle" font-family="Microsoft YaHei, Noto Sans CJK SC, sans-serif" font-size="18" font-weight="400" fill="#13836c">core_clk</text>
+<text x="530" y="940" text-anchor="start" dominant-baseline="middle" font-family="Microsoft YaHei, Noto Sans CJK SC, sans-serif" font-size="18" font-weight="400" fill="#306acb">DDR 取指</text>
+<text x="780" y="940" text-anchor="start" dominant-baseline="middle" font-family="Microsoft YaHei, Noto Sans CJK SC, sans-serif" font-size="18" font-weight="400" fill="#306acb">DDR 数据</text>
+<text x="545" y="1120" text-anchor="start" dominant-baseline="middle" font-family="Microsoft YaHei, Noto Sans CJK SC, sans-serif" font-size="19" font-weight="400" fill="#306acb">32-bit CPU 访问 / 128-bit DDR 用户拍</text>
+<text x="1385" y="716" text-anchor="start" dominant-baseline="middle" font-family="Microsoft YaHei, Noto Sans CJK SC, sans-serif" font-size="16" font-weight="400" fill="#306acb">selftest_status</text>
+<text x="1320" y="943" text-anchor="middle" dominant-baseline="middle" font-family="Microsoft YaHei, Noto Sans CJK SC, sans-serif" font-size="15" font-weight="400" fill="#306acb">读 / pop</text>
+<text x="1125" y="1048" text-anchor="middle" dominant-baseline="middle" font-family="Microsoft YaHei, Noto Sans CJK SC, sans-serif" font-size="17" font-weight="400" fill="#94691e">115200 8N1 · 814 clk/bit · 未接板级引脚 / 中断</text>
+<text x="1310" y="1360" text-anchor="middle" dominant-baseline="middle" font-family="Microsoft YaHei, Noto Sans CJK SC, sans-serif" font-size="20" font-weight="400" fill="#18334e">ROM 与 RAM 分挂两条总线，可同基址。</text>
+<text x="1310" y="1386" text-anchor="middle" dominant-baseline="middle" font-family="Microsoft YaHei, Noto Sans CJK SC, sans-serif" font-size="20" font-weight="400" fill="#18334e">DDR 由两条总线共同访问。</text>
+<text x="900" y="1550" text-anchor="middle" dominant-baseline="middle" font-family="Microsoft YaHei, Noto Sans CJK SC, sans-serif" font-size="18" font-weight="400" fill="#596f83">核对：2026-10-05 · 按当前工作树 RTL 绘制 · UART 仿真可使用 soc_top TX/RX，板级 RX 接高、TX 未引出</text>
+</svg>

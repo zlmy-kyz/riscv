@@ -1,6 +1,6 @@
 # ** Warning: (vsim-53) Cannot suppress or change severity level of message number 1.
 # vsim -suppress 3486,3680,3781 "+nowarn1" -c -sva -lib soc_ddr3_work tb_soc_ddr3_top -l soc_ddr3_sim.log 
-# Start time: 18:48:31 on Oct 03,2026
+# Start time: 01:15:05 on Oct 05,2026
 # //  ModelSim DE-64 10.6c Jul 26 2017
 # //
 # //  Copyright 1991-2017 Mentor Graphics Corporation
@@ -33,6 +33,10 @@
 # Loading soc_ddr3_work.data_bram_adapter
 # Loading soc_ddr3_work.data_ram
 # Loading soc_ddr3_work.simple_mmio
+# Loading soc_ddr3_work.uart_mmio
+# Loading soc_ddr3_work.uart_tx
+# Loading soc_ddr3_work.uart_rx
+# Loading soc_ddr3_work.uart_rx_fifo
 # Loading soc_ddr3_work.ddr3_test_top_tb_v_unit
 # Loading soc_ddr3_work.ddr3
 # Loading soc_ddr3_work.ddr3_ddrphy_top
@@ -5293,5 +5297,5 @@
 # RESULT: PASS soc_ddr3_top DDR store/load/fetch at 81584000.0 ps
 # ** Note: $finish    : D:/riscv/RISCV/source/tb_soc_ddr3_top.v(404)
 #    Time: 81584166664 fs  Iteration: 4  Instance: /tb_soc_ddr3_top
-# End time: 18:52:23 on Oct 03,2026, Elapsed time: 0:03:52
+# End time: 01:16:58 on Oct 05,2026, Elapsed time: 0:01:53
 # Errors: 0, Warnings: 357

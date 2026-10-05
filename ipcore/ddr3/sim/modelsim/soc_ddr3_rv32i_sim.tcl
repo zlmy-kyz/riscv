@@ -41,6 +41,10 @@ set rtl_sources [list \
     [file join $repo_dir myriscv inst_bram_adapter.v] \
     [file join $repo_dir myriscv data_bram_adapter.v] \
     [file join $repo_dir myriscv simple_mmio.v] \
+    [file join $repo_dir myriscv uart_tx.v] \
+    [file join $repo_dir myriscv uart_rx.v] \
+    [file join $repo_dir myriscv uart_rx_fifo.v] \
+    [file join $repo_dir myriscv uart_mmio.v] \
     [file join $repo_dir myriscv dual_sram_to_pango_ddr_bridge.v] \
     [file join $repo_dir myriscv soc_top.v] \
     [file join $repo_dir myriscv soc_ddr3_top.v] \

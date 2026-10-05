@@ -22,6 +22,7 @@ foreach name {
     alu.v br_alu.v l_alu.v regfile.v csr_file.v mycpu_sync.v
     inst_bus_interconnect.v data_bus_interconnect.v
     inst_bram_adapter.v data_bram_adapter.v simple_mmio.v
+    uart_tx.v uart_rx.v uart_rx_fifo.v uart_mmio.v
     dual_sram_to_pango_ddr_bridge.v soc_top.v soc_ddr3_top.v
 } {
     lappend cpu_sources [file join $repo_dir myriscv $name]

@@ -24,6 +24,7 @@ SOURCES = [
     "myriscv/inst_bram_adapter.v", "myriscv/data_bram_adapter.v",
     "myriscv/simple_mmio.v", "myriscv/dual_sram_to_pango_ddr_bridge.v",
     "myriscv/soc_top.v",
+    "myriscv/uart_tx.v", "myriscv/uart_rx.v", "myriscv/uart_rx_fifo.v", "myriscv/uart_mmio.v",
 ]
 
 

@@ -93,6 +93,8 @@ module soc_ddr3_top #(
     ) u_soc (
         .clk(core_clk),
         .resetn(soc_resetn),
+        // Stage 3 has no physical UART pins: hold RX idle, keep TX internal.
+        .uart_rx(1'b1), .uart_tx(),
         .irq_external(irq_external),
         .irq_software(irq_software),
         .irq_timer(irq_timer),

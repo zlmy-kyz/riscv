@@ -24,6 +24,7 @@ module tb_soc_ddr3_rv32i_fast;
     soc_top #(.RESET_PC(32'h0000_0000), .ENABLE_DDR(1),
               .DDR_BASE(32'h8000_0000)) dut (
         .clk(clk), .resetn(resetn),
+        .uart_rx(1'b1), .uart_tx(),
         .irq_external(1'b0), .irq_software(1'b0), .irq_timer(1'b0),
         .debug_wb_pc(debug_wb_pc), .debug_wb_rf_we(debug_wb_rf_we),
         .debug_wb_rf_wnum(debug_wb_rf_wnum),

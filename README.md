@@ -1,6 +1,6 @@
 # RISCV FPGA 工程
 
-本仓库包含面向 **RK3568_MES2L100H / PG2L100H-6IFBG484** 板卡的五级流水 RV32I CPU、SoC、Pango DDR3 集成工程，以及启动镜像和仿真入口。PDS 工程为 [`RISCV.pds`](RISCV.pds)，当前板级顶层为 `board_top`。
+本仓库包含面向 **RK3568_MES2L100H / PG2L100H-6IFBG484** 板卡的五级流水 RV32I CPU、SoC、Pango DDR3 集成工程、UART 轮询外设，以及启动镜像和仿真入口。PDS 工程为 [`RISCV.pds`](RISCV.pds)，当前板级顶层为 `board_top`。
 
 **当前建议将整个仓库放在 `D:\riscv\RISCV`。** 部分脚本、IP 初始化配置和仿真库映射仍使用本机绝对路径；打开工程之后还需完成构建和下载。
 
@@ -13,7 +13,9 @@ RISCV/
 ├─ myriscv/                            # CPU、SoC 与板级 RTL
 │  ├─ board_top.v                       # 板级引脚、差分时钟与 KEY0 消抖
 │  ├─ soc_ddr3_top.v                    # SoC、DDR3 IP 和 LED 状态逻辑
-│  ├─ soc_top.v                         # CPU、互连、ROM/RAM、MMIO、DDR 桥
+│  ├─ soc_top.v                         # CPU、互连、ROM/RAM、MMIO、UART、DDR 桥
+│  ├─ uart_tx.v / uart_rx.v             # 115200 8N1 收发
+│  ├─ uart_rx_fifo.v / uart_mmio.v      # RX FIFO、CPU 轮询 MMIO
 │  ├─ mycpu_sync.v                      # 五级流水 CPU
 │  └─ ...                              # CSR、ALU、互连、适配器、DDR 桥等
 ├─ constraint_check/
@@ -36,10 +38,15 @@ RISCV/
 │  │  └─ tb_board_top_selftest.v
 │  ├─ compile_ddr3_physical_model.tcl  # 生成并编译派生 DDR 物理模型
 │  ├─ behav/run_behav.bat              # 当前行为仿真启动脚本
+│  ├─ uart_tx/、uart_rx/、uart_mmio/   # 独立 UART 与真实 CPU 轮询验证
 │  └─ ...                             # 独立回归、候选工程与历史记录
-├─ doc/                                # 当前公开的两份精选文档
+├─ difftest/                           # 仅公开 UART CPU 测试所需的三个依赖
+│  ├─ golden/rvtool.py                 # Python 汇编工具 / 指令级参考工具
+│  └─ model/inst_rom.v、data_ram.v     # 仿真存储模型
+├─ doc/                                # 当前公开的结构、UART 阶段记录与图示
 │  ├─ SoC结构说明_2026-10-04.md
-│  └─ AI加速多方案比较与推荐实施方案.md
+│  ├─ AI加速多方案比较与推荐实施方案.md
+│  └─ UART 阶段1/2/3记录、SoC PNG/SVG 和绘图脚本
 ├─ AGENTS.md                           # 工程长期约定和协作入口
 ├─ .gitignore                          # 构建产物与本地资料的忽略规则
 ├─ impl.tcl                            # PDS 累计操作记录，含旧路径
@@ -54,7 +61,7 @@ RISCV/
 当前 GitHub 版本聚焦于上板和仿真输入，以下内容已从当前版本移除，并通过 `.gitignore` 排除：
 
 - `.workbuddy/`：本地开发记录与旧实验。
-- `bug/`、`difftest/`：本地问题记录与差分验证工程。
+- `bug/` 和大部分 `difftest/`：本地问题记录与差分验证工程；仅保留 UART CPU 测试所需的汇编工具和两份存储模型。
 - `constraints/`、`fdc/`、`ip_backup/`：旧约束、约束备份和 IP 备份。
 - `rv32i_table.txt` 及 `doc/` 中未选中的文档。
 
@@ -62,7 +69,7 @@ PDS 构建数据库、ModelSim 编译库、`.vvp`、波形、Python 缓存和部
 
 **必须保留 `constraint_check/temp_constraint_file.fdc`。** 虽然文件名含 `temp`，它是当前 `RISCV.pds` 的实际约束输入。IP 中的 `*_init_param.v` 等生成文件也参与构建，不能统一当作缓存删除。
 
-完整克隆包含当前公开的文件；GitHub 历史提交中仍可能有旧资料。本地已有开发资料可自行保留，但新克隆不包含 `difftest/`。`MyCpu_test/check_board_top.py` 是依赖旧 `constraints/`、`fdc/` 的历史审计脚本，不作为当前使用步骤。
+完整克隆包含当前公开的文件；GitHub 历史提交中仍可能有旧资料。本地已有开发资料可自行保留，新克隆只包含 `difftest/golden/rvtool.py` 和 `difftest/model/{inst_rom.v,data_ram.v}`，不包含完整旧差分回归工程。`MyCpu_test/check_board_top.py` 是依赖旧 `constraints/`、`fdc/` 的历史审计脚本，不作为当前使用步骤。
 
 ## 3. 工具与目录准备
 
@@ -193,6 +200,29 @@ python MyCpu_test/run_ddr_rv32i_fast.py
 
 已有记录为 40/42，`fence_i`、`ma_data` 是既有覆盖缺口；不能把全量回归称为全部通过。新运行以本次输出与 `MyCpu_test/ddr_stage/fast_summary.csv` 为准，旧日志中的 PASS 不代表新代码已验证。
 
+### 5.4 UART 独立验证与真实 CPU 轮询（ModelSim）
+
+UART 参数为 93.75 MHz、115200 8N1，整数分频 814 clk/bit；实际波特率约 115171.990，误差 -0.024314%。下列 UART 测试不依赖厂家仿真库，CPU 测试使用仓库内行为存储模型。
+
+```powershell
+Set-Location D:/riscv/RISCV/sim/uart_tx
+& 'D:/modelsim/win64pe/vsim.exe' -c -do 'do run_uart_tx.tcl'
+Set-Location D:/riscv/RISCV/sim/uart_rx
+& 'D:/modelsim/win64pe/vsim.exe' -c -do 'do run_uart_rx.tcl'
+Set-Location D:/riscv/RISCV/sim/uart_mmio
+& 'D:/modelsim/win64pe/vsim.exe' -c -do 'do run_uart_mmio.tcl'
+& 'D:/modelsim/win64pe/vsim.exe' -c -do 'do run_bus_regression.tcl'
+
+Set-Location D:/riscv/RISCV
+python difftest/golden/rvtool.py asm sim/uart_mmio/uart_poll.S sim/uart_mmio/cpu_image
+Set-Location sim/uart_mmio
+& 'D:/modelsim/win64pe/vsim.exe' -c -do 'do run_soc_uart_cpu.tcl'
+```
+
+TX/RX/MMIO/CPU UART 测试通过条件为自动串行解码及结果比较 PASS、无 FAIL、Errors: 0 / Warnings: 0。旧总线 TB 的未用端口 warning 与上述 UART 测试区分。CPU 程序轮询 STATUS，通过 SB/SH/SW 发送 Hello、LBU/LB/LHU/LH/LW 接收引脚注入的 Hello；不会替换板级启动镜像。CPU 仿真 hex/listing、编译库和波形由命令重新生成，不上传。
+
+独立 UART PDS 综合入口为 `sim/uart_mmio/uart_synth/uart_synth.pds`，只包含 UART 模块，无 DDR IP 生成；综合 warning 与板级时序未覆盖范围见阶段 3 记录。修改共享互连后仍须执行第 5.2 节的两条完整 DDR 测试。
+
 ## 6. 修改程序或 RTL
 
 修改 CPU、互连、DDR 桥或顶层后，按影响范围执行快速回归、主板级自检和两条完整 DDR 定向；需要上板时重新完整构建并下载新烧录文件。
@@ -217,9 +247,10 @@ python MyCpu_test/run_board_top_physical.py
 | `0x00000000–0x00003FFF`，指令总线 | 16 KiB 启动 ROM |
 | `0x00000000–0x00003FFF`，数据总线 | 独立的 16 KiB RAM，两条分离总线允许同基址 |
 | `0x10000000–0x10000FFF` | MMIO；`0x10000010` 为 TEST_STATUS：0/1/2/3 = IDLE/RUN/PASS/FAIL |
+| `0x10001000–0x1000100F` | UART MMIO：TX_DATA / RX_DATA / STATUS / CONTROL，仅数据总线 |
 | `0x40000000–0x5FFFFFFF` | 板级 DDR 窗口，512 MiB |
 
-目前板级路径没有接入 Cache、DMA、UART、CLINT、PLIC 或 RK3568 通信接口；CPU 的三路 IRQ 在 `board_top` 中接 0。**CoreMark 尚未移植，当前仓库没有可运行的 CoreMark 构建入口。** AI 文档描述后续方案，不能视为已实现硬件能力。
+UART 已接入 `soc_top` 数据互连，采用软件轮询；`soc_ddr3_top` 将 RX 固定为高、TX 未引出，尚无 `board_top` UART 引脚/约束或 USB-TTL 实板通信。UART 未接中断，CPU 的三路 IRQ 在 `board_top` 中接 0。当前没有 Cache、DMA、CLINT、PLIC 或 RK3568 通信接口。**CoreMark 尚未移植，当前仓库没有可运行的 CoreMark 构建入口。** AI 文档描述后续方案，不能视为已实现硬件能力。
 
 ## 8. 常见问题
 
@@ -236,6 +267,8 @@ python MyCpu_test/run_board_top_physical.py
 ## 9. 文档
 
 - [SoC 结构说明](doc/SoC结构说明_2026-10-04.md)：模块层次、总线、地址、时钟、复位和启动流程。
+- [SoC 总览图](doc/SoC结构图_UART阶段3_2026-10-05.png) / [SVG 原图](doc/SoC结构图_UART阶段3_2026-10-05.svg)：UART MMIO 接入后的当前结构；`python doc/draw_soc_uart_stage3.py` 可重绘，需要 Pillow 和 Windows 微软雅黑字体。
+- [UART 阶段 1](doc/UART发送模块阶段1_2026-10-05.md)、[阶段 2](doc/UART接收FIFO与环回阶段2_2026-10-05.md)、[阶段 3](doc/UART_MMIO与CPU轮询阶段3_2026-10-05.md)：独立收发、FIFO/loopback、MMIO/真实 CPU 及回归证据。
 - [AI 加速多方案比较与推荐实施方案](doc/AI加速多方案比较与推荐实施方案.md)：后续开发方向及方案比较。
 
 以上文档和部分验证记录带有日期，以实际 RTL、PDS 和 IP 配置为准。DDR 初始化成功、仿真通过、时序通过和实板验证分别记录。当前自检覆盖指定区域与花样，不代表整块 DDR 的长期稳定性验收。

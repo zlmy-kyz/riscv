@@ -1,6 +1,6 @@
 # ** Warning: (vsim-53) Cannot suppress or change severity level of message number 1.
 # vsim -suppress 3486,3680,3781 "+nowarn1" -c -sva -lib soc_ddr3_regress_work tb_soc_ddr3_top -l soc_ddr3_regress_sim.log 
-# Start time: 18:52:27 on Oct 03,2026
+# Start time: 01:17:43 on Oct 05,2026
 # //  ModelSim DE-64 10.6c Jul 26 2017
 # //
 # //  Copyright 1991-2017 Mentor Graphics Corporation
@@ -33,6 +33,10 @@
 # Loading soc_ddr3_regress_work.data_bram_adapter
 # Loading soc_ddr3_regress_work.data_ram
 # Loading soc_ddr3_regress_work.simple_mmio
+# Loading soc_ddr3_regress_work.uart_mmio
+# Loading soc_ddr3_regress_work.uart_tx
+# Loading soc_ddr3_regress_work.uart_rx
+# Loading soc_ddr3_regress_work.uart_rx_fifo
 # Loading soc_ddr3_regress_work.ddr3_test_top_tb_v_unit
 # Loading soc_ddr3_regress_work.ddr3
 # Loading soc_ddr3_regress_work.ddr3_ddrphy_top
@@ -5555,5 +5559,5 @@
 # RESULT: PASS DDR regression lanes/masks/boundary/DDR-code at 90704000.0 ps
 # ** Note: $finish    : D:/riscv/RISCV/source/tb_soc_ddr3_top.v(353)
 #    Time: 90704166664 fs  Iteration: 4  Instance: /tb_soc_ddr3_top
-# End time: 18:55:46 on Oct 03,2026, Elapsed time: 0:03:19
+# End time: 01:19:44 on Oct 05,2026, Elapsed time: 0:02:01
 # Errors: 0, Warnings: 357

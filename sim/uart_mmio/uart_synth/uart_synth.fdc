@@ -1,0 +1,2 @@
+# Isolated module timing check only; no FPGA pin assignments.
+create_clock -name {core_clk} [get_ports {clk}] -period {10.666667} -waveform {0.000 5.333333}
