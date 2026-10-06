@@ -48,7 +48,7 @@ localparam RESET_TYPE = "SYNC" ; // @IPC enum SYNC,ASYNC
 
 localparam INIT_EN = 1 ; // @IPC bool
 
-localparam INIT_FILE = "D:/riscv/RISCV/MyCpu_test/board_selftest/ddr_selftest.dat" ; // @IPC string
+localparam INIT_FILE = "D:/riscv/RISCV/tests/pc_uart_fpga_uart_pc/build/main.dat" ; // @IPC string
 
 localparam INIT_FORMAT = "HEX" ; // @IPC enum BIN,HEX
 

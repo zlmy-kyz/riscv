@@ -1,0 +1,4 @@
+# Preserve verified software images byte-for-byte across clone/checkout.
+tests/**/*.dat -text whitespace=cr-at-eol
+tests/**/*.bin binary
+tests/**/*.elf binary

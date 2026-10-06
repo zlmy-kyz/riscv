@@ -1,0 +1,129 @@
+
+main.elf:     file format elf32-littleriscv
+
+
+Disassembly of section .text:
+
+40000000 <_start>:
+    .globl _start
+    .type _start, @function
+_start:
+    .option push
+    .option norelax
+    la gp, __global_pointer$
+40000000:	00001197          	auipc	gp,0x1
+40000004:	8f018193          	addi	gp,gp,-1808 # 400008f0 <__global_pointer$>
+    .option pop
+    la sp, __stack_top
+40000008:	00010117          	auipc	sp,0x10
+4000000c:	ff810113          	addi	sp,sp,-8 # 40010000 <__stack_top>
+
+    # .data is loaded at its final DDR address (LMA == VMA).
+    # Clear the word-aligned .bss before calling C.
+    la t0, __bss_start
+40000010:	00000297          	auipc	t0,0x0
+40000014:	0e028293          	addi	t0,t0,224 # 400000f0 <echo_error>
+    la t1, __bss_end
+40000018:	00000317          	auipc	t1,0x0
+4000001c:	0e030313          	addi	t1,t1,224 # 400000f8 <__bss_end>
+1:
+    bgeu t0, t1, 2f
+40000020:	0062f863          	bgeu	t0,t1,40000030 <_start+0x30>
+    sw zero, 0(t0)
+40000024:	0002a023          	sw	zero,0(t0)
+    addi t0, t0, 4
+40000028:	00428293          	addi	t0,t0,4
+    j 1b
+4000002c:	ff5ff06f          	j	40000020 <_start+0x20>
+2:
+    call main
+40000030:	00000097          	auipc	ra,0x0
+40000034:	00c080e7          	jalr	12(ra) # 4000003c <main>
+3:
+    j 3b
+40000038:	0000006f          	j	40000038 <_start+0x38>
+
+4000003c <main>:
+
+/* Infinite, byte-exact polling echo. No banner, newline conversion or IRQ. */
+volatile uint32_t echo_count;
+volatile uint32_t echo_error;
+int main(void)
+{
+4000003c:	ff010113          	addi	sp,sp,-16
+40000040:	00812423          	sw	s0,8(sp)
+40000044:	00912223          	sw	s1,4(sp)
+    UART_CONTROL = (1u << 9) | 3u; /* Disable RX IRQ and clear sticky errors. */
+40000048:	100017b7          	lui	a5,0x10001
+{
+4000004c:	00112623          	sw	ra,12(sp)
+    UART_CONTROL = (1u << 9) | 3u; /* Disable RX IRQ and clear sticky errors. */
+40000050:	20300713          	li	a4,515
+40000054:	400004b7          	lui	s1,0x40000
+40000058:	00e7a623          	sw	a4,12(a5) # 1000100c <_start-0x2fffeff4>
+4000005c:	0f048493          	addi	s1,s1,240 # 400000f0 <echo_error>
+    for (;;) {
+        if (UART_STATUS & UART_ERRORS) {
+40000060:	00878413          	addi	s0,a5,8
+40000064:	0100006f          	j	40000074 <main+0x38>
+            echo_error = UART_STATUS & UART_ERRORS;
+            for (;;) {} /* Preserve diagnostic evidence until reset. */
+        }
+        if (UART_STATUS & (1u << 2)) {
+40000068:	00042783          	lw	a5,0(s0)
+4000006c:	0047f793          	andi	a5,a5,4
+40000070:	02079063          	bnez	a5,40000090 <main+0x54>
+        if (UART_STATUS & UART_ERRORS) {
+40000074:	00042783          	lw	a5,0(s0)
+40000078:	0307f793          	andi	a5,a5,48
+4000007c:	fe0786e3          	beqz	a5,40000068 <main+0x2c>
+            echo_error = UART_STATUS & UART_ERRORS;
+40000080:	00042783          	lw	a5,0(s0)
+40000084:	0307f793          	andi	a5,a5,48
+40000088:	00f4a023          	sw	a5,0(s1)
+            for (;;) {} /* Preserve diagnostic evidence until reset. */
+4000008c:	0000006f          	j	4000008c <main+0x50>
+            uint8_t byte = uart_getchar();
+40000090:	00000097          	auipc	ra,0x0
+40000094:	020080e7          	jalr	32(ra) # 400000b0 <uart_getchar>
+            uart_putchar(byte);
+40000098:	00000097          	auipc	ra,0x0
+4000009c:	038080e7          	jalr	56(ra) # 400000d0 <uart_putchar>
+            ++echo_count;
+400000a0:	0044a783          	lw	a5,4(s1)
+400000a4:	00178793          	addi	a5,a5,1
+400000a8:	00f4a223          	sw	a5,4(s1)
+400000ac:	fc9ff06f          	j	40000074 <main+0x38>
+
+400000b0 <uart_getchar>:
+#include "uart.h"
+
+uint8_t uart_getchar(void)
+{
+    while ((UART_STATUS & (1u << 2)) == 0) {}
+400000b0:	10001737          	lui	a4,0x10001
+400000b4:	00870713          	addi	a4,a4,8 # 10001008 <_start-0x2fffeff8>
+400000b8:	00072783          	lw	a5,0(a4)
+400000bc:	0047f793          	andi	a5,a5,4
+400000c0:	fe078ce3          	beqz	a5,400000b8 <uart_getchar+0x8>
+    return UART_RX_DATA;
+400000c4:	100017b7          	lui	a5,0x10001
+400000c8:	0047c503          	lbu	a0,4(a5) # 10001004 <_start-0x2fffeffc>
+}
+400000cc:	00008067          	ret
+
+400000d0 <uart_putchar>:
+
+void uart_putchar(uint8_t value)
+{
+    while ((UART_STATUS & 1u) == 0) {}
+400000d0:	10001737          	lui	a4,0x10001
+400000d4:	00870713          	addi	a4,a4,8 # 10001008 <_start-0x2fffeff8>
+400000d8:	100016b7          	lui	a3,0x10001
+400000dc:	00072783          	lw	a5,0(a4)
+400000e0:	0017f793          	andi	a5,a5,1
+400000e4:	fe078ce3          	beqz	a5,400000dc <uart_putchar+0xc>
+    UART_TX_DATA = value;
+400000e8:	00a68023          	sb	a0,0(a3) # 10001000 <_start-0x2ffff000>
+}
+400000ec:	00008067          	ret

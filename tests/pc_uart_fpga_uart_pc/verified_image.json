@@ -1,0 +1,10 @@
+{
+  "recorded_date": "2026-10-07",
+  "status": "BOARD_FUNCTIONAL_PASS_USER_CONFIRMED",
+  "dat": "main.dat",
+  "source_dat": "build/main.dat",
+  "sha256": "2cdb17a5a55869f46d14dcf3db5e91a749e010f904f787d8011bb4c64aa88c20",
+  "copied_without_rebuilding": true,
+  "evidence": "doc/UART_Echo\u5b9e\u677f\u57fa\u672c\u56de\u663e\u786e\u8ba4_2026-10-07.md",
+  "scope": "Echo and post-reset repeated communication reported successful by user; long continuous stress, binary/error/IRQ tests not claimed"
+}

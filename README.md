@@ -264,7 +264,7 @@ python MyCpu_test/run_board_top_physical.py
 | `0x10001000–0x1000100F` | UART MMIO：TX_DATA / RX_DATA / STATUS / CONTROL，仅数据总线 |
 | `0x40000000–0x5FFFFFFF` | 板级 DDR 窗口，512 MiB |
 
-UART 已接入 `soc_top` 数据互连，支持轮询和可使能 RX 电平中断；TX/RX 已通过 `soc_ddr3_top` 引出至 `board_top.uart_tx/uart_rx`。当前工作树有外部会话保存的 TX=AA20/RX=AA21 约束，本轮未核验原理图依据或 USB-TTL 实板效果。当前板级启动镜像仍为 DDR 自检，没有 UART 输出；单字符 H 的候选程序及 DebugCore 准备见下方文档，尚未更新主 ROM/RAM 初始化。`board_top` 的三个外部 IRQ 输入仍接 0，`soc_top` 内部将 UART IRQ 与原 external 输入 OR 后送 CPU。CONTROL bit8/9 分别写 1 使能/禁用 RX IRQ，STATUS bit6/7 为使能/实际 IRQ；默认禁用，FIFO 读空自动撤销，旧低位 W1C 保留。当前没有 Cache、DMA、CLINT、PLIC 或 RK3568 通信接口。**CoreMark 尚未移植，当前仓库没有可运行的 CoreMark 构建入口。** AI 文档描述后续方案，不能视为已实现硬件能力。
+UART 已接入 `soc_top` 数据互连，支持轮询和可使能 RX 电平中断；TX/RX 已通过 `soc_ddr3_top` 引出至 `board_top.uart_tx/uart_rx`。当前工作树有外部会话保存的 TX=AA20/RX=AA21 约束，原理图依据未在本轮另核；USB-TTL双向基本回显已有用户实板确认。当前主 RAM IP 配置引用 tests/pc_uart_fpga_uart_pc/build/main.dat；输出30的原成功归档仍保存在 tests/fpga_uart_pc_output_30/main.dat。UART Echo 软件位于 tests/pc_uart_fpga_uart_pc，最终镜像为其 build/main.dat；四层仿真入口为 `python sim/uart_echo/run.py`，2026-10-07用户确认Echo实板功能验收PASS及复位后重复回显成功，成功根main.dat已直接归档；长时间压力/二进制/错误/IRQ另立验收，见 [实板记录](doc/UART_Echo实板基本回显确认_2026-10-07.md)。目录/构建见 [tests说明](tests/README.md)。`board_top` 的三个外部 IRQ 输入仍接 0，`soc_top` 内部将 UART IRQ 与原 external 输入 OR 后送 CPU。CONTROL bit8/9 分别写 1 使能/禁用 RX IRQ，STATUS bit6/7 为使能/实际 IRQ；默认禁用，FIFO 读空自动撤销，旧低位 W1C 保留。当前没有 Cache、DMA、CLINT、PLIC 或 RK3568 通信接口。**CoreMark 尚未移植，当前仓库没有可运行的 CoreMark 构建入口。** AI 文档描述后续方案，不能视为已实现硬件能力。
 
 ## 8. 常见问题
 

@@ -55,6 +55,18 @@ __pycache__/
 *.pyc
 *.pyo
 
+# Test intermediates are ignored; keep the exact accepted Echo artifacts.
+/tests/**/build/*
+!/tests/pc_uart_fpga_uart_pc/build/main.elf
+!/tests/pc_uart_fpga_uart_pc/build/main.bin
+!/tests/pc_uart_fpga_uart_pc/build/main.dis
+!/tests/pc_uart_fpga_uart_pc/build/main.dat
+/sim/uart_echo/build/*
+!/sim/uart_echo/build/*_results.json
+!/sim/uart_echo/build/*_validated_image.json
+# Install this toolchain locally; do not publish the compiler distribution.
+/xpack-riscv-none-elf-gcc-15.2.0-1/
+
 # IP generation metadata; retain IDF, RTL and generated initialization sources.
 /ipcore/**/.last_generated
 /ipcore/**/generate.log
@@ -91,6 +103,15 @@ __pycache__/
 /constraints/
 # Publish only the selected documents; keep other documentation local.
 /doc/*
+!/doc/CODEX_HANDOFF.md
+!/doc/C裸机printf输出30与RAM镜像_2026-10-06.md
+!/doc/裸机C_BIN到DAT与DDR_LED仿真验收_2026-10-06.md
+!/doc/tests目录整理与成功镜像归档_2026-10-06.md
+!/doc/tests恢复旧结构与Echo实验迁移_2026-10-06.md
+!/doc/UART_Echo分层仿真与目录统一_2026-10-06.md
+!/doc/UART_Echo实板基本回显确认_2026-10-07.md
+!/doc/UART_Echo_GitHub发布核对_2026-10-07.md
+!/doc/uart_echo_board_evidence/
 !/doc/SoC结构说明_2026-10-04.md
 !/doc/AI加速多方案比较与推荐实施方案.md
 !/doc/UART发送模块阶段1_2026-10-05.md
