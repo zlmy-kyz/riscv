@@ -1,0 +1,77 @@
+{
+  "status": "DDR_APPLICATION_AUDIT_PASS",
+  "kind": "hello",
+  "mode": null,
+  "iterations": null,
+  "base": 1073741824,
+  "entry": 1073741824,
+  "bytes": 2480,
+  "crc32": 3971813747,
+  "bin_path": "tests/bsp_workflow/build/hello/program.bin",
+  "bin_sha256": "c2e2f5d064122d3d0e5a439a65746e5d5e586fab9cb1a9153eac5ba9c12aafa5",
+  "elf_path": "tests/bsp_workflow/build/hello/program.elf",
+  "elf_sha256": "430475093b6270059ac3494bfb6f75c630c177fdbc1a7a407c9d5bbf4f7772b8",
+  "sections": {
+    ".text": {
+      "address": 1073741824,
+      "size": 2332,
+      "type": 1
+    },
+    ".rodata": {
+      "address": 1073744156,
+      "size": 141,
+      "type": 1
+    },
+    ".data": {
+      "address": 1073744300,
+      "size": 4,
+      "type": 1
+    },
+    ".bss": {
+      "address": 1073744304,
+      "size": 48,
+      "type": 8
+    }
+  },
+  "symbols": {
+    "_start": 1073741824,
+    "program_return": 1073741952,
+    "trap_entry": 1073741956,
+    "bsp_trap_probe": 1073742248,
+    "trap_dispatch": 1073742368,
+    "bsp_check": 1073742504,
+    "putchar": 1073742660,
+    "number": 1073742696,
+    "printf": 1073742964,
+    "uart_irq_service": 1073743508,
+    "timer_cycles": 1073743600,
+    "timer_delay_us": 1073743612,
+    "main": 1073743824,
+    "__mulsi3": 1073743940,
+    "__divsi3": 1073743976,
+    "__hidden___udivsi3": 1073743984,
+    "__udivsi3": 1073743984,
+    "__umodsi3": 1073744056,
+    "__modsi3": 1073744108,
+    "__data_load_start": 1073744300,
+    "__data_start": 1073744300,
+    "bsp_data_magic": 1073744300,
+    "__bss_start": 1073744304,
+    "__data_end": 1073744304,
+    "bsp_irqs": 1073744304,
+    "bsp_ecalls": 1073744308,
+    "rx_tail": 1073744312,
+    "rx_head": 1073744316,
+    "rx_queue": 1073744320,
+    "__bss_end": 1073744352,
+    "__global_pointer$": 1073746348,
+    "__stack_bottom": 1073803264,
+    "__stack_top": 1073807360
+  },
+  "sp_auipc": {
+    "pc": 1073741840,
+    "value": 1073807376
+  },
+  "instructions_audited": 583,
+  "clock_hz": 93750000
+}

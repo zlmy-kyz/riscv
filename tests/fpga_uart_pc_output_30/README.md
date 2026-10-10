@@ -56,5 +56,5 @@ Get-FileHash ./build/main.dat -Algorithm SHA256
 4096字初始化内容。ROM仍使用既有boot_rom.dat，不需要换成此payload。
 若重新部署，应在PDS核对HEX/32位/12位和IP初始化，再构建/下载相应位流。
 
-源码与DAT证据详见 `doc/C裸机printf输出30与RAM镜像_2026-10-06.md`。
+源码与DAT证据详见 `doc/software/C裸机printf输出30与RAM镜像_2026-10-06.md`。
 仿真程序、DDR模型、日志和结果汇总均留在sim，未复制到此目录。

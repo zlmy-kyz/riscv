@@ -1,0 +1,2 @@
+   text	   data	    bss	    dec	    hex	filename
+   2473	      4	     48	   2525	    9dd	D:\riscv\RISCV\tests\bsp_workflow\build\hello\program.elf

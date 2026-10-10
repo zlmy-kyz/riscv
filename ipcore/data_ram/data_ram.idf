@@ -15,52 +15,52 @@
     </header>
     <param_list>
         <param>
-            <name>CLK_EN</name>
+            <name>CLK_OR_POL_INV</name>
             <value>false</value>
         </param>
         <param>
-            <name>DATA_WIDTH</name>
-            <value>32</value>
+            <name>INIT_EN</name>
+            <value>true</value>
         </param>
         <param>
-            <name>POWER_OPT</name>
-            <value>false</value>
+            <name>CAS_MODE_SEL</name>
+            <value>AUTO</value>
         </param>
         <param>
             <name>WRITE_MODE</name>
             <value>NORMAL_WRITE</value>
         </param>
         <param>
-            <name>WR_BYTE_EN</name>
-            <value>true</value>
-        </param>
-        <param>
-            <name>BYTE_SIZE</name>
-            <value>8</value>
-        </param>
-        <param>
-            <name>RD_OCE_EN</name>
+            <name>POWER_OPT</name>
             <value>false</value>
         </param>
         <param>
-            <name>RST_VAL</name>
-            <value>0</value>
+            <name>FAB_REG</name>
+            <value>false</value>
+        </param>
+        <param>
+            <name>CAS_MODE</name>
+            <value>36K</value>
         </param>
         <param>
             <name>RST_VAL_EN</name>
             <value>false</value>
         </param>
         <param>
-            <name>INIT_FILE</name>
-            <value>D:/riscv/RISCV/tests/pc_uart_fpga_uart_pc/build/main.dat</value>
+            <name>BE_WIDTH</name>
+            <value>4</value>
         </param>
         <param>
-            <name>RESET_TYPE</name>
-            <value>SYNC</value>
+            <name>DATA_WIDTH</name>
+            <value>32</value>
         </param>
         <param>
-            <name>CAS_MODE_SEL</name>
-            <value>AUTO</value>
+            <name>ADDR_WIDTH</name>
+            <value>12</value>
+        </param>
+        <param>
+            <name>WR_BYTE_EN</name>
+            <value>true</value>
         </param>
         <param>
             <name>INIT_FORMAT</name>
@@ -71,32 +71,32 @@
             <value>false</value>
         </param>
         <param>
-            <name>ADDR_WIDTH</name>
-            <value>12</value>
+            <name>BYTE_SIZE</name>
+            <value>8</value>
         </param>
         <param>
-            <name>BE_WIDTH</name>
-            <value>4</value>
-        </param>
-        <param>
-            <name>FAB_REG</name>
+            <name>CLK_EN</name>
             <value>false</value>
         </param>
         <param>
-            <name>CLK_OR_POL_INV</name>
+            <name>RESET_TYPE</name>
+            <value>SYNC</value>
+        </param>
+        <param>
+            <name>RD_OCE_EN</name>
             <value>false</value>
-        </param>
-        <param>
-            <name>CAS_MODE</name>
-            <value>36K</value>
-        </param>
-        <param>
-            <name>INIT_EN</name>
-            <value>true</value>
         </param>
         <param>
             <name>OUTPUT_REG</name>
             <value>false</value>
+        </param>
+        <param>
+            <name>INIT_FILE</name>
+            <value>D:/riscv/RISCV/tests/uart_loader/candidates/verify_run_hello/build/loader_ram.dat</value>
+        </param>
+        <param>
+            <name>RST_VAL</name>
+            <value>0</value>
         </param>
     </param_list>
     <pin_list>

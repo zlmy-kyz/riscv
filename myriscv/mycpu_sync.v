@@ -32,7 +32,11 @@ module mycpu_sync #(
     output [3:0]       debug_wb_rf_we,
     output [4:0]       debug_wb_rf_wnum,
     output [31:0]      debug_wb_rf_wdata,
-    output [31:0]      debug_inst
+    output [31:0]      debug_inst,
+    // Read-only observation sideband; never feeds pipeline control.
+    output wire [7:0]  perf_events,
+    output wire [31:0] perf_branch_target,
+    output wire [31:0] perf_fetch_pc
 );
 
     // ================================================================================
@@ -1286,4 +1290,14 @@ module mycpu_sync #(
         end
     end
 
+    assign perf_events[0] = normal_retire || mret_commit;
+    assign perf_events[1] = trap_redirect_req || mret_redirect_req;
+    assign perf_events[2] = flow_state != FLOW_RUN || serial_candidate || fault_inflight || irq_candidate;
+    assign perf_events[3] = data_pipeline_stall;
+    assign perf_events[4] = if_id_valid && load_use;
+    assign perf_events[5] = branch_redirect;
+    assign perf_events[6] = fetch_valid && inst_if_id_accept && !inst_buffer_valid && !inst_response_good;
+    assign perf_events[7] = inst_if_id_accept && (inst_buffer_valid || inst_response_good);
+    assign perf_branch_target = redirect_pc;
+    assign perf_fetch_pc = inst_buffer_valid ? inst_buffer_pc : inst_pending_pc;
 endmodule

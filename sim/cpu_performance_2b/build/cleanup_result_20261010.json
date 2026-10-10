@@ -1,0 +1,20 @@
+{
+  "status": "PERF2B_RELATED_CLEANUP_PASS",
+  "deleted_files": 687,
+  "freed_bytes": 408780224.0,
+  "frozen_input_copies_verified": 246,
+  "evidence_hashes_verified": 339,
+  "main_protected_files_verified": 52,
+  "final_measurement_build_unchanged": true,
+  "main_rtl_unchanged": true,
+  "pds_started": false,
+  "serial_opened": false,
+  "active_script_sha256": {
+    "sim/cpu_performance_2b/check_output.py": "d4819516f718b226ee6bd800ad87571f73ea6406644900283cb54f5f6075d7ed",
+    "sim/cpu_performance_2b/check_transport.py": "8248d635410a63d83fb98ad2ff4898c80129fc919aa0864c122b4d4bfceaaf21",
+    "sim/cpu_performance_2b/loader.py": "20646f81d9fa9d87eb8ae3227966cd2801142e2c8ad046d28ad2b525e9dbbdc3",
+    "sim/cpu_performance_2b/main_rtl.py": "1da5cce1f2f5290b39d61be1864115f5fbb6c4a178315a099cc41a2915eadab9",
+    "sim/cpu_performance_2b/regress.py": "dd13420607ff8286ba68fc4792a8c90cbe72b3404f627147b466ecb672af16cc",
+    "sim/cpu_performance_2b/run.py": "671e6b38d1e5574e1229a2317d3bab1a37b2c448a1b4ae020fac5f345c027302"
+  }
+}

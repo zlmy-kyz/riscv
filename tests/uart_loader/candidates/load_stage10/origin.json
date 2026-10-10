@@ -1,0 +1,62 @@
+[
+  {
+    "source": "tests/uart_loader/candidates/random_stage9/build.ps1",
+    "sha256": "edbd1bf2bef8489390bf31f4d11ff6537870cfcf60c0ce973bf697af71ea52e5"
+  },
+  {
+    "source": "tests/uart_loader/candidates/random_stage9/crc32.c",
+    "sha256": "2e41ab233293c1c872b196930976408dea93cd5996c03136e1d0f40699c78b61"
+  },
+  {
+    "source": "tests/uart_loader/candidates/random_stage9/crc32.h",
+    "sha256": "1dd7e3a669442497b0dd944a5713452780e4713d5c4869cdb20b906ae633c4bc"
+  },
+  {
+    "source": "tests/uart_loader/candidates/random_stage9/ddr_random.c",
+    "sha256": "3063077eddec8b535d85270b27cb342159b4d577fa3c60c82df189fd748ea1ee"
+  },
+  {
+    "source": "tests/uart_loader/candidates/random_stage9/ddr_random.h",
+    "sha256": "a037c22af5608e6214c5b86a8ebff2117a6fcf8f70da8bf1bb78d497b315a351"
+  },
+  {
+    "source": "tests/uart_loader/candidates/random_stage9/ddr_test.c",
+    "sha256": "456501929a458cdf255b8404dff0bf7008e3e78c0fac803ba916c068ae396b2d"
+  },
+  {
+    "source": "tests/uart_loader/candidates/random_stage9/ddr_test.h",
+    "sha256": "3ff9f2e5abf3daeb7cc8df11bf5b94cc36ac61f8b06dbde920ffc08ce5c04ef2"
+  },
+  {
+    "source": "tests/uart_loader/candidates/random_stage9/image_to_dat.py",
+    "sha256": "034180bf2374ed81f4bf13adbfeefc27798461bb729952ccdf684b11d403b06a"
+  },
+  {
+    "source": "tests/uart_loader/candidates/random_stage9/linker.ld",
+    "sha256": "2f175d1bff2fbb153f88c3a29ee3fdf699c1e88a476e40370380be77ff19ef02"
+  },
+  {
+    "source": "tests/uart_loader/candidates/random_stage9/main.c",
+    "sha256": "9dc3bc21bb12dae2164883c2407d0ca1d56d00f75ce026b4bbc021126d7a39fa"
+  },
+  {
+    "source": "tests/uart_loader/candidates/random_stage9/startup.S",
+    "sha256": "23ff30ebb5e1349cf3b9c85147115363777a953f4b8f3f67407288814c231403"
+  },
+  {
+    "source": "tests/uart_loader/candidates/random_stage9/uart_io.c",
+    "sha256": "22c750ca688cbd60545f5c7055c760af9e67ee2ea217b5d98eae19f8ad564440"
+  },
+  {
+    "source": "tests/uart_loader/candidates/random_stage9/uart_io.h",
+    "sha256": "1a162aac5a1980cdf827cf4e60e85ff12250e2abcb0b7e5cc8436ab613b24f33"
+  },
+  {
+    "source": "tests/uart_loader/candidates/random_stage9/uart_loader.c",
+    "sha256": "b0d7d965e4858754ee6a7ec8aada123a4aa79cc5889726672f0cd050c02ff710"
+  },
+  {
+    "source": "tests/uart_loader/candidates/random_stage9/uart_loader.h",
+    "sha256": "cf77b6bc88a23371ae624d91db05f91448504794d66abd12c4adb27c752419d0"
+  }
+]

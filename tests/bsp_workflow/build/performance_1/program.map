@@ -1,0 +1,650 @@
+Archive member included to satisfy reference by file (symbol)
+
+D:/riscv/RISCV/xpack-riscv-none-elf-gcc-15.2.0-1/bin/../lib/gcc/riscv-none-elf/15.2.0/rv32i/ilp32\libgcc.a(muldi3.o)
+                              C:\Users\Z'L'M'~1\AppData\Local\Temp\cc20anZe.o (__mulsi3)
+D:/riscv/RISCV/xpack-riscv-none-elf-gcc-15.2.0-1/bin/../lib/gcc/riscv-none-elf/15.2.0/rv32i/ilp32\libgcc.a(div.o)
+                              C:\Users\Z'L'M'~1\AppData\Local\Temp\ccl1AHAq.o (__divsi3)
+
+Discarded input sections
+
+ .text          0x00000000        0x0 C:\Users\Z'L'M'~1\AppData\Local\Temp\ccQM9EZB.o
+ .data          0x00000000        0x0 C:\Users\Z'L'M'~1\AppData\Local\Temp\ccQM9EZB.o
+ .bss           0x00000000        0x0 C:\Users\Z'L'M'~1\AppData\Local\Temp\ccQM9EZB.o
+ .text          0x00000000        0x0 C:\Users\Z'L'M'~1\AppData\Local\Temp\ccPp8AWT.o
+ .data          0x00000000        0x0 C:\Users\Z'L'M'~1\AppData\Local\Temp\ccPp8AWT.o
+ .bss           0x00000000        0x0 C:\Users\Z'L'M'~1\AppData\Local\Temp\ccPp8AWT.o
+ .text          0x00000000        0x0 C:\Users\Z'L'M'~1\AppData\Local\Temp\ccaCHDig.o
+ .data          0x00000000        0x0 C:\Users\Z'L'M'~1\AppData\Local\Temp\ccaCHDig.o
+ .bss           0x00000000        0x0 C:\Users\Z'L'M'~1\AppData\Local\Temp\ccaCHDig.o
+ .comment       0x00000000       0x34 C:\Users\Z'L'M'~1\AppData\Local\Temp\ccaCHDig.o
+ .text          0x00000000        0x0 C:\Users\Z'L'M'~1\AppData\Local\Temp\cc7vxGbK.o
+ .data          0x00000000        0x0 C:\Users\Z'L'M'~1\AppData\Local\Temp\cc7vxGbK.o
+ .bss           0x00000000        0x0 C:\Users\Z'L'M'~1\AppData\Local\Temp\cc7vxGbK.o
+ .text.puts     0x00000000       0x58 C:\Users\Z'L'M'~1\AppData\Local\Temp\cc7vxGbK.o
+ .text.uart_getchar
+                0x00000000       0x74 C:\Users\Z'L'M'~1\AppData\Local\Temp\cc7vxGbK.o
+ .text.uart_irq_enable
+                0x00000000       0x20 C:\Users\Z'L'M'~1\AppData\Local\Temp\cc7vxGbK.o
+ .text.uart_irq_disable
+                0x00000000       0x18 C:\Users\Z'L'M'~1\AppData\Local\Temp\cc7vxGbK.o
+ .comment       0x00000000       0x34 C:\Users\Z'L'M'~1\AppData\Local\Temp\cc7vxGbK.o
+ .text          0x00000000        0x0 C:\Users\Z'L'M'~1\AppData\Local\Temp\cc20anZe.o
+ .data          0x00000000        0x0 C:\Users\Z'L'M'~1\AppData\Local\Temp\cc20anZe.o
+ .bss           0x00000000        0x0 C:\Users\Z'L'M'~1\AppData\Local\Temp\cc20anZe.o
+ .comment       0x00000000       0x34 C:\Users\Z'L'M'~1\AppData\Local\Temp\cc20anZe.o
+ .text          0x00000000        0x0 C:\Users\Z'L'M'~1\AppData\Local\Temp\ccx21cuO.o
+ .data          0x00000000        0x0 C:\Users\Z'L'M'~1\AppData\Local\Temp\ccx21cuO.o
+ .bss           0x00000000        0x0 C:\Users\Z'L'M'~1\AppData\Local\Temp\ccx21cuO.o
+ .text.crc32_update
+                0x00000000       0x44 C:\Users\Z'L'M'~1\AppData\Local\Temp\ccx21cuO.o
+ .text.crc32    0x00000000       0x2c C:\Users\Z'L'M'~1\AppData\Local\Temp\ccx21cuO.o
+ .debug_info    0x00000000      0x17c C:\Users\Z'L'M'~1\AppData\Local\Temp\ccx21cuO.o
+ .debug_abbrev  0x00000000       0xcc C:\Users\Z'L'M'~1\AppData\Local\Temp\ccx21cuO.o
+ .debug_loclists
+                0x00000000       0xea C:\Users\Z'L'M'~1\AppData\Local\Temp\ccx21cuO.o
+ .debug_aranges
+                0x00000000       0x28 C:\Users\Z'L'M'~1\AppData\Local\Temp\ccx21cuO.o
+ .debug_rnglists
+                0x00000000       0x28 C:\Users\Z'L'M'~1\AppData\Local\Temp\ccx21cuO.o
+ .debug_line    0x00000000      0x166 C:\Users\Z'L'M'~1\AppData\Local\Temp\ccx21cuO.o
+ .debug_str     0x00000000      0x164 C:\Users\Z'L'M'~1\AppData\Local\Temp\ccx21cuO.o
+ .debug_line_str
+                0x00000000       0xee C:\Users\Z'L'M'~1\AppData\Local\Temp\ccx21cuO.o
+ .comment       0x00000000       0x34 C:\Users\Z'L'M'~1\AppData\Local\Temp\ccx21cuO.o
+ .note.GNU-stack
+                0x00000000        0x0 C:\Users\Z'L'M'~1\AppData\Local\Temp\ccx21cuO.o
+ .debug_frame   0x00000000       0x3c C:\Users\Z'L'M'~1\AppData\Local\Temp\ccx21cuO.o
+ .riscv.attributes
+                0x00000000       0x1c C:\Users\Z'L'M'~1\AppData\Local\Temp\ccx21cuO.o
+ .text          0x00000000        0x0 C:\Users\Z'L'M'~1\AppData\Local\Temp\cc4U9dPw.o
+ .data          0x00000000        0x0 C:\Users\Z'L'M'~1\AppData\Local\Temp\cc4U9dPw.o
+ .bss           0x00000000        0x0 C:\Users\Z'L'M'~1\AppData\Local\Temp\cc4U9dPw.o
+ .text.barebones_clock
+                0x00000000        0x8 C:\Users\Z'L'M'~1\AppData\Local\Temp\cc4U9dPw.o
+ .comment       0x00000000       0x34 C:\Users\Z'L'M'~1\AppData\Local\Temp\cc4U9dPw.o
+ .text          0x00000000        0x0 C:\Users\Z'L'M'~1\AppData\Local\Temp\ccl1AHAq.o
+ .data          0x00000000        0x0 C:\Users\Z'L'M'~1\AppData\Local\Temp\ccl1AHAq.o
+ .bss           0x00000000        0x0 C:\Users\Z'L'M'~1\AppData\Local\Temp\ccl1AHAq.o
+ .text.uart_send_char
+                0x00000000        0x8 C:\Users\Z'L'M'~1\AppData\Local\Temp\ccl1AHAq.o
+ .comment       0x00000000       0x34 C:\Users\Z'L'M'~1\AppData\Local\Temp\ccl1AHAq.o
+ .text          0x00000000        0x0 C:\Users\Z'L'M'~1\AppData\Local\Temp\cccoBZ4q.o
+ .data          0x00000000        0x0 C:\Users\Z'L'M'~1\AppData\Local\Temp\cccoBZ4q.o
+ .bss           0x00000000        0x0 C:\Users\Z'L'M'~1\AppData\Local\Temp\cccoBZ4q.o
+ .rodata.str1.4
+                0x00000000       0x16 C:\Users\Z'L'M'~1\AppData\Local\Temp\cccoBZ4q.o
+ .data.mem_name
+                0x00000000        0xc C:\Users\Z'L'M'~1\AppData\Local\Temp\cccoBZ4q.o
+ .comment       0x00000000       0x34 C:\Users\Z'L'M'~1\AppData\Local\Temp\cccoBZ4q.o
+ .text          0x00000000        0x0 C:\Users\Z'L'M'~1\AppData\Local\Temp\ccflzeaB.o
+ .data          0x00000000        0x0 C:\Users\Z'L'M'~1\AppData\Local\Temp\ccflzeaB.o
+ .bss           0x00000000        0x0 C:\Users\Z'L'M'~1\AppData\Local\Temp\ccflzeaB.o
+ .text.copy_info
+                0x00000000       0x14 C:\Users\Z'L'M'~1\AppData\Local\Temp\ccflzeaB.o
+ .text.core_list_undo_remove
+                0x00000000       0x20 C:\Users\Z'L'M'~1\AppData\Local\Temp\ccflzeaB.o
+ .comment       0x00000000       0x34 C:\Users\Z'L'M'~1\AppData\Local\Temp\ccflzeaB.o
+ .text          0x00000000        0x0 C:\Users\Z'L'M'~1\AppData\Local\Temp\ccZD3HqJ.o
+ .data          0x00000000        0x0 C:\Users\Z'L'M'~1\AppData\Local\Temp\ccZD3HqJ.o
+ .bss           0x00000000        0x0 C:\Users\Z'L'M'~1\AppData\Local\Temp\ccZD3HqJ.o
+ .comment       0x00000000       0x34 C:\Users\Z'L'M'~1\AppData\Local\Temp\ccZD3HqJ.o
+ .text          0x00000000        0x0 C:\Users\Z'L'M'~1\AppData\Local\Temp\ccNY14lY.o
+ .data          0x00000000        0x0 C:\Users\Z'L'M'~1\AppData\Local\Temp\ccNY14lY.o
+ .bss           0x00000000        0x0 C:\Users\Z'L'M'~1\AppData\Local\Temp\ccNY14lY.o
+ .comment       0x00000000       0x34 C:\Users\Z'L'M'~1\AppData\Local\Temp\ccNY14lY.o
+ .text          0x00000000        0x0 C:\Users\Z'L'M'~1\AppData\Local\Temp\ccxxu1Zh.o
+ .data          0x00000000        0x0 C:\Users\Z'L'M'~1\AppData\Local\Temp\ccxxu1Zh.o
+ .bss           0x00000000        0x0 C:\Users\Z'L'M'~1\AppData\Local\Temp\ccxxu1Zh.o
+ .comment       0x00000000       0x34 C:\Users\Z'L'M'~1\AppData\Local\Temp\ccxxu1Zh.o
+ .data          0x00000000        0x0 D:/riscv/RISCV/xpack-riscv-none-elf-gcc-15.2.0-1/bin/../lib/gcc/riscv-none-elf/15.2.0/rv32i/ilp32\libgcc.a(muldi3.o)
+ .bss           0x00000000        0x0 D:/riscv/RISCV/xpack-riscv-none-elf-gcc-15.2.0-1/bin/../lib/gcc/riscv-none-elf/15.2.0/rv32i/ilp32\libgcc.a(muldi3.o)
+ .data          0x00000000        0x0 D:/riscv/RISCV/xpack-riscv-none-elf-gcc-15.2.0-1/bin/../lib/gcc/riscv-none-elf/15.2.0/rv32i/ilp32\libgcc.a(div.o)
+ .bss           0x00000000        0x0 D:/riscv/RISCV/xpack-riscv-none-elf-gcc-15.2.0-1/bin/../lib/gcc/riscv-none-elf/15.2.0/rv32i/ilp32\libgcc.a(div.o)
+
+Memory Configuration
+
+Name             Origin             Length             Attributes
+PROGRAM          0x40000000         0x0000f000         xrw
+STACK            0x4000f000         0x00001000         rw
+*default*        0x00000000         0xffffffff
+
+Linker script and memory map
+
+LOAD C:\Users\Z'L'M'~1\AppData\Local\Temp\ccQM9EZB.o
+LOAD C:\Users\Z'L'M'~1\AppData\Local\Temp\ccPp8AWT.o
+LOAD C:\Users\Z'L'M'~1\AppData\Local\Temp\ccaCHDig.o
+LOAD C:\Users\Z'L'M'~1\AppData\Local\Temp\cc7vxGbK.o
+LOAD C:\Users\Z'L'M'~1\AppData\Local\Temp\cc20anZe.o
+LOAD C:\Users\Z'L'M'~1\AppData\Local\Temp\ccx21cuO.o
+LOAD C:\Users\Z'L'M'~1\AppData\Local\Temp\cc4U9dPw.o
+LOAD C:\Users\Z'L'M'~1\AppData\Local\Temp\ccl1AHAq.o
+LOAD C:\Users\Z'L'M'~1\AppData\Local\Temp\cccoBZ4q.o
+LOAD C:\Users\Z'L'M'~1\AppData\Local\Temp\ccflzeaB.o
+LOAD C:\Users\Z'L'M'~1\AppData\Local\Temp\ccZD3HqJ.o
+LOAD C:\Users\Z'L'M'~1\AppData\Local\Temp\ccNY14lY.o
+LOAD C:\Users\Z'L'M'~1\AppData\Local\Temp\ccxxu1Zh.o
+LOAD D:/riscv/RISCV/xpack-riscv-none-elf-gcc-15.2.0-1/bin/../lib/gcc/riscv-none-elf/15.2.0/rv32i/ilp32\libgcc.a
+
+.text           0x40000000     0x3300
+ *(.text.startup)
+ .text.startup  0x40000000       0x84 C:\Users\Z'L'M'~1\AppData\Local\Temp\ccQM9EZB.o
+                0x40000000                _start
+                0x40000080                program_return
+ *(.text .text.*)
+ .text.trap     0x40000084      0x19c C:\Users\Z'L'M'~1\AppData\Local\Temp\ccPp8AWT.o
+                0x40000084                trap_entry
+                0x400001a8                bsp_trap_probe
+ .text.trap_dispatch
+                0x40000220       0x88 C:\Users\Z'L'M'~1\AppData\Local\Temp\ccaCHDig.o
+                0x40000220                trap_dispatch
+ .text.bsp_check
+                0x400002a8       0x9c C:\Users\Z'L'M'~1\AppData\Local\Temp\ccaCHDig.o
+                0x400002a8                bsp_check
+ .text.putchar  0x40000344       0x24 C:\Users\Z'L'M'~1\AppData\Local\Temp\cc7vxGbK.o
+                0x40000344                putchar
+ .text.number   0x40000368      0x10c C:\Users\Z'L'M'~1\AppData\Local\Temp\cc7vxGbK.o
+ .text.printf   0x40000474      0x220 C:\Users\Z'L'M'~1\AppData\Local\Temp\cc7vxGbK.o
+                0x40000474                printf
+ .text.uart_irq_service
+                0x40000694       0x5c C:\Users\Z'L'M'~1\AppData\Local\Temp\cc7vxGbK.o
+                0x40000694                uart_irq_service
+ .text.timer_cycles
+                0x400006f0        0xc C:\Users\Z'L'M'~1\AppData\Local\Temp\cc20anZe.o
+                0x400006f0                timer_cycles
+ .text.timer_delay_us
+                0x400006fc       0xd4 C:\Users\Z'L'M'~1\AppData\Local\Temp\cc20anZe.o
+                0x400006fc                timer_delay_us
+ .text.start_time
+                0x400007d0       0x24 C:\Users\Z'L'M'~1\AppData\Local\Temp\cc4U9dPw.o
+                0x400007d0                start_time
+ .text.stop_time
+                0x400007f4       0x24 C:\Users\Z'L'M'~1\AppData\Local\Temp\cc4U9dPw.o
+                0x400007f4                stop_time
+ .text.get_time
+                0x40000818       0x18 C:\Users\Z'L'M'~1\AppData\Local\Temp\cc4U9dPw.o
+                0x40000818                get_time
+ .text.time_in_secs
+                0x40000830       0x24 C:\Users\Z'L'M'~1\AppData\Local\Temp\cc4U9dPw.o
+                0x40000830                time_in_secs
+ .text.portable_init
+                0x40000854       0x44 C:\Users\Z'L'M'~1\AppData\Local\Temp\cc4U9dPw.o
+                0x40000854                portable_init
+ .text.portable_fini
+                0x40000898       0x50 C:\Users\Z'L'M'~1\AppData\Local\Temp\cc4U9dPw.o
+                0x40000898                portable_fini
+ .text.number   0x400008e8      0x2d0 C:\Users\Z'L'M'~1\AppData\Local\Temp\ccl1AHAq.o
+ .text.ee_printf
+                0x40000bb8      0x844 C:\Users\Z'L'M'~1\AppData\Local\Temp\ccl1AHAq.o
+                0x40000bb8                ee_printf
+ .text.iterate  0x400013fc       0x98 C:\Users\Z'L'M'~1\AppData\Local\Temp\cccoBZ4q.o
+                0x400013fc                iterate
+ .text.startup.main
+                0x40001494      0x7f4 C:\Users\Z'L'M'~1\AppData\Local\Temp\cccoBZ4q.o
+                0x40001494                main
+ .text.cmp_idx  0x40001c88       0x44 C:\Users\Z'L'M'~1\AppData\Local\Temp\ccflzeaB.o
+                0x40001c88                cmp_idx
+ .text.calc_func
+                0x40001ccc      0x110 C:\Users\Z'L'M'~1\AppData\Local\Temp\ccflzeaB.o
+                0x40001ccc                calc_func
+ .text.cmp_complex
+                0x40001ddc       0x50 C:\Users\Z'L'M'~1\AppData\Local\Temp\ccflzeaB.o
+                0x40001ddc                cmp_complex
+ .text.core_list_insert_new
+                0x40001e2c       0x5c C:\Users\Z'L'M'~1\AppData\Local\Temp\ccflzeaB.o
+                0x40001e2c                core_list_insert_new
+ .text.core_list_remove
+                0x40001e88       0x28 C:\Users\Z'L'M'~1\AppData\Local\Temp\ccflzeaB.o
+                0x40001e88                core_list_remove
+ .text.core_list_find
+                0x40001eb0       0x40 C:\Users\Z'L'M'~1\AppData\Local\Temp\ccflzeaB.o
+                0x40001eb0                core_list_find
+ .text.core_list_reverse
+                0x40001ef0       0x24 C:\Users\Z'L'M'~1\AppData\Local\Temp\ccflzeaB.o
+                0x40001ef0                core_list_reverse
+ .text.core_list_mergesort
+                0x40001f14      0x12c C:\Users\Z'L'M'~1\AppData\Local\Temp\ccflzeaB.o
+                0x40001f14                core_list_mergesort
+ .text.core_bench_list
+                0x40002040      0x228 C:\Users\Z'L'M'~1\AppData\Local\Temp\ccflzeaB.o
+                0x40002040                core_bench_list
+ .text.core_list_init
+                0x40002268      0x180 C:\Users\Z'L'M'~1\AppData\Local\Temp\ccflzeaB.o
+                0x40002268                core_list_init
+ .text.core_init_matrix
+                0x400023e8      0x184 C:\Users\Z'L'M'~1\AppData\Local\Temp\ccZD3HqJ.o
+                0x400023e8                core_init_matrix
+ .text.matrix_sum
+                0x4000256c       0x70 C:\Users\Z'L'M'~1\AppData\Local\Temp\ccZD3HqJ.o
+                0x4000256c                matrix_sum
+ .text.matrix_mul_const
+                0x400025dc       0xb4 C:\Users\Z'L'M'~1\AppData\Local\Temp\ccZD3HqJ.o
+                0x400025dc                matrix_mul_const
+ .text.matrix_add_const
+                0x40002690       0x40 C:\Users\Z'L'M'~1\AppData\Local\Temp\ccZD3HqJ.o
+                0x40002690                matrix_add_const
+ .text.matrix_mul_vect
+                0x400026d0       0xc8 C:\Users\Z'L'M'~1\AppData\Local\Temp\ccZD3HqJ.o
+                0x400026d0                matrix_mul_vect
+ .text.matrix_mul_matrix
+                0x40002798      0x104 C:\Users\Z'L'M'~1\AppData\Local\Temp\ccZD3HqJ.o
+                0x40002798                matrix_mul_matrix
+ .text.matrix_mul_matrix_bitextract
+                0x4000289c      0x11c C:\Users\Z'L'M'~1\AppData\Local\Temp\ccZD3HqJ.o
+                0x4000289c                matrix_mul_matrix_bitextract
+ .text.matrix_test
+                0x400029b8      0x18c C:\Users\Z'L'M'~1\AppData\Local\Temp\ccZD3HqJ.o
+                0x400029b8                matrix_test
+ .text.core_bench_matrix
+                0x40002b44       0x44 C:\Users\Z'L'M'~1\AppData\Local\Temp\ccZD3HqJ.o
+                0x40002b44                core_bench_matrix
+ .text.core_init_state
+                0x40002b88      0x134 C:\Users\Z'L'M'~1\AppData\Local\Temp\ccNY14lY.o
+                0x40002b88                core_init_state
+ .text.core_state_transition
+                0x40002cbc      0x1bc C:\Users\Z'L'M'~1\AppData\Local\Temp\ccNY14lY.o
+                0x40002cbc                core_state_transition
+ .text.core_bench_state
+                0x40002e78      0x190 C:\Users\Z'L'M'~1\AppData\Local\Temp\ccNY14lY.o
+                0x40002e78                core_bench_state
+ .text.get_seed_32
+                0x40003008       0x68 C:\Users\Z'L'M'~1\AppData\Local\Temp\ccxxu1Zh.o
+                0x40003008                get_seed_32
+ .text.crcu8    0x40003070      0x12c C:\Users\Z'L'M'~1\AppData\Local\Temp\ccxxu1Zh.o
+                0x40003070                crcu8
+ .text.crcu16   0x4000319c       0x38 C:\Users\Z'L'M'~1\AppData\Local\Temp\ccxxu1Zh.o
+                0x4000319c                crcu16
+ .text.crcu32   0x400031d4       0x3c C:\Users\Z'L'M'~1\AppData\Local\Temp\ccxxu1Zh.o
+                0x400031d4                crcu32
+ .text.crc16    0x40003210       0x10 C:\Users\Z'L'M'~1\AppData\Local\Temp\ccxxu1Zh.o
+                0x40003210                crc16
+ .text.check_data_types
+                0x40003220        0x8 C:\Users\Z'L'M'~1\AppData\Local\Temp\ccxxu1Zh.o
+                0x40003220                check_data_types
+ .text          0x40003228       0x24 D:/riscv/RISCV/xpack-riscv-none-elf-gcc-15.2.0-1/bin/../lib/gcc/riscv-none-elf/15.2.0/rv32i/ilp32\libgcc.a(muldi3.o)
+                0x40003228                __mulsi3
+ .text          0x4000324c       0xb4 D:/riscv/RISCV/xpack-riscv-none-elf-gcc-15.2.0-1/bin/../lib/gcc/riscv-none-elf/15.2.0/rv32i/ilp32\libgcc.a(div.o)
+                0x4000324c                __divsi3
+                0x40003254                __udivsi3
+                0x40003254                __hidden___udivsi3
+                0x4000329c                __umodsi3
+                0x400032d0                __modsi3
+
+.rodata         0x40003300      0x8bc
+ *(.rodata .rodata.* .srodata .srodata.*)
+ .rodata.trap_dispatch.str1.4
+                0x40003300      0x5c1 C:\Users\Z'L'M'~1\AppData\Local\Temp\ccaCHDig.o
+                                 0x2a (size before relaxing)
+ .rodata.printf.str1.4
+                0x400038c1        0x0 C:\Users\Z'L'M'~1\AppData\Local\Temp\cc7vxGbK.o
+                                  0x7 (size before relaxing)
+ .rodata.portable_init.str1.4
+                0x400038c1        0x0 C:\Users\Z'L'M'~1\AppData\Local\Temp\cc4U9dPw.o
+                                 0x2d (size before relaxing)
+ .rodata.portable_fini.str1.4
+                0x400038c1        0x0 C:\Users\Z'L'M'~1\AppData\Local\Temp\cc4U9dPw.o
+                                 0x2b (size before relaxing)
+ .rodata.number.str1.4
+                0x400038c1        0x0 C:\Users\Z'L'M'~1\AppData\Local\Temp\ccl1AHAq.o
+                                 0x4d (size before relaxing)
+ .rodata.ee_printf.str1.4
+                0x400038c1        0x0 C:\Users\Z'L'M'~1\AppData\Local\Temp\ccl1AHAq.o
+                                  0x7 (size before relaxing)
+ *fill*         0x400038c1        0x3 
+ .rodata.ee_printf
+                0x400038c4       0x60 C:\Users\Z'L'M'~1\AppData\Local\Temp\ccl1AHAq.o
+ .rodata.main.str1.4
+                0x40003924        0x0 C:\Users\Z'L'M'~1\AppData\Local\Temp\cccoBZ4q.o
+                                0x42b (size before relaxing)
+ .rodata.state_known_crc
+                0x40003924        0xa C:\Users\Z'L'M'~1\AppData\Local\Temp\cccoBZ4q.o
+ *fill*         0x4000392e        0x2 
+ .rodata.matrix_known_crc
+                0x40003930        0xa C:\Users\Z'L'M'~1\AppData\Local\Temp\cccoBZ4q.o
+ *fill*         0x4000393a        0x2 
+ .rodata.list_known_crc
+                0x4000393c        0xa C:\Users\Z'L'M'~1\AppData\Local\Temp\cccoBZ4q.o
+ *fill*         0x40003946        0x2 
+ .rodata.core_state_transition
+                0x40003948       0x20 C:\Users\Z'L'M'~1\AppData\Local\Temp\ccNY14lY.o
+ .rodata.str1.4
+                0x40003968        0x0 C:\Users\Z'L'M'~1\AppData\Local\Temp\ccNY14lY.o
+                                 0xad (size before relaxing)
+ .rodata.errpat
+                0x40003968       0x10 C:\Users\Z'L'M'~1\AppData\Local\Temp\ccNY14lY.o
+ .rodata.scipat
+                0x40003978       0x10 C:\Users\Z'L'M'~1\AppData\Local\Temp\ccNY14lY.o
+ .rodata.floatpat
+                0x40003988       0x10 C:\Users\Z'L'M'~1\AppData\Local\Temp\ccNY14lY.o
+ .rodata.intpat
+                0x40003998       0x10 C:\Users\Z'L'M'~1\AppData\Local\Temp\ccNY14lY.o
+ .rodata.get_seed_32
+                0x400039a8       0x14 C:\Users\Z'L'M'~1\AppData\Local\Temp\ccxxu1Zh.o
+ .rodata        0x400039bc      0x200 C:\Users\Z'L'M'~1\AppData\Local\Temp\ccxxu1Zh.o
+
+.rela.dyn       0x40003bbc        0x0
+ .rela.text.startup
+                0x40003bbc        0x0 C:\Users\Z'L'M'~1\AppData\Local\Temp\ccQM9EZB.o
+
+.data           0x40003bbc       0x10
+                0x40003bbc                        __data_start = .
+ *(.data .data.* .sdata .sdata.*)
+ .data.bsp_data_magic
+                0x40003bbc        0x4 C:\Users\Z'L'M'~1\AppData\Local\Temp\ccaCHDig.o
+                0x40003bbc                bsp_data_magic
+ .data.default_num_contexts
+                0x40003bc0        0x4 C:\Users\Z'L'M'~1\AppData\Local\Temp\cc4U9dPw.o
+                0x40003bc0                default_num_contexts
+ .data.seed4_volatile
+                0x40003bc4        0x4 C:\Users\Z'L'M'~1\AppData\Local\Temp\cc4U9dPw.o
+                0x40003bc4                seed4_volatile
+ .data.seed3_volatile
+                0x40003bc8        0x4 C:\Users\Z'L'M'~1\AppData\Local\Temp\cc4U9dPw.o
+                0x40003bc8                seed3_volatile
+                0x40003bcc                        . = ALIGN (0x4)
+                0x40003bcc                        __data_end = .
+                0x40003bbc                        __data_load_start = LOADADDR (.data)
+                0x400043bc                        __global_pointer$ = (__data_start + 0x800)
+
+.bss            0x40003bcc      0x814
+                0x40003bcc                        __bss_start = .
+ *(.bss .bss.* .sbss .sbss.*)
+ .bss.bsp_irqs  0x40003bcc        0x4 C:\Users\Z'L'M'~1\AppData\Local\Temp\ccaCHDig.o
+                0x40003bcc                bsp_irqs
+ .bss.bsp_ecalls
+                0x40003bd0        0x4 C:\Users\Z'L'M'~1\AppData\Local\Temp\ccaCHDig.o
+                0x40003bd0                bsp_ecalls
+ .bss.rx_tail   0x40003bd4        0x4 C:\Users\Z'L'M'~1\AppData\Local\Temp\cc7vxGbK.o
+ .bss.rx_head   0x40003bd8        0x4 C:\Users\Z'L'M'~1\AppData\Local\Temp\cc7vxGbK.o
+ .bss.rx_queue  0x40003bdc       0x20 C:\Users\Z'L'M'~1\AppData\Local\Temp\cc7vxGbK.o
+ .bss.stop_time_val
+                0x40003bfc        0x4 C:\Users\Z'L'M'~1\AppData\Local\Temp\cc4U9dPw.o
+ .bss.start_time_val
+                0x40003c00        0x4 C:\Users\Z'L'M'~1\AppData\Local\Temp\cc4U9dPw.o
+ .bss.seed5_volatile
+                0x40003c04        0x4 C:\Users\Z'L'M'~1\AppData\Local\Temp\cc4U9dPw.o
+                0x40003c04                seed5_volatile
+ .bss.seed2_volatile
+                0x40003c08        0x4 C:\Users\Z'L'M'~1\AppData\Local\Temp\cc4U9dPw.o
+                0x40003c08                seed2_volatile
+ .bss.seed1_volatile
+                0x40003c0c        0x4 C:\Users\Z'L'M'~1\AppData\Local\Temp\cc4U9dPw.o
+                0x40003c0c                seed1_volatile
+ .bss.static_memblk
+                0x40003c10      0x7d0 C:\Users\Z'L'M'~1\AppData\Local\Temp\cccoBZ4q.o
+                0x40003c10                static_memblk
+ *(COMMON)
+                0x400043e0                        . = ALIGN (0x4)
+                0x400043e0                        __bss_end = .
+                0x4000f000                        __stack_bottom = ORIGIN (STACK)
+                0x40010000                        __stack_top = (ORIGIN (STACK) + LENGTH (STACK))
+                0x00000001                        ASSERT ((__bss_end <= __stack_bottom), Application overlaps stack)
+
+/DISCARD/
+ *(.comment)
+ *(.eh_frame .eh_frame.*)
+OUTPUT(D:\riscv\RISCV\tests\bsp_workflow\build\performance_1\program.elf elf32-littleriscv)
+
+.riscv.attributes
+                0x00000000       0x1c
+ .riscv.attributes
+                0x00000000       0x1a C:\Users\Z'L'M'~1\AppData\Local\Temp\ccQM9EZB.o
+ .riscv.attributes
+                0x0000001a       0x1a C:\Users\Z'L'M'~1\AppData\Local\Temp\ccPp8AWT.o
+ .riscv.attributes
+                0x00000034       0x1c C:\Users\Z'L'M'~1\AppData\Local\Temp\ccaCHDig.o
+ .riscv.attributes
+                0x00000050       0x1c C:\Users\Z'L'M'~1\AppData\Local\Temp\cc7vxGbK.o
+ .riscv.attributes
+                0x0000006c       0x1c C:\Users\Z'L'M'~1\AppData\Local\Temp\cc20anZe.o
+ .riscv.attributes
+                0x00000088       0x1c C:\Users\Z'L'M'~1\AppData\Local\Temp\cc4U9dPw.o
+ .riscv.attributes
+                0x000000a4       0x1c C:\Users\Z'L'M'~1\AppData\Local\Temp\ccl1AHAq.o
+ .riscv.attributes
+                0x000000c0       0x1c C:\Users\Z'L'M'~1\AppData\Local\Temp\cccoBZ4q.o
+ .riscv.attributes
+                0x000000dc       0x1c C:\Users\Z'L'M'~1\AppData\Local\Temp\ccflzeaB.o
+ .riscv.attributes
+                0x000000f8       0x1c C:\Users\Z'L'M'~1\AppData\Local\Temp\ccZD3HqJ.o
+ .riscv.attributes
+                0x00000114       0x1c C:\Users\Z'L'M'~1\AppData\Local\Temp\ccNY14lY.o
+ .riscv.attributes
+                0x00000130       0x1c C:\Users\Z'L'M'~1\AppData\Local\Temp\ccxxu1Zh.o
+ .riscv.attributes
+                0x0000014c       0x1a D:/riscv/RISCV/xpack-riscv-none-elf-gcc-15.2.0-1/bin/../lib/gcc/riscv-none-elf/15.2.0/rv32i/ilp32\libgcc.a(muldi3.o)
+ .riscv.attributes
+                0x00000166       0x1a D:/riscv/RISCV/xpack-riscv-none-elf-gcc-15.2.0-1/bin/../lib/gcc/riscv-none-elf/15.2.0/rv32i/ilp32\libgcc.a(div.o)
+
+.note.GNU-stack
+                0x00000000        0x0
+ .note.GNU-stack
+                0x00000000        0x0 C:\Users\Z'L'M'~1\AppData\Local\Temp\ccaCHDig.o
+ .note.GNU-stack
+                0x00000000        0x0 C:\Users\Z'L'M'~1\AppData\Local\Temp\cc7vxGbK.o
+ .note.GNU-stack
+                0x00000000        0x0 C:\Users\Z'L'M'~1\AppData\Local\Temp\cc20anZe.o
+ .note.GNU-stack
+                0x00000000        0x0 C:\Users\Z'L'M'~1\AppData\Local\Temp\cc4U9dPw.o
+ .note.GNU-stack
+                0x00000000        0x0 C:\Users\Z'L'M'~1\AppData\Local\Temp\ccl1AHAq.o
+ .note.GNU-stack
+                0x00000000        0x0 C:\Users\Z'L'M'~1\AppData\Local\Temp\cccoBZ4q.o
+ .note.GNU-stack
+                0x00000000        0x0 C:\Users\Z'L'M'~1\AppData\Local\Temp\ccflzeaB.o
+ .note.GNU-stack
+                0x00000000        0x0 C:\Users\Z'L'M'~1\AppData\Local\Temp\ccZD3HqJ.o
+ .note.GNU-stack
+                0x00000000        0x0 C:\Users\Z'L'M'~1\AppData\Local\Temp\ccNY14lY.o
+ .note.GNU-stack
+                0x00000000        0x0 C:\Users\Z'L'M'~1\AppData\Local\Temp\ccxxu1Zh.o
+
+.debug_line     0x00000000     0x53a6
+ .debug_line    0x00000000       0xc0 C:\Users\Z'L'M'~1\AppData\Local\Temp\ccQM9EZB.o
+ .debug_line    0x000000c0      0x24c C:\Users\Z'L'M'~1\AppData\Local\Temp\ccPp8AWT.o
+ .debug_line    0x0000030c      0x20d C:\Users\Z'L'M'~1\AppData\Local\Temp\ccaCHDig.o
+ .debug_line    0x00000519      0x7f2 C:\Users\Z'L'M'~1\AppData\Local\Temp\cc7vxGbK.o
+ .debug_line    0x00000d0b      0x17f C:\Users\Z'L'M'~1\AppData\Local\Temp\cc20anZe.o
+ .debug_line    0x00000e8a      0x265 C:\Users\Z'L'M'~1\AppData\Local\Temp\cc4U9dPw.o
+ .debug_line    0x000010ef     0x1189 C:\Users\Z'L'M'~1\AppData\Local\Temp\ccl1AHAq.o
+ .debug_line    0x00002278      0xbaf C:\Users\Z'L'M'~1\AppData\Local\Temp\cccoBZ4q.o
+ .debug_line    0x00002e27      0xe99 C:\Users\Z'L'M'~1\AppData\Local\Temp\ccflzeaB.o
+ .debug_line    0x00003cc0      0xa1f C:\Users\Z'L'M'~1\AppData\Local\Temp\ccZD3HqJ.o
+ .debug_line    0x000046df      0x849 C:\Users\Z'L'M'~1\AppData\Local\Temp\ccNY14lY.o
+ .debug_line    0x00004f28      0x2b1 C:\Users\Z'L'M'~1\AppData\Local\Temp\ccxxu1Zh.o
+ .debug_line    0x000051d9       0x7a D:/riscv/RISCV/xpack-riscv-none-elf-gcc-15.2.0-1/bin/../lib/gcc/riscv-none-elf/15.2.0/rv32i/ilp32\libgcc.a(muldi3.o)
+ .debug_line    0x00005253      0x153 D:/riscv/RISCV/xpack-riscv-none-elf-gcc-15.2.0-1/bin/../lib/gcc/riscv-none-elf/15.2.0/rv32i/ilp32\libgcc.a(div.o)
+
+.debug_line_str
+                0x00000000      0x45e
+ .debug_line_str
+                0x00000000      0x45e C:\Users\Z'L'M'~1\AppData\Local\Temp\ccQM9EZB.o
+                                 0x62 (size before relaxing)
+ .debug_line_str
+                0x0000045e        0x0 C:\Users\Z'L'M'~1\AppData\Local\Temp\ccPp8AWT.o
+                                 0x5f (size before relaxing)
+ .debug_line_str
+                0x0000045e        0x0 C:\Users\Z'L'M'~1\AppData\Local\Temp\ccaCHDig.o
+                                 0xf2 (size before relaxing)
+ .debug_line_str
+                0x0000045e        0x0 C:\Users\Z'L'M'~1\AppData\Local\Temp\cc7vxGbK.o
+                                 0xf5 (size before relaxing)
+ .debug_line_str
+                0x0000045e        0x0 C:\Users\Z'L'M'~1\AppData\Local\Temp\cc20anZe.o
+                                 0xee (size before relaxing)
+ .debug_line_str
+                0x0000045e        0x0 C:\Users\Z'L'M'~1\AppData\Local\Temp\cc4U9dPw.o
+                                0x136 (size before relaxing)
+ .debug_line_str
+                0x0000045e        0x0 C:\Users\Z'L'M'~1\AppData\Local\Temp\ccl1AHAq.o
+                                0x10f (size before relaxing)
+ .debug_line_str
+                0x0000045e        0x0 C:\Users\Z'L'M'~1\AppData\Local\Temp\cccoBZ4q.o
+                                 0xc3 (size before relaxing)
+ .debug_line_str
+                0x0000045e        0x0 C:\Users\Z'L'M'~1\AppData\Local\Temp\ccflzeaB.o
+                                 0xcd (size before relaxing)
+ .debug_line_str
+                0x0000045e        0x0 C:\Users\Z'L'M'~1\AppData\Local\Temp\ccZD3HqJ.o
+                                 0xc7 (size before relaxing)
+ .debug_line_str
+                0x0000045e        0x0 C:\Users\Z'L'M'~1\AppData\Local\Temp\ccNY14lY.o
+                                 0xc5 (size before relaxing)
+ .debug_line_str
+                0x0000045e        0x0 C:\Users\Z'L'M'~1\AppData\Local\Temp\ccxxu1Zh.o
+                                 0xb8 (size before relaxing)
+ .debug_line_str
+                0x0000045e        0x0 D:/riscv/RISCV/xpack-riscv-none-elf-gcc-15.2.0-1/bin/../lib/gcc/riscv-none-elf/15.2.0/rv32i/ilp32\libgcc.a(muldi3.o)
+                                0x18e (size before relaxing)
+ .debug_line_str
+                0x0000045e        0x0 D:/riscv/RISCV/xpack-riscv-none-elf-gcc-15.2.0-1/bin/../lib/gcc/riscv-none-elf/15.2.0/rv32i/ilp32\libgcc.a(div.o)
+                                0x18b (size before relaxing)
+
+.debug_info     0x00000000     0x3c03
+ .debug_info    0x00000000       0x25 C:\Users\Z'L'M'~1\AppData\Local\Temp\ccQM9EZB.o
+ .debug_info    0x00000025       0x25 C:\Users\Z'L'M'~1\AppData\Local\Temp\ccPp8AWT.o
+ .debug_info    0x0000004a      0x206 C:\Users\Z'L'M'~1\AppData\Local\Temp\ccaCHDig.o
+ .debug_info    0x00000250      0x41e C:\Users\Z'L'M'~1\AppData\Local\Temp\cc7vxGbK.o
+ .debug_info    0x0000066e      0x16e C:\Users\Z'L'M'~1\AppData\Local\Temp\cc20anZe.o
+ .debug_info    0x000007dc      0x384 C:\Users\Z'L'M'~1\AppData\Local\Temp\cc4U9dPw.o
+ .debug_info    0x00000b60      0x798 C:\Users\Z'L'M'~1\AppData\Local\Temp\ccl1AHAq.o
+ .debug_info    0x000012f8      0xaeb C:\Users\Z'L'M'~1\AppData\Local\Temp\cccoBZ4q.o
+ .debug_info    0x00001de3      0xc89 C:\Users\Z'L'M'~1\AppData\Local\Temp\ccflzeaB.o
+ .debug_info    0x00002a6c      0x8bc C:\Users\Z'L'M'~1\AppData\Local\Temp\ccZD3HqJ.o
+ .debug_info    0x00003328      0x4b6 C:\Users\Z'L'M'~1\AppData\Local\Temp\ccNY14lY.o
+ .debug_info    0x000037de      0x395 C:\Users\Z'L'M'~1\AppData\Local\Temp\ccxxu1Zh.o
+ .debug_info    0x00003b73       0x31 D:/riscv/RISCV/xpack-riscv-none-elf-gcc-15.2.0-1/bin/../lib/gcc/riscv-none-elf/15.2.0/rv32i/ilp32\libgcc.a(muldi3.o)
+ .debug_info    0x00003ba4       0x5f D:/riscv/RISCV/xpack-riscv-none-elf-gcc-15.2.0-1/bin/../lib/gcc/riscv-none-elf/15.2.0/rv32i/ilp32\libgcc.a(div.o)
+
+.debug_abbrev   0x00000000     0x1497
+ .debug_abbrev  0x00000000       0x14 C:\Users\Z'L'M'~1\AppData\Local\Temp\ccQM9EZB.o
+ .debug_abbrev  0x00000014       0x14 C:\Users\Z'L'M'~1\AppData\Local\Temp\ccPp8AWT.o
+ .debug_abbrev  0x00000028      0x15f C:\Users\Z'L'M'~1\AppData\Local\Temp\ccaCHDig.o
+ .debug_abbrev  0x00000187      0x1c6 C:\Users\Z'L'M'~1\AppData\Local\Temp\cc7vxGbK.o
+ .debug_abbrev  0x0000034d       0xef C:\Users\Z'L'M'~1\AppData\Local\Temp\cc20anZe.o
+ .debug_abbrev  0x0000043c      0x1e8 C:\Users\Z'L'M'~1\AppData\Local\Temp\cc4U9dPw.o
+ .debug_abbrev  0x00000624      0x325 C:\Users\Z'L'M'~1\AppData\Local\Temp\ccl1AHAq.o
+ .debug_abbrev  0x00000949      0x1e8 C:\Users\Z'L'M'~1\AppData\Local\Temp\cccoBZ4q.o
+ .debug_abbrev  0x00000b31      0x327 C:\Users\Z'L'M'~1\AppData\Local\Temp\ccflzeaB.o
+ .debug_abbrev  0x00000e58      0x1d7 C:\Users\Z'L'M'~1\AppData\Local\Temp\ccZD3HqJ.o
+ .debug_abbrev  0x0000102f      0x243 C:\Users\Z'L'M'~1\AppData\Local\Temp\ccNY14lY.o
+ .debug_abbrev  0x00001272      0x1d5 C:\Users\Z'L'M'~1\AppData\Local\Temp\ccxxu1Zh.o
+ .debug_abbrev  0x00001447       0x28 D:/riscv/RISCV/xpack-riscv-none-elf-gcc-15.2.0-1/bin/../lib/gcc/riscv-none-elf/15.2.0/rv32i/ilp32\libgcc.a(muldi3.o)
+ .debug_abbrev  0x0000146f       0x28 D:/riscv/RISCV/xpack-riscv-none-elf-gcc-15.2.0-1/bin/../lib/gcc/riscv-none-elf/15.2.0/rv32i/ilp32\libgcc.a(div.o)
+
+.debug_aranges  0x00000000      0x320
+ .debug_aranges
+                0x00000000       0x20 C:\Users\Z'L'M'~1\AppData\Local\Temp\ccQM9EZB.o
+ .debug_aranges
+                0x00000020       0x20 C:\Users\Z'L'M'~1\AppData\Local\Temp\ccPp8AWT.o
+ .debug_aranges
+                0x00000040       0x28 C:\Users\Z'L'M'~1\AppData\Local\Temp\ccaCHDig.o
+ .debug_aranges
+                0x00000068       0x58 C:\Users\Z'L'M'~1\AppData\Local\Temp\cc7vxGbK.o
+ .debug_aranges
+                0x000000c0       0x28 C:\Users\Z'L'M'~1\AppData\Local\Temp\cc20anZe.o
+ .debug_aranges
+                0x000000e8       0x50 C:\Users\Z'L'M'~1\AppData\Local\Temp\cc4U9dPw.o
+ .debug_aranges
+                0x00000138       0x30 C:\Users\Z'L'M'~1\AppData\Local\Temp\ccl1AHAq.o
+ .debug_aranges
+                0x00000168       0x28 C:\Users\Z'L'M'~1\AppData\Local\Temp\cccoBZ4q.o
+ .debug_aranges
+                0x00000190       0x78 C:\Users\Z'L'M'~1\AppData\Local\Temp\ccflzeaB.o
+ .debug_aranges
+                0x00000208       0x60 C:\Users\Z'L'M'~1\AppData\Local\Temp\ccZD3HqJ.o
+ .debug_aranges
+                0x00000268       0x30 C:\Users\Z'L'M'~1\AppData\Local\Temp\ccNY14lY.o
+ .debug_aranges
+                0x00000298       0x48 C:\Users\Z'L'M'~1\AppData\Local\Temp\ccxxu1Zh.o
+ .debug_aranges
+                0x000002e0       0x20 D:/riscv/RISCV/xpack-riscv-none-elf-gcc-15.2.0-1/bin/../lib/gcc/riscv-none-elf/15.2.0/rv32i/ilp32\libgcc.a(muldi3.o)
+ .debug_aranges
+                0x00000300       0x20 D:/riscv/RISCV/xpack-riscv-none-elf-gcc-15.2.0-1/bin/../lib/gcc/riscv-none-elf/15.2.0/rv32i/ilp32\libgcc.a(div.o)
+
+.debug_str      0x00000000      0xc5d
+ .debug_str     0x00000000      0xc5d C:\Users\Z'L'M'~1\AppData\Local\Temp\ccQM9EZB.o
+                                 0x6e (size before relaxing)
+ .debug_str     0x00000c5d        0x0 C:\Users\Z'L'M'~1\AppData\Local\Temp\ccPp8AWT.o
+                                 0x6b (size before relaxing)
+ .debug_str     0x00000c5d        0x0 C:\Users\Z'L'M'~1\AppData\Local\Temp\ccaCHDig.o
+                                0x1d9 (size before relaxing)
+ .debug_str     0x00000c5d        0x0 C:\Users\Z'L'M'~1\AppData\Local\Temp\cc7vxGbK.o
+                                0x21f (size before relaxing)
+ .debug_str     0x00000c5d        0x0 C:\Users\Z'L'M'~1\AppData\Local\Temp\cc20anZe.o
+                                0x189 (size before relaxing)
+ .debug_str     0x00000c5d        0x0 C:\Users\Z'L'M'~1\AppData\Local\Temp\cc4U9dPw.o
+                                0x2c7 (size before relaxing)
+ .debug_str     0x00000c5d        0x0 C:\Users\Z'L'M'~1\AppData\Local\Temp\ccl1AHAq.o
+                                0x265 (size before relaxing)
+ .debug_str     0x00000c5d        0x0 C:\Users\Z'L'M'~1\AppData\Local\Temp\cccoBZ4q.o
+                                0x3e7 (size before relaxing)
+ .debug_str     0x00000c5d        0x0 C:\Users\Z'L'M'~1\AppData\Local\Temp\ccflzeaB.o
+                                0x43d (size before relaxing)
+ .debug_str     0x00000c5d        0x0 C:\Users\Z'L'M'~1\AppData\Local\Temp\ccZD3HqJ.o
+                                0x240 (size before relaxing)
+ .debug_str     0x00000c5d        0x0 C:\Users\Z'L'M'~1\AppData\Local\Temp\ccNY14lY.o
+                                0x2a1 (size before relaxing)
+ .debug_str     0x00000c5d        0x0 C:\Users\Z'L'M'~1\AppData\Local\Temp\ccxxu1Zh.o
+                                0x1ee (size before relaxing)
+ .debug_str     0x00000c5d        0x0 D:/riscv/RISCV/xpack-riscv-none-elf-gcc-15.2.0-1/bin/../lib/gcc/riscv-none-elf/15.2.0/rv32i/ilp32\libgcc.a(muldi3.o)
+                                0x1a3 (size before relaxing)
+ .debug_str     0x00000c5d        0x0 D:/riscv/RISCV/xpack-riscv-none-elf-gcc-15.2.0-1/bin/../lib/gcc/riscv-none-elf/15.2.0/rv32i/ilp32\libgcc.a(div.o)
+                                0x1d0 (size before relaxing)
+
+.debug_loclists
+                0x00000000     0x3024
+ .debug_loclists
+                0x00000000      0x11b C:\Users\Z'L'M'~1\AppData\Local\Temp\ccaCHDig.o
+ .debug_loclists
+                0x0000011b      0x3b1 C:\Users\Z'L'M'~1\AppData\Local\Temp\cc7vxGbK.o
+ .debug_loclists
+                0x000004cc       0x49 C:\Users\Z'L'M'~1\AppData\Local\Temp\cc20anZe.o
+ .debug_loclists
+                0x00000515      0x103 C:\Users\Z'L'M'~1\AppData\Local\Temp\cc4U9dPw.o
+ .debug_loclists
+                0x00000618      0xed6 C:\Users\Z'L'M'~1\AppData\Local\Temp\ccl1AHAq.o
+ .debug_loclists
+                0x000014ee      0x3f8 C:\Users\Z'L'M'~1\AppData\Local\Temp\cccoBZ4q.o
+ .debug_loclists
+                0x000018e6      0x88d C:\Users\Z'L'M'~1\AppData\Local\Temp\ccflzeaB.o
+ .debug_loclists
+                0x00002173      0x844 C:\Users\Z'L'M'~1\AppData\Local\Temp\ccZD3HqJ.o
+ .debug_loclists
+                0x000029b7      0x46e C:\Users\Z'L'M'~1\AppData\Local\Temp\ccNY14lY.o
+ .debug_loclists
+                0x00002e25      0x1ff C:\Users\Z'L'M'~1\AppData\Local\Temp\ccxxu1Zh.o
+
+.debug_rnglists
+                0x00000000      0x35a
+ .debug_rnglists
+                0x00000000       0x1b C:\Users\Z'L'M'~1\AppData\Local\Temp\ccaCHDig.o
+ .debug_rnglists
+                0x0000001b       0x7e C:\Users\Z'L'M'~1\AppData\Local\Temp\cc7vxGbK.o
+ .debug_rnglists
+                0x00000099       0x40 C:\Users\Z'L'M'~1\AppData\Local\Temp\cc20anZe.o
+ .debug_rnglists
+                0x000000d9       0x4f C:\Users\Z'L'M'~1\AppData\Local\Temp\cc4U9dPw.o
+ .debug_rnglists
+                0x00000128       0x87 C:\Users\Z'L'M'~1\AppData\Local\Temp\ccl1AHAq.o
+ .debug_rnglists
+                0x000001af       0x27 C:\Users\Z'L'M'~1\AppData\Local\Temp\cccoBZ4q.o
+ .debug_rnglists
+                0x000001d6       0x94 C:\Users\Z'L'M'~1\AppData\Local\Temp\ccflzeaB.o
+ .debug_rnglists
+                0x0000026a       0x55 C:\Users\Z'L'M'~1\AppData\Local\Temp\ccZD3HqJ.o
+ .debug_rnglists
+                0x000002bf       0x51 C:\Users\Z'L'M'~1\AppData\Local\Temp\ccNY14lY.o
+ .debug_rnglists
+                0x00000310       0x4a C:\Users\Z'L'M'~1\AppData\Local\Temp\ccxxu1Zh.o
+
+.debug_frame    0x00000000      0x87c
+ .debug_frame   0x00000000       0x5c C:\Users\Z'L'M'~1\AppData\Local\Temp\ccaCHDig.o
+ .debug_frame   0x0000005c      0x100 C:\Users\Z'L'M'~1\AppData\Local\Temp\cc7vxGbK.o
+ .debug_frame   0x0000015c       0x54 C:\Users\Z'L'M'~1\AppData\Local\Temp\cc20anZe.o
+ .debug_frame   0x000001b0       0xc4 C:\Users\Z'L'M'~1\AppData\Local\Temp\cc4U9dPw.o
+ .debug_frame   0x00000274       0xc8 C:\Users\Z'L'M'~1\AppData\Local\Temp\ccl1AHAq.o
+ .debug_frame   0x0000033c       0x88 C:\Users\Z'L'M'~1\AppData\Local\Temp\cccoBZ4q.o
+ .debug_frame   0x000003c4      0x198 C:\Users\Z'L'M'~1\AppData\Local\Temp\ccflzeaB.o
+ .debug_frame   0x0000055c      0x1fc C:\Users\Z'L'M'~1\AppData\Local\Temp\ccZD3HqJ.o
+ .debug_frame   0x00000758       0x94 C:\Users\Z'L'M'~1\AppData\Local\Temp\ccNY14lY.o
+ .debug_frame   0x000007ec       0x90 C:\Users\Z'L'M'~1\AppData\Local\Temp\ccxxu1Zh.o

@@ -1,0 +1,2 @@
+D:\riscv\RISCV\tests\bsp_workflow\timer.c:2:10:timer_cycles	0	static
+D:\riscv\RISCV\tests\bsp_workflow\timer.c:3:6:timer_delay_us	32	static

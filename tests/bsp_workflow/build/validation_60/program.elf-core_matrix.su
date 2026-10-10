@@ -1,0 +1,9 @@
+D:\riscv\RISCV\coremark-main\core_matrix.c:181:1:core_init_matrix	80	static
+D:\riscv\RISCV\coremark-main\core_matrix.c:238:1:matrix_sum	0	static
+D:\riscv\RISCV\coremark-main\core_matrix.c:269:1:matrix_mul_const	48	static
+D:\riscv\RISCV\coremark-main\core_matrix.c:285:1:matrix_add_const	0	static
+D:\riscv\RISCV\coremark-main\core_matrix.c:303:1:matrix_mul_vect	64	static
+D:\riscv\RISCV\coremark-main\core_matrix.c:322:1:matrix_mul_matrix	80	static
+D:\riscv\RISCV\coremark-main\core_matrix.c:344:1:matrix_mul_matrix_bitextract	80	static
+D:\riscv\RISCV\coremark-main\core_matrix.c:130:1:matrix_test	32	static
+D:\riscv\RISCV\coremark-main\core_matrix.c:92:1:core_bench_matrix	16	static

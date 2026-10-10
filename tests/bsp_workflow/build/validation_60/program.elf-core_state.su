@@ -1,0 +1,3 @@
+D:\riscv\RISCV\coremark-main\core_state.c:140:1:core_init_state	32	static
+D:\riscv\RISCV\coremark-main\core_state.c:217:1:core_state_transition	0	static
+D:\riscv\RISCV\coremark-main\core_state.c:46:1:core_bench_state	144	static

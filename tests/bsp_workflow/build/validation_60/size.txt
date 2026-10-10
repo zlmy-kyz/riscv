@@ -1,0 +1,2 @@
+   text	   data	    bss	    dec	    hex	filename
+  15292	     24	   2060	  17376	   43e0	D:\riscv\RISCV\tests\bsp_workflow\build\validation_60\program.elf

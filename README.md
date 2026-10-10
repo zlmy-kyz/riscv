@@ -2,6 +2,14 @@
 
 本仓库包含面向 **RK3568_MES2L100H / PG2L100H-6IFBG484** 板卡的五级流水 RV32I CPU、SoC、Pango DDR3 集成工程、支持轮询与 RX 中断的 UART，以及启动镜像和仿真入口。PDS 工程为 [`RISCV.pds`](RISCV.pds)，当前板级顶层为 `board_top`。
 
+2026-10-10：UART Loader、统一BSP及十轮复位下载/VERIFY/RUN已有实板PASS。当前源码另已加入 **13项64-bit MMIO性能计数器**，直接维护在 `myriscv/`；主路径仿真回归通过，新主工程位流及计数器实板待用户重建验收。尚未实现Cache、RV32M、DMA、摄像头或CNN加速器。性能起点见 [CPU性能优化约定](doc/CPU性能优化起点与验收约定_2026-10-10.md)，最新状态以 [开发交接](doc/CODEX_HANDOFF.md) 为准。
+
+**摄像头/CNN开发先读 [接入交接](doc/project/摄像头与CNN开发交接_2026-10-10.md)**，按现有地址、握手、时钟复位和DDR接口开发。PDS编译、综合、布局布线及比特流生成由开发者执行；本轮无需打开独立候选工程。
+
+现有BSP支持Hello、CRC32、CoreMark；通用C入口为 `tests/c_app/run_app.py`。上板门控依赖本地冻结验收档案，这些大体积档案不在源码仓库中；新硬件需审查新实现并生成匹配门控。固定2B测量BIN在 `tests/cpu_performance_2b/build/measure_20261010_c`，通过MMIO读取冻结计数、UART打印。
+
+2026-10-10主工程重建补充：`generate_bitstream/board_top.sbit` 已六轮Hello/CRC32/CoreMark实板PASS，540响应及6次RUN独立核验，549项成功快照保存，见[新位流验收](doc/board/主工程新位流六轮实板验收_2026-10-10.md)。该版本使用 `tools/uart_loader/candidates/rebuilt_20261010/run_board.py`；原 `tests/bsp_workflow/run.py` 绑定此前隔离成功位流，两者日志/门控不混用。主IP当前已采用verify_run_hello Loader DAT，旧阶段10配置记录为历史。
+
 **当前建议将整个仓库放在 `D:\riscv\RISCV`。** 部分脚本、IP 初始化配置和仿真库映射仍使用本机绝对路径；打开工程之后还需完成构建和下载。
 
 ## 1. 文件结构
@@ -22,10 +30,12 @@ RISCV/
 │  └─ temp_constraint_file.fdc          # 当前主工程实际使用的引脚/时钟约束
 ├─ ipcore/                             # PDS 生成的 IP 配置与构建/仿真源码
 │  ├─ inst_rom/                        # 16 KiB 启动 ROM
-│  ├─ data_ram/                        # 16 KiB 数据 RAM / DDR 程序装载源
+│  ├─ data_ram/                        # 16 KiB 数据 RAM，内容随实验镜像变化
 │  └─ ddr3/                            # DDR3 配置、RTL、仿真源码与物理模型
+├─ tests/bsp_workflow/                 # 统一BSP与已验收Hello/CRC32/CoreMark ELF/BIN
+├─ tools/uart_loader/                  # PC下载工具与隔离验收候选
 ├─ MyCpu_test/                         # 测试程序、镜像生成和回归脚本
-│  ├─ board_selftest/                  # 当前板级启动与 DDR 自检镜像
+│  ├─ board_selftest/                  # 历史预置 RAM→DDR 启动与自检镜像
 │  ├─ dat/、dump/、bin/、hex/          # RV32I 测试与镜像转换输入
 │  ├─ ddr_stage/                      # 独立 DDR RV32I 回归镜像/清单/IP
 │  ├─ ddr_selftest/                   # 独立旧布局自检镜像/清单/IP
@@ -44,18 +54,19 @@ RISCV/
 ├─ difftest/                           # 仅公开 UART CPU 测试所需的三个依赖
 │  ├─ golden/rvtool.py                 # Python 汇编工具 / 指令级参考工具
 │  └─ model/inst_rom.v、data_ram.v     # 仿真存储模型
-├─ doc/                                # 当前公开的结构、UART 阶段记录与图示
+├─ doc/                                # 文档入口与按主题归档的设计、验证记录
 │  ├─ SoC结构说明_2026-10-04.md
-│  ├─ AI加速多方案比较与推荐实施方案.md
-│  └─ UART 阶段1/2/3记录、SoC PNG/SVG 和绘图脚本
+│  ├─ project/摄像头与CNN开发交接_2026-10-10.md
+│  ├─ reference/AI加速多方案比较与推荐实施方案.md
+│  └─ cpu/、ddr/、uart/、uart_loader/、coremark/、assets/
 ├─ AGENTS.md                           # 工程长期约定和协作入口
 ├─ .gitignore                          # 构建产物与本地资料的忽略规则
 ├─ impl.tcl                            # PDS 累计操作记录，含旧路径
 ├─ multiseed_summary.csv                # 已有实现结果记录
-└─ zongxian.md                          # 总线学习笔记
+└─ coremark-main/                       # 原CoreMark源包及许可，算法源码保留
 ```
 
-`sim/` 中保留了一些历史实验、备份和日志。使用当前工程时，以 `RISCV.pds`、主 RTL、主 IP、`board_selftest/` 和 `board_main_selftest/` 为入口；根目录 `impl.tcl` 不作为从头重建工程的入口。
+`sim/` 中保留了一些历史实验、备份和日志。当前 Loader 软件、分层仿真和 PC 工具入口分别为 `tests/uart_loader/`、`sim/uart_loader/run.py`、`tools/uart_loader/`；实际硬件以 `RISCV.pds`、主 RTL 和主 IP 为准。`board_selftest/` 与 `board_main_selftest/` 保留旧自检流程；根目录 `impl.tcl` 不作为从头重建工程的入口。
 
 ## 2. 仓库已精简的内容
 
@@ -66,7 +77,7 @@ RISCV/
 - `constraints/`、`fdc/`、`ip_backup/`：旧约束、约束备份和 IP 备份。
 - `rv32i_table.txt` 及 `doc/` 中未选中的文档。
 
-PDS 构建数据库、ModelSim 编译库、`.vvp`、波形、Python 缓存和部分临时输出也不作为日常源码上传，可由工具重新生成。仓库仍保留部分代表日志、历史候选及备份，后续可继续整理。
+PDS 构建数据库、ModelSim 编译库、`.vvp`、波形、Python缓存和本地完整验收档案不上传。保留主IP实际使用的成功Loader ROM/RAM DAT、配套ELF/manifest，固定BSP/性能测量载荷及精选结果；其余构建可从源代码生成。本轮主设计中的重复candidate已删除。
 
 **必须保留 `constraint_check/temp_constraint_file.fdc`。** 虽然文件名含 `temp`，它是当前 `RISCV.pds` 的实际约束输入。IP 中的 `*_init_param.v` 等生成文件也参与构建，不能统一当作缓存删除。
 
@@ -115,16 +126,16 @@ Set-Location D:\riscv\RISCV
 
 约束面向上述板卡；换板或修订版时应按实际连线、Bank 供电和时钟核对。若生成工具提示 `SCBV has not been set`，按实际 PCB 配置 Bank 电压填写，不能根据其他 IO 标准猜测。
 
-`sim/board_boot_fix_20261003/before/board_top.sbit` 是旧备份；归档自检 `.sbit` 也不自动对应当前源码。日常使用优先从当前工程重新构建，不按扩展名随意选择历史文件。
+`sim/board_boot_fix_20261003/before/board_top.sbit` 是旧备份；归档自检 `.sbit` 也不自动对应当前源码。当前十轮成功Loader位流是 `sim/uart_loader/build/verify_run_hello/pds_candidate/generate_bitstream/board_top.sbit`，同位流换程序直接使用此成功文件，不重新构建。修改CPU后另建隔离候选，原成功文件保留。
 
 ### 启动程序与 LED
 
-当前主 IP 的初始化输入为：
+当前主 IP 的初始化输入为（用户重建后）：
 
-- `MyCpu_test/board_selftest/boot_rom.dat`：CPU 从地址 0 执行的 ROM 装载程序。
-- `MyCpu_test/board_selftest/ddr_selftest.dat`：片内 RAM 中预置的 DDR 自检程序。
+- `tests/uart_loader/candidates/verify_run_hello/build/loader_rom.dat`：常驻ROM Loader代码。
+- `tests/uart_loader/candidates/verify_run_hello/build/loader_ram.dat`：对应独立数据RAM的常量、状态、缓冲和栈。
 
-CPU 执行 ROM 装载程序，将当前 245 字自检代码复制到 `0x40000000`，然后跳转到 DDR 执行。DDR 易失，每次复位后的启动由 CPU 完成装载。
+原隔离verify_run_hello位流和本次主工程重建位流均已实板验收，两者使用同一对Loader DAT，位流文件身份分别保存。启动后ROM Loader等待请求，PC经UART LOAD将BIN写入DDR，正式VERIFY读回CRC32，RUN重校验后跳到DDR程序。应用不预置在片内RAM。旧 `MyCpu_test/board_selftest/` 的复制/自检流程保留作历史；DDR易失，掉电后需重新装载。
 
 | LED / 引脚 | 含义 |
 | --- | --- |
@@ -132,13 +143,13 @@ CPU 执行 ROM 装载程序，将当前 245 字自检代码复制到 `0x40000000
 | M17 / `led_ddr_ready` | DDR 初始化/锁定后，SoC 已解除复位 |
 | K17 / `led_selftest` | IDLE 灭；RUN 约 1 Hz 慢闪；PASS 常亮；FAIL 或超时约 4 Hz 快闪 |
 
-KEY0/M15 按下立即复位，释放稳定 20 ms 后允许继续启动。正常自检较快，RUN 慢闪可能肉眼看不到；通过后应看到 J16 心跳，M17、K17 常亮。重复复位可检查启动是否稳定。K17 快闪仅表示失败或超时，需要进一步区分原因。
+KEY0/M15 按下立即复位，释放稳定 20 ms 后允许继续启动。J16/M17 可观察用户域时钟和 DDR 就绪；K17 取决于软件 TEST_STATUS 上报，不能把旧自检“PASS 常亮”的预期直接用于 Loader。Loader 验收以串口原始响应、CRC 和日志为准。
 
 ## 5. 当前工程仿真
 
-### 5.1 主板级完整自检（ModelSim）
+### 5.1 历史主板级完整自检（ModelSim）
 
-测试台：`tb_board_top_selftest`。使用实际 ROM/RAM IP、DDR IP 和物理模型，CPU 自行装载 DDR；包含板级时钟、启动和自检状态观察。
+测试台：`tb_board_top_selftest`。使用实际 ROM/RAM IP、DDR IP 和物理模型，预期旧 ROM 自行装载 DDR 并自检；包含板级时钟、启动和自检状态观察。当前两块 IP 初始化为 UART Loader，不能直接套用这套旧自检预期或据其超时认定 Loader 失败。Loader 层级入口为 `C:/python/python.exe sim/uart_loader/run.py --stage ddr-crc`，用户口模型不含 PHY；已验收证据见交接。
 
 配置好工具与库后，可从 PDS 仿真按钮运行。项目中的自定义编译/运行入口应为：
 
@@ -235,13 +246,13 @@ python sim/uart_irq/run_irq.py --stage uart
 python sim/uart_irq/run_irq.py --stage uart --ddr-code
 ```
 
-CPU 阶段覆盖 16 个中断场景，两种取指方式分别自动核对退休 PC、trap CSR、MRET、访存请求/响应/退休及实际 DDR 写次数。UART 阶段用真实 RX 串行引脚注入 10 字节，核对 ISR、FIFO、IRQ 撤销和 DDR/MMIO 等待。产物仅在忽略的 `sim/uart_irq/build/`；`--case 5 --wave --ddr-code` 保存单个 CPU 用例波形，不改变板级初始化。复现详情见 [中断验收记录](doc/CPU中断验收与UART_RX_IRQ_2026-10-05.md)。
+CPU 阶段覆盖 16 个中断场景，两种取指方式分别自动核对退休 PC、trap CSR、MRET、访存请求/响应/退休及实际 DDR 写次数。UART 阶段用真实 RX 串行引脚注入 10 字节，核对 ISR、FIFO、IRQ 撤销和 DDR/MMIO 等待。产物仅在忽略的 `sim/uart_irq/build/`；`--case 5 --wave --ddr-code` 保存单个 CPU 用例波形，不改变板级初始化。复现详情见 [中断验收记录](doc/cpu/CPU中断验收与UART_RX_IRQ_2026-10-05.md)。
 
 ## 6. 修改程序或 RTL
 
 修改 CPU、互连、DDR 桥或顶层后，按影响范围执行快速回归、主板级自检和两条完整 DDR 定向；需要上板时重新完整构建并下载新烧录文件。
 
-只使用已有镜像上板时，不需要重新运行镜像生成器。需要重新生成当前板级启动/自检镜像及两块片内 IP 时，在确认工具路径后执行：
+只使用已有镜像上板时，不需要重新运行镜像生成器。当前Loader和统一BSP成功身份见 [十轮实板验收](doc/software/统一BSP与十轮复位下载实板验收_2026-10-10.md)，成功输出不得重建覆盖；后续候选必须使用隔离输出目录和新门控。下面仅为旧板级自检流程，不是当前CPU性能优化入口；不要据此切换主IP。需要恢复该历史流程时再核对并执行：
 
 ```powershell
 python MyCpu_test/prepare_board_selftest_ip.py
@@ -252,7 +263,7 @@ python MyCpu_test/run_board_top_physical.py
 
 不带 `--promote` 时生成并核对隔离候选 IP；`--promote` 在两块候选检查通过后更新主 `ipcore/inst_rom`、`ipcore/data_ram`。该流程会生成文件并在 promote 时修改主 IP，之后需重新生成烧录文件。DDR IP 不由这个脚本重新生成。
 
-装载源 RAM 为 16 KiB，尾部保留清单。换程序时应统一装载长度、链接地址、跳转入口和诊断区；仅修改 `.dat` 不保证生成的 IP 初始化内容同步。不要把现有汇编自检生成器当作通用 C 程序装载工具。
+旧复制流程的装载源 RAM 为 16 KiB，尾部保留清单；当前 ROM 常驻 Loader 使用不同 RAM 布局。换程序时应统一装载长度、链接地址、跳转入口和诊断区；仅修改 `.dat` 不保证生成的 IP 初始化内容同步。不要把现有汇编自检生成器当作通用 C 程序装载工具。
 
 ## 7. 地址与当前能力
 
@@ -264,7 +275,26 @@ python MyCpu_test/run_board_top_physical.py
 | `0x10001000–0x1000100F` | UART MMIO：TX_DATA / RX_DATA / STATUS / CONTROL，仅数据总线 |
 | `0x40000000–0x5FFFFFFF` | 板级 DDR 窗口，512 MiB |
 
-UART 已接入 `soc_top` 数据互连，支持轮询和可使能 RX 电平中断；TX/RX 已通过 `soc_ddr3_top` 引出至 `board_top.uart_tx/uart_rx`。当前工作树有外部会话保存的 TX=AA20/RX=AA21 约束，原理图依据未在本轮另核；USB-TTL双向基本回显已有用户实板确认。当前主 RAM IP 配置引用 tests/pc_uart_fpga_uart_pc/build/main.dat；输出30的原成功归档仍保存在 tests/fpga_uart_pc_output_30/main.dat。UART Echo 软件位于 tests/pc_uart_fpga_uart_pc，最终镜像为其 build/main.dat；四层仿真入口为 `python sim/uart_echo/run.py`，2026-10-07用户确认Echo实板功能验收PASS及复位后重复回显成功，成功根main.dat已直接归档；长时间压力/二进制/错误/IRQ另立验收，见 [实板记录](doc/UART_Echo实板基本回显确认_2026-10-07.md)。目录/构建见 [tests说明](tests/README.md)。`board_top` 的三个外部 IRQ 输入仍接 0，`soc_top` 内部将 UART IRQ 与原 external 输入 OR 后送 CPU。CONTROL bit8/9 分别写 1 使能/禁用 RX IRQ，STATUS bit6/7 为使能/实际 IRQ；默认禁用，FIFO 读空自动撤销，旧低位 W1C 保留。当前没有 Cache、DMA、CLINT、PLIC 或 RK3568 通信接口。**CoreMark 尚未移植，当前仓库没有可运行的 CoreMark 构建入口。** AI 文档描述后续方案，不能视为已实现硬件能力。
+UART 已接入 `soc_top` 数据互连，TX/RX 经 `soc_ddr3_top` 引出至 `board_top.uart_tx/uart_rx`，支持轮询和可使能RX电平中断。成功Loader位流已完成UART下载DDR、正式CRC32 VERIFY、RUN及十轮复位验收；主工程重建后也完成六轮复验，当前主IP为verify_run_hello，具体启动身份见第4节。旧CoreMark、Echo与输出30镜像仍保留。Echo历史基本回显结果见 [实板记录](doc/uart/UART_Echo实板基本回显确认_2026-10-07.md)，统一BSP十轮结果见 [十轮验收](doc/software/统一BSP与十轮复位下载实板验收_2026-10-10.md)。目录/构建见 [tests说明](tests/README.md)。
+
+`board_top` 的三个外部IRQ输入仍接0，`soc_top` 内部将UART IRQ与原external输入OR后送CPU。CONTROL bit8/9使能/禁用RX IRQ，STATUS bit6/7报告使能/实际IRQ；默认禁用，FIFO读空撤销，旧低位W1C保留。本轮十轮使用轮询输出，UART IRQ仍仅仿真验收。当前没有Cache、DMA、CLINT、PLIC或RK3568通信接口。AI与性能优化文档中的候选方案不能当作已实现硬件。
+
+2026-10-07：两组60次镜像显式传入ITERATIONS=60和CLOCKS_PER_SEC=93750000，
+Full Boot均CRC_FUNCTIONAL_PASS、ModelSim Errors0/Warnings0，final分别a14c/6770。
+仿真墙钟约92/90分钟，模型不足10秒；随后用户提供两组实板60次UART，CRC全部一致，
+实际计时按93.75MHz为17.75655/18.75879秒，两组均Correct operation validated。
+performance按ticks计算约3.379034迭代/秒；成功DAT原字节归档在
+tests/coremark_baremetal/verified/{performance_60,validation_60}/，RAM/ROM深度不变。
+见[实板60次验收与证据](doc/coremark/CoreMark实板60次验收_2026-10-07.md)及
+[构建与上板复现](doc/coremark/CoreMark_60次迭代构建与上板步骤_2026-10-07.md)。
+
+2026-10-07：`tests/coremark_baremetal/` 已提供独立构建/转换，`sim/coremark/run.py` 验收
+原 ROM 装载至 DDR 后运行。统一 `-Os` BIN 为 13216/13224 字节，performance/validation
+各单迭代 CRC_FUNCTIONAL_PASS；用户反馈performance短迭代UART CRC通过，ticks=27742465。
+不足10秒，保留原版时间错误，不报告分数；主RAM已由用户侧切到performance DAT。
+最新尺寸、CRC、计时/栈和复现见 [CoreMark 裸机验收](doc/coremark/CoreMark裸机构建与短迭代CRC_2026-10-07.md)，
+源码核对见 [移植交接](doc/coremark/CoreMark源码核对与移植交接_2026-10-07.md)，当前工程状态见
+[CODEX_HANDOFF](doc/CODEX_HANDOFF.md)。
 
 ## 8. 常见问题
 
@@ -280,11 +310,14 @@ UART 已接入 `soc_top` 数据互连，支持轮询和可使能 RX 电平中断
 
 ## 9. 文档
 
+- [文档导航](doc/README.md)：当前入口、各主题目录及推荐阅读顺序。
+- [CPU性能优化起点与验收约定](doc/CPU性能优化起点与验收约定_2026-10-10.md)：当前下一任务、固定CoreMark/BIN基准、瓶颈统计及新硬件候选回归要求。
+- [统一BSP与十轮实板验收](doc/software/统一BSP与十轮复位下载实板验收_2026-10-10.md)：完整软件流程、十轮实际结果与成功归档。
 - [SoC 结构说明](doc/SoC结构说明_2026-10-04.md)：模块层次、总线、地址、时钟、复位和启动流程。
-- [阶段 3 SoC 总览图](doc/SoC结构图_UART阶段3_2026-10-05.png) / [SVG 原图](doc/SoC结构图_UART阶段3_2026-10-05.svg)：顶层 UART 接线前的历史快照；当前 TX/RX 已引出至 board_top。`python doc/draw_soc_uart_stage3.py` 可重绘该快照，需要 Pillow 和 Windows 微软雅黑字体。
-- [UART 阶段 1](doc/UART发送模块阶段1_2026-10-05.md)、[阶段 2](doc/UART接收FIFO与环回阶段2_2026-10-05.md)、[阶段 3](doc/UART_MMIO与CPU轮询阶段3_2026-10-05.md)：独立收发、FIFO/loopback、MMIO/真实 CPU 及回归证据。
-- [UART 顶层接入与 DebugCore 准备](doc/UART顶层接入与DebugCore准备_2026-10-05.md)：串行端口路径、候选 Probe、单字符 H、手动 PDS 步骤及启动镜像停止条件。
-- [CPU 中断验收与 UART RX IRQ](doc/CPU中断验收与UART_RX_IRQ_2026-10-05.md)：32 项 CPU IRQ 验收、真实串行 ISR 闭环、DDR/MMIO 精确访存及回归。
-- [AI 加速多方案比较与推荐实施方案](doc/AI加速多方案比较与推荐实施方案.md)：后续开发方向及方案比较。
+- [阶段 3 SoC 总览图](doc/assets/SoC结构图_UART阶段3_2026-10-05.png) / [SVG 原图](doc/assets/SoC结构图_UART阶段3_2026-10-05.svg)：顶层 UART 接线前的历史快照；当前 TX/RX 已引出至 board_top。`python doc/assets/draw_soc_uart_stage3.py` 可重绘该快照，需要 Pillow 和 Windows 微软雅黑字体。
+- [UART 阶段 1](doc/uart/UART发送模块阶段1_2026-10-05.md)、[阶段 2](doc/uart/UART接收FIFO与环回阶段2_2026-10-05.md)、[阶段 3](doc/uart/UART_MMIO与CPU轮询阶段3_2026-10-05.md)：独立收发、FIFO/loopback、MMIO/真实 CPU 及回归证据。
+- [UART 顶层接入与 DebugCore 准备](doc/uart/UART顶层接入与DebugCore准备_2026-10-05.md)：串行端口路径、候选 Probe、单字符 H、手动 PDS 步骤及启动镜像停止条件。
+- [CPU 中断验收与 UART RX IRQ](doc/cpu/CPU中断验收与UART_RX_IRQ_2026-10-05.md)：32 项 CPU IRQ 验收、真实串行 ISR 闭环、DDR/MMIO 精确访存及回归。
+- [AI 加速多方案比较与推荐实施方案](doc/reference/AI加速多方案比较与推荐实施方案.md)：后续开发方向及方案比较。
 
 以上文档和部分验证记录带有日期，以实际 RTL、PDS 和 IP 配置为准。DDR 初始化成功、仿真通过、时序通过和实板验证分别记录。当前自检覆盖指定区域与花样，不代表整块 DDR 的长期稳定性验收。

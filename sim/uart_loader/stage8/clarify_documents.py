@@ -1,0 +1,12 @@
+from pathlib import Path
+R=Path('D:/riscv/RISCV')
+p=R/'doc/CODEX_HANDOFF.md';s=p.read_text(encoding='utf8')
+s=s.replace('本次只更新交接/入口和成功快照，没有修改 RTL/C/工具或操作串口/IP/位流。', '阶段⑦归档交接时只更新入口和成功快照；本轮阶段⑧开发与仿真结果见下方最新进展，原阶段⑦工具/C/RTL/IP和成功镜像不改。')
+p.write_text(s,encoding='utf8')
+p=R/'doc/UART_Loader换对话交接_2026-10-08.md';s=p.read_text(encoding='utf8')
+s=s.replace('本次只更新入口和交接文件、复制成功基线并核验哈希；没有修改 RTL/C/PC 工具、重建 DAT、生成或下载位流，也没有打开串口。', '原阶段⑦交接轮仅更新入口/复制成功基线并核验哈希；本轮新增阶段⑧隔离专项，结果见下方。原成功C/工具/RTL/IP和DAT不改，未重建DAT、生成或下载位流，也未打开串口。')
+p.write_text(s,encoding='utf8')
+p=R/'doc/UART_Loader_ACK_NACK异常专项阶段8_2026-10-08.md';s=p.read_text(encoding='utf8')
+s=s.replace('原速报告生成时的检查器/runner/prepare输入绑定在', '原TB最终RESULT行中的pings=3是旧21帧套件遗留硬编码显示，不用于验收；真实计数逐帧与RAM强制核对，full最后CHECK RX显示37、native/uart显示2。正式统计以cases/decoded_responses、逐帧CHECK及机器门控为准。保留验收过的原输入和日志，不事后改写显示字段。\n\n原速报告生成时的检查器/runner/prepare输入绑定在')
+p.write_text(s,encoding='utf8')
+print('Clarified historical handoff wording and legacy display-only PING label')

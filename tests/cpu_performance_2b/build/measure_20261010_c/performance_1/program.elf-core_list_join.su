@@ -1,0 +1,12 @@
+D:\riscv\RISCV\coremark-main\core_list_join.c:134:1:cmp_idx	0	static
+D:\riscv\RISCV\coremark-main\core_list_join.c:70:1:calc_func	32	static
+D:\riscv\RISCV\coremark-main\core_list_join.c:121:1:cmp_complex	32	static
+D:\riscv\RISCV\coremark-main\core_list_join.c:145:1:copy_info	0	static
+D:\riscv\RISCV\coremark-main\core_list_join.c:336:1:core_list_insert_new	0	static
+D:\riscv\RISCV\coremark-main\core_list_join.c:377:1:core_list_remove	0	static
+D:\riscv\RISCV\coremark-main\core_list_join.c:408:1:core_list_undo_remove	0	static
+D:\riscv\RISCV\coremark-main\core_list_join.c:435:1:core_list_find	0	static
+D:\riscv\RISCV\coremark-main\core_list_join.c:465:1:core_list_reverse	0	static
+D:\riscv\RISCV\coremark-main\core_list_join.c:500:1:core_list_mergesort	64	static
+D:\riscv\RISCV\coremark-main\core_list_join.c:159:1:core_bench_list	80	static
+D:\riscv\RISCV\coremark-main\core_list_join.c:251:1:core_list_init	64	static

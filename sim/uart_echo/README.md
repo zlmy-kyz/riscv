@@ -61,5 +61,5 @@ Full Boot 的 `$readmemh` 直接使用
 仿真 PASS 不能代替实板 PASS。2026-10-07用户已确认FPGA连接和Echo下载，
 截图中的nb、a、hello 123（带空格）及混合文本基本回显PASS。
 随后用户在复位重复发送建议后反馈成功，实板功能验收PASS；新截图TX/RX均36字节。
-长时间压力/二进制/错误/IRQ未覆盖，记录见doc/UART_Echo实板基本回显确认_2026-10-07.md。
+长时间压力/二进制/错误/IRQ未覆盖，记录见doc/uart/UART_Echo实板基本回显确认_2026-10-07.md。
 runner的board_result=NOT_TESTED表示该仿真进程不测试实板，不用于覆盖用户实板记录。

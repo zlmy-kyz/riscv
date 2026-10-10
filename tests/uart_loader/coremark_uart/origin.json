@@ -1,0 +1,45 @@
+{
+  "status": "EXACT_COREMARK_BIN_COPY_PASS",
+  "records": [
+    {
+      "application": "performance_1",
+      "source": "tests/coremark_baremetal/build/performance",
+      "destination": "tests/uart_loader/coremark_uart/build/performance_1",
+      "original_evidence": "sim/coremark/build/results.json",
+      "evidence_sha256": "d2aebf857259f59c970ed6faa45f9874eb5c5ed13f5c6fdd04020accf8069eb0",
+      "bin_sha256": "95764d0f35df29b18be919214dc8cc9b62da9f6153fbfad6fe4c68b193ae82b0",
+      "elf_sha256": "890b5ed785aa53fa099a683de1b8ce136ebe6fb1b9aa14cab6e81134129ef452",
+      "build_reused_without_recompiling": true
+    },
+    {
+      "application": "validation_1",
+      "source": "tests/coremark_baremetal/build/validation",
+      "destination": "tests/uart_loader/coremark_uart/build/validation_1",
+      "original_evidence": "sim/coremark/build/results.json",
+      "evidence_sha256": "d2aebf857259f59c970ed6faa45f9874eb5c5ed13f5c6fdd04020accf8069eb0",
+      "bin_sha256": "acde24b14690205143f975a20f142f83efaf18fa2c6c3c05521cda00c7ccd209",
+      "elf_sha256": "62ad82fc98bad48f8fa194bef49fd47d72b4385594d35f1777a7eedcf863d635",
+      "build_reused_without_recompiling": true
+    },
+    {
+      "application": "performance_60",
+      "source": "tests/coremark_baremetal/build/performance_60",
+      "destination": "tests/uart_loader/coremark_uart/build/performance_60",
+      "original_evidence": "sim/coremark/build/results_60.json",
+      "evidence_sha256": "4d15bdee34f21bf28d41eedd5a9997d94ab7ddb78259656b40e32b65dc20208a",
+      "bin_sha256": "933936a5838aae974739227751f80b2a322df978008b59d4ea668f3466bda357",
+      "elf_sha256": "79ef47f793186fa3093c235b39dc83d9a4f079a34fd052ddf37e378233e5791e",
+      "build_reused_without_recompiling": true
+    },
+    {
+      "application": "validation_60",
+      "source": "tests/coremark_baremetal/build/validation_60",
+      "destination": "tests/uart_loader/coremark_uart/build/validation_60",
+      "original_evidence": "sim/coremark/build/results_60.json",
+      "evidence_sha256": "4d15bdee34f21bf28d41eedd5a9997d94ab7ddb78259656b40e32b65dc20208a",
+      "bin_sha256": "efd844402d1b09d518b7bed677add58adba532e26c10fd10c4c2c8f7620d3a93",
+      "elf_sha256": "a33ffb9e6ca719760db8c218ba430fb8f7f6fcc217ea52e0b2ded29a1d13ce3c",
+      "build_reused_without_recompiling": true
+    }
+  ]
+}

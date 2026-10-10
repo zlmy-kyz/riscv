@@ -1,0 +1,162 @@
+{
+  "kind": "micro",
+  "clock_hz": 93750000,
+  "entry": 1073741824,
+  "payload_bytes": 5728,
+  "done": 1073746500,
+  "cases": [
+    {
+      "id": 1,
+      "name": "sequential_alu",
+      "expected": 128,
+      "units": 128,
+      "unit": "ALU instructions",
+      "start": 1073741980,
+      "stop": 1073742496
+    },
+    {
+      "id": 2,
+      "name": "small_loop",
+      "expected": 64,
+      "units": 32,
+      "unit": "iterations",
+      "start": 1073742524,
+      "stop": 1073742540
+    },
+    {
+      "id": 3,
+      "name": "not_taken",
+      "expected": 32,
+      "units": 32,
+      "unit": "branches",
+      "start": 1073742564,
+      "stop": 1073742824
+    },
+    {
+      "id": 4,
+      "name": "random_fetch",
+      "expected": 32,
+      "units": 32,
+      "unit": "blocks",
+      "start": 1073742848,
+      "stop": 1073743368
+    },
+    {
+      "id": 5,
+      "name": "sequential_load",
+      "expected": 2016,
+      "units": 64,
+      "unit": "words",
+      "start": 1073743400,
+      "stop": 1073743916
+    },
+    {
+      "id": 6,
+      "name": "random_load",
+      "expected": 2016,
+      "units": 64,
+      "unit": "words",
+      "start": 1073743948,
+      "stop": 1073744464
+    },
+    {
+      "id": 7,
+      "name": "pointer_chase",
+      "expected": 2016,
+      "units": 64,
+      "unit": "nodes (two reads/node)",
+      "start": 1073744496,
+      "stop": 1073745268
+    },
+    {
+      "id": 8,
+      "name": "sequential_store",
+      "expected": 64,
+      "units": 64,
+      "unit": "words",
+      "start": 1073745300,
+      "stop": 1073745816
+    },
+    {
+      "id": 9,
+      "name": "subword_lanes",
+      "expected": 2147582020,
+      "units": 8,
+      "unit": "data requests",
+      "start": 1073746384,
+      "stop": 1073746432
+    }
+  ],
+  "random_seeds": [
+    20261010,
+    20261011
+  ],
+  "instructions_audited": 1176,
+  "commands": [
+    [
+      "D:\\riscv\\RISCV\\xpack-riscv-none-elf-gcc-15.2.0-1\\bin\\riscv-none-elf-gcc.exe",
+      "-march=rv32i",
+      "-mabi=ilp32",
+      "-nostdlib",
+      "-nostartfiles",
+      "-mno-relax",
+      "-Wl,--no-relax",
+      "-T",
+      "D:\\riscv\\RISCV\\tests\\cpu_performance\\build\\measure_20261010_c\\linker.ld",
+      "D:\\riscv\\RISCV\\tests\\cpu_performance\\build\\measure_20261010_c\\main.S",
+      "-o",
+      "D:\\riscv\\RISCV\\tests\\cpu_performance\\build\\measure_20261010_c\\program.elf"
+    ],
+    [
+      "D:\\riscv\\RISCV\\xpack-riscv-none-elf-gcc-15.2.0-1\\bin\\riscv-none-elf-gcc.exe",
+      "-march=rv32i",
+      "-mabi=ilp32",
+      "-nostdlib",
+      "-nostartfiles",
+      "-mno-relax",
+      "-Wl,--no-relax",
+      "-Wl,-Ttext=0",
+      "D:\\riscv\\RISCV\\tests\\cpu_performance\\build\\measure_20261010_c\\boot.S",
+      "-o",
+      "D:\\riscv\\RISCV\\tests\\cpu_performance\\build\\measure_20261010_c\\boot.elf"
+    ],
+    [
+      "D:\\riscv\\RISCV\\xpack-riscv-none-elf-gcc-15.2.0-1\\bin\\riscv-none-elf-objcopy.exe",
+      "-O",
+      "binary",
+      "D:\\riscv\\RISCV\\tests\\cpu_performance\\build\\measure_20261010_c\\program.elf",
+      "D:\\riscv\\RISCV\\tests\\cpu_performance\\build\\measure_20261010_c\\program.bin"
+    ],
+    [
+      "D:\\riscv\\RISCV\\xpack-riscv-none-elf-gcc-15.2.0-1\\bin\\riscv-none-elf-objcopy.exe",
+      "-O",
+      "binary",
+      "D:\\riscv\\RISCV\\tests\\cpu_performance\\build\\measure_20261010_c\\boot.elf",
+      "D:\\riscv\\RISCV\\tests\\cpu_performance\\build\\measure_20261010_c\\boot.bin"
+    ],
+    [
+      "D:\\riscv\\RISCV\\xpack-riscv-none-elf-gcc-15.2.0-1\\bin\\riscv-none-elf-nm.exe",
+      "-n",
+      "D:\\riscv\\RISCV\\tests\\cpu_performance\\build\\measure_20261010_c\\program.elf"
+    ],
+    [
+      "D:\\riscv\\RISCV\\xpack-riscv-none-elf-gcc-15.2.0-1\\bin\\riscv-none-elf-objdump.exe",
+      "-d",
+      "-M",
+      "no-aliases",
+      "D:\\riscv\\RISCV\\tests\\cpu_performance\\build\\measure_20261010_c\\program.elf"
+    ],
+    [
+      "D:\\riscv\\RISCV\\xpack-riscv-none-elf-gcc-15.2.0-1\\bin\\riscv-none-elf-readelf.exe",
+      "-h",
+      "-A",
+      "D:\\riscv\\RISCV\\tests\\cpu_performance\\build\\measure_20261010_c\\program.elf"
+    ]
+  ],
+  "sha256": {
+    "program.elf": "f9ed2af2e661bf237347e4003841b39ad119fa681f9faefafbbe36c61fbae205",
+    "program.bin": "9812067988d71680ac4525300a3bc5672c5a2b35f3fca65bc3bd8074ac87f032",
+    "boot_rom.dat": "9bde4b046ef45b7cf63aa7d384bdc224d52ead8e13e00768b99915bda479f496",
+    "data_ram.dat": "4d03bbd92add9361a1c0f65b04b75807ebf30ebac0bd36e54abb048fa2f3b979"
+  }
+}

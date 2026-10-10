@@ -1,0 +1,32 @@
+{
+  "status": "C_APP_BUILD_REJECTION_PASS",
+  "checks": [
+    {
+      "name": "compile_error",
+      "result": "PASS"
+    },
+    {
+      "name": "missing_main",
+      "result": "PASS"
+    },
+    {
+      "name": "DDR_BSS_overlaps_stack",
+      "result": "PASS"
+    },
+    {
+      "name": "unsupported_M_instruction",
+      "result": "PASS"
+    },
+    {
+      "name": "unsupported_compressed_instruction",
+      "result": "PASS"
+    },
+    {
+      "name": "unexpected_allocated_section",
+      "result": "PASS"
+    }
+  ],
+  "count": 6,
+  "evidence_origin": "OFFLINE_COMPILER_NOT_BOARD",
+  "serial_opened": false
+}

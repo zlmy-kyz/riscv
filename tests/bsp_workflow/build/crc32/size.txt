@@ -1,0 +1,2 @@
+   text	   data	    bss	    dec	    hex	filename
+   2810	      4	    304	   3118	    c2e	D:\riscv\RISCV\tests\bsp_workflow\build\crc32\program.elf

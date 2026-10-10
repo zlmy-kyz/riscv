@@ -1,0 +1,16 @@
+2K performance run parameters for coremark.
+CoreMark Size    : 666
+Total ticks      : 1664676818
+Total time (secs): 17
+Iterations/Sec   : 3
+Iterations       : 60
+Compiler version : GCC15.2.0
+Compiler flags   : -Os -march=rv32i -mabi=ilp32; no LTO
+Memory location  : DDR code/data; static 2000-byte buffer
+seedcrc          : 0xe9f5
+[0]crclist       : 0xe714
+[0]crcmatrix     : 0x1fd7
+[0]crcstate      : 0x8e3a
+[0]crcfinal      : 0xa14c
+Correct operation validated. See README.md for run and reporting rules.
+PORT_DONE ticks=1664676818 iterations=60 hz=93750000

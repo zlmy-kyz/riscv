@@ -1,0 +1,2 @@
+D:\riscv\RISCV\tests\bsp_workflow\trap.c:4:10:trap_dispatch	16	static
+D:\riscv\RISCV\tests\bsp_workflow\trap.c:11:5:bsp_check	16	static

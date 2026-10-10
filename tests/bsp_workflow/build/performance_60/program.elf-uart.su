@@ -1,0 +1,8 @@
+D:\riscv\RISCV\tests\bsp_workflow\uart.c:6:5:putchar	0	static
+D:\riscv\RISCV\tests\bsp_workflow\uart.c:12:12:number	80	static
+D:\riscv\RISCV\tests\bsp_workflow\uart.c:11:5:puts	16	static
+D:\riscv\RISCV\tests\bsp_workflow\uart.c:18:5:printf	96	static
+D:\riscv\RISCV\tests\bsp_workflow\uart.c:34:6:uart_irq_service	0	static
+D:\riscv\RISCV\tests\bsp_workflow\uart.c:41:5:uart_getchar	0	static
+D:\riscv\RISCV\tests\bsp_workflow\uart.c:46:6:uart_irq_enable	0	static
+D:\riscv\RISCV\tests\bsp_workflow\uart.c:50:6:uart_irq_disable	0	static

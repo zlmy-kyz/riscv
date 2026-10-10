@@ -1,0 +1,140 @@
+{
+  "rebuild_performed": false,
+  "entries": [
+    {
+      "source": "tests\\uart_loader\\verified\\ddr_crc_stage7\\build.ps1",
+      "candidate": "tests\\uart_loader\\candidates\\ack_nack_stage8\\build.ps1",
+      "sha256": "c05989ef4067d8b8a95ff2d8ebdfd3dba46b79b442b4cd82de0f0157d4539bc8"
+    },
+    {
+      "source": "tests\\uart_loader\\verified\\ddr_crc_stage7\\crc32.c",
+      "candidate": "tests\\uart_loader\\candidates\\ack_nack_stage8\\crc32.c",
+      "sha256": "485c9a6a4715121508c8f886ce081fa6999662d4636f1ed34859c16a6b4af6e5"
+    },
+    {
+      "source": "tests\\uart_loader\\verified\\ddr_crc_stage7\\crc32.h",
+      "candidate": "tests\\uart_loader\\candidates\\ack_nack_stage8\\crc32.h",
+      "sha256": "9f1854cb138df0467bd11aea2411399ffbbe57e102767d576a837fc8e84fa690"
+    },
+    {
+      "source": "tests\\uart_loader\\verified\\ddr_crc_stage7\\ddr_test.c",
+      "candidate": "tests\\uart_loader\\candidates\\ack_nack_stage8\\ddr_test.c",
+      "sha256": "456501929a458cdf255b8404dff0bf7008e3e78c0fac803ba916c068ae396b2d"
+    },
+    {
+      "source": "tests\\uart_loader\\verified\\ddr_crc_stage7\\ddr_test.h",
+      "candidate": "tests\\uart_loader\\candidates\\ack_nack_stage8\\ddr_test.h",
+      "sha256": "3ff9f2e5abf3daeb7cc8df11bf5b94cc36ac61f8b06dbde920ffc08ce5c04ef2"
+    },
+    {
+      "source": "tests\\uart_loader\\verified\\ddr_crc_stage7\\image_to_dat.py",
+      "candidate": "tests\\uart_loader\\candidates\\ack_nack_stage8\\image_to_dat.py",
+      "sha256": "0280ac87ab1ea978c2cd06733979f4bc30cdf476af66f29d69be0fe33aa12557"
+    },
+    {
+      "source": "tests\\uart_loader\\verified\\ddr_crc_stage7\\linker.ld",
+      "candidate": "tests\\uart_loader\\candidates\\ack_nack_stage8\\linker.ld",
+      "sha256": "2f175d1bff2fbb153f88c3a29ee3fdf699c1e88a476e40370380be77ff19ef02"
+    },
+    {
+      "source": "tests\\uart_loader\\verified\\ddr_crc_stage7\\main.c",
+      "candidate": "tests\\uart_loader\\candidates\\ack_nack_stage8\\main.c",
+      "sha256": "9dc3bc21bb12dae2164883c2407d0ca1d56d00f75ce026b4bbc021126d7a39fa"
+    },
+    {
+      "source": "tests\\uart_loader\\verified\\ddr_crc_stage7\\startup.S",
+      "candidate": "tests\\uart_loader\\candidates\\ack_nack_stage8\\startup.S",
+      "sha256": "23ff30ebb5e1349cf3b9c85147115363777a953f4b8f3f67407288814c231403"
+    },
+    {
+      "source": "tests\\uart_loader\\verified\\ddr_crc_stage7\\uart_io.c",
+      "candidate": "tests\\uart_loader\\candidates\\ack_nack_stage8\\uart_io.c",
+      "sha256": "a023c7bf010c731126baa8d1835a001e88fe2721f851267d2df971e21b6d472f"
+    },
+    {
+      "source": "tests\\uart_loader\\verified\\ddr_crc_stage7\\uart_io.h",
+      "candidate": "tests\\uart_loader\\candidates\\ack_nack_stage8\\uart_io.h",
+      "sha256": "294bf787a3a973851c92e8853aa87ac495bd2a954aebae045c0b352b0ee0d1dc"
+    },
+    {
+      "source": "tests\\uart_loader\\verified\\ddr_crc_stage7\\uart_loader.c",
+      "candidate": "tests\\uart_loader\\candidates\\ack_nack_stage8\\uart_loader.c",
+      "sha256": "16420c7d971c4257d13dc2bfbb068ef2988b8608211502f471a08632d3aef39b"
+    },
+    {
+      "source": "tests\\uart_loader\\verified\\ddr_crc_stage7\\uart_loader.h",
+      "candidate": "tests\\uart_loader\\candidates\\ack_nack_stage8\\uart_loader.h",
+      "sha256": "2f860e9409ddd7628416a493251903fbb5539baf57a6efe32a0105bd97dd34dc"
+    },
+    {
+      "source": "tests\\uart_loader\\verified\\ddr_crc_stage7\\build\\loader.dis",
+      "candidate": "tests\\uart_loader\\candidates\\ack_nack_stage8\\build\\loader.dis",
+      "sha256": "2840b164ecaf860149f933f1fe8abe4034b5ba9eab42ec75f97d142e9242e146"
+    },
+    {
+      "source": "tests\\uart_loader\\verified\\ddr_crc_stage7\\build\\loader.elf",
+      "candidate": "tests\\uart_loader\\candidates\\ack_nack_stage8\\build\\loader.elf",
+      "sha256": "49744ef735f2c14461594969004641f318f62991589aadf2209f9e15cf6de178"
+    },
+    {
+      "source": "tests\\uart_loader\\verified\\ddr_crc_stage7\\build\\loader.elf-crc32.su",
+      "candidate": "tests\\uart_loader\\candidates\\ack_nack_stage8\\build\\loader.elf-crc32.su",
+      "sha256": "dbbb63ee3366c187b4e8d4c595022126cb118e194421cadd75c07e63af8a293a"
+    },
+    {
+      "source": "tests\\uart_loader\\verified\\ddr_crc_stage7\\build\\loader.elf-ddr_test.su",
+      "candidate": "tests\\uart_loader\\candidates\\ack_nack_stage8\\build\\loader.elf-ddr_test.su",
+      "sha256": "94e1d2a7dda1c81a10d51244f70812e27cf21e05d636f1bf358ed3c646e1b3ed"
+    },
+    {
+      "source": "tests\\uart_loader\\verified\\ddr_crc_stage7\\build\\loader.elf-main.su",
+      "candidate": "tests\\uart_loader\\candidates\\ack_nack_stage8\\build\\loader.elf-main.su",
+      "sha256": "dec607cee923cf9e6d00ddb10f8d5d2ff5a511d52de798e49456f2b1011835a0"
+    },
+    {
+      "source": "tests\\uart_loader\\verified\\ddr_crc_stage7\\build\\loader.elf-uart_io.su",
+      "candidate": "tests\\uart_loader\\candidates\\ack_nack_stage8\\build\\loader.elf-uart_io.su",
+      "sha256": "622fbb606d3861f3e461d89083c50e0e384c5cb52dc37eb4b07c441ee934e1ee"
+    },
+    {
+      "source": "tests\\uart_loader\\verified\\ddr_crc_stage7\\build\\loader.elf-uart_loader.su",
+      "candidate": "tests\\uart_loader\\candidates\\ack_nack_stage8\\build\\loader.elf-uart_loader.su",
+      "sha256": "12a501689062411b7e5affbcc34f3e4f95e1b369b40f5ff2f30952a32f8385f5"
+    },
+    {
+      "source": "tests\\uart_loader\\verified\\ddr_crc_stage7\\build\\loader.map",
+      "candidate": "tests\\uart_loader\\candidates\\ack_nack_stage8\\build\\loader.map",
+      "sha256": "b662ab33c1abb4e38c7c7a13ff0d2b389b3e27dcbc310e7df56301aea5a8dec3"
+    },
+    {
+      "source": "tests\\uart_loader\\verified\\ddr_crc_stage7\\build\\loader.readelf.txt",
+      "candidate": "tests\\uart_loader\\candidates\\ack_nack_stage8\\build\\loader.readelf.txt",
+      "sha256": "cf62aef9b2b3584d81ee9506ef6c3dff748e43c6fd848aae6e35fdefd5aa0949"
+    },
+    {
+      "source": "tests\\uart_loader\\verified\\ddr_crc_stage7\\build\\loader_ram.dat",
+      "candidate": "tests\\uart_loader\\candidates\\ack_nack_stage8\\build\\loader_ram.dat",
+      "sha256": "59a4105c17b2224ec28b5bf87c080672c940501cdf519091cf8e33c3e2239d7a"
+    },
+    {
+      "source": "tests\\uart_loader\\verified\\ddr_crc_stage7\\build\\loader_rom.dat",
+      "candidate": "tests\\uart_loader\\candidates\\ack_nack_stage8\\build\\loader_rom.dat",
+      "sha256": "21a590346a9a433cade6a4e85c34829620f86ae8ea0238b7be514ff78fa2376a"
+    },
+    {
+      "source": "tests\\uart_loader\\verified\\ddr_crc_stage7\\build\\manifest.json",
+      "candidate": "tests\\uart_loader\\candidates\\ack_nack_stage8\\build\\manifest.json",
+      "sha256": "dd7fe50a16c5638338adb5db9559648dc8e762841beb57517395248c9f63c491"
+    },
+    {
+      "source": "tests\\uart_loader\\verified\\ddr_crc_stage7\\build\\size.txt",
+      "candidate": "tests\\uart_loader\\candidates\\ack_nack_stage8\\build\\size.txt",
+      "sha256": "190ba529644c737ca46d6ff73eac408f352293cc0705a234444e5e78bfeb0025"
+    },
+    {
+      "source": "tests\\uart_loader\\verified\\ddr_crc_stage7\\build\\symbols.txt",
+      "candidate": "tests\\uart_loader\\candidates\\ack_nack_stage8\\build\\symbols.txt",
+      "sha256": "1419a75f2605a6903eb3cb7156ba6ebb460128db165a2b115bbb9b1f5d5a842e"
+    }
+  ]
+}

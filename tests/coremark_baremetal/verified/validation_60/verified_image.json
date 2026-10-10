@@ -1,0 +1,40 @@
+{
+  "date": "2026-10-07",
+  "source": "USER_PASTED_BOARD_UART",
+  "result": "BOARD_CRC_AND_DURATION_PASS",
+  "mode": "validation",
+  "iterations": 60,
+  "crc": {
+    "seedcrc": "18f2",
+    "crclist": "e3c1",
+    "crcmatrix": "0747",
+    "crcstate": "8d84",
+    "crcfinal": "6770"
+  },
+  "ticks": 1758636430,
+  "nominal_hz": 93750000,
+  "seconds_at_nominal_hz": 18.758788586666668,
+  "iterations_per_second_at_nominal_hz": 3.1985007839283757,
+  "iterations_per_second_per_mhz": 0.03411734169523601,
+  "duration_rule_met_at_nominal_hz": true,
+  "integer_uart_seconds": 18,
+  "integer_uart_iterations_per_second": 3,
+  "clock_independently_calibrated": false,
+  "eembc_certified": false,
+  "bitstream_sha256": null,
+  "config": {
+    "clock_hz": 93750000,
+    "data_size": 2000,
+    "mode": "validation",
+    "optimization": "Os",
+    "iterations": 60
+  },
+  "dat_sha256": "373f795ffe59b5eeefeb64c5d267627d1a97e6a008286bd7057fb5576bca3a41",
+  "source_dat": "tests/coremark_baremetal/build/validation_60/main.dat",
+  "archived_dat": "tests/coremark_baremetal/verified/validation_60/main.dat",
+  "uart_file": "sim/coremark/board/validation_iter60_user_20261007.txt",
+  "uart_sha256": "216739a6237fe29ae660386d71834dfac065b2746d0040b9755abedf82199bf1",
+  "full_boot_receipt": "sim/coremark/build/validation_60/validated_image.json",
+  "crcfinal_reference": "UART output from this exact DAT in the DDR user-port model; compare with board output",
+  "evidence_scope": "User identified each DAT and pasted UART; local DAT matches Full Boot SHA-256. No independently captured bitstream hash or measured clock."
+}

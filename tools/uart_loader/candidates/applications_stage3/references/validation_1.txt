@@ -1,0 +1,16 @@
+2K validation run parameters for coremark.
+CoreMark Size    : 666
+Total ticks      : 29302693
+Total time (secs): 0
+ERROR! Must execute for at least 10 secs for a valid result!
+Iterations       : 1
+Compiler version : GCC15.2.0
+Compiler flags   : -Os -march=rv32i -mabi=ilp32; no LTO
+Memory location  : DDR code/data; static 2000-byte buffer
+seedcrc          : 0x18f2
+[0]crclist       : 0xe3c1
+[0]crcmatrix     : 0x0747
+[0]crcstate      : 0x8d84
+[0]crcfinal      : 0xe3c1
+Errors detected
+PORT_DONE ticks=29302693 iterations=1 hz=93750000

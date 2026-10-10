@@ -1,0 +1,41 @@
+{
+  "status": "REBUILT_PC_OFFLINE_PASS",
+  "checks": [
+    {
+      "name": "hello_plan_bound_to_new_bit_and_rejected_as_actual",
+      "result": "PASS"
+    },
+    {
+      "name": "crc32_plan_bound_to_new_bit_and_rejected_as_actual",
+      "result": "PASS"
+    },
+    {
+      "name": "performance_1_plan_bound_to_new_bit_and_rejected_as_actual",
+      "result": "PASS"
+    },
+    {
+      "name": "validation_1_plan_bound_to_new_bit_and_rejected_as_actual",
+      "result": "PASS"
+    },
+    {
+      "name": "performance_60_plan_bound_to_new_bit_and_rejected_as_actual",
+      "result": "PASS"
+    },
+    {
+      "name": "validation_60_plan_bound_to_new_bit_and_rejected_as_actual",
+      "result": "PASS"
+    },
+    {
+      "name": "formal_missing_CRC",
+      "result": "PASS"
+    },
+    {
+      "name": "old_bitstream_CRC_rejected",
+      "result": "PASS"
+    }
+  ],
+  "count": 8,
+  "serial_opened": false,
+  "evidence_origin": "OFFLINE_PLAN_AND_GUARD_NOT_BOARD",
+  "board_result": "NOT_TESTED"
+}

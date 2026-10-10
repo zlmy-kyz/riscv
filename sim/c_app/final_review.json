@@ -1,0 +1,30 @@
+{
+  "status": "C_APP_FINAL_REVIEW_PASS",
+  "applications": [
+    {
+      "tag": "20261010_161146_75750db9",
+      "bytes": 2604,
+      "crc32": "5329D9CD",
+      "gate_sha256": "5fca491126e945c3f6b49d8c1a164eabdb068aa048de7940fa938107db241b4c",
+      "status": "PREPARED_NOT_BOARD"
+    },
+    {
+      "tag": "20261010_161206_bc470150",
+      "bytes": 2688,
+      "crc32": "71A37D12",
+      "gate_sha256": "b4e162091d76cf1c39f35984fae03f79d409136b9c72d5f012307abb36e08c83",
+      "status": "PREPARED_NOT_BOARD"
+    }
+  ],
+  "protected_hardware_inputs": 415,
+  "protected_success_archive_counts": {
+    "sim/bsp_workflow/board/first_submission_result.json": 518,
+    "sim/bsp_workflow/rebuilt_20261010/board/submission_result.json": 549
+  },
+  "document_links": 14,
+  "python_sources_parsed": 5,
+  "offline_checks": 38,
+  "build_rejections": 6,
+  "serial_opened": false,
+  "board_result": "NOT_TESTED"
+}

@@ -1,0 +1,2 @@
+   text	   data	    bss	    dec	    hex	filename
+   2785	      4	     48	   2837	    b15	D:\riscv\RISCV\tests\bsp_workflow\build\irq_probe\program.elf

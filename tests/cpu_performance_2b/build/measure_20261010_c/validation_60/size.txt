@@ -1,0 +1,2 @@
+   text	   data	    bss	    dec	    hex	filename
+  15920	     24	   2060	  18004	   4654	D:\riscv\RISCV\tests\cpu_performance_2b\build\measure_20261010_c\validation_60\program.elf

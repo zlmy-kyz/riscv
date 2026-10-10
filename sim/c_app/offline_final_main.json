@@ -1,0 +1,85 @@
+{
+  "status": "C_APP_OFFLINE_CHECKS_PASS",
+  "evidence_origin": "OFFLINE_FIXTURE_NOT_BOARD",
+  "count": 19,
+  "checks": [
+    {
+      "name": "fragmented_UART_LOAD_VERIFY_RUN_and_output",
+      "result": "PASS"
+    },
+    {
+      "name": "bad_response_crc_stops_before_LOAD_without_retry",
+      "result": "PASS"
+    },
+    {
+      "name": "short_write_stops_before_LOAD_without_retry",
+      "result": "PASS"
+    },
+    {
+      "name": "startup_RX_stops_before_LOAD_without_retry",
+      "result": "PASS"
+    },
+    {
+      "name": "wrong_expected_output",
+      "result": "PASS"
+    },
+    {
+      "name": "nonzero_main_return",
+      "result": "PASS"
+    },
+    {
+      "name": "duplicate_completion",
+      "result": "PASS"
+    },
+    {
+      "name": "missing_completion",
+      "result": "PASS"
+    },
+    {
+      "name": "trap_failure",
+      "result": "PASS"
+    },
+    {
+      "name": "BSP_failure",
+      "result": "PASS"
+    },
+    {
+      "name": "oversize_output",
+      "result": "PASS"
+    },
+    {
+      "name": "exact_output_extra_bytes",
+      "result": "PASS"
+    },
+    {
+      "name": "duplicate_expected_text",
+      "result": "PASS"
+    },
+    {
+      "name": "extra_UART_after_completion",
+      "result": "PASS"
+    },
+    {
+      "name": "missing_completion_deadline",
+      "result": "PASS"
+    },
+    {
+      "name": "modified_BIN_rejected_before_serial",
+      "result": "PASS"
+    },
+    {
+      "name": "offline_fixture_is_not_actual_board_evidence",
+      "result": "PASS"
+    },
+    {
+      "name": "existing_log_stops_before_prompt_or_serial",
+      "result": "PASS"
+    },
+    {
+      "name": "modified_simulation_evidence_stops_before_serial",
+      "result": "PASS"
+    }
+  ],
+  "serial_opened": false,
+  "board_result": "NOT_TESTED"
+}

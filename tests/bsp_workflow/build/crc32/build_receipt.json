@@ -1,0 +1,96 @@
+{
+  "status": "UNIFIED_BSP_BUILD_PASS",
+  "application": "crc32",
+  "source_sha256": {
+    "tests/bsp_workflow/startup.S": "f949699e14c3a206a610b9a43081e161b67c31ff163e565739271a4d09c168fb",
+    "tests/bsp_workflow/trap.S": "98a511c42ca17c73d26c76f9ad2441be1825e3706ea09df314989ac339aeb812",
+    "tests/bsp_workflow/trap.c": "27a18c748f552efb1f5b7f5f6a778fa7c6888447e87d77088007266cfa7feb14",
+    "tests/bsp_workflow/uart.c": "60228a66764b8c62d080c633ba9494465a8c30b35df53c3c60d37ca47634ecf8",
+    "tests/bsp_workflow/timer.c": "95a5ba0892affc8001ff5d98e916eb742999f248cb77063aeb6d861b6535e826",
+    "tests/bsp_workflow/crc32.c": "09914c87ba3180f1da0c96cdcaea757d53c19f2a05a4ad2988a4cf8be0ae921c",
+    "tests/bsp_workflow/main_crc32.c": "e8f265ca93f167071a4529b143597ba12315d7f44f689f91c3a1383cd78d686d",
+    "tests/bsp_workflow/bsp.h": "e1c719a89627f5c6aeb73966e790e0d4da2bad588546602c84c7e66046ed2675",
+    "tests/bsp_workflow/linker.ld": "34dd034a9f51e049e9374c645baea74806bab58d3f30804367938230b0822c6b",
+    "tests/bsp_workflow/build.py": "fb3cece1b20d0268cab3be2dc399dece64062813311029ba29a83bed0823e17b"
+  },
+  "application_info": {
+    "status": "DDR_APPLICATION_AUDIT_PASS",
+    "kind": "crc32",
+    "mode": null,
+    "iterations": null,
+    "base": 1073741824,
+    "entry": 1073741824,
+    "bytes": 2816,
+    "crc32": 166184319,
+    "bin_path": "tests/bsp_workflow/build/crc32/program.bin",
+    "bin_sha256": "e82cf3e6b2fddaa00cef526dbfccf8bfb81951dee0f5105d4befa495c9f9e05c",
+    "elf_path": "tests/bsp_workflow/build/crc32/program.elf",
+    "elf_sha256": "3d76550ca9b70953ddf253b6f26f0921b03083905f75be58438073d25cc5df83",
+    "sections": {
+      ".text": {
+        "address": 1073741824,
+        "size": 2652,
+        "type": 1
+      },
+      ".rodata": {
+        "address": 1073744476,
+        "size": 158,
+        "type": 1
+      },
+      ".data": {
+        "address": 1073744636,
+        "size": 4,
+        "type": 1
+      },
+      ".bss": {
+        "address": 1073744640,
+        "size": 304,
+        "type": 8
+      }
+    },
+    "symbols": {
+      "_start": 1073741824,
+      "program_return": 1073741952,
+      "trap_entry": 1073741956,
+      "bsp_trap_probe": 1073742248,
+      "trap_dispatch": 1073742368,
+      "bsp_check": 1073742504,
+      "putchar": 1073742660,
+      "number": 1073742696,
+      "printf": 1073742964,
+      "uart_irq_service": 1073743508,
+      "timer_cycles": 1073743600,
+      "timer_delay_us": 1073743612,
+      "crc32_update": 1073743824,
+      "crc32": 1073743892,
+      "main": 1073743936,
+      "__mulsi3": 1073744260,
+      "__divsi3": 1073744296,
+      "__hidden___udivsi3": 1073744304,
+      "__udivsi3": 1073744304,
+      "__umodsi3": 1073744376,
+      "__modsi3": 1073744428,
+      "__data_load_start": 1073744636,
+      "__data_start": 1073744636,
+      "bsp_data_magic": 1073744636,
+      "__bss_start": 1073744640,
+      "__data_end": 1073744640,
+      "bsp_irqs": 1073744640,
+      "bsp_ecalls": 1073744644,
+      "rx_tail": 1073744648,
+      "rx_head": 1073744652,
+      "rx_queue": 1073744656,
+      "bytes": 1073744688,
+      "__bss_end": 1073744944,
+      "__global_pointer$": 1073746684,
+      "__stack_bottom": 1073803264,
+      "__stack_top": 1073807360
+    },
+    "sp_auipc": {
+      "pc": 1073741840,
+      "value": 1073807376
+    },
+    "instructions_audited": 663,
+    "clock_hz": 93750000
+  }
+}

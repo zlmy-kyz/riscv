@@ -15,36 +15,40 @@
     </header>
     <param_list>
         <param>
-            <name>INIT_FORMAT</name>
-            <value>HEX</value>
-        </param>
-        <param>
-            <name>CAS_MODE_SEL</name>
-            <value>AUTO</value>
+            <name>ADDR_WIDTH</name>
+            <value>12</value>
         </param>
         <param>
             <name>DATA_WIDTH</name>
             <value>32</value>
         </param>
         <param>
-            <name>INIT_FILE</name>
-            <value>D:/riscv/RISCV/MyCpu_test/board_selftest/boot_rom.dat</value>
+            <name>INIT_EN</name>
+            <value>true</value>
         </param>
         <param>
             <name>OUTPUT_REG</name>
             <value>false</value>
         </param>
         <param>
-            <name>RST_VAL_EN</name>
+            <name>CLK_EN</name>
             <value>false</value>
         </param>
         <param>
-            <name>POWER_OPT</name>
-            <value>false</value>
+            <name>INIT_FILE</name>
+            <value>D:/riscv/RISCV/tests/uart_loader/candidates/verify_run_hello/build/loader_rom.dat</value>
         </param>
         <param>
-            <name>ADDR_STROBE_EN</name>
-            <value>false</value>
+            <name>RESET_TYPE</name>
+            <value>SYNC</value>
+        </param>
+        <param>
+            <name>INIT_FORMAT</name>
+            <value>HEX</value>
+        </param>
+        <param>
+            <name>CAS_MODE_SEL</name>
+            <value>AUTO</value>
         </param>
         <param>
             <name>RD_OCE_EN</name>
@@ -55,6 +59,14 @@
             <value>36K</value>
         </param>
         <param>
+            <name>RST_VAL_EN</name>
+            <value>false</value>
+        </param>
+        <param>
+            <name>RST_VAL</name>
+            <value>0</value>
+        </param>
+        <param>
             <name>CLK_OR_POL_INV</name>
             <value>false</value>
         </param>
@@ -63,24 +75,12 @@
             <value>false</value>
         </param>
         <param>
-            <name>ADDR_WIDTH</name>
-            <value>12</value>
-        </param>
-        <param>
-            <name>RST_VAL</name>
-            <value>0</value>
-        </param>
-        <param>
-            <name>CLK_EN</name>
+            <name>ADDR_STROBE_EN</name>
             <value>false</value>
         </param>
         <param>
-            <name>RESET_TYPE</name>
-            <value>SYNC</value>
-        </param>
-        <param>
-            <name>INIT_EN</name>
-            <value>true</value>
+            <name>POWER_OPT</name>
+            <value>false</value>
         </param>
     </param_list>
     <pin_list>

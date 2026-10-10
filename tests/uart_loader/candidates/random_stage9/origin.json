@@ -1,0 +1,70 @@
+{
+  "stage8_gate": "STAGE8_DIAGNOSTIC_TWO_ROUND_BOARD_PASS",
+  "entries": [
+    {
+      "source": "tests/uart_loader/candidates/uart_fault_stage8_diag/startup.S",
+      "copy": "tests/uart_loader/candidates/random_stage9/startup.S",
+      "sha256": "23ff30ebb5e1349cf3b9c85147115363777a953f4b8f3f67407288814c231403"
+    },
+    {
+      "source": "tests/uart_loader/candidates/uart_fault_stage8_diag/main.c",
+      "copy": "tests/uart_loader/candidates/random_stage9/main.c",
+      "sha256": "9dc3bc21bb12dae2164883c2407d0ca1d56d00f75ce026b4bbc021126d7a39fa"
+    },
+    {
+      "source": "tests/uart_loader/candidates/uart_fault_stage8_diag/uart_loader.c",
+      "copy": "tests/uart_loader/candidates/random_stage9/uart_loader.c",
+      "sha256": "1d9e86f1e740d807a28fca3ca54ff3cc06361290994e613dd9cc8feca83eaa57"
+    },
+    {
+      "source": "tests/uart_loader/candidates/uart_fault_stage8_diag/uart_loader.h",
+      "copy": "tests/uart_loader/candidates/random_stage9/uart_loader.h",
+      "sha256": "2f860e9409ddd7628416a493251903fbb5539baf57a6efe32a0105bd97dd34dc"
+    },
+    {
+      "source": "tests/uart_loader/candidates/uart_fault_stage8_diag/uart_io.c",
+      "copy": "tests/uart_loader/candidates/random_stage9/uart_io.c",
+      "sha256": "22c750ca688cbd60545f5c7055c760af9e67ee2ea217b5d98eae19f8ad564440"
+    },
+    {
+      "source": "tests/uart_loader/candidates/uart_fault_stage8_diag/uart_io.h",
+      "copy": "tests/uart_loader/candidates/random_stage9/uart_io.h",
+      "sha256": "1a162aac5a1980cdf827cf4e60e85ff12250e2abcb0b7e5cc8436ab613b24f33"
+    },
+    {
+      "source": "tests/uart_loader/candidates/uart_fault_stage8_diag/crc32.c",
+      "copy": "tests/uart_loader/candidates/random_stage9/crc32.c",
+      "sha256": "485c9a6a4715121508c8f886ce081fa6999662d4636f1ed34859c16a6b4af6e5"
+    },
+    {
+      "source": "tests/uart_loader/candidates/uart_fault_stage8_diag/crc32.h",
+      "copy": "tests/uart_loader/candidates/random_stage9/crc32.h",
+      "sha256": "9f1854cb138df0467bd11aea2411399ffbbe57e102767d576a837fc8e84fa690"
+    },
+    {
+      "source": "tests/uart_loader/candidates/uart_fault_stage8_diag/ddr_test.c",
+      "copy": "tests/uart_loader/candidates/random_stage9/ddr_test.c",
+      "sha256": "456501929a458cdf255b8404dff0bf7008e3e78c0fac803ba916c068ae396b2d"
+    },
+    {
+      "source": "tests/uart_loader/candidates/uart_fault_stage8_diag/ddr_test.h",
+      "copy": "tests/uart_loader/candidates/random_stage9/ddr_test.h",
+      "sha256": "3ff9f2e5abf3daeb7cc8df11bf5b94cc36ac61f8b06dbde920ffc08ce5c04ef2"
+    },
+    {
+      "source": "tests/uart_loader/candidates/uart_fault_stage8_diag/linker.ld",
+      "copy": "tests/uart_loader/candidates/random_stage9/linker.ld",
+      "sha256": "2f175d1bff2fbb153f88c3a29ee3fdf699c1e88a476e40370380be77ff19ef02"
+    },
+    {
+      "source": "tests/uart_loader/candidates/uart_fault_stage8_diag/image_to_dat.py",
+      "copy": "tests/uart_loader/candidates/random_stage9/image_to_dat.py",
+      "sha256": "0280ac87ab1ea978c2cd06733979f4bc30cdf476af66f29d69be0fe33aa12557"
+    },
+    {
+      "source": "tests/uart_loader/candidates/uart_fault_stage8_diag/build.ps1",
+      "copy": "tests/uart_loader/candidates/random_stage9/build.ps1",
+      "sha256": "fe8cdc1084693df69ec7d8f61a868b9f2588b773f770129bc0ad519093be3c25"
+    }
+  ]
+}

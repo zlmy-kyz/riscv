@@ -1,0 +1,97 @@
+{
+  "status": "UNIFIED_BSP_BUILD_PASS",
+  "application": "irq_probe",
+  "source_sha256": {
+    "tests/bsp_workflow/startup.S": "f949699e14c3a206a610b9a43081e161b67c31ff163e565739271a4d09c168fb",
+    "tests/bsp_workflow/trap.S": "98a511c42ca17c73d26c76f9ad2441be1825e3706ea09df314989ac339aeb812",
+    "tests/bsp_workflow/trap.c": "27a18c748f552efb1f5b7f5f6a778fa7c6888447e87d77088007266cfa7feb14",
+    "tests/bsp_workflow/uart.c": "60228a66764b8c62d080c633ba9494465a8c30b35df53c3c60d37ca47634ecf8",
+    "tests/bsp_workflow/timer.c": "95a5ba0892affc8001ff5d98e916eb742999f248cb77063aeb6d861b6535e826",
+    "tests/bsp_workflow/crc32.c": "09914c87ba3180f1da0c96cdcaea757d53c19f2a05a4ad2988a4cf8be0ae921c",
+    "tests/bsp_workflow/main_irq.c": "ca786f73008f758bd7273b8ef80f1a90752fc812b31635bd81ef9036f7adc73a",
+    "tests/bsp_workflow/bsp.h": "e1c719a89627f5c6aeb73966e790e0d4da2bad588546602c84c7e66046ed2675",
+    "tests/bsp_workflow/linker.ld": "34dd034a9f51e049e9374c645baea74806bab58d3f30804367938230b0822c6b",
+    "tests/bsp_workflow/build.py": "fb3cece1b20d0268cab3be2dc399dece64062813311029ba29a83bed0823e17b"
+  },
+  "application_info": {
+    "status": "DDR_APPLICATION_AUDIT_PASS",
+    "kind": "irq_probe",
+    "mode": null,
+    "iterations": null,
+    "base": 1073741824,
+    "entry": 1073741824,
+    "bytes": 2792,
+    "crc32": 2798941151,
+    "bin_path": "tests/bsp_workflow/build/irq_probe/program.bin",
+    "bin_sha256": "b1e7f58fca591c1e81d83aaaa3c7ba20c738b2ad025de90c11d6fa09ecc1fae1",
+    "elf_path": "tests/bsp_workflow/build/irq_probe/program.elf",
+    "elf_sha256": "548cce19876e81892910a4726cfc76b960ca0a76e7217a7a50fe02498fda13d1",
+    "sections": {
+      ".text": {
+        "address": 1073741824,
+        "size": 2656,
+        "type": 1
+      },
+      ".rodata": {
+        "address": 1073744480,
+        "size": 129,
+        "type": 1
+      },
+      ".data": {
+        "address": 1073744612,
+        "size": 4,
+        "type": 1
+      },
+      ".bss": {
+        "address": 1073744616,
+        "size": 48,
+        "type": 8
+      }
+    },
+    "symbols": {
+      "_start": 1073741824,
+      "program_return": 1073741952,
+      "trap_entry": 1073741956,
+      "bsp_trap_probe": 1073742248,
+      "trap_dispatch": 1073742368,
+      "bsp_check": 1073742504,
+      "putchar": 1073742660,
+      "number": 1073742696,
+      "puts": 1073742964,
+      "printf": 1073743052,
+      "uart_irq_service": 1073743596,
+      "uart_getchar": 1073743688,
+      "uart_irq_enable": 1073743804,
+      "uart_irq_disable": 1073743836,
+      "timer_cycles": 1073743860,
+      "timer_delay_us": 1073743872,
+      "main": 1073744084,
+      "__mulsi3": 1073744264,
+      "__divsi3": 1073744300,
+      "__hidden___udivsi3": 1073744308,
+      "__udivsi3": 1073744308,
+      "__umodsi3": 1073744380,
+      "__modsi3": 1073744432,
+      "__data_load_start": 1073744612,
+      "__data_start": 1073744612,
+      "bsp_data_magic": 1073744612,
+      "__bss_start": 1073744616,
+      "__data_end": 1073744616,
+      "bsp_irqs": 1073744616,
+      "bsp_ecalls": 1073744620,
+      "rx_tail": 1073744624,
+      "rx_head": 1073744628,
+      "rx_queue": 1073744632,
+      "__bss_end": 1073744664,
+      "__global_pointer$": 1073746660,
+      "__stack_bottom": 1073803264,
+      "__stack_top": 1073807360
+    },
+    "sp_auipc": {
+      "pc": 1073741840,
+      "value": 1073807376
+    },
+    "instructions_audited": 664,
+    "clock_hz": 93750000
+  }
+}

@@ -1,0 +1,240 @@
+{
+  "stage": "ROM_RESIDENT_LOAD_STAGE10",
+  "entry": 0,
+  "sections": {
+    "": {
+      "type": 0,
+      "flags": 0,
+      "address": 0,
+      "offset": 0,
+      "size": 0
+    },
+    ".text": {
+      "type": 1,
+      "flags": 6,
+      "address": 0,
+      "offset": 4096,
+      "size": 6256
+    },
+    ".diagnostics": {
+      "type": 8,
+      "flags": 3,
+      "address": 32,
+      "offset": 0,
+      "size": 16
+    },
+    ".rodata": {
+      "type": 1,
+      "flags": 2,
+      "address": 256,
+      "offset": 12544,
+      "size": 112
+    },
+    ".bss": {
+      "type": 8,
+      "flags": 3,
+      "address": 4096,
+      "offset": 12656,
+      "size": 188
+    },
+    ".rx_buffer": {
+      "type": 8,
+      "flags": 3,
+      "address": 8192,
+      "offset": 0,
+      "size": 840
+    },
+    ".riscv.attributes": {
+      "type": 1879048195,
+      "flags": 0,
+      "address": 0,
+      "offset": 12656,
+      "size": 32
+    },
+    ".debug_line": {
+      "type": 1,
+      "flags": 0,
+      "address": 0,
+      "offset": 12688,
+      "size": 12291
+    },
+    ".debug_line_str": {
+      "type": 1,
+      "flags": 48,
+      "address": 0,
+      "offset": 24979,
+      "size": 723
+    },
+    ".debug_info": {
+      "type": 1,
+      "flags": 0,
+      "address": 0,
+      "offset": 25702,
+      "size": 8145
+    },
+    ".debug_abbrev": {
+      "type": 1,
+      "flags": 0,
+      "address": 0,
+      "offset": 33847,
+      "size": 2669
+    },
+    ".debug_aranges": {
+      "type": 1,
+      "flags": 0,
+      "address": 0,
+      "offset": 36520,
+      "size": 240
+    },
+    ".debug_str": {
+      "type": 1,
+      "flags": 48,
+      "address": 0,
+      "offset": 36760,
+      "size": 2168
+    },
+    ".debug_rnglists": {
+      "type": 1,
+      "flags": 0,
+      "address": 0,
+      "offset": 38928,
+      "size": 1043
+    },
+    ".debug_loclists": {
+      "type": 1,
+      "flags": 0,
+      "address": 0,
+      "offset": 39971,
+      "size": 6044
+    },
+    ".debug_frame": {
+      "type": 1,
+      "flags": 0,
+      "address": 0,
+      "offset": 46016,
+      "size": 596
+    },
+    ".symtab": {
+      "type": 2,
+      "flags": 0,
+      "address": 0,
+      "offset": 46612,
+      "size": 1824
+    },
+    ".strtab": {
+      "type": 3,
+      "flags": 0,
+      "address": 0,
+      "offset": 48436,
+      "size": 1438
+    },
+    ".shstrtab": {
+      "type": 3,
+      "flags": 0,
+      "address": 0,
+      "offset": 49874,
+      "size": 213
+    }
+  },
+  "symbols": {
+    "_start": 0,
+    "loader_stack_ready": 16,
+    "loader_diagnostics": 32,
+    "main": 80,
+    "loader_constant_probe": 256,
+    "check_string": 272,
+    "magic": 284,
+    "prefix.0": 288,
+    "nibble": 304,
+    "loader_trap": 428,
+    "loader_enter_app": 480,
+    "invalidate_image": 500,
+    "get32": 540,
+    "put32": 584,
+    "respond": 616,
+    "loader_session_expired": 1164,
+    "loader_ping_loop": 1248,
+    "__bss_start": 4096,
+    "loader_image_complete": 4096,
+    "loader_image_active": 4100,
+    "loader_image_crc": 4104,
+    "loader_image_received": 4108,
+    "loader_image_total": 4112,
+    "load_cached": 4116,
+    "loader_image_verified": 4120,
+    "image_last_cycle": 4124,
+    "loader_rx_count": 4128,
+    "have_sequence": 4132,
+    "loader_last_seq": 4136,
+    "last_command": 4140,
+    "last_packet_length": 4144,
+    "loader_nack_count": 4148,
+    "loader_recovering": 4152,
+    "loader_verify_count": 4156,
+    "loader_jump_started": 4160,
+    "loader_random_reads": 4164,
+    "loader_random_writes": 4168,
+    "loader_random_bytes": 4172,
+    "last_crc_expected": 4176,
+    "loader_crc_reads": 4180,
+    "loader_crc_actual": 4184,
+    "loader_crc_expected": 4188,
+    "loader_crc_status": 4192,
+    "loader_ddr_status": 4196,
+    "loader_ping_count": 4200,
+    "loader_test_count": 4204,
+    "loader_test_bytes": 4208,
+    "loader_test_crc": 4212,
+    "loader_ddr_count": 4216,
+    "loader_ddr_bytes": 4220,
+    "loader_crc_count": 4224,
+    "loader_trap_value": 4228,
+    "loader_trap_pc": 4232,
+    "loader_trap_cause": 4236,
+    "loader_bss_probe": 4240,
+    "loader_boot_error": 4272,
+    "loader_ready": 4276,
+    "loader_uart_error_status": 4280,
+    "__bss_end": 4284,
+    "loader_cycle": 4932,
+    "uart_read_byte": 4944,
+    "uart_write_byte": 5132,
+    "uart_recover": 5208,
+    "uart_finish": 5308,
+    "loader_crc32_update": 5396,
+    "loader_crc32": 5480,
+    "ddr_fixed_compare": 5524,
+    "loader_ddr_write_start": 5524,
+    "loader_ddr_write_end": 5596,
+    "loader_ddr_read_start": 5600,
+    "loader_ddr_read_end": 5716,
+    "ddr_fixed_crc": 5724,
+    "loader_ddr_crc_read_start": 5724,
+    "loader_ddr_crc_read_end": 5784,
+    "ddr_random_write": 5792,
+    "ddr_random_crc": 5952,
+    "__global_pointer$": 6144,
+    "rx_buffer": 8192,
+    "last_packet": 8484,
+    "range_readback": 8776,
+    "__stack_bottom": 12288,
+    "__stack_top": 16368
+  },
+  "rx_load_pc": 5072,
+  "rx_load_rd": 15,
+  "recover_rx_load_pc": 5268,
+  "recover_rx_load_rd": 12,
+  "instructions_audited": 1564,
+  "isa": "rv32i",
+  "abi": "ilp32",
+  "sha256": {
+    "loader.elf": "ac8127d7e67702d31d2e6bf10c171de1dc631c3d7307fb3387b5e8fb4ff40c6a",
+    "loader_rom.dat": "53a2d9912e85b6b5c90768fb0422be6cde8d5bdab37ef07b7eabfb065b76cea1",
+    "loader_ram.dat": "986cda2d60cc4d4d97bf71b6bcc90c938126b241ef1656c3275c41b0999f2975"
+  },
+  "ddr_write_pc": 5588,
+  "ddr_read_pc": 5628,
+  "ddr_read_rd": 17,
+  "ddr_crc_read_pc": 5744,
+  "ddr_crc_read_rd": 6
+}

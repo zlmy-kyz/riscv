@@ -1,0 +1,6 @@
+D:\riscv\RISCV\coremark-main\core_util.c:43:1:get_seed_32	0	static
+D:\riscv\RISCV\coremark-main\core_util.c:165:1:crcu8	0	static
+D:\riscv\RISCV\coremark-main\core_util.c:190:1:crcu16	16	static
+D:\riscv\RISCV\coremark-main\core_util.c:197:1:crcu32	16	static
+D:\riscv\RISCV\coremark-main\core_util.c:204:1:crc16	0	static
+D:\riscv\RISCV\coremark-main\core_util.c:210:1:check_data_types	0	static

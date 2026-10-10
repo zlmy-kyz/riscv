@@ -16,7 +16,11 @@ module soc_top #(
     parameter integer DATA_RSP_DELAY_CYCLES = 0,
     parameter [31:0] UART_BASE = 32'h1000_1000,
     parameter integer UART_CLK_HZ = 93_750_000,
-    parameter integer UART_RSP_DELAY_CYCLES = 0
+    parameter integer UART_RSP_DELAY_CYCLES = 0,
+    parameter integer PERF_ENABLE = 1,
+    parameter integer PERF_AUTO_ARM = 1,
+    parameter [31:0] PERF_START_PC = 32'h400007d0,
+    parameter [31:0] PERF_STOP_PC = 32'h400007f4
 ) (
     input  wire        clk,
     input  wire        resetn,
@@ -58,6 +62,8 @@ module soc_top #(
 );
 
     // CPU 使用字节地址；ROM/RAM IP 使用 32 位字地址。
+    wire [7:0] perf_events;
+    wire [31:0] perf_branch_target, perf_fetch_pc;
     wire        inst_req_valid;
     wire [31:0] inst_req_addr;
     wire        inst_req_ready;
@@ -179,7 +185,8 @@ module soc_top #(
         .debug_wb_rf_we    (debug_wb_rf_we),
         .debug_wb_rf_wnum  (debug_wb_rf_wnum),
         .debug_wb_rf_wdata (debug_wb_rf_wdata),
-        .debug_inst        (debug_inst)
+        .debug_inst        (debug_inst),
+        .perf_events(perf_events), .perf_branch_target(perf_branch_target), .perf_fetch_pc(perf_fetch_pc)
     );
 
     inst_bus_interconnect #(
@@ -331,7 +338,8 @@ module soc_top #(
         .rd_data    (data_ram_rdata)
     );
 
-    simple_mmio u_simple_mmio (
+    simple_mmio #(.PERF_ENABLE(PERF_ENABLE), .PERF_AUTO_ARM(PERF_AUTO_ARM),
+        .PERF_START_PC(PERF_START_PC), .PERF_STOP_PC(PERF_STOP_PC)) u_simple_mmio (
         .clk       (clk),
         .resetn    (resetn),
         .req_valid (mmio_req_valid),
@@ -344,7 +352,11 @@ module soc_top #(
         .rsp_valid (mmio_rsp_valid),
         .rsp_rdata (mmio_rsp_rdata),
         .rsp_error (mmio_rsp_error),
-        .test_status(selftest_status)
+        .test_status(selftest_status),
+        .perf_events(perf_events), .perf_retire_pc(debug_wb_pc),
+        .perf_branch_target(perf_branch_target), .perf_fetch_pc(perf_fetch_pc),
+        .perf_ar_fire(ddr_axi_arvalid && ddr_axi_arready),
+        .perf_aw_fire(ddr_axi_awvalid && ddr_axi_awready)
     );
 
     uart_mmio #(.CLK_HZ(UART_CLK_HZ), .RSP_DELAY_CYCLES(UART_RSP_DELAY_CYCLES)) u_uart_mmio (

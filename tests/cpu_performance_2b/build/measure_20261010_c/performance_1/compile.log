@@ -1,0 +1,22 @@
+D:\riscv\RISCV\tests\bsp_workflow\ee_printf.c: In function 'eaddr':
+D:\riscv\RISCV\tests\bsp_workflow\ee_printf.c:144:53: warning: unused parameter 'precision' [-Wunused-parameter]
+  144 | eaddr(char *str, unsigned char *addr, int size, int precision, int type)
+      |                                                 ~~~~^~~~~~~~~
+D:\riscv\RISCV\tests\bsp_workflow\ee_printf.c: In function 'iaddr':
+D:\riscv\RISCV\tests\bsp_workflow\ee_printf.c:173:53: warning: unused parameter 'precision' [-Wunused-parameter]
+  173 | iaddr(char *str, unsigned char *addr, int size, int precision, int type)
+      |                                                 ~~~~^~~~~~~~~
+D:\riscv\RISCV\tests\bsp_workflow\ee_printf.c: In function 'ee_vsprintf':
+D:\riscv\RISCV\tests\bsp_workflow\ee_printf.c:590:23: warning: this statement may fall through [-Wimplicit-fallthrough=]
+  590 |                 flags |= UPPERCASE;
+      |                       ^
+D:\riscv\RISCV\tests\bsp_workflow\ee_printf.c:592:13: note: here
+  592 |             case 'a':
+      |             ^~~~
+D:\riscv\RISCV\tests\bsp_workflow\ee_printf.c:613:23: warning: this statement may fall through [-Wimplicit-fallthrough=]
+  613 |                 flags |= UPPERCASE;
+      |                       ^
+D:\riscv\RISCV\tests\bsp_workflow\ee_printf.c:615:13: note: here
+  615 |             case 'x':
+      |             ^~~~
+D:/riscv/RISCV/xpack-riscv-none-elf-gcc-15.2.0-1/bin/../lib/gcc/riscv-none-elf/15.2.0/../../../../riscv-none-elf/bin/ld.exe: warning: D:\riscv\RISCV\tests\cpu_performance_2b\build\measure_20261010_c\performance_1\program.elf has a LOAD segment with RWX permissions
