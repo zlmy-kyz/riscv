@@ -2,7 +2,10 @@
 
 module mycpu_sync #(
     // 兼容现有地址 0 测试；运行链接在 0x8000_0000 的 riscv-tests 时覆写此参数。
-    parameter [31:0] RESET_PC = 32'h0000_0000
+    parameter [31:0] RESET_PC = 32'h0000_0000,
+    parameter integer EXTERNAL_MEM_DRAIN_ENABLE = 0,
+    // Ordinary ID branches may launch their target while flushing wrong-path IF.
+    parameter integer BRANCH_FETCH_TURNOVER_ENABLE = 1
 ) (
     input  wire        clk,
     input  wire        resetn,
@@ -10,6 +13,8 @@ module mycpu_sync #(
     input  wire        irq_external,
     input  wire        irq_software,
     input  wire        irq_timer,
+    // Optional SoC ordered-write entry; parameter 0 ignores an unconnected input.
+    input  wire        memory_order_busy,
     // 只读指令请求/响应总线；请求与响应可相隔任意拍。
     output wire        inst_req_valid,
     output wire [31:0] inst_req_addr,
@@ -77,6 +82,7 @@ module mycpu_sync #(
     wire       inst_if_id_accept;
     wire       inst_buffer_pop;
     wire       inst_turnover_safe;
+    wire       branch_fetch_turnover;
     wire load_use;
     wire frontend_hold, bubble_id_ex, id_fire;
     wire data_pipeline_stall;
@@ -119,6 +125,7 @@ module mycpu_sync #(
     wire inst_add;
     wire inst_addi;
     wire inst_sub;
+    wire inst_mul;              // Zmmul: funct3=000/001/010/011 only
     wire inst_lui;
     wire inst_auipc;
     wire inst_and;
@@ -212,6 +219,8 @@ module mycpu_sync #(
     reg        id_ex_gf_we;       // 已实现的普通指令和 CSR 指令写 GPR 许可
     reg        id_ex_valid;       // 气泡唯一标志
     reg        id_ex_serial;      // 串行项标记，随指令走到 WB 后释放前端
+    reg        id_ex_mul;
+    reg [1:0]  id_ex_mul_op;
     reg        id_ex_csr;
     reg [11:0] id_ex_csr_addr;
     reg [1:0]  id_ex_csr_op;       // funct3[1:0]：01 写、10 置位、11 清位
@@ -255,6 +264,13 @@ module mycpu_sync #(
     wire [1:0] st_off;
     wire [3:0] st_we;
     wire [31:0] ex_wb_data;
+    wire [32:0] mul_operand_a, mul_operand_b;
+    wire [65:0] mul_product;
+    wire mul_start, mul_ce, ex_mul_ready;
+    wire perf_memory_stall;
+    reg mul_busy, mul_done;
+    reg [2:0] mul_count;
+    reg [31:0] mul_result;
     reg [31:0] ex_mem_alu_result;  // 非 load 的写回值; load 时它低 2 位当 l_alu 的 sel_addr
     reg [31:0] ex_mem_pc;          // debug_wb_pc
     reg [31:0] ex_mem_next_pc;
@@ -349,17 +365,23 @@ module mycpu_sync #(
     assign inst_turnover_safe = !inst_pending ||
                                 (inst_rsp_valid &&
                                  (inst_pending_drop || inst_if_id_accept));
-    assign inst_req_valid = resetn && fetch_valid && !redirect_valid &&
-                            inst_turnover_safe &&
-                            (!inst_buffer_valid || inst_buffer_pop);
-    assign inst_req_addr = pc;
+    // A branch flush discards the IF buffer and any response completing now.
+    // An outstanding request without a response still occupies the sole slot.
+    // Trap/MRET redirects keep the original request suppression and drain path.
+    assign branch_fetch_turnover = (BRANCH_FETCH_TURNOVER_ENABLE != 0) &&
+                                   branch_redirect && !trap_redirect_req && !mret_redirect_req;
+    assign inst_req_valid = resetn && fetch_valid &&
+                            (branch_fetch_turnover ? (!inst_pending || inst_rsp_valid) :
+                             (!redirect_valid && inst_turnover_safe &&
+                              (!inst_buffer_valid || inst_buffer_pop)));
+    assign inst_req_addr = branch_fetch_turnover ? redirect_pc : pc;
     assign inst_req_fire = inst_req_valid && inst_req_ready;
 
     always @(posedge clk) begin
         if (!resetn)
             pc <= RESET_PC;
         else if (redirect_valid)
-            pc <= redirect_pc;
+            pc <= (branch_fetch_turnover && inst_req_fire) ? redirect_pc + 32'd4 : redirect_pc;
         else if (inst_req_fire)
             pc <= pc + 32'd4;
     end
@@ -469,6 +491,8 @@ module mycpu_sync #(
     assign inst_add   = (opcode == 7'b0110011) && (funct3 == 3'b000) && (funct7 == 7'b0000000);
     assign inst_addi  = (opcode == 7'b0010011) && (funct3 == 3'b000);
     assign inst_sub   = (opcode == 7'b0110011) && (funct3 == 3'b000) && (funct7 == 7'b0100000);
+    // Four multiply instructions only. DIV/REM remain illegal; misa.M stays 0.
+    assign inst_mul   = (opcode == 7'b0110011) && (funct7 == 7'b0000001) && !funct3[2];
     assign inst_lui   = (opcode == 7'b0110111);
     assign inst_auipc = (opcode == 7'b0010111);
     assign inst_and   = (opcode == 7'b0110011) && (funct3 == 3'b111) && (funct7 == 7'b0000000);
@@ -530,7 +554,7 @@ module mycpu_sync #(
     assign i_shamt= inst_slli | inst_srli | inst_srai;
     assign i_I    = inst_slti | inst_sltiu | inst_addi | inst_andi | inst_ori | inst_xori;
     assign i_R    = inst_add | inst_sub | inst_and | inst_or | inst_xor |
-                    inst_sll | inst_slt | inst_sltu | inst_srl | inst_sra;
+                    inst_sll | inst_slt | inst_sltu | inst_srl | inst_sra | inst_mul;
     assign inst_s = inst_sw | inst_sh | inst_sb;
     assign inst_b = inst_beq | inst_bne | inst_blt | inst_bge | inst_bltu | inst_bgeu;
 
@@ -735,6 +759,23 @@ module mycpu_sync #(
         end
     end
 
+    // Multiply metadata follows the same hold/kill rules as the ID/EX operands.
+    always @(posedge clk) begin
+        if (!resetn || kill_id_ex) begin
+            id_ex_mul <= 1'b0;
+            id_ex_mul_op <= 2'b0;
+        end else if (data_pipeline_stall) begin
+            id_ex_mul <= id_ex_mul;
+            id_ex_mul_op <= id_ex_mul_op;
+        end else if (bubble_id_ex) begin
+            id_ex_mul <= 1'b0;
+            id_ex_mul_op <= 2'b0;
+        end else if (id_fire) begin
+            id_ex_mul <= inst_mul;
+            id_ex_mul_op <= funct3[1:0];
+        end
+    end
+
     always @(posedge clk) begin
         if (!resetn || kill_id_ex)
             id_ex_next_pc <= 32'b0;
@@ -807,6 +848,46 @@ module mycpu_sync #(
     alu u_alu (.alu_op(id_ex_alu_op), .alu_src1(id_ex_src1),
                .alu_src2(id_ex_src2), .alu_result(alu_result));
 
+    // One signed 33x33 IP covers signed/unsigned 32-bit products by extension.
+    // The generated mul has XY/M/P/OUT registers (4 CE-enabled pipeline edges).
+    // Keep operands in ID/EX; sample p on the following edge, after its NBA update.
+    assign mul_operand_a = {((id_ex_mul_op == 2'b01) || (id_ex_mul_op == 2'b10)) && id_ex_src1[31], id_ex_src1};
+    assign mul_operand_b = {(id_ex_mul_op == 2'b01) && id_ex_src2[31], id_ex_src2};
+    assign mul_start = resetn && id_ex_valid && id_ex_mul && !ex_exc_valid &&
+                       !older_fault_for_ex && !kill_id_ex && !mul_busy && !mul_done;
+    assign mul_ce = mul_start || mul_busy;
+    mul u_mul (
+        .ce(mul_ce), .rst(!resetn), .clk(clk),
+        .a(mul_operand_a), .b(mul_operand_b), .p(mul_product)
+    );
+    always @(posedge clk) begin
+        if (!resetn || kill_id_ex || !id_ex_valid || !id_ex_mul ||
+            ex_exc_valid || older_fault_for_ex) begin
+            mul_busy <= 1'b0;
+            mul_done <= 1'b0;
+            mul_count <= 3'b0;
+            mul_result <= 32'b0;
+        end else if (id_ex_advance) begin
+            mul_busy <= 1'b0;
+            mul_done <= 1'b0;
+            mul_count <= 3'b0;
+        end else if (mul_start) begin
+            mul_busy <= 1'b1;
+            mul_done <= 1'b0;
+            mul_count <= 3'd4;
+        end else if (mul_busy) begin
+            if (mul_count == 3'd1) begin
+                mul_busy <= 1'b0;
+                mul_done <= 1'b1;
+                mul_count <= 3'b0;
+                mul_result <= (id_ex_mul_op == 2'b00) ? mul_product[31:0] : mul_product[63:32];
+            end else begin
+                mul_count <= mul_count - 3'd1;
+            end
+        end
+    end
+    assign ex_mul_ready = !id_ex_mul || id_ex_exc_valid || mul_done;
+
     // 地址在 EX 才由 ALU 算出：半字看 bit0，字看 bit[1:0]；字节天然对齐。
     // 已有 ID 故障优先，不允许 EX 的默认检测覆盖原 cause/tval。
     assign ex_access_half = id_ex_inst_5l[3] || id_ex_inst_5l[2] || id_ex_sh;
@@ -860,16 +941,19 @@ module mycpu_sync #(
     assign ex_mem_complete  = ex_mem_valid &&
                               (!ex_mem_mem_pending || data_rsp_valid);
     assign ex_mem_ready     = !ex_mem_valid || ex_mem_complete;
-    assign id_ex_can_advance = ex_mem_ready &&
+    assign id_ex_can_advance = ex_mem_ready && ex_mul_ready &&
                                (!id_ex_needs_bus || data_req_ready);
     assign id_ex_advance    = id_ex_valid && id_ex_can_advance;
     assign data_pipeline_stall = (ex_mem_valid && !ex_mem_complete) ||
                                  (id_ex_valid && !id_ex_can_advance);
 
-    // EX 这一拍能前递/写回的值: 只有 alu_result。
+    // Multiply can forward only after completion; its result survives MEM backpressure.
     //   ★ load 在 EX 这一拍【没有】可用数据 —— 它的数据要下一拍才从 RAM 出来。
     //     所以 EX→ID 前递必须用 id_ex_i_l 屏蔽掉, 这就是 load-use 阻塞存在的原因。
-    assign ex_wb_data = alu_result;
+    assign ex_wb_data = id_ex_mul ? mul_result : alu_result;
+    // Preserve the original DDR-memory wait definition. Pure multiply wait is OTHER.
+    assign perf_memory_stall = (ex_mem_valid && !ex_mem_complete) ||
+                               (id_ex_valid && id_ex_needs_bus && !data_req_ready);
 
     // ==================== ⑧ EX/MEM 流水寄存器 = MEM 级的输入 ====================
     // ★ 位置: 正好卡在 EX / MEM 的交界处。
@@ -897,7 +981,7 @@ module mycpu_sync #(
         else if(id_ex_advance)begin
             ex_mem_valid      <= 1'b1;
             ex_mem_serial     <= id_ex_serial;
-            ex_mem_alu_result <= alu_result;
+            ex_mem_alu_result <= ex_wb_data;
             ex_mem_pc         <= id_ex_pc;
             ex_mem_inst       <= id_ex_inst;
             ex_mem_rd         <= id_ex_rd;
@@ -1144,7 +1228,8 @@ module mycpu_sync #(
     //   gf_we  —— 分支/存数不写寄存器, 前递它们等于前递垃圾
     //   rd != 0 —— 否则 add x0,x1,x2 这类也会命中, 消费者拿到的不是 0 而是 ALU 结果
     //   ~i_l   —— EX 里是 load 时数据还没出来, 绝对不能前递(这就是 load-use 阻塞的由来)
-    assign fwd_ex_en  = id_ex_valid & id_ex_gf_we & ~id_ex_i_l & ~ex_exc_valid;
+    assign fwd_ex_en  = id_ex_valid & id_ex_gf_we & ~id_ex_i_l & ~ex_exc_valid &
+                        (!id_ex_mul || mul_done);
     assign id_fwd_ex1 = fwd_ex_en & (id_ex_rd != 5'd0) & (id_ex_rd == rs1);
     assign id_fwd_ex2 = fwd_ex_en & (id_ex_rd != 5'd0) & (id_ex_rd == rs2);
 
@@ -1217,7 +1302,8 @@ module mycpu_sync #(
     assign mret_redirect_target = csr_mret_target;
 
     // pipeline_empty 已在文件顶部前置声明。
-    assign pipeline_empty = !id_ex_valid && !ex_mem_valid && !mem_wb_valid;
+    assign pipeline_empty = !id_ex_valid && !ex_mem_valid && !mem_wb_valid &&
+                            !((EXTERNAL_MEM_DRAIN_ENABLE != 0) && memory_order_busy);
     // 已发现的故障令前端保持，老指令仍逐级完成；WB 事件负责取消年轻项。
     assign fault_inflight = (id_ex_valid && ex_exc_valid) ||
                             (ex_mem_valid && ex_mem_exc_valid) ||
@@ -1293,7 +1379,7 @@ module mycpu_sync #(
     assign perf_events[0] = normal_retire || mret_commit;
     assign perf_events[1] = trap_redirect_req || mret_redirect_req;
     assign perf_events[2] = flow_state != FLOW_RUN || serial_candidate || fault_inflight || irq_candidate;
-    assign perf_events[3] = data_pipeline_stall;
+    assign perf_events[3] = perf_memory_stall;
     assign perf_events[4] = if_id_valid && load_use;
     assign perf_events[5] = branch_redirect;
     assign perf_events[6] = fetch_valid && inst_if_id_accept && !inst_buffer_valid && !inst_response_good;

@@ -1,6 +1,6 @@
 `timescale 1ns / 1ps
 
-// RK3568_MES2L100H / PG2L100H-6IFBG484 physical board boundary.
+// Pango MINI-(200H) / PG2L200H-6IFBG676 physical board boundary.
 // Current generated DDR IP: 125 MHz reference, 750 Mbps, core_clk=93.75 MHz.
 module board_top #(
     parameter [31:0] RESET_PC = 32'h0000_0000,
@@ -26,10 +26,10 @@ module board_top #(
     output wire        mem_odt,
     output wire [14:0] mem_a,
     output wire [ 2:0] mem_ba,
-    inout  wire [ 1:0] mem_dqs,
-    inout  wire [ 1:0] mem_dqs_n,
-    inout  wire [15:0] mem_dq,
-    output wire [ 1:0] mem_dm,
+    inout  wire [ 3:0] mem_dqs,
+    inout  wire [ 3:0] mem_dqs_n,
+    inout  wire [31:0] mem_dq,
+    output wire [ 3:0] mem_dm,
     output wire        uart_tx,
     input  wire        uart_rx
 );

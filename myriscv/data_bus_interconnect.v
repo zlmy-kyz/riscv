@@ -19,10 +19,13 @@ module data_bus_interconnect #(
     parameter [31:0] DDR_BASE       = 32'h4000_0000,
     parameter [31:0] DDR_ADDR_MASK  = 32'he000_0000, // 512 MiB
     parameter integer ENABLE_UART  = 0,
-    parameter [31:0] UART_BASE      = 32'h1000_1000 // 16-byte aligned, 16 bytes
+    parameter [31:0] UART_BASE      = 32'h1000_1000, // 16-byte aligned, 16 bytes
+    parameter integer DDR_WRITE_ORDER_ENABLE = 0,
+    parameter integer RESPONSE_TURNOVER_ENABLE = 1
 ) (
     input  wire        clk,
     input  wire        resetn,
+    input  wire        ddr_write_buffer_busy,
 
     input  wire        m_req_valid,
     input  wire        m_req_write,
@@ -90,6 +93,8 @@ module data_bus_interconnect #(
     wire ddr_select;
     wire uart_select;
     wire req_fire;
+    wire issue_allowed;
+    wire response_turnover;
     reg  pending;
     reg [2:0] response_target;
 
@@ -105,35 +110,46 @@ module data_bus_interconnect #(
                         ((m_req_addr & DDR_ADDR_MASK) ==
                          (DDR_BASE & DDR_ADDR_MASK));
 
-    assign m_req_ready = !pending &&
+    // DDR requests are backpressured by the bridge; all other accesses drain first.
+    // In particular, PERF STOP and UART side effects cannot overtake buffered stores.
+    // The current response keeps its latched owner until the accepting edge.
+    // A successful response frees the sole slot for a new request on that edge.
+    // Error responses still close the slot first; no younger side effect crosses
+    // an older access fault. Slave ready and buffered-write ordering still apply.
+    assign response_turnover = (RESPONSE_TURNOVER_ENABLE != 0) &&
+                               m_rsp_valid && !m_rsp_error;
+    assign issue_allowed = (!pending || response_turnover) &&
+                                        ((DDR_WRITE_ORDER_ENABLE == 0) ||
+                                         !ddr_write_buffer_busy || ddr_select);
+    assign m_req_ready = issue_allowed &&
                          (ram_select  ? ram_req_ready  :
                           mmio_select ? mmio_req_ready :
                           uart_select ? uart_req_ready :
                           ddr_select  ? ddr_req_ready  : 1'b1);
     assign req_fire = m_req_valid && m_req_ready;
 
-    assign ram_req_valid = !pending && m_req_valid && ram_select;
+    assign ram_req_valid = issue_allowed && m_req_valid && ram_select;
     assign ram_req_write = m_req_write;
     assign ram_req_size  = m_req_size;
     assign ram_req_addr  = m_req_addr - RAM_BASE;
     assign ram_req_wdata = m_req_wdata;
     assign ram_req_wstrb = m_req_wstrb;
 
-    assign mmio_req_valid = !pending && m_req_valid && mmio_select;
+    assign mmio_req_valid = issue_allowed && m_req_valid && mmio_select;
     assign mmio_req_write = m_req_write;
     assign mmio_req_size  = m_req_size;
     assign mmio_req_addr  = m_req_addr - MMIO_BASE;
     assign mmio_req_wdata = m_req_wdata;
     assign mmio_req_wstrb = m_req_wstrb;
 
-    assign ddr_req_valid = !pending && m_req_valid && ddr_select;
+    assign ddr_req_valid = issue_allowed && m_req_valid && ddr_select;
     assign ddr_req_write = m_req_write;
     assign ddr_req_size  = m_req_size;
     assign ddr_req_addr  = m_req_addr - DDR_BASE;
     assign ddr_req_wdata = m_req_wdata;
     assign ddr_req_wstrb = m_req_wstrb;
 
-    assign uart_req_valid = !pending && m_req_valid && uart_select;
+    assign uart_req_valid = issue_allowed && m_req_valid && uart_select;
     assign uart_req_write = m_req_write;
     assign uart_req_size  = m_req_size;
     assign uart_req_addr  = m_req_addr - UART_BASE;
@@ -168,6 +184,7 @@ module data_bus_interconnect #(
                 pending <= 1'b0;
 
             if (req_fire) begin
+                // Later assignment wins: old response completes, new owner lives.
                 pending <= 1'b1;
                 if (ram_select)
                     response_target <= TARGET_RAM;

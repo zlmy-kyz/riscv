@@ -24,7 +24,7 @@ module uart_mmio #(
     localparam [1:0] TX_DATA = 2'd0, RX_DATA = 2'd1,
                      STATUS = 2'd2, CONTROL = 2'd3;
     reg pending;
-    reg [31:0] wait_count, response_data;
+    reg [31:0] response_data;
     reg response_error, frame_error_status, overflow_status;
     reg rx_irq_enable;
     wire tx_ready, tx_busy;
@@ -37,7 +37,28 @@ module uart_mmio #(
 
     assign req_ready = resetn && !pending;
     assign req_fire = req_valid && req_ready;
-    assign rsp_valid = pending && (wait_count == 0);
+    // Zero delay still responds after the accepting edge via pending.  Do not
+    // infer a constant-loaded counter/comparator on the board's response path.
+    generate
+        if (RSP_DELAY_CYCLES <= 0) begin : g_no_rsp_delay
+            assign rsp_valid = pending;
+        end else begin : g_rsp_delay
+            // Widen the constant addition to cover the largest signed integer.
+            localparam integer WAIT_WIDTH = (RSP_DELAY_CYCLES <= 1) ? 1 :
+                                            $clog2(RSP_DELAY_CYCLES + 64'd1);
+            localparam [WAIT_WIDTH-1:0] WAIT_INITIAL = RSP_DELAY_CYCLES;
+            reg [WAIT_WIDTH-1:0] wait_count;
+            assign rsp_valid = pending && (wait_count == 0);
+            always @(posedge clk or negedge resetn) begin
+                if (!resetn)
+                    wait_count <= {WAIT_WIDTH{1'b0}};
+                else if (req_fire)
+                    wait_count <= WAIT_INITIAL;
+                else if (pending && wait_count != 0)
+                    wait_count <= wait_count - 1'b1;
+            end
+        end
+    endgenerate
     assign rsp_rdata = response_data;
     assign rsp_error = rsp_valid && response_error;
     assign access_valid = (req_addr[31:4] == 0) && (req_size != 2'd3) &&
@@ -76,7 +97,6 @@ module uart_mmio #(
     always @(posedge clk or negedge resetn) begin
         if (!resetn) begin
             pending <= 1'b0;
-            wait_count <= 32'd0;
             response_data <= 32'd0;
             response_error <= 1'b0;
             frame_error_status <= 1'b0;
@@ -90,11 +110,9 @@ module uart_mmio #(
                 if (req_wdata[9]) rx_irq_enable <= 1'b0;
                 else if (req_wdata[8]) rx_irq_enable <= 1'b1;
             end
-            if (pending && wait_count != 0) wait_count <= wait_count - 1'b1;
             if (rsp_valid) pending <= 1'b0;
             if (req_fire) begin
                 pending <= 1'b1;
-                wait_count <= (RSP_DELAY_CYCLES > 0) ? RSP_DELAY_CYCLES : 0;
                 response_data <= 32'd0;
                 response_error <= !access_valid;
                 if (access_valid) begin

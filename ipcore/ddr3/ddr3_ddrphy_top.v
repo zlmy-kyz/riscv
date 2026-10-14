@@ -9,6 +9,7 @@
 //History: v1.0
 ////////////////////////////////////////////////////////////////
 `timescale 1ns/1ps
+`include "./define.vh"
 module  ddr3_ddrphy_top  #(
 
   parameter         MEM_TYPE     =  "DDR3"   ,
@@ -26,14 +27,18 @@ module  ddr3_ddrphy_top  #(
   parameter [7:0]   TRCD         =  2     ,
   
   parameter MEM_ROW_WIDTH        =  15     ,
+ 
+ parameter TOTAL_ADDR_WIDTH     =  15,
 
   parameter MEM_BANK_WIDTH       =  3     ,
   
-  parameter MEM_DQ_WIDTH         =  16     ,
+  parameter MEM_DQ_WIDTH         =  32     ,
   
-  parameter MEM_DM_WIDTH         =  2     ,
+  parameter MEM_DM_WIDTH         =  4     ,
+
+  parameter DEVICE_ID            = 0      ,
   
-  parameter MEM_DQS_WIDTH        =  2 
+  parameter MEM_DQS_WIDTH        =  4 
            
 )(
 //clk
@@ -47,7 +52,7 @@ module  ddr3_ddrphy_top  #(
   output                             ddrphy_sysclk        ,
  
 //dfi                                           
-  input  [4*MEM_ROW_WIDTH-1:0]       dfi_address          ,
+  input  [4*TOTAL_ADDR_WIDTH-1:0]    dfi_address          ,
   input  [4*MEM_BANK_WIDTH-1:0]      dfi_bank             ,
   input  [3:0]                       dfi_cs_n             ,
   input  [3:0]                       dfi_cas_n            ,
@@ -66,9 +71,9 @@ module  ddr3_ddrphy_top  #(
   output                             dfi_init_complete    ,
   output                             dfi_error            ,
 
-
+`ifdef CS_N_EN
   output                             mem_cs_n             ,
-
+`endif
   output                             mem_rst_n            ,
   output                             mem_ck               ,
   output                             mem_ck_n             ,
@@ -77,7 +82,7 @@ module  ddr3_ddrphy_top  #(
   output                             mem_cas_n            ,
   output                             mem_we_n             , 
   output                             mem_odt              ,
-  output [MEM_ROW_WIDTH-1:0]         mem_a                ,
+  output [TOTAL_ADDR_WIDTH-1:0]      mem_a                ,
   output [MEM_BANK_WIDTH-1:0]        mem_ba               ,
   inout [MEM_DQS_WIDTH-1:0]          mem_dqs              ,
   inout [MEM_DQS_WIDTH-1:0]          mem_dqs_n            ,
@@ -94,7 +99,7 @@ module  ddr3_ddrphy_top  #(
   input                              force_samp_position  ,  
   input                              samp_position_dyn_adj,  
   input [8*MEM_DQS_WIDTH-1:0]        init_samp_position_even,
-  input [8*MEM_DQS_WIDTH-1:0]        init_samp_position_odd, 
+//  input [8*MEM_DQS_WIDTH-1:0]        init_samp_position_odd, 
 
   input                              wrlvl_en             ,  
   input [8*MEM_DQS_WIDTH-1:0]        init_wrlvl_step      ,  
@@ -109,9 +114,9 @@ module  ddr3_ddrphy_top  #(
   input [4*MEM_DQS_WIDTH-1:0]        init_slip_step       ,  
 
   output [33:0]                      debug_calib_ctrl     ,
-  output [17*MEM_DQS_WIDTH -1:0]     dbg_slice_status     ,
-  output [22*MEM_DQS_WIDTH -1:0]     dbg_slice_state      ,
-  output [69*MEM_DQS_WIDTH -1:0]     debug_data           ,
+  output [4*MEM_DQS_WIDTH + 16:0]    dbg_slice_status     ,
+  output [24*MEM_DQS_WIDTH -1:0]     dbg_slice_state      ,
+  output [75*MEM_DQS_WIDTH -1:0]     debug_data           ,
   output [1:0]                       dbg_dll_upd_state    ,
   output [8:0]                       debug_gpll_dps_phase ,
  
@@ -126,13 +131,15 @@ module  ddr3_ddrphy_top  #(
   output [9:0]                       debug_dps_cnt_dir1  ,
 
   output [7:0]                       ck_dly_set_bin      ,
+  output [8*8*MEM_DQS_WIDTH-1:0]     dq_idly_bin         ,
+  output [8*8*MEM_DQS_WIDTH-1:0]     dq_odly_bin         ,
   output                             ck_step_ov_warning  ,
   output [MEM_DQS_WIDTH-1:0]         wl_step_ov_warning  ,
- 
+  output [7:0]                       rstclk_phase_adj_cnt,
+  output [3:0]                       debug_check_out_sync_point_state , 
   output                             align_error         ,
   output [3:0]                       debug_rst_state     ,
-  output [3:0]                       debug_cpd_state     
-
+  output [3:0]                       debug_cpd_state   
 );
 
 localparam real CLKIN_FREQ  =  125.0   ; 
@@ -141,12 +148,18 @@ localparam GPLL_BANDWIDTH = "HIGH";
 
 localparam PPLL_BANDWIDTH = "HIGH";
 
-
 localparam DDR_TYPE = (MEM_TYPE == "DDR3") ? 2'b00 : (MEM_TYPE == "DDR2") ? 2'b01 : (MEM_TYPE == "LPDDR") ? 2'b10 : 2'b00;
 localparam SC_LDO_CTRL  =  2'b00     ;
 localparam SC_DLY_2X    =  1'b1      ;  //1'b0  1x delay chain, 1'b1 2x delay chain 
 localparam REF_CNT   = (DDR_TYPE == 2'b10) ? 8'd2 : 8'd9;
-localparam EYECAL_EN    =  1         ; 
+
+localparam EYECAL_EN = 1;  
+localparam DIMM_EN = 0;
+localparam WRCAL_EN = (DEVICE_ID == 1) ? 1'b0 :1'b1;
+localparam WRCAL_PERBITS = (DEVICE_ID == 1) ? 1'b0 :1'b1;
+localparam DEBUG_TRAINING = 0;
+localparam PERBITS_DLY_2X = 1'b1; 
+
 
 localparam PPLL_IDIV    =  1         ;
 
@@ -282,7 +295,20 @@ localparam T500US         = (510*1000*1000 / DFI_CLK_PERIOD);
 `endif
 
 localparam T400NS         = 410*1000 / DFI_CLK_PERIOD;
-                                  
+
+
+localparam RST_GPLL_PHASE_EN = 0;
+
+localparam SCAN_RST_CLK_WINDOW = 1'b0;
+
+localparam OUT_SYNC_RST_CLK_PHASE_ADJ_STEP = 8'd32;
+
+localparam GATEI_EN = 1'b1;
+
+localparam JUDGE_OUT_SYNC_DIFFERENCE_CALUE = 8'd40;
+
+localparam RST_CLK_WINDOW_MIN_STEP = 8'd24;
+
 wire [2:0]                      ddrphy_ioclk_gate            ;
 wire                            dll_lock                     ;
 wire                            dll_update_n                 ;
@@ -318,7 +344,7 @@ wire                            init_adj_rdel                ;
 wire                            adj_rdel_done                ;
 wire                            rdel_calibration             ;
 wire                            rdel_calib_done              ;
-wire                            rdel_calib_error             ;
+wire [1:0]                      rdel_calib_error             ;
 wire                            rdel_move_en                 ;
 wire                            rdel_move_done               ;
 wire                            bitslip_ctrl                 ;
@@ -326,7 +352,8 @@ wire                            wrcal_check_pass             ;
 wire [8:0]                      write_calibration            ;
 wire [8:0]                      wrcal_move_en                ;
 wire                            wrcal_move_done              ;
-wire                            wrcal_error                  ;
+wire                            dq_calib_done                ;
+wire [1:0]                      wrcal_error                  ;
 wire                            eye_calibration              ;
 wire                            eyecal_check_pass            ;
 wire                            eyecal_move_done             ;
@@ -337,7 +364,7 @@ wire                            dqs_gate_comp_en             ;
 wire                            dqs_gate_comp_done           ;
 wire                            calib_rst                    ;
 wire [MEM_BANK_WIDTH-1:0]       calib_ba                     ;
-wire [MEM_ROW_WIDTH-1:0]        calib_address                ;
+wire [TOTAL_ADDR_WIDTH-1:0]     calib_address                ;
 wire                            calib_cs_n                   ;
 wire                            calib_ras_n                  ;
 wire                            calib_cas_n                  ;
@@ -359,7 +386,7 @@ wire [3:0]                      phy_cs_n                     ;
 wire [3:0]                      phy_ras_n                    ;
 wire [3:0]                      phy_cas_n                    ;
 wire [3:0]                      phy_we_n                     ;
-wire [4*MEM_ROW_WIDTH-1:0]      phy_addr                     ;
+wire [4*TOTAL_ADDR_WIDTH-1:0]   phy_addr                     ;
 wire [4*MEM_BANK_WIDTH-1:0]     phy_ba                       ;
 wire [3:0]                      phy_odt                      ;
 wire [3:0]                      phy_ck                       ;
@@ -409,7 +436,23 @@ wire                            rst_clk_adj_start            ;
 wire                            rst_clk_dps_done             ;
 wire                            rst_clk_adj_done             ;
 wire                            rst_clk_adj_dir              ;
-wire                            rst_clk_adj_en               ;      
+wire                            rst_clk_adj_en               ;
+wire [11:0]                      all_group_cnt                ;
+wire                            check_out_sync_point_begin   ;
+
+wire                            rst_gpll_phase_adj_finish    ;
+wire                            wrlvl_trained_flag           ;
+
+wire [7:0]                      wrlvl_step_b1                ;
+wire [7:0]                      wrlvl_step_b2                ;
+wire                            wrlvl_step_fix               ;
+wire                            gpll_phase_adj_req           ;
+wire                            find_out_sync_point          ;
+wire                            tran_err_rst_sta             ;
+wire                            terminate_rst_clk_phase_adj  ;
+wire [7:0]                      win_center_adj_step          ;
+
+
 
 assign pll_lock = phy_pll_lock & gpll_lock;
 
@@ -425,20 +468,29 @@ GTP_CLKBUFM u_clkbufm
     .CLKIN                      (ref_clk                      )
 );
 
-ips2l_ddrphy_rst_clk_phase_adj_v1_0 #(
+ips2l_ddrphy_rst_clk_phase_adj_v1_14 #(
     .PHASE_ADJ_DIR              (0                            ),
-    .PHASE_ADJ_STEP             (8                            )
+    .PHASE_ADJ_STEP             (8                            ),
+    .RST_GPLL_PHASE_EN		(RST_GPLL_PHASE_EN	      ),
+    .OUT_SYNC_RST_CLK_PHASE_ADJ_STEP (OUT_SYNC_RST_CLK_PHASE_ADJ_STEP ),
+    .SCAN_RST_CLK_WINDOW        (SCAN_RST_CLK_WINDOW          )
 )
 u_ips2l_ddrphy_rst_clk_phase_adj
 (
     .dps_clk                    (ddrphy_sysclk                ),
-    .ddr_rstn                   (ddr_rstn                     ),
+    .ddr_rstn                   (rst_seq_rstn                 ),
     .rst_clk_adj_start          (rst_clk_adj_start            ),
     .rst_clk_dps_done           (rst_clk_dps_done             ),
     .cpd_state                  (dbg_rst_dps_state            ),
     .rst_clk_adj_done           (rst_clk_adj_done             ),
     .rst_clk_adj_dir            (rst_clk_adj_dir              ),
-    .rst_clk_adj_en             (rst_clk_adj_en               )        
+    .rst_clk_adj_en             (rst_clk_adj_en               ),
+    .rst_gpll_phase_adj_finish  (rst_gpll_phase_adj_finish    ),
+    .gpll_phase_adj_req         (gpll_phase_adj_req           ),
+    .terminate_rst_clk_phase_adj (terminate_rst_clk_phase_adj  ),
+    .win_center_adj_step        (win_center_adj_step          ),
+    .dll_update_req_rst_ctrl    (dll_update_req_rst_ctrl      ),
+    .find_out_sync_point        (find_out_sync_point          )   
 );
 
 ips2l_ddrphy_gpll_v1_3 #(
@@ -573,7 +625,9 @@ ips2l_ddrphy_cpd_ctrl_v1_3 ddrphy_cpd_ctrl
     .debug_dps_cnt_dir1         (debug_dps_cnt_dir1           ) 
 );
                   
- ips2l_ddrphy_reset_ctrl_v1_3  ddrphy_reset_ctrl(
+ips2l_ddrphy_reset_ctrl_v1_14 #(
+    .RST_GPLL_PHASE_EN          (RST_GPLL_PHASE_EN            )
+)ddrphy_reset_ctrl(
     .ddr_rstn                   (rst_seq_rstn                 ),                    
     .rst_clk                    (rst_clk                      ),
     .ddrphy_sysclk              (ddrphy_sysclk                ),
@@ -603,10 +657,37 @@ ips2l_ddrphy_cpd_ctrl_v1_3 ddrphy_cpd_ctrl
     .ddrphy_dqs_rst             (ddrphy_dqs_rst               ),
     .ddrphy_iol_rst             (ddrphy_iol_rst               ),
     .ddrphy_ioclk_gate          (ddrphy_ioclk_gate            ),
-    .debug_rst_state            (debug_rst_state              )
+    .debug_rst_state            (debug_rst_state              ),
+    .wrlvl_trained_flag         (wrlvl_trained_flag           ),
+    .tran_err_rst_sta           (tran_err_rst_sta             ) 
  );
 
- ips2l_ddrphy_dll_update_ctrl_v1_3 ddrphy_dll_update_ctrl(
+ ips2l_ddrphy_check_ppll_out_sync_point_v1_14 #(
+    .OUT_SYNC_RST_CLK_PHASE_ADJ_STEP    (OUT_SYNC_RST_CLK_PHASE_ADJ_STEP),
+    .SCAN_RST_CLK_WINDOW                (SCAN_RST_CLK_WINDOW            ),
+    .RST_GPLL_PHASE_EN                  (RST_GPLL_PHASE_EN              ),
+    .JUDGE_OUT_SYNC_DIFFERENCE_CALUE    (JUDGE_OUT_SYNC_DIFFERENCE_CALUE),
+    .RST_CLK_WINDOW_MIN_STEP            (RST_CLK_WINDOW_MIN_STEP        )
+    
+ ) ddrphy_check_ppll_out_sync_point( 
+    .ddr_rstn                           (rst_seq_rstn                   ),
+    .rst_clk                            (rst_clk                        ),
+    .rst_gpll_phase_adj_finish          (rst_gpll_phase_adj_finish      ),
+    .check_out_sync_point_begin         (check_out_sync_point_begin     ),
+    .wrlvl_step_b1                      (wrlvl_step_b1                  ),
+    .wrlvl_step_b2                      (wrlvl_step_b2                  ),
+    .wrlvl_step_fix                     (wrlvl_step_fix                 ),
+    
+    .gpll_phase_adj_req                 (gpll_phase_adj_req             ),
+    .find_out_sync_point                (find_out_sync_point            ),
+    .rstclk_phase_adj_cnt               (rstclk_phase_adj_cnt           ),
+    .terminate_rst_clk_phase_adj        (terminate_rst_clk_phase_adj    ),
+    .win_center_adj_step                (win_center_adj_step            ),
+    .debug_check_out_sync_point_state   (debug_check_out_sync_point_state)
+  ); 
+
+
+ ips2l_ddrphy_dll_update_ctrl_v1_14 ddrphy_dll_update_ctrl(
     .rst_clk                    (rst_clk                      ),
     .ddr_rstn                   (logic_rstn                   ),
     .dbg_dll_update_en          (1'b0                         ), //dbg_dll_update_en            ),
@@ -640,7 +721,7 @@ ips2l_rst_sync_v1_3 #(
     .sig_synced                 (dll_freeze_syn               )
 );
 
-ips2l_ddrphy_gate_update_ctrl_v1_3 #(
+ips2l_ddrphy_gate_update_ctrl_v1_11 #(
     .UPDATE_EN                  (1'b0                         ),
     .MEM_DQS_WIDTH              (MEM_DQS_WIDTH                )
 )ddrphy_gate_update_ctrl(
@@ -654,10 +735,12 @@ ips2l_ddrphy_gate_update_ctrl_v1_3 #(
     .ddrphy_update_comp_dir     (ddrphy_update_comp_dir       )
 );
 
- ips2l_ddrphy_calib_top_v1_10 #(
+ ips2l_ddrphy_calib_top_v1_16 #(
     .DDR_TYPE                   (DDR_TYPE                     ),
-    .WRCAL_EN                   (1'b0                         ),
+    .WRCAL_EN                   (WRCAL_EN                     ),
+    .WRCAL_PERBITS              (WRCAL_PERBITS                ),
     .EYECAL_EN                  (EYECAL_EN                    ),
+    .DEBUG_TRAINING             (DEBUG_TRAINING               ),
     .T200US                     (T200US                       ),
     .T500US                     (T500US                       ),
     .T400NS                     (T400NS                       ),
@@ -673,11 +756,12 @@ ips2l_ddrphy_gate_update_ctrl_v1_3 #(
     .TEST_DATA_PATTERN1         (TEST_DATA_PATTERN1           ),
     .TEST_DATA_PATTERN2         (TEST_DATA_PATTERN2           ),
     .TEST_DATA_PATTERN3         (TEST_DATA_PATTERN3           ),
-    .MEM_ADDR_WIDTH             (MEM_ROW_WIDTH                ),
+    .MEM_ADDR_WIDTH             (TOTAL_ADDR_WIDTH             ),  
     .MEM_BANKADDR_WIDTH         (MEM_BANK_WIDTH               ),
     .MEM_DQ_WIDTH               (MEM_DQ_WIDTH                 ),
     .MEM_DM_WIDTH               (MEM_DM_WIDTH                 ),
-    .MEM_DQS_WIDTH              (MEM_DQS_WIDTH                )
+    .MEM_DQS_WIDTH              (MEM_DQS_WIDTH                ),
+    .RST_GPLL_PHASE_EN          (RST_GPLL_PHASE_EN            )
   )ddrphy_calib_top(            
     .mc_wl                      (mc_wl                        ),
     .mr0                        (mr0                          ),
@@ -687,6 +771,8 @@ ips2l_ddrphy_gate_update_ctrl_v1_3 #(
 
     .ddrphy_sysclk              (ddrphy_sysclk                ),
     .ddrphy_rst_n               (ddrphy_rst_n                 ),
+    .rst_clk                    (rst_clk                      ),
+    .ddr_rstn                   (rst_seq_rstn                 ), 
     .calib_done                 (calib_done                   ),
     .update_done                (update_done                  ),
     .ddrphy_rst_req             (ddrphy_rst_req               ),
@@ -707,7 +793,7 @@ ips2l_ddrphy_gate_update_ctrl_v1_3 #(
     .adj_rdel_done              (adj_rdel_done                ),
     .rdel_calibration           (rdel_calibration             ),
     .rdel_calib_done            (rdel_calib_done              ),
-    .rdel_calib_error           (rdel_calib_error             ),
+    .rdel_calib_error           (|rdel_calib_error             ),
     .rdel_move_en               (rdel_move_en                 ),
     .rdel_move_done             (rdel_move_done               ),
     .bitslip_ctrl               (bitslip_ctrl                 ),
@@ -719,7 +805,8 @@ ips2l_ddrphy_gate_update_ctrl_v1_3 #(
     .write_calibration          (write_calibration            ),
     .wrcal_move_en              (wrcal_move_en                ),
     .wrcal_move_done            (wrcal_move_done              ),
-    .wrcal_error                (wrcal_error                  ),
+    .dq_calib_done              (dq_calib_done                ),
+    .wrcal_error                (|wrcal_error                 ),
 
     .eye_calibration            (eye_calibration              ),
     .eyecal_check_pass          (eyecal_check_pass            ),
@@ -747,10 +834,15 @@ ips2l_ddrphy_gate_update_ctrl_v1_3 #(
     .calib_rst                  (calib_rst                    ),
     .calib_wrdata_en            (calib_wrdata_en              ),
     .calib_wrdata               (calib_wrdata                 ),
-    .calib_wrdata_mask          (calib_wrdata_mask            )
+    .calib_wrdata_mask          (calib_wrdata_mask            ),
+    .check_out_sync_point_begin (check_out_sync_point_begin   ),
+    .rst_gpll_phase_adj_finish  (rst_gpll_phase_adj_finish    ),
+    .wrlvl_trained_flag         (wrlvl_trained_flag           ),
+    .wrlvl_step_fix             (wrlvl_step_fix               ),
+    .tran_err_rst_sta           (tran_err_rst_sta             )
   );
 
- ips2l_ddrphy_training_ctrl_v1_0 ddrphy_training_ctrl
+ ips2l_ddrphy_training_ctrl_v1_11 ddrphy_training_ctrl
  (
     .ddrphy_sysclk              (ddrphy_sysclk                ),
     .ddrphy_rst_n               (ddrphy_rst_n                 ),
@@ -799,10 +891,13 @@ ips2l_rst_sync_v1_3 #(
     .sig_synced                 (wrcal_position_dyn_adj_syn   )
 );
 
- ddr3_slice_top_v1_10 #(
+ips2l_ddrphy_slice_top_v1_16 #(
     .CLKIN_FREQ                 (CLKIN_FREQ                   ), 
     .PPLL_BANDWIDTH             (PPLL_BANDWIDTH               ),
     .DDR_TYPE                   (DDR_TYPE                     ),
+    .DIMM_EN                    (DIMM_EN                      ),
+    .WRCAL_EN                   (WRCAL_EN                     ),
+    .WRCAL_PERBITS              (WRCAL_PERBITS                ),
     .TEST_DATA_PATTERN0         (TEST_DATA_PATTERN0           ),
     .TEST_DATA_PATTERN1         (TEST_DATA_PATTERN1           ),
     .TEST_DATA_PATTERN2         (TEST_DATA_PATTERN2           ),
@@ -810,14 +905,17 @@ ips2l_rst_sync_v1_3 #(
     .GATE_MODE                  (1'b1                         ),
     .SC_LDO_CTRL                (SC_LDO_CTRL                  ),
     .SC_DLY_2X                  (SC_DLY_2X                    ),
+    .PERBITS_DLY_2X             (PERBITS_DLY_2X               ),
     .PPLL_IDIV                  (PPLL_IDIV                    ),
     .PPLL_FDIV                  (PPLL_FDIV                    ),
     .PPLL_ODIVPHY               (PPLL_ODIVPHY                 ),
-    .MEM_ADDR_WIDTH             (MEM_ROW_WIDTH                ),
+    .MEM_ADDR_WIDTH             (TOTAL_ADDR_WIDTH                ),
     .MEM_BANKADDR_WIDTH         (MEM_BANK_WIDTH               ),
     .MEM_DQ_WIDTH               (MEM_DQ_WIDTH                 ),
     .MEM_DQS_WIDTH              (MEM_DQS_WIDTH                ),
-    .MEM_DM_WIDTH               (MEM_DM_WIDTH                 )
+    .MEM_DM_WIDTH               (MEM_DM_WIDTH                 ),
+    .DEVICE_ID                  (DEVICE_ID                    ),
+    .GATEI_EN                   (GATEI_EN                     )
  )ddrphy_slice_top(                          
     .mc_rl                      (mc_rl                        ),
     .force_read_clk_ctrl        (force_read_clk_ctrl_syn      ),
@@ -826,10 +924,11 @@ ips2l_rst_sync_v1_3 #(
     .force_samp_position        (force_samp_position_syn      ),
     .samp_position_dyn_adj      (samp_position_dyn_adj_syn    ),
     .init_samp_position_even    (init_samp_position_even      ),
-    .init_samp_position_odd     (init_samp_position_odd       ),
+//    .init_samp_position_odd     (init_samp_position_odd       ),
     .init_wrlvl_step            (init_wrlvl_step              ),
     .ck_dly_en                  (ck_dly_en                    ),
     .init_ck_dly_step           (init_ck_dly_step             ),
+    .calib_done                 (calib_done                   ),
                                                
     .ddrphy_sysclk              (ddrphy_sysclk                ),
     .ddrphy_rst_n               (ddrphy_rst_n                 ),
@@ -846,6 +945,7 @@ ips2l_rst_sync_v1_3 #(
     .phy_sysclk_fb              (phy_sysclk_fb                ),
     .phy_ioclk_fb               (phy_ioclk_fb                 ),
     .ddrphy_iol_rst             (ddrphy_iol_rst               ),
+    .ddr_rstn                   (rst_seq_rstn                 ),
     
     .ddrphy_dqs_rst             (ddrphy_dqs_rst               ),
     .ddrphy_dqs_training_rstn   (ddrphy_dqs_training_rstn     ),
@@ -855,6 +955,7 @@ ips2l_rst_sync_v1_3 #(
     .wrlvl_error                (wrlvl_error                  ),
     .ck_step_ov_warning         (ck_step_ov_warning           ),
     .wl_step_ov_warning         (wl_step_ov_warning           ),
+    .wrlvl_trained_flag         (wrlvl_trained_flag           ),
                            
     .gatecal_start              (gatecal_start                ),
     .gate_check_pass            (gate_check_pass              ),
@@ -888,6 +989,7 @@ ips2l_rst_sync_v1_3 #(
     .write_calibration          (write_calibration            ),
     .wrcal_move_en              (wrcal_move_en                ),
     .wrcal_move_done            (wrcal_move_done              ),
+    .dq_calib_done              (dq_calib_done                ),
     .wrcal_error                (wrcal_error                  ),
                                                               
     .eye_calibration            (eye_calibration              ),
@@ -898,8 +1000,9 @@ ips2l_rst_sync_v1_3 #(
     .read_valid                 (read_valid                   ),
     .o_read_data                (o_read_data                  ),
     .align_error                (align_error                  ),
-    
-    .ck_dly_set_bin             (ck_dly_set_bin               ),
+    .dq_idly_bin                (dq_idly_bin                  ), 
+    .dq_odly_bin                (dq_odly_bin                  ), 
+    .fin_ck_dly_set_bin         (ck_dly_set_bin               ),
           
     .phy_wrdata_en              (phy_wrdata_en                ),
     .phy_wrdata_mask            (phy_wrdata_mask              ),
@@ -914,10 +1017,9 @@ ips2l_rst_sync_v1_3 #(
     .phy_odt                    (phy_odt                      ),
     .phy_ck                     (phy_ck                       ),
     .phy_rst                    (phy_rst                      ),
-
-
+`ifdef CS_N_EN
     .mem_cs_n                   (mem_cs_n                     ),
-
+`endif
     .mem_rst_n                  (mem_rst_n                    ),
     .mem_ck                     (mem_ck                       ),
     .mem_ck_n                   (mem_ck_n                     ),
@@ -934,12 +1036,15 @@ ips2l_rst_sync_v1_3 #(
     .mem_dm                     (mem_dm                       ),
     .dbg_slice_status           (dbg_slice_status             ),
     .dbg_slice_state            (dbg_slice_state              ),
-    .debug_data                 (debug_data                   )
-  );                                              
+    .debug_data                 (debug_data                   ),
+    .all_group_cnt              (all_group_cnt                ),
+    .wrlvl_step_b1              (wrlvl_step_b1                ),
+    .wrlvl_step_b2              (wrlvl_step_b2                )
+);                                              
  
   ips2l_ddrphy_dfi_v1_3 #(
     .DDR_TYPE                   (DDR_TYPE                     ),
-    .MEM_ADDR_WIDTH             (MEM_ROW_WIDTH                ),
+    .MEM_ADDR_WIDTH             (TOTAL_ADDR_WIDTH                ),
     .MEM_BANKADDR_WIDTH         (MEM_BANK_WIDTH               ),
     .MEM_DQ_WIDTH               (MEM_DQ_WIDTH                 ),
     .MEM_DQS_WIDTH              (MEM_DQS_WIDTH                ),
@@ -1004,7 +1109,7 @@ ips2l_rst_sync_v1_3 #(
 
   ips2l_ddrphy_info_v1_0 #(
     .DDR_TYPE                   (DDR_TYPE                     ),
-    .MEM_ADDR_WIDTH             (MEM_ROW_WIDTH                ),
+    .MEM_ADDR_WIDTH             (TOTAL_ADDR_WIDTH                ),
     .MEM_BANKADDR_WIDTH         (MEM_BANK_WIDTH               ),
     .MR0_DDR3                   (MR0_DDR3                     ),
     .MR1_DDR3                   (MR1_DDR3                     ),

@@ -10,6 +10,8 @@ module soc_top #(
     parameter integer ENABLE_DDR = 0,
     parameter [31:0] DDR_BASE = 32'h4000_0000,
     parameter [31:0] DDR_ADDR_MASK = 32'he000_0000,
+    parameter integer DDR_MEM_DQ_WIDTH = 16,
+    parameter integer DDR_POSTED_WRITE_ENABLE = 1,
     parameter integer INST_REQ_STALL_CYCLES = 0,
     parameter integer INST_RSP_DELAY_CYCLES = 0,
     parameter integer DATA_REQ_STALL_CYCLES = 0,
@@ -41,8 +43,8 @@ module soc_top #(
     output wire [ 3:0] ddr_axi_awlen,
     input  wire        ddr_axi_awready,
     output wire        ddr_axi_awvalid,
-    output wire [127:0] ddr_axi_wdata,
-    output wire [15:0] ddr_axi_wstrb,
+    output wire [8*DDR_MEM_DQ_WIDTH-1:0] ddr_axi_wdata,
+    output wire [DDR_MEM_DQ_WIDTH-1:0] ddr_axi_wstrb,
     input  wire        ddr_axi_wready,
     input  wire [ 3:0] ddr_axi_wusero_id,
     input  wire        ddr_axi_wusero_last,
@@ -52,7 +54,7 @@ module soc_top #(
     output wire [ 3:0] ddr_axi_arlen,
     input  wire        ddr_axi_arready,
     output wire        ddr_axi_arvalid,
-    input  wire [127:0] ddr_axi_rdata,
+    input  wire [8*DDR_MEM_DQ_WIDTH-1:0] ddr_axi_rdata,
     input  wire [ 3:0] ddr_axi_rid,
     input  wire        ddr_axi_rlast,
     input  wire        ddr_axi_rvalid,
@@ -120,6 +122,9 @@ module soc_top #(
     wire        data_ddr_rsp_valid;
     wire [31:0] data_ddr_rsp_rdata;
     wire        data_ddr_rsp_error;
+    wire        ddr_write_buffer_busy;
+    localparam integer DDR_WRITE_ORDER_ACTIVE = (ENABLE_DDR != 0) &&
+                          (DDR_MEM_DQ_WIDTH == 32) && (DDR_POSTED_WRITE_ENABLE != 0);
 
     wire        mmio_req_valid;
     wire        mmio_req_write;
@@ -158,13 +163,15 @@ module soc_top #(
     assign data_write = data_req_valid && data_req_ready &&  data_req_write;
 
     mycpu_sync #(
-        .RESET_PC(RESET_PC)
+        .RESET_PC(RESET_PC),
+        .EXTERNAL_MEM_DRAIN_ENABLE(DDR_WRITE_ORDER_ACTIVE)
     ) u_cpu (
         .clk               (clk),
         .resetn            (resetn),
         .irq_external      (cpu_irq_external),
         .irq_software      (irq_software),
         .irq_timer         (irq_timer),
+        .memory_order_busy (ddr_write_buffer_busy),
         .inst_req_valid    (inst_req_valid),
         .inst_req_addr     (inst_req_addr),
         .inst_req_ready    (inst_req_ready),
@@ -253,10 +260,12 @@ module soc_top #(
         .DDR_BASE      (DDR_BASE),
         .DDR_ADDR_MASK (DDR_ADDR_MASK),
         .ENABLE_UART   (1),
-        .UART_BASE     (UART_BASE)
+        .UART_BASE     (UART_BASE),
+        .DDR_WRITE_ORDER_ENABLE(DDR_WRITE_ORDER_ACTIVE)
     ) u_data_bus_interconnect (
         .clk            (clk),
         .resetn         (resetn),
+        .ddr_write_buffer_busy(ddr_write_buffer_busy),
         .m_req_valid    (data_req_valid),
         .m_req_write    (data_req_write),
         .m_req_size     (data_req_size),
@@ -370,10 +379,14 @@ module soc_top #(
 
     generate
         if (ENABLE_DDR != 0) begin : g_ddr
-            dual_sram_to_pango_ddr_bridge u_ddr_bridge (
+            dual_sram_to_pango_ddr_bridge #(
+                .MEM_DQ_WIDTH(DDR_MEM_DQ_WIDTH),
+                .POSTED_WRITE_ENABLE(DDR_WRITE_ORDER_ACTIVE)
+            ) u_ddr_bridge (
                 .clk              (clk),
                 .resetn           (resetn),
                 .ddr_init_done    (ddr_init_done),
+                .write_buffer_busy(ddr_write_buffer_busy),
                 .inst_req_valid   (inst_ddr_req_valid),
                 .inst_req_addr    (inst_ddr_req_addr),
                 .inst_req_ready   (inst_ddr_req_ready),
@@ -413,6 +426,7 @@ module soc_top #(
                 .axi_rvalid       (ddr_axi_rvalid)
             );
         end else begin : g_no_ddr
+            assign ddr_write_buffer_busy = 1'b0;
             assign inst_ddr_req_ready = 1'b0;
             assign inst_ddr_rsp_valid = 1'b0;
             assign inst_ddr_rsp_rdata = 32'b0;
@@ -426,8 +440,8 @@ module soc_top #(
             assign ddr_axi_awuser_id  = 4'b0;
             assign ddr_axi_awlen      = 4'b0;
             assign ddr_axi_awvalid    = 1'b0;
-            assign ddr_axi_wdata      = 128'b0;
-            assign ddr_axi_wstrb      = 16'b0;
+            assign ddr_axi_wdata      = {(8*DDR_MEM_DQ_WIDTH){1'b0}};
+            assign ddr_axi_wstrb      = {DDR_MEM_DQ_WIDTH{1'b0}};
             assign ddr_axi_araddr     = 28'b0;
             assign ddr_axi_aruser_ap  = 1'b0;
             assign ddr_axi_aruser_id  = 4'b0;

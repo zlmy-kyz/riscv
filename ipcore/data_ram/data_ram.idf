@@ -8,66 +8,34 @@
         <version>1.8</version>
         <instance>data_ram</instance>
         <family>Logos2</family>
-        <device>PG2L100H</device>
-        <package>FBG484</package>
+        <device>PG2L200H</device>
+        <package>FBB676</package>
         <speedgrade>-6</speedgrade>
         <generator version="2022.2-SP6.4" build="146967">IP Compiler</generator>
     </header>
     <param_list>
         <param>
-            <name>CLK_OR_POL_INV</name>
-            <value>false</value>
-        </param>
-        <param>
-            <name>INIT_EN</name>
-            <value>true</value>
-        </param>
-        <param>
-            <name>CAS_MODE_SEL</name>
-            <value>AUTO</value>
-        </param>
-        <param>
-            <name>WRITE_MODE</name>
-            <value>NORMAL_WRITE</value>
-        </param>
-        <param>
-            <name>POWER_OPT</name>
-            <value>false</value>
-        </param>
-        <param>
             <name>FAB_REG</name>
             <value>false</value>
-        </param>
-        <param>
-            <name>CAS_MODE</name>
-            <value>36K</value>
-        </param>
-        <param>
-            <name>RST_VAL_EN</name>
-            <value>false</value>
-        </param>
-        <param>
-            <name>BE_WIDTH</name>
-            <value>4</value>
-        </param>
-        <param>
-            <name>DATA_WIDTH</name>
-            <value>32</value>
-        </param>
-        <param>
-            <name>ADDR_WIDTH</name>
-            <value>12</value>
         </param>
         <param>
             <name>WR_BYTE_EN</name>
             <value>true</value>
         </param>
         <param>
-            <name>INIT_FORMAT</name>
-            <value>HEX</value>
+            <name>CAS_MODE</name>
+            <value>36K</value>
         </param>
         <param>
-            <name>ADDR_STROBE_EN</name>
+            <name>BE_WIDTH</name>
+            <value>4</value>
+        </param>
+        <param>
+            <name>RST_VAL_EN</name>
+            <value>false</value>
+        </param>
+        <param>
+            <name>CLK_OR_POL_INV</name>
             <value>false</value>
         </param>
         <param>
@@ -79,15 +47,43 @@
             <value>false</value>
         </param>
         <param>
+            <name>RST_VAL</name>
+            <value>0</value>
+        </param>
+        <param>
             <name>RESET_TYPE</name>
             <value>SYNC</value>
         </param>
         <param>
-            <name>RD_OCE_EN</name>
+            <name>POWER_OPT</name>
             <value>false</value>
         </param>
         <param>
+            <name>WRITE_MODE</name>
+            <value>NORMAL_WRITE</value>
+        </param>
+        <param>
+            <name>INIT_EN</name>
+            <value>true</value>
+        </param>
+        <param>
+            <name>CAS_MODE_SEL</name>
+            <value>AUTO</value>
+        </param>
+        <param>
+            <name>ADDR_WIDTH</name>
+            <value>12</value>
+        </param>
+        <param>
+            <name>INIT_FORMAT</name>
+            <value>HEX</value>
+        </param>
+        <param>
             <name>OUTPUT_REG</name>
+            <value>false</value>
+        </param>
+        <param>
+            <name>RD_OCE_EN</name>
             <value>false</value>
         </param>
         <param>
@@ -95,8 +91,12 @@
             <value>D:/riscv/RISCV/tests/uart_loader/candidates/verify_run_hello/build/loader_ram.dat</value>
         </param>
         <param>
-            <name>RST_VAL</name>
-            <value>0</value>
+            <name>DATA_WIDTH</name>
+            <value>32</value>
+        </param>
+        <param>
+            <name>ADDR_STROBE_EN</name>
+            <value>false</value>
         </param>
     </param_list>
     <pin_list>

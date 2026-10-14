@@ -1,7 +1,6 @@
 `timescale 1ns / 1ps
 
-// x16 / 4Gb DDR3 集成顶层。ddr_ref_clk 是已缓冲的单端参考时钟；
-// RK3568 板上的差分晶振需要在板级顶层先经 GTP_INBUFDS 转成此信号。
+// MINI-(200H) x32 / 8Gb DDR3 集成顶层。ddr_ref_clk 是已缓冲的单端参考时钟。
 // 当前生成 DDR3 IP 使用 125 MHz 参考时钟、750 Mbps；core_clk 为 93.75 MHz。
 // CORE_CLK_HZ 默认值保留仿真接口兼容，board_top 按实际 core_clk 覆写。
 module soc_ddr3_top #(
@@ -34,10 +33,10 @@ module soc_ddr3_top #(
     output wire        mem_odt,
     output wire [14:0] mem_a,
     output wire [ 2:0] mem_ba,
-    inout  wire [ 1:0] mem_dqs,
-    inout  wire [ 1:0] mem_dqs_n,
-    inout  wire [15:0] mem_dq,
-    output wire [ 1:0] mem_dm,
+    inout  wire [ 3:0] mem_dqs,
+    inout  wire [ 3:0] mem_dqs_n,
+    inout  wire [31:0] mem_dq,
+    output wire [ 3:0] mem_dm,
     output wire        led_clk_alive,
     output wire        led_ddr_ready,
     output wire        led_selftest,
@@ -52,8 +51,8 @@ module soc_ddr3_top #(
     wire [ 3:0] axi_awlen;
     wire        axi_awready;
     wire        axi_awvalid;
-    wire [127:0] axi_wdata;
-    wire [ 15:0] axi_wstrb;
+    wire [255:0] axi_wdata;
+    wire [ 31:0] axi_wstrb;
     wire        axi_wready;
     wire [ 3:0] axi_wusero_id;
     wire        axi_wusero_last;
@@ -63,7 +62,7 @@ module soc_ddr3_top #(
     wire [ 3:0] axi_arlen;
     wire        axi_arready;
     wire        axi_arvalid;
-    wire [127:0] axi_rdata;
+    wire [255:0] axi_rdata;
     wire [ 3:0] axi_rid;
     wire        axi_rlast;
     wire        axi_rvalid;
@@ -91,7 +90,10 @@ module soc_ddr3_top #(
     soc_top #(
         .RESET_PC(RESET_PC),
         .ENABLE_DDR(1),
-        .DDR_BASE(DDR_BASE)
+        .DDR_BASE(DDR_BASE),
+        .DDR_ADDR_MASK(32'hc000_0000),
+        .DDR_MEM_DQ_WIDTH(32),
+        .UART_CLK_HZ(CORE_CLK_HZ)
     ) u_soc (
         .clk(core_clk),
         .resetn(soc_resetn),
@@ -191,13 +193,12 @@ module soc_ddr3_top #(
         .dbg_ddrphy_rst_n(1'b1),
         .dbg_gpll_scan_rst(1'b0),
         .samp_position_dyn_adj(1'b0),
-        .init_samp_position_even(16'b0),
-        .init_samp_position_odd(16'b0),
+        .init_samp_position_even(32'b0),
         .wrcal_position_dyn_adj(1'b0),
-        .init_wrcal_position(16'b0),
+        .init_wrcal_position(32'b0),
         .force_read_clk_ctrl(1'b0),
-        .init_slip_step(8'b0),
-        .init_read_clk_ctrl(6'b0),
+        .init_slip_step(16'b0),
+        .init_read_clk_ctrl(12'b0),
         .debug_calib_ctrl(),
         .dbg_slice_status(),
         .dbg_slice_state(),

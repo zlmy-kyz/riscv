@@ -12,13 +12,23 @@
 
 冻结 P300/V300 在原板实测分别为 **2.242630368 秒**、**2.240607787 秒**，都不足 CoreMark 正式成绩所需的 10 秒，只能作工程比较。本机位流文件的 SHA 已核对；旧实板串口日志没有记录位流 SHA，因此不能仅凭该日志独立证明下载的恰为此文件。同学应在相同板型下载本目录文件后重新验收。
 
-仓库已有 CPU/SoC 源码、BSP、CoreMark 算法源码和 Loader 协议源码；本目录只额外发布一次交接所需的位流、两个固定 BIN、工具和本说明。旧的 `tests/c_app/run_app.py`、`tools/uart_loader/candidates/perf_2b` 工具带有本地冻结门控及旧板位流路径，不用于这个交接入口。
+仓库同时提供与本机 MINI PDS 工程对应的 CPU/SoC RTL、六块 IP 的配置及生成源、约束、Loader ROM/RAM 初始化 DAT、BSP、CoreMark 算法源码和 Loader 协议源码。本目录的 `pds_inputs.json` 锁定这次交接的 **143 个实际工程输入**，`check_pds.py` 核对其路径和 SHA。旧的 `tests/c_app/run_app.py`、`tools/uart_loader/candidates/perf_2b` 工具带有本地冻结门控及旧板位流路径，不用于这个交接入口。
 
 ## 准备
 
 1. 克隆本仓库，安装 Python 3 和 `pyserial`（`python -m pip install pyserial`）。如需编译 C，另装 RV32 交叉 GCC，给 `--toolchain` 传入含 `riscv-none-elf-gcc.exe` 的目录；Windows 本机若已有 `xpack-riscv-none-elf-gcc-15.2.0-1/bin` 可省略。编译器不随 GitHub 仓库发布。
 2. 使用 Pango 下载工具把 `share/mini_ddr3/board_top.sbit` 下载到相同的 PG2L200H MINI 板。关闭占用串口的其他程序。
 3. 每次 `run` 命令按提示按下并释放 KEY0，等待 DDR 初始化完成，再回车。掉电后 FPGA 配置和 DDR 数据都需要重新建立。工具不自动重试，不覆盖既有日志。
+
+## 从源码重新运行 PDS
+
+本工程的 PDS 输入现已和本目录位流一同交接。先克隆到 `D:/riscv/RISCV`；ROM/RAM 的 `.idf` 和生成包装器、DDR `.idf` 的约束入口仍含该绝对路径。换目录时须在 PDS 中重新指定两份 Loader DAT 与 DDR 约束、重新生成相关 IP；路径变动后清单哈希自然不再相同，需要建立自己的输入身份。使用 **PDS 2022.2-SP6.4** 打开根目录 [`RISCV.pds`](../../RISCV.pds)，目标为 **PG2L200H、FBB676、-6**，顶层 `board_top`，约束为 `constraint_check/temp_constraint_file.fdc`。在编译前执行：
+
+```powershell
+python share/mini_ddr3/check_pds.py
+```
+
+显示 `PDS INPUTS PASS ... inputs=143` 表示本地 CPU/SoC RTL、ROM/RAM、DDR3、I64/D64 Cache、乘法 IP、include 和初始化 DAT 与这次交接相符。随后从 **Compile → Synthesize → Device Map → Place & Route → Report Timing → Generate Bitstream** 完整运行；检查工具报告中的错误、时序和板卡引脚。重新实现产生的是**新位流**，即使源输入一致，也要用新结果验收串口 Loader、DDR 执行和跑分，不能套用上文冻结位流的板上通过结论。PDS 安装目录、器件许可和下载器由使用者本机提供；仓库不包含编译数据库。
 
 ## 使用冻结程序进行工程性能比较
 
