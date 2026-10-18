@@ -1,14 +1,21 @@
 """Build and run the branch / EX-redirect regression with iverilog.
 
 Usage:
-    python sim/br_ex_redirect/run.py [--tag name]
+    python sim/br_ex_redirect/run.py --tag <new_tag>
+    python sim/br_ex_redirect/run.py --tag <tag> --rtl <path to mycpu_sync.v>
+    python sim/br_ex_redirect/run.py --tag <tag> --only 2      # bench only
 
-Creates build/<tag>/ containing imem.hex, dmem_init.hex, program.lst,
-compile.log and run.log. Never overwrites an existing tag directory.
+Modes:
+    0  directed branch / jump / load-use program, checks DMEM results
+    1  misaligned-jalr must trap instead of redirecting
+    2  1000 taken-branch loop, prints BENCH_DONE cycles=<n> for A/B compare
+
+Never overwrites an existing tag directory. build/ is git-ignored.
 """
 from pathlib import Path
 import argparse
 import json
+import re
 import subprocess
 import sys
 
@@ -17,9 +24,7 @@ ROOT = HERE.parents[1]
 IVERILOG = Path("D:/iverilog/bin/iverilog.exe")
 VVP = Path("D:/iverilog/bin/vvp.exe")
 
-SRCS = [
-    HERE / "tb_br_ex_redirect.v",
-    ROOT / "myriscv" / "mycpu_sync.v",
+FIXED_SRCS = [
     ROOT / "myriscv" / "regfile.v",
     ROOT / "myriscv" / "alu.v",
     ROOT / "myriscv" / "l_alu.v",
@@ -27,6 +32,15 @@ SRCS = [
     ROOT / "myriscv" / "csr_file.v",
     HERE / "mul_behavioral.v",
 ]
+
+PROGRAMS = {0: "program.S", 1: "program_trap.S", 2: "program_bench.S"}
+SUBDIR = {0: "m0", 1: "m1", 2: "bench"}
+
+DMEM_INIT = {
+    0: {0x40: 0x00001234, 0x41: 0x00000000, 0x44: 0x00000000, 0x48: 0x00000000},
+    1: {},
+    2: {},
+}
 
 
 def write_dmem_init(path, words):
@@ -36,9 +50,37 @@ def write_dmem_init(path, words):
     path.write_text("\n".join(lines) + "\n", encoding="ascii")
 
 
+def run_mode(build, mode):
+    sub = build / SUBDIR[mode]
+    sub.mkdir()
+    r = subprocess.run([sys.executable, str(HERE / "asm.py"),
+                        str(HERE / PROGRAMS[mode]), str(sub)],
+                       capture_output=True, text=True)
+    if r.returncode != 0:
+        print(r.stdout, r.stderr)
+        raise SystemExit(f"assemble failed for mode {mode}")
+    print(f"mode {mode}: {r.stdout.strip()}")
+    write_dmem_init(sub / "dmem_init.hex", DMEM_INIT[mode])
+
+    r = subprocess.run([str(VVP), str(build / "tb.vvp"), f"+MODE={mode}"],
+                       capture_output=True, text=True, cwd=sub)
+    log = r.stdout + r.stderr
+    (sub / "run.log").write_text(log, encoding="utf-8", errors="replace")
+    print(log)
+
+    ok = "RESULT: PASS" in log and "RESULT: FAIL" not in log
+    cycles = None
+    m = re.search(r"BENCH_DONE cycles=(\d+)", log)
+    if m:
+        cycles = int(m.group(1))
+    return ok, cycles, str(sub / "run.log")
+
+
 def main():
     ap = argparse.ArgumentParser()
-    ap.add_argument("--tag", default="br_ex_redirect_20261018_a")
+    ap.add_argument("--tag", required=True)
+    ap.add_argument("--rtl", default=str(ROOT / "myriscv" / "mycpu_sync.v"))
+    ap.add_argument("--only", type=int, choices=[0, 1, 2], default=None)
     args = ap.parse_args()
 
     build = HERE / "build" / args.tag
@@ -47,57 +89,29 @@ def main():
         return 2
     build.mkdir(parents=True)
 
-    r = subprocess.run([sys.executable, str(HERE / "asm.py"), str(HERE / "program.S"), str(build)],
-                       capture_output=True, text=True)
-    print(r.stdout.strip())
-    if r.returncode != 0:
-        print(r.stderr)
-        return 3
-
-    trap_build = build / "trap"
-    trap_build.mkdir()
-    r = subprocess.run([sys.executable, str(HERE / "asm.py"), str(HERE / "program_trap.S"), str(trap_build)],
-                       capture_output=True, text=True)
-    print(r.stdout.strip())
-    if r.returncode != 0:
-        print(r.stderr)
-        return 3
-
-    write_dmem_init(build / "dmem_init.hex", {
-        0x40: 0x00001234,   # 0x100: non-zero word for the branch test
-        0x41: 0x00000000,   # 0x104: zero word
-        0x44: 0x00000000,   # 0x110: scratch for the jalr test
-        0x48: 0x00000000,   # 0x120: zero word holding MEM in case 6
-    })
-    write_dmem_init(trap_build / "dmem_init.hex", {})
-
-    argv = [str(IVERILOG), "-g2012", "-Wall", "-Wno-timescale", "-I", str(ROOT / "myriscv"),
-            "-o", str(build / "tb.vvp")] + [str(p) for p in SRCS]
+    srcs = [HERE / "tb_br_ex_redirect.v", Path(args.rtl)] + FIXED_SRCS
+    argv = [str(IVERILOG), "-g2012", "-Wall", "-Wno-timescale",
+            "-I", str(ROOT / "myriscv"), "-o", str(build / "tb.vvp")] + [str(p) for p in srcs]
     r = subprocess.run(argv, capture_output=True, text=True, cwd=build)
     (build / "compile.log").write_text(r.stdout + r.stderr, encoding="utf-8", errors="replace")
     if r.returncode != 0:
         print("COMPILE FAIL")
         print(r.stdout + r.stderr)
         return 4
+    print(f"compiled with rtl={args.rtl}")
 
-    ok = True
-    for mode, sub in ((0, build), (1, trap_build)):
-        r = subprocess.run([str(VVP), str(build / "tb.vvp"), f"+MODE={mode}"],
-                           capture_output=True, text=True, cwd=sub)
-        log = r.stdout + r.stderr
-        name = "run.log" if mode == 0 else "run_trap.log"
-        (sub / name).write_text(log, encoding="utf-8", errors="replace")
-        print(log)
-        if not ("RESULT: PASS" in log and "RESULT: FAIL" not in log):
-            ok = False
+    modes = [args.only] if args.only is not None else [0, 1, 2]
+    results, all_ok = {}, True
+    for m in modes:
+        ok, cycles, logpath = run_mode(build, m)
+        all_ok = all_ok and ok
+        results[f"mode{m}"] = {"pass": ok, "bench_cycles": cycles, "log": logpath}
 
     (build / "result.json").write_text(
-        json.dumps({"tag": args.tag, "pass": ok,
-                    "modes": ["main", "trap"],
-                    "logs": [str(build / "run.log"), str(trap_build / "run_trap.log")]}, indent=2) + "\n",
-        encoding="utf-8")
-    print("PASS" if ok else "FAIL")
-    return 0 if ok else 5
+        json.dumps({"tag": args.tag, "rtl": args.rtl, "pass": all_ok,
+                    "modes": results}, indent=2) + "\n", encoding="utf-8")
+    print("PASS" if all_ok else "FAIL")
+    return 0 if all_ok else 5
 
 
 if __name__ == "__main__":

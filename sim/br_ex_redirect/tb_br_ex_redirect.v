@@ -105,10 +105,20 @@ module tb_br_ex_redirect;
     // ---------------- 观测 ----------------
     integer retire = 0;
     integer traps  = 0;
+    integer cycles = 0;
+    reg     bench_done = 1'b0;
+
     always @(posedge clk) begin
+        cycles = cycles + 1;
         if (resetn) begin
             if (perf_events[0]) retire = retire + 1;
             if (perf_events[1]) traps  = traps + 1;
+            // bench 程序最后一条 store 写 dmem[8] (0x20) 作为完成标记
+            if (!bench_done && data_req_valid && data_req_ready && data_req_write &&
+                (data_req_addr[10:2] == 10'd8) && (data_req_wstrb != 4'b0)) begin
+                bench_done <= 1'b1;
+                $display("BENCH_DONE cycles=%0d retire=%0d", cycles, retire);
+            end
         end
     end
 
@@ -140,11 +150,18 @@ module tb_br_ex_redirect;
 
         repeat (6) @(posedge clk);
         resetn = 1'b1;
-        repeat (600) @(posedge clk);
+        if (mode == 2) repeat (30000) @(posedge clk);
+        else           repeat (600) @(posedge clk);
 
-        $display("---- mode=%0d retire=%0d traps=%0d ----", mode, retire, traps);
+        $display("---- mode=%0d retire=%0d traps=%0d cycles=%0d ----", mode, retire, traps, cycles);
 
-        if (mode == 0) begin
+        if (mode == 2) begin
+            if (!bench_done) begin
+                errors = errors + 1;
+                $display("  [FAIL] bench did not finish");
+            end
+            chk32(32'd32, 32'd1000, "bench_count");
+        end else if (mode == 0) begin
             chk32(32'd0,  32'h0000_000C, "basic_branch");
             chk32(32'd4,  32'h0000_002A, "jal_jalr");
             chk32(32'd8,  32'h0000_0001, "load_to_branch");
@@ -176,7 +193,7 @@ module tb_br_ex_redirect;
     end
 
     initial begin
-        repeat (4000) @(posedge clk);
+        repeat (40000) @(posedge clk);
         $display("RESULT: FAIL br_ex_redirect timeout");
         $finish;
     end
