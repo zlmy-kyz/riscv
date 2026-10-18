@@ -10,6 +10,7 @@ module tb_soc_ddr3_rv32i_fast;
     initial begin #35 resetn = 1'b1; end
 
     wire [27:0] awaddr, araddr;
+    wire [3:0] aruser_id;
     wire awvalid, arvalid;
     wire [127:0] wdata;
     wire [15:0] wstrb;
@@ -20,6 +21,7 @@ module tb_soc_ddr3_rv32i_fast;
     wire [31:0] debug_inst;
     reg [127:0] rdata;
     reg rvalid = 1'b0;
+    reg [3:0] response_id = 4'b0;
 
     soc_top #(.RESET_PC(32'h0000_0000), .ENABLE_DDR(1),
               .DDR_BASE(32'h8000_0000)) dut (
@@ -35,8 +37,9 @@ module tb_soc_ddr3_rv32i_fast;
         .ddr_axi_wstrb(wstrb), .ddr_axi_wready(1'b1),
         .ddr_axi_wusero_id(4'd1), .ddr_axi_wusero_last(1'b1),
         .ddr_axi_araddr(araddr), .ddr_axi_arvalid(arvalid),
+        .ddr_axi_aruser_id(aruser_id),
         .ddr_axi_arready(1'b1), .ddr_axi_rdata(rdata),
-        .ddr_axi_rid(4'd0), .ddr_axi_rlast(1'b1),
+        .ddr_axi_rid(response_id), .ddr_axi_rlast(1'b1),
         .ddr_axi_rvalid(rvalid)
     );
 
@@ -45,8 +48,10 @@ module tb_soc_ddr3_rv32i_fast;
     integer byte_index;
     always @(posedge clk) begin
         rvalid <= arvalid;
-        if (arvalid)
+        if (arvalid) begin
             rdata <= beats[araddr[14:3]];
+            response_id <= aruser_id;
+        end
         if (awvalid)
             for (byte_index = 0; byte_index < 16; byte_index = byte_index + 1)
                 if (wstrb[byte_index])
@@ -58,21 +63,32 @@ module tb_soc_ddr3_rv32i_fast;
     reg [31:0] tohost_addr;
     integer cycles = 0;
     integer loader_writes = 0;
+    integer data_reads = 0, data_ar_commands = 0;
+    integer expect_data_hits = 0;
     reg saw_ddr_fetch = 1'b0;
     initial begin
         if (!$value$plusargs("TEST=%s", test_name))
             $fatal(1, "missing +TEST=<name>");
         if (!$value$plusargs("TOHOST=%h", tohost_addr))
             $fatal(1, "missing +TOHOST=<hex address>");
+        if ($value$plusargs("EXPECT_D_HITS=%d", expect_data_hits)) begin end
     end
 
     always @(posedge clk) begin
         if (!resetn) begin
             cycles <= 0;
             loader_writes <= 0;
+            data_reads <= 0;
+            data_ar_commands <= 0;
             saw_ddr_fetch <= 1'b0;
         end else begin
             cycles <= cycles + 1;
+            // Observe accepted bridge-facing requests/commands, never cache internals.
+            if (saw_ddr_fetch && dut.data_req_valid && dut.data_req_ready &&
+                !dut.data_req_write && dut.data_req_addr >= 32'h8000_0000)
+                data_reads <= data_reads + 1;
+            if (saw_ddr_fetch && arvalid && aruser_id == 4'd1)
+                data_ar_commands <= data_ar_commands + 1;
             if ((dut.inst_rsp_valid && dut.inst_rsp_error) ||
                 (dut.data_rsp_valid && dut.data_rsp_error)) begin
                 $display("RESULT: FAIL %s bus access fault pc=%h", test_name,
@@ -101,6 +117,16 @@ module tb_soc_ddr3_rv32i_fast;
             if (saw_ddr_fetch &&
                 dut.data_req_valid && dut.data_req_ready &&
                 dut.data_req_write && dut.data_req_addr == tohost_addr) begin
+                if (expect_data_hits != 0) begin
+                    if (data_ar_commands <= 0 || data_ar_commands >= data_reads) begin
+                        $display("RESULT: FAIL %s D hit coverage reads=%0d AR=%0d",
+                                 test_name, data_reads, data_ar_commands);
+                        $finish;
+                    end
+                    $display("CHECK: %s D_READS=%0d D_AR=%0d D_HITS=%0d",
+                             test_name, data_reads, data_ar_commands,
+                             data_reads - data_ar_commands);
+                end
                 if (dut.data_req_wdata === 32'd1)
                     $display("RESULT: PASS %s DDR RV32I tohost=1 cycles=%0d",
                              test_name, cycles);

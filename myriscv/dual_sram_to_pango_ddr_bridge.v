@@ -25,6 +25,10 @@
 //     x16 保留原数组和写命中失效策略。
 //   * 旧响应周期可同时接受下一请求；同步 DRM 输出在接受边沿后才更新，
 //     CPU 在该边沿仍消费旧响应。没有下一请求时回到 IDLE。
+//   * x32 可在 D 读 miss 等待期间独立接受一笔 I 查询：命中直接响应，
+//     miss 暂存至主槽空闲后再发 DDR 读；不增加物理 DDR 在途读数量。
+//   * x32 可在接受 D 请求的同一边沿接受 I 查询，复用上述独立槽。
+//     同行 store 强制该 I 查询 miss，写排空后重读；异行命中可并行响应。
 //
 // CPU 和本模块都应工作在 DDR3 IP 输出的 core_clk 域中。只有
 // ddr_init_done=1 后才接受新请求。
@@ -33,12 +37,18 @@ module dual_sram_to_pango_ddr_bridge #(
     parameter integer MEM_DQ_WIDTH = 16,
     parameter integer INST_LINE_BUFFER_ENABLE = 1,
     parameter integer DATA_LINE_BUFFER_ENABLE = 1,
+    parameter integer CAMERA_UNCACHED_ENABLE = 0,
+    parameter integer PREPROCESS_UNCACHED_ENABLE = 0,
     // Default off for legacy direct instances; board x32 enables it in soc_top.
     parameter integer POSTED_WRITE_ENABLE = 0,
     parameter integer DATA_READ_UNDER_WRITE_ENABLE = 1,
     parameter integer DATA_STORE_FORWARD_ENABLE = 1,
     // Reuse the sole posted entry on its W completion edge; no extra queue slot.
-    parameter integer WRITE_BUFFER_TURNOVER_ENABLE = 1
+    parameter integer WRITE_BUFFER_TURNOVER_ENABLE = 1,
+    // Independent I lookup while a D read miss owns the shared DDR read slot.
+    parameter integer INST_HIT_UNDER_DATA_MISS_ENABLE = 1,
+    // Reuse the I lookup slot on a simultaneous D acceptance, with store fencing.
+    parameter integer INST_WITH_DATA_REQ_ENABLE = 1
 ) (
     input  wire                          clk,
     input  wire                          resetn,
@@ -110,6 +120,11 @@ module dual_sram_to_pango_ddr_bridge #(
     localparam integer TAG_BITS = 32 - BEAT_ADDR_BITS;
     localparam integer POSTED_WRITE_ACTIVE = (POSTED_WRITE_ENABLE != 0) && (MEM_DQ_WIDTH == 32);
     localparam integer INST_LOOKUP_ACTIVE = (MEM_DQ_WIDTH == 32) && (INST_LINE_BUFFER_ENABLE != 0);
+    localparam integer INST_OVERLAP_ACTIVE = INST_LOOKUP_ACTIVE &&
+                                             ((INST_HIT_UNDER_DATA_MISS_ENABLE != 0) ||
+                                              (INST_WITH_DATA_REQ_ENABLE != 0));
+    localparam integer INST_PARALLEL_REQ_ACTIVE = INST_LOOKUP_ACTIVE &&
+                                                  (INST_WITH_DATA_REQ_ENABLE != 0);
 
     // One ordered store entry. No combining; hit loads may forward written bytes.
     reg write_buffer_valid;
@@ -141,7 +156,7 @@ module dual_sram_to_pango_ddr_bridge #(
     reg        response_from_data_drm;
 
     // 64 行直接映射指令缓存，完整局部行地址比较。
-    // 仍只保留一个在途请求，I/D 分别单拍填充，不引入预取。
+    // 主槽只保留一个 DDR 读；额外 I 查询 miss 先等待，不并发发 AR。
     reg [63:0]  inst_line_valid;
     reg [TAG_BITS-1:0] inst_line_tag [0:63];
     wire [31:0] inst_drm_rdata;
@@ -176,11 +191,25 @@ module dual_sram_to_pango_ddr_bridge #(
     wire read_address_phase;
     wire take_data;
     wire take_inst;
+    wire take_inst_front;
+    wire take_inst_overlap;
+    wire data_read_miss_busy;
+    wire parallel_data_request;
+    wire inst_overlap_hit;
+    wire inst_overlap_response;
+    wire inst_overlap_slot_ready;
+    wire promote_inst_overlap;
+    wire inst_tag_sample;
+    reg inst_overlap_pending;
+    reg [31:0] inst_overlap_addr;
+    reg inst_overlap_store_q;
+    reg [TAG_BITS-1:0] inst_overlap_line_match_q;
     wire [31:0] selected_addr;
     wire [CTRL_ADDR_WIDTH-1:0] selected_ctrl_addr;
+    wire [31:0] field_sample_addr;
 
     // RSP 或 LOOKUP 命中表示旧事务已完成，可在旧响应消费边沿接续。
-    // ready 不依赖 rsp 消费反馈；I/D 仍共用一个事务槽，数据仍优先。
+    // 主 DDR 事务槽仍数据优先；并行 I 查询不修改主槽的 D 事务字段。
     assign inst_lookup_response = INST_LOOKUP_ACTIVE &&
                                   (state == STATE_INST_LOOKUP) && inst_line_hit;
     assign front_slot_available = (state == STATE_IDLE) || (state == STATE_RSP) ||
@@ -201,11 +230,73 @@ module dual_sram_to_pango_ddr_bridge #(
                              write_buffer_turnover_ready ||
                              (!data_req_write && data_read_overlap_permit &&
                               !(data_read_overlap_same_line && write_buffer_complete)));
-    // I may use the front slot while D waits. A miss waits for W to drain.
-    // Only registered I row hits enter ready; no live-address tag comparison.
-    assign inst_req_ready = idle_ready && !take_data;
+    // The extra slot accepts a lookup, NOT a second DDR read. A hit returns
+    // next cycle; a miss holds its address/verdict until the shared slot is free.
+    // No live I-address/tag comparison enters ready. A simultaneous same-line
+    // store poisons this lookup's hit verdict until the parked I miss is promoted.
+    assign data_read_miss_busy = INST_OVERLAP_ACTIVE &&
+                                 (INST_HIT_UNDER_DATA_MISS_ENABLE != 0) && ddr_init_done &&
+                                 (response_target == TARGET_DATA) &&
+                                 ((state == STATE_RADDR) || (state == STATE_RDATA));
+    // No live D tag/hit check on I ready: accept a lookup beside any ACCEPTED
+    // D request. The main slot remains D-owned; an I miss parks in its saved slot.
+    // take_data already includes write-buffer/read-collision/backpressure gates.
+    assign parallel_data_request = INST_PARALLEL_REQ_ACTIVE && take_data;
+    // The tag snapshot sees pre-edge valid bits. Suppress a hit if the store
+    // accepted on that SAME edge invalidates the requested full line. Compare
+    // bits are registered BEFORE reduction, avoiding a wide live-address compare
+    // into ready or the conflict FF. Zero-strobe stores keep original invalidation.
+    assign inst_overlap_hit = inst_line_hit &&
+                               !(inst_overlap_store_q && (&inst_overlap_line_match_q));
+    assign inst_overlap_response = INST_OVERLAP_ACTIVE &&
+                                    inst_overlap_pending && inst_overlap_hit;
+    assign inst_overlap_slot_ready = !inst_overlap_pending || inst_overlap_response;
+    assign inst_req_ready = ((idle_ready && !take_data) || data_read_miss_busy ||
+                             parallel_data_request) &&
+                             inst_overlap_slot_ready;
     assign take_data = data_req_valid && data_req_ready;
     assign take_inst = inst_req_valid && inst_req_ready;
+    // Exactly one destination for each I acceptance, even when both ports fire.
+    assign take_inst_front = take_inst && idle_ready && !take_data;
+    assign take_inst_overlap = take_inst && (data_read_miss_busy || parallel_data_request);
+    // A parked I miss cannot be bypassed by another I request. Data retains
+    // the existing shared-slot priority; promotion uses the saved address only.
+    assign promote_inst_overlap = idle_ready && !take_data &&
+                                   inst_overlap_pending && !inst_overlap_hit;
+    // Hold a parked miss verdict even if a new D request takes the main slot.
+    // The I DRM is sampled on acceptance; its output is consumed one edge later.
+    assign inst_tag_sample = (idle_ready || data_read_miss_busy) && inst_overlap_slot_ready;
+
+    // 036 timing repair: sample conflict bits with the registered I-tag verdict,
+    // without the late live I-accept signal on this wide register's CE.
+    // Every overlap acceptance is inside this window. A parked miss closes it;
+    // a consumed hit uses old bits on the edge, before a new sample takes effect.
+    // Only the acceptance-qualified pending/address/store fields confer ownership.
+    always @(posedge clk) begin
+        if (!resetn) begin
+            inst_overlap_line_match_q <= {TAG_BITS{1'b0}};
+        end else if (inst_tag_sample) begin
+            inst_overlap_line_match_q <=
+                ~(inst_req_addr[31:BEAT_ADDR_BITS] ^ data_req_addr[31:BEAT_ADDR_BITS]);
+        end
+    end
+    // End 036 conflict sampling.
+    always @(posedge clk) begin
+        if (!resetn) begin
+            inst_overlap_pending <= 1'b0;
+            inst_overlap_addr <= 32'b0;
+            inst_overlap_store_q <= 1'b0;
+        end else begin
+            if (inst_overlap_response || promote_inst_overlap)
+                inst_overlap_pending <= 1'b0;
+            // New acceptance wins over consumption of the previous hit.
+            if (take_inst_overlap) begin
+                inst_overlap_pending <= 1'b1;
+                inst_overlap_addr <= inst_req_addr;
+                inst_overlap_store_q <= take_data && data_req_write;
+            end
+        end
+    end
 
     assign inst_line_index = inst_req_addr[BEAT_ADDR_BITS+5:BEAT_ADDR_BITS];
     assign data_line_index = data_req_addr[BEAT_ADDR_BITS+5:BEAT_ADDR_BITS];
@@ -245,14 +336,14 @@ module dual_sram_to_pango_ddr_bridge #(
                                                (inst_line_index == ROW_INDEX) && tag_match;
             end
             // Sample with the synchronous DRM read. No request-valid/branch
-            // qualifier on these register enables. Only an accepted I request
-            // enters LOOKUP; snapshots on other free-slot cycles are ignored.
-            // A stalled miss closes the slot, holding its verdict even when
-            // the requester changes the live address after acceptance.
+            // qualifier on these register enables. Accepted I requests enter
+            // either main LOOKUP or the independent overlap slot. Unaccepted
+            // snapshots are ignored. A parked overlap miss holds its verdict
+            // until promotion, regardless of live-address changes or D traffic.
             always @(posedge clk) begin
                 if (!resetn)
                     way_hit_q <= 64'b0;
-                else if (idle_ready)
+                else if (inst_tag_sample)
                     way_hit_q <= way_hit;
             end
             genvar inst_hit_group;
@@ -321,7 +412,14 @@ module dual_sram_to_pango_ddr_bridge #(
 
     assign data_read_line_index = data_req_addr[BEAT_ADDR_BITS+5:BEAT_ADDR_BITS];
     assign data_fill_line_index = request_line_tag[5:0];
-    assign data_line_hit = (DATA_LINE_BUFFER_ENABLE != 0) &&
+    wire preprocess_data_addr=(PREPROCESS_UNCACHED_ENABLE!=0) && data_req_addr[31:16]==16'h0200;
+    wire preprocess_fill_addr=(PREPROCESS_UNCACHED_ENABLE!=0) &&
+                              (request_line_tag >> (16-BEAT_ADDR_BITS))==16'h0200;
+    wire camera_data_addr=(CAMERA_UNCACHED_ENABLE!=0) &&
+                          (data_req_addr[31:22]==(32'h01000000 >> 22));
+    wire camera_fill_addr=(CAMERA_UNCACHED_ENABLE!=0) &&
+                          ((request_line_tag >> (22-BEAT_ADDR_BITS))==(32'h01000000 >> 22));
+    assign data_line_hit = (DATA_LINE_BUFFER_ENABLE != 0) && !camera_data_addr && !preprocess_data_addr &&
                            !data_req_write && data_line_valid[data_read_line_index] &&
                            (data_line_tag[data_read_line_index] == data_req_addr[31:BEAT_ADDR_BITS]);
     always @(posedge clk) begin
@@ -338,10 +436,10 @@ module dual_sram_to_pango_ddr_bridge #(
                 (data_req_addr[31:BEAT_ADDR_BITS] == write_buffer_line_tag);
         end
     end
-    assign data_line_write_hit = take_data && data_req_write &&
+    assign data_line_write_hit = take_data && data_req_write && !camera_data_addr && !preprocess_data_addr &&
                                  data_line_valid[data_read_line_index] &&
                                  (data_line_tag[data_read_line_index] == data_req_addr[31:BEAT_ADDR_BITS]);
-    assign data_line_fill = (DATA_LINE_BUFFER_ENABLE != 0) &&
+    assign data_line_fill = (DATA_LINE_BUFFER_ENABLE != 0) && !camera_fill_addr && !preprocess_fill_addr &&
                             (response_target == TARGET_DATA) &&
                             axi_rvalid && (axi_rid == 4'd1) && axi_rlast &&
                             ((state == STATE_RDATA) ||
@@ -464,9 +562,15 @@ module dual_sram_to_pango_ddr_bridge #(
     assign axi_arlen     = 4'd0;
     assign axi_arvalid   = read_address_phase && !write_buffer_busy;
 
-    assign inst_rsp_valid = ((state == STATE_RSP) || inst_lookup_response) &&
-                            (response_target == TARGET_INST);
-    assign inst_rsp_rdata = response_from_inst_drm ? inst_drm_rdata : response_rdata;
+    // An overlap hit may return together with the main D response. The main
+    // slot cannot own an I response while an overlap request remains pending.
+    assign inst_rsp_valid = inst_overlap_response ||
+                            (((state == STATE_RSP) || inst_lookup_response) &&
+                             (response_target == TARGET_INST));
+    // Preselect DRM for the whole overlap slot, including invalid miss cycles;
+    // keep the registered 64-row hit reduction out of the data mux select.
+    assign inst_rsp_rdata = (inst_overlap_pending || response_from_inst_drm) ?
+                            inst_drm_rdata : response_rdata;
     assign inst_rsp_error = 1'b0;
 
     assign data_rsp_valid = (state == STATE_RSP) &&
@@ -516,12 +620,31 @@ module dual_sram_to_pango_ddr_bridge #(
         end
     end
 
+    // 036: Sample reusable main-slot fields without live I-accept qualification.
+    // D acceptance wins, then a parked I miss, otherwise sample the live I bus.
+    // These fields confer no ownership: only the unchanged FSM can launch a
+    // transaction. Unaccepted samples are overwritten before any valid use.
+    // RADDR/RDATA, LOOKUP miss and nonposted W phases keep the old fields.
+    // A response consumed on this edge still observes their pre-edge values.
+    assign field_sample_addr = take_data ? data_req_addr :
+                               promote_inst_overlap ? inst_overlap_addr : inst_req_addr;
+    always @(posedge clk) begin
+        if (!resetn) begin
+            request_ctrl_addr <= {CTRL_ADDR_WIDTH{1'b0}};
+            request_lane      <= {LANE_BITS{1'b0}};
+            request_line_tag  <= {TAG_BITS{1'b0}};
+        end else if (front_slot_available) begin
+            request_ctrl_addr <=
+                {field_sample_addr[CTRL_ADDR_WIDTH+BYTE_ADDR_SHIFT-1:BEAT_ADDR_BITS], 3'b000};
+            request_lane <= field_sample_addr[BEAT_ADDR_BITS-1:2];
+            request_line_tag <= field_sample_addr[31:BEAT_ADDR_BITS];
+        end
+    end
+    // End 036 field sampling.
     always @(posedge clk) begin
         if (!resetn) begin
             state             <= STATE_IDLE;
             response_target   <= TARGET_INST;
-            request_ctrl_addr <= {CTRL_ADDR_WIDTH{1'b0}};
-            request_lane      <= {LANE_BITS{1'b0}};
             request_wdata     <= 32'b0;
             request_wstrb     <= 4'b0;
             response_rdata    <= 32'b0;
@@ -529,7 +652,6 @@ module dual_sram_to_pango_ddr_bridge #(
             response_from_data_drm <= 1'b0;
             response_forward_mask <= 32'b0;
             response_forward_data <= 32'b0;
-            request_line_tag <= {TAG_BITS{1'b0}};
             request_data_write_hit <= 1'b0;
         end else begin
             if (front_slot_available) begin
@@ -558,13 +680,10 @@ module dual_sram_to_pango_ddr_bridge #(
                         response_forward_data <= write_buffer_wdata;
                     end
                     response_target   <= TARGET_DATA;
-                    request_ctrl_addr <= selected_ctrl_addr;
-                    request_lane      <= selected_addr[BEAT_ADDR_BITS-1:2];
                     request_wdata     <= data_req_wdata;
                     request_wstrb     <= data_req_wstrb;
                     if (MEM_DQ_WIDTH != 32)
                         response_rdata <= 32'b0;
-                    request_line_tag  <= data_req_addr[31:BEAT_ADDR_BITS];
                     request_data_write_hit <= data_line_write_hit;
                     if (data_req_write) begin
                         // Response confirms ordered entry ownership, not DDR completion.
@@ -576,18 +695,26 @@ module dual_sram_to_pango_ddr_bridge #(
                     end else begin
                         state <= STATE_RADDR;
                     end
-                end else if (take_inst) begin
+                end else if (promote_inst_overlap) begin
+                    // The independent lookup already proved miss. Promote only
+                    // AFTER the old D response; never clobber an outstanding R.
+                    // AR still obeys the original posted-write drain gate.
+                    response_from_inst_drm <= 1'b0;
+                    response_from_data_drm <= 1'b0;
+                    response_target <= TARGET_INST;
+                    request_wdata <= 32'b0;
+                    request_wstrb <= 4'b0;
+                    request_data_write_hit <= 1'b0;
+                    state <= STATE_RADDR;
+                end else if (take_inst_front) begin
                     // Preselect x32 DRM without putting the I-tag compare
                     // on this response selector's D input. A miss has no
                     // valid response here and clears it in the miss address phase.
                     response_from_inst_drm <= (MEM_DQ_WIDTH == 32);
                     response_from_data_drm <= 1'b0;
                     response_target   <= TARGET_INST;
-                    request_ctrl_addr <= selected_ctrl_addr;
-                    request_lane      <= selected_addr[BEAT_ADDR_BITS-1:2];
                     request_wdata     <= 32'b0;
                     request_wstrb     <= 4'b0;
-                    request_line_tag  <= inst_req_addr[31:BEAT_ADDR_BITS];
                     request_data_write_hit <= 1'b0;
                     if (INST_LOOKUP_ACTIVE) begin
                         // Do not decide hit/miss from the live request here.

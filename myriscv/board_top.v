@@ -9,6 +9,10 @@ module board_top #(
     parameter integer SELFTEST_TIMEOUT_CYCLES = CORE_CLK_HZ * 5,
     parameter integer KEY_DEBOUNCE_CYCLES = 2_500_000 // 20 ms at 125 MHz
 ) (
+    input wire camera_pclk, camera_vsync, camera_href,
+    input wire [7:0] camera_data,
+    inout wire camera_scl, camera_sda,
+    output wire camera_resetn,
     input  wire        ddr_ref_clk_p,
     input  wire        ddr_ref_clk_n,
     input  wire        resetn,
@@ -36,6 +40,7 @@ module board_top #(
     wire ddr_ref_clk;
     wire key_ref_clk;
     wire key_resetn;
+    wire camera_pixel_clk;
     wire core_clk;
     wire ddr_init_done;
     wire soc_resetn;
@@ -58,6 +63,10 @@ module board_top #(
         .CLKIN(ddr_ref_clk), .CLKOUT(key_ref_clk)
     );
 
+    GTP_CLKBUFG u_camera_pclk_buf (
+        .CLKIN(camera_pclk), .CLKOUT(camera_pixel_clk)
+    );
+
     // KEY0 asserts reset immediately. Release must remain stable for 20 ms.
     // The input reference keeps running while the DDR PLL/core is in reset.
     reset_button_debounce #(
@@ -69,10 +78,17 @@ module board_top #(
     // Final SoC reset release is still synchronized to core_clk and gated by
     // DDR initialization/PLL lock inside soc_ddr3_top.
     soc_ddr3_top #(
+        .ENABLE_CAMERA(1), .ENABLE_PREPROCESS(1), .ENABLE_CNN(1),
+        .CAMERA_COLORBAR_ENABLE(0), // Live scene: PRE-ISP test pattern disabled.
+        .CAMERA_DVP_TEST_ENABLE(0), // Live scene: DVP test generator disabled.
         .RESET_PC(RESET_PC), .DDR_BASE(DDR_BASE),
         .CORE_CLK_HZ(CORE_CLK_HZ),
         .SELFTEST_TIMEOUT_CYCLES(SELFTEST_TIMEOUT_CYCLES)
     ) u_soc (
+        .camera_pclk(camera_pixel_clk), .camera_vsync(camera_vsync), .camera_href(camera_href),
+        .camera_data(camera_data), .camera_scl(camera_scl), .camera_sda(camera_sda),
+        .camera_resetn(camera_resetn),
+
         .ddr_ref_clk(ddr_ref_clk), .resetn(key_resetn),
         .uart_tx(uart_tx), .uart_rx(uart_rx),
         .irq_external(1'b0), .irq_software(1'b0), .irq_timer(1'b0),

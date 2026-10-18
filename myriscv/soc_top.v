@@ -7,6 +7,9 @@ module soc_top #(
     // 默认让 RAM 跟随测试程序的链接基址；正式上板时可独立覆写。
     parameter [31:0] DATA_RAM_BASE = RESET_PC,
     parameter [31:0] MMIO_BASE = 32'h1000_0000,
+    parameter integer ENABLE_CNN = 0,
+    parameter integer ENABLE_PREPROCESS = 0,
+    parameter integer ENABLE_CAMERA = 0,
     parameter integer ENABLE_DDR = 0,
     parameter [31:0] DDR_BASE = 32'h4000_0000,
     parameter [31:0] DDR_ADDR_MASK = 32'he000_0000,
@@ -22,8 +25,32 @@ module soc_top #(
     parameter integer PERF_ENABLE = 1,
     parameter integer PERF_AUTO_ARM = 1,
     parameter [31:0] PERF_START_PC = 32'h400007d0,
-    parameter [31:0] PERF_STOP_PC = 32'h400007f4
+    parameter [31:0] PERF_STOP_PC = 32'h400007f4,
+    // Camera builds keep registered load data; posted store ACKs may bypass it.
+    parameter integer DDR_POSTED_STORE_ACK_BYPASS_ENABLE = 1
 ) (
+    output wire cnn_req_valid, cnn_req_write,
+    output wire [1:0] cnn_req_size,
+    output wire [31:0] cnn_req_addr, cnn_req_wdata,
+    output wire [3:0] cnn_req_wstrb,
+    input wire cnn_req_ready, cnn_rsp_valid, cnn_rsp_error,
+    input wire [31:0] cnn_rsp_rdata,
+    output wire pp_req_valid, pp_req_write,
+    output wire [1:0] pp_req_size,
+    output wire [31:0] pp_req_addr, pp_req_wdata,
+    output wire [3:0] pp_req_wstrb,
+    input wire pp_req_ready, pp_rsp_valid, pp_rsp_error,
+    input wire [31:0] pp_rsp_rdata,
+    input wire preprocess_busy, preprocess_done,
+    output wire cam_req_valid, cam_req_write,
+    output wire [1:0] cam_req_size,
+    output wire [31:0] cam_req_addr, cam_req_wdata,
+    output wire [3:0] cam_req_wstrb,
+    input wire cam_req_ready, cam_rsp_valid, cam_rsp_error,
+    input wire [31:0] cam_rsp_rdata,
+    input wire camera_busy,
+    input wire camera_dual_mode,
+    input wire [1:0] camera_cpu_owned,
     input  wire        clk,
     input  wire        resetn,
     input  wire        irq_external,
@@ -197,6 +224,8 @@ module soc_top #(
     );
 
     inst_bus_interconnect #(
+        .ENABLE_PREPROCESS(ENABLE_PREPROCESS),
+        .ENABLE_CAMERA (ENABLE_CAMERA),
         .ROM_BASE      (INST_ROM_BASE),
         .ROM_ADDR_MASK (32'hffff_c000),
         .ENABLE_DDR     (ENABLE_DDR),
@@ -252,6 +281,9 @@ module soc_top #(
     );
 
     data_bus_interconnect #(
+        .ENABLE_CNN(ENABLE_CNN),
+        .ENABLE_PREPROCESS(ENABLE_PREPROCESS),
+        .ENABLE_CAMERA (ENABLE_CAMERA),
         .RAM_BASE      (DATA_RAM_BASE),
         .RAM_ADDR_MASK (32'hffff_c000),
         .MMIO_BASE     (MMIO_BASE),
@@ -263,6 +295,25 @@ module soc_top #(
         .UART_BASE     (UART_BASE),
         .DDR_WRITE_ORDER_ENABLE(DDR_WRITE_ORDER_ACTIVE)
     ) u_data_bus_interconnect (
+        .cnn_req_valid(cnn_req_valid), .cnn_req_write(cnn_req_write),
+        .cnn_req_size(cnn_req_size), .cnn_req_addr(cnn_req_addr),
+        .cnn_req_wdata(cnn_req_wdata), .cnn_req_wstrb(cnn_req_wstrb),
+        .cnn_req_ready(cnn_req_ready), .cnn_rsp_valid(cnn_rsp_valid),
+        .cnn_rsp_error(cnn_rsp_error), .cnn_rsp_rdata(cnn_rsp_rdata),
+        .pp_req_valid(pp_req_valid), .pp_req_write(pp_req_write),
+        .pp_req_size(pp_req_size), .pp_req_addr(pp_req_addr),
+        .pp_req_wdata(pp_req_wdata), .pp_req_wstrb(pp_req_wstrb),
+        .pp_req_ready(pp_req_ready), .pp_rsp_valid(pp_rsp_valid),
+        .pp_rsp_error(pp_rsp_error), .pp_rsp_rdata(pp_rsp_rdata),
+        .preprocess_busy(preprocess_busy), .preprocess_done(preprocess_done),
+        .cam_req_valid(cam_req_valid), .cam_req_write(cam_req_write),
+        .cam_req_size(cam_req_size), .cam_req_addr(cam_req_addr),
+        .cam_req_wdata(cam_req_wdata), .cam_req_wstrb(cam_req_wstrb),
+        .cam_req_ready(cam_req_ready), .cam_rsp_valid(cam_rsp_valid),
+        .cam_rsp_error(cam_rsp_error), .cam_rsp_rdata(cam_rsp_rdata),
+        .camera_busy(camera_busy),
+        .camera_dual_mode(camera_dual_mode), .camera_cpu_owned(camera_cpu_owned),
+
         .clk            (clk),
         .resetn         (resetn),
         .ddr_write_buffer_busy(ddr_write_buffer_busy),
@@ -313,6 +364,35 @@ module soc_top #(
         .uart_rsp_rdata(uart_rsp_rdata), .uart_rsp_error(uart_rsp_error)
     );
 
+    // CNN integration increases placement pressure. Break the synchronous RAM
+    // QA -> response mux -> load forwarding -> branch -> instruction ROM path.
+    // Delay the ENTIRE response (including store acknowledgements) one cycle;
+    // the interconnect retains its owner until this registered response arrives.
+    wire ram_raw_rsp_valid, ram_raw_rsp_error;
+    wire [31:0] ram_raw_rsp_rdata;
+    generate if (ENABLE_CNN != 0) begin : g_cnn_ram_rsp_register
+        (* syn_preserve=1 *) reg valid_q;
+        (* syn_preserve=1 *) reg [31:0] data_q;
+        reg error_q;
+        always @(posedge clk) begin
+            if (!resetn) begin valid_q<=0; data_q<=0; error_q<=0; end
+            else begin
+                valid_q<=ram_raw_rsp_valid;
+                if (ram_raw_rsp_valid) begin
+                    data_q<=ram_raw_rsp_rdata;
+                    error_q<=ram_raw_rsp_error;
+                end
+            end
+        end
+        assign ram_bus_rsp_valid=valid_q;
+        assign ram_bus_rsp_rdata=data_q;
+        assign ram_bus_rsp_error=error_q;
+    end else begin : g_direct_ram_rsp
+        assign ram_bus_rsp_valid=ram_raw_rsp_valid;
+        assign ram_bus_rsp_rdata=ram_raw_rsp_rdata;
+        assign ram_bus_rsp_error=ram_raw_rsp_error;
+    end endgenerate
+
     data_bram_adapter #(
         .RAM_ADDR_WIDTH(12),
         .REQ_STALL_CYCLES(DATA_REQ_STALL_CYCLES),
@@ -327,9 +407,9 @@ module soc_top #(
         .req_wdata  (ram_bus_req_wdata),
         .req_wstrb  (ram_bus_req_wstrb),
         .req_ready  (ram_bus_req_ready),
-        .rsp_valid  (ram_bus_rsp_valid),
-        .rsp_rdata  (ram_bus_rsp_rdata),
-        .rsp_error  (ram_bus_rsp_error),
+        .rsp_valid  (ram_raw_rsp_valid),
+        .rsp_rdata  (ram_raw_rsp_rdata),
+        .rsp_error  (ram_raw_rsp_error),
         .ram_addr   (data_ram_addr),
         .ram_wdata  (data_ram_wdata),
         .ram_wstrb  (data_ram_wstrb),
@@ -379,7 +459,71 @@ module soc_top #(
 
     generate
         if (ENABLE_DDR != 0) begin : g_ddr
+            wire bridge_data_rsp_valid, bridge_data_rsp_error;
+            wire [31:0] bridge_data_rsp_rdata;
+            if (ENABLE_CAMERA != 0) begin : g_camera_data_rsp_register
+                // Keep the D-cache DRM -> load forwarding -> ID branch -> I-ROM
+                // timing cut. Only posted store ACKs, which carry no load data,
+                // bypass this stage. Their order still comes from the write buffer.
+                // Latch the type at the BRIDGE acceptance edge: live req_write
+                // may already describe a younger load when the old ACK arrives.
+                localparam integer FAST_STORE_ACK_ACTIVE = DDR_WRITE_ORDER_ACTIVE &&
+                                              (DDR_POSTED_STORE_ACK_BYPASS_ENABLE != 0);
+                reg response_is_posted_store_q;
+                wire fast_store_ack = response_is_posted_store_q && bridge_data_rsp_valid;
+                wire accept_fast_store = FAST_STORE_ACK_ACTIVE &&
+                                          data_ddr_req_valid && data_ddr_req_ready && data_ddr_req_write;
+                always @(posedge clk) begin
+                    if (!resetn)
+                        response_is_posted_store_q <= 1'b0;
+                    else if (data_ddr_req_valid && data_ddr_req_ready)
+                        response_is_posted_store_q <= FAST_STORE_ACK_ACTIVE && data_ddr_req_write;
+                end
+
+                // The upstream interconnect has one outstanding request and
+                // retains its owner until the selected response is consumed.
+                // A delayed load response cannot overlap a younger store ACK:
+                // that store is accepted no earlier than the load consumption
+                // edge, and the bridge responds at least one edge after acceptance.
+                (* syn_preserve=1 *) reg valid_q;
+                (* syn_preserve=1 *) reg [31:0] data_q;
+                reg error_q;
+                always @(posedge clk) begin
+                    if (!resetn) begin
+                        valid_q <= 1'b0;
+                        data_q <= 32'b0;
+                        error_q <= 1'b0;
+                    end else begin
+                        // A fast ACK must never reappear as a delayed response.
+                        valid_q <= bridge_data_rsp_valid && !response_is_posted_store_q;
+                        // Prepare the zero store payload at acceptance, not via
+                        // a mux after data_q on the load-forwarding/branch path.
+                        // On load-response/store-accept turnover, the consumer
+                        // samples OLD data_q at this edge before it becomes zero.
+                        // Single-outstanding ownership forbids a younger store
+                        // acceptance while an older raw load awaits this register.
+                        if (accept_fast_store)
+                            data_q <= 32'b0;
+                        else if (bridge_data_rsp_valid && !response_is_posted_store_q)
+                            data_q <= bridge_data_rsp_rdata;
+                        if (bridge_data_rsp_valid && !response_is_posted_store_q) begin
+                            error_q <= bridge_data_rsp_error;
+                        end
+                    end
+                end
+                assign data_ddr_rsp_valid = valid_q || fast_store_ack;
+                // Data is always registered, including the zero fast-store ACK.
+                // The response owner only selects valid/error, never rdata.
+                assign data_ddr_rsp_rdata = data_q;
+                assign data_ddr_rsp_error = response_is_posted_store_q ? bridge_data_rsp_error : error_q;
+            end else begin : g_direct_data_rsp
+                assign data_ddr_rsp_valid = bridge_data_rsp_valid;
+                assign data_ddr_rsp_rdata = bridge_data_rsp_rdata;
+                assign data_ddr_rsp_error = bridge_data_rsp_error;
+            end
             dual_sram_to_pango_ddr_bridge #(
+                .PREPROCESS_UNCACHED_ENABLE(ENABLE_PREPROCESS),
+                .CAMERA_UNCACHED_ENABLE(ENABLE_CAMERA),
                 .MEM_DQ_WIDTH(DDR_MEM_DQ_WIDTH),
                 .POSTED_WRITE_ENABLE(DDR_WRITE_ORDER_ACTIVE)
             ) u_ddr_bridge (
@@ -400,9 +544,9 @@ module soc_top #(
                 .data_req_wdata   (data_ddr_req_wdata),
                 .data_req_wstrb   (data_ddr_req_wstrb),
                 .data_req_ready   (data_ddr_req_ready),
-                .data_rsp_valid   (data_ddr_rsp_valid),
-                .data_rsp_rdata   (data_ddr_rsp_rdata),
-                .data_rsp_error   (data_ddr_rsp_error),
+                .data_rsp_valid   (bridge_data_rsp_valid),
+                .data_rsp_rdata   (bridge_data_rsp_rdata),
+                .data_rsp_error   (bridge_data_rsp_error),
                 .axi_awaddr       (ddr_axi_awaddr),
                 .axi_awuser_ap    (ddr_axi_awuser_ap),
                 .axi_awuser_id    (ddr_axi_awuser_id),

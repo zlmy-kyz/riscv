@@ -18,11 +18,36 @@ module data_bus_interconnect #(
     parameter integer ENABLE_DDR    = 0,
     parameter [31:0] DDR_BASE       = 32'h4000_0000,
     parameter [31:0] DDR_ADDR_MASK  = 32'he000_0000, // 512 MiB
+    parameter integer ENABLE_CNN = 0,
+    parameter integer ENABLE_PREPROCESS = 0,
+    parameter integer ENABLE_CAMERA = 0,
     parameter integer ENABLE_UART  = 0,
     parameter [31:0] UART_BASE      = 32'h1000_1000, // 16-byte aligned, 16 bytes
     parameter integer DDR_WRITE_ORDER_ENABLE = 0,
     parameter integer RESPONSE_TURNOVER_ENABLE = 1
 ) (
+    output wire cnn_req_valid, cnn_req_write,
+    output wire [1:0] cnn_req_size,
+    output wire [31:0] cnn_req_addr, cnn_req_wdata,
+    output wire [3:0] cnn_req_wstrb,
+    input wire cnn_req_ready, cnn_rsp_valid, cnn_rsp_error,
+    input wire [31:0] cnn_rsp_rdata,
+    output wire pp_req_valid, pp_req_write,
+    output wire [1:0] pp_req_size,
+    output wire [31:0] pp_req_addr, pp_req_wdata,
+    output wire [3:0] pp_req_wstrb,
+    input wire pp_req_ready, pp_rsp_valid, pp_rsp_error,
+    input wire [31:0] pp_rsp_rdata,
+    input wire preprocess_busy, preprocess_done,
+    output wire cam_req_valid, cam_req_write,
+    output wire [1:0] cam_req_size,
+    output wire [31:0] cam_req_addr, cam_req_wdata,
+    output wire [3:0] cam_req_wstrb,
+    input wire cam_req_ready, cam_rsp_valid, cam_rsp_error,
+    input wire [31:0] cam_rsp_rdata,
+    input wire camera_busy,
+    input wire camera_dual_mode,
+    input wire [1:0] camera_cpu_owned,
     input  wire        clk,
     input  wire        resetn,
     input  wire        ddr_write_buffer_busy,
@@ -86,29 +111,89 @@ module data_bus_interconnect #(
     localparam [2:0] TARGET_MMIO  = 3'd1;
     localparam [2:0] TARGET_DDR   = 3'd2;
     localparam [2:0] TARGET_ERROR = 3'd3;
+    localparam [2:0] TARGET_CNN = 3'd7;
+    localparam [2:0] TARGET_PREPROCESS = 3'd6;
+    localparam [2:0] TARGET_CAMERA = 3'd5;
     localparam [2:0] TARGET_UART  = 3'd4;
 
     wire ram_select;
     wire mmio_select;
     wire ddr_select;
     wire uart_select;
+    wire cam_select;
+    wire pp_select;
+    wire cnn_select;
+
+    // 037: Decode windows in parallel. Remove a priority exclusion only when
+    // constant mask/base bits prove the two windows cannot overlap. Unusual
+    // overlapping parameterizations retain RAM > MMIO > UART > CAM > PP > CNN.
+    function windows_overlap;
+        input [31:0] base_a, mask_a, base_b, mask_b;
+        begin
+            windows_overlap = (((base_a ^ base_b) & mask_a & mask_b) == 32'b0);
+        end
+    endfunction
+
+    // raw_hits = {CNN, PP, CAM, UART, MMIO, RAM}; disabled windows never hit.
+    wire [5:0] raw_hits;
+    wire ddr_hit;
+    localparam [5:0] MMIO_PRIORITY_MASK = {5'b0,
+        windows_overlap(MMIO_BASE, MMIO_ADDR_MASK, RAM_BASE, RAM_ADDR_MASK)};
+    localparam [5:0] UART_PRIORITY_MASK = {4'b0,
+        windows_overlap(UART_BASE, 32'hffff_fff0, MMIO_BASE, MMIO_ADDR_MASK),
+        windows_overlap(UART_BASE, 32'hffff_fff0, RAM_BASE, RAM_ADDR_MASK)};
+    localparam [5:0] CAM_PRIORITY_MASK = {3'b0,
+        windows_overlap(32'h1000_2000, 32'hffff_ffc0, UART_BASE, 32'hffff_fff0),
+        windows_overlap(32'h1000_2000, 32'hffff_ffc0, MMIO_BASE, MMIO_ADDR_MASK),
+        windows_overlap(32'h1000_2000, 32'hffff_ffc0, RAM_BASE, RAM_ADDR_MASK)};
+    localparam [5:0] PP_PRIORITY_MASK = {2'b0,
+        windows_overlap(32'h1000_3000, 32'hffff_ffc0, 32'h1000_2000, 32'hffff_ffc0),
+        windows_overlap(32'h1000_3000, 32'hffff_ffc0, UART_BASE, 32'hffff_fff0),
+        windows_overlap(32'h1000_3000, 32'hffff_ffc0, MMIO_BASE, MMIO_ADDR_MASK),
+        windows_overlap(32'h1000_3000, 32'hffff_ffc0, RAM_BASE, RAM_ADDR_MASK)};
+    localparam [5:0] CNN_PRIORITY_MASK = {1'b0,
+        windows_overlap(32'h1000_4000, 32'hffff_ff00, 32'h1000_3000, 32'hffff_ffc0),
+        windows_overlap(32'h1000_4000, 32'hffff_ff00, 32'h1000_2000, 32'hffff_ffc0),
+        windows_overlap(32'h1000_4000, 32'hffff_ff00, UART_BASE, 32'hffff_fff0),
+        windows_overlap(32'h1000_4000, 32'hffff_ff00, MMIO_BASE, MMIO_ADDR_MASK),
+        windows_overlap(32'h1000_4000, 32'hffff_ff00, RAM_BASE, RAM_ADDR_MASK)};
+    localparam [5:0] DDR_PRIORITY_MASK = {
+        windows_overlap(DDR_BASE, DDR_ADDR_MASK, 32'h1000_4000, 32'hffff_ff00),
+        windows_overlap(DDR_BASE, DDR_ADDR_MASK, 32'h1000_3000, 32'hffff_ffc0),
+        windows_overlap(DDR_BASE, DDR_ADDR_MASK, 32'h1000_2000, 32'hffff_ffc0),
+        windows_overlap(DDR_BASE, DDR_ADDR_MASK, UART_BASE, 32'hffff_fff0),
+        windows_overlap(DDR_BASE, DDR_ADDR_MASK, MMIO_BASE, MMIO_ADDR_MASK),
+        windows_overlap(DDR_BASE, DDR_ADDR_MASK, RAM_BASE, RAM_ADDR_MASK)};
+
+    // Two 2MiB slots. In stream mode CPU may only READ a claimed slot;
+    // READY is not enough, and a RELEASE closes access before future DMA reuse.
+    wire pp_blocked=(ENABLE_PREPROCESS!=0) && (m_req_addr[31:16]==16'h4200) &&
+                    (m_req_write || preprocess_busy || !preprocess_done || m_req_addr[15:0]>=16'h6c00);
+    wire frame_window=(m_req_addr[31:22]==(32'h41000000 >> 22));
+    wire frame_blocked=(ENABLE_CAMERA!=0) && frame_window &&
+                       (camera_dual_mode ? (m_req_write || !camera_cpu_owned[m_req_addr[21]]) : camera_busy);
     wire req_fire;
     wire issue_allowed;
     wire response_turnover;
     reg  pending;
     reg [2:0] response_target;
 
-    assign ram_select  = ((m_req_addr & RAM_ADDR_MASK) ==
-                          (RAM_BASE & RAM_ADDR_MASK));
-    // RAM 优先，避免参数配置错误导致两个窗口重叠时同时选中从机。
-    assign mmio_select = !ram_select &&
-                         ((m_req_addr & MMIO_ADDR_MASK) ==
-                          (MMIO_BASE & MMIO_ADDR_MASK));
-    assign uart_select = (ENABLE_UART != 0) && !ram_select && !mmio_select &&
-                         (m_req_addr[31:4] == UART_BASE[31:4]);
-    assign ddr_select = (ENABLE_DDR != 0) && !ram_select && !mmio_select && !uart_select &&
-                        ((m_req_addr & DDR_ADDR_MASK) ==
-                         (DDR_BASE & DDR_ADDR_MASK));
+    assign raw_hits[0] = ((m_req_addr & RAM_ADDR_MASK) == (RAM_BASE & RAM_ADDR_MASK));
+    assign raw_hits[1] = ((m_req_addr & MMIO_ADDR_MASK) == (MMIO_BASE & MMIO_ADDR_MASK));
+    assign raw_hits[2] = (ENABLE_UART != 0) && (m_req_addr[31:4] == UART_BASE[31:4]);
+    assign raw_hits[3] = (ENABLE_CAMERA != 0) && (m_req_addr[31:6] == (32'h10002000 >> 6));
+    assign raw_hits[4] = (ENABLE_PREPROCESS != 0) && (m_req_addr[31:6] == (32'h10003000 >> 6));
+    assign raw_hits[5] = (ENABLE_CNN != 0) && (m_req_addr[31:8] == 24'h100040);
+    assign ddr_hit = (ENABLE_DDR != 0) &&
+                     ((m_req_addr & DDR_ADDR_MASK) == (DDR_BASE & DDR_ADDR_MASK));
+    assign ram_select = raw_hits[0];
+    assign mmio_select = raw_hits[1] && !(|(raw_hits & MMIO_PRIORITY_MASK));
+    assign uart_select = raw_hits[2] && !(|(raw_hits & UART_PRIORITY_MASK));
+    assign cam_select = raw_hits[3] && !(|(raw_hits & CAM_PRIORITY_MASK));
+    assign pp_select = raw_hits[4] && !(|(raw_hits & PP_PRIORITY_MASK));
+    assign cnn_select = raw_hits[5] && !(|(raw_hits & CNN_PRIORITY_MASK));
+    assign ddr_select = ddr_hit && !(|(raw_hits & DDR_PRIORITY_MASK)) &&
+                        !frame_blocked && !pp_blocked;
 
     // DDR requests are backpressured by the bridge; all other accesses drain first.
     // In particular, PERF STOP and UART side effects cannot overtake buffered stores.
@@ -121,11 +206,17 @@ module data_bus_interconnect #(
     assign issue_allowed = (!pending || response_turnover) &&
                                         ((DDR_WRITE_ORDER_ENABLE == 0) ||
                                          !ddr_write_buffer_busy || ddr_select);
+    // Selects are mutually exclusive, including overlapping parameter windows.
+    // Unmapped/blocked requests keep ready=1 and receive the original error.
+    // Parallel not-ready terms avoid another serial priority mux after decode.
     assign m_req_ready = issue_allowed &&
-                         (ram_select  ? ram_req_ready  :
-                          mmio_select ? mmio_req_ready :
-                          uart_select ? uart_req_ready :
-                          ddr_select  ? ddr_req_ready  : 1'b1);
+                         !((ram_select && !ram_req_ready) ||
+                           (mmio_select && !mmio_req_ready) ||
+                           (cnn_select && !cnn_req_ready) ||
+                           (pp_select && !pp_req_ready) ||
+                           (cam_select && !cam_req_ready) ||
+                           (uart_select && !uart_req_ready) ||
+                           (ddr_select && !ddr_req_ready));
     assign req_fire = m_req_valid && m_req_ready;
 
     assign ram_req_valid = issue_allowed && m_req_valid && ram_select;
@@ -156,22 +247,50 @@ module data_bus_interconnect #(
     assign uart_req_wdata = m_req_wdata;
     assign uart_req_wstrb = m_req_wstrb;
 
+    assign cnn_req_valid=issue_allowed && m_req_valid && cnn_select;
+    assign cnn_req_write=m_req_write;
+    assign cnn_req_size=m_req_size;
+    assign cnn_req_addr=m_req_addr-32'h10004000;
+    assign cnn_req_wdata=m_req_wdata;
+    assign cnn_req_wstrb=m_req_wstrb;
+    assign pp_req_valid=issue_allowed && m_req_valid && pp_select;
+    assign pp_req_write=m_req_write;
+    assign pp_req_size=m_req_size;
+    assign pp_req_addr=m_req_addr-32'h10003000;
+    assign pp_req_wdata=m_req_wdata;
+    assign pp_req_wstrb=m_req_wstrb;
+    assign cam_req_valid=issue_allowed && m_req_valid && cam_select;
+    assign cam_req_write=m_req_write;
+    assign cam_req_size=m_req_size;
+    assign cam_req_addr=m_req_addr-32'h10002000;
+    assign cam_req_wdata=m_req_wdata;
+    assign cam_req_wstrb=m_req_wstrb;
+
     // 未映射地址也先完成请求握手，再在下一拍返回 error，避免 CPU 死等。
     assign m_rsp_valid = pending &&
                          ((response_target == TARGET_RAM)  ? ram_rsp_valid  :
                           (response_target == TARGET_MMIO) ? mmio_rsp_valid :
                           (response_target == TARGET_DDR)  ? ddr_rsp_valid  :
+                          (response_target == TARGET_CNN) ? cnn_rsp_valid :
+                          (response_target == TARGET_PREPROCESS) ? pp_rsp_valid :
+                          (response_target == TARGET_CAMERA) ? cam_rsp_valid :
                           (response_target == TARGET_UART) ? uart_rsp_valid :
                                                               1'b1);
     assign m_rsp_rdata = (response_target == TARGET_RAM)  ? ram_rsp_rdata  :
                          (response_target == TARGET_MMIO) ? mmio_rsp_rdata :
                          (response_target == TARGET_DDR)  ? ddr_rsp_rdata  :
+                         (response_target == TARGET_CNN) ? cnn_rsp_rdata :
+                         (response_target == TARGET_PREPROCESS) ? pp_rsp_rdata :
+                         (response_target == TARGET_CAMERA) ? cam_rsp_rdata :
                          (response_target == TARGET_UART) ? uart_rsp_rdata :
                                                            32'b0;
     assign m_rsp_error = m_rsp_valid &&
                          ((response_target == TARGET_RAM)  ? ram_rsp_error  :
                           (response_target == TARGET_MMIO) ? mmio_rsp_error :
                           (response_target == TARGET_DDR)  ? ddr_rsp_error  :
+                          (response_target == TARGET_CNN) ? cnn_rsp_error :
+                          (response_target == TARGET_PREPROCESS) ? pp_rsp_error :
+                          (response_target == TARGET_CAMERA) ? cam_rsp_error :
                           (response_target == TARGET_UART) ? uart_rsp_error :
                                                             1'b1);
 
@@ -190,6 +309,12 @@ module data_bus_interconnect #(
                     response_target <= TARGET_RAM;
                 else if (mmio_select)
                     response_target <= TARGET_MMIO;
+                else if (cnn_select)
+                    response_target <= TARGET_CNN;
+                else if (pp_select)
+                    response_target <= TARGET_PREPROCESS;
+                else if (cam_select)
+                    response_target <= TARGET_CAMERA;
                 else if (ddr_select)
                     response_target <= TARGET_DDR;
                 else if (uart_select)

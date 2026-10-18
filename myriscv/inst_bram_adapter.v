@@ -40,9 +40,16 @@ module inst_bram_adapter #(
 
     assign rsp_rdata = rom_rdata;
     assign rsp_error = 1'b0;
-    assign rom_addr = req_fire ? req_addr[ROM_ADDR_WIDTH+1:2] :
-                      pending  ? accepted_rom_addr :
-                                 req_addr[ROM_ADDR_WIDTH+1:2];
+    // Hold the accepted address only while an intentionally delayed response
+    // is still waiting. On the response-consumption edge, synchronous ROM data
+    // still belongs to the PREVIOUS edge, so its next address may be presented
+    // regardless of whether a new request is accepted. An unaccepted ROM sample
+    // has no response token and is ignored. This removes req_valid/req_ready
+    // (and the upstream window decode) from the ROM address mux control without
+    // adding a cycle or changing request/response ownership.
+    // With RSP_DELAY_CYCLES=0, pending implies rsp_valid, hence a direct wire.
+    assign rom_addr = ((RSP_DELAY_CYCLES != 0) && pending && !rsp_valid) ?
+                      accepted_rom_addr : req_addr[ROM_ADDR_WIDTH+1:2];
 
     always @(posedge clk) begin
         if (!resetn) begin

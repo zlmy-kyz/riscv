@@ -7,6 +7,8 @@
 module inst_bus_interconnect #(
     parameter [31:0] ROM_BASE      = 32'h8000_0000,
     parameter [31:0] ROM_ADDR_MASK = 32'hffff_c000, // 16 KiB
+    parameter integer ENABLE_PREPROCESS = 0,
+    parameter integer ENABLE_CAMERA = 0,
     parameter integer ENABLE_DDR   = 0,
     parameter [31:0] DDR_BASE      = 32'h4000_0000,
     parameter [31:0] DDR_ADDR_MASK = 32'he000_0000  // 512 MiB
@@ -51,6 +53,8 @@ module inst_bus_interconnect #(
     assign rom_select = ((m_req_addr & ROM_ADDR_MASK) ==
                          (ROM_BASE & ROM_ADDR_MASK));
     assign ddr_select = (ENABLE_DDR != 0) && !rom_select &&
+                        !((ENABLE_PREPROCESS!=0) && m_req_addr[31:16]==16'h4200) &&
+                        !((ENABLE_CAMERA!=0) && (m_req_addr[31:22]==(32'h41000000 >> 22))) &&
                         ((m_req_addr & DDR_ADDR_MASK) ==
                          (DDR_BASE & DDR_ADDR_MASK));
 

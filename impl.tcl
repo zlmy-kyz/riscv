@@ -358,3 +358,595 @@ dev_map
 pnr 
 report_timing 
 gen_bit_stream 
+set_arch -family Logos2 -device PG2L100H -speedgrade -6 -package FBG484
+compile -top_module board_top
+set_arch -family Logos2 -device PG2L100H -speedgrade -6 -package FBG484
+compile -top_module board_top
+set_arch -family Logos2 -device PG2L100H -speedgrade -6 -package FBG484
+compile -top_module board_top
+set_arch -family Logos2 -device PG2L100H -speedgrade -6 -package FBG484
+compile -top_module board_top
+synthesize -ads -selected_syn_tool_opt 2 
+dev_map 
+pnr 
+report_timing 
+gen_bit_stream 
+pnr -gplace_times 3 -saved_outcome 3 -mode {performance} 
+pnr -gplace_times 3 -saved_outcome 3 -mode {performance} 
+report_timing 
+pnr -gplace_seed 3 -gplace_times 5 -saved_outcome 5 -mode {performance} 
+pnr -gplace_seed 3 -gplace_times 5 -saved_outcome 5 -mode {performance} 
+report_timing 
+gen_bit_stream 
+set_arch -family Logos2 -device PG2L100H -speedgrade -6 -package FBG484
+compile -top_module board_top
+synthesize -ads -selected_syn_tool_opt 2 
+dev_map 
+pnr -gplace_seed 3 -gplace_times 5 -saved_outcome 5 -mode {performance} 
+pnr -gplace_seed 3 -gplace_times 5 -saved_outcome 5 -mode {performance} 
+report_timing 
+gen_bit_stream 
+set_arch -family Logos2 -device PG2L100H -speedgrade -6 -package FBG484
+compile -top_module board_top
+synthesize -ads -selected_syn_tool_opt 2 
+synthesize -ads -selected_syn_tool_opt 2 
+dev_map 
+pnr -gplace_seed 3 -gplace_times 5 -mode {performance} 
+pnr -gplace_seed 3 -gplace_times 5 -mode {performance} 
+report_timing 
+gen_bit_stream 
+set_arch -family Logos2 -device PG2L100H -speedgrade -6 -package FBG484
+compile -top_module board_top
+synthesize -ads -selected_syn_tool_opt 2 
+dev_map 
+pnr -gplace_seed 3 -gplace_times 5 -mode {performance} 
+pnr -gplace_seed 3 -gplace_times 5 -mode {performance} 
+report_timing 
+gen_bit_stream 
+set_arch -family Logos2 -device PG2L100H -speedgrade -6 -package FBG484
+compile -top_module board_top
+synthesize -ads -selected_syn_tool_opt 2 
+dev_map 
+pnr -gplace_seed 3 -gplace_times 5 -mode {performance} 
+pnr -gplace_seed 3 -gplace_times 5 -mode {performance} 
+report_timing 
+gen_bit_stream 
+set_arch -family Logos2 -device PG2L100H -speedgrade -6 -package FBG484
+compile -top_module board_top
+synthesize -ads -selected_syn_tool_opt 2 
+dev_map 
+pnr -gplace_seed 3 -gplace_times 5 -mode {performance} 
+pnr -gplace_seed 3 -gplace_times 5 -mode {performance} 
+report_timing 
+gen_bit_stream 
+set_arch -family Logos2 -device PG2L100H -speedgrade -6 -package FBG484
+compile -top_module board_top
+synthesize -ads -selected_syn_tool_opt 2 
+dev_map 
+pnr -gplace_seed 2 -gplace_times 4 -mode {performance} 
+pnr -gplace_seed 2 -gplace_times 4 -mode {performance} 
+report_timing 
+gen_bit_stream 
+set_arch -family Logos2 -device PG2L100H -speedgrade -6 -package FBG484
+compile -top_module board_top
+synthesize -ads -selected_syn_tool_opt 2 
+dev_map 
+pnr -gplace_seed 2 -gplace_times 4 -mode {performance} 
+pnr -gplace_seed 2 -gplace_times 4 -mode {performance} 
+report_timing 
+gen_bit_stream 
+set_arch -family Logos2 -device PG2L100H -speedgrade -6 -package FBG484
+compile -top_module board_top
+synthesize -ads -selected_syn_tool_opt 2 
+dev_map 
+pnr -gplace_seed 2 -gplace_times 4 -mode {performance} 
+pnr -gplace_seed 2 -gplace_times 4 -mode {performance} 
+report_timing 
+gen_bit_stream 
+set_arch -family Logos2 -device PG2L100H -speedgrade -6 -package FBG484
+compile -top_module board_top
+synthesize -ads -selected_syn_tool_opt 2 
+dev_map 
+pnr -gplace_seed 2 -gplace_times 4 -mode {performance} 
+pnr -gplace_seed 2 -gplace_times 4 -mode {performance} 
+report_timing 
+gen_bit_stream 
+set_arch -family Logos2 -device PG2L100H -speedgrade -6 -package FBG484
+compile -top_module board_top
+synthesize -ads -selected_syn_tool_opt 2 
+dev_map 
+pnr -gplace_seed 2 -gplace_times 4 -mode {performance} 
+pnr -gplace_seed 2 -gplace_times 4 -mode {performance} 
+report_timing 
+gen_bit_stream 
+set_arch -family Logos2 -device PG2L100H -speedgrade -6 -package FBG484
+compile -top_module board_top
+synthesize -ads -selected_syn_tool_opt 2 
+dev_map 
+pnr -gplace_seed 2 -gplace_times 4 -mode {performance} 
+pnr -gplace_seed 2 -gplace_times 4 -mode {performance} 
+report_timing 
+gen_bit_stream 
+set_arch -family Logos2 -device PG2L100H -speedgrade -6 -package FBG484
+compile -top_module board_top
+synthesize -ads -selected_syn_tool_opt 2 
+dev_map 
+pnr -gplace_seed 2 -gplace_times 4 -mode {performance} 
+pnr -gplace_seed 2 -gplace_times 4 -mode {performance} 
+report_timing 
+gen_bit_stream 
+set_arch -family Logos2 -device PG2L100H -speedgrade -6 -package FBG484
+compile -top_module board_top
+synthesize -ads -selected_syn_tool_opt 2 
+dev_map 
+pnr -gplace_seed 2 -gplace_times 4 -mode {performance} 
+pnr -gplace_seed 2 -gplace_times 4 -mode {performance} 
+report_timing 
+gen_bit_stream 
+set_arch -family Logos2 -device PG2L100H -speedgrade -6 -package FBG484
+compile -top_module board_top
+synthesize -ads -selected_syn_tool_opt 2 
+dev_map 
+pnr -gplace_seed 2 -gplace_times 4 -mode {performance} 
+pnr -gplace_seed 2 -gplace_times 4 -mode {performance} 
+report_timing 
+gen_bit_stream 
+set_arch -family Logos2 -device PG2L100H -speedgrade -6 -package FBG484
+compile -top_module board_top
+synthesize -ads -selected_syn_tool_opt 2 
+dev_map 
+pnr -gplace_seed 2 -gplace_times 4 -mode {performance} 
+pnr -gplace_seed 2 -gplace_times 4 -mode {performance} 
+report_timing 
+gen_bit_stream 
+set_arch -family Logos2 -device PG2L100H -speedgrade -6 -package FBG484
+compile -top_module board_top
+synthesize -ads -selected_syn_tool_opt 2 
+dev_map 
+set_arch -family Logos2 -device PG2L100H -speedgrade -6 -package FBG484
+compile -top_module board_top
+synthesize -ads -selected_syn_tool_opt 2 
+dev_map 
+remove_fic "D:/riscv/RISCV/synthesize/board_top_syn.fic"
+set_arch -family Logos2 -device PG2L100H -speedgrade -6 -package FBG484
+compile -top_module board_top
+synthesize -ads -selected_syn_tool_opt 2 
+dev_map 
+pnr -gplace_seed 2 -gplace_times 4 -mode {performance} 
+pnr -gplace_seed 2 -gplace_times 4 -mode {performance} 
+report_timing 
+gen_bit_stream 
+set_arch -family Logos2 -device PG2L100H -speedgrade -6 -package FBG484
+compile -top_module board_top
+synthesize -ads -selected_syn_tool_opt 2 
+dev_map 
+pnr -gplace_seed 2 -gplace_times 4 -mode {performance} 
+pnr -gplace_seed 2 -gplace_times 4 -mode {performance} 
+report_timing 
+gen_bit_stream 
+gen_netlist 
+set_arch -family Logos2 -device PG2L100H -speedgrade -6 -package FBG484
+compile -top_module board_top
+synthesize -ads -selected_syn_tool_opt 2 
+dev_map 
+pnr -gplace_seed 2 -gplace_times 4 -mode {performance} 
+pnr -gplace_seed 2 -gplace_times 4 -mode {performance} 
+report_timing 
+gen_bit_stream 
+set_arch -family Logos2 -device PG2L100H -speedgrade -6 -package FBG484
+compile -top_module board_top
+synthesize -ads -selected_syn_tool_opt 2 
+dev_map 
+pnr -gplace_seed 2 -gplace_times 4 -mode {performance} 
+pnr -gplace_seed 2 -gplace_times 4 -mode {performance} 
+report_timing 
+gen_bit_stream 
+set_arch -family Logos2 -device PG2L100H -speedgrade -6 -package FBG484
+compile -top_module board_top
+synthesize -ads -selected_syn_tool_opt 2 
+dev_map 
+pnr -gplace_seed 2 -gplace_times 4 -mode {performance} 
+pnr -gplace_seed 2 -gplace_times 4 -mode {performance} 
+report_timing 
+gen_bit_stream 
+set_arch -family Logos2 -device PG2L100H -speedgrade -6 -package FBG484
+compile -top_module board_top
+synthesize -ads -selected_syn_tool_opt 2 
+dev_map 
+pnr -gplace_seed 2 -gplace_times 4 -mode {performance} 
+pnr -gplace_seed 2 -gplace_times 4 -mode {performance} 
+report_timing 
+gen_bit_stream 
+set_arch -family Logos2 -device PG2L100H -speedgrade -6 -package FBG484
+compile -top_module board_top
+synthesize -ads -selected_syn_tool_opt 2 
+dev_map 
+pnr -gplace_seed 2 -gplace_times 4 -mode {performance} 
+pnr -gplace_seed 2 -gplace_times 4 -mode {performance} 
+report_timing 
+gen_bit_stream 
+set_arch -family Logos2 -device PG2L100H -speedgrade -6 -package FBG484
+compile -top_module board_top
+synthesize -ads -selected_syn_tool_opt 2 
+dev_map 
+pnr -gplace_seed 2 -gplace_times 4 -mode {performance} 
+pnr -gplace_seed 2 -gplace_times 4 -mode {performance} 
+report_timing 
+gen_bit_stream 
+set_arch -family Logos2 -device PG2L100H -speedgrade -6 -package FBG484
+compile -top_module board_top
+synthesize -ads -selected_syn_tool_opt 2 
+dev_map 
+pnr -gplace_seed 2 -gplace_times 4 -mode {performance} 
+pnr -gplace_seed 2 -gplace_times 4 -mode {performance} 
+report_timing 
+gen_bit_stream 
+remove_design D:/riscv/RISCV/ipcore/ddr3/ddr3.idf
+add_design "D:/riscv/RISCV/ipcore/ddr3/ddr3.idf"
+remove_design D:/riscv/RISCV/ipcore/inst_rom/inst_rom.idf
+remove_design D:/riscv/RISCV/ipcore/data_ram/data_ram.idf
+remove_design D:/riscv/RISCV/ipcore/ddr3/ddr3.idf
+remove_simulation "D:/riscv/RISCV/ipcore/ddr3/example_design/bench/mem/ddr3.v"
+add_design D:/riscv/RISCV/ipcore/inst_rom/inst_rom.idf
+add_design D:/riscv/RISCV/ipcore/data_ram/data_ram.idf
+add_design D:/riscv/RISCV/ipcore/ddr3/ddr3.idf
+set_arch -family Logos2 -device PG2L200H -speedgrade -6 -package FBB676
+compile -top_module board_top
+set_arch -family Logos2 -device PG2L200H -speedgrade -6 -package FBB676
+compile -top_module board_top
+synthesize -ads -selected_syn_tool_opt 2 
+set_arch -family Logos2 -device PG2L200H -speedgrade -6 -package FBB676
+compile -top_module board_top
+synthesize -ads -selected_syn_tool_opt 2 
+dev_map 
+pnr -gplace_seed 2 -gplace_times 4 -mode {performance} 
+pnr -gplace_seed 2 -gplace_times 4 -mode {performance} 
+report_timing 
+gen_bit_stream 
+set_arch -family Logos2 -device PG2L200H -speedgrade -6 -package FBB676
+compile -top_module board_top
+set_arch -family Logos2 -device PG2L200H -speedgrade -6 -package FBB676
+compile -top_module board_top
+synthesize -ads -selected_syn_tool_opt 2 
+dev_map 
+pnr -gplace_seed 2 -gplace_times 4 -mode {performance} 
+pnr -gplace_seed 2 -gplace_times 4 -mode {performance} 
+report_timing 
+gen_bit_stream 
+set_arch -family Logos2 -device PG2L200H -speedgrade -6 -package FBB676
+compile -top_module board_top
+synthesize -ads -selected_syn_tool_opt 2 
+dev_map 
+pnr -gplace_seed 2 -gplace_times 4 -mode {performance} 
+pnr -gplace_seed 2 -gplace_times 4 -mode {performance} 
+report_timing 
+gen_bit_stream 
+set_arch -family Logos2 -device PG2L200H -speedgrade -6 -package FBB676
+compile -top_module board_top
+synthesize -ads -selected_syn_tool_opt 2 
+dev_map 
+pnr -gplace_seed 2 -gplace_times 4 -mode {performance} 
+pnr -gplace_seed 2 -gplace_times 4 -mode {performance} 
+report_timing 
+gen_bit_stream 
+set_arch -family Logos2 -device PG2L200H -speedgrade -6 -package FBB676
+compile -top_module board_top
+synthesize -ads -selected_syn_tool_opt 2 
+dev_map 
+pnr -gplace_seed 2 -gplace_times 4 -mode {performance} 
+pnr -gplace_seed 2 -gplace_times 4 -mode {performance} 
+report_timing 
+gen_bit_stream 
+add_design D:/riscv/RISCV/ipcore/icache/icache.idf
+add_design D:/riscv/RISCV/ipcore/dcache/dcache.idf
+set_arch -family Logos2 -device PG2L200H -speedgrade -6 -package FBB676
+compile -top_module board_top
+synthesize -ads -selected_syn_tool_opt 2 
+dev_map 
+pnr -gplace_seed 2 -gplace_times 4 -mode {performance} 
+pnr -gplace_seed 2 -gplace_times 4 -mode {performance} 
+report_timing 
+gen_bit_stream 
+add_design D:/riscv/RISCV/ipcore/mul/mul.idf
+set_arch -family Logos2 -device PG2L200H -speedgrade -6 -package FBB676
+compile -top_module board_top
+synthesize -ads -selected_syn_tool_opt 2 
+dev_map 
+pnr -gplace_seed 2 -gplace_times 4 -mode {performance} 
+pnr -gplace_seed 2 -gplace_times 4 -mode {performance} 
+report_timing 
+gen_bit_stream 
+set_arch -family Logos2 -device PG2L200H -speedgrade -6 -package FBB676
+compile -top_module board_top
+synthesize -ads -selected_syn_tool_opt 2 
+dev_map 
+pnr -gplace_seed 2 -gplace_times 4 -mode {performance} 
+pnr -gplace_seed 2 -gplace_times 4 -mode {performance} 
+report_timing 
+gen_bit_stream 
+set_arch -family Logos2 -device PG2L200H -speedgrade -6 -package FBB676
+compile -top_module board_top
+synthesize -ads -selected_syn_tool_opt 2 
+dev_map 
+pnr -gplace_seed 2 -gplace_times 4 -mode {performance} 
+pnr -gplace_seed 2 -gplace_times 4 -mode {performance} 
+report_timing 
+gen_bit_stream 
+set_arch -family Logos2 -device PG2L200H -speedgrade -6 -package FBB676
+compile -top_module board_top
+synthesize -ads -selected_syn_tool_opt 2 
+dev_map 
+pnr -gplace_seed 2 -gplace_times 4 -mode {performance} 
+pnr -gplace_seed 2 -gplace_times 4 -mode {performance} 
+report_timing 
+gen_bit_stream 
+set_arch -family Logos2 -device PG2L200H -speedgrade -6 -package FBB676
+compile -top_module board_top
+synthesize -ads -selected_syn_tool_opt 2 
+dev_map 
+pnr -gplace_seed 2 -gplace_times 4 -mode {performance} 
+pnr -gplace_seed 2 -gplace_times 4 -mode {performance} 
+report_timing 
+gen_bit_stream 
+set_arch -family Logos2 -device PG2L200H -speedgrade -6 -package FBB676
+compile -top_module board_top
+synthesize -ads -selected_syn_tool_opt 2 
+dev_map 
+pnr -gplace_seed 2 -gplace_times 4 -mode {performance} 
+pnr -gplace_seed 2 -gplace_times 4 -mode {performance} 
+report_timing 
+gen_bit_stream 
+set_arch -family Logos2 -device PG2L200H -speedgrade -6 -package FBB676
+compile -top_module board_top
+synthesize -ads -selected_syn_tool_opt 2 
+dev_map 
+pnr -gplace_seed 2 -gplace_times 4 -mode {performance} 
+pnr -gplace_seed 2 -gplace_times 4 -mode {performance} 
+report_timing 
+gen_bit_stream 
+set_arch -family Logos2 -device PG2L200H -speedgrade -6 -package FBB676
+compile -top_module board_top
+synthesize -ads -selected_syn_tool_opt 2 
+dev_map 
+pnr -gplace_seed 2 -gplace_times 4 -mode {performance} 
+pnr -gplace_seed 2 -gplace_times 4 -mode {performance} 
+report_timing 
+gen_bit_stream 
+set_arch -family Logos2 -device PG2L200H -speedgrade -6 -package FBB676
+compile -top_module board_top
+synthesize -ads -selected_syn_tool_opt 2 
+dev_map 
+pnr -gplace_seed 2 -gplace_times 4 -parallel 4 -mode {performance} 
+pnr -gplace_seed 2 -gplace_times 4 -parallel 4 -mode {performance} 
+report_timing 
+gen_bit_stream 
+set_arch -family Logos2 -device PG2L200H -speedgrade -6 -package FBB676
+compile -top_module board_top
+synthesize -ads -selected_syn_tool_opt 2 
+dev_map 
+pnr -gplace_seed 2 -gplace_times 4 -parallel 4 -mode {performance} 
+pnr -gplace_seed 2 -gplace_times 4 -parallel 4 -mode {performance} 
+report_timing 
+gen_bit_stream 
+set_arch -family Logos2 -device PG2L200H -speedgrade -6 -package FBB676
+compile -top_module board_top
+synthesize -ads -selected_syn_tool_opt 2 
+dev_map 
+pnr -gplace_seed 2 -gplace_times 4 -parallel 4 -mode {performance} 
+pnr -gplace_seed 2 -gplace_times 4 -parallel 4 -mode {performance} 
+report_timing 
+gen_bit_stream 
+set_arch -family Logos2 -device PG2L200H -speedgrade -6 -package FBB676
+compile -top_module board_top
+synthesize -ads -selected_syn_tool_opt 2 
+dev_map 
+pnr -gplace_seed 2 -gplace_times 4 -parallel 4 -mode {performance} 
+pnr -gplace_seed 2 -gplace_times 4 -parallel 4 -mode {performance} 
+report_timing 
+gen_bit_stream 
+set_arch -family Logos2 -device PG2L200H -speedgrade -6 -package FBB676
+compile -top_module board_top
+synthesize -ads -selected_syn_tool_opt 2 
+dev_map 
+pnr -gplace_seed 2 -gplace_times 4 -parallel 4 -mode {performance} 
+pnr -gplace_seed 2 -gplace_times 4 -parallel 4 -mode {performance} 
+report_timing 
+gen_bit_stream 
+set_arch -family Logos2 -device PG2L200H -speedgrade -6 -package FBB676
+compile -top_module board_top
+synthesize -ads -selected_syn_tool_opt 2 
+dev_map 
+pnr -gplace_seed 2 -gplace_times 4 -parallel 4 -mode {performance} 
+pnr -gplace_seed 2 -gplace_times 4 -parallel 4 -mode {performance} 
+report_timing 
+gen_bit_stream 
+add_design "D:/riscv/RISCV/myriscv/camera_ddr_write_arbiter.v"
+add_design "D:/riscv/RISCV/myriscv/camera_mmio.v"
+add_design "D:/riscv/RISCV/myriscv/afifo_16i_64o_512.v"
+add_design "D:/riscv/RISCV/myriscv/ov5640_capture.v"
+add_design "D:/riscv/RISCV/myriscv/ov5640_config.v"
+add_design "D:/riscv/RISCV/myriscv/ov5640_config_rom.v"
+add_design "D:/riscv/RISCV/myriscv/ov5640_sccb.v"
+add_design "D:/riscv/RISCV/myriscv/ipm2l_fifo_ctrl_v1_1_afifo_16i_64o_512.v"
+add_design "D:/riscv/RISCV/myriscv/ipm2l_fifo_v1_10_afifo_16i_64o_512.v"
+add_design "D:/riscv/RISCV/myriscv/ipm2l_sdpram_v1_10_afifo_16i_64o_512.v"
+set_arch -family Logos2 -device PG2L200H -speedgrade -6 -package FBB676
+compile -top_module board_top
+synthesize -ads -selected_syn_tool_opt 2 
+synthesize -ads -selected_syn_tool_opt 2 
+dev_map 
+dev_map 
+set_arch -family Logos2 -device PG2L200H -speedgrade -6 -package FBB676
+compile -top_module board_top
+synthesize -ads -selected_syn_tool_opt 2 
+synthesize -ads -selected_syn_tool_opt 2 
+dev_map 
+pnr -gplace_seed 2 -gplace_times 4 -parallel 4 -mode {performance} 
+pnr -gplace_seed 2 -gplace_times 4 -parallel 4 -mode {performance} 
+report_timing 
+gen_bit_stream 
+set_arch -family Logos2 -device PG2L200H -speedgrade -6 -package FBB676
+compile -top_module board_top
+synthesize -ads -selected_syn_tool_opt 2 
+dev_map 
+pnr -gplace_seed 2 -gplace_times 4 -parallel 4 -mode {performance} 
+pnr -gplace_seed 2 -gplace_times 4 -parallel 4 -mode {performance} 
+report_timing 
+gen_bit_stream 
+set_arch -family Logos2 -device PG2L200H -speedgrade -6 -package FBB676
+compile -top_module board_top
+synthesize -ads -selected_syn_tool_opt 2 
+dev_map 
+pnr -gplace_seed 2 -gplace_times 4 -parallel 4 -mode {performance} 
+pnr -gplace_seed 2 -gplace_times 4 -parallel 4 -mode {performance} 
+report_timing 
+gen_bit_stream 
+set_arch -family Logos2 -device PG2L200H -speedgrade -6 -package FBB676
+compile -top_module board_top
+synthesize -ads -selected_syn_tool_opt 2 
+dev_map 
+pnr -gplace_seed 2 -gplace_times 4 -parallel 4 -mode {performance} 
+pnr -gplace_seed 2 -gplace_times 4 -parallel 4 -mode {performance} 
+report_timing 
+gen_bit_stream 
+set_arch -family Logos2 -device PG2L200H -speedgrade -6 -package FBB676
+compile -top_module board_top
+add_design "D:/riscv/RISCV/myriscv/preprocess_ddr_read_arbiter.v"
+add_design "D:/riscv/RISCV/myriscv/preprocess_mmio.v"
+set_arch -family Logos2 -device PG2L200H -speedgrade -6 -package FBB676
+compile -top_module board_top
+synthesize -ads -selected_syn_tool_opt 2 
+dev_map 
+pnr -gplace_seed 2 -gplace_times 4 -parallel 4 -mode {performance} 
+pnr -gplace_seed 2 -gplace_times 4 -parallel 4 -mode {performance} 
+report_timing 
+gen_bit_stream 
+remove_simulation "D:/riscv/RISCV/myriscv/soc_ddr3_top.v"
+remove_simulation "D:/riscv/RISCV/myriscv/alu.v"
+remove_simulation "D:/riscv/RISCV/myriscv/br_alu.v"
+remove_simulation "D:/riscv/RISCV/myriscv/csr_file.v"
+remove_simulation "D:/riscv/RISCV/myriscv/data_bram_adapter.v"
+remove_simulation "D:/riscv/RISCV/myriscv/data_bus_interconnect.v"
+remove_simulation "D:/riscv/RISCV/myriscv/dual_sram_to_pango_ddr_bridge.v"
+remove_simulation "D:/riscv/RISCV/myriscv/inst_bram_adapter.v"
+remove_simulation "D:/riscv/RISCV/myriscv/inst_bus_interconnect.v"
+remove_simulation "D:/riscv/RISCV/myriscv/l_alu.v"
+remove_simulation "D:/riscv/RISCV/myriscv/mycpu_sync.v"
+remove_simulation "D:/riscv/RISCV/myriscv/regfile.v"
+remove_simulation "D:/riscv/RISCV/myriscv/simple_mmio.v"
+remove_simulation "D:/riscv/RISCV/myriscv/soc_top.v"
+remove_simulation "D:/riscv/RISCV/sim/board_main_selftest/tb_board_top_selftest.v"
+remove_simulation "D:/riscv/RISCV/source/tb_soc_ddr3_pds_ip.v"
+set_arch -family Logos2 -device PG2L200H -speedgrade -6 -package FBB676
+compile -top_module board_top
+synthesize -ads -selected_syn_tool_opt 2 
+dev_map 
+pnr -gplace_seed 2 -gplace_times 4 -parallel 4 -mode {performance} 
+pnr -gplace_seed 2 -gplace_times 4 -parallel 4 -mode {performance} 
+report_timing 
+gen_bit_stream 
+set_arch -family Logos2 -device PG2L200H -speedgrade -6 -package FBB676
+compile -top_module board_top
+synthesize -ads -selected_syn_tool_opt 2 
+dev_map 
+pnr -gplace_seed 2 -gplace_times 4 -parallel 4 -mode {performance} 
+pnr -gplace_seed 2 -gplace_times 4 -parallel 4 -mode {performance} 
+report_timing 
+gen_bit_stream 
+set_arch -family Logos2 -device PG2L200H -speedgrade -6 -package FBB676
+compile -top_module board_top
+synthesize -ads -selected_syn_tool_opt 2 
+dev_map 
+pnr -gplace_seed 2 -gplace_times 4 -parallel 4 -mode {performance} 
+pnr -gplace_seed 2 -gplace_times 4 -parallel 4 -mode {performance} 
+report_timing 
+gen_bit_stream 
+set_arch -family Logos2 -device PG2L200H -speedgrade -6 -package FBB676
+compile -top_module board_top
+synthesize -ads -selected_syn_tool_opt 2 
+dev_map 
+pnr -gplace_seed 2 -gplace_times 4 -parallel 4 -mode {performance} 
+pnr -gplace_seed 2 -gplace_times 4 -parallel 4 -mode {performance} 
+report_timing 
+gen_bit_stream 
+set_arch -family Logos2 -device PG2L200H -speedgrade -6 -package FBB676
+compile -top_module board_top
+synthesize -ads -selected_syn_tool_opt 2 
+dev_map 
+pnr -gplace_seed 2 -gplace_times 4 -parallel 4 -mode {performance} 
+pnr -gplace_seed 2 -gplace_times 4 -parallel 4 -mode {performance} 
+report_timing 
+gen_bit_stream 
+set_arch -family Logos2 -device PG2L200H -speedgrade -6 -package FBB676
+compile -top_module board_top
+synthesize -ads -selected_syn_tool_opt 2 
+dev_map 
+pnr -gplace_seed 2 -gplace_times 4 -parallel 4 -mode {performance} 
+pnr -gplace_seed 2 -gplace_times 4 -parallel 4 -mode {performance} 
+report_timing 
+gen_bit_stream 
+set_arch -family Logos2 -device PG2L200H -speedgrade -6 -package FBB676
+compile -top_module board_top
+synthesize -ads -selected_syn_tool_opt 2 
+dev_map 
+pnr -gplace_seed 2 -gplace_times 4 -parallel 4 -mode {performance} 
+pnr -gplace_seed 2 -gplace_times 4 -parallel 4 -mode {performance} 
+report_timing 
+gen_bit_stream 
+gen_bit_stream 
+set_arch -family Logos2 -device PG2L200H -speedgrade -6 -package FBB676
+compile -top_module board_top
+synthesize -ads -selected_syn_tool_opt 2 
+dev_map 
+pnr -gplace_seed 2 -gplace_times 4 -parallel 4 -mode {performance} 
+pnr -gplace_seed 2 -gplace_times 4 -parallel 4 -mode {performance} 
+report_timing 
+gen_bit_stream 
+set_arch -family Logos2 -device PG2L200H -speedgrade -6 -package FBB676
+compile -top_module board_top
+synthesize -ads -selected_syn_tool_opt 2 
+dev_map 
+pnr -gplace_seed 2 -gplace_times 4 -parallel 4 -mode {performance} 
+pnr -gplace_seed 2 -gplace_times 4 -parallel 4 -mode {performance} 
+report_timing 
+gen_bit_stream 
+set_arch -family Logos2 -device PG2L200H -speedgrade -6 -package FBB676
+compile -top_module board_top
+synthesize -ads -selected_syn_tool_opt 2 
+dev_map 
+pnr -gplace_seed 2 -gplace_times 4 -parallel 4 -mode {performance} 
+pnr -gplace_seed 2 -gplace_times 4 -parallel 4 -mode {performance} 
+report_timing 
+gen_bit_stream 
+set_arch -family Logos2 -device PG2L200H -speedgrade -6 -package FBB676
+compile -top_module board_top
+synthesize -ads -selected_syn_tool_opt 2 
+dev_map 
+pnr -gplace_seed 2 -gplace_times 4 -parallel 4 -mode {performance} 
+pnr -gplace_seed 2 -gplace_times 4 -parallel 4 -mode {performance} 
+report_timing 
+gen_bit_stream 
+set_arch -family Logos2 -device PG2L200H -speedgrade -6 -package FBB676
+compile -top_module board_top
+synthesize -ads -selected_syn_tool_opt 2 
+dev_map 
+pnr -gplace_seed 2 -gplace_times 4 -parallel 4 -mode {performance} 
+pnr -gplace_seed 2 -gplace_times 4 -parallel 4 -mode {performance} 
+report_timing 
+gen_bit_stream 
+set_arch -family Logos2 -device PG2L200H -speedgrade -6 -package FBB676
+compile -top_module board_top
+synthesize -ads -selected_syn_tool_opt 2 
+dev_map 
+pnr -gplace_seed 2 -gplace_times 4 -parallel 4 -mode {performance} 
+pnr -gplace_seed 2 -gplace_times 4 -parallel 4 -mode {performance} 
+report_timing 
+gen_bit_stream 
+set_arch -family Logos2 -device PG2L200H -speedgrade -6 -package FBB676
+compile -top_module board_top
+synthesize -ads -selected_syn_tool_opt 2 
+dev_map 
+pnr -gplace_seed 2 -gplace_times 4 -parallel 4 -mode {performance} 
+pnr -gplace_seed 2 -gplace_times 4 -parallel 4 -mode {performance} 
+report_timing 
+gen_bit_stream 
