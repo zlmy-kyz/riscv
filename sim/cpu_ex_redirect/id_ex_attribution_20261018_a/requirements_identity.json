@@ -1,0 +1,32 @@
+{
+  "status": "TASK040_REQUIREMENTS_READY_FOR_DEEPSEEK_IMPLEMENTATION_NOT_RUN",
+  "input_requirement_sha256": {
+    "DeepSeek/任务040_ID到EX重定向与错路取指占用归因.md": "4d446e8e6c4f9ff4d80568ec25dcef11c046733f92a779d2997f88bb951e4026",
+    "myriscv/mycpu_sync.v": "5c26df0229ab00365b2eca1412499f988981fdfe1d1b7292e43a8317f0d47745",
+    "myriscv/csr_defs.vh": "2cab6c5255e392161be69b1f75f283f301d5e6227533bd80b52bf4a14312f422",
+    "myriscv/regfile.v": "acae02088c67005e9c18213901a914e642d6689a27107fca06add6e48e3aa48e",
+    "myriscv/alu.v": "fa58eb7d36f5f8b767dbd62e85098457f2e14abd9909c23b441bee6468920fb6",
+    "myriscv/br_alu.v": "d33fe375029e88a5c44b4d6ad1e5caf8cbc8fd950dddcbf5f981cb4c14d0dd73",
+    "myriscv/l_alu.v": "6dc7fff19f1ffca8f02017b3d78e4b97f636ed49d69b56ead5d474a662de8436",
+    "myriscv/csr_file.v": "c0c105873d9ab2f8d309ebfd723cf59097adf3d5dbfa6fa2e7e1900eaffb4499",
+    "myriscv/simple_mmio.v": "b8b91df5042f466194cb98de03dad084c0d7a411e627fdc8f1d2c29cb62ebfc7",
+    "sim/br_ex_redirect/mul_behavioral.v": "84619db879b2238afe17b3de127e529efcdb59502278763d66bf6b66e27eadeb",
+    "sim/br_ex_redirect/asm.py": "21fcb2de885441d5eb6bb979b071d777b09020381ba34e3006341843751dd795",
+    "sim/br_ex_redirect/tb_br_ex_redirect.v": "cda326b1895eb1a1409251cea1a6297e33849edd31aa596aa98c511695a18eeb",
+    "sim/br_ex_redirect/serial_drain_20261018_a/tb_serial_drain.v": "804aa57d51bb5ecef2f8e2b7dbbb13d8e62048d6778f6d3b1b9a7f6b321cfbab",
+    "sim/cpu_ex_redirect/target_fetch_20261018_a/after/myriscv/mycpu_sync.v": "5c26df0229ab00365b2eca1412499f988981fdfe1d1b7292e43a8317f0d47745",
+    "sim/cpu_ex_redirect/board/review_task039_20261018_01/board_review.json": "ea5dd0d0a2a769624697885f50142266d4da43f9e0be77f657adcbd55db2897c"
+  },
+  "baseline_evidence_hashes_verified": 11,
+  "existing_trace_limits": [
+    "Ordinary bench DELAY=1 has two-edge CPU-visible response.",
+    "Serial trace idex group logs live ID taken/target, not registered EX fields.",
+    "Existing traces omit full response identity and only print first 40 cycles."
+  ],
+  "scope": "Current039 stage/wrong-path attribution only; no new RTL or board trial.",
+  "final_test_input_manifest": "DeepSeek must create after implementing TB/model/reference and recursively closing includes.",
+  "dynamic_simulation": "NOT_RUN",
+  "RTL_modified": false,
+  "PDS_started": false,
+  "serial_opened": false
+}
