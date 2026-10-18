@@ -66,39 +66,48 @@ module tb_br_ex_redirect;
         .perf_fetch_pc(perf_fetch_pc)
     );
 
-    // ---------------- 1 拍同步存储器模型 ----------------
-    reg        i_pend = 1'b0;
-    reg [31:0] i_q = 32'b0;
-    reg        d_pend = 1'b0;
-    reg [31:0] d_q = 32'b0;
+    // ---------------- 可配置延迟的同步存储器模型 ----------------
+    // +DELAY=n 让每个请求等 n 拍才返回，用来复现 DDR 的多拍响应，
+    // 覆盖"分支在 EX 等 load 响应"这类真实场景。默认 1 拍。
+    integer    delay = 1;
+    integer    i_cnt = 0;
+    integer    d_cnt = 0;
+    reg [31:0] i_addr_q  = 32'b0;
+    reg [31:0] d_addr_q  = 32'b0;
+    reg        d_write_q = 1'b0;
+    reg [31:0] d_wdata_q = 32'b0;
+    reg [ 3:0] d_wstrb_q = 4'b0;
     integer    wi;
 
     always @(posedge clk) begin
-        inst_rsp_valid <= i_pend;
-        if (i_pend) inst_rsp_rdata <= i_q;
+        inst_rsp_valid <= (i_cnt == 1);
+        if (i_cnt == 1) inst_rsp_rdata <= imem[i_addr_q[10:2]];
         if (inst_req_valid && inst_req_ready) begin
-            i_q    <= imem[inst_req_addr[10:2]];
-            i_pend <= 1'b1;
-        end else begin
-            i_pend <= 1'b0;
+            i_addr_q <= inst_req_addr;
+            i_cnt    <= delay;
+        end else if (i_cnt > 0) begin
+            i_cnt <= i_cnt - 1;
         end
     end
 
     always @(posedge clk) begin
-        data_rsp_valid <= d_pend;
-        if (d_pend) data_rsp_rdata <= d_q;
-        if (data_req_valid && data_req_ready) begin
-            if (data_req_write) begin
+        data_rsp_valid <= (d_cnt == 1);
+        if (d_cnt == 1) begin
+            data_rsp_rdata <= dmem[d_addr_q[10:2]];
+            if (d_write_q) begin
                 for (wi = 0; wi < 4; wi = wi + 1)
-                    if (data_req_wstrb[wi])
-                        dmem[data_req_addr[10:2]][8*wi +: 8] <= data_req_wdata[8*wi +: 8];
-                d_q <= 32'b0;
-            end else begin
-                d_q <= dmem[data_req_addr[10:2]];
+                    if (d_wstrb_q[wi])
+                        dmem[d_addr_q[10:2]][8*wi +: 8] <= d_wdata_q[8*wi +: 8];
             end
-            d_pend <= 1'b1;
-        end else begin
-            d_pend <= 1'b0;
+        end
+        if (data_req_valid && data_req_ready) begin
+            d_addr_q  <= data_req_addr;
+            d_write_q <= data_req_write;
+            d_wdata_q <= data_req_wdata;
+            d_wstrb_q <= data_req_wstrb;
+            d_cnt     <= delay;
+        end else if (d_cnt > 0) begin
+            d_cnt <= d_cnt - 1;
         end
     end
 
@@ -141,6 +150,8 @@ module tb_br_ex_redirect;
 
     initial begin
         if (!$value$plusargs("MODE=%d", mode)) mode = 0;
+        if (!$value$plusargs("DELAY=%d", delay)) delay = 1;
+        if (delay < 1) delay = 1;
         for (i = 0; i < 512; i = i + 1) begin
             imem[i] = 32'h0000_0013;   // NOP
             dmem[i] = 32'h0000_0000;
@@ -151,9 +162,10 @@ module tb_br_ex_redirect;
         repeat (6) @(posedge clk);
         resetn = 1'b1;
         if (mode == 2) repeat (30000) @(posedge clk);
-        else           repeat (600) @(posedge clk);
+        else           repeat (3000 * delay) @(posedge clk);
 
-        $display("---- mode=%0d retire=%0d traps=%0d cycles=%0d ----", mode, retire, traps, cycles);
+        $display("---- mode=%0d delay=%0d retire=%0d traps=%0d cycles=%0d ----",
+                 mode, delay, retire, traps, cycles);
 
         if (mode == 2) begin
             if (!bench_done) begin
@@ -193,7 +205,7 @@ module tb_br_ex_redirect;
     end
 
     initial begin
-        repeat (40000) @(posedge clk);
+        repeat (300000) @(posedge clk);
         $display("RESULT: FAIL br_ex_redirect timeout");
         $finish;
     end

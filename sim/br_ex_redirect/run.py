@@ -50,7 +50,7 @@ def write_dmem_init(path, words):
     path.write_text("\n".join(lines) + "\n", encoding="ascii")
 
 
-def run_mode(build, mode):
+def run_mode(build, mode, delay=1):
     sub = build / SUBDIR[mode]
     sub.mkdir()
     r = subprocess.run([sys.executable, str(HERE / "asm.py"),
@@ -62,7 +62,7 @@ def run_mode(build, mode):
     print(f"mode {mode}: {r.stdout.strip()}")
     write_dmem_init(sub / "dmem_init.hex", DMEM_INIT[mode])
 
-    r = subprocess.run([str(VVP), str(build / "tb.vvp"), f"+MODE={mode}"],
+    r = subprocess.run([str(VVP), str(build / "tb.vvp"), f"+MODE={mode}", f"+DELAY={delay}"],
                        capture_output=True, text=True, cwd=sub)
     log = r.stdout + r.stderr
     (sub / "run.log").write_text(log, encoding="utf-8", errors="replace")
@@ -81,6 +81,8 @@ def main():
     ap.add_argument("--tag", required=True)
     ap.add_argument("--rtl", default=str(ROOT / "myriscv" / "mycpu_sync.v"))
     ap.add_argument("--only", type=int, choices=[0, 1, 2], default=None)
+    ap.add_argument("--delay", type=int, default=1,
+                    help="memory response latency in cycles (1 = ideal)")
     args = ap.parse_args()
 
     build = HERE / "build" / args.tag
@@ -103,7 +105,7 @@ def main():
     modes = [args.only] if args.only is not None else [0, 1, 2]
     results, all_ok = {}, True
     for m in modes:
-        ok, cycles, logpath = run_mode(build, m)
+        ok, cycles, logpath = run_mode(build, m, args.delay)
         all_ok = all_ok and ok
         results[f"mode{m}"] = {"pass": ok, "bench_cycles": cycles, "log": logpath}
 

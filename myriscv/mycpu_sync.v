@@ -1398,10 +1398,18 @@ module mycpu_sync #(
             case (flow_state)
                 FLOW_RUN: if (irq_candidate)
                               flow_state <= FLOW_IRQ_DRAIN;
-                          else if (fetch_valid && serial_candidate)
+                          // 同拍已有重定向时不得启动串行排空：这一拍 ID 里的串行项
+                          // 属于错误路径，紧接着的 kill_if_id 会把唯一候选冲掉，
+                          // 而 DRAIN 的唯一出口 serial_issue 又依赖该候选。
+                          else if (fetch_valid && serial_candidate && !redirect_valid)
                               flow_state <= FLOW_SERIAL_DRAIN;
                 FLOW_SERIAL_DRAIN: if (serial_issue)
                                        flow_state <= FLOW_SERIAL_RUN;
+                                   // 候选被更年轻的重定向冲掉后，排空已经没有可发射的
+                                   // 对象，必须撤销回 RUN，否则 frontend_hold 永久为 1。
+                                   // 串行项一旦真正发射就转入 FLOW_SERIAL_RUN，不会到这里。
+                                   else if (!serial_candidate)
+                                       flow_state <= FLOW_RUN;
                 FLOW_SERIAL_RUN: if (serial_done)
                                      flow_state <= FLOW_IRQ_CHECK;
                 FLOW_IRQ_CHECK: flow_state <= irq_candidate ? FLOW_IRQ_DRAIN : FLOW_RUN;

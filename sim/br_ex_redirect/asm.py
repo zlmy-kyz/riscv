@@ -15,8 +15,18 @@ REGS.update({
     "t3": 28, "t4": 29, "t5": 30, "t6": 31,
 })
 
-R_OPS = {
-    "add": (0x00, 0), "sub": (0x20, 0), "sll": (0x00, 1), "slt": (0x00, 2),
+CSRS = {
+    "mstatus": 0x300, "misa": 0x301, "mie": 0x304, "mtvec": 0x305,
+    "mscratch": 0x340, "mepc": 0x341, "mcause": 0x342, "mtval": 0x343,
+    "mip": 0x344, "mhartid": 0xF14, "mcycle": 0xB00, "minstret": 0xB02,
+}
+
+
+def csr_num(tok):
+    tok = tok.strip()
+    return CSRS.get(tok, None) if tok in CSRS else parse_imm(tok)
+
+R_OPS = {    "add": (0x00, 0), "sub": (0x20, 0), "sll": (0x00, 1), "slt": (0x00, 2),
     "sltu": (0x00, 3), "xor": (0x00, 4), "srl": (0x00, 5), "sra": (0x20, 5),
     "or": (0x00, 6), "and": (0x00, 7),
 }
@@ -151,6 +161,14 @@ def assemble(source_lines):
             recs.append((addr, ("r", mn, [REGS[ops[0]], REGS[ops[1]], REGS[ops[2]]], line)))
             addr += 4
             continue
+        if mn == "csrw":
+            recs.append((addr, ("i", "csrrw", [0, REGS[ops[1]], csr_num(ops[0])], line)))
+            addr += 4
+            continue
+        if mn == "fence":
+            recs.append((addr, ("i", "fence", [], line)))
+            addr += 4
+            continue
         if mn in I_OPS:
             recs.append((addr, ("i", mn, [REGS[ops[0]], REGS[ops[1]], parse_imm(ops[2])], line)))
             addr += 4
@@ -195,6 +213,11 @@ def assemble(source_lines):
             mn, o = rec[1], rec[2]
             if mn == "ebreak":
                 w = 0x00100073
+            elif mn == "fence":
+                w = 0x0ff0000f
+            elif mn == "csrrw":
+                rd, rs1, csr = o
+                w = i_type(rd, rs1, csr, 1, 0x73)
             elif mn == "jalr":
                 rd, rs1, imm = o
                 w = i_type(rd, rs1, imm, 0, 0x67)
