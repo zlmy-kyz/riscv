@@ -82,7 +82,12 @@ module mycpu_sync #(
     wire       inst_if_id_accept;
     wire       inst_buffer_pop;
     wire       inst_turnover_safe;
-    wire       branch_fetch_turnover;
+    // 普通分支的重定向改在 EX 级产生：ID 只判定 taken/target 并随指令寄存，
+    // 目标取指由 EX 重定向发起，把 "ID 比较 -> 取指地址 -> 互连 -> 桥" 这条
+    // 跨级组合链在 ID/EX 处切断。代价是每次 taken 分支晚一拍启动取指。
+    wire       ex_br_redirect;
+    reg        id_ex_br_taken;
+    reg [31:0] id_ex_br_target;
     wire load_use;
     wire frontend_hold, bubble_id_ex, id_fire;
     wire data_pipeline_stall;
@@ -368,20 +373,21 @@ module mycpu_sync #(
     // A branch flush discards the IF buffer and any response completing now.
     // An outstanding request without a response still occupies the sole slot.
     // Trap/MRET redirects keep the original request suppression and drain path.
-    assign branch_fetch_turnover = (BRANCH_FETCH_TURNOVER_ENABLE != 0) &&
-                                   branch_redirect && !trap_redirect_req && !mret_redirect_req;
-    assign inst_req_valid = resetn && fetch_valid &&
-                            (branch_fetch_turnover ? (!inst_pending || inst_rsp_valid) :
-                             (!redirect_valid && inst_turnover_safe &&
-                              (!inst_buffer_valid || inst_buffer_pop)));
-    assign inst_req_addr = branch_fetch_turnover ? redirect_pc : pc;
+    // Trap/MRET/EX 分支重定向当拍都不再发取指请求：目标地址先写入 pc，
+    // 下一拍再以 pc 发起请求。这正是 ID 判定 + EX 重定向换取组合链断开
+    // 所付出的那一拍，不能再用分支当拍提交目标（030 的同拍接续已移除，
+    // BRANCH_FETCH_TURNOVER_ENABLE 仅为兼容外部传参而保留，不再生效）。
+    assign inst_req_valid = resetn && fetch_valid && !redirect_valid &&
+                            inst_turnover_safe &&
+                            (!inst_buffer_valid || inst_buffer_pop);
+    assign inst_req_addr = pc;
     assign inst_req_fire = inst_req_valid && inst_req_ready;
 
     always @(posedge clk) begin
         if (!resetn)
             pc <= RESET_PC;
         else if (redirect_valid)
-            pc <= (branch_fetch_turnover && inst_req_fire) ? redirect_pc + 32'd4 : redirect_pc;
+            pc <= redirect_pc;
         else if (inst_req_fire)
             pc <= pc + 32'd4;
     end
@@ -787,6 +793,25 @@ module mycpu_sync #(
             id_ex_next_pc <= id_taken ? bj_pc : if_id_pc + 32'd4;
     end
 
+    // 分支判定结果随指令进入 EX：ID 只负责"算出 taken/target"，
+    // 真正的重定向由 EX 级发起，因此这两个字段必须与指令同生命周期
+    // （停顿时保持、加载气泡时清零、kill 时废弃）。
+    always @(posedge clk) begin
+        if (!resetn || kill_id_ex) begin
+            id_ex_br_taken  <= 1'b0;
+            id_ex_br_target <= 32'b0;
+        end else if (data_pipeline_stall) begin
+            id_ex_br_taken  <= id_ex_br_taken;
+            id_ex_br_target <= id_ex_br_target;
+        end else if (bubble_id_ex) begin
+            id_ex_br_taken  <= 1'b0;
+            id_ex_br_target <= 32'b0;
+        end else if (id_fire) begin
+            id_ex_br_taken  <= id_taken;
+            id_ex_br_target <= bj_pc;
+        end
+    end
+
     // CSR 元数据随有效指令前进；停顿/取消时清零，不能把气泡当作 CSR。
     always @(posedge clk) begin
         if (!resetn || kill_id_ex) begin
@@ -946,6 +971,14 @@ module mycpu_sync #(
     assign id_ex_advance    = id_ex_valid && id_ex_can_advance;
     assign data_pipeline_stall = (ex_mem_valid && !ex_mem_complete) ||
                                  (id_ex_valid && !id_ex_can_advance);
+
+    // EX 级重定向：本条分支确实能前进到 EX/MEM 时才发起一次。
+    // - 停顿（EX/MEM 等响应、乘法未完、访存不可发射）时不跳，避免重复重定向；
+    // - 本条自身异常、或更老指令已有故障时不跳，等 trap 覆盖 PC；
+    // - 同步 trap / MRET 在 WB 提交，比 EX 分支更老，必须优先。
+    assign ex_br_redirect = resetn && id_ex_advance && id_ex_br_taken &&
+                            !id_ex_exc_valid && !older_fault_for_ex &&
+                            !trap_redirect_req && !mret_redirect_req;
 
     // Multiply can forward only after completion; its result survives MEM backpressure.
     //   ★ load 在 EX 这一拍【没有】可用数据 —— 它的数据要下一拍才从 RAM 出来。
@@ -1327,22 +1360,25 @@ module mycpu_sync #(
     end
     assign serial_issue = (flow_state == FLOW_SERIAL_DRAIN) &&
                           pipeline_empty && serial_candidate;
+    // EX 级重定向当拍，ID 里必然是错误路径指令，不能发射：让它变成气泡，
+    // 目标指令在下一拍由更新后的 pc 重新取回。
     assign id_fire = resetn && fetch_valid && if_id_valid &&
                       (((flow_state == FLOW_RUN) && !irq_candidate &&
                         !load_use && !serial_candidate && !data_pipeline_stall) ||
                        serial_issue) && !fault_inflight &&
-                      !trap_redirect_req && !mret_redirect_req;
+                      !trap_redirect_req && !mret_redirect_req &&
+                      !branch_redirect;
     assign bubble_id_ex = !id_fire && !data_pipeline_stall;
     assign frontend_hold = (flow_state != FLOW_RUN) || load_use ||
                             data_pipeline_stall || serial_candidate ||
                             fault_inflight || irq_candidate;
 
-    // 普通 ID 分支在本拍真正发射后才能重定向；失效项或 load-use 停顿不允许跳转。
-    assign branch_redirect = id_fire && !id_exc_valid &&
-                             (flow_state == FLOW_RUN) && id_taken;
+    // 普通分支的重定向改由 EX 级产生（ex_br_redirect）：ID 只在发射时把
+    // taken/target 存进 ID/EX，等指令真正能前进到 EX/MEM 的那一拍才改 PC。
+    assign branch_redirect = ex_br_redirect;
     assign redirect_valid = trap_redirect_req || mret_redirect_req || branch_redirect;
     assign redirect_pc = trap_redirect_req ? trap_redirect_target :
-                         mret_redirect_req ? mret_redirect_target : bj_pc;
+                         mret_redirect_req ? mret_redirect_target : id_ex_br_target;
     assign kill_if_id = redirect_valid || serial_issue;
     assign kill_id_ex = trap_redirect_req || mret_redirect_req;
     assign kill_ex_mem = trap_redirect_req || mret_redirect_req;
