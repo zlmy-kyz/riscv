@@ -1,0 +1,182 @@
+{
+  "status": "TASK040_PARTIAL_MECHANISM_SUPPORTED_NOT_ACCEPTED_REPAIR_REQUIRED",
+  "registered_input_hashes_match_current": {
+    "D:\\riscv\\RISCV\\sim\\cpu_ex_redirect\\id_ex_attribution_20261018_a\\tb_id_ex_attribution.v": true,
+    "D:\\riscv\\RISCV\\myriscv\\mycpu_sync.v": true,
+    "D:\\riscv\\RISCV\\myriscv\\regfile.v": true,
+    "D:\\riscv\\RISCV\\myriscv\\alu.v": true,
+    "D:\\riscv\\RISCV\\myriscv\\l_alu.v": true,
+    "D:\\riscv\\RISCV\\myriscv\\br_alu.v": true,
+    "D:\\riscv\\RISCV\\myriscv\\csr_file.v": true,
+    "D:\\riscv\\RISCV\\myriscv\\simple_mmio.v": true,
+    "D:\\riscv\\RISCV\\sim\\br_ex_redirect\\mul_behavioral.v": true
+  },
+  "requirement_input_changes": [],
+  "observed_compile_warning_lines": [
+    "D:\\riscv\\RISCV\\myriscv\\simple_mmio.v:223: warning: @* is sensitive to all 13 words in array 'count'.",
+    "D:\\riscv\\RISCV\\myriscv\\simple_mmio.v:223: warning: @* is sensitive to all 13 words in array 'count'."
+  ],
+  "observations": {
+    "m1_fast": {
+      "reported_events": {
+        "t0": 11,
+        "t1": 12,
+        "t2": 12,
+        "t3": 14,
+        "t4": 14
+      },
+      "raw_trace_rows": 54,
+      "raw_inferred_load_edge": 13,
+      "corrected_events": [
+        11,
+        12,
+        12,
+        13,
+        14
+      ],
+      "corrected_intervals": [
+        1,
+        0,
+        1,
+        1
+      ],
+      "load_edge_inference_limit": "Derived from existing pre-edge trace and unchanged CPU equations, not an independent complete architectural acceptance."
+    },
+    "m1_slowwrong": {
+      "reported_events": {
+        "t0": 11,
+        "t1": 12,
+        "t2": 19,
+        "t3": 21,
+        "t4": 21
+      },
+      "raw_trace_rows": 54,
+      "raw_inferred_load_edge": 20,
+      "corrected_events": [
+        11,
+        12,
+        19,
+        20,
+        21
+      ],
+      "corrected_intervals": [
+        1,
+        7,
+        1,
+        1
+      ],
+      "load_edge_inference_limit": "Derived from existing pre-edge trace and unchanged CPU equations, not an independent complete architectural acceptance.",
+      "slow_address_accept_edge": 10,
+      "slow_address_response_consumption_edge": 19,
+      "actual_slow_response_edges": 9
+    },
+    "m3_oldmem_d1": {
+      "reported_events": {
+        "t0": 13,
+        "t1": 14,
+        "t2": 14,
+        "t3": 16,
+        "t4": 16
+      },
+      "raw_trace_rows": 54,
+      "raw_inferred_load_edge": 15,
+      "corrected_events": [
+        13,
+        14,
+        14,
+        15,
+        16
+      ],
+      "corrected_intervals": [
+        1,
+        0,
+        1,
+        1
+      ],
+      "load_edge_inference_limit": "Derived from existing pre-edge trace and unchanged CPU equations, not an independent complete architectural acceptance."
+    },
+    "m3_oldmem_d8": {
+      "reported_events": {
+        "t0": 13,
+        "t1": 22,
+        "t2": 22,
+        "t3": 24,
+        "t4": 24
+      },
+      "raw_trace_rows": 54,
+      "raw_inferred_load_edge": 23,
+      "corrected_events": [
+        13,
+        22,
+        22,
+        23,
+        24
+      ],
+      "corrected_intervals": [
+        9,
+        0,
+        1,
+        1
+      ],
+      "load_edge_inference_limit": "Derived from existing pre-edge trace and unchanged CPU equations, not an independent complete architectural acceptance."
+    },
+    "m4_nottaken": {
+      "reported_events": {
+        "t0": -1,
+        "t1": -1,
+        "t2": -1,
+        "t3": -1,
+        "t4": -1
+      },
+      "raw_trace_rows": 54
+    }
+  },
+  "accepted_scope": [
+    "Current039 code and raw trace support normal ID-to-EX interval of one edge in this fragment.",
+    "Injected wrong-path response is accepted at edge10, consumed at edge19; redirect12 and target acceptance19 show seven-edge blocking in this specific model.",
+    "Existing fast trace implies target acceptance12, actual IFID loading13 and ID issue14; not a two-edge IFID loading lower bound."
+  ],
+  "defects": [
+    "Reported t3 samples pre-edge IFID visibility, one edge after real loading. Reported t4-t3=0 conflates two different events.",
+    "Slow delay8 produces nine-edge CPU-visible response. Older-MEM configured delay8 likewise is not a measured eight-edge response contract.",
+    "Reset is released at posedge despite report claiming non-sampling-edge release; end-of-run counters also sampled at posedge.",
+    "No sealed-copy-only compilation and no recursively closed include manifest; csr_defs.vh, runner, assembler and programs absent from final inputs_sha256.",
+    "No independent retirement PC/inst/rd/value/next_pc oracle; wrong-path x31 write is not checked, completion flag alone is insufficient.",
+    "I rsp counter increments on response generation, including fast acceptance edge, not CPU consumption; inflight=i_busy omits generated-but-not-consumed response.",
+    "Only first60 cycles logged, but 400-cycle statistics mostly include terminal spin. Full ROI stage/activity cross-statistics and conservation assertions absent.",
+    "Younger CSR/FENCE variant and D acceptance/response counters absent; MEM16 in slow case includes both load and completion-store waits.",
+    "Compile log has two array sensitivity warnings; report says zero warnings. Report claims changed asm/TB requirements, but current requirement hashes are unchanged.",
+    "Runner does not save all assembly/execution commands and return codes or reject failed verdicts before returning zero.",
+    "Report suggests old-response-same-edge target submission as a new direction, but039 already implements it."
+  ],
+  "next_action": "Minimal corrective implementation/execution by DeepSeek in new sealed run; preserve run1/run2 and report unchanged. No RTL optimization based on rejected timing lower bound.",
+  "evidence_sha256": {
+    "sim/cpu_ex_redirect/id_ex_attribution_20261018_a/report.md": "bdcdb827eb5e57ccac0e6b517183c6af24264b3d0c5e0964dc9c9df112411252",
+    "sim/cpu_ex_redirect/id_ex_attribution_20261018_a/run.py": "38e85892c171b5bbf7ce03dce2e55830beded482217b0eb7de944253f08b50c1",
+    "sim/cpu_ex_redirect/id_ex_attribution_20261018_a/tb_id_ex_attribution.v": "73830b060794f246d1cd2a757c9d922666f7f8e054ccfccf95b5c37e08d465b1",
+    "sim/cpu_ex_redirect/id_ex_attribution_20261018_a/requirements_identity.json": "502c9ecae1899a9777e0aa94fc70f6aaf5c12536ee1896315d6b0b4eb7b4da52",
+    "sim/cpu_ex_redirect/id_ex_attribution_20261018_a/build/run2/result.json": "5256cb8a1cce69f259ac65e20d66fcf645203f14e031375ed0d698e088d184d3",
+    "sim/cpu_ex_redirect/id_ex_attribution_20261018_a/build/run2/compile.log": "a302652c71625c894d82308c310931dc0a8b8103e6c6e2d196474c5a2ce23a80",
+    "sim/cpu_ex_redirect/id_ex_attribution_20261018_a/build/run2/tb.vvp": "69b5d60afe88f1d81f18d8459e7a91646e110b92298bab931481a2c12f2bdd2c",
+    "sim/cpu_ex_redirect/id_ex_attribution_20261018_a/review_20261018_01/review_raw.py": "a1371500a28d29ffae86e5f052fd0536f8ce2878768aa65c4ed699b8935c563c",
+    "sim/cpu_ex_redirect/id_ex_attribution_20261018_a/build/run2/m1_fast/run.log": "4fa9e60e73f2df624a0369986f8290e9321df8c17ce3d7a32bf0cefdbb1d885e",
+    "sim/cpu_ex_redirect/id_ex_attribution_20261018_a/build/run2/m1_slowwrong/run.log": "cd536029bd5fa1ab57bccb8cd0f86b4b5ae41b2b04f7777f4eebf10b33f80d04",
+    "sim/cpu_ex_redirect/id_ex_attribution_20261018_a/build/run2/m3_oldmem_d1/run.log": "1821c5e3f5712d30729bee55de74a5ae0fa84ce91663143cc9fe387a31d0826c",
+    "sim/cpu_ex_redirect/id_ex_attribution_20261018_a/build/run2/m3_oldmem_d8/run.log": "d05ce9e1f1deec3fbb58a0629e60008c3fc1305c0d6e65f32e6703e4af1c0c76",
+    "sim/cpu_ex_redirect/id_ex_attribution_20261018_a/build/run2/m4_nottaken/run.log": "6a6f7c6a4be646933d5f26975066d8df290f86bbde398196420b31161b86a5d1",
+    "sim/cpu_ex_redirect/id_ex_attribution_20261018_a/build/run2/m1_fast/imem.hex": "2e07f1c453cd4db55cc527ab4e0921d444d8bb46f2b494a5304ee15ec5afd737",
+    "sim/cpu_ex_redirect/id_ex_attribution_20261018_a/build/run2/m1_slowwrong/imem.hex": "2e07f1c453cd4db55cc527ab4e0921d444d8bb46f2b494a5304ee15ec5afd737",
+    "sim/cpu_ex_redirect/id_ex_attribution_20261018_a/build/run2/m3_oldmem_d1/imem.hex": "586a6f81becde364a75d0847f6ed1c02a11c4929cca956781e031e386d41a27a",
+    "sim/cpu_ex_redirect/id_ex_attribution_20261018_a/build/run2/m3_oldmem_d8/imem.hex": "586a6f81becde364a75d0847f6ed1c02a11c4929cca956781e031e386d41a27a",
+    "sim/cpu_ex_redirect/id_ex_attribution_20261018_a/build/run2/m4_nottaken/imem.hex": "eda861ce1ca1300f53233c26bb68781993ecb2337b58758089f05cfdf5774d17",
+    "sim/cpu_ex_redirect/id_ex_attribution_20261018_a/build/run2/m1_fast/program.lst": "270394449f06c2ddb20f08096d5fdcd61cb188a8bcf48ff112023579bae97c24",
+    "sim/cpu_ex_redirect/id_ex_attribution_20261018_a/build/run2/m1_slowwrong/program.lst": "270394449f06c2ddb20f08096d5fdcd61cb188a8bcf48ff112023579bae97c24",
+    "sim/cpu_ex_redirect/id_ex_attribution_20261018_a/build/run2/m3_oldmem_d1/program.lst": "aa79c44f06d83bed5ebbc12e45ab2baae65499e51c5d3d092edcec0f139e13c7",
+    "sim/cpu_ex_redirect/id_ex_attribution_20261018_a/build/run2/m3_oldmem_d8/program.lst": "aa79c44f06d83bed5ebbc12e45ab2baae65499e51c5d3d092edcec0f139e13c7",
+    "sim/cpu_ex_redirect/id_ex_attribution_20261018_a/build/run2/m4_nottaken/program.lst": "9e2e3bc829c0f211f05c9f3f1b347d361f972d353135e1301dcac8484c2509f8"
+  },
+  "RTL_modified": false,
+  "HDL_started": false,
+  "PDS_started": false,
+  "serial_opened": false
+}
