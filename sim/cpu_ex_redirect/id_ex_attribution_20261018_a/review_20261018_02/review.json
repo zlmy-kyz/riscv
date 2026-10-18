@@ -1,0 +1,947 @@
+{
+  "status": "TASK040_FIX01B_PARTIAL_EVIDENCE_IMPROVED_TIMESTAMPS_STILL_REQUIRE_REPAIR",
+  "sealed_manifest_files_verified": 17,
+  "recursive_include_closure": [
+    {
+      "source": "myriscv/csr_file.v",
+      "include": "csr_defs.vh"
+    },
+    {
+      "source": "myriscv/mycpu_sync.v",
+      "include": "csr_defs.vh"
+    }
+  ],
+  "observations": {
+    "fast": {
+      "reported_events": [
+        8,
+        9,
+        9,
+        11,
+        11
+      ],
+      "aggregate_i_audit": [
+        399,
+        399,
+        399,
+        267,
+        132,
+        0
+      ],
+      "aggregate_d_audit": [
+        1,
+        1,
+        1,
+        1
+      ],
+      "offline_pc_instruction_prefix_match": true,
+      "golden_prefix": [
+        [
+          0,
+          1048723
+        ],
+        [
+          4,
+          1123
+        ],
+        [
+          12,
+          1056803
+        ]
+      ],
+      "full_architectural_value_next_pc_reference": "NOT_AVAILABLE",
+      "phase0_inferred_events": [
+        8,
+        9,
+        9,
+        10,
+        11
+      ],
+      "phase0_inferred_intervals": [
+        1,
+        0,
+        1,
+        1
+      ],
+      "observed_phase0_load_inputs": {
+        "cyc": [
+          "10"
+        ],
+        "ph": [
+          "0"
+        ],
+        "pc": [
+          "00000010"
+        ],
+        "ireq": [
+          "11",
+          "00000010"
+        ],
+        "irsp": [
+          "1",
+          "00102023"
+        ],
+        "pend": [
+          "1",
+          "0000000c",
+          "0"
+        ],
+        "buf": [
+          "0",
+          "00000000"
+        ],
+        "ifid": [
+          "0",
+          "ffffffff",
+          "00000013"
+        ],
+        "idfire": [
+          "0"
+        ],
+        "taken": [
+          "0"
+        ],
+        "bj": [
+          "ffffffff"
+        ],
+        "exc": [
+          "0"
+        ],
+        "lu": [
+          "0"
+        ],
+        "idex": [
+          "0",
+          "ffffffff",
+          "0",
+          "00000000"
+        ],
+        "adv": [
+          "0"
+        ],
+        "can": [
+          "1"
+        ],
+        "emrdy": [
+          "1"
+        ],
+        "emcmp": [
+          "1"
+        ],
+        "stall": [
+          "0"
+        ],
+        "older": [
+          "0"
+        ],
+        "rdir": [
+          "0"
+        ],
+        "tgt": [
+          "00000000"
+        ],
+        "fs": [
+          "0"
+        ],
+        "sc": [
+          "0"
+        ],
+        "si": [
+          "0"
+        ],
+        "front": [
+          "0"
+        ],
+        "ret": [
+          "1",
+          "00000000"
+        ],
+        "cls": [
+          "8"
+        ],
+        "cycle": 10
+      },
+      "phase1_label_offset_from_load": 1,
+      "offline_roi": {
+        "start": 8,
+        "end_inclusive": 14,
+        "cycles": 7,
+        "classifications": {
+          "8": 5,
+          "4": 2
+        },
+        "OTHER_with_retire": 3,
+        "OTHER_with_idfire": 3
+      }
+    },
+    "slowwrong": {
+      "reported_events": [
+        8,
+        9,
+        15,
+        17,
+        17
+      ],
+      "aggregate_i_audit": [
+        392,
+        392,
+        392,
+        262,
+        130,
+        0
+      ],
+      "aggregate_d_audit": [
+        1,
+        1,
+        1,
+        1
+      ],
+      "offline_pc_instruction_prefix_match": true,
+      "golden_prefix": [
+        [
+          0,
+          1048723
+        ],
+        [
+          4,
+          1123
+        ],
+        [
+          12,
+          1056803
+        ]
+      ],
+      "full_architectural_value_next_pc_reference": "NOT_AVAILABLE",
+      "phase0_inferred_events": [
+        8,
+        9,
+        15,
+        16,
+        17
+      ],
+      "phase0_inferred_intervals": [
+        1,
+        6,
+        1,
+        1
+      ],
+      "observed_phase0_load_inputs": {
+        "cyc": [
+          "16"
+        ],
+        "ph": [
+          "0"
+        ],
+        "pc": [
+          "00000010"
+        ],
+        "ireq": [
+          "11",
+          "00000010"
+        ],
+        "irsp": [
+          "1",
+          "00102023"
+        ],
+        "pend": [
+          "1",
+          "0000000c",
+          "0"
+        ],
+        "buf": [
+          "0",
+          "00000000"
+        ],
+        "ifid": [
+          "0",
+          "ffffffff",
+          "00000013"
+        ],
+        "idfire": [
+          "0"
+        ],
+        "taken": [
+          "0"
+        ],
+        "bj": [
+          "ffffffff"
+        ],
+        "exc": [
+          "0"
+        ],
+        "lu": [
+          "0"
+        ],
+        "idex": [
+          "0",
+          "ffffffff",
+          "0",
+          "00000000"
+        ],
+        "adv": [
+          "0"
+        ],
+        "can": [
+          "1"
+        ],
+        "emrdy": [
+          "1"
+        ],
+        "emcmp": [
+          "0"
+        ],
+        "stall": [
+          "0"
+        ],
+        "older": [
+          "0"
+        ],
+        "rdir": [
+          "0"
+        ],
+        "tgt": [
+          "00000000"
+        ],
+        "fs": [
+          "0"
+        ],
+        "sc": [
+          "0"
+        ],
+        "si": [
+          "0"
+        ],
+        "front": [
+          "0"
+        ],
+        "ret": [
+          "0",
+          "ffffffff"
+        ],
+        "cls": [
+          "8"
+        ],
+        "cycle": 16
+      },
+      "phase1_label_offset_from_load": 1,
+      "offline_roi": {
+        "start": 8,
+        "end_inclusive": 20,
+        "cycles": 13,
+        "classifications": {
+          "2": 1,
+          "4": 8,
+          "8": 4
+        },
+        "OTHER_with_retire": 1,
+        "OTHER_with_idfire": 2
+      },
+      "slow_latency_phase0": {
+        "accept": 7,
+        "consume": 15,
+        "latency": 8
+      }
+    },
+    "oldmem_d1": {
+      "reported_events": [
+        10,
+        11,
+        11,
+        13,
+        13
+      ],
+      "aggregate_i_audit": [
+        399,
+        399,
+        399,
+        268,
+        131,
+        0
+      ],
+      "aggregate_d_audit": [
+        2,
+        2,
+        2,
+        1
+      ],
+      "offline_pc_instruction_prefix_match": true,
+      "golden_prefix": [
+        [
+          0,
+          1048723
+        ],
+        [
+          4,
+          67109651
+        ],
+        [
+          8,
+          205443
+        ],
+        [
+          12,
+          1123
+        ],
+        [
+          20,
+          1056803
+        ]
+      ],
+      "full_architectural_value_next_pc_reference": "NOT_AVAILABLE",
+      "phase0_inferred_events": [
+        10,
+        11,
+        11,
+        12,
+        13
+      ],
+      "phase0_inferred_intervals": [
+        1,
+        0,
+        1,
+        1
+      ],
+      "observed_phase0_load_inputs": {
+        "cyc": [
+          "12"
+        ],
+        "ph": [
+          "0"
+        ],
+        "pc": [
+          "00000018"
+        ],
+        "ireq": [
+          "11",
+          "00000018"
+        ],
+        "irsp": [
+          "1",
+          "00102023"
+        ],
+        "pend": [
+          "1",
+          "00000014",
+          "0"
+        ],
+        "buf": [
+          "0",
+          "00000000"
+        ],
+        "ifid": [
+          "0",
+          "ffffffff",
+          "00000013"
+        ],
+        "idfire": [
+          "0"
+        ],
+        "taken": [
+          "0"
+        ],
+        "bj": [
+          "ffffffff"
+        ],
+        "exc": [
+          "0"
+        ],
+        "lu": [
+          "0"
+        ],
+        "idex": [
+          "0",
+          "ffffffff",
+          "0",
+          "00000000"
+        ],
+        "adv": [
+          "0"
+        ],
+        "can": [
+          "1"
+        ],
+        "emrdy": [
+          "1"
+        ],
+        "emcmp": [
+          "1"
+        ],
+        "stall": [
+          "0"
+        ],
+        "older": [
+          "0"
+        ],
+        "rdir": [
+          "0"
+        ],
+        "tgt": [
+          "00000000"
+        ],
+        "fs": [
+          "0"
+        ],
+        "sc": [
+          "0"
+        ],
+        "si": [
+          "0"
+        ],
+        "front": [
+          "0"
+        ],
+        "ret": [
+          "1",
+          "00000008"
+        ],
+        "cls": [
+          "8"
+        ],
+        "cycle": 12
+      },
+      "phase1_label_offset_from_load": 1,
+      "offline_roi": {
+        "start": 10,
+        "end_inclusive": 16,
+        "cycles": 7,
+        "classifications": {
+          "8": 5,
+          "4": 2
+        },
+        "OTHER_with_retire": 4,
+        "OTHER_with_idfire": 3
+      }
+    },
+    "oldmem_d8": {
+      "reported_events": [
+        10,
+        18,
+        18,
+        20,
+        20
+      ],
+      "aggregate_i_audit": [
+        385,
+        385,
+        385,
+        260,
+        125,
+        0
+      ],
+      "aggregate_d_audit": [
+        2,
+        2,
+        2,
+        1
+      ],
+      "offline_pc_instruction_prefix_match": true,
+      "golden_prefix": [
+        [
+          0,
+          1048723
+        ],
+        [
+          4,
+          67109651
+        ],
+        [
+          8,
+          205443
+        ],
+        [
+          12,
+          1123
+        ],
+        [
+          20,
+          1056803
+        ]
+      ],
+      "full_architectural_value_next_pc_reference": "NOT_AVAILABLE",
+      "phase0_inferred_events": [
+        10,
+        18,
+        18,
+        19,
+        20
+      ],
+      "phase0_inferred_intervals": [
+        8,
+        0,
+        1,
+        1
+      ],
+      "observed_phase0_load_inputs": {
+        "cyc": [
+          "19"
+        ],
+        "ph": [
+          "0"
+        ],
+        "pc": [
+          "00000018"
+        ],
+        "ireq": [
+          "11",
+          "00000018"
+        ],
+        "irsp": [
+          "1",
+          "00102023"
+        ],
+        "pend": [
+          "1",
+          "00000014",
+          "0"
+        ],
+        "buf": [
+          "0",
+          "00000000"
+        ],
+        "ifid": [
+          "0",
+          "ffffffff",
+          "00000013"
+        ],
+        "idfire": [
+          "0"
+        ],
+        "taken": [
+          "0"
+        ],
+        "bj": [
+          "ffffffff"
+        ],
+        "exc": [
+          "0"
+        ],
+        "lu": [
+          "0"
+        ],
+        "idex": [
+          "0",
+          "ffffffff",
+          "0",
+          "00000000"
+        ],
+        "adv": [
+          "0"
+        ],
+        "can": [
+          "1"
+        ],
+        "emrdy": [
+          "1"
+        ],
+        "emcmp": [
+          "1"
+        ],
+        "stall": [
+          "0"
+        ],
+        "older": [
+          "0"
+        ],
+        "rdir": [
+          "0"
+        ],
+        "tgt": [
+          "00000000"
+        ],
+        "fs": [
+          "0"
+        ],
+        "sc": [
+          "0"
+        ],
+        "si": [
+          "0"
+        ],
+        "front": [
+          "0"
+        ],
+        "ret": [
+          "1",
+          "00000008"
+        ],
+        "cls": [
+          "8"
+        ],
+        "cycle": 19
+      },
+      "phase1_label_offset_from_load": 1,
+      "offline_roi": {
+        "start": 10,
+        "end_inclusive": 30,
+        "cycles": 21,
+        "classifications": {
+          "8": 5,
+          "3": 14,
+          "4": 2
+        },
+        "OTHER_with_retire": 4,
+        "OTHER_with_idfire": 3
+      }
+    },
+    "nottaken": {
+      "reported_events": [
+        -1,
+        -1,
+        -1,
+        -1,
+        -1
+      ],
+      "aggregate_i_audit": [
+        399,
+        399,
+        399,
+        268,
+        131,
+        0
+      ],
+      "aggregate_d_audit": [
+        1,
+        1,
+        1,
+        1
+      ],
+      "offline_pc_instruction_prefix_match": true,
+      "golden_prefix": [
+        [
+          0,
+          1048723
+        ],
+        [
+          4,
+          5243155
+        ],
+        [
+          8,
+          2132067
+        ],
+        [
+          12,
+          1048979
+        ],
+        [
+          16,
+          3153955
+        ]
+      ],
+      "full_architectural_value_next_pc_reference": "NOT_AVAILABLE"
+    },
+    "serial": {
+      "reported_events": [
+        10,
+        18,
+        18,
+        21,
+        21
+      ],
+      "aggregate_i_audit": [
+        384,
+        384,
+        384,
+        260,
+        124,
+        0
+      ],
+      "aggregate_d_audit": [
+        2,
+        2,
+        2,
+        1
+      ],
+      "offline_pc_instruction_prefix_match": true,
+      "golden_prefix": [
+        [
+          0,
+          1048723
+        ],
+        [
+          4,
+          67109651
+        ],
+        [
+          8,
+          205443
+        ],
+        [
+          12,
+          1635
+        ],
+        [
+          24,
+          1056803
+        ]
+      ],
+      "full_architectural_value_next_pc_reference": "NOT_AVAILABLE",
+      "phase0_inferred_events": [
+        10,
+        18,
+        18,
+        20,
+        21
+      ],
+      "phase0_inferred_intervals": [
+        8,
+        0,
+        2,
+        1
+      ],
+      "observed_phase0_load_inputs": {
+        "cyc": [
+          "20"
+        ],
+        "ph": [
+          "0"
+        ],
+        "pc": [
+          "0000001c"
+        ],
+        "ireq": [
+          "11",
+          "0000001c"
+        ],
+        "irsp": [
+          "0",
+          "00102023"
+        ],
+        "pend": [
+          "0",
+          "00000018",
+          "0"
+        ],
+        "buf": [
+          "1",
+          "00000018"
+        ],
+        "ifid": [
+          "0",
+          "ffffffff",
+          "00000013"
+        ],
+        "idfire": [
+          "0"
+        ],
+        "taken": [
+          "0"
+        ],
+        "bj": [
+          "ffffffff"
+        ],
+        "exc": [
+          "0"
+        ],
+        "lu": [
+          "0"
+        ],
+        "idex": [
+          "0",
+          "ffffffff",
+          "0",
+          "00000000"
+        ],
+        "adv": [
+          "0"
+        ],
+        "can": [
+          "1"
+        ],
+        "emrdy": [
+          "1"
+        ],
+        "emcmp": [
+          "0"
+        ],
+        "stall": [
+          "0"
+        ],
+        "older": [
+          "0"
+        ],
+        "rdir": [
+          "0"
+        ],
+        "tgt": [
+          "00000000"
+        ],
+        "fs": [
+          "0"
+        ],
+        "sc": [
+          "0"
+        ],
+        "si": [
+          "0"
+        ],
+        "front": [
+          "0"
+        ],
+        "ret": [
+          "1",
+          "0000000c"
+        ],
+        "cls": [
+          "8"
+        ],
+        "cycle": 20
+      },
+      "phase1_label_offset_from_load": 1,
+      "offline_roi": {
+        "start": 10,
+        "end_inclusive": 31,
+        "cycles": 22,
+        "classifications": {
+          "8": 5,
+          "3": 14,
+          "6": 2,
+          "4": 1
+        },
+        "OTHER_with_retire": 3,
+        "OTHER_with_idfire": 3
+      }
+    }
+  },
+  "verified_improvements": [
+    "Sealed source identities and header closure verified; compile log refers to sealed source.",
+    "Slow address actual response interval is eight edges in phase0 and model clocks separately.",
+    "Six runs have matching aggregate I/D totals, no remaining aggregate I inflight, and x31 zero.",
+    "PC+instruction correct-path prefix verified offline for all six, including nottaken.",
+    "ROI is bounded by branch issue and completion store retirement for taken cases."
+  ],
+  "remaining_defects": [
+    "cycle is incremented by a separate model posedge block, while observer reads it at entry and after #1. The SAME physical edge acquires two labels.",
+    "phase1 reads post-NBA pending/buffer and calls them old owners; capture old fields before the edge instead.",
+    "Reported fast t3=11 coincides with following phase0=11; actual loading inferred at phase0=10, and IF buffer is zero. Buffer-detour hypothesis is refuted for this fast case.",
+    "Only PC prefix is compared by runner. PC/inst prefix now reviewed, but rd/we/value/next_pc absent from RET; nottaken skips runner oracle and ROI, ref_match=true is not evidence for it.",
+    "IAUDIT/DAUDIT improved aggregate totals do not provide complete per-request ledger or recorded D latency/byte side effects; trace still truncates at80 edges.",
+    "Actual command/cwd/tool version/return-code transcripts not delivered; runner tests first verdict only, not all FAIL/INCOMPLETE lines and independent audit predicates.",
+    "Wrong-path CSR may not retire per reviewed prefix, but mscratch side-effect value is not observed/checked."
+  ],
+  "next_action": "Do not rerun a wider matrix. Repair monitor timestamps/old-owner snapshots and complete existing reference/ledger for same six cases in a new sealed run.",
+  "evidence_sha256": {
+    "sim/cpu_ex_redirect/id_ex_attribution_20261018_a/report_fix01.md": "069051a64e73068a1fb6c49efa2da8efd325a94c1498681db408334bf7de4663",
+    "sim/cpu_ex_redirect/id_ex_attribution_20261018_a/sealed_fix01b/manifest.json": "a97bfe8b40702bd4e265469c41887c2dcb7a45be27824f9039943e6b1e90eb39",
+    "sim/cpu_ex_redirect/id_ex_attribution_20261018_a/build/fix01b/result.json": "2df32f5dac3df6ad6b63c83e11e840d46a98eafb03ad355d1e93100472e61999",
+    "sim/cpu_ex_redirect/id_ex_attribution_20261018_a/build/fix01b/compile.log": "077dd91e84c0d5647d4b93eeb48823e6838f752e276352166e4c927380bea649",
+    "sim/cpu_ex_redirect/id_ex_attribution_20261018_a/build/fix01b/tb.vvp": "193613122d73c4395983761b4e44066cb5c287589a773e457d1f0d1cd7adc466",
+    "sim/cpu_ex_redirect/id_ex_attribution_20261018_a/review_20261018_02/review_raw.py": "0bfa6b8141081851c34afa26037720c14697d69e6189f05ce2dbc15a81910dd0",
+    "sim/cpu_ex_redirect/id_ex_attribution_20261018_a/build/fix01b/fast/run.log": "bd3c66a62e532f64de3578b57730973236c4789436d982d13aba936c1b906fd5",
+    "sim/cpu_ex_redirect/id_ex_attribution_20261018_a/build/fix01b/nottaken/run.log": "4a5f28b29eecdeee86d84cd5ba77db9ff986892898ba406d86e11c9e82fdfab7",
+    "sim/cpu_ex_redirect/id_ex_attribution_20261018_a/build/fix01b/oldmem_d1/run.log": "578bf6b07a7414984eed08a65596fc20cd753309864cf1dadfcd7d1a57570ae0",
+    "sim/cpu_ex_redirect/id_ex_attribution_20261018_a/build/fix01b/oldmem_d8/run.log": "b2421e81e97c38435b03906585c54433fd361b315719c996fec21f58f46e9d8b",
+    "sim/cpu_ex_redirect/id_ex_attribution_20261018_a/build/fix01b/serial/run.log": "c7b9e61da9d6525d1102cbd9825d6ffbae7a3f9c8761b384222dc85bd05b4f69",
+    "sim/cpu_ex_redirect/id_ex_attribution_20261018_a/build/fix01b/slowwrong/run.log": "6fe04c22b62f69c078ee68bb45ae15275d185accadc9632942eeb4229d9abcd7",
+    "sim/cpu_ex_redirect/id_ex_attribution_20261018_a/build/fix01b/fast/program.lst": "2afa26f8bfffbff862e7dc0e4ba44a197f7852869d31e5c1293d6e026b46d47b",
+    "sim/cpu_ex_redirect/id_ex_attribution_20261018_a/build/fix01b/nottaken/program.lst": "8813bc3184193886fcd0960a416a9bbea04bc665bd45cdf8814282ebc07c0631",
+    "sim/cpu_ex_redirect/id_ex_attribution_20261018_a/build/fix01b/oldmem_d1/program.lst": "90a25e7452470494e1b038f11fdd74d3057382fe4fdd66a92241b07b5f9cfa79",
+    "sim/cpu_ex_redirect/id_ex_attribution_20261018_a/build/fix01b/oldmem_d8/program.lst": "90a25e7452470494e1b038f11fdd74d3057382fe4fdd66a92241b07b5f9cfa79",
+    "sim/cpu_ex_redirect/id_ex_attribution_20261018_a/build/fix01b/serial/program.lst": "2288218836b4c4a97afabdaa4a00e6d7a12b9d2b38023ddd9b10f2cf2aec2ef6",
+    "sim/cpu_ex_redirect/id_ex_attribution_20261018_a/build/fix01b/slowwrong/program.lst": "2afa26f8bfffbff862e7dc0e4ba44a197f7852869d31e5c1293d6e026b46d47b"
+  },
+  "RTL_modified": false,
+  "HDL_started": false,
+  "PDS_started": false,
+  "serial_opened": false
+}
