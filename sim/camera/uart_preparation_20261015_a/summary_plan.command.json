@@ -1,0 +1,12 @@
+{
+  "argv": [
+    "C:\\python\\python.exe",
+    "tools/camera_uart/capture.py",
+    "--plan-only",
+    "--summary-only",
+    "--captures",
+    "1"
+  ],
+  "returncode": 0,
+  "serial_opened": false
+}

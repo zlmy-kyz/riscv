@@ -1,0 +1,16 @@
+{
+  "argv": [
+    "D:\\modelsim\\win64pe\\vsim.exe",
+    "-batch",
+    "-modelsimini",
+    "modelsim.ini",
+    "-logfile",
+    "startup.transcript",
+    "-do",
+    "quit -f"
+  ],
+  "cwd": "D:\\riscv\\RISCV\\sim\\camera\\key\\review_first_failure_20261015_a\\startup_probe",
+  "purpose": "CLI/INI startup only; no design/no HDL run",
+  "timeout_seconds": 30,
+  "returncode": 0
+}

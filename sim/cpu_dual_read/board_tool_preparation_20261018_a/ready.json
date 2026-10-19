@@ -1,0 +1,51 @@
+{
+  "status": "TASK035_APPLICATION_FUNCTION_AND_PERFORMANCE_BOARD_TOOL_READY_NOT_BOARD_PASS",
+  "date": "2026-10-18",
+  "design_sha256": {
+    "myriscv/soc_top.v": "cd3d820aee9ad2572e52972ba4f8942221054d42ea7457e87f7517a90322232b",
+    "myriscv/dual_sram_to_pango_ddr_bridge.v": "1abf54fe01fb76659943fd14818154cfffe1bde23cd9f996b711b185452afe67",
+    "myriscv/inst_bram_adapter.v": "fa4ac709ef35b606f02f17b96383f5f0c0f09bd76bba1af8065343e2e9456b7d"
+  },
+  "static_manifest_sha256": "5bde4675f04e9b6a26fbd5e9bbbfe2ce17df24cada0c4b1d2b976b0ef36a262d",
+  "baseline_review_sha256": "3bddd48ccdda92f4c664ac3b865d63a7d0974b7ea7b8781ea3e50a52096cc9c2",
+  "source_identity_entries": 73,
+  "dynamic_RTL_simulation": "NOT_RUN",
+  "full_protocol_reset_acceptance": "NOT_CLAIMED",
+  "per_round_reprogram_same_035_bitstream": true,
+  "tool_sha256": {
+    "tools/uart_loader/candidates/perf_2b/run_task035_measurement.py": "aff5ed09c899cd71f9e9ae24c06c74f6fddca337796b974a8842f5d8e65dacc2",
+    "tools/uart_loader/candidates/perf_2b/run_task035_measurements.ps1": "594a0bc34321cae54534f76f17511b3e42894f7d37af64b7ae1cf383ad5c931f"
+  },
+  "plans_and_offline_QA": {
+    "performance_300": {
+      "plan_sha256": "f2cc5bd12d4d891d16e5a79db783b4c911a05ec90279ca8d86cd7bb5d41d07c5",
+      "responses": 123,
+      "run_count": 1,
+      "serial_opened": false,
+      "bin_sha256": "677ee766fd0fc34d1558d778a343743a1cd9287ecdbbc182cb4681af3374517d",
+      "transport_plan_equals_034": true,
+      "synthetic_relabelled_034_parser_fixture_only": {
+        "source_sha256": "6d7d8177300f31bb2ac66c9b3398be33b1c62db0ca4853d50172fa4e4929b083",
+        "zero_baseline_delta": true,
+        "corrupt_counter_rejected": true,
+        "is_task035_board_evidence": false
+      }
+    },
+    "validation_300": {
+      "plan_sha256": "c1d3fecb2ca98f11522e16e4cc38c5d2e447b4dca4651b13816eb7757ca48e59",
+      "responses": 123,
+      "run_count": 1,
+      "serial_opened": false,
+      "bin_sha256": "461c635c46c86c8e719ced403b045bca468ded7299870bf2f87f8547ce11719b",
+      "transport_plan_equals_034": true,
+      "synthetic_relabelled_034_parser_fixture_only": {
+        "source_sha256": "50e654fafac8405c83330e053c25c7b6973c934af2ea25ef7cd0141aa9dcf0ab",
+        "zero_baseline_delta": true,
+        "corrupt_counter_rejected": true,
+        "is_task035_board_evidence": false
+      }
+    }
+  },
+  "serial_opened": false,
+  "RTL_modified": false
+}

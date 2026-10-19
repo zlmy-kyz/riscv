@@ -1,0 +1,133 @@
+{
+  "status": "ABI2_A_RAW_REVIEW_UNIT_PASS_TEST_POST_RESET_EXPECTATION_BUG_SOC_NOT_RUN",
+  "date": "2026-10-16",
+  "original_manifest_sha256": "639c6ace530086754a673e65e90d2c9fe59119f10223a87417658c59c40fda7a",
+  "project_files": 308,
+  "input_copies_checked": 3,
+  "evidence_files_checked": 18,
+  "protected_history_files": 58,
+  "input_vendor_tools_INI_Git_match": true,
+  "original_result": "STOPPED_FIRST_FAILURE_UNCHANGED",
+  "compile_modules": 54,
+  "compile_errors": 0,
+  "compile_warnings": 0,
+  "unit_native": 0,
+  "unit_seconds": 12.717051599989645,
+  "unit_errors": 0,
+  "unit_warnings": 40,
+  "failure": "Old checker expected dropped=10 at first post-publication sample; async capture reset makes it 0",
+  "lifecycle": "camera_mmio sets busy=0 at publication; capture_resetn=resetn&&busy asserts wr_reset_pipe reset; ov5640_capture dropped resets before TB #0.001 sample",
+  "first_pub": {
+    "input_pattern": 1,
+    "buffer": 0,
+    "seq": 1,
+    "CRC": "e9ee1be4",
+    "cycle": 724182,
+    "last_actual_W": 724173,
+    "dropped_after_reset": 0,
+    "actual_frame_start_edges": 11
+  },
+  "corrected_independent_replay": {
+    "publications": [
+      [
+        1,
+        0,
+        1
+      ],
+      [
+        2,
+        1,
+        2
+      ],
+      [
+        3,
+        0,
+        3
+      ],
+      [
+        4,
+        1,
+        4
+      ],
+      [
+        5,
+        0,
+        5
+      ],
+      [
+        7,
+        0,
+        6
+      ],
+      [
+        10,
+        0,
+        7
+      ],
+      [
+        12,
+        0,
+        8
+      ]
+    ],
+    "illegal_MMIO_responses": 19,
+    "permissions": 132,
+    "frame_edges_per_publication": [
+      11,
+      1,
+      1,
+      1,
+      11,
+      11,
+      11,
+      11
+    ],
+    "cases": [
+      "ABORT_DRAIN_PRESERVE",
+      "FULL_WAIT_STABLE",
+      "MISSING_PCLK_TIMEOUT",
+      "OVERFLOW_PRESERVE",
+      "RESET_CLEAR",
+      "SHORT_FRAME_PRESERVE",
+      "STOP_ALLOCATION_RACE",
+      "STOP_DRAIN"
+    ],
+    "DVP_frames": 15
+  },
+  "negative_checks": {
+    "missing_warmup_edge": "REJECTED",
+    "wrong_post_reset_dropped": "REJECTED",
+    "wrong_capture_CRC": "REJECTED",
+    "publication_not_after_actual_W": "REJECTED",
+    "corrupt_DMA_byte": "REJECTED"
+  },
+  "checker_sha256": "9216e8f48c84722399e5a3ff02e94aec47b5fc397b53b467ad77910d00cf4938",
+  "reviewer_sha256": "316a7565cfdcc9c43e7a05120edb6146656bbd31e4e831d82ffbc189c6a9fbd4",
+  "original_evidence_sha256": {
+    "compile.command.json": "32caf9d6aedf237092a46eb5134d72c861497ef6aea5499ba2ca938183e8a89a",
+    "compile.stdout.log": "99e2cb6136afeb2956e2d45f5157c280b81168333d3e32f17a6ea624e2a2f0cb",
+    "git_after.json": "5802654f7d4f9fad4836428ccdd5181b3207c63f3b5dd78dd816e33c24bca7ea",
+    "git_before.json": "5802654f7d4f9fad4836428ccdd5181b3207c63f3b5dd78dd816e33c24bca7ea",
+    "inputs.json": "639c6ace530086754a673e65e90d2c9fe59119f10223a87417658c59c40fda7a",
+    "input_identity_after.json": "ae11215f9ab2982dd4ce2aa64fe918624f9deef9e2ee69040f410e244cb1df81",
+    "modelsim.ini": "ea76df2046dcca50d407552fa6bea9b02f2c60a0940d0ccf50f9958ca3ff3927",
+    "protected_history_identity_after.json": "2ecf8949db1e7146086b86a492fa9c5d278f0e6dd2f8e6004ef8535216aea6bf",
+    "result.json": "85b466c79f7bc8441d0e863140633d533798d1e7dbd7ef93b7a11579f6e15d5d",
+    "unit.command.json": "28d1eefd6b2daf064ffa49cf9f7818bbf306a1b449150b32a4dd9865ac25df2b",
+    "unit.dvp.log": "cc6f4168e4bd0089f6c3861e1bb95fb18b9676b0ae94442a7e181ba5835739d3",
+    "unit.log": "65ea3ea19db4d9a88f40201327989a6ef095fe7360d43eaf994e66ff0fb8b803",
+    "unit.stdout.log": "ec60f86e312fdba560d099f1126f858f27139add45d8a7bb306e22c11c2663de",
+    "unit.transcript": "9ac49532bc0286e1713698987f4bb0f14cefe1399dc302e394e8b8abc1330bea",
+    "unit_check.command.json": "224ddaecf83f5077e5cb644dfd26914e34918a2cd11fd1b526a6450bfe6c6978",
+    "unit_check.stdout.log": "7e2e4bed7f06c77310776ed5e626eb85baf3f39d4d29120ca0887772c2acb04b",
+    "vlib.command.json": "8b0dc774cebecd76ff79e93127dc105c2007f15bc19208fe30ee941d6b267db8",
+    "vlib.stdout.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "soc": "NOT_RUN",
+  "board": "NOT_RUN",
+  "Full_Boot": "NOT_RUN",
+  "PHY": "NOT_RUN",
+  "RTL_modified": false,
+  "HDL_rerun": false,
+  "decision": "Reuse unchanged original unit trace with new checker; new frozen identity and fresh directory for only unexecuted SoC plus unit recheck; no board release"
+}

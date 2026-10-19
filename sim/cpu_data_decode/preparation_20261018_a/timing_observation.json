@@ -1,0 +1,30 @@
+{
+  "report_sha256": "4e70270f2f7b9e8e9da3807a029c21cf27dc7fa915244ac755ab66084dd4c8f0",
+  "report_date": "Sun Oct 18 02:07:14 2026",
+  "design_summary": "All Constraints Met",
+  "clock_mhz": 93.75,
+  "wns_ns": 0.115,
+  "tns_ns": 0.0,
+  "estimated_fmax_mhz": 94.7718,
+  "top_reported_core_paths": [
+    {
+      "start": "u_soc/u_soc/u_cpu/id_ex_src2[1]/opit_0_L6Q_perm/CLK",
+      "end": "u_soc/u_soc/u_inst_bus_interconnect/response_target[0]/opit_0_inv_L6Q_perm/CE",
+      "slack_ns": 0.115,
+      "detail": "Logic Levels: 15 \n                                                                                   Logic: 3.401ns(33.891%), Route: 6.634ns(66.109%)"
+    },
+    {
+      "start": "u_soc/u_soc/u_cpu/id_ex_src2[1]/opit_0_L6Q_perm/CLK",
+      "end": "u_soc/u_soc/u_cpu/inst_pending_pc[3]/opit_0_inv/CE",
+      "slack_ns": 0.173,
+      "detail": "Logic Levels: 15 \n                                                                                   Logic: 3.401ns(33.966%), Route: 6.612ns(66.034%)"
+    },
+    {
+      "start": "u_soc/u_soc/u_cpu/id_ex_src2[0]/opit_0_L6Q_perm/CLK",
+      "end": "u_soc/u_soc/g_ddr.u_ddr_bridge/inst_line_tag[57][7]/opit_0_inv/CE",
+      "slack_ns": 0.231,
+      "detail": "Logic Levels: 11 \n                                                                                   Logic: 2.482ns(25.170%), Route: 7.379ns(74.830%)"
+    }
+  ],
+  "limits": "Report/current sources observed; not independent reconstruction of PDS implementation inputs."
+}

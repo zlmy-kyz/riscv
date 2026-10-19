@@ -1,0 +1,132 @@
+{
+  "status": "EXISTING_LOGS_SHOW_PERF27_LAYOUT_COST_NOT_SAME_BIN_COUNTER_HARDWARE_SLOWDOWN",
+  "comparisons": {
+    "performance": {
+      "baseline039_cycles": 240456438,
+      "hardware042_frozen_BIN_cycles": 240454027,
+      "hardware042_perf27_BIN_cycles": 243950601,
+      "frozen_BIN_seconds": 2.5648429546666667,
+      "perf27_BIN_seconds": 2.602139744,
+      "hardware_same_BIN_delta_cycles": -2411,
+      "hardware_same_BIN_delta_percent": -0.001002676418254187,
+      "new_BIN_delta_cycles": 3496574,
+      "new_BIN_delta_percent": 1.4541548934008912,
+      "new_BIN_delta_seconds": 0.03729678933333336,
+      "legacy_counter_deltas": {
+        "cycles": 3496574,
+        "instret": 0,
+        "if_stall_cycles": -133645,
+        "mem_stall_cycles": 3924095,
+        "branch_flush_cycles": -300775,
+        "control_redirect_cycles": 0,
+        "control_hold_cycles": 0,
+        "load_use_cycles": -1801,
+        "other_cycles": 8700,
+        "ddr_transactions": 135131,
+        "branch_redirects": 0,
+        "ddr_ar_commands": 135131,
+        "ddr_aw_commands": 0
+      },
+      "new_BIN_AR_increase_percent": 35.67645630042664,
+      "local_bitstream_SHA256": "e7a6b244e4757707c2b719070f8a6b159efcfb3e3a04018cc5a086414cefc4b3",
+      "programmed_FPGA_independently_observed": false,
+      "original_P_post_application_extra_RX_gap_preserved": true
+    },
+    "validation": {
+      "baseline039_cycles": 240544610,
+      "hardware042_frozen_BIN_cycles": 240543747,
+      "hardware042_perf27_BIN_cycles": 244006001,
+      "frozen_BIN_seconds": 2.565799968,
+      "perf27_BIN_seconds": 2.602730677333333,
+      "hardware_same_BIN_delta_cycles": -863,
+      "hardware_same_BIN_delta_percent": -0.00035876921124942273,
+      "new_BIN_delta_cycles": 3462254,
+      "new_BIN_delta_percent": 1.4393448356818022,
+      "new_BIN_delta_seconds": 0.03693070933333331,
+      "legacy_counter_deltas": {
+        "cycles": 3462254,
+        "instret": 0,
+        "if_stall_cycles": -77660,
+        "mem_stall_cycles": 3854983,
+        "branch_flush_cycles": -322569,
+        "control_redirect_cycles": 0,
+        "control_hold_cycles": 0,
+        "load_use_cycles": -1801,
+        "other_cycles": 9301,
+        "ddr_transactions": 137922,
+        "branch_redirects": 0,
+        "ddr_ar_commands": 137922,
+        "ddr_aw_commands": 0
+      },
+      "new_BIN_AR_increase_percent": 36.85792853535151,
+      "local_bitstream_SHA256": "e7a6b244e4757707c2b719070f8a6b159efcfb3e3a04018cc5a086414cefc4b3",
+      "programmed_FPGA_independently_observed": false,
+      "original_P_post_application_extra_RX_gap_preserved": false
+    }
+  },
+  "ELF_symbol_layout": {
+    "main": {
+      "old": "0x40001570",
+      "new": "0x40001960",
+      "delta_bytes": 1008
+    },
+    "iterate": {
+      "old": "0x400014d8",
+      "new": "0x400018c8",
+      "delta_bytes": 1008
+    },
+    "core_bench_list": {
+      "old": "0x400020dc",
+      "new": "0x400024cc",
+      "delta_bytes": 1008
+    },
+    "core_bench_matrix": {
+      "old": "0x40002970",
+      "new": "0x40002d60",
+      "delta_bytes": 1008
+    },
+    "core_bench_state": {
+      "old": "0x40002ca4",
+      "new": "0x40003094",
+      "delta_bytes": 1008
+    },
+    "matrix_mul_matrix": {
+      "old": "0x400026bc",
+      "new": "0x40002aac",
+      "delta_bytes": 1008
+    },
+    "start_time": {
+      "old": "0x400007cc",
+      "new": "0x400007cc",
+      "delta_bytes": 0
+    },
+    "stop_time": {
+      "old": "0x400007f0",
+      "new": "0x400007f0",
+      "delta_bytes": 0
+    },
+    "static_memblk": {
+      "old": "0x40003ba8",
+      "new": "0x40004b18",
+      "delta_bytes": 3952
+    }
+  },
+  "timer_port_source_byte_identical": true,
+  "printing_after_frozen_ROI": true,
+  "attribution": "Layout/cache mapping is supported by relocated code/data, identical instret/AW, increased AR/MEM wait, and near-identical same-frozen-BIN hardware cycles. A per-miss causality trace was not collected.",
+  "limits": "P CRC/27 counts recovered; original FAIL and unrecorded post-application extra RX remain. Same local bitstream record is not independent observation of programmed FPGA. No new test, PDS, board run or optimization.",
+  "evidence_sha256": {
+    "sim/cpu_cache_perf/software_20261018_a/parser_case_fix01/review.json": "52e615300eae3de70c0a5770700340ff57e47673b2a427b90ff25d895911c2cf",
+    "sim/cpu_ex_redirect/board/task039_target_fetch_300_01/performance_300.json": "a7ffa03946c1495223874b9a4e204f25d7ae43e74e6c74a4227fe9088e26c25c",
+    "sim/cpu_cache_perf/board/task042_fixed_pv_300_01/performance_300.json": "4e32e118e78ed8e07a2e53fe03c14da0e42b4ababf940703c6c2d156b195b939",
+    "sim/cpu_cache_perf/board/perf27_300_20261018_124013/performance_300.json": "d65b2755320ced37538a83180b56b41edf02bc451d0155ee123085d2d3722691",
+    "sim/cpu_ex_redirect/board/task039_target_fetch_300_01/validation_300.json": "da58adf556e68912120c650ee933c3603709c47b6a200967d07c48688c77ac01",
+    "sim/cpu_cache_perf/board/task042_fixed_pv_300_01/validation_300.json": "33fab356765be8195b6c4122ea2409aea6348f58ccd3909c1dc6076f303cb81d",
+    "sim/cpu_cache_perf/board/perf27_v_parser_fix01_01/validation_300.json": "158d5ceb1f306560862afb4ed17126170f62e82e327ed0d307f836d7673418ba",
+    "tests/cpu_performance_2b/build/measure_zmmul300_20261013_a/performance_300/manifest.json": "0e0fa8a5c1c14d8915aa1343c54ef56746b5abd088a1fdef6027f35c64ae7fef",
+    "tests/cpu_performance_2b/build/measure_perf27_20261018_a/performance_300/manifest.json": "4016fcd4a190ffc7336ffec779596f59b4f88f3d1751a09cdece6f1b7c82a23a",
+    "sim\\cpu_cache_perf\\software_20261018_a\\timing_comparison_01\\fixed_P_review.json": "f0deabbbe749f65dbf02de43dadf1b3ca20c797001163a469a9b61354ee1e028",
+    "sim\\cpu_cache_perf\\software_20261018_a\\timing_comparison_01\\fixed_V_review.json": "c603df2b3edeb8bf28f80c280c3b609468501834227f437116fc89a93824eb40",
+    "sim\\cpu_cache_perf\\software_20261018_a\\timing_comparison_01\\perf27_V_review.json": "8920c2b683b2d1e05009e8292aab35997dbee39faa8ca981e26c916bbc13c797"
+  }
+}

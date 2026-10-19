@@ -1,0 +1,11 @@
+{
+  "status": "CAMERA_A_RAW_INTEGRITY_RECHECK_PASS",
+  "vendor_live_sealed_run": 3,
+  "tools": 4,
+  "INI_live_sealed_run_equal": true,
+  "input_after_matches_manifest": true,
+  "original_A_root_files_unchanged": 15,
+  "review_sha256": "dc045315eedcb56592c8c6c795ff863cc88ac0bf160babd9265e0a159f702f45",
+  "startup_probe_sha256": "4eb6847ff899d4f04dc20b4b09f10a72054aabb82dbd809aa88cce88d4a06d1d",
+  "DUT_simulation_executed": false
+}

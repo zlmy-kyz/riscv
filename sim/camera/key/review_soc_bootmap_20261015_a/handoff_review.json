@@ -1,0 +1,22 @@
+{
+  "status": "CAMERA_SOC_ONLY_RESUME_INPUTS_SEALED_PRIOR_SUCCESSES_AND_FAILURES_PRESERVED_HDL_NOT_RUN",
+  "manifest_sha256": "44437cb7042b70b7430336105696b7aacc84863cc51c0d2629afca12af33eecb",
+  "raw_review_sha256": "59ec365f8d3e64caab16a64edb2bd3fc1a26f554618ec33b40559510844bab9d",
+  "project_inputs": 317,
+  "unchanged_prior_inputs": 271,
+  "only_jobs": [
+    "vlib",
+    "compile",
+    "soc",
+    "soc_check"
+  ],
+  "reused": [
+    "sccb",
+    "faults"
+  ],
+  "new_run_directory_exists": false,
+  "HDL_run": false,
+  "RTL_modified": false,
+  "PDS_run": false,
+  "board_run": false
+}

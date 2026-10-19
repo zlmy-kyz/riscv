@@ -1,0 +1,27 @@
+{
+  "status": "CLI_RPC_FAILED_BATCH_MINIMAL_HDL_OK",
+  "date_user_context": "2026-10-18",
+  "batch_exit": 0,
+  "project_functional_verification": false,
+  "system_settings_changed": false,
+  "sha256": {
+    "batch_console.log": "5b40c7368434ae99c4f4a3e22eec88fff5c5c0f709450433898f34249997d77e",
+    "batch_exit_code.txt": "13bf7b3039c63bf5a50491fa3cfd8eb4e699d1ba1436315aef9cbe5711530354",
+    "batch_transcript.log": "235edafb0efa5b13b3711e85d5dc02f68afbfad27607cd44923c5ee4c72f27a9",
+    "check.py": "0abe20a0b233986d2607a60ed4ac6589aac8899c06da7e0ccf16106dc4f7c686",
+    "kernel_1.log": "b46f284ae0e5ad1f445260642b5c21ba195dae64a7eb1bdd4f1b0f6e27b3c6e0",
+    "kernel_2.log": "425a1f599b32188268036588213222b380a48d2a5df59f87e31e11b36595a227",
+    "outside.log": "a5de900ed6c5340f4e59a8de8da4f7bd3cf1b7a0bbc681115d49f858179fcddc",
+    "outside_results.json": "14f153f88a781b9a1f531ad1ce3e54578339c0d2741a1f2af685acebfad0fe4a",
+    "README.md": "a70bab84fcfb8f4310726cf261843fa2a5f341118d29e3e3eaff7e31d968bed0",
+    "results.json": "8d7a906588523e0b1eb44a5d56343927619104333b7fc109045cbf179ab2f9da",
+    "startup_shell_transcript.log": "a04b8b67b8a01858882dc1d2ce7fe61d24f0a262a4f4ea526e4ef110ba57d004",
+    "tool_health.v": "7b1325cc1d7e470e7282442b58c6e1d1e883eb13926bb616b6cc6fa76fc2b988",
+    "transcript_1.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "transcript_2.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "transcript_outside.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "version.log": "104137570737849e47cd29a322368852e97c362e8829437745d2a1b5bb9658a6",
+    "vlib.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "vlog.log": "ca344735cc653897b3f46c02a6f86430f51e7e8b57c1dbdfbcc847fb962932d4"
+  }
+}

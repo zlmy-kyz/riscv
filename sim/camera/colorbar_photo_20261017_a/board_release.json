@@ -1,0 +1,13 @@
+{
+  "status": "USER_AUTHORIZED_NEW_COLORBAR_BOARD_DIAGNOSTIC",
+  "firmware_sha256": "2f72e829b3044e1ce8f5996d6b9ddb39877c3c6f15048cf9a040b64bd78d7bd4",
+  "hardware_manifest_sha256": "5c87597bf53555dfaa82b7ad7fc90d0471c64c8bedad87b6dad11066c4eded19",
+  "tool_sha256": "bf57b49476a10b6e08803670ffb4c2c3dc26dee634173bb8694267a780dafbd7",
+  "ready_review": "sim/camera/colorbar_photo_20261017_a/ready_review.json",
+  "ready_review_sha256": "a649a4e9e5c1325f1c0df80590ab6bad8cc05b15f61d6dca121535359ea7d8dd",
+  "new_bitstream_required": true,
+  "connector": "J10",
+  "PDS_or_bitstream_receipt_required": false,
+  "key_HDL": "NOT_COMPLETED",
+  "board": "NOT_RUN"
+}

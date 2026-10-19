@@ -1,0 +1,29 @@
+{
+  "status": "LIVE_PHOTO_RAW_DATA_VERIFIED_VISUAL_PENDING",
+  "data_verification": {
+    "source_bytes": 1843200,
+    "preprocess_bytes_compared": 27648,
+    "scores": [
+      -22,
+      -156,
+      86,
+      150,
+      -210,
+      161,
+      125,
+      -62,
+      112,
+      151
+    ],
+    "prediction": 5,
+    "cnn_ms": 13.168714666666666,
+    "trained_digit_accuracy": false
+  },
+  "hardware_version": "OV5640_LIVE_RESTORED_J10_20261017_A",
+  "actual_downloaded_bitstream_independently_verified": false,
+  "key_HDL": "NOT_COMPLETED",
+  "timing": "NEW_LIVE_PHOTO_IMPLEMENTATION_NOT_REVIEWED",
+  "original_status": "LIVE_PHOTO_CAPTURE_DATA_PASS_VISUAL_PENDING",
+  "visual_review": "PENDING",
+  "scene_independence": "NOT_VERIFIED_BY_ONE_CAPTURE"
+}

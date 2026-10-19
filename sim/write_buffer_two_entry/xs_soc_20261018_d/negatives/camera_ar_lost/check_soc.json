@@ -1,0 +1,130 @@
+{
+  "task": "TASK043_SOC_ORDER",
+  "status": "FAIL",
+  "checks": {
+    "A1_no_non_ddr_accept_while_busy": true,
+    "A2_non_ddr_after_all_w_beats": true,
+    "A2b_non_ddr_after_tail_w": true,
+    "A3_non_ddr_was_blocked_first": true,
+    "A4_fence_retires_after_drain": true,
+    "A5_camera_pp_read_ddr_twice": false,
+    "A6_aperture_after_fence": true,
+    "A7_uart_side_effect_once": true,
+    "A8_ram_store_once": true,
+    "A9_aw_per_ddr_store": true,
+    "B1_irq_after_drain": true,
+    "B2_irq_cause_external": true,
+    "B3_no_trap_while_busy": true,
+    "B2b_mcause_latched": true,
+    "B4_handler_ran": true,
+    "M1_final_ddr_image": true
+  },
+  "detail": {
+    "A1": {
+      "violations": [],
+      "count": 0
+    },
+    "A2": {
+      "first_non_ddr_accept": 56,
+      "last_w_before": 55,
+      "first_non_ddr_busy": 0,
+      "w_beats_ep1": [
+        45,
+        55,
+        88,
+        109,
+        130,
+        158,
+        168
+      ]
+    },
+    "A2b": {
+      "tail_w_cycle": 55,
+      "first_non_ddr_accept": 56
+    },
+    "A3": {
+      "blocked_edges": 19,
+      "first_blocked": 37,
+      "last_blocked": 55,
+      "blocked_inside_head_only_window": 11
+    },
+    "A4": {
+      "fence_retire": 64,
+      "last_w_before": 55,
+      "fence_edge_busy": 0,
+      "w_beats_before_fence": 2
+    },
+    "A5": {
+      "camera_ar": [
+        91
+      ],
+      "pp_ar": [
+        112,
+        140
+      ]
+    },
+    "A6": {
+      "fence_retire": 64,
+      "first_camera_ar": 91,
+      "first_pp_ar": 112
+    },
+    "A7": {
+      "uart": [
+        [
+          56,
+          "0x10001000",
+          "0x33"
+        ]
+      ],
+      "ram": [
+        [
+          57,
+          "0x1000",
+          "0x44"
+        ]
+      ]
+    },
+    "A9": {
+      "ddr_stores": 7,
+      "aw": 7,
+      "w": 7
+    },
+    "B1": {
+      "traps": 1,
+      "trap_edge": 301,
+      "cause": "0xb",
+      "target": "0x40000100",
+      "busy_at_trap": 0,
+      "busy_edges_before": 20,
+      "last_w_before": 300,
+      "w_beats_ep2": [
+        290,
+        300,
+        324
+      ],
+      "aw_beats_ep2": [
+        283,
+        293,
+        317
+      ],
+      "mcause_latched_at": 302
+    },
+    "B4": {
+      "handler_retires": [
+        "0x40000100",
+        "0x40000104",
+        "0x40000108"
+      ]
+    },
+    "M1": {
+      "mismatch": {},
+      "beats_dumped": 512
+    }
+  },
+  "notes": [
+    "blocked edges inside the head-complete/tail-pending window: 11"
+  ],
+  "edges": 384,
+  "retires": 84,
+  "traps": 1
+}

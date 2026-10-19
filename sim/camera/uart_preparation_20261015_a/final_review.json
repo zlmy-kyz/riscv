@@ -1,0 +1,10 @@
+{
+  "status": "FINAL_IDENTITIES_CHECKED_BOARD_NOT_RUN",
+  "input_files_per_copy": 317,
+  "input_copies_checked": 3,
+  "original_evidence_files_checked": 16,
+  "firmware_sources_match_build": true,
+  "bin_sha256": "373940dab9b1c1a4e444d5fa4467580b490d4bdd288fc4c516c90f32aed9f529",
+  "board_directory_created": false,
+  "serial_opened": false
+}

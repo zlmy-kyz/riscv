@@ -1,0 +1,12 @@
+{
+  "status": "RAW_LIVE_PHOTO_EXPORT_COMPLETE_VISUAL_REVIEW_PENDING",
+  "raw_bytes": 1843200,
+  "width": 1280,
+  "height": 720,
+  "expected": "Actual scene; inspect source.png/source.rgb565 for green/purple dots and quality before PP/CNN",
+  "known_full_frame_CRC": null,
+  "test_generators_disabled_in_expected_RTL": true,
+  "no_green_purple_dots_verified": false,
+  "scene_independence": "NOT_VERIFIED_BY_ONE_CAPTURE",
+  "scope": "Byte/CRC/PP/CNN agreement does not prove a clean live image or root cause"
+}

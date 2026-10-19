@@ -1,0 +1,95 @@
+{
+  "a": "sim\\write_buffer_two_entry\\xs_short_new_d1_20261018_c",
+  "b": "sim\\write_buffer_two_entry\\xs_short_new_d2_20261018_c",
+  "identity": {
+    "edges_a": 44,
+    "edges_b": 35,
+    "first_diff": {
+      "edge": 11,
+      "cyc": 11,
+      "field": "dr",
+      "a": 0,
+      "b": 1
+    },
+    "mark_diff": [
+      {
+        "mark": "S_done",
+        "a": 40,
+        "b": 31
+      }
+    ],
+    "identical": false
+  },
+  "logical": {
+    "accepts_equal": true,
+    "accepts_count": [
+      6,
+      6
+    ],
+    "wbeats_equal": true,
+    "wbeats_count": [
+      4,
+      4
+    ],
+    "awbeats_equal": true,
+    "memory_equal": true,
+    "done_cycle": [
+      40,
+      31
+    ],
+    "accept_cycles": [
+      [
+        10,
+        18,
+        24,
+        30,
+        34,
+        36
+      ],
+      [
+        10,
+        11,
+        17,
+        21,
+        25,
+        28
+      ]
+    ],
+    "never_later": true,
+    "strictly_earlier": [
+      {
+        "addr": 160,
+        "write": 1,
+        "d1": 18,
+        "d2": 11
+      },
+      {
+        "addr": 448,
+        "write": 1,
+        "d1": 24,
+        "d2": 17
+      },
+      {
+        "addr": 512,
+        "write": 0,
+        "d1": 30,
+        "d2": 21
+      },
+      {
+        "addr": 512,
+        "write": 1,
+        "d1": 34,
+        "d2": 25
+      },
+      {
+        "addr": 512,
+        "write": 0,
+        "d1": 36,
+        "d2": 28
+      }
+    ],
+    "earlier_at_done": true
+  },
+  "mode": "depth",
+  "status": "PASS"
+}

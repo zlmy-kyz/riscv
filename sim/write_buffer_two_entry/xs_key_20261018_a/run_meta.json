@@ -1,0 +1,43 @@
+{
+    "tag":  "xs_key_20261018_a",
+    "status":  "PASS",
+    "backend":  "xsim",
+    "started":  "2026-10-18T23:32:14",
+    "root":  "D:\\riscv\\RISCV",
+    "sealed_src":  "D:\\riscv\\RISCV\\sim\\write_buffer_two_entry\\xs_key_20261018_a\\src",
+    "top":  "tb_wb2_key",
+    "short":  false,
+    "legacy":  false,
+    "bridge":  "D:\\riscv\\RISCV\\myriscv\\dual_sram_to_pango_ddr_bridge.v",
+    "bridge_sha256":  "855318eebf7fc75a0b17d15a620b6d8d08bb54ff9348d663cbcd6aca0883262f",
+    "tools":  {
+                  "xvlog":  "D:\\Xilinx\\Vivado\\2019.2\\bin\\xvlog.bat",
+                  "xelab":  "D:\\Xilinx\\Vivado\\2019.2\\bin\\xelab.bat",
+                  "xsim":  "D:\\Xilinx\\Vivado\\2019.2\\bin\\xsim.bat",
+                  "python":  "C:\\Users\\z\u0027l\u0027m\u0027y\u0027k\\.workbuddy\\binaries\\python\\versions\\3.13.12\\python.exe"
+              },
+    "commands":  [
+                     "D:\\Xilinx\\Vivado\\2019.2\\bin\\xvlog.bat --sv D:\\riscv\\RISCV\\sim\\write_buffer_two_entry\\xs_key_20261018_a\\src\\vendor\\GTP_GRS.v D:\\riscv\\RISCV\\sim\\write_buffer_two_entry\\xs_key_20261018_a\\src\\vendor\\GTP_DRM36K_E1.v D:\\riscv\\RISCV\\sim\\write_buffer_two_entry\\xs_key_20261018_a\\src\\ipcore\\icache\\rtl\\ipm2l_sdpram_v1_10_icache.v D:\\riscv\\RISCV\\sim\\write_buffer_two_entry\\xs_key_20261018_a\\src\\ipcore\\icache\\icache.v D:\\riscv\\RISCV\\sim\\write_buffer_two_entry\\xs_key_20261018_a\\src\\ipcore\\dcache\\rtl\\ipm2l_sdpram_v1_10_dcache.v D:\\riscv\\RISCV\\sim\\write_buffer_two_entry\\xs_key_20261018_a\\src\\ipcore\\dcache\\dcache.v D:\\riscv\\RISCV\\sim\\write_buffer_two_entry\\xs_key_20261018_a\\src\\myriscv\\dual_sram_to_pango_ddr_bridge.v D:\\riscv\\RISCV\\sim\\write_buffer_two_entry\\xs_key_20261018_a\\src\\tb\\tb_wb2_bridge.sv D:\\riscv\\RISCV\\sim\\write_buffer_two_entry\\xs_key_20261018_a\\src\\tb\\tb_wb2_variants.sv",
+                     "D:\\Xilinx\\Vivado\\2019.2\\bin\\xelab.bat tb_wb2_key -s snap -debug off",
+                     "D:\\Xilinx\\Vivado\\2019.2\\bin\\xsim.bat snap -runall",
+                     "C:\\Users\\z\u0027l\u0027m\u0027y\u0027k\\.workbuddy\\binaries\\python\\versions\\3.13.12\\python.exe -B D:\\riscv\\RISCV\\sim\\write_buffer_two_entry\\xs_key_20261018_a\\src\\tools\\check_wb2.py D:\\riscv\\RISCV\\sim\\write_buffer_two_entry\\xs_key_20261018_a"
+                 ],
+    "exits":  {
+                  "xvlog":  0,
+                  "xelab":  0,
+                  "xsim":  0,
+                  "check":  0
+              },
+    "timeline":  [
+                     "xvlog exit=0 1.8s :: xvlog.bat --sv D:\\riscv\\RISCV\\sim\\write_buffer_two_entry\\xs_key_20261018_a\\src\\vendor\\GTP_GRS.v D:\\riscv\\RISCV\\sim\\write_buffer_two_entry\\xs_key_20261018_a\\src\\vendor\\GTP_DRM36K_E1.v D:\\riscv\\RISCV\\sim\\write_buffer_two_entry\\xs_key_20261018_a\\src\\ipcore\\icache\\rtl\\ipm2l_sdpram_v1_10_icache.v D:\\riscv\\RISCV\\sim\\write_buffer_two_entry\\xs_key_20261018_a\\src\\ipcore\\icache\\icache.v D:\\riscv\\RISCV\\sim\\write_buffer_two_entry\\xs_key_20261018_a\\src\\ipcore\\dcache\\rtl\\ipm2l_sdpram_v1_10_dcache.v D:\\riscv\\RISCV\\sim\\write_buffer_two_entry\\xs_key_20261018_a\\src\\ipcore\\dcache\\dcache.v D:\\riscv\\RISCV\\sim\\write_buffer_two_entry\\xs_key_20261018_a\\src\\myriscv\\dual_sram_to_pango_ddr_bridge.v D:\\riscv\\RISCV\\sim\\write_buffer_two_entry\\xs_key_20261018_a\\src\\tb\\tb_wb2_bridge.sv D:\\riscv\\RISCV\\sim\\write_buffer_two_entry\\xs_key_20261018_a\\src\\tb\\tb_wb2_variants.sv",
+                     "xelab exit=0 10.3s :: xelab.bat tb_wb2_key -s snap -debug off",
+                     "xsim exit=0 7.9s :: xsim.bat snap -runall",
+                     "check exit=0 0.5s :: check_wb2.py -B D:\\riscv\\RISCV\\sim\\write_buffer_two_entry\\xs_key_20261018_a\\src\\tools\\check_wb2.py D:\\riscv\\RISCV\\sim\\write_buffer_two_entry\\xs_key_20261018_a"
+                 ],
+    "sim_result":  "RESULT: PASS wb2 edges=433 aw=41 w=40 ar=17 r=17 dacc=90 drsp=88 iacc=2 irsp=2",
+    "check_status":  "PASS",
+    "identity_drift":  0,
+    "error":  null,
+    "finished":  "2026-10-18T23:32:35",
+    "modelsim_note":  "ModelSim 10.6c unavailable on this machine: machine-level block on IPv6 loopback prevents its kernel RPC (\"RPC_Init ... ::1\"). Same TB/DUT executed on Vivado xsim 2019.2."
+}

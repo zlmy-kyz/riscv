@@ -1,0 +1,255 @@
+{
+  "status": "ABI2_KEY_RAW_REVIEW_PASS_BOARD_PROGRAM_RELEASED_BOARD_NOT_RUN",
+  "reviewed_at_utc": "2026-10-15T18:16:57.891091+00:00",
+  "reviewer_source_sha256": "8488b42eaa35d459101491ae5f5023ce1377bfb9945abc7aaae4b2cf13a11471",
+  "manifest_sha256": "5e262312b626ea8473db910f0372297ae79a3fc0321dd22a8fe30fc1415ce61a",
+  "parent_manifest_sha256": "639c6ace530086754a673e65e90d2c9fe59119f10223a87417658c59c40fda7a",
+  "unit_review_sha256": "686231a7b9628d6bbc8a7fe2b3de45d0a43f020f5411108015c72d4647f1ae98",
+  "project_files": 329,
+  "input_copies": 3,
+  "protected_history_files": 79,
+  "vendor_files": 3,
+  "tool_files": 4,
+  "include_edges": 5,
+  "inputs_includes_GRS_vendor_tools_INI_Git_match": true,
+  "evidence_sha256": {
+    "bus.log": "4e4245c9e1f184cf1a10e2d2649320fdc4c2f9ba23d93a52d9e4155861cd85c6",
+    "compile.command.json": "b782ddbc2a04879783485072e39671b6f8201e785e16de314219dffc907055d3",
+    "compile.stdout.log": "dc2aae9be267cbc19e00b4fd7e2d4f0e27b6f05eeeca27119ab5ffb5ad9aafb4",
+    "cpu.log": "58a854ca785519b85b1d742ee035b54d4883b714bd9488172f837f8571e76122",
+    "git_after.json": "5802654f7d4f9fad4836428ccdd5181b3207c63f3b5dd78dd816e33c24bca7ea",
+    "git_before.json": "5802654f7d4f9fad4836428ccdd5181b3207c63f3b5dd78dd816e33c24bca7ea",
+    "inputs.json": "5e262312b626ea8473db910f0372297ae79a3fc0321dd22a8fe30fc1415ce61a",
+    "input_identity_after.json": "68c19df281baf264325e940ae49bf8c5d5ca1b35547635bc0f34323f7c1f31d7",
+    "modelsim.ini": "ea76df2046dcca50d407552fa6bea9b02f2c60a0940d0ccf50f9958ca3ff3927",
+    "protected_history_identity_after.json": "be3caaa08a9f6411e72bb56aac9354b13736d946b0323490e714837fca202907",
+    "result.json": "c44dd1cb248d8fb9d81ad5e31af3a948277d15bb527a7005a308845136b16a55",
+    "soc.checked.json": "45ac084c4c6904ea43a7fa1c4e079f121c49ebfa1196be3e17f3193e6275884b",
+    "soc.command.json": "e566dae0265ea3fbb8367f67d87e6a6e45f93dacacb4a5ec39b386e87579e72f",
+    "soc.dvp.log": "f55a0e1d57f5b733816a3940cd2cff2f7ca25fae7d8133a416d74b4974bed7e9",
+    "soc.stdout.log": "5bbcf35a3228b55b1e5f3149682e1a93b80b8468b34b75907f0f8c5b4d7c462d",
+    "soc.transcript": "966ee6028f89e7004b345a341c794d57a70e8352d4216b146c22831e28357c57",
+    "soc_check.command.json": "a80f28744dbdad05477f4cd228baa7b85d454b44db6fd056d88b02eb9df414ab",
+    "soc_check.stdout.log": "ff2d8fc03ad18f29caa024eb03751c2e77955b61e5913bd878c9c50bb7570863",
+    "unit.checked.json": "2620a83357f59c59149e3462c8b0155882fbad0f5c8aabc75a594071be255120",
+    "unit_recheck.command.json": "895600f307007ec0e271602b94c1e1cb24ea3bcd2bcc289c5e99675e95955696",
+    "unit_recheck.stdout.log": "a4d5051c137d158edbcf4141c60c250ff48ecc7e080aca67688998443e01b5a2",
+    "vlib.command.json": "1110bb7d37313d0bc9a8ed1091a5a50afd5b42095743055e980249f683d93388",
+    "vlib.stdout.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "commands": {
+    "unit_recheck": {
+      "returncode": 0,
+      "timed_out": false,
+      "elapsed_seconds": 0.169182300043758
+    },
+    "vlib": {
+      "returncode": 0,
+      "timed_out": false,
+      "elapsed_seconds": 0.3834062999812886
+    },
+    "compile": {
+      "returncode": 0,
+      "timed_out": false,
+      "elapsed_seconds": 0.6370135000324808
+    },
+    "soc": {
+      "returncode": 0,
+      "timed_out": false,
+      "elapsed_seconds": 202.2232978999964
+    },
+    "soc_check": {
+      "returncode": 0,
+      "timed_out": false,
+      "elapsed_seconds": 0.16470530000515282
+    }
+  },
+  "compile": {
+    "modules": 54,
+    "errors": 0,
+    "warnings": 0
+  },
+  "soc_warnings": {
+    "total": 30,
+    "codes": {
+      "3017": 2,
+      "3722": 28
+    },
+    "disposition": "Preserved: omitted observed/physical top outputs and unused DDR delay outputs; functional stimulus inputs explicitly connected"
+  },
+  "unit_replay": {
+    "publications": [
+      [
+        1,
+        0,
+        1
+      ],
+      [
+        2,
+        1,
+        2
+      ],
+      [
+        3,
+        0,
+        3
+      ],
+      [
+        4,
+        1,
+        4
+      ],
+      [
+        5,
+        0,
+        5
+      ],
+      [
+        7,
+        0,
+        6
+      ],
+      [
+        10,
+        0,
+        7
+      ],
+      [
+        12,
+        0,
+        8
+      ]
+    ],
+    "illegal_MMIO_responses": 19,
+    "permissions": 132,
+    "frame_edges_per_publication": [
+      11,
+      1,
+      1,
+      1,
+      11,
+      11,
+      11,
+      11
+    ],
+    "cases": [
+      "ABORT_DRAIN_PRESERVE",
+      "FULL_WAIT_STABLE",
+      "MISSING_PCLK_TIMEOUT",
+      "OVERFLOW_PRESERVE",
+      "RESET_CLEAR",
+      "SHORT_FRAME_PRESERVE",
+      "STOP_ALLOCATION_RACE",
+      "STOP_DRAIN"
+    ],
+    "status": "ABI2_INDEPENDENT_RAW_CHECK_PASS",
+    "DVP_input_frames": 15
+  },
+  "soc_replay": {
+    "publications": 5,
+    "full_CPU_words": {
+      "1": 256,
+      "2": 256,
+      "3": 256,
+      "4": 256,
+      "5": 256
+    },
+    "native_frame_AR_R": {
+      "1": 256,
+      "2": 256,
+      "3": 256,
+      "4": 256,
+      "5": 256
+    },
+    "DMA_W_between_other_buffer_AR_R": 18,
+    "CPU_test_stores": 160,
+    "same_AW_W": 10298,
+    "separate_AW_W": 21800,
+    "full_wait_cycles": 60974,
+    "status": "ABI2_INDEPENDENT_RAW_CHECK_PASS",
+    "DVP_input_frames": 9
+  },
+  "publications": [
+    {
+      "cycle": 703113,
+      "buffer": 0,
+      "seq": 1,
+      "crc": "c351bc7c",
+      "last_actual_W": 703112
+    },
+    {
+      "cycle": 769278,
+      "buffer": 1,
+      "seq": 2,
+      "crc": "e868aa8b",
+      "last_actual_W": 761532
+    },
+    {
+      "cycle": 872217,
+      "buffer": 0,
+      "seq": 3,
+      "crc": "3235a3e8",
+      "last_actual_W": 872216
+    },
+    {
+      "cycle": 904897,
+      "buffer": 1,
+      "seq": 4,
+      "crc": "1f3b833c",
+      "last_actual_W": 904896
+    },
+    {
+      "cycle": 907673,
+      "buffer": 0,
+      "seq": 5,
+      "crc": "496de9da",
+      "last_actual_W": 907672
+    }
+  ],
+  "actual_CPU_reports_hex": [
+    "c0000001",
+    "c351bc7c",
+    "d0000001",
+    "e868aa8b",
+    "d0010002",
+    "c0000002",
+    "3235a3e8",
+    "d0000003",
+    "1f3b833c",
+    "d0010004",
+    "496de9da",
+    "d0000005",
+    "c0000003"
+  ],
+  "actual_startup_retirements": 16,
+  "CPU_traps": 0,
+  "cover": {
+    "publications": 5,
+    "full_CPU_words": 1280,
+    "CPU_requests_while_other_busy": 275,
+    "DMA_completions_while_CPU_pending": 19,
+    "release_mid_frame": 1,
+    "simultaneous_CPU_camera_AW_cycles": 6904
+  },
+  "board_firmware": {
+    "path": "tests/camera_double100/build/abi2_20261016_d/program.bin",
+    "bytes": 12520,
+    "sha256": "4684f0775e3a611588b0ea5df373dbf5b3d6ce94deda175d6c62a0dda72ed4d2",
+    "crc32": "0901d151",
+    "manifest_sha256": "3b4963b69ed057d9d1f0dcd8d1779da0f2fc2dbc49270d4664660807296ae87f"
+  },
+  "small_firmware": {
+    "path": "tests/camera_double100/build/abi2_small_20261016_d/program.bin",
+    "bytes": 4680,
+    "sha256": "f46e564f5e85cfb19b856f2b5458718d1d02120cad965efcad9e1a5b91dc8dd0",
+    "DAT_exact_BIN_padded": true
+  },
+  "original_A_status": "STOPPED_FIRST_FAILURE_UNCHANGED",
+  "RTL_modified": false,
+  "HDL_rerun_by_Sol": false,
+  "PDS": "USER_CONFIRMED_TIMING_NO_REAUDIT",
+  "board": "NOT_RUN",
+  "Full_Boot": "NOT_RUN",
+  "PHY": "NOT_RUN",
+  "scope": "Small 64x8 real CPU plus reused 64x128 unit; no new 720p board/PHY/Full Boot PASS; board uses frozen full 720p100 BIN"
+}

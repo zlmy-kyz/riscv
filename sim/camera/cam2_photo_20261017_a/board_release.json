@@ -1,0 +1,13 @@
+{
+  "status": "USER_AUTHORIZED_NEW_CAM2_PHOTO_BOARD_DIAGNOSTIC",
+  "firmware_sha256": "2f72e829b3044e1ce8f5996d6b9ddb39877c3c6f15048cf9a040b64bd78d7bd4",
+  "hardware_manifest_sha256": "77c19a22e6f40371faf0d9f1aeaa58b4da54501ad5f27eb01e825d460d088c16",
+  "tool_sha256": "e55e2bd16af1f32ed24f1fb636e68150aedc74f119e1c3a79497680d3c80f793",
+  "ready_review": "sim/camera/cam2_photo_20261017_a/ready_review.json",
+  "ready_review_sha256": "0bf9580f5bca864832a4097fafaee0533ec503d756ef7d099d56889aef0082ac",
+  "new_bitstream_required": true,
+  "connector": "J10",
+  "PDS_or_bitstream_receipt_required": false,
+  "key_HDL": "NOT_COMPLETED",
+  "board": "NOT_RUN"
+}

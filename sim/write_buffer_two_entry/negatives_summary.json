@@ -1,0 +1,456 @@
+{
+  "ok": true,
+  "runs": {
+    "xs_fair_d1_20261018_d": {
+      "plane": "fair",
+      "ok": true,
+      "rows": [
+        {
+          "name": "drop_aw",
+          "applied": true,
+          "note": "AW handshake removed at edge 18",
+          "exit": 1,
+          "status": "FAIL",
+          "rejected": true
+        },
+        {
+          "name": "w_payload",
+          "applied": true,
+          "note": "W beat payload altered at edge 22",
+          "exit": 1,
+          "status": "FAIL",
+          "rejected": true
+        },
+        {
+          "name": "load_data",
+          "applied": true,
+          "note": "load response data altered at edge 40",
+          "exit": 1,
+          "status": "FAIL",
+          "rejected": true
+        },
+        {
+          "name": "i_data",
+          "applied": false,
+          "note": "mutation not applicable"
+        },
+        {
+          "name": "rid_owner",
+          "applied": true,
+          "note": "R id owner flipped at edge 39",
+          "exit": 1,
+          "status": "FAIL",
+          "rejected": true
+        },
+        {
+          "name": "dup_n",
+          "applied": true,
+          "note": "initial DDR record duplicated (0)",
+          "exit": 1,
+          "status": "FAIL",
+          "rejected": true
+        },
+        {
+          "name": "drop_marker",
+          "applied": true,
+          "note": "marker S2 removed",
+          "exit": 1,
+          "status": "FAIL",
+          "rejected": true
+        },
+        {
+          "name": "invent_accept",
+          "applied": true,
+          "note": "request accepted with no source at edge 6",
+          "exit": 1,
+          "status": "FAIL",
+          "rejected": true
+        }
+      ]
+    },
+    "xs_fair_d2_20261018_d": {
+      "plane": "fair",
+      "ok": true,
+      "rows": [
+        {
+          "name": "drop_aw",
+          "applied": true,
+          "note": "AW handshake removed at edge 18",
+          "exit": 1,
+          "status": "FAIL",
+          "rejected": true
+        },
+        {
+          "name": "w_payload",
+          "applied": true,
+          "note": "W beat payload altered at edge 22",
+          "exit": 1,
+          "status": "FAIL",
+          "rejected": true
+        },
+        {
+          "name": "load_data",
+          "applied": true,
+          "note": "load response data altered at edge 40",
+          "exit": 1,
+          "status": "FAIL",
+          "rejected": true
+        },
+        {
+          "name": "i_data",
+          "applied": false,
+          "note": "mutation not applicable"
+        },
+        {
+          "name": "rid_owner",
+          "applied": true,
+          "note": "R id owner flipped at edge 39",
+          "exit": 1,
+          "status": "FAIL",
+          "rejected": true
+        },
+        {
+          "name": "dup_n",
+          "applied": true,
+          "note": "initial DDR record duplicated (0)",
+          "exit": 1,
+          "status": "FAIL",
+          "rejected": true
+        },
+        {
+          "name": "drop_marker",
+          "applied": true,
+          "note": "marker S2 removed",
+          "exit": 1,
+          "status": "FAIL",
+          "rejected": true
+        },
+        {
+          "name": "invent_accept",
+          "applied": true,
+          "note": "request accepted with no source at edge 6",
+          "exit": 1,
+          "status": "FAIL",
+          "rejected": true
+        }
+      ]
+    },
+    "xs_edge_20261018_d": {
+      "plane": "edge",
+      "ok": true,
+      "rows": [
+        {
+          "name": "drop_aw",
+          "applied": true,
+          "note": "AW handshake removed at edge 21",
+          "exit": 1,
+          "status": "FAIL",
+          "rejected": true
+        },
+        {
+          "name": "w_payload",
+          "applied": true,
+          "note": "W beat payload altered at edge 24",
+          "exit": 1,
+          "status": "FAIL",
+          "rejected": true
+        },
+        {
+          "name": "load_data",
+          "applied": true,
+          "note": "load response data altered at edge 13",
+          "exit": 1,
+          "status": "FAIL",
+          "rejected": true
+        },
+        {
+          "name": "i_data",
+          "applied": true,
+          "note": "instruction response data altered at edge 32",
+          "exit": 1,
+          "status": "FAIL",
+          "rejected": true
+        },
+        {
+          "name": "rid_owner",
+          "applied": true,
+          "note": "R id owner flipped at edge 12",
+          "exit": 1,
+          "status": "FAIL",
+          "rejected": true
+        },
+        {
+          "name": "dup_n",
+          "applied": true,
+          "note": "initial DDR record duplicated (0)",
+          "exit": 1,
+          "status": "FAIL",
+          "rejected": true
+        },
+        {
+          "name": "drop_marker",
+          "applied": true,
+          "note": "marker E1_tail_only removed",
+          "exit": 1,
+          "status": "FAIL",
+          "rejected": true
+        },
+        {
+          "name": "invent_accept",
+          "applied": true,
+          "note": "request accepted with no source at edge 6",
+          "exit": 1,
+          "status": "FAIL",
+          "rejected": true
+        }
+      ]
+    },
+    "xs_x16_20261018_d": {
+      "plane": "x16",
+      "ok": true,
+      "rows": [
+        {
+          "name": "drop_aw",
+          "applied": true,
+          "note": "AW handshake removed at edge 11",
+          "exit": 1,
+          "status": "FAIL",
+          "rejected": true
+        },
+        {
+          "name": "w_payload",
+          "applied": true,
+          "note": "W beat payload altered at edge 12",
+          "exit": 1,
+          "status": "FAIL",
+          "rejected": true
+        },
+        {
+          "name": "load_data",
+          "applied": true,
+          "note": "load response data altered at edge 19",
+          "exit": 1,
+          "status": "FAIL",
+          "rejected": true
+        },
+        {
+          "name": "i_data",
+          "applied": false,
+          "note": "mutation not applicable"
+        },
+        {
+          "name": "rid_owner",
+          "applied": true,
+          "note": "R id owner flipped at edge 18",
+          "exit": 1,
+          "status": "FAIL",
+          "rejected": true
+        },
+        {
+          "name": "dup_n",
+          "applied": true,
+          "note": "initial DDR record duplicated (0)",
+          "exit": 1,
+          "status": "FAIL",
+          "rejected": true
+        },
+        {
+          "name": "drop_marker",
+          "applied": true,
+          "note": "marker X removed",
+          "exit": 1,
+          "status": "FAIL",
+          "rejected": true
+        },
+        {
+          "name": "invent_accept",
+          "applied": true,
+          "note": "request accepted with no source at edge 6",
+          "exit": 1,
+          "status": "FAIL",
+          "rejected": true
+        }
+      ]
+    },
+    "xs_noposted_20261018_d": {
+      "plane": "noposted",
+      "ok": true,
+      "rows": [
+        {
+          "name": "drop_aw",
+          "applied": true,
+          "note": "AW handshake removed at edge 11",
+          "exit": 1,
+          "status": "FAIL",
+          "rejected": true
+        },
+        {
+          "name": "w_payload",
+          "applied": true,
+          "note": "W beat payload altered at edge 12",
+          "exit": 1,
+          "status": "FAIL",
+          "rejected": true
+        },
+        {
+          "name": "load_data",
+          "applied": true,
+          "note": "load response data altered at edge 22",
+          "exit": 1,
+          "status": "FAIL",
+          "rejected": true
+        },
+        {
+          "name": "i_data",
+          "applied": false,
+          "note": "mutation not applicable"
+        },
+        {
+          "name": "rid_owner",
+          "applied": true,
+          "note": "R id owner flipped at edge 21",
+          "exit": 1,
+          "status": "FAIL",
+          "rejected": true
+        },
+        {
+          "name": "dup_n",
+          "applied": true,
+          "note": "initial DDR record duplicated (0)",
+          "exit": 1,
+          "status": "FAIL",
+          "rejected": true
+        },
+        {
+          "name": "drop_marker",
+          "applied": true,
+          "note": "marker N removed",
+          "exit": 1,
+          "status": "FAIL",
+          "rejected": true
+        },
+        {
+          "name": "invent_accept",
+          "applied": true,
+          "note": "request accepted with no source at edge 6",
+          "exit": 1,
+          "status": "FAIL",
+          "rejected": true
+        }
+      ]
+    },
+    "xs_ruw0_20261018_d": {
+      "plane": "ruw0",
+      "ok": true,
+      "rows": [
+        {
+          "name": "drop_aw",
+          "applied": true,
+          "note": "AW handshake removed at edge 18",
+          "exit": 1,
+          "status": "FAIL",
+          "rejected": true
+        },
+        {
+          "name": "w_payload",
+          "applied": true,
+          "note": "W beat payload altered at edge 19",
+          "exit": 1,
+          "status": "FAIL",
+          "rejected": true
+        },
+        {
+          "name": "load_data",
+          "applied": true,
+          "note": "load response data altered at edge 25",
+          "exit": 1,
+          "status": "FAIL",
+          "rejected": true
+        },
+        {
+          "name": "i_data",
+          "applied": false,
+          "note": "mutation not applicable"
+        },
+        {
+          "name": "rid_owner",
+          "applied": true,
+          "note": "R id owner flipped at edge 24",
+          "exit": 1,
+          "status": "FAIL",
+          "rejected": true
+        },
+        {
+          "name": "dup_n",
+          "applied": true,
+          "note": "initial DDR record duplicated (0)",
+          "exit": 1,
+          "status": "FAIL",
+          "rejected": true
+        },
+        {
+          "name": "drop_marker",
+          "applied": true,
+          "note": "marker R0 removed",
+          "exit": 1,
+          "status": "FAIL",
+          "rejected": true
+        },
+        {
+          "name": "invent_accept",
+          "applied": true,
+          "note": "request accepted with no source at edge 6",
+          "exit": 1,
+          "status": "FAIL",
+          "rejected": true
+        }
+      ]
+    },
+    "xs_soc_20261018_d": {
+      "plane": "soc",
+      "ok": true,
+      "rows": [
+        {
+          "name": "non_ddr_while_busy",
+          "applied": true,
+          "note": "non-DDR acceptance faked on a busy edge 36",
+          "exit": 1,
+          "status": "FAIL",
+          "rejected": true
+        },
+        {
+          "name": "irq_before_drain",
+          "applied": true,
+          "note": "trap taken while the queue was still busy",
+          "exit": 1,
+          "status": "FAIL",
+          "rejected": true
+        },
+        {
+          "name": "fence_while_busy",
+          "applied": true,
+          "note": "FENCE retires with the queue marked busy",
+          "exit": 1,
+          "status": "FAIL",
+          "rejected": true
+        },
+        {
+          "name": "camera_ar_lost",
+          "applied": true,
+          "note": "one camera AR handshake address perturbed at edge 70",
+          "exit": 1,
+          "status": "FAIL",
+          "rejected": true
+        },
+        {
+          "name": "m1_word",
+          "applied": true,
+          "note": "final DDR word 0x4000_1060 altered",
+          "exit": 1,
+          "status": "FAIL",
+          "rejected": true
+        }
+      ]
+    }
+  }
+}

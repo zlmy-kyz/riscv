@@ -1,0 +1,38 @@
+{
+  "date": "2026-10-16",
+  "status": "BASE_RTL_STATIC_ONLY_PENDING_INTEGRATION_TIMING_AND_FUNCTIONAL_TEST",
+  "command": [
+    "D:/iverilog/bin/iverilog.exe",
+    "-g2005",
+    "-Wall",
+    "-tnull",
+    "-s",
+    "cnn_rgb96_gray32",
+    "-s",
+    "cnn_int8_mac",
+    "-s",
+    "cnn_requantize",
+    "-s",
+    "cnn_gap16",
+    "myriscv/cnn_rgb96_gray32.v",
+    "myriscv/cnn_int8_mac.v",
+    "myriscv/cnn_requantize.v",
+    "myriscv/cnn_gap16.v"
+  ],
+  "exit_code": 0,
+  "diagnostic_text": "",
+  "functional_simulation_run": false,
+  "pds_run": false,
+  "board_run": false,
+  "integrated": false,
+  "evidence_note": "Initial successful compiler emitted no text so PowerShell Tee did not create a log; first receipt collection failed before writing. Repeated syntax-only compiler with explicit output capture; no HDL simulation executed.",
+  "files": {
+    "myriscv/cnn_rgb96_gray32.v": "37cb9b3aa6c408d60785092301c1270acd23994e48599a7a7f9e87241b6296cf",
+    "myriscv/cnn_int8_mac.v": "afb03017f7a0bfe15c95869bac4eec7ce246675cae8560b490788d82b5235512",
+    "myriscv/cnn_requantize.v": "50002c711717442879614ecf4fbefccae258bf3aba5a9c3c3777977b0d6911a8",
+    "myriscv/cnn_gap16.v": "b15537c5edfdbba1e20853579663cd3f6d9b82e7f53cf715a20a1c1b3a5b039b",
+    "doc/cnn/digits10_int8_v1.json": "b0667c9237075d7a406bd4a32e8fee9bde87e5891c42436fd6cdae17236c0a79",
+    "doc/cnn/数字CNN基础模块RTL与接口_2026-10-16.md": "d427b49dd8a3a6ca4a1856b6debc2f801a753c3b67600c613b4b893ce6fc0cad",
+    "sim\\cnn\\base_20261016_a\\syntax.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  }
+}

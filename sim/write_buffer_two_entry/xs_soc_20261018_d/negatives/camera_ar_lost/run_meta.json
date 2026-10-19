@@ -1,0 +1,58 @@
+{
+    "tag":  "xs_soc_20261018_d",
+    "status":  "PASS",
+    "backend":  "xsim",
+    "started":  "2026-10-19T00:50:06",
+    "root":  "D:\\riscv\\RISCV",
+    "sealed_src":  "D:\\riscv\\RISCV\\sim\\write_buffer_two_entry\\xs_soc_20261018_d\\src",
+    "top":  "tb_wb2_soc",
+    "short":  false,
+    "soc":  true,
+    "check_mode":  "soc",
+    "legacy":  false,
+    "bridge":  "D:\\riscv\\RISCV\\myriscv\\dual_sram_to_pango_ddr_bridge.v",
+    "bridge_sha256":  "855318eebf7fc75a0b17d15a620b6d8d08bb54ff9348d663cbcd6aca0883262f",
+    "params":  {
+                   "Dq":  32,
+                   "Posted":  1,
+                   "Depth":  2,
+                   "Turnover":  1,
+                   "Forward":  1,
+                   "Ruw":  1,
+                   "Icache":  1,
+                   "Dcache":  1,
+                   "Camera":  1,
+                   "Preproc":  1,
+                   "Plane":  7
+               },
+    "tools":  {
+                  "xvlog":  "D:\\Xilinx\\Vivado\\2019.2\\bin\\xvlog.bat",
+                  "xelab":  "D:\\Xilinx\\Vivado\\2019.2\\bin\\xelab.bat",
+                  "xsim":  "D:\\Xilinx\\Vivado\\2019.2\\bin\\xsim.bat",
+                  "python":  "C:\\Users\\z\u0027l\u0027m\u0027y\u0027k\\.workbuddy\\binaries\\python\\versions\\3.13.12\\python.exe"
+              },
+    "commands":  [
+                     "D:\\Xilinx\\Vivado\\2019.2\\bin\\xvlog.bat --sv D:\\riscv\\RISCV\\sim\\write_buffer_two_entry\\xs_soc_20261018_d\\src\\vendor\\GTP_GRS.v D:\\riscv\\RISCV\\sim\\write_buffer_two_entry\\xs_soc_20261018_d\\src\\vendor\\GTP_DRM36K_E1.v D:\\riscv\\RISCV\\sim\\write_buffer_two_entry\\xs_soc_20261018_d\\src\\ipcore\\icache\\rtl\\ipm2l_sdpram_v1_10_icache.v D:\\riscv\\RISCV\\sim\\write_buffer_two_entry\\xs_soc_20261018_d\\src\\ipcore\\icache\\icache.v D:\\riscv\\RISCV\\sim\\write_buffer_two_entry\\xs_soc_20261018_d\\src\\ipcore\\dcache\\rtl\\ipm2l_sdpram_v1_10_dcache.v D:\\riscv\\RISCV\\sim\\write_buffer_two_entry\\xs_soc_20261018_d\\src\\ipcore\\dcache\\dcache.v D:\\riscv\\RISCV\\sim\\write_buffer_two_entry\\xs_soc_20261018_d\\src\\myriscv\\dual_sram_to_pango_ddr_bridge.v D:\\riscv\\RISCV\\sim\\write_buffer_two_entry\\xs_soc_20261018_d\\src\\tb\\tb_wb2_bridge.sv D:\\riscv\\RISCV\\sim\\write_buffer_two_entry\\xs_soc_20261018_d\\src\\tb\\tb_wb2_variants.sv D:\\riscv\\RISCV\\sim\\write_buffer_two_entry\\xs_soc_20261018_d\\src\\vendor\\GTP_APM_E2.v D:\\riscv\\RISCV\\sim\\write_buffer_two_entry\\xs_soc_20261018_d\\src\\ipcore\\inst_rom\\rtl\\ipm2l_spram_v1_8_inst_rom.v D:\\riscv\\RISCV\\sim\\write_buffer_two_entry\\xs_soc_20261018_d\\src\\ipcore\\inst_rom\\rtl\\ipm2l_rom_v1_8_inst_rom.v D:\\riscv\\RISCV\\sim\\write_buffer_two_entry\\xs_soc_20261018_d\\src\\ipcore\\inst_rom\\inst_rom.v D:\\riscv\\RISCV\\sim\\write_buffer_two_entry\\xs_soc_20261018_d\\src\\ipcore\\data_ram\\rtl\\ipm2l_spram_v1_8_data_ram.v D:\\riscv\\RISCV\\sim\\write_buffer_two_entry\\xs_soc_20261018_d\\src\\ipcore\\data_ram\\data_ram.v D:\\riscv\\RISCV\\sim\\write_buffer_two_entry\\xs_soc_20261018_d\\src\\ipcore\\mul\\rtl\\ipm2l_apm_data_pipeline\\ipm2l_apm_distributed_sdpram.v D:\\riscv\\RISCV\\sim\\write_buffer_two_entry\\xs_soc_20261018_d\\src\\ipcore\\mul\\rtl\\ipm2l_apm_data_pipeline\\ipm2l_apm_distributed_shiftregister.v D:\\riscv\\RISCV\\sim\\write_buffer_two_entry\\xs_soc_20261018_d\\src\\ipcore\\mul\\rtl\\ipm2l_apm_data_pipeline\\ipm2l_apm_data_pipeline.v D:\\riscv\\RISCV\\sim\\write_buffer_two_entry\\xs_soc_20261018_d\\src\\ipcore\\mul\\rtl\\ipm2l_mult_v1_3_mul.v D:\\riscv\\RISCV\\sim\\write_buffer_two_entry\\xs_soc_20261018_d\\src\\ipcore\\mul\\mul.v D:\\riscv\\RISCV\\sim\\write_buffer_two_entry\\xs_soc_20261018_d\\src\\myriscv\\alu.v D:\\riscv\\RISCV\\sim\\write_buffer_two_entry\\xs_soc_20261018_d\\src\\myriscv\\br_alu.v D:\\riscv\\RISCV\\sim\\write_buffer_two_entry\\xs_soc_20261018_d\\src\\myriscv\\l_alu.v D:\\riscv\\RISCV\\sim\\write_buffer_two_entry\\xs_soc_20261018_d\\src\\myriscv\\regfile.v D:\\riscv\\RISCV\\sim\\write_buffer_two_entry\\xs_soc_20261018_d\\src\\myriscv\\csr_file.v D:\\riscv\\RISCV\\sim\\write_buffer_two_entry\\xs_soc_20261018_d\\src\\myriscv\\mycpu_sync.v D:\\riscv\\RISCV\\sim\\write_buffer_two_entry\\xs_soc_20261018_d\\src\\myriscv\\inst_bus_interconnect.v D:\\riscv\\RISCV\\sim\\write_buffer_two_entry\\xs_soc_20261018_d\\src\\myriscv\\data_bus_interconnect.v D:\\riscv\\RISCV\\sim\\write_buffer_two_entry\\xs_soc_20261018_d\\src\\myriscv\\inst_bram_adapter.v D:\\riscv\\RISCV\\sim\\write_buffer_two_entry\\xs_soc_20261018_d\\src\\myriscv\\data_bram_adapter.v D:\\riscv\\RISCV\\sim\\write_buffer_two_entry\\xs_soc_20261018_d\\src\\myriscv\\simple_mmio.v D:\\riscv\\RISCV\\sim\\write_buffer_two_entry\\xs_soc_20261018_d\\src\\myriscv\\uart_tx.v D:\\riscv\\RISCV\\sim\\write_buffer_two_entry\\xs_soc_20261018_d\\src\\myriscv\\uart_rx.v D:\\riscv\\RISCV\\sim\\write_buffer_two_entry\\xs_soc_20261018_d\\src\\myriscv\\uart_rx_fifo.v D:\\riscv\\RISCV\\sim\\write_buffer_two_entry\\xs_soc_20261018_d\\src\\myriscv\\uart_mmio.v D:\\riscv\\RISCV\\sim\\write_buffer_two_entry\\xs_soc_20261018_d\\src\\myriscv\\soc_top.v D:\\riscv\\RISCV\\sim\\write_buffer_two_entry\\xs_soc_20261018_d\\src\\tb\\ddr_model_wb2.sv D:\\riscv\\RISCV\\sim\\write_buffer_two_entry\\xs_soc_20261018_d\\src\\tb\\tb_wb2_soc.sv",
+                     "D:\\Xilinx\\Vivado\\2019.2\\bin\\xelab.bat tb_wb2_soc -s snap -debug off",
+                     "D:\\Xilinx\\Vivado\\2019.2\\bin\\xsim.bat snap -runall",
+                     "C:\\Users\\z\u0027l\u0027m\u0027y\u0027k\\.workbuddy\\binaries\\python\\versions\\3.13.12\\python.exe -B D:\\riscv\\RISCV\\sim\\write_buffer_two_entry\\xs_soc_20261018_d\\src\\tools\\check_soc.py D:\\riscv\\RISCV\\sim\\write_buffer_two_entry\\xs_soc_20261018_d"
+                 ],
+    "exits":  {
+                  "xvlog":  0,
+                  "xelab":  0,
+                  "xsim":  0,
+                  "check":  0
+              },
+    "timeline":  [
+                     "xvlog exit=0 2.3s :: xvlog.bat --sv D:\\riscv\\RISCV\\sim\\write_buffer_two_entry\\xs_soc_20261018_d\\src\\vendor\\GTP_GRS.v D:\\riscv\\RISCV\\sim\\write_buffer_two_entry\\xs_soc_20261018_d\\src\\vendor\\GTP_DRM36K_E1.v D:\\riscv\\RISCV\\sim\\write_buffer_two_entry\\xs_soc_20261018_d\\src\\ipcore\\icache\\rtl\\ipm2l_sdpram_v1_10_icache.v D:\\riscv\\RISCV\\sim\\write_buffer_two_entry\\xs_soc_20261018_d\\src\\ipcore\\icache\\icache.v D:\\riscv\\RISCV\\sim\\write_buffer_two_entry\\xs_soc_20261018_d\\src\\ipcore\\dcache\\rtl\\ipm2l_sdpram_v1_10_dcache.v D:\\riscv\\RISCV\\sim\\write_buffer_two_entry\\xs_soc_20261018_d\\src\\ipcore\\dcache\\dcache.v D:\\riscv\\RISCV\\sim\\write_buffer_two_entry\\xs_soc_20261018_d\\src\\myriscv\\dual_sram_to_pango_ddr_bridge.v D:\\riscv\\RISCV\\sim\\write_buffer_two_entry\\xs_soc_20261018_d\\src\\tb\\tb_wb2_bridge.sv D:\\riscv\\RISCV\\sim\\write_buffer_two_entry\\xs_soc_20261018_d\\src\\tb\\tb_wb2_variants.sv D:\\riscv\\RISCV\\sim\\write_buffer_two_entry\\xs_soc_20261018_d\\src\\vendor\\GTP_APM_E2.v D:\\riscv\\RISCV\\sim\\write_buffer_two_entry\\xs_soc_20261018_d\\src\\ipcore\\inst_rom\\rtl\\ipm2l_spram_v1_8_inst_rom.v D:\\riscv\\RISCV\\sim\\write_buffer_two_entry\\xs_soc_20261018_d\\src\\ipcore\\inst_rom\\rtl\\ipm2l_rom_v1_8_inst_rom.v D:\\riscv\\RISCV\\sim\\write_buffer_two_entry\\xs_soc_20261018_d\\src\\ipcore\\inst_rom\\inst_rom.v D:\\riscv\\RISCV\\sim\\write_buffer_two_entry\\xs_soc_20261018_d\\src\\ipcore\\data_ram\\rtl\\ipm2l_spram_v1_8_data_ram.v D:\\riscv\\RISCV\\sim\\write_buffer_two_entry\\xs_soc_20261018_d\\src\\ipcore\\data_ram\\data_ram.v D:\\riscv\\RISCV\\sim\\write_buffer_two_entry\\xs_soc_20261018_d\\src\\ipcore\\mul\\rtl\\ipm2l_apm_data_pipeline\\ipm2l_apm_distributed_sdpram.v D:\\riscv\\RISCV\\sim\\write_buffer_two_entry\\xs_soc_20261018_d\\src\\ipcore\\mul\\rtl\\ipm2l_apm_data_pipeline\\ipm2l_apm_distributed_shiftregister.v D:\\riscv\\RISCV\\sim\\write_buffer_two_entry\\xs_soc_20261018_d\\src\\ipcore\\mul\\rtl\\ipm2l_apm_data_pipeline\\ipm2l_apm_data_pipeline.v D:\\riscv\\RISCV\\sim\\write_buffer_two_entry\\xs_soc_20261018_d\\src\\ipcore\\mul\\rtl\\ipm2l_mult_v1_3_mul.v D:\\riscv\\RISCV\\sim\\write_buffer_two_entry\\xs_soc_20261018_d\\src\\ipcore\\mul\\mul.v D:\\riscv\\RISCV\\sim\\write_buffer_two_entry\\xs_soc_20261018_d\\src\\myriscv\\alu.v D:\\riscv\\RISCV\\sim\\write_buffer_two_entry\\xs_soc_20261018_d\\src\\myriscv\\br_alu.v D:\\riscv\\RISCV\\sim\\write_buffer_two_entry\\xs_soc_20261018_d\\src\\myriscv\\l_alu.v D:\\riscv\\RISCV\\sim\\write_buffer_two_entry\\xs_soc_20261018_d\\src\\myriscv\\regfile.v D:\\riscv\\RISCV\\sim\\write_buffer_two_entry\\xs_soc_20261018_d\\src\\myriscv\\csr_file.v D:\\riscv\\RISCV\\sim\\write_buffer_two_entry\\xs_soc_20261018_d\\src\\myriscv\\mycpu_sync.v D:\\riscv\\RISCV\\sim\\write_buffer_two_entry\\xs_soc_20261018_d\\src\\myriscv\\inst_bus_interconnect.v D:\\riscv\\RISCV\\sim\\write_buffer_two_entry\\xs_soc_20261018_d\\src\\myriscv\\data_bus_interconnect.v D:\\riscv\\RISCV\\sim\\write_buffer_two_entry\\xs_soc_20261018_d\\src\\myriscv\\inst_bram_adapter.v D:\\riscv\\RISCV\\sim\\write_buffer_two_entry\\xs_soc_20261018_d\\src\\myriscv\\data_bram_adapter.v D:\\riscv\\RISCV\\sim\\write_buffer_two_entry\\xs_soc_20261018_d\\src\\myriscv\\simple_mmio.v D:\\riscv\\RISCV\\sim\\write_buffer_two_entry\\xs_soc_20261018_d\\src\\myriscv\\uart_tx.v D:\\riscv\\RISCV\\sim\\write_buffer_two_entry\\xs_soc_20261018_d\\src\\myriscv\\uart_rx.v D:\\riscv\\RISCV\\sim\\write_buffer_two_entry\\xs_soc_20261018_d\\src\\myriscv\\uart_rx_fifo.v D:\\riscv\\RISCV\\sim\\write_buffer_two_entry\\xs_soc_20261018_d\\src\\myriscv\\uart_mmio.v D:\\riscv\\RISCV\\sim\\write_buffer_two_entry\\xs_soc_20261018_d\\src\\myriscv\\soc_top.v D:\\riscv\\RISCV\\sim\\write_buffer_two_entry\\xs_soc_20261018_d\\src\\tb\\ddr_model_wb2.sv D:\\riscv\\RISCV\\sim\\write_buffer_two_entry\\xs_soc_20261018_d\\src\\tb\\tb_wb2_soc.sv",
+                     "xelab exit=0 12.4s :: xelab.bat tb_wb2_soc -s snap -debug off",
+                     "xsim exit=0 8.3s :: xsim.bat snap -runall",
+                     "check exit=0 0.5s :: check_soc.py -B D:\\riscv\\RISCV\\sim\\write_buffer_two_entry\\xs_soc_20261018_d\\src\\tools\\check_soc.py D:\\riscv\\RISCV\\sim\\write_buffer_two_entry\\xs_soc_20261018_d"
+                 ],
+    "sim_result":  "RESULT: PASS wb2_soc edges=384",
+    "check_status":  "PASS",
+    "identity_drift":  0,
+    "error":  null,
+    "finished":  "2026-10-19T00:50:30",
+    "modelsim_note":  "ModelSim 10.6c -c mode was unusable on this machine (machine-level IPv6 loopback block hit its kernel RPC). The operator later restored it (loopback v4/v6 OK, empty module twice to 1 ns exit 0, 0 errors/warnings); that is recorded as a fact only. Task043 琛ユ02 keeps this round on Vivado xsim 2019.2 with the sealed model so the evidence chain stays on one re-checkable backend."
+}

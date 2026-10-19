@@ -1,0 +1,142 @@
+{
+  "status": "DOUBLE_BUFFER_RTL_STATIC_PREPARED_PENDING_PDS_AND_FUNCTIONAL_VALIDATION",
+  "date": "2026-10-15",
+  "abi": "43414d02",
+  "buffer_bases": [
+    "41000000",
+    "41200000"
+  ],
+  "native_addresses": [
+    "00400000",
+    "00480000"
+  ],
+  "per_frame_bytes": 1843200,
+  "source_before": [
+    {
+      "path": "myriscv/camera_mmio.v",
+      "sha256": "8f926c21210688b5e41b77c5f8d7c018e6046f76b696fd265b24ee726861a065"
+    },
+    {
+      "path": "myriscv/data_bus_interconnect.v",
+      "sha256": "0c88befcef8867033b94db928c2a40f8d3ecf96802d9b171aa1b241f48b5874e"
+    },
+    {
+      "path": "myriscv/dual_sram_to_pango_ddr_bridge.v",
+      "sha256": "d99a137a228ef7cacf883885779f9482d588aac5c23c303b64eb64c33148a8f1"
+    },
+    {
+      "path": "myriscv/inst_bus_interconnect.v",
+      "sha256": "b57afda0a071fd842ea1bcb01ad678e487a4616777ddd86595d81c6f4acfc73c"
+    },
+    {
+      "path": "myriscv/ov5640_capture.v",
+      "sha256": "c3a6779aaa7138682c2cc5a0006ea291c2410b088a7f51aca06a7c0e5e082e52"
+    },
+    {
+      "path": "myriscv/soc_ddr3_top.v",
+      "sha256": "baa80b645a49f07d7ff1fc017051b3c7f6eb8861d8fbc14ab49b7b108363b33c"
+    },
+    {
+      "path": "myriscv/soc_top.v",
+      "sha256": "1be16948f85bab057fd5be4a2a66f93a41b86f611225e9b6b222010c4ec32810"
+    },
+    {
+      "path": "constraint_check/temp_constraint_file.fdc",
+      "sha256": "2062a75b48534e104e93b34ca151fecccbea4847bb16917a77433995e1559107"
+    },
+    {
+      "path": "fdc/camera_single.fdc",
+      "sha256": "9a782e483d243086a3490f2b88287fb3bc136d9f86d15dbfe409459dfe70f398"
+    }
+  ],
+  "source_after": [
+    {
+      "path": "myriscv/camera_mmio.v",
+      "sha256": "afd2ba9622dff7d457a5cab44ffe70970c2b6f996d2cefccb67bb32c6d85271b"
+    },
+    {
+      "path": "myriscv/data_bus_interconnect.v",
+      "sha256": "1890b9c8acd3e5ab6462eea45d964e541ea0f82ab0e744f5ca1cf665e66037f6"
+    },
+    {
+      "path": "myriscv/dual_sram_to_pango_ddr_bridge.v",
+      "sha256": "7eb36e126348e9820d950019427264474a51a97d3bbdb6cd0b95a936d2f9e729"
+    },
+    {
+      "path": "myriscv/inst_bus_interconnect.v",
+      "sha256": "d265fc323a9894d4b8d5c80772c996dd23b030d572add4c1518605e65954fc49"
+    },
+    {
+      "path": "myriscv/ov5640_capture.v",
+      "sha256": "1d215a6a1486213aa4a97a710c3ef647ba90ef608df39189480f900aae415aba"
+    },
+    {
+      "path": "myriscv/soc_ddr3_top.v",
+      "sha256": "7e89de5d3cf825c8257224ffdbc3159928bfef04d89b15c9ff4173bab5b85e2c"
+    },
+    {
+      "path": "myriscv/soc_top.v",
+      "sha256": "40df41c3e1295a8d1976f6f21919b0e2a14386bb2d3de6d8824848c6aa02ccf0"
+    },
+    {
+      "path": "constraint_check/temp_constraint_file.fdc",
+      "sha256": "8f5fb2f57e696441521eb4e737d078904a408f909e08462cbe648dc75035e194"
+    },
+    {
+      "path": "fdc/camera_single.fdc",
+      "sha256": "85c0ff1cc39d1fa473d69a066166d4ba258c3b99d13ce18441156c19e3f73500"
+    }
+  ],
+  "unchanged_baseline_files": [
+    "myriscv/afifo_16i_64o_512.v",
+    "myriscv/alu.v",
+    "myriscv/board_top.v",
+    "myriscv/br_alu.v",
+    "myriscv/camera_ddr_write_arbiter.v",
+    "myriscv/csr_file.v",
+    "myriscv/data_bram_adapter.v",
+    "myriscv/inst_bram_adapter.v",
+    "myriscv/ipm2l_fifo_ctrl_v1_1_afifo_16i_64o_512.v",
+    "myriscv/ipm2l_fifo_v1_10_afifo_16i_64o_512.v",
+    "myriscv/ipm2l_sdpram_v1_10_afifo_16i_64o_512.v",
+    "myriscv/l_alu.v",
+    "myriscv/mycpu_sync.v",
+    "myriscv/ov5640_config.v",
+    "myriscv/ov5640_config_rom.v",
+    "myriscv/ov5640_sccb.v",
+    "myriscv/regfile.v",
+    "myriscv/reset_button_debounce.v",
+    "myriscv/simple_mmio.v",
+    "myriscv/topcpu_instrom.v",
+    "myriscv/uart_mmio.v",
+    "myriscv/uart_rx.v",
+    "myriscv/uart_rx_fifo.v",
+    "myriscv/uart_tx.v",
+    "myriscv/csr_defs.vh",
+    "RISCV.pds"
+  ],
+  "successful_firmware_unchanged": {
+    "tests/camera_loop100/build/camera_loop100_20261015_a/program.bin": "82f6698dfeb820219a698b5d752c9c0d033e734ecde52c99b33ad805ad3c7cc6",
+    "tests/camera_uart/build/camera_uart_20261015_a/program.bin": "373940dab9b1c1a4e444d5fa4467580b490d4bdd288fc4c516c90f32aed9f529"
+  },
+  "successful_single_buffer_receipt": "sim/camera/board/loop100_20261015_01/sol_review.json",
+  "camera_timing_commands": 15,
+  "syntax_logs": [
+    "syntax_board_final.log",
+    "syntax_camera_disabled.log"
+  ],
+  "syntax_scope": "Icarus null target with missing vendor/IP modules ignored; not simulation",
+  "pds_executed": false,
+  "hdl_simulation_executed": false,
+  "board_executed": false,
+  "review_points": [
+    "Only FREE is allocated; captured bank independent from software SELECT",
+    "Claim/release require ownership and matching sequence token",
+    "Both occupied waits with no automatic overwrite; no capture timeout while waiting",
+    "STOP blocks further allocation and drains current frame; ABORT preserves other valid buffers",
+    "Publication waits for exact W count, valid frame end and DMA idle",
+    "4MiB no-hit/no-fill and instruction exclusion; only claimed slot readable in dual mode",
+    "Warm-up bypass stable before synchronized run; FIFO resets between acquisitions",
+    "Functional concurrency, response ordering, CDC endpoint matching and timing remain unverified"
+  ]
+}

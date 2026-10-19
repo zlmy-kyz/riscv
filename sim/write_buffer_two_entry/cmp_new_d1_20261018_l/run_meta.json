@@ -1,0 +1,43 @@
+{
+    "tag":  "cmp_new_d1_20261018_l",
+    "status":  "RUNNING",
+    "started":  "2026-10-18T23:21:25",
+    "root":  "D:\\riscv\\RISCV",
+    "sealed_src":  "D:\\riscv\\RISCV\\sim\\write_buffer_two_entry\\cmp_new_d1_20261018_l\\src",
+    "legacy":  false,
+    "bridge":  "D:\\riscv\\RISCV\\myriscv\\dual_sram_to_pango_ddr_bridge.v",
+    "params":  {
+                   "Dq":  32,
+                   "Posted":  1,
+                   "Depth":  1,
+                   "Turnover":  1,
+                   "Forward":  1,
+                   "Ruw":  1,
+                   "Icache":  1,
+                   "Dcache":  1,
+                   "Camera":  0,
+                   "Preproc":  0,
+                   "Plane":  1
+               },
+    "tools":  {
+                  "vlib":  "D:\\modelsim\\win64pe\\vlib.exe",
+                  "vlog":  "D:\\modelsim\\win64pe\\vlog.exe",
+                  "vsim":  "D:\\modelsim\\win64pe\\vsim.exe",
+                  "python":  "C:\\Users\\z\u0027l\u0027m\u0027y\u0027k\\.workbuddy\\binaries\\python\\versions\\3.13.12\\python.exe"
+              },
+    "commands":  [
+
+                 ],
+    "exits":  {
+
+              },
+    "timeline":  [
+
+                 ],
+    "vsim_result":  null,
+    "vsim_attempts":  0,
+    "check_status":  "NOT_RUN",
+    "identity_drift":  0,
+    "error":  null,
+    "finished":  null
+}

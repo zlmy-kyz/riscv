@@ -1,0 +1,117 @@
+{
+  "status": "CAM2_PHOTO_PC_TOOL_CHECKS_PASS_NOT_HDL_NOT_BOARD",
+  "evidence_origin": "OFFLINE_SYNTHETIC_TEST",
+  "serial_opened": false,
+  "PDS_started": false,
+  "HDL_run": false,
+  "firmware_rebuilt": false,
+  "checks": [
+    {
+      "name": "synthetic_is_not_board",
+      "rejected": true,
+      "error": "synthetic is not actual serial"
+    },
+    {
+      "name": "hardware_J25",
+      "rejected": true,
+      "error": "wrong restored-live hardware contract"
+    },
+    {
+      "name": "hardware_old_mode",
+      "rejected": true,
+      "error": "wrong restored-live hardware contract"
+    },
+    {
+      "name": "hardware_CAM1",
+      "rejected": true,
+      "error": "wrong restored-live hardware contract"
+    },
+    {
+      "name": "hardware_two_cameras",
+      "rejected": true,
+      "error": "one camera, two DDR buffers required"
+    },
+    {
+      "name": "hardware_old_PCLK_PAD",
+      "rejected": true,
+      "error": "CAM2 PAD record differs from active FDC"
+    },
+    {
+      "name": "hardware_no_rebuild",
+      "rejected": true,
+      "error": "wrong bitstream/config contract"
+    },
+    {
+      "name": "hardware_RTL_hash",
+      "rejected": true,
+      "error": "changed restored-live design input myriscv/board_top.v"
+    }
+  ],
+  "fixed_BIN_sha256": "2f72e829b3044e1ce8f5996d6b9ddb39877c3c6f15048cf9a040b64bd78d7bd4",
+  "hardware_version": "OV5640_LIVE_CAM2_J5_ON_J10_20261017_A",
+  "raw_protocol_replay_packets": 1829,
+  "unchanged_math_and_transport_evidence": "sim/cnn/board_photo_20261016_a/checks_01/review.json",
+  "prompt_cancellation_before_serial": true,
+  "visual_PASS_not_claimed": true,
+  "input_sha256": {
+    "sim/camera/cam2_photo_20261017_a/check_tool.py": "3fb113ee9f80eeb8532170e0f335bfefd29b1bdd6b743f67ad65d0f6ba8828ca",
+    "tools/cnn_cam2_photo/run.py": "e55e2bd16af1f32ed24f1fb636e68150aedc74f119e1c3a79497680d3c80f793",
+    "sim/camera/cam2_photo_20261017_a/hardware.json": "77c19a22e6f40371faf0d9f1aeaa58b4da54501ad5f27eb01e825d460d088c16",
+    "tests/cnn_digits_photo/build/photo_20261016_a/manifest.json": "d20f9b65a53fa988c7a598bf96bc2538732933956ba44274303cd47ca14c03c5"
+  },
+  "artifact_sha256": {
+    "CAM1.json": "d495b05b9fce71bb2fb677ca00ab387318ecf52c65cf4a729eae4ee01232f68f",
+    "J25.json": "291d428653cfa52a84acd70fd08a77fa2d40b84ac0113dd5e9273b73d2754a63",
+    "no_rebuild.json": "722381d46db62f7f791b1e1f5b01e32fddbb506ed50db3cec997e8955b930b42",
+    "old_mode.json": "9fb16a5eb3b8f4e0713ec47f84049c818c7d349e9c87eb374e22ef9272f5d332",
+    "old_PCLK_PAD.json": "77ec1c9ff34ed945f87bff8965676852f46e9379bdb185602abe6d94ec9468d0",
+    "plan.command.json": "0b9f9a366586053eeb2402043646f12fe94819cbb428e9b2aaca1a4acfa695c6",
+    "plan.log": "a25aed25ab017cfb161b648a21c46b6de3ee6063987e2407cee8be6a797b962e",
+    "replay_review.json": "77403dbac772bcb6f1c12ec49663056d707eae5e784ed0f1ba184ba5f9d329bd",
+    "RTL_hash.json": "7b6af8fc88d04c703e75d4452e42655484511a8662b326e6538c24a1e7115db3",
+    "test_release.json": "3b1d89a84a9d7b7a1fe87199d42330dd4d407ae8f90f1865b9a47bf8f5215874",
+    "two_cameras.json": "53cbf749a238c8fe4c89cd788b34822f7e395f2d65f5fae5ecebe155cd133ef8",
+    "cancel_before_serial/application.bin": "2f72e829b3044e1ce8f5996d6b9ddb39877c3c6f15048cf9a040b64bd78d7bd4",
+    "cancel_before_serial/board_release.json": "3b1d89a84a9d7b7a1fe87199d42330dd4d407ae8f90f1865b9a47bf8f5215874",
+    "cancel_before_serial/hardware.json": "77c19a22e6f40371faf0d9f1aeaa58b4da54501ad5f27eb01e825d460d088c16",
+    "cancel_before_serial/hardware_record.json": "0c220e7567f98955454c7e80f76b5fcc533ff8ef0007c72f9e1504773b8a53ea",
+    "cancel_before_serial/manifest.json": "d20f9b65a53fa988c7a598bf96bc2538732933956ba44274303cd47ca14c03c5",
+    "cancel_before_serial/result.json": "a7d5a6d307492997f9b12775b10e559bfe107369f3e620539b615ecbb32e874f",
+    "synthetic_replay/application.bin": "2f72e829b3044e1ce8f5996d6b9ddb39877c3c6f15048cf9a040b64bd78d7bd4",
+    "synthetic_replay/board_scores.json": "601f1895863e748bfe7cd876b7708d93f3cbc00e3ca4ebe25eec6b795df6d266",
+    "synthetic_replay/comparison.json": "96e97a69df2b0bb4c081697ed775ce871e328f98437a17c9644a2aaeba12c00e",
+    "synthetic_replay/expected96.png": "52ec7055779e806884297344da43c6d8f3b5a37baf839f4595c125e063feb201",
+    "synthetic_replay/expected96.rgb": "710f119c5351201d33c9bf5aa2c84955e5aaf51863c2128de076a81a7e1ad4eb",
+    "synthetic_replay/gray32.png": "7877fc8849ebdec57a4a99d957aac46bd79686c91bffdf0a60c70c20a8fd7e36",
+    "synthetic_replay/hardware.json": "77c19a22e6f40371faf0d9f1aeaa58b4da54501ad5f27eb01e825d460d088c16",
+    "synthetic_replay/hardware_record.json": "0c220e7567f98955454c7e80f76b5fcc533ff8ef0007c72f9e1504773b8a53ea",
+    "synthetic_replay/live_assessment.json": "7084a3ed560cea16d9c58ce0a81d1864b894fa0185442e607246222a5aff6d0b",
+    "synthetic_replay/manifest.json": "d20f9b65a53fa988c7a598bf96bc2538732933956ba44274303cd47ca14c03c5",
+    "synthetic_replay/preprocess_comparison.json": "e33ec0b65c26b9bba7914c35b4e511aae65df703a54c6b136ec3cceb8088a8f9",
+    "synthetic_replay/result.json": "4c6af61a4524aff91a16e4016b2fb6035c6a859dfdc57cbe57df0c7735bc50b0",
+    "synthetic_replay/rgb96.bin": "710f119c5351201d33c9bf5aa2c84955e5aaf51863c2128de076a81a7e1ad4eb",
+    "synthetic_replay/rgb96.partial": "710f119c5351201d33c9bf5aa2c84955e5aaf51863c2128de076a81a7e1ad4eb",
+    "synthetic_replay/rgb96.png": "52ec7055779e806884297344da43c6d8f3b5a37baf839f4595c125e063feb201",
+    "synthetic_replay/source.partial": "1fd1c94ccd96063679cc8ae3a6484629c303b6ce77f8e99e34dea78de449549f",
+    "synthetic_replay/source.png": "db38dd58473de9291e09676aabc016bcc62ccd63118f1c3eebcee6cc3c5e3eaf",
+    "synthetic_replay/source.rgb565": "1fd1c94ccd96063679cc8ae3a6484629c303b6ce77f8e99e34dea78de449549f",
+    "synthetic_replay/uart.rx.bin": "4e332ab79d3d82aec82b85ded6c832e53db9243fb96f372c966186e0573b4326",
+    "synthetic_replay/uart.tx.bin": "d918753aedcba07c0706b75ca6e1a3d3a6be25b32a470eac72d981cf940344f8",
+    "synthetic_replay/verified.json": "7a58a7c63add39794f0332f39eba3053234350f65978b40c946ec40409cee690",
+    "synthetic_replay/integer_reference/conv1.bin": "eaaedec8d269c2eaba8c7278f19385c7547053ca3bcb30bb17d856c9a13c20aa",
+    "synthetic_replay/integer_reference/conv2.bin": "ff92fde7a43eb690f139898beca73ce7dc202a11797b7fce62f63cd5198373e7",
+    "synthetic_replay/integer_reference/conv3.bin": "17010d18bdd12ed76c45fe85d0d96037fcb81525d6d70548be3bf2b8f43294a3",
+    "synthetic_replay/integer_reference/gap.bin": "9dae059882baed6cc830e43335857460821c43f1ee0c656542bb6d2e3910df06",
+    "synthetic_replay/integer_reference/gray32.bin": "6bc9c6d4e218d4e737e190fd3cd8a391cf9f50a272db29aa45cd615d72bc660a",
+    "synthetic_replay/integer_reference/reference.json": "660ea597d2ae54b377b4ebc988442cadd84e596bedd70a413fde498176a28373",
+    "synthetic_replay/integer_reference/scores.bin": "7641095fa04aec6b88975ce92944b8e9c9fbeeb3772396af236b6d2d833f334a",
+    "synthetic_replay/model/bias.bin": "8cd644ff2a8f38aa63d42442bd40e0a3b96f3497d566391606455808e5607312",
+    "synthetic_replay/model/load_words.bin": "fa210d89f4ef30a4f26e90f556f7ce3e351756df6f22f982b8081335da7fccfd",
+    "synthetic_replay/model/model.json": "34b00e1e585cb4e39f812d388b61bd9a1dffba507399430bd4cb4f6bf48c05c1",
+    "synthetic_replay/model/weights.bin": "04b5b5884f3282326e35654e1efd27afa997242f873a65c834d6028bb2bd5111",
+    "cancel_before_serial/model/bias.bin": "8cd644ff2a8f38aa63d42442bd40e0a3b96f3497d566391606455808e5607312",
+    "cancel_before_serial/model/load_words.bin": "fa210d89f4ef30a4f26e90f556f7ce3e351756df6f22f982b8081335da7fccfd",
+    "cancel_before_serial/model/model.json": "34b00e1e585cb4e39f812d388b61bd9a1dffba507399430bd4cb4f6bf48c05c1",
+    "cancel_before_serial/model/weights.bin": "04b5b5884f3282326e35654e1efd27afa997242f873a65c834d6028bb2bd5111"
+  }
+}

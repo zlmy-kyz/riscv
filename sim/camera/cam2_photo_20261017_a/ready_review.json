@@ -1,0 +1,33 @@
+{
+  "status": "CAM2_PHOTO_PC_READY_PENDING_USER_NEW_BITSTREAM_AND_BOARD",
+  "hardware_version": "OV5640_LIVE_CAM2_J5_ON_J10_20261017_A",
+  "fixed_firmware_sha256": "2f72e829b3044e1ce8f5996d6b9ddb39877c3c6f15048cf9a040b64bd78d7bd4",
+  "firmware_rebuilt": false,
+  "hardware_manifest_sha256": "77c19a22e6f40371faf0d9f1aeaa58b4da54501ad5f27eb01e825d460d088c16",
+  "tool_sha256": "e55e2bd16af1f32ed24f1fb636e68150aedc74f119e1c3a79497680d3c80f793",
+  "offline_review_sha256": "d8a3f9bcf628b465c4695646ce9560d5e2b92dd57165a019047a24ab28668868",
+  "frozen_manifest_sha256": "ab020e4c33a5a9134da81d52b546a455841397f6c966b251010b5c57f6ef5054",
+  "old_log_result_sha256": {
+    "sim/cnn/board/colorbar_20261017_01/result.json": "556ce3b1cc917371fe8f20af3338d27cc6b33c50ae35e508d97994e264340cb1",
+    "sim/cnn/board/diag_20261016_01/result.json": "d92bb3d1f24985594f8268887e0d8c31512342c7f2a89899c84668b7f5d332d7",
+    "sim/cnn/board/diag_20261016_02/result.json": "5a7639036a2d11cb4a9b91ae3271912898e02433747c6f8b2e0f1f5adf2f9502",
+    "sim/cnn/board/dvp_test_20261017_01/result.json": "1f0691d859dbaf7b5ed0ead7f64a3e7aacd03b429c14f1444f1926a1f912c46b",
+    "sim/cnn/board/live_20261017_01/result.json": "b0e68a2257b7e60d1527243cc4af3f16aebbf1dc60f660ee6ce22ba9152db07f",
+    "sim/cnn/board/photo_20261016_01/result.json": "1d7cea3718ed8e75daca63a4b273a9b9aeaf12bbdcf0cd79655989c4184c5a67",
+    "sim/cnn/board/photo_20261016_02/result.json": "d44dcc77c31e528bce239d2bad28e04b623e063ad696c143765ff5d151f5694e",
+    "sim/cnn/board/photo_20261016_03/result.json": "bc0607037e173e17e6a5c66cb3deef2fe06e5a890c2fb750d074e6538dd9dec3",
+    "sim/cnn/board/photo_20261016_04/result.json": "60fc427dd85dcffccc336b5886aa590f3f87e3595cc67d39a52eb15107684363",
+    "sim/cnn/board/photo_20261016_05/result.json": "7344a992c85e1c3355f1cabc9654fbe427a7ecd61cbc5c32a850676a471b6870"
+  },
+  "RTL_modified": false,
+  "IP_FDC_PDS_modified": false,
+  "PDS_started": false,
+  "serial_opened": false,
+  "HDL_run": false,
+  "board": "NOT_RUN",
+  "new_bitstream_required": true,
+  "connector": "J10",
+  "timing": "NEW_CAM2_PHOTO_IMPLEMENTATION_NOT_REVIEWED",
+  "live_image_visual": "PENDING",
+  "scene_independence": "NOT_VERIFIED_BY_ONE_CAPTURE"
+}

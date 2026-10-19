@@ -1,0 +1,143 @@
+{
+  "status": "EXISTING_PDS_PCLK_STA_MET_AND_ALL_10_DVP_IFF_PACKED",
+  "report_tool_date": "Fri Oct 16 21:47:00 2026",
+  "design": "board_top PG2L200H FBB676 -6",
+  "metrics": {
+    "setup_slow": {
+      "slack_ns": 1.651,
+      "total_negative_slack_ns": 0.0,
+      "failing_endpoints": 0,
+      "endpoints": 325
+    },
+    "setup_fast": {
+      "slack_ns": 3.072,
+      "total_negative_slack_ns": 0.0,
+      "failing_endpoints": 0,
+      "endpoints": 325
+    },
+    "hold_slow": {
+      "slack_ns": 0.2,
+      "total_negative_slack_ns": 0.0,
+      "failing_endpoints": 0,
+      "endpoints": 325
+    },
+    "hold_fast": {
+      "slack_ns": 0.119,
+      "total_negative_slack_ns": 0.0,
+      "failing_endpoints": 0,
+      "endpoints": 325
+    }
+  },
+  "ports": [
+    {
+      "port": "camera_data[0]",
+      "pin": "M24",
+      "bank": "BANKL5",
+      "io_register": "IREGIS"
+    },
+    {
+      "port": "camera_data[1]",
+      "pin": "R22",
+      "bank": "BANKL5",
+      "io_register": "IREGIS"
+    },
+    {
+      "port": "camera_data[2]",
+      "pin": "K26",
+      "bank": "BANKL5",
+      "io_register": "IREGIS"
+    },
+    {
+      "port": "camera_data[3]",
+      "pin": "K25",
+      "bank": "BANKL5",
+      "io_register": "IREGIS"
+    },
+    {
+      "port": "camera_data[4]",
+      "pin": "M25",
+      "bank": "BANKL5",
+      "io_register": "IREGIS"
+    },
+    {
+      "port": "camera_data[5]",
+      "pin": "N19",
+      "bank": "BANKL5",
+      "io_register": "IREGIS"
+    },
+    {
+      "port": "camera_data[6]",
+      "pin": "T24",
+      "bank": "BANKL5",
+      "io_register": "IREGIS"
+    },
+    {
+      "port": "camera_data[7]",
+      "pin": "R21",
+      "bank": "BANKL5",
+      "io_register": "IREGIS"
+    },
+    {
+      "port": "camera_href",
+      "pin": "T25",
+      "bank": "BANKL5",
+      "io_register": "IREGIS"
+    },
+    {
+      "port": "camera_vsync",
+      "pin": "L23",
+      "bank": "BANKL5",
+      "io_register": "IREGIS"
+    }
+  ],
+  "mapper_success_lines": [
+    "I: Flip-Flop \"u_soc/g_camera.u_camera/u_capture/din_q[0]/opit_0_inv\" has been packed in \"IFF\" of IOL \"camera_data_ibuf[0]/opit_1\" success.",
+    "I: Flip-Flop \"u_soc/g_camera.u_camera/u_capture/din_q[1]/opit_0_inv\" has been packed in \"IFF\" of IOL \"camera_data_ibuf[1]/opit_1\" success.",
+    "I: Flip-Flop \"u_soc/g_camera.u_camera/u_capture/din_q[2]/opit_0_inv\" has been packed in \"IFF\" of IOL \"camera_data_ibuf[2]/opit_1\" success.",
+    "I: Flip-Flop \"u_soc/g_camera.u_camera/u_capture/din_q[3]/opit_0_inv\" has been packed in \"IFF\" of IOL \"camera_data_ibuf[3]/opit_1\" success.",
+    "I: Flip-Flop \"u_soc/g_camera.u_camera/u_capture/din_q[4]/opit_0_inv\" has been packed in \"IFF\" of IOL \"camera_data_ibuf[4]/opit_1\" success.",
+    "I: Flip-Flop \"u_soc/g_camera.u_camera/u_capture/din_q[5]/opit_0_inv\" has been packed in \"IFF\" of IOL \"camera_data_ibuf[5]/opit_1\" success.",
+    "I: Flip-Flop \"u_soc/g_camera.u_camera/u_capture/din_q[6]/opit_0_inv\" has been packed in \"IFF\" of IOL \"camera_data_ibuf[6]/opit_1\" success.",
+    "I: Flip-Flop \"u_soc/g_camera.u_camera/u_capture/din_q[7]/opit_0_inv\" has been packed in \"IFF\" of IOL \"camera_data_ibuf[7]/opit_1\" success.",
+    "I: Flip-Flop \"u_soc/g_camera.u_camera/u_capture/href_q/opit_0_inv\" has been packed in \"IFF\" of IOL \"camera_href_ibuf/opit_1\" success.",
+    "I: Flip-Flop \"u_soc/g_camera.u_camera/u_capture/vsync_q/opit_0_inv\" has been packed in \"IFF\" of IOL \"camera_vsync_ibuf/opit_1\" success."
+  ],
+  "D2": {
+    "pin": "K26",
+    "site": "IOLHR_16_828",
+    "setup_fast_slack_ns": 3.072,
+    "input_external_delay_ns": 3.0,
+    "data_arrival_ns": 8.58,
+    "data_required_ns": 11.652
+  },
+  "clock_contract": {
+    "period_ns": 10,
+    "launch": "falling",
+    "capture": "rising",
+    "input_delay_min_ns": 0,
+    "input_delay_max_ns": 3,
+    "status": "implementation target; sensor launch polarity and board skew not measured"
+  },
+  "all_40_sealed_RTL_and_include_identities_match": true,
+  "detailed_report_limit": "Existing selected worst paths; not all 10 individual input setup/hold paths are printed",
+  "conclusion": "No reported PCLK setup/hold violation and no missed DVP IO packing. Color-dot cause unresolved; physical input timing/phase/voltage and source DDR path not excluded.",
+  "actual_downloaded_bitstream_identity": "not independently established by these on-disk reports",
+  "source_sha256": {
+    "report_timing/board_top.rtr": "a8f62488ea29c2975d65cde5d9fd9be3797e3f0fd6d6c3ef983af8e8e3eac66f",
+    "report_timing/run.log": "890e1ae7ea240f52578ec537d154a64ae0041f95e828049339fd6c75a3f2db3f",
+    "device_map/run.log": "7c35b29f4f122b75a1957d4d6c9afe3949ca37d7572a6559502b82702e8a9b82",
+    "device_map/board_top.dmr": "73da74c67e0b42f989c38a20f5f96be6c619e8b61f475ae9d2313657e34a95fb",
+    "place_route/board_top.prr": "abd0f53ab7cacbf90d32a7dd7eb2a3bb75889f638491d0a553cd79208dfd2b35",
+    "constraint_check/temp_constraint_file.fdc": "8f5fb2f57e696441521eb4e737d078904a408f909e08462cbe648dc75035e194",
+    "fdc/camera_single.fdc": "85c0ff1cc39d1fa473d69a066166d4ba258c3b99d13ce18441156c19e3f73500",
+    "myriscv/ov5640_capture.v": "61d722dcba537123906a5fc6db80525898d4de32f815f9cc4d94790944e043d2",
+    "myriscv/ov5640_config_rom.v": "61d9eead85eb5ace1479e6f145a5456534eb9dcc2521abf1fa6355e64919589b",
+    "place_route/multiseed_result.csv": "40f3fc3e920b5dd1d6757617a3a599562430b82382d54bc233aa175b984a5fe2"
+  },
+  "RTL_modified": false,
+  "FDC_modified": false,
+  "PDS_started": false,
+  "HDL_run": false,
+  "key_HDL": "NOT_COMPLETED",
+  "raw_board_logs_modified": false
+}

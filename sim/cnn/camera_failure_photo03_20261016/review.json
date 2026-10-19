@@ -1,0 +1,35 @@
+{
+  "status": "CAMERA_FORMAT_FAILURE_AFTER_A_CLAIM_BEFORE_PP_CNN_ROOT_CAUSE_UNRESOLVED",
+  "loader_records_checked": 337,
+  "remaining_tx": "GC",
+  "application_lines": [
+    "CNN_DIAG_APP=2 CONTRACT=digits10_int8_v1 HZ=93750000 DIAGNOSTIC=1 SOURCE_EXPORT=1",
+    "MODEL ID=05a032af WORDS=6222 CRC=0ca5949e STATUS=00000008",
+    "SENSOR_ID=00005640 CONFIG=OK",
+    "CNN_READY",
+    "CNN_FAIL REASON=CAMERA_ERROR GROUP=1 BUF=0 SEQ=1 CLAIMS=1 TARGET_CLAIMS=1 DISCARD_CLAIMS=0 LAST_DISCARD=0 CAM_STATUS=00000031 CAM_ERR=00000003 CAM_BUFSTATE=00000123 CAM_GLOBAL_SEQ=00000001 PP_STATUS=00000000 PP_ERR=00000000 UART_STATUS=00000002 CNN_STATUS=00000008 CNN_ERROR=00000000 LOAD_COUNT=6222 MODEL_CRC=0ca5949e MODEL_ID=05a032af ELAPSED_TICKS=77670888"
+  ],
+  "buffer_decode": {
+    "A": "CPU_OWNED",
+    "B": "FREE",
+    "active_buf": 1,
+    "stream_enabled": false,
+    "busy": false,
+    "global_seq": 1
+  },
+  "elapsed_application_seconds": 0.828489472,
+  "original_files_sha256": {
+    "application.bin": "2f72e829b3044e1ce8f5996d6b9ddb39877c3c6f15048cf9a040b64bd78d7bd4",
+    "board_release.json": "7463f7da1f29145df77f90891b51981a2a6c9d015cb5e7c1431ecd24850f762f",
+    "manifest.json": "d20f9b65a53fa988c7a598bf96bc2538732933956ba44274303cd47ca14c03c5",
+    "result.json": "bc0607037e173e17e6a5c66cb3deef2fe06e5a890c2fb750d074e6538dd9dec3",
+    "uart.rx.bin": "315f64791234a251dc4d86dbcca0511c737701088506247a696cae8fec2b1c7c",
+    "uart.tx.bin": "b942a2082ccecd0a2d4ccad447bb3a1705a9fa07e06e5df8d306ea7be7d57716",
+    "model\\bias.bin": "8cd644ff2a8f38aa63d42442bd40e0a3b96f3497d566391606455808e5607312",
+    "model\\load_words.bin": "fa210d89f4ef30a4f26e90f556f7ce3e351756df6f22f982b8081335da7fccfd",
+    "model\\model.json": "34b00e1e585cb4e39f812d388b61bd9a1dffba507399430bd4cb4f6bf48c05c1",
+    "model\\weights.bin": "04b5b5884f3282326e35654e1efd27afa997242f873a65c834d6028bb2bd5111"
+  },
+  "rtl_changed": false,
+  "rerun_board": false
+}

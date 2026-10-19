@@ -1,0 +1,41 @@
+{
+  "status": "STATIC_D0_MAPPING_AND_ISP_REVIEW_COMPLETE_PHYSICAL_TIMING_UNMEASURED",
+  "DVP_D0": {
+    "connector": "J10 pin 8 / carrier J17 pin 8",
+    "fpga_pad": "M24",
+    "mapped_bank": "BANKL5",
+    "mapped_register": "IREGIS",
+    "sensor_8bit_bus": "D[9:2]; DVP D0 corresponds sensor D2, not sensor D0"
+  },
+  "timing_ns": {
+    "constraint_period": 10,
+    "input_delay_min": 0,
+    "input_delay_max": 3,
+    "setup_slow_group_WNS": 1.441,
+    "hold_slow_group_WHS": 0.195,
+    "setup_fast_group_WNS": 3.072,
+    "hold_fast_group_WHS": 0.132
+  },
+  "physical_D0_PCLK_phase_measured": false,
+  "ISP": {
+    "503D": "80 PRE ISP bars",
+    "4741": "00 DVP test generator disabled",
+    "501F": "01 ISP RGB, not 02 ISP dither",
+    "5000": "A7 lens/raw gamma/DPC/WPC/CIP enabled",
+    "5001": "A3 SDE/scaling/color matrix/AWB enabled",
+    "5020": "not written or read back in current sequence",
+    "4740": "not written or read back in current sequence; default 20 only from datasheet"
+  },
+  "caveat": "Group timing summary is not a measured D0 pin setup/hold result. D0 mapping agreement is not a physical continuity check. Normal least-significant-bit dithering does not by itself explain green-code +/-8. Cause remains unresolved.",
+  "RTL_modified": false,
+  "hashes": {
+    "constraint_check/temp_constraint_file.fdc": "8f5fb2f57e696441521eb4e737d078904a408f909e08462cbe648dc75035e194",
+    "device_map/board_top.pcf": "7d6efa2226273dbf946ecea326a06a68cd88540d71980d6aec45c71819a5359a",
+    "place_route/board_top.prr": "135826aad2774e471977430fe37ce62e8faaa77a513796a88916d10efd0e7c44",
+    "report_timing/board_top.rtr": "1271bcd8648ed2dfdd846d5980736463c5e826c1030c48f15a2b121b734b2129",
+    "myriscv/ov5640_capture.v": "61d722dcba537123906a5fc6db80525898d4de32f815f9cc4d94790944e043d2",
+    "myriscv/ov5640_config.v": "e3ca007920e0bc3aac3723a22c2ac7c4bf00bc098b58d2fb6b655565cad6c0eb",
+    "myriscv/ov5640_config_rom.v": "04e19b6f346b1b99336407aead482a88868cc93a9cf215b92d63e7987e46d77d",
+    "sim/cnn/board/colorbar_20261017_01/hardware_record.json": "2f86c915a2c43ac6cb9f4fecb9e8368d79ff57cd07735f334f11db1721be8005"
+  }
+}

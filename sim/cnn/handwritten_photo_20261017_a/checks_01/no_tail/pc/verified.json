@@ -1,0 +1,13 @@
+{
+  "status": "HANDWRITTEN_ONE_SAMPLE_RAW_SCORES_VERIFIED",
+  "evidence_origin": "OFFLINE_SYNTHETIC_TEST",
+  "model_id": "4c8b5aca",
+  "label": 0,
+  "prediction": 0,
+  "label_match": true,
+  "cnn_ms": 13.168714666666666,
+  "full_source_export": false,
+  "formal_camera_accuracy_verified": false,
+  "hardware_layer_dump_verified": false,
+  "retry_count": 0
+}

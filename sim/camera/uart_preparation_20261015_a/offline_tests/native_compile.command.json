@@ -1,0 +1,14 @@
+{
+  "argv": [
+    "D:/mingw64/bin/gcc.exe",
+    "-shared",
+    "-O2",
+    "-Wall",
+    "-Wextra",
+    "-Werror",
+    "D:\\riscv\\RISCV\\tests\\camera_uart\\crc32.c",
+    "-o",
+    "D:\\riscv\\RISCV\\sim\\camera\\uart_preparation_20261015_a\\offline_tests\\crc_host.dll"
+  ],
+  "returncode": 0
+}

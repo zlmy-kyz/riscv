@@ -1,0 +1,11 @@
+{
+  "argv": [
+    "D:\\riscv\\RISCV\\sim\\cnn\\board_diag_20261016_a\\checks_01\\flow.exe",
+    "D:\\riscv\\RISCV\\sim\\cnn\\board_diag_20261016_a\\checks_01\\asymmetric\\rgb96.bin",
+    "D:\\riscv\\RISCV\\sim\\cnn\\board_diag_20261016_a\\checks_01\\asymmetric\\scores.bin",
+    "D:\\riscv\\RISCV\\tests\\cnn_digits_diag\\model\\diag_20261016_a\\load_words.bin",
+    "no_tail",
+    "D:\\riscv\\RISCV\\sim\\cnn\\board_diag_20261016_a\\checks_01\\flow_no_tail\\run"
+  ],
+  "returncode": 0
+}

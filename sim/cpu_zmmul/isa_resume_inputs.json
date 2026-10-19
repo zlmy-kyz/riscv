@@ -1,0 +1,118 @@
+{
+  "status": "CPU_ZMMUL_ISA_CONTINUATION_PREPARED_NOT_RUN",
+  "sha256": {
+    "sim/cpu_zmmul/build/ds_cpu_zmmul_20261013_a/inputs.json": "f8ebb23bb096017e2b373872adc100042732289bc24c242564d9e9c09de6fa86",
+    "sim/cpu_zmmul/build/ds_cpu_zmmul_20261013_a/frozen_inputs.json": "1f8a46fe56648192232d92164f3661d897543ec350c1838487b5a055f2251668",
+    "sim/cpu_zmmul/build/ds_cpu_zmmul_20261013_a/git_before.json": "c3e02798242b035cbdf6b1f94e39739239fea97e7c8bf27febde292d4764be76",
+    "sim/cpu_zmmul/build/ds_cpu_zmmul_20261013_a/result.json": "e2d9feecb00e2349002df710c4e04ec24134db7a911d3d7a1affb992aaf7ea1e",
+    "sim/cpu_zmmul/build/ds_cpu_zmmul_20261013_a/vlib.command.json": "9620216f162ecbfcd3657e4201759cd587b22025d563bb5c8de712aaf492975c",
+    "sim/cpu_zmmul/build/ds_cpu_zmmul_20261013_a/vlib.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "sim/cpu_zmmul/build/ds_cpu_zmmul_20261013_a/compile.command.json": "54e4ff2fe4e0fb8076decebd1c865cd078915aabf5eb5c4c5d12e3e013cbe16c",
+    "sim/cpu_zmmul/build/ds_cpu_zmmul_20261013_a/compile.log": "7b434ee6f4eeee4cfc9b34857ccafccc33f46d4d063ad7753bec01af5b408424",
+    "sim/cpu_zmmul/build/ds_cpu_zmmul_20261013_a/mul_ip.command.json": "f5be0bfc2e0121e4bc06898e11f1cd1e8f7e3a708e2a1cb7aee2d540c52e4133",
+    "sim/cpu_zmmul/build/ds_cpu_zmmul_20261013_a/mul_ip.log": "2bab032a59d513a2eed095f22689786bc04ba521e786c6a7b1dbed96ea8a53bc",
+    "sim/cpu_zmmul/build/ds_cpu_zmmul_20261013_a/mul_ip.transcript": "b6c34d0a9e591e48489bbdb9c2fcbe290804ddf02125fe6f2be3ff3ac054b53d",
+    "sim/cpu_zmmul/build/ds_cpu_zmmul_20261013_a/math_dependencies.command.json": "13454f16e6718e6b719066bad1fe5dd9d320c18b1fa8210fdb8d2d7fe3f44626",
+    "sim/cpu_zmmul/build/ds_cpu_zmmul_20261013_a/math_dependencies.log": "a2c95867266304dc75e5035035a45163ec29b748e48e66323ae1fc1fe64d15a8",
+    "sim/cpu_zmmul/build/ds_cpu_zmmul_20261013_a/math_dependencies.transcript": "a890682d85f662eb6bd2ca17b23f4f2af12a2447cf77faa5b8ae2db571443e6d",
+    "sim/cpu_zmmul/build/ds_cpu_zmmul_20261013_a/memory_backpressure.command.json": "a065498d5d96764b4ebe9521cdaef427d1504f5f46483845f0a07da93c4fa7a8",
+    "sim/cpu_zmmul/build/ds_cpu_zmmul_20261013_a/memory_backpressure.log": "952b603ed3ebaf57fcc52944cfe28471e38d54683efd1409dffc6dbeac5993ab",
+    "sim/cpu_zmmul/build/ds_cpu_zmmul_20261013_a/memory_backpressure.transcript": "85ba549a2bda587f7fb81bd211824f4178b874828d9d87bd1278ed15da4e4f24",
+    "sim/cpu_zmmul/build/ds_cpu_zmmul_20261013_a/reset_mid_mul.command.json": "9593002827d9e45e483c20a57fa7653d6fb64c894238607803f022320ba3c4ef",
+    "sim/cpu_zmmul/build/ds_cpu_zmmul_20261013_a/reset_mid_mul.log": "6bd758b78994b2bd57264c73a4e3363fd5e59e25a970733e56fe91eb91d98c1b",
+    "sim/cpu_zmmul/build/ds_cpu_zmmul_20261013_a/reset_mid_mul.transcript": "7528ee77d205c99590107705edd5f8315bbf51c2e312aed05d9137590b0cf172",
+    "sim/cpu_zmmul/build/ds_cpu_zmmul_20261013_a/older_fault_cancel.command.json": "8840a30b32b844cf8f297aa7c03b5110f93cb160f0f74278dfcbdb61a417b78a",
+    "sim/cpu_zmmul/build/ds_cpu_zmmul_20261013_a/older_fault_cancel.log": "dbe2146466a66fba89eb55720916dcf18922736d41cb0419ef4b9bdbccd62ec1",
+    "sim/cpu_zmmul/build/ds_cpu_zmmul_20261013_a/older_fault_cancel.transcript": "f72480d99b8cc3963658ff2b9e215551b156b00b378d4302edb3ee1162ca111e",
+    "sim/cpu_zmmul/build/ds_cpu_zmmul_20261013_a/irq_drain.command.json": "e3bfc4566fa5d4ff15122f20bc941c9815be6291f13ad3bb41d343047cb7e219",
+    "sim/cpu_zmmul/build/ds_cpu_zmmul_20261013_a/irq_drain.log": "7fa413619d8140362e5042e12c14549dadf539b9c0d14285c3b08f1f7c860bf8",
+    "sim/cpu_zmmul/build/ds_cpu_zmmul_20261013_a/irq_drain.transcript": "152ab420156d927606fc73bf568c0845d85b4f178187f051f09aef6b674ac359",
+    "sim/cpu_zmmul/build/ds_cpu_zmmul_20261013_a/illegal_div_rem_misa.command.json": "136c46bc7f456609c24beb5dd7d3c91f515024c9278478f9f2f981bdd6314f17",
+    "sim/cpu_zmmul/build/ds_cpu_zmmul_20261013_a/illegal_div_rem_misa.log": "004cdc38250cdf6d174d7c1b0c32618ccd791d8191c117f8d9d200e919a4f71b",
+    "sim/cpu_zmmul/build/ds_cpu_zmmul_20261013_a/illegal_div_rem_misa.transcript": "6b497004ca8877e30067a01aed89788b20f34bbbfccc9d176d169a6ad4ab21aa",
+    "sim/cpu_zmmul/build/ds_cpu_zmmul_20261013_a/isa_lhu.command.json": "7167d6cb5ea66e308cda1a99cb299edc497f09c43a1722972941487a262c559d",
+    "sim/cpu_zmmul/build/ds_cpu_zmmul_20261013_a/isa_lhu.log": "79d12213006e2dd3890c53e4af78eecc4e89310d160496c5f722e73a7a1173d7",
+    "sim/cpu_zmmul/build/ds_cpu_zmmul_20261013_a/isa_lhu.transcript": "2bb40636f4e57dfb578afffe232dcbec8a15b075f0c91eb23d07e37104bc6083",
+    "sim/cpu_zmmul/review_task023.py": "e01309a24da0d972eb5f84747fc05f82ff9117e11e08af98296c4217fc264429",
+    "sim/cpu_zmmul/resume_isa.py": "b2350e9759cc169b17affb7efd4abe0b1188777872ad4f1a2ec4cf8ecc53c3b5",
+    "sim/cpu_zmmul/tb_cpu_rv32i_sample.sv": "4cf1aa4f60de4c66ae3ae138c4183c24c49b6b376964b8b11489fb8ae5a7a464",
+    "sim/cpu_zmmul/fixtures/isa_lhu_traps.txt": "70d951f7a186c00cf051055133adef1401dfc3a210f0a8131d96c74e150d7e15",
+    "sim/cpu_zmmul/fixtures/isa_or_traps.txt": "20d53c44319fb94cc4746f517e155d7f33f690505de28b3d69dcef6fe2a8817e",
+    "sim/cpu_zmmul/inputs.json": "f8ebb23bb096017e2b373872adc100042732289bc24c242564d9e9c09de6fa86",
+    "sim/cpu_zmmul/build/ds_cpu_zmmul_20261013_a/codex_review.json": "4f0e46484ff6e8a3157e85b1d94b5ca4fad5f7c5da849ea6464f26f20ac092be",
+    "DeepSeek/\u4efb\u52a1023_\u7ed3\u679c_ds_cpu_zmmul_20261013_a.md": "04e1166be57387ae139d28fc188418b9c9d67fa56e399aec205155d3f422339d"
+  },
+  "original_input_manifest_sha256": "f8ebb23bb096017e2b373872adc100042732289bc24c242564d9e9c09de6fa86",
+  "original_review_sha256": "4f0e46484ff6e8a3157e85b1d94b5ca4fad5f7c5da849ea6464f26f20ac092be",
+  "cpu_sha256": "43e451038cc14b3402ff159629d18783fbd8d1364e7c05197fadbb1e8e5d6cfe",
+  "baseline_cpu_sha256": "746db2f648276e706f766cced8848038e0b93a194ef0a077d0613d96cca9f7e7",
+  "baseline_cpu": "sim/cpu_zmmul/build/preparation_20261013_a/mycpu_sync.v",
+  "compile_sources": [
+    "myriscv/alu.v",
+    "myriscv/br_alu.v",
+    "myriscv/l_alu.v",
+    "myriscv/regfile.v",
+    "myriscv/csr_file.v",
+    "myriscv/mycpu_sync.v",
+    "ipcore/mul/mul.v",
+    "ipcore/mul/rtl/ipm2l_mult_v1_3_mul.v",
+    "ipcore/mul/rtl/ipm2l_apm_data_pipeline/ipm2l_apm_data_pipeline.v",
+    "ipcore/mul/rtl/ipm2l_apm_data_pipeline/ipm2l_apm_distributed_sdpram.v",
+    "ipcore/mul/rtl/ipm2l_apm_data_pipeline/ipm2l_apm_distributed_shiftregister.v",
+    "sim/cpu_zmmul/tb_cpu_rv32i_sample.sv"
+  ],
+  "jobs": [
+    {
+      "name": "baseline_lhu",
+      "variant": "baseline",
+      "sample": {
+        "name": "lhu",
+        "rom": "MyCpu_test/dat/lhu/lhu_rom.dat",
+        "ram": "MyCpu_test/dat/lhu/lhu_ram.dat",
+        "tohost": 2147487744,
+        "dump": "MyCpu_test/dump/rv32ui-p-lhu.dump"
+      }
+    },
+    {
+      "name": "isa_lhu",
+      "variant": "current",
+      "sample": {
+        "name": "lhu",
+        "rom": "MyCpu_test/dat/lhu/lhu_rom.dat",
+        "ram": "MyCpu_test/dat/lhu/lhu_ram.dat",
+        "tohost": 2147487744,
+        "dump": "MyCpu_test/dump/rv32ui-p-lhu.dump"
+      }
+    },
+    {
+      "name": "isa_or",
+      "variant": "current",
+      "sample": {
+        "name": "or",
+        "rom": "MyCpu_test/dat/or/or_rom.dat",
+        "ram": null,
+        "tohost": 2147487744,
+        "dump": "MyCpu_test/dump/rv32ui-p-or.dump"
+      }
+    }
+  ],
+  "new_snapshot_files": [
+    "sim/cpu_zmmul/review_task023.py",
+    "sim/cpu_zmmul/resume_isa.py",
+    "sim/cpu_zmmul/tb_cpu_rv32i_sample.sv",
+    "sim/cpu_zmmul/fixtures/isa_lhu_traps.txt",
+    "sim/cpu_zmmul/fixtures/isa_or_traps.txt"
+  ],
+  "fixed_tag": "ds_cpu_zmmul_isa_resume_20261013_a",
+  "timeouts_seconds": {
+    "vlib": 60,
+    "vlog": 60,
+    "vsim": 180
+  },
+  "scope": "Reuse seven original passing cases; one old-CPU lhu control for changed ISA monitor, then current lhu and or once",
+  "RTL_IP_PDS_images_unchanged": true,
+  "expected_traps_per_job": 5,
+  "bootstrap_probes_per_job": 4,
+  "original_git_after_missing": true,
+  "original_cause_not_logged": true
+}

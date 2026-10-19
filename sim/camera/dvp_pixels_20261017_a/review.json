@@ -1,0 +1,77 @@
+{
+  "status": "RAW_CHAIN_REVERIFY_PASS_DVP_PATTERN_NONUNIFORM_ROOT_CAUSE_UNRESOLVED",
+  "source_sha256": "21034ff639891c1e5fa81addbdf5781e87bd7a8615ac14eb12513d8231a1ce7e",
+  "wire_order": "stored RGB565 high byte first, then low byte",
+  "phase_period_hypothesis": 10,
+  "phase_origin": "first active byte of each row",
+  "samples_per_phase": 184320,
+  "phase_histograms": [
+    {
+      "phase": 0,
+      "counts": {
+        "00": 184320
+      }
+    },
+    {
+      "phase": 1,
+      "counts": {
+        "00": 184320
+      }
+    },
+    {
+      "phase": 2,
+      "counts": {
+        "00": 20910,
+        "02": 163410
+      }
+    },
+    {
+      "phase": 3,
+      "counts": {
+        "00": 48082,
+        "04": 136238
+      }
+    },
+    {
+      "phase": 4,
+      "counts": {
+        "00": 184320
+      }
+    },
+    {
+      "phase": 5,
+      "counts": {
+        "00": 62110,
+        "10": 122210
+      }
+    },
+    {
+      "phase": 6,
+      "counts": {
+        "00": 184320
+      }
+    },
+    {
+      "phase": 7,
+      "counts": {
+        "00": 263,
+        "40": 184057
+      }
+    },
+    {
+      "phase": 8,
+      "counts": {
+        "80": 184320
+      }
+    },
+    {
+      "phase": 9,
+      "counts": {
+        "ff": 184320
+      }
+    }
+  ],
+  "unique_rows": 720,
+  "warning": "Exact mode0 sequence not independently specified; observed phase variation is not a calibrated error rate. No D0-only diagnosis.",
+  "rtl_modified": false
+}

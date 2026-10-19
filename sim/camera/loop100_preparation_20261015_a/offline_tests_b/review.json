@@ -1,0 +1,155 @@
+{
+  "status": "LOOP100_NATIVE_AND_OFFLINE_CHECKS_PASS_BOARD_NOT_RUN",
+  "serial_opened": false,
+  "HDL_run": false,
+  "evidence_origin": "NATIVE_MOCK_MMIO_AND_OFFLINE_SYNTHETIC_TEST",
+  "outcomes": {
+    "native_positive": {
+      "status": "ACTUAL_C_CONTROL_FLOW_WITH_MOCK_MMIO_PASS",
+      "statistics": {
+        "total_ticks": 21361000000,
+        "wait_sum": 12200000000,
+        "wait_min": 122000000,
+        "wait_max": 122000000,
+        "check_sum": 9020000000,
+        "check_min": 90200000,
+        "check_max": 90200000,
+        "total_seconds": 227.85066666666665,
+        "wait_mean_ms": 1301.3333333333333,
+        "check_mean_ms": 962.1333333333333,
+        "distinct_crcs": 2,
+        "adjacent_equal_crc": 98
+      },
+      "actual_firmware_full_frame_words": 46080000,
+      "independent_zlib_pattern_crc": [
+        "ad4e00c3",
+        "68c5601b"
+      ],
+      "sequence_and_cycle_wrap": true
+    },
+    "1": {
+      "expected_failure": "CAPTURE_ERROR",
+      "stopped_without_retry": true,
+      "successful_prefix": 1
+    },
+    "2": {
+      "expected_failure": "CAPTURE_TIMEOUT",
+      "stopped_without_retry": true,
+      "successful_prefix": 1
+    },
+    "3": {
+      "expected_failure": "METADATA_OR_STATUS",
+      "stopped_without_retry": true,
+      "successful_prefix": 1
+    },
+    "4": {
+      "expected_failure": "METADATA_OR_STATUS",
+      "stopped_without_retry": true,
+      "successful_prefix": 1
+    },
+    "5": {
+      "expected_failure": "METADATA_OR_STATUS",
+      "stopped_without_retry": true,
+      "successful_prefix": 1
+    },
+    "6": {
+      "expected_failure": "METADATA_OR_STATUS",
+      "stopped_without_retry": true,
+      "successful_prefix": 1
+    },
+    "7": {
+      "expected_failure": "CRC_MISMATCH",
+      "stopped_without_retry": true,
+      "successful_prefix": 1
+    },
+    "8": {
+      "expected_failure": "CAPTURE_STATE",
+      "stopped_without_retry": true,
+      "successful_prefix": 1
+    },
+    "9": {
+      "expected_failure": "METADATA_OR_STATUS",
+      "stopped_without_retry": true,
+      "successful_prefix": 1
+    },
+    "10": {
+      "expected_failure": "CPU_READ_TIMEOUT",
+      "stopped_without_retry": true,
+      "successful_prefix": 1
+    },
+    "11": {
+      "expected_failure": "CONFIG_ERROR",
+      "stopped_without_retry": true,
+      "successful_prefix": 0
+    },
+    "12": {
+      "expected_failure": "START_COMMAND",
+      "stopped_without_retry": true,
+      "successful_prefix": 0
+    },
+    "13": {
+      "expected_failure": "DONE_WITHOUT_BUSY",
+      "stopped_without_retry": true,
+      "successful_prefix": 1
+    },
+    "wire_positive": {
+      "status": "OFFLINE_LOOP100_REPLAY_PASS",
+      "frames": 100,
+      "statistics": {
+        "total_ticks": 21361000000,
+        "wait_sum": 12200000000,
+        "wait_min": 122000000,
+        "wait_max": 122000000,
+        "check_sum": 9020000000,
+        "check_min": 90200000,
+        "check_max": 90200000,
+        "total_seconds": 227.85066666666665,
+        "wait_mean_ms": 1301.3333333333333,
+        "check_mean_ms": 962.1333333333333,
+        "distinct_crcs": 2,
+        "adjacent_equal_crc": 98
+      },
+      "same_crc_is_failure": false,
+      "images_exported": false,
+      "PC_full_frame_CRC": false,
+      "scene_change": "User instructed; CRC variation recorded only; no automatic stale-frame claim"
+    },
+    "synthetic_rejected_as_board": true,
+    "all_same_crc_legal": true,
+    "tampered_rx_rejected": true,
+    "bad_crc": {
+      "rejected": true,
+      "reason": "hardware/CPU CRC mismatch"
+    },
+    "bad_sequence": {
+      "rejected": true,
+      "reason": "frame sequence skipped/repeated"
+    },
+    "bad_status": {
+      "rejected": true,
+      "reason": "frame failure/format: FRAME=4294967246 CRC_CAPTURE=ad4e00c3 CRC_CPU=ad4e00c3 MATCH=1 STATUS=0000000d ERROR=00000000 WAIT_TICKS=122000000 CHECK_TICKS=90200000"
+    },
+    "bad_statistics": {
+      "rejected": true,
+      "reason": "final success/format missing: LOOP100_END RESULT=PASS SUCCESS=99 TOTAL_TICKS=21361000000 WAIT_SUM=12200000000 WAIT_MIN=122000000 WAIT_MAX=122000000 CHECK_SUM=9020000000 CHECK_MIN=90200000 CHECK_MAX=90200000"
+    },
+    "missing_frame": {
+      "rejected": true,
+      "reason": "frame sequence skipped/repeated"
+    },
+    "bad_timing": {
+      "rejected": true,
+      "reason": "phase duration outside firmware deadlines"
+    },
+    "extra_bytes": {
+      "rejected": true,
+      "reason": "extra bytes"
+    }
+  },
+  "source_sha256": {
+    "sim/camera/loop100_preparation_20261015_a/native_harness.c": "8dfd775bcddb3105c0ad4b15b7baeeb180298c1858932829cff90f5b03d8891f",
+    "sim/camera/loop100_preparation_20261015_a/check_offline.py": "fe6b648bddc97c70db63384a73e522f2d48596f74f67e21724a3731e5151bbf0",
+    "tests/camera_loop100/main.c": "b8b22be7e0154fcfc90ed2757e4d9da60280688e673c63e9be55b290f9204eb4",
+    "tools/camera_uart/loop100.py": "bc6cb5808ce0da7ac8183be256903bfe0daad61c610e6a735c1b625f4ffedcea"
+  }
+}

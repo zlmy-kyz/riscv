@@ -1,0 +1,30 @@
+{
+  "status": "REGENERATED_EX_BITSTREAM_TIMING_REVIEWED_FUNCTIONAL_FAILURE_UNRESOLVED",
+  "observed_sha256": {
+    "generate_bitstream/board_top.sbit": "2ad9a50bcd7ec04afe0c26e64474e638c62b73d61f34ba80482f650427afcf4b",
+    "generate_bitstream/run.log": "53069c9ab62dcb4228a0b3364f3c86b61c8e2be865e3e62d1efc19eec8bd3c07",
+    "generate_bitstream/board_top.bgr": "a69e6f01f30e32e8468cd203a842128c2f8dfae4fd64538cde22ea47c966216b",
+    "report_timing/board_top.rtr": "5447611235d69ced0a0e7edc422f1a57324a57d10d656788fa4aab88dc9ca3e8",
+    "report_timing/run.log": "62eb21264d45c08d252f55bd7f75abbb9702f40a9a9c5615cd80ee66e1d76e18",
+    "myriscv/mycpu_sync.v": "ef6bfec7853f6b0e93f976c7038ad25cdb4f6e04b14251331fdbf79906cc87e6",
+    "RISCV.pds": "0a6af3416296b69bca7e7c85a476210f763a993036ad16313dda1f52a5923a11"
+  },
+  "bitstream_bytes": 9188552,
+  "bitstream_mtime_local": "2026-10-18 06:15:22",
+  "report_date": "Sun Oct 18 06:14:38 2026",
+  "core_clock_mhz": 93.75,
+  "slow_setup_wns_ns": 0.609,
+  "tns_ns": 0,
+  "estimated_fmax_mhz": 99.427,
+  "pnr_netlist_sha256": "a2eea4b4d340af3123b11795d8c481d9cf4814f0be9882a6859239228d52fdb4",
+  "pnr_netlist_identical_to_previous_review": true,
+  "previous_bitstream_sha256": "0e15e5170482ca6789be3ae57ded24a05d6b3264cbbc9978b64cbd429b2b9d94",
+  "bitstream_changed": true,
+  "limits": [
+    "Existing constrained timing passes; no simulation or board run performed.",
+    "Same EX CPU and identical PNR netlist; serial-drain defect is not fixed.",
+    "Prior P300 RUN-ACK followed by zero application RX remains unresolved.",
+    "Bitstream initialization was not independently decoded.",
+    "Prior reviewed board script pins the old bitstream; this review does not change that identity."
+  ]
+}

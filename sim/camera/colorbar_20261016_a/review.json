@@ -1,0 +1,108 @@
+{
+  "status": "COLORBAR_RTL_STATIC_READY_PENDING_PDS_AND_BOARD",
+  "changed": [
+    "myriscv\\board_top.v",
+    "myriscv\\camera_mmio.v",
+    "myriscv\\ov5640_config.v",
+    "myriscv\\ov5640_config_rom.v",
+    "myriscv\\soc_ddr3_top.v"
+  ],
+  "checks": {
+    "board_colorbar": {
+      "command": [
+        "D:/iverilog/bin/iverilog.exe",
+        "-g2005",
+        "-tnull",
+        "-I",
+        "myriscv",
+        "-i",
+        "-s",
+        "board_top",
+        "myriscv\\afifo_16i_64o_512.v",
+        "myriscv\\alu.v",
+        "myriscv\\board_top.v",
+        "myriscv\\br_alu.v",
+        "myriscv\\camera_ddr_write_arbiter.v",
+        "myriscv\\camera_mmio.v",
+        "myriscv\\cnn_digits_engine.v",
+        "myriscv\\cnn_gap16.v",
+        "myriscv\\cnn_int8_mac.v",
+        "myriscv\\cnn_mmio.v",
+        "myriscv\\cnn_requantize.v",
+        "myriscv\\cnn_rgb96_gray32.v",
+        "myriscv\\csr_file.v",
+        "myriscv\\data_bram_adapter.v",
+        "myriscv\\data_bus_interconnect.v",
+        "myriscv\\dual_sram_to_pango_ddr_bridge.v",
+        "myriscv\\inst_bram_adapter.v",
+        "myriscv\\inst_bus_interconnect.v",
+        "myriscv\\ipm2l_fifo_ctrl_v1_1_afifo_16i_64o_512.v",
+        "myriscv\\ipm2l_fifo_v1_10_afifo_16i_64o_512.v",
+        "myriscv\\ipm2l_sdpram_v1_10_afifo_16i_64o_512.v",
+        "myriscv\\l_alu.v",
+        "myriscv\\mycpu_sync.v",
+        "myriscv\\ov5640_capture.v",
+        "myriscv\\ov5640_config.v",
+        "myriscv\\ov5640_config_rom.v",
+        "myriscv\\ov5640_sccb.v",
+        "myriscv\\preprocess_ddr_read_arbiter.v",
+        "myriscv\\preprocess_mmio.v",
+        "myriscv\\regfile.v",
+        "myriscv\\reset_button_debounce.v",
+        "myriscv\\simple_mmio.v",
+        "myriscv\\soc_ddr3_top.v",
+        "myriscv\\soc_top.v",
+        "myriscv\\topcpu_instrom.v",
+        "myriscv\\uart_mmio.v",
+        "myriscv\\uart_rx.v",
+        "myriscv\\uart_rx_fifo.v",
+        "myriscv\\uart_tx.v"
+      ],
+      "exit": 0,
+      "output": "myriscv\\board_top.v:94: warning: output port core_clk is coerced to inout.\nmyriscv\\board_top.v:94: warning: output port ddr_init_done is coerced to inout.\n"
+    },
+    "config_live": {
+      "command": [
+        "D:/iverilog/bin/iverilog.exe",
+        "-g2005",
+        "-tnull",
+        "-I",
+        "myriscv",
+        "-s",
+        "ov5640_config",
+        "myriscv/ov5640_config.v",
+        "myriscv/ov5640_config_rom.v",
+        "myriscv/ov5640_sccb.v"
+      ],
+      "exit": 0,
+      "output": ""
+    },
+    "config_colorbar": {
+      "command": [
+        "D:/iverilog/bin/iverilog.exe",
+        "-g2005",
+        "-tnull",
+        "-I",
+        "myriscv",
+        "-s",
+        "ov5640_config",
+        "-P",
+        "ov5640_config.COLORBAR_ENABLE=1",
+        "myriscv/ov5640_config.v",
+        "myriscv/ov5640_config_rom.v",
+        "myriscv/ov5640_sccb.v"
+      ],
+      "exit": 0,
+      "output": ""
+    }
+  },
+  "after_sha256": {
+    "myriscv\\board_top.v": "6786c4954b7957b38eb3008f6fac3be83b70a902c9ce130b171e4c5cde23dbd6",
+    "myriscv\\camera_mmio.v": "5ef51c20db55393e4b441d9d12a9fdd6b6fc9b1752f74818de0385aa731c7477",
+    "myriscv\\ov5640_config.v": "e3ca007920e0bc3aac3723a22c2ac7c4bf00bc098b58d2fb6b655565cad6c0eb",
+    "myriscv\\ov5640_config_rom.v": "04e19b6f346b1b99336407aead482a88868cc93a9cf215b92d63e7987e46d77d",
+    "myriscv\\soc_ddr3_top.v": "0c95637649df54e691eaa7e2a21142582a2c04ecbd5d948aff820d8ddfdab09b"
+  },
+  "simulation_run": false,
+  "pds_run": false
+}

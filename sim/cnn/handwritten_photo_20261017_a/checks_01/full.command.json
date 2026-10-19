@@ -1,0 +1,13 @@
+{
+  "argv": [
+    "D:\\riscv\\RISCV\\sim\\cnn\\handwritten_photo_20261017_a\\checks_01\\flow.exe",
+    "D:\\riscv\\RISCV\\sim\\cnn\\handwritten_photo_20261017_a\\checks_01\\input.rgb565",
+    "D:\\riscv\\RISCV\\sim\\cnn\\handwritten_photo_20261017_a\\checks_01\\input.rgb",
+    "D:\\riscv\\RISCV\\sim\\cnn\\handwritten_photo_20261017_a\\checks_01\\scores.bin",
+    "D:\\riscv\\RISCV\\sim\\cnn\\training\\handwritten_run_20261017_a\\model\\load_words.bin",
+    "normal",
+    "D:\\riscv\\RISCV\\sim\\cnn\\handwritten_photo_20261017_a\\checks_01\\full\\run",
+    "1"
+  ],
+  "returncode": 0
+}

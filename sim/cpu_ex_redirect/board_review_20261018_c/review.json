@@ -1,0 +1,50 @@
+{
+  "status": "SERIAL_DRAIN_REPAIR_NEW_BITSTREAM_CONSTRAINED_TIMING_PASS_BOARD_PENDING",
+  "observed_sha256": {
+    "generate_bitstream/board_top.sbit": "6ddf1736f33b506ee844faae5f11c9d9360e81e98c645919acf4fd15d186056e",
+    "generate_bitstream/run.log": "1662791e0dbc9bf197d1da404edfd45d5c11162dc2b0861ab5e3cdcd6e460a87",
+    "generate_bitstream/board_top.bgr": "8451c2937a15bfe50ada74fe333b32d5aec4023bb793b3b114cbb50305fbb667",
+    "report_timing/board_top.rtr": "0b684f08900f313deaa4a9114e4e7d671624b2be2e75fa368a7bc98ec30e555c",
+    "report_timing/run.log": "edb73240abb26fc5a5148db1b58d9e1c7dade3fae205ec6226c26ca002b7c3c9",
+    "myriscv/mycpu_sync.v": "9eb803138292427293db785e27eeff9f15295622a95514e695f017cca505093f",
+    "RISCV.pds": "8d286e2d2e5c7da7ff95490574fb2555b232226e2c529ae560ee116cb9d7c521",
+    "synthesize/run.log": "13dc3cf8e7aa81eecd0b98ab7e715e9f49c6ae5f7a4d29bac944e646cb28826e",
+    "place_route/run.log": "3449453a13a171c2180b9a00e8c22d1b9e9f57bbe2e82050f9090b06ceab24a5",
+    "ipcore/inst_rom/inst_rom.idf": "d49bf52adfa57e11a368334187190e73e3b452402588f97815a6184387eb91ed",
+    "ipcore/data_ram/data_ram.idf": "c7528243ff970cb75fef64c28b9d2d090b93d06b6c38239845a45b71d42a0542"
+  },
+  "bitstream_bytes": 9188552,
+  "bitstream_mtime_local": "2026-10-18 06:47:08",
+  "report_date": "2026-10-18 06:46:22",
+  "cpu_commit": "ce11dfefc361fc863670178a3d1ec1f32cb3a0cf",
+  "core_clock_mhz": 93.75,
+  "slow_setup_wns_ns": 0.797,
+  "tns_ns": 0,
+  "estimated_fmax_mhz": 101.3211,
+  "wns_improvement_ns": 0.188,
+  "pnr_netlist_sha256": "43b450fe0590d45df52e9d460fe89a1dadde2ec8b6ff0fb2b21524f3977084f7",
+  "pnr_netlist_changed": true,
+  "top_reported_core_paths": [
+    {
+      "start": "u_soc/u_soc/u_cpu/id_ex_src2[0]/opit_0_L6Q_perm/CLK",
+      "end": "u_soc/g_camera.u_camera/frame_crc32[23]/opit_0_inv/CE",
+      "slack_ns": 0.797
+    },
+    {
+      "start": "u_soc/u_soc/u_cpu/id_ex_src2[0]/opit_0_L6Q_perm/CLK",
+      "end": "u_soc/g_camera.u_camera/frame_crc32[26]/opit_0_inv/CE",
+      "slack_ns": 0.797
+    },
+    {
+      "start": "u_soc/u_soc/u_cpu/id_ex_src2[1]/opit_0_L6Q_perm/CLK",
+      "end": "u_soc/u_soc/g_ddr.u_ddr_bridge/inst_line_tag[45][12]/opit_0_inv/CE",
+      "slack_ns": 0.797
+    }
+  ],
+  "limits": [
+    "Source and generation chronology plus changed EX netlist support repaired implementation identity; no independent rebuild or bitstream decode.",
+    "Existing task038 report observed, but full frozen-input/trace acceptance not independently reviewed in this bitstream inspection.",
+    "No board evidence for repaired candidate; prior failures remain historical failures.",
+    "No RTL edit, HDL run, PDS execution, programming or serial operation performed."
+  ]
+}

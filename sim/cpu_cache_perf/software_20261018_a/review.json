@@ -1,0 +1,78 @@
+{
+  "status": "PERF27_SOFTWARE_BUILD_AND_OFFLINE_FORMAT_AUDIT_PASS",
+  "fixture_origin": "HISTORICAL_UART_PREFIX_PLUS_SYNTHETIC_EXTENSION_NOT_NEW_BOARD_EVIDENCE",
+  "results": {
+    "performance_300": {
+      "bin_sha256": "b4a64b8c7d8dc09c03641e387fedd05332add17e6c1501f2875be6ae2677066c",
+      "bytes": 18936,
+      "original_UART_source": "sim\\cpu_ex_redirect\\board\\task039_target_fetch_300_01\\performance_300.json",
+      "original_UART_sha256": "a7ffa03946c1495223874b9a4e204f25d7ae43e74e6c74a4227fe9088e26c25c",
+      "synthetic_fixture": "performance_300_OFFLINE_SYNTHETIC.txt",
+      "synthetic_sha256": "63c956a0a834288e83575fb649c06c52c7b219efe64a5cb5f4771f0560aab193",
+      "positive_format_cases": [
+        "enabled",
+        "disabled",
+        "zero_denominator"
+      ],
+      "rejected_format_cases": [
+        "old_13_only",
+        "wrong_rate",
+        "not_ready",
+        "tail_pending",
+        "missing_counter",
+        "unbalanced_cache",
+        "wrong_metadata",
+        "truncated_tail",
+        "duplicate_tail",
+        "failed_reader",
+        "wrong_clock",
+        "other_cross_too_large",
+        "too_many_target_matches"
+      ],
+      "counters": 27,
+      "actual_new_CPU_or_board_execution": false
+    },
+    "validation_300": {
+      "bin_sha256": "5540da8b5f05c4c1b0855fc027bed6aee2158913f37277094902cbdfd0ce9c9c",
+      "bytes": 18944,
+      "original_UART_source": "sim\\cpu_ex_redirect\\board\\task039_target_fetch_300_01\\validation_300.json",
+      "original_UART_sha256": "da58adf556e68912120c650ee933c3603709c47b6a200967d07c48688c77ac01",
+      "synthetic_fixture": "validation_300_OFFLINE_SYNTHETIC.txt",
+      "synthetic_sha256": "06066c35422e97b091e066195492a42a47e3d9a5c9b4bacaddeb095b5ecbefe4",
+      "positive_format_cases": [
+        "enabled",
+        "disabled",
+        "zero_denominator"
+      ],
+      "rejected_format_cases": [
+        "old_13_only",
+        "wrong_rate",
+        "not_ready",
+        "tail_pending",
+        "missing_counter",
+        "unbalanced_cache",
+        "wrong_metadata",
+        "truncated_tail",
+        "duplicate_tail",
+        "failed_reader",
+        "wrong_clock",
+        "other_cross_too_large",
+        "too_many_target_matches"
+      ],
+      "counters": 27,
+      "actual_new_CPU_or_board_execution": false
+    }
+  },
+  "hardware_counters_not_dynamically_verified": true,
+  "dynamic_simulation": "NOT_RUN",
+  "PDS": "NOT_RUN",
+  "serial_opened": false,
+  "source_sha256": {
+    "sim/cpu_cache_perf/software_20261018_a/review_software.py": "2fb10ae7dffa92121969eddedaf2027fdd74ff9992dea9a378e9ba53e82a5023",
+    "tests/cpu_performance_2b/perf27.c": "70e989dd49a44d76014c16693f081ca826b5c643c2d238303f7e32903d3535bd",
+    "tests/cpu_performance_2b/build_perf27.py": "8cb06ca2f7a8e110a012ee43bdf00a3e94bdf2020e52ce0ff58cd400cb994ec3",
+    "tests/cpu_performance_2b/perf27_software.py": "e92c58c2ef59af7cc76e649a63c04308ca2a51be93b6b025698fcf6cf5889f4d",
+    "tools/uart_loader/candidates/perf_2b/run_perf27_measurement.py": "4be0efead3682e4e238c7f3172983c48cfae3ea51f8fb3885522c2dbf0bdae50",
+    "tools/uart_loader/candidates/perf_2b/run_perf27_measurements.ps1": "7da9c93d14c5d367393ad0666d63ac253461efcf242927a4d4c24af0a2b4157c"
+  }
+}

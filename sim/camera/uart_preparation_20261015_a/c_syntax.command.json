@@ -1,0 +1,18 @@
+{
+  "argv": [
+    "D:/riscv/RISCV/xpack-riscv-none-elf-gcc-15.2.0-1/bin/riscv-none-elf-gcc.exe",
+    "-march=rv32i",
+    "-mabi=ilp32",
+    "-O2",
+    "-std=c11",
+    "-Wall",
+    "-Wextra",
+    "-Werror",
+    "-ffreestanding",
+    "-fno-builtin",
+    "-fsyntax-only",
+    "tests/camera_uart/main.c",
+    "tests/camera_uart/crc32.c"
+  ],
+  "returncode": 1
+}

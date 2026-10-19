@@ -5,7 +5,7 @@ import re
 
 ROOT = Path(__file__).resolve().parents[2]
 files = [ROOT / "README.md", ROOT / "AGENTS.md", *((ROOT / "doc").rglob("*.md"))]
-for base in ("tests", "sim", "tools", "MyCpu_test"):
+for base in ("tests", "sim", "tools", "MyCpu_test", "DeepSeek"):
     files += [p for p in (ROOT / base).rglob("*.md") if "build" not in p.parts]
 pattern = re.compile(r"!?\[[^\]\n]*\]\(([^)\n]+)\)")
 broken = []

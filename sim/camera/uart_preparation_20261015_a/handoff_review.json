@@ -1,0 +1,23 @@
+{
+  "status": "CAMERA_UART_FIXED_BUILD_AND_OFFLINE_CHECKS_READY_BOARD_NOT_RUN",
+  "date": "2026-10-15",
+  "manifest_sha256": "c23898f2023887c32d3342fb0d6f942dde1937345cf379d11cf51f8c0a2c02af",
+  "bin_sha256": "373940dab9b1c1a4e444d5fa4467580b490d4bdd288fc4c516c90f32aed9f529",
+  "bytes": 6212,
+  "program_crc32": "26abe2d1",
+  "instructions_audited": 1151,
+  "loader_responses": 53,
+  "RUN_commands": 1,
+  "offline_checks_sha256": "43dbdce9dff5dacccae84635c94d036c90ae601c1f49ff1168a7e5fbbaf21312",
+  "timeout_prefix_review_sha256": "3545a97f8c88c5a8f4de46d6dc35268b1df2a240fff3f8dd8350496269ac86b3",
+  "PDS_started": false,
+  "serial_opened": false,
+  "board": "NOT_RUN",
+  "full_new_program_CPU_simulation": "NOT_RUN_BY_USER_REQUESTED_TRANSITION_TO_BOARD_ACCEPTANCE",
+  "deployment": "User operates the current timing-passed Camera bitstream, KEY0 and this fixed BIN via existing Loader",
+  "limitations": [
+    "Timed-out SoC run remains failed/incomplete; second CPU frame CRC missing there.",
+    "New C firmware has static/native/protocol verification only; first real sensor/DDR/UART run remains pending.",
+    "Image color/geometry/scene change still needs human visual review."
+  ]
+}

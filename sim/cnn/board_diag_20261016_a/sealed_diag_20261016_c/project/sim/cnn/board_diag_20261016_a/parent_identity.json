@@ -1,0 +1,7 @@
+{
+  "tests/camera_preprocess_photo/main.c": "e9f8a5bc466969c9be91d399d05b7a527d35ebb83855ee849670e825cdd60e7b",
+  "tests/camera_preprocess_photo/startup.S": "de7f661eea977dcc17310d05fe0dd6dc5057e28b64200e8e8e0695f5587114a3",
+  "tests/camera_preprocess_photo/linker.ld": "7424d67ed5405349c97c84e8466b32dba58c51a2feb0a49221ab2700269452ec",
+  "tests/camera_preprocess_photo/pp01_wire.c": "3ad54d191df04d863d46b65c4ec94627c702d6018e5abc378fb8feb6c54d1531",
+  "tests/camera_preprocess_photo/pp01_wire.h": "bf50866d8868dc66dbffee209197ccd9d07b56c964e2e90115719c68fbc2d0f5"
+}

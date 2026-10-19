@@ -1,0 +1,63 @@
+{
+  "contract": "digits10_int8_v1",
+  "purpose": "DETERMINISTIC_NONTRAINED_HARDWARE_DIAGNOSTIC",
+  "seed": "16d10a01",
+  "weight_rule": "LCG(1664525,1013904223), high16 modulo6 selects [-3,-2,-1,1,2,3]",
+  "bias_rule": "(i%3 ? 1 : -1)*(17+(i*29)%197)",
+  "model_id": 94384815,
+  "model_id_hex": "05a032af",
+  "shifts": [
+    5,
+    5,
+    4,
+    0
+  ],
+  "scales": [
+    {
+      "Fin": 7,
+      "Fw": 1,
+      "Fout": 3
+    },
+    {
+      "Fin": 3,
+      "Fw": 3,
+      "Fout": 1
+    },
+    {
+      "Fin": 1,
+      "Fw": 4,
+      "Fout": 1
+    },
+    {
+      "Fin": 1,
+      "Fw": 0,
+      "Fout": 1
+    }
+  ],
+  "load_words": 6222,
+  "load_bytes": 24888,
+  "load_crc32": 212178078,
+  "sha256": {
+    "weights.bin": "04b5b5884f3282326e35654e1efd27afa997242f873a65c834d6028bb2bd5111",
+    "bias.bin": "8cd644ff2a8f38aa63d42442bd40e0a3b96f3497d566391606455808e5607312",
+    "load_words.bin": "c8329eeefc81e7cc9e53ac2284852c621dbfc90304e5209072f6f547e409f047"
+  },
+  "trained": false,
+  "contract_sha256": "b0667c9237075d7a406bd4a32e8fee9bde87e5891c42436fd6cdae17236c0a79",
+  "labels": [
+    "0",
+    "1",
+    "2",
+    "3",
+    "4",
+    "5",
+    "6",
+    "7",
+    "8",
+    "9"
+  ],
+  "weights_nonzero": 6152,
+  "weights_negative": 3176,
+  "weights_positive": 2976,
+  "biases_nonzero": 66
+}

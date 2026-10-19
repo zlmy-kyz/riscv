@@ -1,0 +1,40 @@
+{
+  "status": "OFFLINE_GENERATOR_AND_ENCODED_CPU_CRC_CHECK_PASS_HDL_NOT_RUN",
+  "CRC_kernel_samples": [
+    [
+      1,
+      1,
+      "0eb46d3b"
+    ],
+    [
+      1,
+      17,
+      "591dfbe4"
+    ],
+    [
+      1,
+      256,
+      "c6ec7ce7"
+    ],
+    [
+      2,
+      1,
+      "d00f4dd8"
+    ],
+    [
+      2,
+      17,
+      "ccd98e3a"
+    ],
+    [
+      2,
+      256,
+      "91632c3d"
+    ]
+  ],
+  "full_frame_CRC": [
+    "ad4e00c3",
+    "68c5601b"
+  ],
+  "CPU_instructions": 941
+}

@@ -1,0 +1,24 @@
+{
+  "source_bytes": 1843200,
+  "preprocess_bytes_compared": 27648,
+  "status": "CNN_PHOTO_SOURCE_PP_ALL_BYTES_AND_10_SCORES_VERIFIED",
+  "scores": [
+    -22,
+    -156,
+    86,
+    150,
+    -210,
+    161,
+    125,
+    -62,
+    112,
+    151
+  ],
+  "prediction": 5,
+  "model_id": "05a032af",
+  "cnn_ms": 13.168714666666666,
+  "trained_digit_accuracy": false,
+  "key_HDL": "NOT_COMPLETED",
+  "timing": "EXISTING_REPORT_MET_BOARD_PHASE_UNMEASURED",
+  "scope": "One same-frame RGB565/PP byte comparison and diagnostic CNN scores; not image quality or trained accuracy"
+}

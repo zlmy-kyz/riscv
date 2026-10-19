@@ -12,7 +12,11 @@ module simple_mmio #(
     parameter integer PERF_ENABLE = 0,
     parameter integer PERF_AUTO_ARM = 0,
     parameter [31:0] PERF_START_PC = 32'h400007d0,
-    parameter [31:0] PERF_STOP_PC = 32'h400007f4
+    parameter [31:0] PERF_STOP_PC = 32'h400007f4,
+    // Default off for existing standalone MMIO benches with no cache sideband.
+    parameter integer CACHE_PERF_ENABLE = 0,
+    parameter integer DIAG_PERF_ENABLE = 0,
+    parameter integer DIAG_DDR_ENABLE = 0
 ) (
     input  wire        clk,
     input  wire        resetn,
@@ -31,7 +35,12 @@ module simple_mmio #(
     output reg  [ 1:0] test_status,
     input wire [7:0] perf_events,
     input wire [31:0] perf_retire_pc, perf_branch_target, perf_fetch_pc,
-    input wire perf_ar_fire, perf_aw_fire
+    input wire perf_ar_fire, perf_aw_fire,
+    input wire [5:0] perf_cache_events,
+    input wire [1:0] perf_cache_enabled,
+    input wire [2:0] perf_wait_events,
+    input wire [14:0] perf_diag_flags,
+    input wire [31:0] perf_diag_target_pc, perf_diag_pending_pc, perf_diag_buffer_pc
 );
 
     reg        pending;
@@ -44,14 +53,20 @@ module simple_mmio #(
     wire [31:0] perf_rdata;
     wire perf_error;
     generate if (PERF_ENABLE != 0) begin : g_perf
-        cpu_perf_counters #(.AUTO_ARM(PERF_AUTO_ARM), .DEFAULT_START_PC(PERF_START_PC),
+        cpu_perf_counters #(.AUTO_ARM(PERF_AUTO_ARM), .CACHE_PERF_ENABLE(CACHE_PERF_ENABLE),
+            .DIAG_PERF_ENABLE(DIAG_PERF_ENABLE), .DIAG_DDR_ENABLE(DIAG_DDR_ENABLE),
+            .DEFAULT_START_PC(PERF_START_PC),
             .DEFAULT_STOP_PC(PERF_STOP_PC)) u_perf (
             .clk(clk), .resetn(resetn), .events(perf_events), .retire_pc(perf_retire_pc),
             .branch_target(perf_branch_target), .fetch_pc(perf_fetch_pc),
             .ar_fire(perf_ar_fire), .aw_fire(perf_aw_fire), .timer_value(cycle_counter),
             .timer_read(req_fire && !req_write && req_addr[11:2]==10'd2),
             .access(req_fire), .write(req_write), .size(req_size), .addr(req_addr[11:0]),
-            .wdata(req_wdata), .wstrb(req_wstrb), .rdata(perf_rdata), .error(perf_error));
+            .wdata(req_wdata), .wstrb(req_wstrb), .rdata(perf_rdata), .error(perf_error),
+            .cache_events(perf_cache_events), .cache_enabled(perf_cache_enabled),
+            .wait_events(perf_wait_events), .diag_flags(perf_diag_flags),
+            .diag_target_pc(perf_diag_target_pc), .diag_pending_pc(perf_diag_pending_pc),
+            .diag_buffer_pc(perf_diag_buffer_pc));
     end else begin : g_no_perf
         assign perf_rdata=0;
         assign perf_error=1;
@@ -154,7 +169,10 @@ endmodule
 module cpu_perf_counters #(
     parameter integer AUTO_ARM=0,
     parameter [31:0] DEFAULT_START_PC=32'h400007d0,
-    parameter [31:0] DEFAULT_STOP_PC=32'h400007f4
+    parameter [31:0] DEFAULT_STOP_PC=32'h400007f4,
+    parameter integer CACHE_PERF_ENABLE=0,
+    parameter integer DIAG_PERF_ENABLE=0,
+    parameter integer DIAG_DDR_ENABLE=0
 ) (
     input wire clk, resetn,
     input wire [7:0] events,
@@ -165,7 +183,14 @@ module cpu_perf_counters #(
     input wire [31:0] wdata,
     input wire [3:0] wstrb,
     output reg [31:0] rdata,
-    output reg error
+    output reg error,
+    // I req is current-edge acceptance; I hit/miss is previous-edge verdict.
+    // D req/hit/miss all refer to current-edge cacheable load acceptance.
+    input wire [5:0] cache_events,
+    input wire [1:0] cache_enabled,
+    input wire [2:0] wait_events,
+    input wire [14:0] diag_flags,
+    input wire [31:0] diag_target_pc, diag_pending_pc, diag_buffer_pc
 );
     localparam IDLE=2'd0, ARMED=2'd1, RUNNING=2'd2, DONE=2'd3;
     reg [1:0] state;
@@ -191,6 +216,32 @@ module cpu_perf_counters #(
     reg sample_q, start_q, clear_q, retire_q, branch_q, ar_q, aw_q;
     reg [1:0] ddr_q;
     reg [3:0] classification_q;
+    // 041 extension: separate bank and acceptance-ROI membership. The original
+    // 13 counters, classification and observation pipeline remain unchanged.
+    reg [63:0] cache_count [0:5];
+    reg cache_i_roi_q;
+    reg [5:0] cache_delta_q;
+    integer cache_k;
+    wire [5:0] cache_events_active = (CACHE_PERF_ENABLE != 0) ? cache_events : 6'b0;
+    wire [1:0] cache_enabled_active = (CACHE_PERF_ENABLE != 0) ? cache_enabled : 2'b0;
+    // A query accepted on the last ROI edge resolves after the old DONE edge.
+    // Do not expose the bank until its final registered verdict is accumulated.
+    wire cache_snapshot_ready = (state == DONE) && !cache_i_roi_q && !(|cache_delta_q);
+    // 042: sample a coherent raw edge, then compare/track, then accumulate.
+    // Source edge E enters the diagnostic bank at E+2. ROI travels with E.
+    reg [63:0] diag_count [0:7];
+    reg [14:0] diag_flags_q;
+    reg [31:0] diag_target_pc_q, diag_pending_pc_q, diag_buffer_pc_q;
+    reg [2:0] diag_wait_q;
+    reg diag_sample_q, diag_other_retire_q, diag_start_q, diag_old_i_active;
+    reg [7:0] diag_delta_q;
+    integer diag_k;
+    wire diag_buffer_match = diag_flags_q[4] && !diag_flags_q[5] &&
+                             (diag_buffer_pc_q == diag_target_pc_q);
+    wire diag_response_match = diag_flags_q[2] && diag_flags_q[3] && !diag_flags_q[6] &&
+                               (diag_pending_pc_q == diag_target_pc_q);
+    wire diag_tail_pending = diag_sample_q || (|diag_delta_q) || diag_start_q;
+    wire diag_snapshot_ready = (state == DONE) && !diag_tail_pending;
     always @* begin
         if(events[1]) classification=5;
         else if(events[3]) classification=3;
@@ -217,10 +268,35 @@ module cpu_perf_counters #(
                 end
                 12'h114: begin rdata=start_tick; error=write; end
                 12'h118: begin rdata=stop_tick; error=write; end
+                12'h120: begin rdata=32'h43414301; error=write; end // CAC, v1
+                12'h124: begin
+                    // [0] observer enabled, [1] I cache, [2] D cache,
+                    // [3] frozen extension ready, [4] observer tail pending.
+                    rdata={27'b0,(cache_i_roi_q || (|cache_delta_q)),
+                           cache_snapshot_ready,cache_enabled_active,(CACHE_PERF_ENABLE != 0)};
+                    error=write;
+                end
+                12'h128: begin rdata=32'd6; error=write; end
+                12'h130: begin rdata=32'h44494101; error=write; end // DIA, v1
+                12'h134: begin
+                    rdata={27'b0,diag_tail_pending,diag_snapshot_ready,1'b0,
+                           ((DIAG_PERF_ENABLE != 0) && (DIAG_DDR_ENABLE != 0)),
+                           (DIAG_PERF_ENABLE != 0)};
+                    error=write;
+                end
+                12'h138: begin rdata=32'd8; error=write; end
                 default: if(addr>=12'h140 && addr<=12'h1a4) begin
                     // A frozen bank is its own snapshot. Never expose torn live reads.
                     error=write || state!=DONE;
                     rdata=addr[2] ? count[(addr-12'h140)>>3][63:32] : count[(addr-12'h140)>>3][31:0];
+                end else if(addr>=12'h200 && addr<=12'h22c) begin
+                    error=write || !cache_snapshot_ready;
+                    rdata=addr[2] ? cache_count[(addr-12'h200)>>3][63:32] :
+                                         cache_count[(addr-12'h200)>>3][31:0];
+                end else if(addr>=12'h280 && addr<=12'h2bc) begin
+                    error=write || !diag_snapshot_ready;
+                    rdata=addr[2] ? diag_count[(addr-12'h280)>>3][63:32] :
+                                         diag_count[(addr-12'h280)>>3][31:0];
                 end
             endcase
         end
@@ -267,6 +343,92 @@ module cpu_perf_counters #(
                 count[10]<=(start_q?64'd0:count[10])+{63'd0,branch_q};
                 count[11]<=(start_q?64'd0:count[11])+{63'd0,ar_q};
                 count[12]<=(start_q?64'd0:count[12])+{63'd0,aw_q};
+            end
+        end
+    end
+    // 041: independent cache counter bank. I verdicts use the membership of
+    // their ACCEPTANCE edge, not the current ROI sample. This includes a final
+    // query accepted at stop-1 and excludes a pre-start query resolving at start.
+    // The event register is the only path into the 64-bit incrementer enables.
+    always @(posedge clk) begin
+        if (!resetn) begin
+            cache_i_roi_q <= 1'b0;
+            cache_delta_q <= 6'b0;
+            for (cache_k=0; cache_k<6; cache_k=cache_k+1)
+                cache_count[cache_k] <= 64'b0;
+        end else begin
+            cache_i_roi_q <= sample && cache_events_active[0];
+            cache_delta_q[0] <= sample && cache_events_active[0];
+            cache_delta_q[1] <= cache_i_roi_q && cache_events_active[1];
+            cache_delta_q[2] <= cache_i_roi_q && cache_events_active[2];
+            cache_delta_q[3] <= sample && cache_events_active[3];
+            cache_delta_q[4] <= sample && cache_events_active[4];
+            cache_delta_q[5] <= sample && cache_events_active[5];
+            if (clear_q) begin
+                for (cache_k=0; cache_k<6; cache_k=cache_k+1)
+                    cache_count[cache_k] <= 64'b0;
+            end else begin
+                for (cache_k=0; cache_k<6; cache_k=cache_k+1) begin
+                    if (start_q)
+                        cache_count[cache_k] <= cache_delta_q[cache_k] ? 64'd1 : 64'd0;
+                    else if (cache_delta_q[cache_k])
+                        cache_count[cache_k] <= cache_count[cache_k] + 64'd1;
+                end
+            end
+        end
+    end
+    // 042 diagnostic bank: all PC equality and recovery state are downstream
+    // of the raw observation registers, with no fanback into CPU or bridge.
+    always @(posedge clk) begin
+        if (!resetn) begin
+            diag_flags_q <= 15'b0;
+            diag_target_pc_q <= 32'b0;
+            diag_pending_pc_q <= 32'b0;
+            diag_buffer_pc_q <= 32'b0;
+            diag_wait_q <= 3'b0;
+            diag_sample_q <= 1'b0;
+            diag_other_retire_q <= 1'b0;
+            diag_start_q <= 1'b0;
+            diag_old_i_active <= 1'b0;
+            diag_delta_q <= 8'b0;
+            for (diag_k=0; diag_k<8; diag_k=diag_k+1)
+                diag_count[diag_k] <= 64'b0;
+        end else begin
+            diag_flags_q <= (DIAG_PERF_ENABLE != 0) ? diag_flags : 15'b0;
+            diag_target_pc_q <= (DIAG_PERF_ENABLE != 0) ? diag_target_pc : 32'b0;
+            diag_pending_pc_q <= (DIAG_PERF_ENABLE != 0) ? diag_pending_pc : 32'b0;
+            diag_buffer_pc_q <= (DIAG_PERF_ENABLE != 0) ? diag_buffer_pc : 32'b0;
+            diag_wait_q <= (DIAG_PERF_ENABLE != 0) ? wait_events : 3'b0;
+            diag_sample_q <= (DIAG_PERF_ENABLE != 0) && sample;
+            diag_other_retire_q <= (classification == 8) && events[0];
+            diag_start_q <= start_q;
+            // Track across ROI boundaries. A trap/MRET supersedes branch recovery.
+            // Completing the OLD I request ends this occupancy, even on turnover.
+            if (diag_flags_q[1] || !diag_flags_q[2] || diag_flags_q[3])
+                diag_old_i_active <= 1'b0;
+            else if (diag_flags_q[0])
+                diag_old_i_active <= 1'b1;
+            diag_delta_q[2:0] <= {3{diag_sample_q}} & diag_wait_q;
+            diag_delta_q[3] <= diag_sample_q && !diag_flags_q[1] &&
+                (diag_flags_q[0] || diag_old_i_active) && diag_flags_q[2] && !diag_flags_q[3];
+            diag_delta_q[4] <= diag_sample_q && diag_flags_q[7] && diag_flags_q[8] &&
+                !diag_flags_q[9] && !diag_flags_q[10] && diag_flags_q[11] &&
+                !diag_flags_q[12] && diag_flags_q[13] && !diag_flags_q[14] && !diag_flags_q[1];
+            diag_delta_q[5] <= diag_sample_q && diag_other_retire_q;
+            // Buffer wins if both sources contain the target on the same edge.
+            diag_delta_q[6] <= diag_sample_q && diag_flags_q[0] && diag_buffer_match;
+            diag_delta_q[7] <= diag_sample_q && diag_flags_q[0] &&
+                !diag_buffer_match && diag_response_match;
+            if (clear_q) begin
+                for (diag_k=0; diag_k<8; diag_k=diag_k+1)
+                    diag_count[diag_k] <= 64'b0;
+            end else begin
+                for (diag_k=0; diag_k<8; diag_k=diag_k+1) begin
+                    if (diag_start_q)
+                        diag_count[diag_k] <= diag_delta_q[diag_k] ? 64'd1 : 64'd0;
+                    else if (diag_delta_q[diag_k])
+                        diag_count[diag_k] <= diag_count[diag_k] + 64'd1;
+                end
             end
         end
     end

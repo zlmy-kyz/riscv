@@ -1,0 +1,122 @@
+{
+  "status": "ONE_INPUT_CNN_SCORES_VERIFIED_IMAGE_COLOR_DOTS_UNRESOLVED",
+  "raw_replay_verified": true,
+  "CNN_scores": [
+    -19,
+    -179,
+    107,
+    149,
+    -244,
+    163,
+    138,
+    -78,
+    115,
+    155
+  ],
+  "cnn_cycles": 584012,
+  "cnn_ms": 6.229461333333333,
+  "PP_CRC": "71fe306c",
+  "RGB565_expansion_valid_pixels": 9216,
+  "pixels": 9216,
+  "heuristic": {
+    "ROI": "x30..92,y2..44 inclusive, visually neutral background; not a known reference image",
+    "green_MSB_toggle_restores_near_neutral": 234,
+    "examples": [
+      {
+        "x": 56,
+        "y": 2,
+        "RGB": [
+          148,
+          12,
+          140
+        ],
+        "hypothetical_G_if_green_MSB_toggled": 142
+      },
+      {
+        "x": 58,
+        "y": 2,
+        "RGB": [
+          148,
+          16,
+          132
+        ],
+        "hypothetical_G_if_green_MSB_toggled": 146
+      },
+      {
+        "x": 60,
+        "y": 2,
+        "RGB": [
+          132,
+          12,
+          132
+        ],
+        "hypothetical_G_if_green_MSB_toggled": 142
+      },
+      {
+        "x": 69,
+        "y": 2,
+        "RGB": [
+          148,
+          20,
+          140
+        ],
+        "hypothetical_G_if_green_MSB_toggled": 150
+      },
+      {
+        "x": 73,
+        "y": 2,
+        "RGB": [
+          148,
+          24,
+          140
+        ],
+        "hypothetical_G_if_green_MSB_toggled": 154
+      },
+      {
+        "x": 81,
+        "y": 2,
+        "RGB": [
+          148,
+          28,
+          140
+        ],
+        "hypothetical_G_if_green_MSB_toggled": 158
+      },
+      {
+        "x": 53,
+        "y": 3,
+        "RGB": [
+          148,
+          16,
+          132
+        ],
+        "hypothetical_G_if_green_MSB_toggled": 146
+      },
+      {
+        "x": 55,
+        "y": 3,
+        "RGB": [
+          148,
+          12,
+          140
+        ],
+        "hypothetical_G_if_green_MSB_toggled": 142
+      }
+    ]
+  },
+  "inference": "Likely upstream bit corruption; RGB565 bit10 is green MSB, carried by high-byte DVP D2. No source RGB565 dump in this run, cannot localize between sensor/DVP/capture/source DDR/PP input.",
+  "excluded_by_evidence": "PNG conversion and recorded UART corruption; CNN matching scores are not proof of correct image",
+  "source_SHA256": {
+    "rgb96.bin": "97c2c5597b57ec1c93e3aa715c8a00da66367474845abba40b5b3530b7b5ebbf",
+    "rgb96.png": "2e4485a36aa2365216c145ae8a18ec652a268b4c2379beeab69af6085093684c",
+    "uart.rx.bin": "c449907bf7c4f32d49609b7228b8eb4ab411d825f84bf23ca263fcd6ae638dda",
+    "uart.tx.bin": "0791abbe1a03f22a5ff30031ab7101eaf65d8788faa67c12b4bd44c7dd7750a6",
+    "result.json": "d92bb3d1f24985594f8268887e0d8c31512342c7f2a89899c84668b7f5d332d7",
+    "comparison.json": "5435a1811c6d464f0df59d53111de8e09eb249fcb96bfb3591b523601d34ba4b"
+  },
+  "timing": "PENDING_USER_CONFIRMATION",
+  "key_HDL": "NOT_COMPLETED",
+  "RTL_modified": false,
+  "PDS_started": false,
+  "next_minimum": "Check latest PCLK setup/hold and actual IO-FF packing; same-job source RGB565 vs PP RGB96 or sensor fixed color bars to localize; no historical full regressions"
+}

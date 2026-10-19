@@ -1,0 +1,12 @@
+[
+  {
+    "address": "127.0.0.1",
+    "result": "listen_connect_ok"
+  },
+  {
+    "step": "connect",
+    "result": "failed",
+    "address": "::1",
+    "error": "System.Management.Automation.MethodInvocationException: Exception calling \"Wait\" with \"1\" argument(s): \"One or more errors occurred. (以一种访问权限不允许的方式做了一个访问套接字的尝试。)\"\r\n ---> System.AggregateException: One or more errors occurred. (以一种访问权限不允许的方式做了一个访问套接字的尝试。)\r\n ---> System.Net.Sockets.SocketException (10013): 以一种访问权限不允许的方式做了一个访问套接字的尝试。\r\n   at System.Net.Sockets.Socket.AwaitableSocketAsyncEventArgs.ThrowException(SocketError error, CancellationToken cancellationToken)\r\n   at System.Net.Sockets.Socket.AwaitableSocketAsyncEventArgs.System.Threading.Tasks.Sources.IValueTaskSource.GetResult(Int16 token)\r\n   at System.Threading.Tasks.ValueTask.ValueTaskSourceAsTask.<>c.<.cctor>b__4_0(Object state)\r\n--- End of stack trace from previous location ---\r\n   at System.Net.Sockets.TcpClient.CompleteConnectAsync(Task task)\r\n   --- End of inner exception stack trace ---\r\n   at System.Threading.Tasks.Task.ThrowIfExceptional(Boolean includeTaskCanceledExceptions)\r\n   at System.Threading.Tasks.Task.Wait(Int32 millisecondsTimeout, CancellationToken cancellationToken)\r\n   at CallSite.Target(Closure, CallSite, Object, Int32)\r\n   --- End of inner exception stack trace ---\r\n   at System.Management.Automation.ExceptionHandlingOps.CheckActionPreference(FunctionContext funcContext, Exception exception)\r\n   at System.Management.Automation.Interpreter.ActionCallInstruction`2.Run(InterpretedFrame frame)\r\n   at System.Management.Automation.Interpreter.EnterTryCatchFinallyInstruction.Run(InterpretedFrame frame)\r\n   at System.Management.Automation.Interpreter.EnterTryCatchFinallyInstruction.Run(InterpretedFrame frame)"
+  }
+]

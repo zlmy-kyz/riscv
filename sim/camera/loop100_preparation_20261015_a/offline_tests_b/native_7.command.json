@@ -1,0 +1,12 @@
+{
+  "argv": [
+    "D:\\riscv\\RISCV\\sim\\camera\\loop100_preparation_20261015_a\\offline_tests_b\\native_firmware.exe",
+    "7",
+    "4294967245",
+    "D:\\riscv\\RISCV\\sim\\camera\\key\\generated\\frame1.bin",
+    "D:\\riscv\\RISCV\\sim\\camera\\key\\generated\\frame2.bin",
+    "ad4e00c3",
+    "68c5601b"
+  ],
+  "returncode": 0
+}

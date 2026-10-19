@@ -1,0 +1,10 @@
+{
+  "tests/camera_preprocess_uart/main.c": "b79bc8b30fa2c35801ea4764a19d32af3d72f7728742ef5bd8cd718506707c58",
+  "tests/camera_preprocess_uart/startup.S": "de7f661eea977dcc17310d05fe0dd6dc5057e28b64200e8e8e0695f5587114a3",
+  "tests/camera_preprocess_uart/linker.ld": "7424d67ed5405349c97c84e8466b32dba58c51a2feb0a49221ab2700269452ec",
+  "tests/camera_preprocess_uart/pp01_wire.c": "3ad54d191df04d863d46b65c4ec94627c702d6018e5abc378fb8feb6c54d1531",
+  "tests/camera_preprocess_uart/pp01_wire.h": "bf50866d8868dc66dbffee209197ccd9d07b56c964e2e90115719c68fbc2d0f5",
+  "tests/camera_preprocess_uart/preprocess_ref.c": "adbaa8f78448fb91af0394bcb1b75e9df1853b2eb5bdb08fe39c0f2af9a49af5",
+  "tests/camera_preprocess_uart/preprocess_ref.h": "df5b0219d78b8b7122504d213657f442521c9afe3680609df5d713ce20742b80",
+  "tools/camera_preprocess_uart/reference.py": "e3ed9830a91f62bde2115299bc0e0c892d01462ccda94e8a7f23a064e23d5d03"
+}

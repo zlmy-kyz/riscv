@@ -1,0 +1,107 @@
+{
+  "status": "EIGHT_BARS_PRESENT_NONUNIFORM_CYAN_AND_RED_NOT_CLEAN_PATTERN_PASS",
+  "user_reports_stable_bars": true,
+  "single_frame_only": true,
+  "source_sha256": "9997a8d0c756505213a9f709348fbc14c01c6eac3005218fe36d636afe8228a1",
+  "regions": [
+    {
+      "stripe": "white",
+      "roi": [
+        20,
+        20,
+        125,
+        700
+      ],
+      "values": {
+        "ffff": 71400
+      }
+    },
+    {
+      "stripe": "yellow",
+      "roi": [
+        170,
+        20,
+        285,
+        700
+      ],
+      "values": {
+        "ffe5": 78200
+      }
+    },
+    {
+      "stripe": "cyan",
+      "roi": [
+        335,
+        20,
+        450,
+        700
+      ],
+      "values": {
+        "2efc": 39136,
+        "2ffc": 39064
+      }
+    },
+    {
+      "stripe": "green",
+      "roi": [
+        500,
+        20,
+        610,
+        700
+      ],
+      "values": {
+        "1fe0": 74800
+      }
+    },
+    {
+      "stripe": "magenta",
+      "roi": [
+        665,
+        20,
+        775,
+        700
+      ],
+      "values": {
+        "e01f": 74800
+      }
+    },
+    {
+      "stripe": "red",
+      "roi": [
+        830,
+        20,
+        940,
+        700
+      ],
+      "values": {
+        "d002": 561,
+        "d003": 74239
+      }
+    },
+    {
+      "stripe": "blue",
+      "roi": [
+        995,
+        20,
+        1100,
+        700
+      ],
+      "values": {
+        "001a": 71400
+      }
+    },
+    {
+      "stripe": "black",
+      "roi": [
+        1160,
+        20,
+        1260,
+        700
+      ],
+      "values": {
+        "0020": 68000
+      }
+    }
+  ],
+  "interpretation": "Cyan xor 0100 and red xor 0001 map to DVP D0 in high/low RGB565 bytes. Candidate signal/format/ISP issue, not proven physical fault. No RTL change."
+}

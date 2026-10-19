@@ -1,0 +1,92 @@
+{
+  "status": "STATIC_SOURCE_IDENTITY_AND_INTEGRATION_CHECKED_FUNCTIONAL_PENDING",
+  "date": "2026-10-15",
+  "original_reference_files_unchanged": 46,
+  "config_entries": 244,
+  "camera_pads": 14,
+  "active_existing_pad_collisions": 0,
+  "hdl_simulation_executed": false,
+  "pds_executed": false,
+  "board_executed": false,
+  "inputs": [
+    {
+      "path": "myriscv/camera_ddr_write_arbiter.v",
+      "sha256": "0b648c63e22f67390e3f88020fc47526f006a818494727bd1970ed974bd7ed9a"
+    },
+    {
+      "path": "myriscv/camera_mmio.v",
+      "sha256": "2d138457b6a089c09fa437f19591924e6d9a89acbd85f51fc7707028734d9fa4"
+    },
+    {
+      "path": "myriscv/ov5640_capture.v",
+      "sha256": "df15ce6a7421474d122f7bfe4dc134938382859bb612995a21ea2751269f3814"
+    },
+    {
+      "path": "myriscv/ov5640_config.v",
+      "sha256": "49e1e33c114d9f933d34b2f50991f5bc8071e65bbf97d195d78d037a0f328b05"
+    },
+    {
+      "path": "myriscv/ov5640_config_rom.v",
+      "sha256": "61d9eead85eb5ace1479e6f145a5456534eb9dcc2521abf1fa6355e64919589b"
+    },
+    {
+      "path": "myriscv/ov5640_sccb.v",
+      "sha256": "3f95034e751f1c7a6bb95a916fbebe4caaf35692eb3f0b1d80b675171dffa641"
+    },
+    {
+      "path": "myriscv/afifo_16i_64o_512.v",
+      "sha256": "f94f2a217531e148ba40664071eea3ec8e6cc0dafed93da310a6928c52d61546"
+    },
+    {
+      "path": "myriscv/ipm2l_fifo_v1_10_afifo_16i_64o_512.v",
+      "sha256": "7e4cebffe55f254c8face5204278207b075ffb67c9dce30ac54d873a3c165908"
+    },
+    {
+      "path": "myriscv/ipm2l_fifo_ctrl_v1_1_afifo_16i_64o_512.v",
+      "sha256": "7ee63df3926cae2c4381192e8438ec732867b63c402010d693694b8cf494e054"
+    },
+    {
+      "path": "myriscv/ipm2l_sdpram_v1_10_afifo_16i_64o_512.v",
+      "sha256": "cf6b8c89a6b688128afa8d6e7a1b62d16144c241ec97e013336d6e12ec32ed6e"
+    },
+    {
+      "path": "myriscv/board_top.v",
+      "sha256": "d3ebb7b2bd50cac3cf8bbd64193300e4fd7f0149a4b15494b9f59c569eecff6f"
+    },
+    {
+      "path": "myriscv/soc_ddr3_top.v",
+      "sha256": "baa80b645a49f07d7ff1fc017051b3c7f6eb8861d8fbc14ab49b7b108363b33c"
+    },
+    {
+      "path": "myriscv/soc_top.v",
+      "sha256": "7338f95aad097485ee02644470ea2116ae2fd5d23af34d1314f65d51a66ada4d"
+    },
+    {
+      "path": "myriscv/data_bus_interconnect.v",
+      "sha256": "0c88befcef8867033b94db928c2a40f8d3ecf96802d9b171aa1b241f48b5874e"
+    },
+    {
+      "path": "myriscv/inst_bus_interconnect.v",
+      "sha256": "b57afda0a071fd842ea1bcb01ad678e487a4616777ddd86595d81c6f4acfc73c"
+    },
+    {
+      "path": "myriscv/dual_sram_to_pango_ddr_bridge.v",
+      "sha256": "d99a137a228ef7cacf883885779f9482d588aac5c23c303b64eb64c33148a8f1"
+    },
+    {
+      "path": "RISCV.pds",
+      "sha256": "9187a6515624f6b915d23d057f4b637386569399ed6032b78e030bf9c97e6a9b"
+    },
+    {
+      "path": "fdc/camera_single.fdc",
+      "sha256": "5833fd1ca363e5888119ef6aa7550033169ca950b1d36c2502a06f037485ba77"
+    }
+  ],
+  "syntax_scope": "iverilog -g2005 -tnull -i -I myriscv -s board_top myriscv/*.v; missing vendor/IP modules ignored; no simulation",
+  "limitations": [
+    "PDS timing and CDC endpoint binding pending",
+    "DVP fall-edge 0..3ns input delay is a design budget, not measured sensor/PCB timing",
+    "FIFO RAM local portability and constant-CS sensitivity changes require vendor simulation verification",
+    "Functional protocol/FIFO order/CRC/real CPU read verification belongs to Sol after timing"
+  ]
+}

@@ -1,0 +1,81 @@
+{
+  "status": "TASK036_DIRECT_BOARD_TOOL_READY_NOT_TIMING_OR_BOARD_PASS",
+  "date": "2026-10-18",
+  "design_sha256": {
+    "myriscv/soc_top.v": "cd3d820aee9ad2572e52972ba4f8942221054d42ea7457e87f7517a90322232b",
+    "myriscv/dual_sram_to_pango_ddr_bridge.v": "4d628cfa4e9f68e18671b1e42399ceaddcb2ddabeca3d9b505e5d632821db589",
+    "myriscv/inst_bram_adapter.v": "fa4ac709ef35b606f02f17b96383f5f0c0f09bd76bba1af8065343e2e9456b7d"
+  },
+  "static_manifest_sha256": "ba3c9a869642fc98b34f7a1f4af8ffe346fa2c995d9d2a1045e46cfecbc558a1",
+  "baseline_review_sha256": "18f1ab67fbbd62f92a1169b4f005dc6d716f265fccfbd3145d3bf06d7a354d4b",
+  "source_identity_entries": 76,
+  "dynamic_RTL_simulation": "NOT_RUN",
+  "post_repair_timing": "NOT_REVIEWED_USER_DIRECT_BOARD_REQUEST",
+  "full_protocol_reset_acceptance": "NOT_CLAIMED",
+  "per_round_reprogram_same_final036_bitstream": true,
+  "clock_hz": 93750000,
+  "frequency_changed": false,
+  "tool_sha256": {
+    "tools/uart_loader/candidates/perf_2b/run_task036_measurement.py": "21e7068c57d0beecf1891b4ddba87f1af0b956fc709adb96210793f4896812bf",
+    "tools/uart_loader/candidates/perf_2b/run_task036_measurements.ps1": "a852c7d1f85784c1e0b094d0e7c77e0e1fc898e6f8a8c4b36ab4cad68ae8d9ba"
+  },
+  "commands": [
+    {
+      "argv": [
+        "C:/python/python.exe",
+        "-B",
+        "D:\\riscv\\RISCV\\tools\\uart_loader\\candidates\\perf_2b\\run_task036_measurement.py",
+        "--check-inputs"
+      ],
+      "cwd": "D:\\riscv\\RISCV",
+      "exit_code": 0
+    },
+    {
+      "argv": [
+        "powershell.exe",
+        "-NoProfile",
+        "-File",
+        "D:\\riscv\\RISCV\\tools\\uart_loader\\candidates\\perf_2b\\run_task036_measurements.ps1",
+        "-Port",
+        "COM9",
+        "-LogDirectory",
+        "D:\\riscv\\RISCV\\sim\\cpu_request_presample\\board_tool_preparation_20261018_a\\plans",
+        "-PlanOnly"
+      ],
+      "cwd": "D:\\riscv\\RISCV",
+      "exit_code": 0
+    }
+  ],
+  "plans_and_offline_QA": {
+    "performance_300": {
+      "plan_sha256": "a53bc1cf554f65e63a343d0daab5518aa5b6ac302ead8c94e687985e54a11dac",
+      "responses": 123,
+      "run_count": 1,
+      "serial_opened": false,
+      "bin_sha256": "677ee766fd0fc34d1558d778a343743a1cd9287ecdbbc182cb4681af3374517d",
+      "transport_equals_035": true,
+      "synthetic_relabelled_035_parser_fixture_only": {
+        "source_sha256": "27a463afbbfb1386e863c15df7797d33097e8fc6d48a0b0c71eb793c057b8a0f",
+        "zero_baseline_delta": true,
+        "corrupt_counter_rejected": true,
+        "is_task036_board_evidence": false
+      }
+    },
+    "validation_300": {
+      "plan_sha256": "5663c837d3e3eabdd4fdc0a91dfe1ed1c17a0bed3221b4aa77db6a60e56a7c43",
+      "responses": 123,
+      "run_count": 1,
+      "serial_opened": false,
+      "bin_sha256": "461c635c46c86c8e719ced403b045bca468ded7299870bf2f87f8547ce11719b",
+      "transport_equals_035": true,
+      "synthetic_relabelled_035_parser_fixture_only": {
+        "source_sha256": "a99798938a8f870000c9a9825d1df574a8fda0b60e1671c9a6cbd16a72f86228",
+        "zero_baseline_delta": true,
+        "corrupt_counter_rejected": true,
+        "is_task036_board_evidence": false
+      }
+    }
+  },
+  "serial_opened": false,
+  "RTL_modified": false
+}

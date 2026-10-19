@@ -1,0 +1,17 @@
+{
+  "status": "USER_SELECTED_LATEST_EX_CPU_WORKTREE_RESTORED_NOT_FUNCTIONAL_FIX",
+  "date": "2026-10-18",
+  "target": "myriscv/mycpu_sync.v",
+  "head": "ed52ef624554348c2b11e6943671910845b7e04c",
+  "before_sha256": "b1114fa388b0da4a3c914da38f1b169d607b8ebed839dd018eab37fd0f4a41d3",
+  "after_sha256": "ef6bfec7853f6b0e93f976c7038ad25cdb4f6e04b14251331fdbf79906cc87e6",
+  "other_myriscv_files_unchanged": 39,
+  "git_index_unchanged": true,
+  "staged_prior_revert_preserved": true,
+  "verification": "Exact bytes equal HEAD and archived reviewed EX candidate",
+  "limits": [
+    "Restoration does not fix serial-drain suspect or resolve the failed P300 trial.",
+    "Existing staged ID rollback remains in the Git index; PDS reads restored working-tree EX source.",
+    "No simulation, PDS, bitstream generation, serial operation or Git commit performed."
+  ]
+}

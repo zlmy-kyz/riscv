@@ -1,0 +1,15 @@
+{
+  "status": "USER_AUTHORIZED_BOARD_DIAGNOSTIC_TIMING_PENDING",
+  "firmware_sha256": "d08909dd14a5226c4a8ae58a6d07b8f3c7d31e46b4d66d6a9e9917a44153bff4",
+  "firmware_manifest": "tests/cnn_digits_diag/build/diag_20261016_c/manifest.json",
+  "model_id": "05a032af",
+  "model_crc": "0ca5949e",
+  "ready_review": "sim/cnn/board_diag_20261016_a/ready_review.json",
+  "ready_review_sha256": "ea7dc3238e02b4d778e04b6dcfb9b256a59aa8c24a62a40e377e811891f68243",
+  "user_must_generate_and_download_latest_RAM_plus1_DVP_IO_repaired_bitstream": true,
+  "PDS_or_bitstream_receipt_required": false,
+  "key_HDL": "NOT_COMPLETED",
+  "timing": "PENDING_USER_CONFIRMATION",
+  "board": "NOT_RUN",
+  "input_lock": "software/package SHA only; no claim of hardware functional PASS"
+}

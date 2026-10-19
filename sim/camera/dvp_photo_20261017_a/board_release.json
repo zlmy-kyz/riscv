@@ -1,0 +1,13 @@
+{
+  "status": "USER_AUTHORIZED_NEW_DVP_TEST_BOARD_DIAGNOSTIC",
+  "firmware_sha256": "2f72e829b3044e1ce8f5996d6b9ddb39877c3c6f15048cf9a040b64bd78d7bd4",
+  "hardware_manifest_sha256": "6bd09e38373243d62aede3f3e0088918acadb7d37c831096512c69455c80b110",
+  "tool_sha256": "1720b26326222294c02d7b078f91d4e829d3a867c21325b5d01bb2e4becc626e",
+  "ready_review": "sim/camera/dvp_photo_20261017_a/ready_review.json",
+  "ready_review_sha256": "86b965dfc5a5bf4eb0378be0abc816bc46d450700b7df9a17e505bde9030b6d6",
+  "new_bitstream_required": true,
+  "connector": "J10",
+  "PDS_or_bitstream_receipt_required": false,
+  "key_HDL": "NOT_COMPLETED",
+  "board": "NOT_RUN"
+}

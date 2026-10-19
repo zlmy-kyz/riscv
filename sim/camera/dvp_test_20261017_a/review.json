@@ -1,0 +1,147 @@
+{
+  "status": "DVP_TEST_CONFIGURATION_STATIC_READY_PENDING_USER_PDS_BOARD",
+  "changed": [
+    "myriscv\\board_top.v",
+    "myriscv\\camera_mmio.v",
+    "myriscv\\ov5640_config.v",
+    "myriscv\\ov5640_config_rom.v",
+    "myriscv\\soc_ddr3_top.v"
+  ],
+  "after_sha256": {
+    "myriscv\\board_top.v": "4ccbc2fbbafa8b8f04626bd693ae917db6ce5154b3d78b2630802ff2db2d77e1",
+    "myriscv\\camera_mmio.v": "f632551193f1e43bbc1b863c4e7406e33d5d4e15c843270309f93dc9a202f244",
+    "myriscv\\ov5640_config.v": "affd244fd66625f4b30ec04a4eb94824872835afa67ac51bd9db5a5120fa2b43",
+    "myriscv\\ov5640_config_rom.v": "059e6a614d1f854ccc2360cf013d95fb192d04e289241285f15dbbcb4927896d",
+    "myriscv\\soc_ddr3_top.v": "531e5c5e7f77f4d6d39d00d2a13b87611cb53af78e32872baad36558d5349306"
+  },
+  "checks": {
+    "board": {
+      "command": [
+        "D:/iverilog/bin/iverilog.exe",
+        "-g2005",
+        "-tnull",
+        "-I",
+        "myriscv",
+        "-i",
+        "-s",
+        "board_top",
+        "myriscv\\afifo_16i_64o_512.v",
+        "myriscv\\alu.v",
+        "myriscv\\board_top.v",
+        "myriscv\\br_alu.v",
+        "myriscv\\camera_ddr_write_arbiter.v",
+        "myriscv\\camera_mmio.v",
+        "myriscv\\cnn_digits_engine.v",
+        "myriscv\\cnn_gap16.v",
+        "myriscv\\cnn_int8_mac.v",
+        "myriscv\\cnn_mmio.v",
+        "myriscv\\cnn_requantize.v",
+        "myriscv\\cnn_rgb96_gray32.v",
+        "myriscv\\csr_file.v",
+        "myriscv\\data_bram_adapter.v",
+        "myriscv\\data_bus_interconnect.v",
+        "myriscv\\dual_sram_to_pango_ddr_bridge.v",
+        "myriscv\\inst_bram_adapter.v",
+        "myriscv\\inst_bus_interconnect.v",
+        "myriscv\\ipm2l_fifo_ctrl_v1_1_afifo_16i_64o_512.v",
+        "myriscv\\ipm2l_fifo_v1_10_afifo_16i_64o_512.v",
+        "myriscv\\ipm2l_sdpram_v1_10_afifo_16i_64o_512.v",
+        "myriscv\\l_alu.v",
+        "myriscv\\mycpu_sync.v",
+        "myriscv\\ov5640_capture.v",
+        "myriscv\\ov5640_config.v",
+        "myriscv\\ov5640_config_rom.v",
+        "myriscv\\ov5640_sccb.v",
+        "myriscv\\preprocess_ddr_read_arbiter.v",
+        "myriscv\\preprocess_mmio.v",
+        "myriscv\\regfile.v",
+        "myriscv\\reset_button_debounce.v",
+        "myriscv\\simple_mmio.v",
+        "myriscv\\soc_ddr3_top.v",
+        "myriscv\\soc_top.v",
+        "myriscv\\topcpu_instrom.v",
+        "myriscv\\uart_mmio.v",
+        "myriscv\\uart_rx.v",
+        "myriscv\\uart_rx_fifo.v",
+        "myriscv\\uart_tx.v"
+      ],
+      "exit": 0,
+      "output": "myriscv\\board_top.v:95: warning: output port core_clk is coerced to inout.\nmyriscv\\board_top.v:95: warning: output port ddr_init_done is coerced to inout.\n"
+    },
+    "live": {
+      "command": [
+        "D:/iverilog/bin/iverilog.exe",
+        "-g2005",
+        "-tnull",
+        "-I",
+        "myriscv",
+        "-s",
+        "ov5640_config",
+        "myriscv/ov5640_config.v",
+        "myriscv/ov5640_config_rom.v",
+        "myriscv/ov5640_sccb.v"
+      ],
+      "exit": 0,
+      "output": ""
+    },
+    "pre_isp": {
+      "command": [
+        "D:/iverilog/bin/iverilog.exe",
+        "-g2005",
+        "-tnull",
+        "-I",
+        "myriscv",
+        "-s",
+        "ov5640_config",
+        "-P",
+        "ov5640_config.COLORBAR_ENABLE=1",
+        "myriscv/ov5640_config.v",
+        "myriscv/ov5640_config_rom.v",
+        "myriscv/ov5640_sccb.v"
+      ],
+      "exit": 0,
+      "output": ""
+    },
+    "dvp": {
+      "command": [
+        "D:/iverilog/bin/iverilog.exe",
+        "-g2005",
+        "-tnull",
+        "-I",
+        "myriscv",
+        "-s",
+        "ov5640_config",
+        "-P",
+        "ov5640_config.DVP_TEST_ENABLE=1",
+        "myriscv/ov5640_config.v",
+        "myriscv/ov5640_config_rom.v",
+        "myriscv/ov5640_sccb.v"
+      ],
+      "exit": 0,
+      "output": ""
+    },
+    "both_dvp_priority": {
+      "command": [
+        "D:/iverilog/bin/iverilog.exe",
+        "-g2005",
+        "-tnull",
+        "-I",
+        "myriscv",
+        "-s",
+        "ov5640_config",
+        "-P",
+        "ov5640_config.DVP_TEST_ENABLE=1",
+        "-P",
+        "ov5640_config.COLORBAR_ENABLE=1",
+        "myriscv/ov5640_config.v",
+        "myriscv/ov5640_config_rom.v",
+        "myriscv/ov5640_sccb.v"
+      ],
+      "exit": 0,
+      "output": ""
+    }
+  },
+  "hdl_simulation": false,
+  "pds_run": false,
+  "board_run": false
+}

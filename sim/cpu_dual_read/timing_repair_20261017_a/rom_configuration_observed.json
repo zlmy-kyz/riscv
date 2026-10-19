@@ -1,0 +1,11 @@
+{
+  "source": "ipcore\\inst_rom\\inst_rom.v",
+  "sha256": "593c8f941f86f9450c6367b2f52f325556dc62a7480758151b8ff454f7596628",
+  "observation": "Current IP wrapper, read-only after adapter edit; no claim of pre-edit snapshot.",
+  "OUTPUT_REG": 0,
+  "FAB_REG": 0,
+  "ADDR_WIDTH": 12,
+  "DATA_WIDTH": 32,
+  "CLK_EN": 0,
+  "ADDR_STROBE_EN": 0
+}

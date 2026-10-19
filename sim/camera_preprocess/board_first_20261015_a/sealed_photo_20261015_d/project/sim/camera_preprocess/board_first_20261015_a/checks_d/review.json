@@ -1,0 +1,166 @@
+{
+  "status": "PHOTO_SOFTWARE_NATIVE_AND_WIRE_PASS_NOT_BOARD",
+  "native_cases": {
+    "red": {
+      "status": 2,
+      "stream_starts": 1,
+      "pp_starts": 1,
+      "releases": 2,
+      "RX_bytes": 1833,
+      "clock_elapsed": 7734736000,
+      "software_elapsed": 7734732000,
+      "final_state": 304
+    },
+    "green": {
+      "status": 2,
+      "stream_starts": 1,
+      "pp_starts": 1,
+      "releases": 2,
+      "RX_bytes": 1833,
+      "clock_elapsed": 7734736000,
+      "software_elapsed": 7734732000,
+      "final_state": 304
+    },
+    "blue": {
+      "status": 2,
+      "stream_starts": 1,
+      "pp_starts": 1,
+      "releases": 2,
+      "RX_bytes": 1833,
+      "clock_elapsed": 7734736000,
+      "software_elapsed": 7734732000,
+      "final_state": 304
+    },
+    "coordinate": {
+      "status": 2,
+      "stream_starts": 1,
+      "pp_starts": 1,
+      "releases": 2,
+      "RX_bytes": 1833,
+      "clock_elapsed": 7734736000,
+      "software_elapsed": 7734732000,
+      "final_state": 304
+    },
+    "no_tail": {
+      "status": 2,
+      "stream_starts": 1,
+      "pp_starts": 1,
+      "releases": 1,
+      "RX_bytes": 1833,
+      "clock_elapsed": 7734736000,
+      "software_elapsed": 7734732000,
+      "final_state": 256
+    },
+    "pp_error": {
+      "status": 3,
+      "stream_starts": 1,
+      "pp_starts": 1,
+      "releases": 0,
+      "RX_bytes": 2,
+      "clock_elapsed": 1532000,
+      "software_elapsed": 1528000,
+      "final_state": 299
+    },
+    "timeout": {
+      "status": 3,
+      "stream_starts": 1,
+      "pp_starts": 1,
+      "releases": 0,
+      "RX_bytes": 2,
+      "clock_elapsed": 13125476000,
+      "software_elapsed": 13125472000,
+      "final_state": 299
+    },
+    "metadata": {
+      "status": 3,
+      "stream_starts": 1,
+      "pp_starts": 1,
+      "releases": 0,
+      "RX_bytes": 2,
+      "clock_elapsed": 1556000,
+      "software_elapsed": 1552000,
+      "final_state": 299
+    },
+    "data": {
+      "status": 3,
+      "stream_starts": 1,
+      "pp_starts": 1,
+      "releases": 0,
+      "RX_bytes": 2,
+      "clock_elapsed": 1960000,
+      "software_elapsed": 1956000,
+      "final_state": 299
+    },
+    "source_crc": {
+      "status": 3,
+      "stream_starts": 1,
+      "pp_starts": 1,
+      "releases": 0,
+      "RX_bytes": 2,
+      "clock_elapsed": 9284000,
+      "software_elapsed": 9280000,
+      "final_state": 299
+    },
+    "pp_crc": {
+      "status": 3,
+      "stream_starts": 1,
+      "pp_starts": 1,
+      "releases": 0,
+      "RX_bytes": 2,
+      "clock_elapsed": 9292000,
+      "software_elapsed": 9288000,
+      "final_state": 299
+    },
+    "ack": {
+      "status": 3,
+      "stream_starts": 1,
+      "pp_starts": 1,
+      "releases": 0,
+      "RX_bytes": 4,
+      "clock_elapsed": 14476000,
+      "software_elapsed": 14472000,
+      "final_state": 299
+    },
+    "release": {
+      "status": 3,
+      "stream_starts": 1,
+      "pp_starts": 1,
+      "releases": 1,
+      "RX_bytes": 1832,
+      "clock_elapsed": 7735132000,
+      "software_elapsed": 7735128000,
+      "final_state": 299
+    }
+  },
+  "rejected": {
+    "synthetic_is_not_board": "REJECTED",
+    "header_crc": "REJECTED",
+    "payload_crc": "REJECTED",
+    "wrong_kind": "REJECTED",
+    "wrong_seq": "REJECTED",
+    "wrong_offset": "REJECTED",
+    "wrong_length": "REJECTED",
+    "short_rx": "REJECTED",
+    "bad_ack": "REJECTED",
+    "bad_summary": "REJECTED",
+    "equal_crc_unequal_bytes": "REJECTED"
+  },
+  "wire_replay": {
+    "status": "PHOTO_RAW_REPLAY_BYTE_CRC_PNG_PASS_VISUAL_PENDING",
+    "evidence_origin": "OFFLINE_SYNTHETIC_TEST",
+    "bytes_compared": 27648,
+    "groups": 1,
+    "source_seq": 1,
+    "source_buf": 0,
+    "packets": 1829,
+    "visual_review": "PENDING",
+    "CRC_is_not_substitute_for_byte_compare": true
+  },
+  "firmware_sha256": "8a7b1c57cce723753ff73fd6c62dd8f8a099d4f1522902bbb3bb0b4a933bb7b3",
+  "manifest_sha256": "1255f0788b0de78a195fe3eea69b366a89322c2746fa2662c6c09ae577d038f5",
+  "native_C_source_sha256": "e9f8a5bc466969c9be91d399d05b7a527d35ebb83855ee849670e825cdd60e7b",
+  "script_sha256": "897da216be6535e66f4b8e204ccc63b27404dbf7e1a60fa6eebafdc8a5ce89a4",
+  "serial_opened": false,
+  "HDL_run": false,
+  "PDS_started": false
+}

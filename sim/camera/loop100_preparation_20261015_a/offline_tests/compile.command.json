@@ -1,0 +1,14 @@
+{
+  "argv": [
+    "D:/mingw64/bin/gcc.exe",
+    "-O2",
+    "-std=c11",
+    "-Wall",
+    "-Wextra",
+    "-Werror",
+    "D:\\riscv\\RISCV\\sim\\camera\\loop100_preparation_20261015_a\\native_harness.c",
+    "-o",
+    "D:\\riscv\\RISCV\\sim\\camera\\loop100_preparation_20261015_a\\offline_tests\\native_firmware.exe"
+  ],
+  "returncode": 1
+}

@@ -1,0 +1,50 @@
+﻿{
+    "tag":  "key_20261018_e",
+    "status":  "PASS",
+    "started":  "2026-10-18T22:50:35",
+    "root":  "D:\\riscv\\RISCV",
+    "sealed_src":  "D:\\riscv\\RISCV\\sim\\write_buffer_two_entry\\key_20261018_e\\src",
+    "legacy":  false,
+    "bridge":  "D:\\riscv\\RISCV\\myriscv\\dual_sram_to_pango_ddr_bridge.v",
+    "params":  {
+                   "Dq":  32,
+                   "Posted":  1,
+                   "Depth":  2,
+                   "Turnover":  1,
+                   "Forward":  1,
+                   "Ruw":  1,
+                   "Icache":  1,
+                   "Dcache":  1,
+                   "Camera":  0,
+                   "Preproc":  0,
+                   "Plane":  0
+               },
+    "tools":  {
+                  "vlib":  "D:\\modelsim\\win64pe\\vlib.exe",
+                  "vlog":  "D:\\modelsim\\win64pe\\vlog.exe",
+                  "vsim":  "D:\\modelsim\\win64pe\\vsim.exe",
+                  "python":  "C:\\Users\\z\u0027l\u0027m\u0027y\u0027k\\.workbuddy\\binaries\\python\\versions\\3.13.12\\python.exe"
+              },
+    "commands":  [
+                     "D:\\modelsim\\win64pe\\vlib.exe work",
+                     "D:\\modelsim\\win64pe\\vlog.exe -sv -work work D:\\riscv\\RISCV\\sim\\write_buffer_two_entry\\key_20261018_e\\src\\vendor\\GTP_GRS.v D:\\riscv\\RISCV\\sim\\write_buffer_two_entry\\key_20261018_e\\src\\vendor\\GTP_DRM36K_E1.v D:\\riscv\\RISCV\\sim\\write_buffer_two_entry\\key_20261018_e\\src\\ipcore\\icache\\rtl\\ipm2l_sdpram_v1_10_icache.v D:\\riscv\\RISCV\\sim\\write_buffer_two_entry\\key_20261018_e\\src\\ipcore\\icache\\icache.v D:\\riscv\\RISCV\\sim\\write_buffer_two_entry\\key_20261018_e\\src\\ipcore\\dcache\\rtl\\ipm2l_sdpram_v1_10_dcache.v D:\\riscv\\RISCV\\sim\\write_buffer_two_entry\\key_20261018_e\\src\\ipcore\\dcache\\dcache.v D:\\riscv\\RISCV\\sim\\write_buffer_two_entry\\key_20261018_e\\src\\myriscv\\dual_sram_to_pango_ddr_bridge.v D:\\riscv\\RISCV\\sim\\write_buffer_two_entry\\key_20261018_e\\src\\tb\\tb_wb2_bridge.sv",
+                     "D:\\modelsim\\win64pe\\vsim.exe -c -quiet -gDQ=32 -gPOSTED=1 -gDEPTH=2 -gTURNOVER=1 -gFORWARD=1 -gRUW=1 -gICACHE=1 -gDCACHE=1 -gCAMERA=0 -gPREPROC=0 -gPLANE=0 work.tb_wb2_bridge -do run -all; quit -f -l vsim.log",
+                     "C:\\Users\\z\u0027l\u0027m\u0027y\u0027k\\.workbuddy\\binaries\\python\\versions\\3.13.12\\python.exe -B D:\\riscv\\RISCV\\sim\\write_buffer_two_entry\\key_20261018_e\\src\\tools\\check_wb2.py D:\\riscv\\RISCV\\sim\\write_buffer_two_entry\\key_20261018_e"
+                 ],
+    "exits":  {
+                  "vlib":  0,
+                  "vlog":  0,
+                  "vsim":  0,
+                  "check":  0
+              },
+    "timeline":  [
+                     "vlib exit=0 0.2s :: vlib.exe work",
+                     "vlog exit=0 0.5s :: vlog.exe -sv -work work D:\\riscv\\RISCV\\sim\\write_buffer_two_entry\\key_20261018_e\\src\\vendor\\GTP_GRS.v D:\\riscv\\RISCV\\sim\\write_buffer_two_entry\\key_20261018_e\\src\\vendor\\GTP_DRM36K_E1.v D:\\riscv\\RISCV\\sim\\write_buffer_two_entry\\key_20261018_e\\src\\ipcore\\icache\\rtl\\ipm2l_sdpram_v1_10_icache.v D:\\riscv\\RISCV\\sim\\write_buffer_two_entry\\key_20261018_e\\src\\ipcore\\icache\\icache.v D:\\riscv\\RISCV\\sim\\write_buffer_two_entry\\key_20261018_e\\src\\ipcore\\dcache\\rtl\\ipm2l_sdpram_v1_10_dcache.v D:\\riscv\\RISCV\\sim\\write_buffer_two_entry\\key_20261018_e\\src\\ipcore\\dcache\\dcache.v D:\\riscv\\RISCV\\sim\\write_buffer_two_entry\\key_20261018_e\\src\\myriscv\\dual_sram_to_pango_ddr_bridge.v D:\\riscv\\RISCV\\sim\\write_buffer_two_entry\\key_20261018_e\\src\\tb\\tb_wb2_bridge.sv",
+                     "vsim exit=0 2.5s :: vsim.exe -c -quiet -gDQ=32 -gPOSTED=1 -gDEPTH=2 -gTURNOVER=1 -gFORWARD=1 -gRUW=1 -gICACHE=1 -gDCACHE=1 -gCAMERA=0 -gPREPROC=0 -gPLANE=0 work.tb_wb2_bridge -do run -all; quit -f -l vsim.log",
+                     "check exit=0 0.5s :: check_wb2.py -B D:\\riscv\\RISCV\\sim\\write_buffer_two_entry\\key_20261018_e\\src\\tools\\check_wb2.py D:\\riscv\\RISCV\\sim\\write_buffer_two_entry\\key_20261018_e"
+                 ],
+    "vsim_result":  "# RESULT: PASS wb2 edges=433 aw=41 w=40 ar=17 r=17 dacc=90 drsp=88 iacc=2 irsp=2",
+    "check_status":  "PASS",
+    "identity_drift":  0,
+    "finished":  "2026-10-18T22:50:38"
+}

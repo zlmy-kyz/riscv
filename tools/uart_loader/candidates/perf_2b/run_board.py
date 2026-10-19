@@ -1,4 +1,4 @@
-"""User-operated PERF2B candidate only. --plan-only/--verify-log never open serial."""
+"""User-operated main PERF2B bitstream. Offline modes never open serial."""
 from pathlib import Path
 import argparse,hashlib,inspect,json,re,sys,time
 ROOT=Path(__file__).resolve().parents[4]
@@ -8,13 +8,14 @@ from application import require_manifest,parse_output
 from plan import make_plan,rvld
 sys.path.insert(0,str(ROOT/'sim/cpu_performance_2b'))
 from check_output import check
-GATE=ROOT/'sim/cpu_performance_2b/build/deployment_gate.json'
+GATE=ROOT/'sim/cpu_performance_2b/build/main_pds_board_20261010_a/deployment_gate.json'
 sha=lambda p:hashlib.sha256(Path(p).read_bytes()).hexdigest()
 def require_gate(path):
-    g=json.loads(GATE.read_text());assert g['status']=='PERF2B_PRE_BOARD_AUDIT_PASS'
+    g=json.loads(GATE.read_text());assert g['status'] in ('PERF2B_PRE_BOARD_AUDIT_PASS','PERF2B_MAIN_PRE_BOARD_AUDIT_PASS')
     rel=Path(path).resolve().relative_to(ROOT).as_posix();assert g['manifests'].get(rel)==sha(path)
     for name,digest in g['input_sha256'].items():assert sha(ROOT/name)==digest,'changed candidate input: '+name
     for name,digest in g['evidence_sha256'].items():assert sha(ROOT/name)==digest,'changed evidence: '+name
+    for row in g.get('frozen_source_copies',[]):assert sha(ROOT/row['archive'])==row['sha256'],'changed frozen input: '+row['archive']
     bit=ROOT/g['bitstream']['path'];assert sha(bit)==g['bitstream']['sha256']
     return g
 def output_parser(info,data,board=False,elapsed=None):
@@ -46,9 +47,11 @@ def verify(path):
     return dict(status='PERF2B_ACTUAL_BOARD_INDEPENDENTLY_VERIFIED',info=info,application=parsed,
         responses=len(rows),run_count=sum(bool(r.get('run')) for r in rows),gate_sha256=sha(GATE),bitstream=g['bitstream'])
 def main():
+    global GATE
     p=argparse.ArgumentParser();p.add_argument('--application',choices=['hello','crc32','performance_1','validation_1','performance_60','validation_60'])
     p.add_argument('--log',type=Path);p.add_argument('--crc-log',type=Path);p.add_argument('--plan-only',action='store_true')
-    p.add_argument('--verify-log',type=Path);p.add_argument('--output',type=Path);a=p.parse_args()
+    p.add_argument('--verify-log',type=Path);p.add_argument('--output',type=Path)
+    p.add_argument('--gate',type=Path,default=GATE);a=p.parse_args();GATE=a.gate.resolve()
     if a.verify_log:
         assert a.output is not None and not a.output.exists() and not a.application
         result=verify(a.verify_log);a.output.parent.mkdir(parents=True,exist_ok=True)
@@ -58,7 +61,7 @@ def main():
     g=json.loads(GATE.read_text());manifest=ROOT/g['applications'][a.application]
     g=require_gate(manifest);info=require_manifest(manifest);rows=make_plan(info)
     result=dict(status='PERF2B_PLAN_ONLY' if a.plan_only else 'RUNNING',evidence_origin='OFFLINE_PLAN_NOT_BOARD' if a.plan_only else 'ACTUAL_SERIAL',
-        application_info=info,manifest_path=manifest.as_posix(),manifest_sha256=sha(manifest),gate_sha256=sha(GATE),bitstream=g['bitstream'],
+        application_info=info,manifest_path=manifest.as_posix(),manifest_sha256=sha(manifest),gate_sha256=sha(GATE),gate_path=GATE.as_posix(),bitstream=g['bitstream'],
         port='COM11',baud=115200,retry_count=0,no_automatic_retry=True,serial_opened=False,records=[],application={},
         FPGA_programming_independently_observed=False,KEY0_independently_observed=False)
     if not a.plan_only and info['kind']=='coremark' and info['iterations']==60:
@@ -70,7 +73,7 @@ def main():
     if a.plan_only:
         result['plan']=rows;a.log.write_text(json.dumps(result,indent=2)+'\n')
         print('RESULT: PASS offline plan; responses=',len(rows),'RUN=1; serial not opened');return
-    print('Use candidate bitstream:',ROOT/g['bitstream']['path'])
+    print('Use audited bitstream:',ROOT/g['bitstream']['path'])
     input('Close serial terminal. Press KEY0, release, wait for DDR ready, then Enter: ')
     result['user_KEY0_confirmation']=True
     try:

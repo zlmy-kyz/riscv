@@ -1,0 +1,38 @@
+{
+  "scores": [
+    -22,
+    -156,
+    86,
+    150,
+    -210,
+    161,
+    125,
+    -62,
+    112,
+    151
+  ],
+  "prediction": 5,
+  "stats": [
+    {
+      "min_acc": -825,
+      "max_acc": 911,
+      "zero": 1066,
+      "saturated": 0,
+      "elements": 2048
+    },
+    {
+      "min_acc": -500,
+      "max_acc": 563,
+      "zero": 420,
+      "saturated": 0,
+      "elements": 1024
+    },
+    {
+      "min_acc": -612,
+      "max_acc": 386,
+      "zero": 265,
+      "saturated": 0,
+      "elements": 512
+    }
+  ]
+}

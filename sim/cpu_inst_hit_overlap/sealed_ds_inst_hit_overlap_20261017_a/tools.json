@@ -1,0 +1,19 @@
+{
+  "simulator_root": "D:\\modelsim\\win64pe",
+  "pango_vendor_root": "C:\\pango\\PDS_2022.2-SP6.4\\arch\\vendor\\pango\\verilog\\simulation",
+  "vsim": "D:\\modelsim\\win64pe\\vsim.exe",
+  "vlog": "D:\\modelsim\\win64pe\\vlog.exe",
+  "vlib": "D:\\modelsim\\win64pe\\vlib.exe",
+  "vsim_version": [
+    "Model Technology ModelSim DE-64 vsim 10.6c Simulator 2017.07 Jul 26 2017"
+  ],
+  "python": "3.13.0",
+  "python_executable": "C:\\python\\python.exe",
+  "platform": "win32",
+  "vsim_sha256": "95fd675a4e174eac67e7972961e8f751807d337ca6e256e3f76ba96e257bc15e",
+  "vsim_bytes": 3450224,
+  "vlog_sha256": "5e1aed9a4e74ec40e954a30068b3780235a3710b33db6a475921133e2f608d7c",
+  "vlog_bytes": 17114992,
+  "vlib_sha256": "521c7dcf73a12ef323db95618127843910f3797f6c684d094d68dcfb4d00a19f",
+  "vlib_bytes": 2624368
+}

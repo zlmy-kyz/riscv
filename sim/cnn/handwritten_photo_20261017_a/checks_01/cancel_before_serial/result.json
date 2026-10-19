@@ -1,0 +1,429 @@
+{
+  "status": "STOPPED_FIRST_FAILURE",
+  "evidence_origin": "ACTUAL_SERIAL",
+  "serial_opened": false,
+  "operator_CAM2_KEY0_confirmation": false,
+  "hardware_bitstream_independently_identified": false,
+  "application": {
+    "status": "CNN_HANDWRITTEN_BUILD_STATIC_AUDIT_PASS",
+    "kind": "cnn_handwritten_photo",
+    "mode": null,
+    "iterations": null,
+    "base": 1073741824,
+    "entry": 1073741824,
+    "bytes": 42568,
+    "crc32": 559406434,
+    "bin_path": "tests/cnn_handwritten_photo/build/handwritten_20261017_b/program.bin",
+    "bin_sha256": "5b3364b064a4687a2e141bef504031fdc31a09d1e681b8cd1518133d4ee9f49c",
+    "elf_path": "tests/cnn_handwritten_photo/build/handwritten_20261017_b/program.elf",
+    "elf_sha256": "2db603c4f6c3ad73de12650554ba6f4aecf5e7e1654728ff788b8655488c7311",
+    "sections": {
+      ".text": {
+        "address": 1073741824,
+        "size": 14184,
+        "type": 1
+      },
+      ".rodata": {
+        "address": 1073756008,
+        "size": 28380,
+        "type": 1
+      },
+      ".data": {
+        "address": 1073784388,
+        "size": 4,
+        "type": 1
+      },
+      ".bss": {
+        "address": 1073784392,
+        "size": 2332,
+        "type": 8
+      }
+    },
+    "symbols": {
+      "_start": 1073741824,
+      "trap_entry": 1073741904,
+      "ticks": 1073741932,
+      "load_words.constprop.0": 1073741996,
+      "dec": 1073742068,
+      "fail": 1073742276,
+      "uart_put": 1073742980,
+      "hex": 1073743264,
+      "text": 1073743368,
+      "hfield": 1073743428,
+      "cam_healthy": 1073743468,
+      "cam_idle_state": 1073743604,
+      "cam_claim": 1073743724,
+      "cam_release": 1073743888,
+      "ledger_add": 1073744048,
+      "cnn_check_model": 1073744272,
+      "identity_stable": 1073744376,
+      "send_packet": 1073744772,
+      "wait_command.constprop.0": 1073745236,
+      "camera_trap": 1073745532,
+      "main": 1073745680,
+      "pp01_crc_init": 1073751516,
+      "pp01_crc_step": 1073751832,
+      "pp01_crc_finish": 1073751872,
+      "pp01_crc_bytes": 1073751880,
+      "pp01_build_header": 1073751956,
+      "__udivdi3": 1073752252,
+      "__umoddi3": 1073754068,
+      "__mulsi3": 1073755792,
+      "__divsi3": 1073755828,
+      "__hidden___udivsi3": 1073755836,
+      "__udivsi3": 1073755836,
+      "__umodsi3": 1073755908,
+      "__modsi3": 1073755960,
+      "model_words": 1073758220,
+      "__clz_tab": 1073784132,
+      "__data_start": 1073784388,
+      "boot_cookie": 1073784388,
+      "__bss_start": 1073784392,
+      "__data_end": 1073784392,
+      "full_source_export": 1073784392,
+      "cur_src_crc": 1073784396,
+      "scores": 1073784400,
+      "prediction": 1073784440,
+      "pp_cycles": 1073784444,
+      "cnn_cycles": 1073784448,
+      "last_discard": 1073784452,
+      "discard_claims": 1073784456,
+      "target_claims": 1073784460,
+      "ledger_n": 1073784464,
+      "ledger_buf": 1073784468,
+      "ledger_seq": 1073784532,
+      "cur_pp_crc": 1073784596,
+      "cur_seq": 1073784600,
+      "cur_buf": 1073784604,
+      "group_no": 1073784608,
+      "program_start": 1073784616,
+      "previous_tick": 1073784624,
+      "elapsed": 1073784632,
+      "failing": 1073784640,
+      "packet": 1073784644,
+      "payload": 1073784676,
+      "crc_table": 1073785700,
+      "__global_pointer$": 1073786436,
+      "__bss_end": 1073786724,
+      "__stack_bottom": 1073803264,
+      "__stack_top": 1073807360
+    },
+    "sp_auipc": {
+      "pc": 1073741840,
+      "value": 1073807376
+    },
+    "instructions_audited": 3546,
+    "clock_hz": 93750000,
+    "groups": 1,
+    "trained_model": {
+      "contract": "digits10_int8_v1",
+      "purpose": "TRAINED_HANDWRITTEN_DIGITS_LOCAL_DATASET",
+      "trained": true,
+      "labels": [
+        "0",
+        "1",
+        "2",
+        "3",
+        "4",
+        "5",
+        "6",
+        "7",
+        "8",
+        "9"
+      ],
+      "model_id": 1284201162,
+      "model_id_hex": "4c8b5aca",
+      "load_words": 6222,
+      "load_bytes": 24888,
+      "load_crc32": 3111424375,
+      "scales": [
+        {
+          "Fin": 7,
+          "Fw": 6,
+          "Fout": 5
+        },
+        {
+          "Fin": 5,
+          "Fw": 5,
+          "Fout": 2
+        },
+        {
+          "Fin": 2,
+          "Fw": 6,
+          "Fout": 0
+        },
+        {
+          "Fin": 0,
+          "Fw": 6,
+          "Fout": 6
+        }
+      ],
+      "shifts": [
+        8,
+        8,
+        8,
+        0
+      ],
+      "weight_layout": "O_KY_KX_I",
+      "activation_layout": "HWC",
+      "weight_offsets": [
+        0,
+        72,
+        1224,
+        5832
+      ],
+      "bias_byte_offsets": [
+        0,
+        32,
+        96,
+        224
+      ],
+      "shapes": [
+        [
+          32,
+          32,
+          1
+        ],
+        [
+          16,
+          16,
+          8
+        ],
+        [
+          8,
+          8,
+          16
+        ],
+        [
+          4,
+          4,
+          32
+        ],
+        [
+          32
+        ],
+        [
+          10
+        ]
+      ],
+      "rounding": "nearest_ties_away_from_zero",
+      "zero_point": 0,
+      "input_fraction_bits": 7,
+      "identity": {
+        "seed": 20261017,
+        "python": "3.13.0 (tags/v3.13.0:60403a5, Oct  7 2024, 09:38:07) [MSC v.1941 64 bit (AMD64)]",
+        "torch": "2.7.1+cu128",
+        "numpy": "2.4.4",
+        "platform": "Windows-11-10.0.26200-SP0",
+        "cuda": "12.8",
+        "gpu": "NVIDIA GeForce RTX 4070 Laptop GPU",
+        "dependencies": {
+          "torch": "2.7.1+cu128",
+          "numpy": "2.4.4",
+          "Pillow": "12.2.0",
+          "filelock": "4.2.0",
+          "typing_extensions": "4.16.0",
+          "sympy": "1.14.0",
+          "networkx": "3.7",
+          "jinja2": "3.1.6",
+          "fsspec": "2026.9.0"
+        },
+        "command": [
+          "tools/cnn_digits_training/train.py",
+          "--data",
+          "sim/cnn/training/handwritten_data_20261017_a",
+          "--out",
+          "sim/cnn/training/handwritten_run_20261017_a"
+        ],
+        "dataset": {
+          "status": "LOCAL_HANDWRITTEN_DATA_PREPARED_NOT_CAMERA_ACCURACY",
+          "seed": 20261017,
+          "dataset_root": "D:\\riscv\\80bfd\\经典手写数字数据集",
+          "images": 5339,
+          "unique_pixels": 5339,
+          "source_bytes": 9941218,
+          "splits": {
+            "train": {
+              "count": 3203,
+              "classes": {
+                "0": 503,
+                "1": 300,
+                "2": 300,
+                "3": 300,
+                "4": 300,
+                "5": 300,
+                "6": 300,
+                "7": 300,
+                "8": 300,
+                "9": 300
+              }
+            },
+            "validation": {
+              "count": 1067,
+              "classes": {
+                "0": 167,
+                "1": 100,
+                "2": 100,
+                "3": 100,
+                "4": 100,
+                "5": 100,
+                "6": 100,
+                "7": 100,
+                "8": 100,
+                "9": 100
+              }
+            },
+            "test": {
+              "count": 1069,
+              "classes": {
+                "0": 169,
+                "1": 100,
+                "2": 100,
+                "3": 100,
+                "4": 100,
+                "5": 100,
+                "6": 100,
+                "7": 100,
+                "8": 100,
+                "9": 100
+              }
+            }
+          },
+          "augmented_train_count": 12812,
+          "augmentation_variants": 4,
+          "preprocessing": "28x28 L -> bicubic 80x80 -> centered white 96RGB -> contract gray32",
+          "augmentation": "train only: side72..84, offset+-4, rotation+-8deg, contrast0.75..1.15, brightness0.8..1",
+          "split_unit": "exact decoded image hash; writer/session identities unavailable; near duplicates not audited",
+          "source_repository": "https://gitcode.com/open-source-toolkit/80bfd.git",
+          "provenance": "Repository README claims Stanford origin; original sample identities not independently established",
+          "sha256": {
+            "dataset.npz": "38e3fd1994b332bbb7fac4d3b7ff8087d0674623489f5440289e6f7795e0d58b",
+            "samples.json": "55c124512f582d30a967f4e1201abca7c2c30743bde2a60235a44097bcf06aa1",
+            "preview.png": "e86959f5669f1689308be7c0b2401f7f37e971d633af32671cbe5c4a88fd93a7"
+          }
+        },
+        "contract_sha256": "b0667c9237075d7a406bd4a32e8fee9bde87e5891c42436fd6cdae17236c0a79",
+        "source_sha256": {
+          "digits10_int8_v1.json": "b0667c9237075d7a406bd4a32e8fee9bde87e5891c42436fd6cdae17236c0a79",
+          "integer_reference.py": "e0584d348d46ea7603912c028a5b59adfb679d1bdbc66edf7aa0b8d426cd83e4",
+          "prepare.py": "89c4c26f78ccd46e13df910a9ed9f15f61fc361858b2cdbc176c4023247e364b",
+          "review.py": "9f8c523615056fd78f9a448a9bc4be64cc6383fb37a4921a3e162a6e34511663",
+          "train.py": "3317ed56879d86a6b29054bdb1da6c49c2083282e640aeb554d8c486c162920b",
+          "单字符数字识别_INT8首版合同_2026-10-16.md": "c23d3950dc0e9a930e7fd7ca90d56e21b875fbf07a7ab378e209422cd7b8cfe9",
+          "数字CNN整网与SoC_ABI1_2026-10-16.md": "2686d02b97da2f7d1f6e3b6509735942e0900a93b108583539bf9888a479683f"
+        },
+        "nondeterminism": "Seed/cudnn deterministic set; cross-version bitwise training reproducibility not claimed"
+      },
+      "camera_accuracy_verified": false,
+      "hardware_verified": false,
+      "sha256": {
+        "weights.bin": "49e5dae4ccf2e4faa82976d88949e79e078d3037f252a3c33158b4b7977cc6e3",
+        "bias.bin": "67f56d428d254095bd1430deac98f7f14ddd7423e7e923ce344214d10f50ccf7",
+        "load_words.bin": "c816999861d52fdd18446c39522c71d277f9221c3c850425af24d2b60df5de36",
+        "load_words.hex": "9ed4edcb7de747921197203f91769f0b969fb67e4af8ccb67ab5b3d1af7ac483"
+      }
+    },
+    "trained_digit_accuracy": false,
+    "timing": "EXISTING_REPORT_MET_BOARD_PHASE_UNMEASURED",
+    "key_HDL": "NOT_COMPLETED",
+    "source_sha256": {
+      "tests/cnn_handwritten_photo/build.py": "f573b4f6dbb2b131a226a78d01743c8f98fcb903ddfa3e3c79f5439d52305b19",
+      "tests/cnn_handwritten_photo/cnn.h": "c173e93d24644e6d20f48c4d7c681bec7e8ed45c615ffc3a5c43b935c1a2db75",
+      "tests/cnn_handwritten_photo/linker.ld": "d89373711a247173fa45b78895d3d0bf3af63bea8f67bf5bcb65f8e7e91a367f",
+      "tests/cnn_handwritten_photo/main.c": "b481719d928aca5efea00d94b8c037ddc77358505c3fb3565f9932d18d9144b3",
+      "tests/cnn_handwritten_photo/native_flow.c": "367e1c0b4b1f9c248ac3d8032db859a54b0a29757fdc2bb2e9a5d59f70acf4f0",
+      "tests/cnn_handwritten_photo/pp01_wire.c": "4c3edc4a5807f5552020090edb161024dc31e3377b0c3bd93bc595cfb4a71c4c",
+      "tests/cnn_handwritten_photo/pp01_wire.h": "ba449d547ddd9ab71795317bc2456ab7dbf90be6ed4bb1e581cac621ab53d436",
+      "tests/cnn_handwritten_photo/startup.S": "5ee18387048349bf31aca05d8ee7c1058f7c9228e99ecc7e20a0efe2fe4f51d2",
+      "tools/cnn_handwritten_photo/reference.py": "a9704a12bfec64ec73efcfbf2362ce4c4f459a79e8f60c5c970b29a9eafe5ece",
+      "tools/cnn_handwritten_photo/run.py": "10137edff40179bceb57ddeb3f18d18f599d1b6db6df95623100c3554b72c095",
+      "sim/cnn/training/handwritten_run_20261017_a/model/bias.bin": "67f56d428d254095bd1430deac98f7f14ddd7423e7e923ce344214d10f50ccf7",
+      "sim/cnn/training/handwritten_run_20261017_a/model/load_words.bin": "c816999861d52fdd18446c39522c71d277f9221c3c850425af24d2b60df5de36",
+      "sim/cnn/training/handwritten_run_20261017_a/model/load_words.hex": "9ed4edcb7de747921197203f91769f0b969fb67e4af8ccb67ab5b3d1af7ac483",
+      "sim/cnn/training/handwritten_run_20261017_a/model/model.json": "5dfc3c13ebe54a933f4bd44fa6e424d432cb2f066d8f9e005594afddf2da9829",
+      "sim/cnn/training/handwritten_run_20261017_a/model/weights.bin": "49e5dae4ccf2e4faa82976d88949e79e078d3037f252a3c33158b4b7977cc6e3",
+      "tools/camera_preprocess_photo/reference.py": "e3ed9830a91f62bde2115299bc0e0c892d01462ccda94e8a7f23a064e23d5d03",
+      "doc/cnn/digits10_int8_v1.json": "b0667c9237075d7a406bd4a32e8fee9bde87e5891c42436fd6cdae17236c0a79",
+      "tools/cnn_digits_training/integer_reference.py": "e0584d348d46ea7603912c028a5b59adfb679d1bdbc66edf7aa0b8d426cd83e4",
+      "sim/cnn/training/handwritten_run_20261017_a/sealed_manifest.json": "84182b2c448f17a175b819492a35ae222b9bd312d374307588f0c2f979fedc0a",
+      "sim/cnn/training/handwritten_sol_review_20261017_01.json": "627c97d3474ce25c635094ca8727c872b4c3b0b6f425b3c231c2676bde8e64c3",
+      "sim/cnn/training/handwritten_sol_numeric_review_20261017_01.json": "68457ee36de624e3d99375aa31ad0fe7efffeaeb3e47a7e02a420f842e7dcb47",
+      "tests/camera_preprocess_uart/build.py": "c2c2933c1410fb4d3b9369c8e8dd1ed520c6eb6201470805856ebab93e0cd578",
+      "tools/camera_uart/capture.py": "94e0cc3930cfd93ff0c9b34de0659e6b68ffdd2fe0bf166ef3ad6f3c5b2de055",
+      "tools/camera_uart/protocol.py": "f0e1c73daf6320e2395c27085ea9324cda3a77437b6306b8818ef943d5952adb",
+      "tools/uart_loader/candidates/bsp_workflow/plan.py": "eeaa93037fc8e4154c0f9e7b8c0d731a016b938c78595935e732af3b14ff3832",
+      "tools/uart_loader/candidates/bsp_workflow/application.py": "08d7a1ff8ea24d89068a7fc1a2dd23906f450accceaab26d370def6522d6cd40",
+      "tools/uart_loader/candidates/verify_run_hello/protocol.py": "ae593bd4b5de15df1b6cb1f75867252d3f62af7cdec3edbdbd60c586ec6f9759",
+      "tests/uart_loader/candidates/verify_run_hello/image_to_dat.py": "1aeffb5eb79afae6bf09c98c14b312ca8bee95644237c44b5f4f88dcab054f02"
+    },
+    "flags": [
+      "-march=rv32i",
+      "-mabi=ilp32",
+      "-O2",
+      "-std=c11",
+      "-g",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-ffreestanding",
+      "-fno-builtin",
+      "-fno-pic",
+      "-fno-pie",
+      "-msmall-data-limit=0",
+      "-ffunction-sections",
+      "-fdata-sections",
+      "-fstack-usage",
+      "-nostdlib",
+      "-nostartfiles",
+      "-Wl,--no-relax",
+      "-Wl,--build-id=none",
+      "-Wl,--gc-sections"
+    ],
+    "stack_depth_bytes": 368,
+    "board": "NOT_RUN",
+    "HDL": "NOT_RUN_USER_BOARD_FIRST",
+    "source": {
+      "buf": 0,
+      "base": "41000000",
+      "bytes": 1843200
+    },
+    "output": {
+      "base": "42000000",
+      "bytes": 27648
+    },
+    "frame_contract": "digits10_int8_v1; actual RGB96 -> 32 gray -> Conv8/16/32 -> GAP16 -> FC10",
+    "source_held_until_full_export": true,
+    "full_source_export": "PC_SELECTABLE_D_OR_d",
+    "wire_magic": "CN03",
+    "retry_count": 0,
+    "embedded_model_words_equal": true,
+    "generated_header_sha256": "3f782916e0dc640da99600c4cc34ea2c345f97bdc723374019f6df6115f4ebde"
+  },
+  "manifest_sha256": "be678a0251fc19f88295c01a601d3b3b38dcf25755c0f7c2ac175ad5b097f042",
+  "sample": {
+    "label": 0,
+    "session": "trial01",
+    "sample_number": 1,
+    "purpose": "EXPLORATORY_HANDWRITTEN_TRIAL",
+    "medium": "white paper, black pen, centered upright single digit"
+  },
+  "port": "DO_NOT_OPEN",
+  "full_source_export": false,
+  "retry_count": 0,
+  "PDS_started": false,
+  "key_HDL": "NOT_COMPLETED",
+  "tool_sha256": "10137edff40179bceb57ddeb3f18d18f599d1b6db6df95623100c3554b72c095",
+  "error": "KeyboardInterrupt('offline cancellation before serial')",
+  "file_sha256": {
+    "application.bin": "5b3364b064a4687a2e141bef504031fdc31a09d1e681b8cd1518133d4ee9f49c",
+    "hardware.json": "c2c47467b3bc5c295e0b68446cd9b546ec213dc1a25e7a70c1b5f15f6cae7629",
+    "manifest.json": "be678a0251fc19f88295c01a601d3b3b38dcf25755c0f7c2ac175ad5b097f042",
+    "ready.json": "98c1c6067e31f9d202f52ea96d441feb0b1886a9c5efcff58f88b541ee9655ee",
+    "sample.json": "a01eb90bdd1c7c582451440b41d9b03c58ddd97a4f664bf7eccd4a837b60b18b",
+    "model/bias.bin": "67f56d428d254095bd1430deac98f7f14ddd7423e7e923ce344214d10f50ccf7",
+    "model/load_words.bin": "c816999861d52fdd18446c39522c71d277f9221c3c850425af24d2b60df5de36",
+    "model/load_words.hex": "9ed4edcb7de747921197203f91769f0b969fb67e4af8ccb67ab5b3d1af7ac483",
+    "model/model.json": "5dfc3c13ebe54a933f4bd44fa6e424d432cb2f066d8f9e005594afddf2da9829",
+    "model/weights.bin": "49e5dae4ccf2e4faa82976d88949e79e078d3037f252a3c33158b4b7977cc6e3"
+  }
+}

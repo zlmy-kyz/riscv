@@ -1,0 +1,9 @@
+{
+  "argv": [
+    "D:\\riscv\\RISCV\\sim\\cnn\\board_diag_20261016_a\\checks_02\\reference.exe",
+    "D:\\riscv\\RISCV\\sim\\cnn\\board_diag_20261016_a\\checks_02\\white\\rgb96.bin",
+    "D:\\riscv\\RISCV\\tests\\cnn_digits_diag\\model\\diag_20261016_a\\load_words.bin",
+    "D:\\riscv\\RISCV\\sim\\cnn\\board_diag_20261016_a\\checks_02\\white\\native.trace"
+  ],
+  "returncode": 0
+}

@@ -1,0 +1,91 @@
+{
+  "purpose": "tool health only, no RISCV verification",
+  "commands": [
+    {
+      "name": "version",
+      "argv": [
+        "D:\\modelsim\\win64pe\\vsim.exe",
+        "-version"
+      ],
+      "cwd": "D:\\riscv\\RISCV\\sim\\modelsim_health_20261019_retest_a",
+      "exit_code": 0,
+      "timed_out": false,
+      "kernel_marker": false,
+      "rpc_error": false
+    },
+    {
+      "name": "vlib",
+      "argv": [
+        "D:\\modelsim\\win64pe\\vlib.exe",
+        "work"
+      ],
+      "cwd": "D:\\riscv\\RISCV\\sim\\modelsim_health_20261019_retest_a",
+      "exit_code": 0,
+      "timed_out": false,
+      "kernel_marker": false,
+      "rpc_error": false
+    },
+    {
+      "name": "vlog",
+      "argv": [
+        "D:\\modelsim\\win64pe\\vlog.exe",
+        "-work",
+        "work",
+        "tool_health.v"
+      ],
+      "cwd": "D:\\riscv\\RISCV\\sim\\modelsim_health_20261019_retest_a",
+      "exit_code": 0,
+      "timed_out": false,
+      "kernel_marker": false,
+      "rpc_error": false
+    },
+    {
+      "name": "kernel_1",
+      "argv": [
+        "D:\\modelsim\\win64pe\\vsim.exe",
+        "-c",
+        "-onfinish",
+        "exit",
+        "-l",
+        "transcript_1.log",
+        "work.tool_health",
+        "-do",
+        "run -all; quit -f"
+      ],
+      "cwd": "D:\\riscv\\RISCV\\sim\\modelsim_health_20261019_retest_a",
+      "exit_code": 0,
+      "timed_out": false,
+      "kernel_marker": true,
+      "rpc_error": false
+    },
+    {
+      "name": "kernel_2",
+      "argv": [
+        "D:\\modelsim\\win64pe\\vsim.exe",
+        "-c",
+        "-onfinish",
+        "exit",
+        "-l",
+        "transcript_2.log",
+        "work.tool_health",
+        "-do",
+        "run -all; quit -f"
+      ],
+      "cwd": "D:\\riscv\\RISCV\\sim\\modelsim_health_20261019_retest_a",
+      "exit_code": 0,
+      "timed_out": false,
+      "kernel_marker": true,
+      "rpc_error": false
+    }
+  ],
+  "sockets": [
+    {
+      "address": "127.0.0.1",
+      "result": "listen_connect_ok"
+    },
+    {
+      "address": "::1",
+      "result": "listen_connect_ok"
+    }
+  ]
+}

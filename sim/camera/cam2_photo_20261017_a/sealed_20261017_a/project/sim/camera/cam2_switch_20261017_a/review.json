@@ -1,0 +1,96 @@
+{
+  "status": "CAM2_J5_J10_CONSTRAINT_MAPPING_READY_PENDING_USER_PDS_BOARD",
+  "before_sha256": "8f5fb2f57e696441521eb4e737d078904a408f909e08462cbe648dc75035e194",
+  "after_sha256": "f7f6b5f69ead2a0e1766e93fd4af8122794f3b0d40d7e6481c9226099ddc1ab0",
+  "changes": [
+    {
+      "port": "camera_data[0]",
+      "old_pad": "M24",
+      "CAM2_pad": "M22",
+      "J10_J17_pin": 31
+    },
+    {
+      "port": "camera_data[1]",
+      "old_pad": "R22",
+      "CAM2_pad": "R23",
+      "J10_J17_pin": 25
+    },
+    {
+      "port": "camera_data[2]",
+      "old_pad": "K26",
+      "CAM2_pad": "T23",
+      "J10_J17_pin": 26
+    },
+    {
+      "port": "camera_data[3]",
+      "old_pad": "K25",
+      "CAM2_pad": "AB24",
+      "J10_J17_pin": 24
+    },
+    {
+      "port": "camera_data[4]",
+      "old_pad": "M25",
+      "CAM2_pad": "P26",
+      "J10_J17_pin": 27
+    },
+    {
+      "port": "camera_data[5]",
+      "old_pad": "N19",
+      "CAM2_pad": "M26",
+      "J10_J17_pin": 29
+    },
+    {
+      "port": "camera_data[6]",
+      "old_pad": "T24",
+      "CAM2_pad": "AA24",
+      "J10_J17_pin": 22
+    },
+    {
+      "port": "camera_data[7]",
+      "old_pad": "R21",
+      "CAM2_pad": "AB25",
+      "J10_J17_pin": 21
+    },
+    {
+      "port": "camera_pclk",
+      "old_pad": "L22",
+      "CAM2_pad": "M21",
+      "J10_J17_pin": 32
+    },
+    {
+      "port": "camera_sda",
+      "old_pad": "R20",
+      "CAM2_pad": "Y25",
+      "J10_J17_pin": 20
+    },
+    {
+      "port": "camera_scl",
+      "old_pad": "P19",
+      "CAM2_pad": "AC24",
+      "J10_J17_pin": 23
+    },
+    {
+      "port": "camera_resetn",
+      "old_pad": "T22",
+      "CAM2_pad": "AC26",
+      "J10_J17_pin": 35
+    },
+    {
+      "port": "camera_href",
+      "old_pad": "T25",
+      "CAM2_pad": "U26",
+      "J10_J17_pin": 33
+    },
+    {
+      "port": "camera_vsync",
+      "old_pad": "L23",
+      "CAM2_pad": "U25",
+      "J10_J17_pin": 34
+    }
+  ],
+  "other_port_conflicts": [],
+  "only_14_LOC_replacements": true,
+  "rtl_changed": false,
+  "pds_run": false,
+  "board_run": false
+}

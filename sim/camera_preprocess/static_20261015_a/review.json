@@ -1,0 +1,126 @@
+{
+  "status": "PREPROCESS_RTL_STATIC_PREPARED_PENDING_PDS_AND_FUNCTIONAL_VALIDATION",
+  "date": "2026-10-15",
+  "inputs": [
+    {
+      "path": "myriscv/board_top.v",
+      "before_sha256": "d3ebb7b2bd50cac3cf8bbd64193300e4fd7f0149a4b15494b9f59c569eecff6f",
+      "sha256": "68518aa03623f25ced66851b7b697b7aa9143bb1b92cde38aed1f792a6da39ff"
+    },
+    {
+      "path": "myriscv/camera_ddr_write_arbiter.v",
+      "before_sha256": "0b648c63e22f67390e3f88020fc47526f006a818494727bd1970ed974bd7ed9a",
+      "sha256": "ba03adcee6a82264f7ed679767b022cb814558dea0e4b4e0c1ffd56a9d8d2def"
+    },
+    {
+      "path": "myriscv/camera_mmio.v",
+      "before_sha256": "afd2ba9622dff7d457a5cab44ffe70970c2b6f996d2cefccb67bb32c6d85271b",
+      "sha256": "7144489d93b6071324237e9a423a147a23afca9c048480e64d0f8a3c42d67175"
+    },
+    {
+      "path": "myriscv/data_bus_interconnect.v",
+      "before_sha256": "1890b9c8acd3e5ab6462eea45d964e541ea0f82ab0e744f5ca1cf665e66037f6",
+      "sha256": "665857b57caa3bf0504cd0a281f8add7891ba0fa539e4d5a6bfc69ca4db8e3b9"
+    },
+    {
+      "path": "myriscv/dual_sram_to_pango_ddr_bridge.v",
+      "before_sha256": "7eb36e126348e9820d950019427264474a51a97d3bbdb6cd0b95a936d2f9e729",
+      "sha256": "b8d2aad8d824c350dbd958f3cd2755c6ab24f576dc5912c993db4f69b5948305"
+    },
+    {
+      "path": "myriscv/inst_bus_interconnect.v",
+      "before_sha256": "d265fc323a9894d4b8d5c80772c996dd23b030d572add4c1518605e65954fc49",
+      "sha256": "e38a6c540f7f1f4cff59a0d4eeeeb289519d7913e6b5100c9e0606d4db29b72d"
+    },
+    {
+      "path": "myriscv/soc_ddr3_top.v",
+      "before_sha256": "7e89de5d3cf825c8257224ffdbc3159928bfef04d89b15c9ff4173bab5b85e2c",
+      "sha256": "a3d4bb88887a7ab20f306a58afd6b098ace2dafa8cf64209da0778f227d14b48"
+    },
+    {
+      "path": "myriscv/soc_top.v",
+      "before_sha256": "40df41c3e1295a8d1976f6f21919b0e2a14386bb2d3de6d8824848c6aa02ccf0",
+      "sha256": "43c3fa1e9d351090f1e13520dc0ac03548818cab78c6ae4278235ee3c449e214"
+    },
+    {
+      "path": "RISCV.pds",
+      "before_sha256": "124a5ee2ae13db384a0549419199e42c06206f25f2bfd00c6c8d4abfa8609259",
+      "sha256": "7ae7ffa262b6373eb95830752622856614ec23a6d28f3ee8cada3d45a6e1ab10"
+    },
+    {
+      "path": "myriscv/preprocess_mmio.v",
+      "sha256": "4910c87ef0bb0bbdd5eb95456dee9353fbd944ab41137f9a8eed6c910aee68b7"
+    },
+    {
+      "path": "myriscv/preprocess_ddr_read_arbiter.v",
+      "sha256": "de20515642c815f80f4368b99974c2b4be9dc9547e5886d95c68825ca1be57ab"
+    }
+  ],
+  "unchanged_baseline_files": [
+    "myriscv/afifo_16i_64o_512.v",
+    "myriscv/alu.v",
+    "myriscv/br_alu.v",
+    "myriscv/csr_file.v",
+    "myriscv/data_bram_adapter.v",
+    "myriscv/inst_bram_adapter.v",
+    "myriscv/ipm2l_fifo_ctrl_v1_1_afifo_16i_64o_512.v",
+    "myriscv/ipm2l_fifo_v1_10_afifo_16i_64o_512.v",
+    "myriscv/ipm2l_sdpram_v1_10_afifo_16i_64o_512.v",
+    "myriscv/l_alu.v",
+    "myriscv/mycpu_sync.v",
+    "myriscv/ov5640_capture.v",
+    "myriscv/ov5640_config.v",
+    "myriscv/ov5640_config_rom.v",
+    "myriscv/ov5640_sccb.v",
+    "myriscv/regfile.v",
+    "myriscv/reset_button_debounce.v",
+    "myriscv/simple_mmio.v",
+    "myriscv/topcpu_instrom.v",
+    "myriscv/uart_mmio.v",
+    "myriscv/uart_rx.v",
+    "myriscv/uart_rx_fifo.v",
+    "myriscv/uart_tx.v",
+    "myriscv/csr_defs.vh",
+    "constraint_check/temp_constraint_file.fdc"
+  ],
+  "successful_double_buffer_receipt_unchanged": true,
+  "preprocessing": {
+    "crop": [
+      280,
+      0,
+      720,
+      720
+    ],
+    "output": [
+      96,
+      96,
+      3
+    ],
+    "sample_first": [
+      283,
+      3
+    ],
+    "sample_last": [
+      996,
+      716
+    ],
+    "output_base": "42000000",
+    "read_beats": 9216,
+    "write_beats": 864,
+    "bytes": 27648
+  },
+  "syntax_scope": "Icarus -tnull -i, missing vendor/IP modules ignored; two configurations exit 0",
+  "pds_run": false,
+  "hdl_simulation_run": false,
+  "board_run": false,
+  "review_points": [
+    "Camera RELEASE blocked by external hold while job busy",
+    "Active source and sequence frozen independently of software selectors",
+    "Read owner stable from AR presentation through counted last R; supports immediate R",
+    "Full 32-byte native output writes including RGB cross-beat boundaries",
+    "ABORT/timeout drain exposed AR/AW; fatal read protocol error quarantines until global reset",
+    "DONE after final W, exact counts; output protected/no-hit/no-fill/no-execute",
+    "No new clock domain, no DDR IP or constraint relaxation",
+    "These are static review points, not observed functional or timing coverage"
+  ]
+}

@@ -1,0 +1,84 @@
+# User confirmed DOUBLE-DVP / J10 / CAM1-J4 on 2026-10-15.
+# 24MHz XVCLK is generated on carrier; no FPGA XVCLK output.
+# SCCB SCL/SDA are open-drain, carrier pull-ups are to 2.8V.
+# LVCMOS33 describes FPGA bank interface, NOT camera power supply.
+# 10ns PCLK is a conservative implementation envelope from supplied demo.
+# DVP input budget below is an IMPLEMENTATION TARGET, not a measured board timing result.
+# Confirm sensor launch polarity / board skew before declaring hardware timing closure.
+create_clock -name {camera_pclk} [get_ports {camera_pclk}] -period {10.000} -waveform {0.000 5.000}
+set_input_delay -clock [get_clocks {camera_pclk}] -clock_fall -max 3.000 [get_ports {camera_data* camera_href camera_vsync}]
+set_input_delay -clock [get_clocks {camera_pclk}] -clock_fall -min 0.000 [get_ports {camera_data* camera_href camera_vsync}]
+define_attribute {p:camera_data[7]} {PAP_IO_DIRECTION} {INPUT}
+define_attribute {p:camera_data[7]} {PAP_IO_LOC} {R21}
+define_attribute {p:camera_data[7]} {PAP_IO_VCCIO} {3.3}
+define_attribute {p:camera_data[7]} {PAP_IO_STANDARD} {LVCMOS33}
+define_attribute {p:camera_sda} {PAP_IO_DIRECTION} {INOUT}
+define_attribute {p:camera_sda} {PAP_IO_LOC} {R20}
+define_attribute {p:camera_sda} {PAP_IO_VCCIO} {3.3}
+define_attribute {p:camera_sda} {PAP_IO_STANDARD} {LVCMOS33}
+define_attribute {p:camera_data[5]} {PAP_IO_DIRECTION} {INPUT}
+define_attribute {p:camera_data[5]} {PAP_IO_LOC} {N19}
+define_attribute {p:camera_data[5]} {PAP_IO_VCCIO} {3.3}
+define_attribute {p:camera_data[5]} {PAP_IO_STANDARD} {LVCMOS33}
+define_attribute {p:camera_scl} {PAP_IO_DIRECTION} {INOUT}
+define_attribute {p:camera_scl} {PAP_IO_LOC} {P19}
+define_attribute {p:camera_scl} {PAP_IO_VCCIO} {3.3}
+define_attribute {p:camera_scl} {PAP_IO_STANDARD} {LVCMOS33}
+define_attribute {p:camera_data[4]} {PAP_IO_DIRECTION} {INPUT}
+define_attribute {p:camera_data[4]} {PAP_IO_LOC} {M25}
+define_attribute {p:camera_data[4]} {PAP_IO_VCCIO} {3.3}
+define_attribute {p:camera_data[4]} {PAP_IO_STANDARD} {LVCMOS33}
+define_attribute {p:camera_data[0]} {PAP_IO_DIRECTION} {INPUT}
+define_attribute {p:camera_data[0]} {PAP_IO_LOC} {M24}
+define_attribute {p:camera_data[0]} {PAP_IO_VCCIO} {3.3}
+define_attribute {p:camera_data[0]} {PAP_IO_STANDARD} {LVCMOS33}
+define_attribute {p:camera_href} {PAP_IO_DIRECTION} {INPUT}
+define_attribute {p:camera_href} {PAP_IO_LOC} {T25}
+define_attribute {p:camera_href} {PAP_IO_VCCIO} {3.3}
+define_attribute {p:camera_href} {PAP_IO_STANDARD} {LVCMOS33}
+define_attribute {p:camera_data[6]} {PAP_IO_DIRECTION} {INPUT}
+define_attribute {p:camera_data[6]} {PAP_IO_LOC} {T24}
+define_attribute {p:camera_data[6]} {PAP_IO_VCCIO} {3.3}
+define_attribute {p:camera_data[6]} {PAP_IO_STANDARD} {LVCMOS33}
+define_attribute {p:camera_data[1]} {PAP_IO_DIRECTION} {INPUT}
+define_attribute {p:camera_data[1]} {PAP_IO_LOC} {R22}
+define_attribute {p:camera_data[1]} {PAP_IO_VCCIO} {3.3}
+define_attribute {p:camera_data[1]} {PAP_IO_STANDARD} {LVCMOS33}
+define_attribute {p:camera_resetn} {PAP_IO_DIRECTION} {OUTPUT}
+define_attribute {p:camera_resetn} {PAP_IO_LOC} {T22}
+define_attribute {p:camera_resetn} {PAP_IO_VCCIO} {3.3}
+define_attribute {p:camera_resetn} {PAP_IO_STANDARD} {LVCMOS33}
+define_attribute {p:camera_data[2]} {PAP_IO_DIRECTION} {INPUT}
+define_attribute {p:camera_data[2]} {PAP_IO_LOC} {K26}
+define_attribute {p:camera_data[2]} {PAP_IO_VCCIO} {3.3}
+define_attribute {p:camera_data[2]} {PAP_IO_STANDARD} {LVCMOS33}
+define_attribute {p:camera_data[3]} {PAP_IO_DIRECTION} {INPUT}
+define_attribute {p:camera_data[3]} {PAP_IO_LOC} {K25}
+define_attribute {p:camera_data[3]} {PAP_IO_VCCIO} {3.3}
+define_attribute {p:camera_data[3]} {PAP_IO_STANDARD} {LVCMOS33}
+define_attribute {p:camera_vsync} {PAP_IO_DIRECTION} {INPUT}
+define_attribute {p:camera_vsync} {PAP_IO_LOC} {L23}
+define_attribute {p:camera_vsync} {PAP_IO_VCCIO} {3.3}
+define_attribute {p:camera_vsync} {PAP_IO_STANDARD} {LVCMOS33}
+define_attribute {p:camera_pclk} {PAP_IO_DIRECTION} {INPUT}
+define_attribute {p:camera_pclk} {PAP_IO_LOC} {L22}
+define_attribute {p:camera_pclk} {PAP_IO_VCCIO} {3.3}
+define_attribute {p:camera_pclk} {PAP_IO_STANDARD} {LVCMOS33}
+# No whole-clock-domain false path. Gray buses retain a <=10ns route budget.
+# CRC is a bundled, frozen result; capture only after the two-stage done handshake.
+set_max_delay -datapath_only -from [get_cells {u_soc.g_camera.u_camera.u_capture.crc*}] -to [get_cells {u_soc.g_camera.u_camera.frame_crc32*}] 10.000
+# PDS must report nonempty endpoint matches after synthesis; do not silently ignore unmatched paths.
+set_max_delay -datapath_only -from [get_cells {u_soc.g_camera.u_camera.u_fifo.U_ipm2l_fifo_afifo_16i_64o_512.U_ipm2l_fifo_ctrl.ASYN_CTRL.wptr*}] -to [get_cells {u_soc.g_camera.u_camera.u_fifo.U_ipm2l_fifo_afifo_16i_64o_512.U_ipm2l_fifo_ctrl.ASYN_CTRL.rwptr1*}] 10.000
+set_max_delay -datapath_only -from [get_cells {u_soc.g_camera.u_camera.u_fifo.U_ipm2l_fifo_afifo_16i_64o_512.U_ipm2l_fifo_ctrl.ASYN_CTRL.rptr*}] -to [get_cells {u_soc.g_camera.u_camera.u_fifo.U_ipm2l_fifo_afifo_16i_64o_512.U_ipm2l_fifo_ctrl.ASYN_CTRL.wrptr1*}] 10.000
+set_max_delay -datapath_only -from [get_cells {u_soc.g_camera.u_camera.run}] -to [get_cells {u_soc.g_camera.u_camera.u_capture.run_sync*}] 10.000
+set_max_delay -datapath_only -from [get_cells {u_soc.g_camera.u_camera.wr_reset_pipe*}] -to [get_cells {u_soc.g_camera.u_camera.ready_sync*}] 10.000
+set_max_delay -datapath_only -from [get_cells {u_soc.g_camera.u_camera.u_capture.done}] -to [get_cells {u_soc.g_camera.u_camera.done_sync*}] 10.000
+set_max_delay -datapath_only -from [get_cells {u_soc.g_camera.u_camera.u_capture.overflow}] -to [get_cells {u_soc.g_camera.u_camera.overflow_sync*}] 10.000
+set_max_delay -datapath_only -from [get_cells {u_soc.g_camera.u_camera.u_capture.format_error}] -to [get_cells {u_soc.g_camera.u_camera.format_sync*}] 10.000
+set_max_delay -datapath_only -from [get_ports {camera_scl}] -to [get_cells {u_soc.g_camera.u_camera.u_config.u_bus.scl_sync*}] 10.000
+set_max_delay -datapath_only -from [get_ports {camera_sda}] -to [get_cells {u_soc.g_camera.u_camera.u_config.u_bus.sda_sync*}] 10.000
+
+# Intentional asynchronous assertion into the two-flop PCLK reset synchronizer only.
+# Synthesized GTP_DFF_C pin C maps to physical RS; do not cut D/CLK or downstream resets.
+# Both stages release synchronously to PCLK; preserve their normal clocked timing.
+set_false_path -to [get_pins {u_soc.g_camera.u_camera.wr_reset_pipe*/C}]

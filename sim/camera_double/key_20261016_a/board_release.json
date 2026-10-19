@@ -1,0 +1,20 @@
+{
+  "status": "SOL_KEY_REVIEW_PASS_BOARD_RELEASED",
+  "review_date_local": "2026-10-15",
+  "timezone": "America/Denver",
+  "ABI_ID": "43414d02",
+  "firmware_path": "tests/camera_double100/build/abi2_20261016_d/program.bin",
+  "firmware_bytes": 12520,
+  "firmware_sha256": "4684f0775e3a611588b0ea5df373dbf5b3d6ce94deda175d6c62a0dda72ed4d2",
+  "firmware_crc32": "0901d151",
+  "firmware_manifest_sha256": "3b4963b69ed057d9d1f0dcd8d1779da0f2fc2dbc49270d4664660807296ae87f",
+  "key_manifest_path": "sim/camera_double/key_20261016_b/inputs.json",
+  "key_manifest_sha256": "5e262312b626ea8473db910f0372297ae79a3fc0321dd22a8fe30fc1415ce61a",
+  "review_path": "sim/camera_double/key_20261016_b/review_b/review.json",
+  "review_sha256": "479fe75a42cb77785d56698771f90c2cef0d839a3a37803f0a4495bb77eefacd",
+  "unit_reuse_review_sha256": "686231a7b9628d6bbc8a7fe2b3de45d0a43f020f5411108015c72d4647f1ae98",
+  "original_A_result": "STOPPED_FIRST_FAILURE_UNCHANGED",
+  "PDS": "USER_CONFIRMED_TIMING_NO_REAUDIT",
+  "board": "NOT_RUN",
+  "scope": "Release frozen 720p100 BIN for user serial acceptance after small real CPU and preserved unit raw evidence review; no board, Full Boot or PHY PASS"
+}

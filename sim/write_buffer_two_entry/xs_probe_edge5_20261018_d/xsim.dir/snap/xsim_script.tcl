@@ -1,0 +1,1 @@
+xsim {snap} -autoloadwcfg -runall

@@ -1,0 +1,30 @@
+{
+  "status": "TASK033_BOARD_TOOL_READY_PENDING_USER_BOARD_NOT_BOARD_PASS",
+  "functional_review_sha256": "ad81936b939fc91e51fd7fb5203a8d60507253f965416fdc409fb773873ed1a2",
+  "tool_sha256": {
+    "tools/uart_loader/candidates/perf_2b/run_inst_hit_overlap_measurement.py": "a80e051b507c5904ba83d4f1fae5f88e90e1aa285ed54ad9210a72c20957edf2",
+    "tools/uart_loader/candidates/perf_2b/run_inst_hit_overlap_measurements.ps1": "5ffae2857ea3c3680036947b444d43b0309afdcc689cb212aba06955dc25e309"
+  },
+  "plans": {
+    "performance_300": {
+      "sha256": "5f554973113d37436396b76315da0f290f012690b7ad2646c308a7eb93bbb57b",
+      "responses": 123,
+      "run_count": 1,
+      "serial_opened": false,
+      "bin_path": "tests/cpu_performance_2b/build/measure_zmmul300_20261013_a/performance_300/program.bin",
+      "bin_sha256": "677ee766fd0fc34d1558d778a343743a1cd9287ecdbbc182cb4681af3374517d"
+    },
+    "validation_300": {
+      "sha256": "41edc7f7d1c7c9a5d5f3c5dc50f410f5711928d25251e018126948cfc44c2df2",
+      "responses": 123,
+      "run_count": 1,
+      "serial_opened": false,
+      "bin_path": "tests/cpu_performance_2b/build/measure_zmmul300_20261013_a/validation_300/program.bin",
+      "bin_sha256": "461c635c46c86c8e719ced403b045bca468ded7299870bf2f87f8547ce11719b"
+    }
+  },
+  "port": "COM9",
+  "board_log_directory": "sim/cpu_inst_hit_overlap/board/coremark_i64_d64_zmmul_overlap_300_01",
+  "PDS_or_bitstream_audit_required": false,
+  "serial_opened": false
+}

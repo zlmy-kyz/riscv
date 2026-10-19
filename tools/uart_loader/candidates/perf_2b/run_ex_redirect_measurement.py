@@ -16,7 +16,7 @@ import json
 import sys
 
 HERE = Path(__file__).resolve().parent
-ROOT = HERE.parents[4]
+ROOT = HERE.parents[3]
 sys.path.insert(0, str(HERE))
 
 import run_zmmul300_measurement as base
@@ -37,7 +37,11 @@ WATCH = [
 
 
 def record_identity(log_path):
-    ident = {name: base.sha(ROOT / name) for name in WATCH if (ROOT / name).exists()}
+    # Missing inputs must not silently produce an empty provenance record.
+    missing = [name for name in WATCH if not (ROOT / name).is_file()]
+    if missing:
+        raise ValueError('Missing EX identity inputs: ' + ', '.join(missing))
+    ident = {name: base.sha(ROOT / name) for name in WATCH}
     out = Path(log_path).parent / 'identity.json'
     if not out.exists():
         out.parent.mkdir(parents=True, exist_ok=True)

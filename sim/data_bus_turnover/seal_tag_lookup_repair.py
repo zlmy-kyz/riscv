@@ -1,0 +1,215 @@
+"""Seal the Task032 parallel-I-tag-lookup manifest.
+
+inputs_tag_lookup_repair.json is derived from inputs_timing_repair.json:
+  * the parallel-lookup bridge identity is the only changed project entry; the four
+    new implementation files of this round are added;
+  * the previous compile sources, include closure, timeouts, vendor and tool
+    identities stay byte-identical, and the new look-up testbench is the only extra
+    compile source (39 modules instead of 38);
+  * the protected set is the union of the previous 821 entries, the previous
+    manifest, every file of the previous repair run directory except the compiled
+    work library, the previous result report and this preparation directory;
+  * the reused control receipt, the reviewed key receipt and the first-repair
+    functional/timing review are bound by SHA together with the counters and the
+    look-up coverage this run must reproduce.
+
+--check re-verifies the seal (AST, input identity, receipt bindings, checker proof).
+"""
+import argparse
+import ast
+import json
+import sys
+from pathlib import Path
+
+HERE = Path(__file__).resolve().parent
+ROOT = HERE.parents[1]
+
+PREVIOUS = HERE / 'inputs_timing_repair.json'
+MANIFEST = HERE / 'inputs_tag_lookup_repair.json'
+BRIDGE = 'myriscv/dual_sram_to_pango_ddr_bridge.v'
+LOOKUP_TB = 'sim/data_bus_turnover/tb_inst_tag_lookup.sv'
+CONTROL_REVIEW = 'sim/data_bus_turnover/build/ip_count_key_preparation_20261014_a/control_review.json'
+KEY_REVIEW = ('sim/data_bus_turnover/build/'
+              'ds_data_bus_response_turnover_ip_count_key_20261014_a/codex_review.json')
+PREV_RUN = 'sim/data_bus_turnover/build/ds_data_bus_turnover_timing_repair_20261014_a'
+PREV_REVIEW = PREV_RUN + '/codex_review.json'
+PREPARATION = 'sim/data_bus_turnover/build/tag_lookup_repair_preparation_20261014_a'
+PRIOR_REVIEW = PREPARATION + '/previous_key_review.json'
+PREV_REPORT = 'DeepSeek/任务032时序修复_结果_ds_data_bus_turnover_timing_repair_20261014_a.md'
+NEW_IMPLEMENTATION = ['sim/data_bus_turnover/tb_inst_tag_lookup.sv',
+                      'sim/data_bus_turnover/check_tag_lookup.py',
+                      'sim/data_bus_turnover/run_tag_lookup_repair.py',
+                      'sim/data_bus_turnover/seal_tag_lookup_repair.py']
+MUST_MATCH = ['sim/data_bus_turnover/check_evidence.py',
+              'sim/data_bus_turnover/tb_data_bus_turnover.sv',
+              'sim/data_bus_turnover/unit_cases.svh',
+              'sim/data_bus_turnover/program.dat',
+              'sim/data_bus_turnover/reference.json',
+              'sim/data_bus_turnover/reference.trace',
+              'sim/data_bus_turnover/prepare_program.py',
+              'myriscv/mycpu_sync.v',
+              'myriscv/data_bus_interconnect.v']
+TAG = 'ds_data_bus_tag_lookup_repair_20261014_a'
+PRIOR_REVIEW_SHA = '4de7282d07bd407560b9f1496cc4d78fbdd8dbe66cdfd7b4a5a0ed0336e4e319'
+LOOKUP_EXPECTED = dict(det=64 * 23, rnd=64 * 8, rows=64, high_bits=21, tables=64, seed=20261014)
+
+
+def sha(path):
+    import hashlib
+    return hashlib.sha256(Path(path).read_bytes()).hexdigest()
+
+
+def tree(directory):
+    return sorted(str(p.relative_to(ROOT)).replace('\\', '/')
+                  for p in (ROOT / directory).rglob('*') if p.is_file())
+
+
+def build():
+    previous = json.loads(PREVIOUS.read_text(encoding='utf-8'))
+    control = json.loads((ROOT / CONTROL_REVIEW).read_text(encoding='utf-8'))
+    key_receipt = json.loads((ROOT / KEY_REVIEW).read_text(encoding='utf-8'))
+    prior = json.loads((ROOT / PRIOR_REVIEW).read_text(encoding='utf-8'))
+    assert previous['tag'] == 'ds_data_bus_turnover_timing_repair_20261014_a'
+    assert control['status'] == 'TASK032_CONTROL_RAW_EVIDENCE_REVIEW_PASS_KEY_PENDING'
+    assert key_receipt['status'] == 'DATA_BUS_RESPONSE_TURNOVER_RAW_EVIDENCE_REVIEW_PASS'
+    assert sha(PRIOR_REVIEW) == PRIOR_REVIEW_SHA
+    assert prior['status'] == 'TASK032_FIRST_SELECTOR_REPAIR_RAW_FUNCTIONAL_REVIEW_PASS_TIMING_FAIL'
+    assert prior['manifest_sha256'] == sha(PREVIOUS)
+
+    project = dict(previous['project_sha256'])
+    changed = {n for n in project if sha(ROOT / n) != project[n]}
+    assert changed == {BRIDGE}, sorted(changed)
+    project[BRIDGE] = sha(ROOT / BRIDGE)
+    for name in NEW_IMPLEMENTATION:
+        assert (ROOT / name).is_file(), name
+        assert name not in project, name
+        project[name] = sha(ROOT / name)
+
+    sources = list(previous['compile_sources'])
+    assert LOOKUP_TB not in sources
+    sources.append(LOOKUP_TB)
+    modules = list(previous['expected_modules'])
+    modules.append('tb_inst_tag_lookup')
+    sys.path.insert(0, str(ROOT / 'sim/write_buffer_turnover'))
+    from check_include_dependencies import check_includes
+    includes = check_includes(ROOT, sources)
+    assert includes == previous['include_dependencies'], 'include closure changed'
+
+    protected = dict(previous['protected_evidence_sha256'])
+    extra = {'sim/data_bus_turnover/inputs_timing_repair.json': sha(PREVIOUS),
+             PREV_REPORT: sha(ROOT / PREV_REPORT)}
+    for name in tree(PREV_RUN):
+        if '/work/' in name or name.endswith('/work'):
+            continue
+        extra[name] = sha(ROOT / name)
+    for name in tree(PREPARATION):
+        extra[name] = sha(ROOT / name)
+    for name, digest in extra.items():
+        if name in protected:
+            assert protected[name] == digest, 'Duplicate protected path with different hash: ' + name
+        else:
+            protected[name] = digest
+    missing = [n for n, h in protected.items() if not (ROOT / n).is_file() or sha(ROOT / n) != h]
+    assert not missing, missing[:5]
+
+    data = dict(
+        status='TASK032_PARALLEL_INST_TAG_LOOKUP_REPAIR_PREPARED_HDL_NOT_RUN',
+        tag=TAG,
+        control_reused=True,
+        key_replayed=True,
+        extra_job='tag_lookup',
+        project_sha256=project,
+        vendor_sha256=previous['vendor_sha256'],
+        tool_sha256=previous['tool_sha256'],
+        compile_sources=sources,
+        expected_modules=modules,
+        include_dependencies=includes,
+        timeouts=previous['timeouts'],
+        protected_evidence_sha256=protected,
+        previous_manifest='sim/data_bus_turnover/inputs_timing_repair.json',
+        previous_manifest_sha256=sha(PREVIOUS),
+        new_implementation_files=NEW_IMPLEMENTATION,
+        must_match_previous=MUST_MATCH,
+        bridge_repair=dict(file=BRIDGE,
+                           sha_before=previous['project_sha256'][BRIDGE],
+                           sha_after=sha(ROOT / BRIDGE),
+                           change=('x32 instruction hit now compares the 64 fixed rows in parallel on the '
+                                   'upper tag plus a separate index decode, with syn_keep on way_hit/tag_match; '
+                                   'tag/valid registers, fill, invalidation, ready, state, request acceptance, '
+                                   'DRM read port and response timing unchanged; non-x32 keeps the old expression')),
+        lookup_tb=LOOKUP_TB,
+        lookup_expected=LOOKUP_EXPECTED,
+        reused_control_review=CONTROL_REVIEW,
+        reused_control_review_sha256=sha(ROOT / CONTROL_REVIEW),
+        reused_control=dict(source_run=control['source_run'],
+                            source_manifest_sha256=control['source_manifest_sha256'],
+                            checked=control['checked']),
+        reused_key_review=KEY_REVIEW,
+        reused_key_review_sha256=sha(ROOT / KEY_REVIEW),
+        reused_key=dict(manifest_sha256=key_receipt['manifest_sha256'],
+                        checked_key=key_receipt['checked_key'],
+                        status=key_receipt['status'],
+                        note='reviewed key; used as the exact-reproduction reference'),
+        expected_key=key_receipt['checked_key'],
+        previous_timing_review=PRIOR_REVIEW,
+        previous_timing_review_sha256=PRIOR_REVIEW_SHA,
+        checker_edit=previous['checker_edit'],
+        changed_design_files=['myriscv/data_bus_interconnect.v', BRIDGE],
+        changed_design_files_this_round=[BRIDGE],
+        CPU_changed=False,
+        ISA_samples=[],
+        reference_events=previous['reference_events'],
+        reference_requests=previous['reference_requests'],
+        unit_cases=previous['unit_cases'],
+        unit_control_cycles=previous['unit_control_cycles'],
+        unit_key_cycles=previous['unit_key_cycles'],
+        unit_key_turns=previous['unit_key_turns'],
+        baseline=previous['baseline'],
+        baseline_P_seconds=previous['baseline_P_seconds'],
+        baseline_V_seconds=previous['baseline_V_seconds'],
+        roles=previous['roles'],
+        old_control_git_after='ABSENT_NOT_BACKFILLED',
+        board='NOT_RUN', PDS='NOT_RUN', serial='NOT_OPENED', timing='NOT_RUN',
+        scope=('Key replay on the parallel I-tag lookup repair plus a new minimal combinational '
+               'look-up group over all 64 rows and all 21 upper tag bits. Control is reused. The '
+               'look-up group deposits the real fill invariant and never forces hit/state/ready.'),
+        limitations=['The look-up group does not emulate the DDR return phase or x16 behaviour.',
+                     'Simulation is not PDS timing, real DDR or board performance.',
+                     'The AR-accept-same-cycle R-return phase is covered by state review, not the model.'],
+    )
+    data['project_count'] = len(project)
+    data['protected_count'] = len(protected)
+    return data
+
+
+def check():
+    data = json.loads(MANIFEST.read_text(encoding='utf-8'))
+    for name in NEW_IMPLEMENTATION:
+        if name.endswith('.py'):
+            ast.parse((ROOT / name).read_text(encoding='utf-8'), filename=name)
+    sys.path.insert(0, str(HERE))
+    import run_tag_lookup_repair as runner
+    assert runner.require_inputs() == data
+    print('SEAL CHECK PASS project=%d protected=%d modules=%d bridge=%s lookup_tb=%s' %
+          (len(data['project_sha256']), len(data['protected_evidence_sha256']),
+           len(data['expected_modules']), data['bridge_repair']['sha_after'][:16],
+           data['lookup_tb']))
+
+
+def main():
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument('--check', action='store_true')
+    args = parser.parse_args()
+    if args.check:
+        check()
+        return
+    assert not MANIFEST.exists(), 'do not overwrite the sealed manifest'
+    data = build()
+    MANIFEST.write_text(json.dumps(data, ensure_ascii=False, indent=2) + '\n', encoding='utf-8')
+    print('SEALED', len(data['project_sha256']), 'project,',
+          len(data['protected_evidence_sha256']), 'protected,',
+          len(data['expected_modules']), 'modules, SHA', sha(MANIFEST))
+
+
+if __name__ == '__main__':
+    main()

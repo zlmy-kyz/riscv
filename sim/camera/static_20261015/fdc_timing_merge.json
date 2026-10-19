@@ -1,0 +1,11 @@
+{
+  "before_sha256": "72103e5ccd027ff7a43373a7b6a206a16f5e4d4fd5eda59a54a86295ca214585",
+  "after_sha256": "c9e2d1107f47224d3bc1262454d0c70902ca3469e3b4ef96ad75eb0b85447a0c",
+  "original_bytes_preserved": 48982,
+  "added_commands": 13,
+  "clock_commands": 1,
+  "input_delay_commands": 2,
+  "max_delay_commands": 10,
+  "pds_run": false,
+  "simulation_run": false
+}

@@ -1,0 +1,55 @@
+{
+  "status": "REPEATED_CAMERA_FORMAT_FAILURE_NOT_YET_LOCALIZED",
+  "current_raw_loader_and_terminal_verified": true,
+  "model_valid": true,
+  "CNN_or_PP_started": false,
+  "current_frame_published": false,
+  "current_CPU_claims": 0,
+  "current_buffers": "both FREE, stream/busy0",
+  "error_code": 3,
+  "important_difference": "photo03 published/claimed A seq1 then B in-flight format error; photo02/04 have no publication or claim",
+  "sessions": [
+    {
+      "directory": "sim/cnn/board/photo_20261016_02",
+      "error": "ValueError('CNN job/error: CNN_FAIL REASON=CAMERA_ERROR GROUP=1 BUF=0 SEQ=0 CLAIMS=0 TARGET_CLAIMS=0 DISCARD_CLAIMS=0 LAST_DISCARD=0 CAM_STATUS=00000031 CAM_ERR=00000003 CAM_BUFSTATE=00000100 CAM_GLOBAL_SEQ=00000000 PP_STATUS=00000000 PP_ERR=00000000 UART_STATUS=00000002 CNN_STATUS=00000008 CNN_ERROR=00000000 LOAD_COUNT=6222 MODEL_CRC=0ca5949e MODEL_ID=05a032af ELAPSED_TICKS=69543011')",
+      "file_sha256": {
+        "result.json": "d44dcc77c31e528bce239d2bad28e04b623e063ad696c143765ff5d151f5694e",
+        "manifest.json": "d20f9b65a53fa988c7a598bf96bc2538732933956ba44274303cd47ca14c03c5",
+        "application.bin": "2f72e829b3044e1ce8f5996d6b9ddb39877c3c6f15048cf9a040b64bd78d7bd4",
+        "uart.rx.bin": "a6faca656f6872c12ee7fd70eaca4e92f05dbb068cad439d03ccae86e246897f",
+        "uart.tx.bin": "b942a2082ccecd0a2d4ccad447bb3a1705a9fa07e06e5df8d306ea7be7d57716"
+      }
+    },
+    {
+      "directory": "sim/cnn/board/photo_20261016_03",
+      "error": "ValueError('CNN job/error: CNN_FAIL REASON=CAMERA_ERROR GROUP=1 BUF=0 SEQ=1 CLAIMS=1 TARGET_CLAIMS=1 DISCARD_CLAIMS=0 LAST_DISCARD=0 CAM_STATUS=00000031 CAM_ERR=00000003 CAM_BUFSTATE=00000123 CAM_GLOBAL_SEQ=00000001 PP_STATUS=00000000 PP_ERR=00000000 UART_STATUS=00000002 CNN_STATUS=00000008 CNN_ERROR=00000000 LOAD_COUNT=6222 MODEL_CRC=0ca5949e MODEL_ID=05a032af ELAPSED_TICKS=77670888')",
+      "file_sha256": {
+        "result.json": "bc0607037e173e17e6a5c66cb3deef2fe06e5a890c2fb750d074e6538dd9dec3",
+        "manifest.json": "d20f9b65a53fa988c7a598bf96bc2538732933956ba44274303cd47ca14c03c5",
+        "application.bin": "2f72e829b3044e1ce8f5996d6b9ddb39877c3c6f15048cf9a040b64bd78d7bd4",
+        "uart.rx.bin": "315f64791234a251dc4d86dbcca0511c737701088506247a696cae8fec2b1c7c",
+        "uart.tx.bin": "b942a2082ccecd0a2d4ccad447bb3a1705a9fa07e06e5df8d306ea7be7d57716"
+      }
+    },
+    {
+      "directory": "sim/cnn/board/photo_20261016_04",
+      "error": "ValueError('CNN job/error: CNN_FAIL REASON=CAMERA_ERROR GROUP=1 BUF=0 SEQ=0 CLAIMS=0 TARGET_CLAIMS=0 DISCARD_CLAIMS=0 LAST_DISCARD=0 CAM_STATUS=00000031 CAM_ERR=00000003 CAM_BUFSTATE=00000100 CAM_GLOBAL_SEQ=00000000 PP_STATUS=00000000 PP_ERR=00000000 UART_STATUS=00000002 CNN_STATUS=00000008 CNN_ERROR=00000000 LOAD_COUNT=6222 MODEL_CRC=0ca5949e MODEL_ID=05a032af ELAPSED_TICKS=73227188')",
+      "file_sha256": {
+        "result.json": "60fc427dd85dcffccc336b5886aa590f3f87e3595cc67d39a52eb15107684363",
+        "manifest.json": "d20f9b65a53fa988c7a598bf96bc2538732933956ba44274303cd47ca14c03c5",
+        "application.bin": "2f72e829b3044e1ce8f5996d6b9ddb39877c3c6f15048cf9a040b64bd78d7bd4",
+        "uart.rx.bin": "097805c8a3d6fdd62d66b611c414f13e4aaab0c046b9949b3f73ea6001d3651b",
+        "uart.tx.bin": "b942a2082ccecd0a2d4ccad447bb3a1705a9fa07e06e5df8d306ea7be7d57716"
+      }
+    }
+  ],
+  "previous_review_reused": "sim/cnn/camera_failure_photo03_20261016/review.json",
+  "root_cause": "Sensor/DVP signal/sampling or format logic unresolved; no direct proof of RTL defect",
+  "action": "Stop blind repeats. Request Astra preserve first error subtype, line_bytes, lines and HREF/VSYNC/phase snapshot; synchronize frozen debug record, keep ABI/strict geometry and existing firmware intact. User implements/downloads any new RTL and checks timing before relevant minimal test.",
+  "RTL_modified": false,
+  "software_modified": false,
+  "raw_evidence_modified": false,
+  "PDS_started": false,
+  "HDL_run": false,
+  "serial_opened": false
+}

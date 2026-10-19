@@ -1,0 +1,25 @@
+{
+  "status": "TASK043_SUPPLEMENT02_PARTIAL_ACCEPTED_FENCE_BUSY_TRIGGER_PENDING",
+  "review_sha256": "e2cb9b6f3434926dea5dd5725ee0dd8f73bf3267ffe5ffd66c5202721a4dfd99",
+  "all_seven_observed_data_checks_pass": true,
+  "fair_cycles": [
+    41,
+    41
+  ],
+  "net_gain_cycles": 0,
+  "second_store_accept_edges": [
+    22,
+    13
+  ],
+  "SoC_head_done_tail_wait_blocked_edges": 10,
+  "only_pending": "One real-CPU FENCE busy-queue trigger; existing UART/RAM before FENCE already drained writes.",
+  "followup": "DeepSeek/任务043_收尾_仅补FENCE忙队触发.md",
+  "fixed_layout_bin_sha256": {
+    "performance_300": "4a090b360f0889e961c2cfe1e6ae90fa1298bb868d65ae8aebf23f9a01a63310",
+    "validation_300": "8dd0580509e2357e6742b925ae13986abbbf2a5fd206bc7e3b4deec54f224cb4"
+  },
+  "checked_doc_links": 23,
+  "HDL_by_Sol": "NOT_RUN",
+  "PDS": "NOT_RUN",
+  "board": "NOT_RUN"
+}

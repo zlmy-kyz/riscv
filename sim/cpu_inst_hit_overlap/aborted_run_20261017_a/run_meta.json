@@ -1,0 +1,547 @@
+{
+  "tag": "ds_inst_hit_overlap_20261017_a",
+  "argv": [
+    "sim\\cpu_inst_hit_overlap\\run.py",
+    "--run",
+    "--tag",
+    "ds_inst_hit_overlap_20261017_a"
+  ],
+  "cwd": "D:\\riscv\\RISCV",
+  "started_utc": "2026-10-17T18:18:50Z",
+  "pid": 16728,
+  "sealed_dir": "D:\\riscv\\RISCV\\sim\\cpu_inst_hit_overlap\\sealed_ds_inst_hit_overlap_20261017_a",
+  "sealed_manifest_sha256": "f030bb85f1deb55684d04e9baacafe266d0094df40e1032fe36150bf712ad8b1",
+  "bridge": {
+    "path": "D:\\riscv\\RISCV\\myriscv\\dual_sram_to_pango_ddr_bridge.v",
+    "sha256": "7ab9d34c3f13caa092c8fbee933cf9e495729dcbe90520a23c9cbdeded52d933"
+  },
+  "status": "STOPPED_FIRST_FAILURE",
+  "jobs": [
+    {
+      "name": "vlib_work",
+      "kind": "compile",
+      "argv": [
+        "D:\\modelsim\\win64pe\\vlib.exe",
+        "work"
+      ],
+      "cwd": "D:\\riscv\\RISCV\\sim\\cpu_inst_hit_overlap\\build\\ds_inst_hit_overlap_20261017_a",
+      "timeout_s": 60,
+      "started_utc": "2026-10-17T18:18:51Z",
+      "pid": 27692,
+      "exit": 0,
+      "timeout": false,
+      "elapsed_s": 0.17,
+      "stdout_log": "D:\\riscv\\RISCV\\sim\\cpu_inst_hit_overlap\\build\\ds_inst_hit_overlap_20261017_a\\logs\\vlib_work.console.txt",
+      "verdict": "FAIL",
+      "note": "ModelSim did not report Errors: 0, Warnings: 0"
+    }
+  ],
+  "git": {
+    "before": {
+      "head": {
+        "path": "D:\\riscv\\RISCV\\sim\\cpu_inst_hit_overlap\\build\\ds_inst_hit_overlap_20261017_a\\git_before_head.txt",
+        "sha256": "639effd2ce43f671b0b1e974e74a9a0e39ef23f6e46b6f14cd667c1f7dbb8ad3",
+        "lines": 1
+      },
+      "status": {
+        "path": "D:\\riscv\\RISCV\\sim\\cpu_inst_hit_overlap\\build\\ds_inst_hit_overlap_20261017_a\\git_before_status.txt",
+        "sha256": "75988f12c0805a2589f6871064132312826b5013bd73aa0324287e6ec0896a93",
+        "lines": 376
+      },
+      "diff": {
+        "path": "D:\\riscv\\RISCV\\sim\\cpu_inst_hit_overlap\\build\\ds_inst_hit_overlap_20261017_a\\git_before_diff.txt",
+        "sha256": "cd1b3c606aedbb7a93ea365f1ea5c3137bdc1c08f4f3c8685173b204861ed625",
+        "lines": 109273
+      }
+    },
+    "after": {
+      "head": {
+        "path": "D:\\riscv\\RISCV\\sim\\cpu_inst_hit_overlap\\build\\ds_inst_hit_overlap_20261017_a\\git_after_head.txt",
+        "sha256": "639effd2ce43f671b0b1e974e74a9a0e39ef23f6e46b6f14cd667c1f7dbb8ad3",
+        "lines": 1
+      },
+      "status": {
+        "path": "D:\\riscv\\RISCV\\sim\\cpu_inst_hit_overlap\\build\\ds_inst_hit_overlap_20261017_a\\git_after_status.txt",
+        "sha256": "75988f12c0805a2589f6871064132312826b5013bd73aa0324287e6ec0896a93",
+        "lines": 376
+      },
+      "diff": {
+        "path": "D:\\riscv\\RISCV\\sim\\cpu_inst_hit_overlap\\build\\ds_inst_hit_overlap_20261017_a\\git_after_diff.txt",
+        "sha256": "cd1b3c606aedbb7a93ea365f1ea5c3137bdc1c08f4f3c8685173b204861ed625",
+        "lines": 109273
+      }
+    }
+  },
+  "protected": {
+    "design_after": {
+      "path": "D:\\riscv\\RISCV\\myriscv\\dual_sram_to_pango_ddr_bridge.v",
+      "sha256": "7ab9d34c3f13caa092c8fbee933cf9e495729dcbe90520a23c9cbdeded52d933"
+    },
+    "sim\\cpu_inst_hit_overlap\\preparation_20261017_a\\after_manifest.json": {
+      "before": "ce9d4939689a604577d9dfe60055856bc980823e775e7c30946d9ec1a9092b5e",
+      "after": "ce9d4939689a604577d9dfe60055856bc980823e775e7c30946d9ec1a9092b5e",
+      "match": true
+    },
+    "sim\\cpu_inst_hit_overlap\\preparation_20261017_a\\before\\constraint_check\\temp_constraint_file.fdc": {
+      "before": "f7f6b5f69ead2a0e1766e93fd4af8122794f3b0d40d7e6481c9226099ddc1ab0",
+      "after": "f7f6b5f69ead2a0e1766e93fd4af8122794f3b0d40d7e6481c9226099ddc1ab0",
+      "match": true
+    },
+    "sim\\cpu_inst_hit_overlap\\preparation_20261017_a\\before\\ipcore\\dcache\\.last_generated": {
+      "before": "790c4a22ae4db7e8c05f4d96cb840249bf62491f14800d331a27727746508333",
+      "after": "790c4a22ae4db7e8c05f4d96cb840249bf62491f14800d331a27727746508333",
+      "match": true
+    },
+    "sim\\cpu_inst_hit_overlap\\preparation_20261017_a\\before\\ipcore\\dcache\\.settings": {
+      "before": "18fb2deef6122d090455149a362445e24f09478da2ccfe5cebb4011392bbbf72",
+      "after": "18fb2deef6122d090455149a362445e24f09478da2ccfe5cebb4011392bbbf72",
+      "match": true
+    },
+    "sim\\cpu_inst_hit_overlap\\preparation_20261017_a\\before\\ipcore\\dcache\\dcache.idf": {
+      "before": "60e668a1a1912fec3ca12d0f8bb59181639a494f032c16743a0c8d9beffefa51",
+      "after": "60e668a1a1912fec3ca12d0f8bb59181639a494f032c16743a0c8d9beffefa51",
+      "match": true
+    },
+    "sim\\cpu_inst_hit_overlap\\preparation_20261017_a\\before\\ipcore\\dcache\\dcache.v": {
+      "before": "bf62d32342a11ba6fad55f11c2413716a834c7028e9a1d8660a5f1a5477514a7",
+      "after": "bf62d32342a11ba6fad55f11c2413716a834c7028e9a1d8660a5f1a5477514a7",
+      "match": true
+    },
+    "sim\\cpu_inst_hit_overlap\\preparation_20261017_a\\before\\ipcore\\dcache\\dcache_tb.v": {
+      "before": "fd4409fd296cec5ecf2c272681676095a4a39ab7518f22d6ba1ae7d122abfaa5",
+      "after": "fd4409fd296cec5ecf2c272681676095a4a39ab7518f22d6ba1ae7d122abfaa5",
+      "match": true
+    },
+    "sim\\cpu_inst_hit_overlap\\preparation_20261017_a\\before\\ipcore\\dcache\\dcache_tmpl.v": {
+      "before": "dd812830b961c7cdc037504b86e1493746ab28d1ffbd2b6f9a4c8a0dbef964cf",
+      "after": "dd812830b961c7cdc037504b86e1493746ab28d1ffbd2b6f9a4c8a0dbef964cf",
+      "match": true
+    },
+    "sim\\cpu_inst_hit_overlap\\preparation_20261017_a\\before\\ipcore\\dcache\\dcache_tmpl.vhdl": {
+      "before": "d5bca0583efa85aab06f411b1bdcec0d7ad4952d1f441c7db6de4c66c145a718",
+      "after": "d5bca0583efa85aab06f411b1bdcec0d7ad4952d1f441c7db6de4c66c145a718",
+      "match": true
+    },
+    "sim\\cpu_inst_hit_overlap\\preparation_20261017_a\\before\\ipcore\\dcache\\generate.log": {
+      "before": "3deb5d4d6f8fd2af3b45e4216ded0d1b5e69c991fbc1f0e350f194e87e21baee",
+      "after": "3deb5d4d6f8fd2af3b45e4216ded0d1b5e69c991fbc1f0e350f194e87e21baee",
+      "match": true
+    },
+    "sim\\cpu_inst_hit_overlap\\preparation_20261017_a\\before\\ipcore\\dcache\\init_param_bin_exmp.dat": {
+      "before": "b05b3f9d83b84fbcab681f6887b6ea909ffc307cf0cdbb1565a5a99888705096",
+      "after": "b05b3f9d83b84fbcab681f6887b6ea909ffc307cf0cdbb1565a5a99888705096",
+      "match": true
+    },
+    "sim\\cpu_inst_hit_overlap\\preparation_20261017_a\\before\\ipcore\\dcache\\init_param_hex_exmp.dat": {
+      "before": "15c782a746ebc4f43e87b6c27372e10a74d75fcd7c3831272e1d2d2e42922daa",
+      "after": "15c782a746ebc4f43e87b6c27372e10a74d75fcd7c3831272e1d2d2e42922daa",
+      "match": true
+    },
+    "sim\\cpu_inst_hit_overlap\\preparation_20261017_a\\before\\ipcore\\dcache\\rtl\\dcache_init_param.v": {
+      "before": "f4f76865d9681707b14451f2fbe29636dffeb5a71517272485492cfe369d82e1",
+      "after": "f4f76865d9681707b14451f2fbe29636dffeb5a71517272485492cfe369d82e1",
+      "match": true
+    },
+    "sim\\cpu_inst_hit_overlap\\preparation_20261017_a\\before\\ipcore\\dcache\\rtl\\dcache_Reset_Value.v": {
+      "before": "631f82566ab109c3b1354c4512de9a506c5e48452195a9f817cdc8e795add653",
+      "after": "631f82566ab109c3b1354c4512de9a506c5e48452195a9f817cdc8e795add653",
+      "match": true
+    },
+    "sim\\cpu_inst_hit_overlap\\preparation_20261017_a\\before\\ipcore\\dcache\\rtl\\ipm2l_sdpram_v1_10_dcache.v": {
+      "before": "66905d131c90236dabd8feb8e8e586185955b37cb5ba694c047dc331efac303f",
+      "after": "66905d131c90236dabd8feb8e8e586185955b37cb5ba694c047dc331efac303f",
+      "match": true
+    },
+    "sim\\cpu_inst_hit_overlap\\preparation_20261017_a\\before\\ipcore\\icache\\.last_generated": {
+      "before": "b53f60bf76467bdeae27d23beb8f26d9b3b99b7f3172bc7674f829988541de54",
+      "after": "b53f60bf76467bdeae27d23beb8f26d9b3b99b7f3172bc7674f829988541de54",
+      "match": true
+    },
+    "sim\\cpu_inst_hit_overlap\\preparation_20261017_a\\before\\ipcore\\icache\\.settings": {
+      "before": "18fb2deef6122d090455149a362445e24f09478da2ccfe5cebb4011392bbbf72",
+      "after": "18fb2deef6122d090455149a362445e24f09478da2ccfe5cebb4011392bbbf72",
+      "match": true
+    },
+    "sim\\cpu_inst_hit_overlap\\preparation_20261017_a\\before\\ipcore\\icache\\generate.log": {
+      "before": "ed2bbb347eeb2c5106ffb4dced10c87d7f46f2e626ace112ed63947f4acab3a6",
+      "after": "ed2bbb347eeb2c5106ffb4dced10c87d7f46f2e626ace112ed63947f4acab3a6",
+      "match": true
+    },
+    "sim\\cpu_inst_hit_overlap\\preparation_20261017_a\\before\\ipcore\\icache\\icache.idf": {
+      "before": "004fa50b7589f248275584921201f41b814023f0299d571f57379ed3b66248ce",
+      "after": "004fa50b7589f248275584921201f41b814023f0299d571f57379ed3b66248ce",
+      "match": true
+    },
+    "sim\\cpu_inst_hit_overlap\\preparation_20261017_a\\before\\ipcore\\icache\\icache.v": {
+      "before": "9e8746619f8afa1c2adfe1e7a48bd63850b98332d40f23c27817a28b3f24de76",
+      "after": "9e8746619f8afa1c2adfe1e7a48bd63850b98332d40f23c27817a28b3f24de76",
+      "match": true
+    },
+    "sim\\cpu_inst_hit_overlap\\preparation_20261017_a\\before\\ipcore\\icache\\icache_tb.v": {
+      "before": "c8a2879ad5664a6ad16ce95bc0dcfd7507f20d64130e5b3136649e151f332938",
+      "after": "c8a2879ad5664a6ad16ce95bc0dcfd7507f20d64130e5b3136649e151f332938",
+      "match": true
+    },
+    "sim\\cpu_inst_hit_overlap\\preparation_20261017_a\\before\\ipcore\\icache\\icache_tmpl.v": {
+      "before": "06038524fb0862d998cae55463b693f812a12cd08c15ffda3cc5a24e347a85c5",
+      "after": "06038524fb0862d998cae55463b693f812a12cd08c15ffda3cc5a24e347a85c5",
+      "match": true
+    },
+    "sim\\cpu_inst_hit_overlap\\preparation_20261017_a\\before\\ipcore\\icache\\icache_tmpl.vhdl": {
+      "before": "3e9a656a10ab69eb0c487c78b8fc1c0577694958c27a5e6761923869eb144862",
+      "after": "3e9a656a10ab69eb0c487c78b8fc1c0577694958c27a5e6761923869eb144862",
+      "match": true
+    },
+    "sim\\cpu_inst_hit_overlap\\preparation_20261017_a\\before\\ipcore\\icache\\init_param_bin_exmp.dat": {
+      "before": "b05b3f9d83b84fbcab681f6887b6ea909ffc307cf0cdbb1565a5a99888705096",
+      "after": "b05b3f9d83b84fbcab681f6887b6ea909ffc307cf0cdbb1565a5a99888705096",
+      "match": true
+    },
+    "sim\\cpu_inst_hit_overlap\\preparation_20261017_a\\before\\ipcore\\icache\\init_param_hex_exmp.dat": {
+      "before": "15c782a746ebc4f43e87b6c27372e10a74d75fcd7c3831272e1d2d2e42922daa",
+      "after": "15c782a746ebc4f43e87b6c27372e10a74d75fcd7c3831272e1d2d2e42922daa",
+      "match": true
+    },
+    "sim\\cpu_inst_hit_overlap\\preparation_20261017_a\\before\\ipcore\\icache\\rtl\\icache_init_param.v": {
+      "before": "f4f76865d9681707b14451f2fbe29636dffeb5a71517272485492cfe369d82e1",
+      "after": "f4f76865d9681707b14451f2fbe29636dffeb5a71517272485492cfe369d82e1",
+      "match": true
+    },
+    "sim\\cpu_inst_hit_overlap\\preparation_20261017_a\\before\\ipcore\\icache\\rtl\\icache_Reset_Value.v": {
+      "before": "631f82566ab109c3b1354c4512de9a506c5e48452195a9f817cdc8e795add653",
+      "after": "631f82566ab109c3b1354c4512de9a506c5e48452195a9f817cdc8e795add653",
+      "match": true
+    },
+    "sim\\cpu_inst_hit_overlap\\preparation_20261017_a\\before\\ipcore\\icache\\rtl\\ipm2l_sdpram_v1_10_icache.v": {
+      "before": "a92f88609e3c76bbd55f23dd6d9d08db25494745d16f1715b8e2279ea2857ad4",
+      "after": "a92f88609e3c76bbd55f23dd6d9d08db25494745d16f1715b8e2279ea2857ad4",
+      "match": true
+    },
+    "sim\\cpu_inst_hit_overlap\\preparation_20261017_a\\before\\myriscv\\afifo_16i_64o_512.v": {
+      "before": "f94f2a217531e148ba40664071eea3ec8e6cc0dafed93da310a6928c52d61546",
+      "after": "f94f2a217531e148ba40664071eea3ec8e6cc0dafed93da310a6928c52d61546",
+      "match": true
+    },
+    "sim\\cpu_inst_hit_overlap\\preparation_20261017_a\\before\\myriscv\\alu.v": {
+      "before": "fa58eb7d36f5f8b767dbd62e85098457f2e14abd9909c23b441bee6468920fb6",
+      "after": "fa58eb7d36f5f8b767dbd62e85098457f2e14abd9909c23b441bee6468920fb6",
+      "match": true
+    },
+    "sim\\cpu_inst_hit_overlap\\preparation_20261017_a\\before\\myriscv\\board_top.v": {
+      "before": "a1a033151b125a16645214636214f0a99c3a4bc29f55343d183a0fb0d7c5876d",
+      "after": "a1a033151b125a16645214636214f0a99c3a4bc29f55343d183a0fb0d7c5876d",
+      "match": true
+    },
+    "sim\\cpu_inst_hit_overlap\\preparation_20261017_a\\before\\myriscv\\br_alu.v": {
+      "before": "d33fe375029e88a5c44b4d6ad1e5caf8cbc8fd950dddcbf5f981cb4c14d0dd73",
+      "after": "d33fe375029e88a5c44b4d6ad1e5caf8cbc8fd950dddcbf5f981cb4c14d0dd73",
+      "match": true
+    },
+    "sim\\cpu_inst_hit_overlap\\preparation_20261017_a\\before\\myriscv\\camera_ddr_write_arbiter.v": {
+      "before": "ba03adcee6a82264f7ed679767b022cb814558dea0e4b4e0c1ffd56a9d8d2def",
+      "after": "ba03adcee6a82264f7ed679767b022cb814558dea0e4b4e0c1ffd56a9d8d2def",
+      "match": true
+    },
+    "sim\\cpu_inst_hit_overlap\\preparation_20261017_a\\before\\myriscv\\camera_mmio.v": {
+      "before": "f632551193f1e43bbc1b863c4e7406e33d5d4e15c843270309f93dc9a202f244",
+      "after": "f632551193f1e43bbc1b863c4e7406e33d5d4e15c843270309f93dc9a202f244",
+      "match": true
+    },
+    "sim\\cpu_inst_hit_overlap\\preparation_20261017_a\\before\\myriscv\\cnn_digits_engine.v": {
+      "before": "4f0dc5c45b3ee4f3a9902770fe463f70c5c0cb7aa20c54d645503272515b3009",
+      "after": "4f0dc5c45b3ee4f3a9902770fe463f70c5c0cb7aa20c54d645503272515b3009",
+      "match": true
+    },
+    "sim\\cpu_inst_hit_overlap\\preparation_20261017_a\\before\\myriscv\\cnn_gap16.v": {
+      "before": "b15537c5edfdbba1e20853579663cd3f6d9b82e7f53cf715a20a1c1b3a5b039b",
+      "after": "b15537c5edfdbba1e20853579663cd3f6d9b82e7f53cf715a20a1c1b3a5b039b",
+      "match": true
+    },
+    "sim\\cpu_inst_hit_overlap\\preparation_20261017_a\\before\\myriscv\\cnn_int8_mac.v": {
+      "before": "afb03017f7a0bfe15c95869bac4eec7ce246675cae8560b490788d82b5235512",
+      "after": "afb03017f7a0bfe15c95869bac4eec7ce246675cae8560b490788d82b5235512",
+      "match": true
+    },
+    "sim\\cpu_inst_hit_overlap\\preparation_20261017_a\\before\\myriscv\\cnn_mmio.v": {
+      "before": "496d92bffc432ff8dfe6e0611c6a2f1747ef0455b3c7862a3961ff76d8770a2b",
+      "after": "496d92bffc432ff8dfe6e0611c6a2f1747ef0455b3c7862a3961ff76d8770a2b",
+      "match": true
+    },
+    "sim\\cpu_inst_hit_overlap\\preparation_20261017_a\\before\\myriscv\\cnn_requantize.v": {
+      "before": "50002c711717442879614ecf4fbefccae258bf3aba5a9c3c3777977b0d6911a8",
+      "after": "50002c711717442879614ecf4fbefccae258bf3aba5a9c3c3777977b0d6911a8",
+      "match": true
+    },
+    "sim\\cpu_inst_hit_overlap\\preparation_20261017_a\\before\\myriscv\\cnn_rgb96_gray32.v": {
+      "before": "37cb9b3aa6c408d60785092301c1270acd23994e48599a7a7f9e87241b6296cf",
+      "after": "37cb9b3aa6c408d60785092301c1270acd23994e48599a7a7f9e87241b6296cf",
+      "match": true
+    },
+    "sim\\cpu_inst_hit_overlap\\preparation_20261017_a\\before\\myriscv\\csr_defs.vh": {
+      "before": "2cab6c5255e392161be69b1f75f283f301d5e6227533bd80b52bf4a14312f422",
+      "after": "2cab6c5255e392161be69b1f75f283f301d5e6227533bd80b52bf4a14312f422",
+      "match": true
+    },
+    "sim\\cpu_inst_hit_overlap\\preparation_20261017_a\\before\\myriscv\\csr_file.v": {
+      "before": "c0c105873d9ab2f8d309ebfd723cf59097adf3d5dbfa6fa2e7e1900eaffb4499",
+      "after": "c0c105873d9ab2f8d309ebfd723cf59097adf3d5dbfa6fa2e7e1900eaffb4499",
+      "match": true
+    },
+    "sim\\cpu_inst_hit_overlap\\preparation_20261017_a\\before\\myriscv\\data_bram_adapter.v": {
+      "before": "ccaec17880444a0b73271c19bb0c34ff7e3185ad30ffcb7945aef4afdb47b3ab",
+      "after": "ccaec17880444a0b73271c19bb0c34ff7e3185ad30ffcb7945aef4afdb47b3ab",
+      "match": true
+    },
+    "sim\\cpu_inst_hit_overlap\\preparation_20261017_a\\before\\myriscv\\data_bus_interconnect.v": {
+      "before": "b59d38413b01775f66f29959509ea4a10616e50c9a87eb6f8b55947be9fe4994",
+      "after": "b59d38413b01775f66f29959509ea4a10616e50c9a87eb6f8b55947be9fe4994",
+      "match": true
+    },
+    "sim\\cpu_inst_hit_overlap\\preparation_20261017_a\\before\\myriscv\\dual_sram_to_pango_ddr_bridge.v": {
+      "before": "b8d2aad8d824c350dbd958f3cd2755c6ab24f576dc5912c993db4f69b5948305",
+      "after": "b8d2aad8d824c350dbd958f3cd2755c6ab24f576dc5912c993db4f69b5948305",
+      "match": true
+    },
+    "sim\\cpu_inst_hit_overlap\\preparation_20261017_a\\before\\myriscv\\inst_bram_adapter.v": {
+      "before": "04b248c005b7c512b0fc830ffd34f1c9d9f4b9b7151755bf89db5f61ec1b794c",
+      "after": "04b248c005b7c512b0fc830ffd34f1c9d9f4b9b7151755bf89db5f61ec1b794c",
+      "match": true
+    },
+    "sim\\cpu_inst_hit_overlap\\preparation_20261017_a\\before\\myriscv\\inst_bus_interconnect.v": {
+      "before": "e38a6c540f7f1f4cff59a0d4eeeeb289519d7913e6b5100c9e0606d4db29b72d",
+      "after": "e38a6c540f7f1f4cff59a0d4eeeeb289519d7913e6b5100c9e0606d4db29b72d",
+      "match": true
+    },
+    "sim\\cpu_inst_hit_overlap\\preparation_20261017_a\\before\\myriscv\\ipm2l_fifo_ctrl_v1_1_afifo_16i_64o_512.v": {
+      "before": "7ee63df3926cae2c4381192e8438ec732867b63c402010d693694b8cf494e054",
+      "after": "7ee63df3926cae2c4381192e8438ec732867b63c402010d693694b8cf494e054",
+      "match": true
+    },
+    "sim\\cpu_inst_hit_overlap\\preparation_20261017_a\\before\\myriscv\\ipm2l_fifo_v1_10_afifo_16i_64o_512.v": {
+      "before": "7e4cebffe55f254c8face5204278207b075ffb67c9dce30ac54d873a3c165908",
+      "after": "7e4cebffe55f254c8face5204278207b075ffb67c9dce30ac54d873a3c165908",
+      "match": true
+    },
+    "sim\\cpu_inst_hit_overlap\\preparation_20261017_a\\before\\myriscv\\ipm2l_sdpram_v1_10_afifo_16i_64o_512.v": {
+      "before": "cf6b8c89a6b688128afa8d6e7a1b62d16144c241ec97e013336d6e12ec32ed6e",
+      "after": "cf6b8c89a6b688128afa8d6e7a1b62d16144c241ec97e013336d6e12ec32ed6e",
+      "match": true
+    },
+    "sim\\cpu_inst_hit_overlap\\preparation_20261017_a\\before\\myriscv\\l_alu.v": {
+      "before": "6dc7fff19f1ffca8f02017b3d78e4b97f636ed49d69b56ead5d474a662de8436",
+      "after": "6dc7fff19f1ffca8f02017b3d78e4b97f636ed49d69b56ead5d474a662de8436",
+      "match": true
+    },
+    "sim\\cpu_inst_hit_overlap\\preparation_20261017_a\\before\\myriscv\\mycpu_sync.v": {
+      "before": "b1114fa388b0da4a3c914da38f1b169d607b8ebed839dd018eab37fd0f4a41d3",
+      "after": "b1114fa388b0da4a3c914da38f1b169d607b8ebed839dd018eab37fd0f4a41d3",
+      "match": true
+    },
+    "sim\\cpu_inst_hit_overlap\\preparation_20261017_a\\before\\myriscv\\ov5640_capture.v": {
+      "before": "61d722dcba537123906a5fc6db80525898d4de32f815f9cc4d94790944e043d2",
+      "after": "61d722dcba537123906a5fc6db80525898d4de32f815f9cc4d94790944e043d2",
+      "match": true
+    },
+    "sim\\cpu_inst_hit_overlap\\preparation_20261017_a\\before\\myriscv\\ov5640_config.v": {
+      "before": "affd244fd66625f4b30ec04a4eb94824872835afa67ac51bd9db5a5120fa2b43",
+      "after": "affd244fd66625f4b30ec04a4eb94824872835afa67ac51bd9db5a5120fa2b43",
+      "match": true
+    },
+    "sim\\cpu_inst_hit_overlap\\preparation_20261017_a\\before\\myriscv\\ov5640_config_rom.v": {
+      "before": "059e6a614d1f854ccc2360cf013d95fb192d04e289241285f15dbbcb4927896d",
+      "after": "059e6a614d1f854ccc2360cf013d95fb192d04e289241285f15dbbcb4927896d",
+      "match": true
+    },
+    "sim\\cpu_inst_hit_overlap\\preparation_20261017_a\\before\\myriscv\\ov5640_sccb.v": {
+      "before": "3f95034e751f1c7a6bb95a916fbebe4caaf35692eb3f0b1d80b675171dffa641",
+      "after": "3f95034e751f1c7a6bb95a916fbebe4caaf35692eb3f0b1d80b675171dffa641",
+      "match": true
+    },
+    "sim\\cpu_inst_hit_overlap\\preparation_20261017_a\\before\\myriscv\\preprocess_ddr_read_arbiter.v": {
+      "before": "9e2b0e754371f48d693502bae152026628ef194467c63c9ed71b7cf3554e0887",
+      "after": "9e2b0e754371f48d693502bae152026628ef194467c63c9ed71b7cf3554e0887",
+      "match": true
+    },
+    "sim\\cpu_inst_hit_overlap\\preparation_20261017_a\\before\\myriscv\\preprocess_mmio.v": {
+      "before": "2a55ca3957c7acf60bcf7d25718b253e33693e1b324b71f083f3c4f62ce19c46",
+      "after": "2a55ca3957c7acf60bcf7d25718b253e33693e1b324b71f083f3c4f62ce19c46",
+      "match": true
+    },
+    "sim\\cpu_inst_hit_overlap\\preparation_20261017_a\\before\\myriscv\\regfile.v": {
+      "before": "acae02088c67005e9c18213901a914e642d6689a27107fca06add6e48e3aa48e",
+      "after": "acae02088c67005e9c18213901a914e642d6689a27107fca06add6e48e3aa48e",
+      "match": true
+    },
+    "sim\\cpu_inst_hit_overlap\\preparation_20261017_a\\before\\myriscv\\reset_button_debounce.v": {
+      "before": "442207f55c2ffd1eca7a9b3a238cd6466ad90c95275ac1061ed2d7239c98cd6b",
+      "after": "442207f55c2ffd1eca7a9b3a238cd6466ad90c95275ac1061ed2d7239c98cd6b",
+      "match": true
+    },
+    "sim\\cpu_inst_hit_overlap\\preparation_20261017_a\\before\\myriscv\\simple_mmio.v": {
+      "before": "b8b91df5042f466194cb98de03dad084c0d7a411e627fdc8f1d2c29cb62ebfc7",
+      "after": "b8b91df5042f466194cb98de03dad084c0d7a411e627fdc8f1d2c29cb62ebfc7",
+      "match": true
+    },
+    "sim\\cpu_inst_hit_overlap\\preparation_20261017_a\\before\\myriscv\\soc_ddr3_top.v": {
+      "before": "531e5c5e7f77f4d6d39d00d2a13b87611cb53af78e32872baad36558d5349306",
+      "after": "531e5c5e7f77f4d6d39d00d2a13b87611cb53af78e32872baad36558d5349306",
+      "match": true
+    },
+    "sim\\cpu_inst_hit_overlap\\preparation_20261017_a\\before\\myriscv\\soc_top.v": {
+      "before": "047cf3ccecbcd002c4b648883e7706d488813e22ba1b37eca8c2ab396c56821a",
+      "after": "047cf3ccecbcd002c4b648883e7706d488813e22ba1b37eca8c2ab396c56821a",
+      "match": true
+    },
+    "sim\\cpu_inst_hit_overlap\\preparation_20261017_a\\before\\myriscv\\topcpu_instrom.v": {
+      "before": "98ffe871584beaca6c171cee9e1d58a7536fde26bcc8da2a85a84278519b6ace",
+      "after": "98ffe871584beaca6c171cee9e1d58a7536fde26bcc8da2a85a84278519b6ace",
+      "match": true
+    },
+    "sim\\cpu_inst_hit_overlap\\preparation_20261017_a\\before\\myriscv\\uart_mmio.v": {
+      "before": "0f51c37d806230dff85cdff589ad8b12a4965dc76eb1ed92a88475659001ace7",
+      "after": "0f51c37d806230dff85cdff589ad8b12a4965dc76eb1ed92a88475659001ace7",
+      "match": true
+    },
+    "sim\\cpu_inst_hit_overlap\\preparation_20261017_a\\before\\myriscv\\uart_rx.v": {
+      "before": "d602552bfc6269c1ed87ef2c4f094bd4f7d600f3ac81db1b860c485fa6a2bb4e",
+      "after": "d602552bfc6269c1ed87ef2c4f094bd4f7d600f3ac81db1b860c485fa6a2bb4e",
+      "match": true
+    },
+    "sim\\cpu_inst_hit_overlap\\preparation_20261017_a\\before\\myriscv\\uart_rx_fifo.v": {
+      "before": "e0377aebb6b43b8c76bcaf1b5854d14ba9e1e5141fda60bfedc558eac9728047",
+      "after": "e0377aebb6b43b8c76bcaf1b5854d14ba9e1e5141fda60bfedc558eac9728047",
+      "match": true
+    },
+    "sim\\cpu_inst_hit_overlap\\preparation_20261017_a\\before\\myriscv\\uart_tx.v": {
+      "before": "bc132b3a229fea8894b52fe60bfed0f376a4097b0a3f074fab48e02bfe15ab4f",
+      "after": "bc132b3a229fea8894b52fe60bfed0f376a4097b0a3f074fab48e02bfe15ab4f",
+      "match": true
+    },
+    "sim\\cpu_inst_hit_overlap\\preparation_20261017_a\\before\\RISCV.pds": {
+      "before": "cc5aa75aaf236852cfb44fdd6e501be526bc9e7affd8b75732db6809acb2573f",
+      "after": "cc5aa75aaf236852cfb44fdd6e501be526bc9e7affd8b75732db6809acb2573f",
+      "match": true
+    },
+    "sim\\cpu_inst_hit_overlap\\preparation_20261017_a\\before\\tests\\cpu_performance_2b\\build\\measure_zmmul300_20261013_a\\performance_300\\program.bin": {
+      "before": "677ee766fd0fc34d1558d778a343743a1cd9287ecdbbc182cb4681af3374517d",
+      "after": "677ee766fd0fc34d1558d778a343743a1cd9287ecdbbc182cb4681af3374517d",
+      "match": true
+    },
+    "sim\\cpu_inst_hit_overlap\\preparation_20261017_a\\before\\tests\\cpu_performance_2b\\build\\measure_zmmul300_20261013_a\\validation_300\\program.bin": {
+      "before": "461c635c46c86c8e719ced403b045bca468ded7299870bf2f87f8547ce11719b",
+      "after": "461c635c46c86c8e719ced403b045bca468ded7299870bf2f87f8547ce11719b",
+      "match": true
+    },
+    "sim\\cpu_inst_hit_overlap\\preparation_20261017_a\\before_manifest.json": {
+      "before": "3f86796d479807a29dcd12fd8848e74bcbc4251dae4a69492c613db25f9d29a2",
+      "after": "3f86796d479807a29dcd12fd8848e74bcbc4251dae4a69492c613db25f9d29a2",
+      "match": true
+    },
+    "sim\\cpu_inst_hit_overlap\\preparation_20261017_a\\bridge.patch": {
+      "before": "5d70d51ae60082aeac601b1b569de4046ef36d9dc84f396a0e898ef498193b10",
+      "after": "5d70d51ae60082aeac601b1b569de4046ef36d9dc84f396a0e898ef498193b10",
+      "match": true
+    },
+    "sim\\cpu_inst_hit_overlap\\preparation_20261017_a\\bridge_before_head.diff": {
+      "before": "dda6580b4761698f6301116cac1ad22dbade798440bd46fb1f96b939c1e0c7e4",
+      "after": "dda6580b4761698f6301116cac1ad22dbade798440bd46fb1f96b939c1e0c7e4",
+      "match": true
+    },
+    "sim\\cpu_inst_hit_overlap\\preparation_20261017_a\\bridge_x32_enabled.log": {
+      "before": "48e320b43822192c297531766b6e8aad6635a6339bf34dbfb1487aed974aaa60",
+      "after": "48e320b43822192c297531766b6e8aad6635a6339bf34dbfb1487aed974aaa60",
+      "match": true
+    },
+    "sim\\cpu_inst_hit_overlap\\preparation_20261017_a\\checks_02\\board_top.log": {
+      "before": "f9c981461f165dd7f6d09809b4d8f5c0d52fdb9c969919e4bd7cc9a9e5a60b37",
+      "after": "f9c981461f165dd7f6d09809b4d8f5c0d52fdb9c969919e4bd7cc9a9e5a60b37",
+      "match": true
+    },
+    "sim\\cpu_inst_hit_overlap\\preparation_20261017_a\\checks_02\\bridge_x16.log": {
+      "before": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "after": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "match": true
+    },
+    "sim\\cpu_inst_hit_overlap\\preparation_20261017_a\\checks_02\\bridge_x32_disabled.log": {
+      "before": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "after": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "match": true
+    },
+    "sim\\cpu_inst_hit_overlap\\preparation_20261017_a\\checks_02\\bridge_x32_enabled.log": {
+      "before": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "after": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "match": true
+    },
+    "sim\\cpu_inst_hit_overlap\\preparation_20261017_a\\checks_02\\bridge_x32_no_icache.log": {
+      "before": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "after": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "match": true
+    },
+    "sim\\cpu_inst_hit_overlap\\preparation_20261017_a\\checks_02\\bridge_x32_posted.log": {
+      "before": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "after": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "match": true
+    },
+    "sim\\cpu_inst_hit_overlap\\preparation_20261017_a\\compile_failure.json": {
+      "before": "62b94997e7dc3df8db964c4198679643a1791d8c6ad0cc68bff780df9af4a631",
+      "after": "62b94997e7dc3df8db964c4198679643a1791d8c6ad0cc68bff780df9af4a631",
+      "match": true
+    },
+    "sim\\cpu_inst_hit_overlap\\preparation_20261017_a\\git_after.txt": {
+      "before": "2460cb5f01571d6fda6b01cdc893016ebbbde1376bcd032b1c7263ae065e9471",
+      "after": "2460cb5f01571d6fda6b01cdc893016ebbbde1376bcd032b1c7263ae065e9471",
+      "match": true
+    },
+    "sim\\cpu_inst_hit_overlap\\preparation_20261017_a\\git_before.txt": {
+      "before": "d1759a923136ad4046254088787d05c842ea8b4bd7258fa6191a763436157cde",
+      "after": "d1759a923136ad4046254088787d05c842ea8b4bd7258fa6191a763436157cde",
+      "match": true
+    },
+    "sim\\cpu_inst_hit_overlap\\preparation_20261017_a\\head.txt": {
+      "before": "ed866326ffcdb7cfb2182c87caf3c1f473b4debaec6e7b9793158713c5a84aee",
+      "after": "ed866326ffcdb7cfb2182c87caf3c1f473b4debaec6e7b9793158713c5a84aee",
+      "match": true
+    },
+    "sim\\cpu_inst_hit_overlap\\preparation_20261017_a\\review.json": {
+      "before": "eb5a984ba6ed798a6021f0c1b15e960dd4cf17c4d57b8b29a8794f741666a3ce",
+      "after": "eb5a984ba6ed798a6021f0c1b15e960dd4cf17c4d57b8b29a8794f741666a3ce",
+      "match": true
+    },
+    "sim\\cpu_inst_hit_overlap\\preparation_20261017_a\\static_prepare.py": {
+      "before": "192a1a924e66fae46e2ae25047b28623af1483b61daa91b341a1f0e88cc2ca45",
+      "after": "192a1a924e66fae46e2ae25047b28623af1483b61daa91b341a1f0e88cc2ca45",
+      "match": true
+    },
+    "sim\\cpu_inst_hit_overlap\\preparation_20261017_b\\check_identity.py": {
+      "before": "6160f0a93334a530247345a5e5b7230687cfd7e2d53abbd99a69eb34727466b7",
+      "after": "6160f0a93334a530247345a5e5b7230687cfd7e2d53abbd99a69eb34727466b7",
+      "match": true
+    },
+    "sim\\cpu_inst_hit_overlap\\preparation_20261017_b\\git_diff_stat.txt": {
+      "before": "2ea00fd1f0ad5d5069adeae64bccfbb04beb5cb12381363f0f7f0c49bda93817",
+      "after": "2ea00fd1f0ad5d5069adeae64bccfbb04beb5cb12381363f0f7f0c49bda93817",
+      "match": true
+    },
+    "sim\\cpu_inst_hit_overlap\\preparation_20261017_b\\git_status.txt": {
+      "before": "75988f12c0805a2589f6871064132312826b5013bd73aa0324287e6ec0896a93",
+      "after": "75988f12c0805a2589f6871064132312826b5013bd73aa0324287e6ec0896a93",
+      "match": true
+    },
+    "sim\\cpu_inst_hit_overlap\\preparation_20261017_b\\head.txt": {
+      "before": "639effd2ce43f671b0b1e974e74a9a0e39ef23f6e46b6f14cd667c1f7dbb8ad3",
+      "after": "639effd2ce43f671b0b1e974e74a9a0e39ef23f6e46b6f14cd667c1f7dbb8ad3",
+      "match": true
+    },
+    "sim\\cpu_inst_hit_overlap\\preparation_20261017_b\\identity.json": {
+      "before": "2bb1b2bd8d4e16fe87c7fbb2db61be6e5548fe3b39841a050211958400ffca97",
+      "after": "2bb1b2bd8d4e16fe87c7fbb2db61be6e5548fe3b39841a050211958400ffca97",
+      "match": true
+    },
+    "sim\\cpu_inst_hit_overlap\\preparation_20261017_b\\identity_check.txt": {
+      "before": "45e3f2f91b8710ed26056c458cb20251c6d5c5a6b4c9265a52b3c932be309da9",
+      "after": "45e3f2f91b8710ed26056c458cb20251c6d5c5a6b4c9265a52b3c932be309da9",
+      "match": true
+    }
+  },
+  "finished_utc": "2026-10-17T18:18:52Z"
+}

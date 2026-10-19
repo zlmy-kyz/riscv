@@ -1,0 +1,7 @@
+{
+  "status": "OFFLINE_FIXTURE_NOT_A_BOARD_IMAGE",
+  "bin_path": "sim/camera/uart_preparation_20261015_a/offline_tests/offline_fixture.bin",
+  "bin_sha256": "785b0751fc2c53dc14a4ce3d800e69ef9ce1009eb327ccf458afe09c242c26c9",
+  "bytes": 1024,
+  "crc32": 3070970918
+}

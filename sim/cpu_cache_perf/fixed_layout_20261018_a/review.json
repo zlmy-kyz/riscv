@@ -1,0 +1,119 @@
+{
+  "status": "PERF27_FIXED_LAYOUT_STATIC_AND_OFFLINE_SCHEMA_PASS_RUNTIME_PENDING",
+  "results": {
+    "performance_300": {
+      "bin_sha256": "4a090b360f0889e961c2cfe1e6ae90fa1298bb868d65ae8aebf23f9a01a63310",
+      "bytes": 37328,
+      "frozen_manifest_sha256": "0e0fa8a5c1c14d8915aa1343c54ef56746b5abd088a1fdef6027f35c64ae7fef",
+      "layout_proof": {
+        "frozen_symbols": 86,
+        "original_loaded_bytes": 15204,
+        "all_original_bytes_preserved_except": 8,
+        "post_ROI_patch_address": 1073746960,
+        "reader_entry": 1073774612,
+        "reader_segment_base": 1073774592,
+        "frozen_BSS_zero_loaded": true
+      },
+      "preserved_symbol_addresses": {
+        "main": "0x40001570",
+        "iterate": "0x400014d8",
+        "core_bench_list": "0x400020dc",
+        "core_bench_matrix": "0x40002970",
+        "core_bench_state": "0x40002ca4",
+        "static_memblk": "0x40003ba8",
+        "start_time": "0x400007cc",
+        "stop_time": "0x400007f0",
+        "__global_pointer$": "0x40004354",
+        "__stack_bottom": "0x4000f000",
+        "__stack_top": "0x40010000"
+      },
+      "reader_sections": {
+        ".perf27_text": {
+          "address": 1073774592,
+          "size": 3060,
+          "type": 1
+        },
+        ".perf27_rodata": {
+          "address": 1073777656,
+          "size": 1268,
+          "type": 1
+        },
+        ".perf27_data": {
+          "address": 1073778928,
+          "size": 224,
+          "type": 1
+        }
+      },
+      "plan_path": "sim\\cpu_cache_perf\\board\\perf27_fixed_plan_20261018_01\\performance_300.json",
+      "plan_sha256": "684751681a097aa5e5a6193bf7ff0c78272a6ec9580043ffd2659e55d581da0a",
+      "offline_schema_replay_source_sha256": "d65b2755320ced37538a83180b56b41edf02bc451d0155ee123085d2d3722691",
+      "replay_is_new_hardware_or_runtime_evidence": false
+    },
+    "validation_300": {
+      "bin_sha256": "8dd0580509e2357e6742b925ae13986abbbf2a5fd206bc7e3b4deec54f224cb4",
+      "bytes": 37328,
+      "frozen_manifest_sha256": "ee43a28fba98f359bd49acefb64ba0e9bd43bbd7d5fbbd5982e525a521b88092",
+      "layout_proof": {
+        "frozen_symbols": 86,
+        "original_loaded_bytes": 15212,
+        "all_original_bytes_preserved_except": 8,
+        "post_ROI_patch_address": 1073746960,
+        "reader_entry": 1073774612,
+        "reader_segment_base": 1073774592,
+        "frozen_BSS_zero_loaded": true
+      },
+      "preserved_symbol_addresses": {
+        "main": "0x40001570",
+        "iterate": "0x400014d8",
+        "core_bench_list": "0x400020dc",
+        "core_bench_matrix": "0x40002970",
+        "core_bench_state": "0x40002ca4",
+        "static_memblk": "0x40003ba8",
+        "start_time": "0x400007cc",
+        "stop_time": "0x400007f0",
+        "__global_pointer$": "0x40004354",
+        "__stack_bottom": "0x4000f000",
+        "__stack_top": "0x40010000"
+      },
+      "reader_sections": {
+        ".perf27_text": {
+          "address": 1073774592,
+          "size": 3060,
+          "type": 1
+        },
+        ".perf27_rodata": {
+          "address": 1073777656,
+          "size": 1268,
+          "type": 1
+        },
+        ".perf27_data": {
+          "address": 1073778928,
+          "size": 224,
+          "type": 1
+        }
+      },
+      "plan_path": "sim\\cpu_cache_perf\\board\\perf27_fixed_plan_20261018_01\\validation_300.json",
+      "plan_sha256": "5565524638b7f122c09fd601f72ebfb89f15ae526161319d6d6edd8897393985",
+      "offline_schema_replay_source_sha256": "158d5ceb1f306560862afb4ed17126170f62e82e327ed0d307f836d7673418ba",
+      "replay_is_new_hardware_or_runtime_evidence": false
+    }
+  },
+  "old_frozen_and_unfixed_BINs_and_RTL_unchanged": true,
+  "ABI": "Entry is LUI t0 + JALR zero through t0; RA/SP preserved before normal C reader prologue. Calls old printf/timer at original addresses.",
+  "initialization": "Original startup and BSS bounds unchanged; isolated reader scratch is zero-loaded PROGBITS in the new image, not added to the timed startup BSS loop.",
+  "flat_BIN_padding_note": "37328 bytes include the gap to 0x40008000; upload takes longer, outside the benchmark ROI.",
+  "runtime_limit": "No fixed-layout CPU/board execution; DDR/cache initial phase can still vary. Do not promise exact cycles or record runtime PASS.",
+  "dynamic_simulation": "NOT_RUN",
+  "PDS": "NOT_RUN",
+  "serial_opened": false,
+  "source_sha256": {
+    "tests\\cpu_performance_2b\\build_perf27_fixed.py": "7b55137a718b0dbe042c64f4b386b3178d88a96a006063e81f516f1bfd6786bb",
+    "tests\\cpu_performance_2b\\perf27_fixed_software.py": "c074a4e05b82d73012ca40ff06909e9041b813e34f831f06df7ce19a14a23414",
+    "tests\\cpu_performance_2b\\perf27_software.py": "589c12bcf4c2b9e451da77d9c716e5204ebf1e8f901fc0e227754c52bd17f700",
+    "tests\\cpu_performance_2b\\perf27.c": "70e989dd49a44d76014c16693f081ca826b5c643c2d238303f7e32903d3535bd",
+    "tests\\cpu_performance_2b\\perf.h": "3c7a41a74dd8c5334af4bbb60d0915fc1d5c974a1ea86e7a7c65f9853f7e11d3",
+    "tools\\uart_loader\\candidates\\perf_2b\\run_perf27_measurement.py": "63544c3bc31128750dbb2d665ee0154a728b142bf9e62d292f5c352f205f8c48",
+    "tools\\uart_loader\\candidates\\perf_2b\\run_perf27_measurements.ps1": "4eba5a3f88522e400cba19df9991646b056f1d0296906d82153afc7d4abc12db",
+    "sim\\cpu_cache_perf\\fixed_layout_20261018_a\\review_layout.py": "d8edeff0e805f948b2b7461a8bd52f0ede632292ad700ce9b521166ecfdd7a1d"
+  }
+}

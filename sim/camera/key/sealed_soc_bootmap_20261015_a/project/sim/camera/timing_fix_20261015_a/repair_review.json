@@ -1,0 +1,106 @@
+{
+  "status": "RTL_AND_SCOPED_RESET_CONSTRAINT_REPAIR_PENDING_USER_PDS",
+  "report_date": "2026-10-15 14:27:21",
+  "reported_slack_ns": {
+    "core_setup": -0.797,
+    "camera_setup": -0.029,
+    "reset_recovery": -4.568
+  },
+  "reported_failing_endpoints": {
+    "core_setup": 228,
+    "camera_setup": 2,
+    "reset_recovery": 2
+  },
+  "detailed_violated_paths": [
+    [
+      "Startpoint  : u_soc/u_soc/g_ddr.u_ddr_bridge/g_data_drm.u_data_data_ram/U_ipm2l_sdpram_dcache/ADDR_LOOP[0].DATA_LOOP[2].U_GTP_DRM36K_E1/gopdrm_36k_inv/CLKB[0]",
+      "Endpoint    : u_soc/u_soc/u_inst_rom/U_ipm2l_rom_inst_rom/U_ipm2l_spram/ADDR_LOOP[0].DATA_LOOP[1].U_GTP_DRM36K_E1/gopdrm_36k_inv/ADA0[13]",
+      "Path Type   : max (slow corner)",
+      "Path Class  : sequential timing path",
+      "Slack (VIOLATED)                                                   -0.797"
+    ],
+    [
+      "Startpoint  : u_soc/u_soc/g_ddr.u_ddr_bridge/g_data_drm.u_data_data_ram/U_ipm2l_sdpram_dcache/ADDR_LOOP[0].DATA_LOOP[2].U_GTP_DRM36K_E1/gopdrm_36k_inv/CLKB[0]",
+      "Endpoint    : u_soc/u_soc/u_inst_rom/U_ipm2l_rom_inst_rom/U_ipm2l_spram/ADDR_LOOP[0].DATA_LOOP[0].U_GTP_DRM36K_E1/gopdrm_36k_inv/ADB0[7]",
+      "Path Type   : max (slow corner)",
+      "Path Class  : sequential timing path",
+      "Slack (VIOLATED)                                                   -0.776"
+    ],
+    [
+      "Startpoint  : u_soc/u_soc/g_ddr.u_ddr_bridge/g_data_drm.u_data_data_ram/U_ipm2l_sdpram_dcache/ADDR_LOOP[0].DATA_LOOP[2].U_GTP_DRM36K_E1/gopdrm_36k_inv/CLKB[0]",
+      "Endpoint    : u_soc/u_soc/u_inst_rom/U_ipm2l_rom_inst_rom/U_ipm2l_spram/ADDR_LOOP[0].DATA_LOOP[1].U_GTP_DRM36K_E1/gopdrm_36k_inv/ADB0[3]",
+      "Path Type   : max (slow corner)",
+      "Path Class  : sequential timing path",
+      "Slack (VIOLATED)                                                   -0.767"
+    ],
+    [
+      "Startpoint  : camera_data[1] (port)",
+      "Endpoint    : u_soc/g_camera.u_camera/u_capture/crc[22]/opit_0_inv/D",
+      "Path Type   : max (slow corner)",
+      "Path Class  : sequential timing path",
+      "Slack (VIOLATED)                                                   -0.029"
+    ],
+    [
+      "Startpoint  : camera_data[1] (port)",
+      "Endpoint    : u_soc/g_camera.u_camera/u_capture/crc[20]/opit_0_inv/D",
+      "Path Type   : max (slow corner)",
+      "Path Class  : sequential timing path",
+      "Slack (VIOLATED)                                                   -0.021"
+    ],
+    [
+      "Startpoint  : u_soc/soc_reset_pipe[1]/opit_0_inv_1/CLK",
+      "Endpoint    : u_soc/g_camera.u_camera/wr_reset_pipe[0]/opit_0/RS",
+      "Path Type   : max (slow corner)",
+      "Path Class  : async timing path",
+      "Slack (VIOLATED)                                                   -4.568"
+    ],
+    [
+      "Startpoint  : u_soc/soc_reset_pipe[1]/opit_0_inv_1/CLK",
+      "Endpoint    : u_soc/g_camera.u_camera/wr_reset_pipe[1]/opit_0/RS",
+      "Path Type   : max (slow corner)",
+      "Path Class  : async timing path",
+      "Slack (VIOLATED)                                                   -4.568"
+    ],
+    [
+      "Startpoint  : u_soc/soc_reset_pipe[1]/opit_0_inv_1/CLK",
+      "Endpoint    : u_soc/g_camera.u_camera/wr_reset_pipe[0]/opit_0/RS",
+      "Path Type   : max (fast corner)",
+      "Path Class  : async timing path",
+      "Slack (VIOLATED)                                                   -3.573"
+    ],
+    [
+      "Startpoint  : u_soc/soc_reset_pipe[1]/opit_0_inv_1/CLK",
+      "Endpoint    : u_soc/g_camera.u_camera/wr_reset_pipe[1]/opit_0/RS",
+      "Path Type   : max (fast corner)",
+      "Path Class  : async timing path",
+      "Slack (VIOLATED)                                                   -3.573"
+    ]
+  ],
+  "after": [
+    {
+      "path": "myriscv/soc_top.v",
+      "sha256": "1be16948f85bab057fd5be4a2a66f93a41b86f611225e9b6b222010c4ec32810"
+    },
+    {
+      "path": "myriscv/ov5640_capture.v",
+      "sha256": "c3a6779aaa7138682c2cc5a0006ea291c2410b088a7f51aca06a7c0e5e082e52"
+    },
+    {
+      "path": "myriscv/camera_mmio.v",
+      "sha256": "8f926c21210688b5e41b77c5f8d7c018e6046f76b696fd265b24ee726861a065"
+    },
+    {
+      "path": "constraint_check/temp_constraint_file.fdc",
+      "sha256": "2062a75b48534e104e93b34ca151fecccbea4847bb16917a77433995e1559107"
+    },
+    {
+      "path": "fdc/camera_single.fdc",
+      "sha256": "9a782e483d243086a3490f2b88287fb3bc136d9f86d15dbfe409459dfe70f398"
+    }
+  ],
+  "syntax_camera_exit": 0,
+  "syntax_camera_disabled_exit": 0,
+  "pds_executed": false,
+  "functional_simulation_executed": false,
+  "scope": "Partial Icarus null-target elaboration with missing vendor/IP modules ignored; not timing/functional PASS"
+}

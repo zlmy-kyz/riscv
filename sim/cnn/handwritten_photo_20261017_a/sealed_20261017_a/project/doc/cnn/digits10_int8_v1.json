@@ -1,0 +1,167 @@
+{
+  "contract": "digits10_int8_v1",
+  "status": "DESIGN_ONLY_NO_TRAINED_MODEL_NO_CNN_RTL",
+  "classes": [
+    "0",
+    "1",
+    "2",
+    "3",
+    "4",
+    "5",
+    "6",
+    "7",
+    "8",
+    "9"
+  ],
+  "input": {
+    "shape_hwc": [
+      32,
+      32,
+      1
+    ],
+    "source": "preprocess_ddr_rgb888",
+    "byte_address": "0x42000000",
+    "source_shape_hwc": [
+      96,
+      96,
+      3
+    ],
+    "source_bytes": 27648,
+    "bytes": 1024,
+    "sample": "px=3*x+1; py=3*y+1",
+    "gray": "(77*R+150*G+29*B+128)>>8",
+    "conversion": "int(gray)-128",
+    "fraction_bits": 7,
+    "zero_point": 0
+  },
+  "weight_layout": "O_KY_KX_I",
+  "activation_layout": "HWC",
+  "rounding": "nearest_ties_away_from_zero",
+  "weight_range": [
+    -127,
+    127
+  ],
+  "accumulator_bits": 32,
+  "conv_activation_range": [
+    0,
+    127
+  ],
+  "shift_range": [
+    0,
+    31
+  ],
+  "fraction_bits_range": [
+    0,
+    15
+  ],
+  "layers": [
+    {
+      "name": "conv1",
+      "op": "conv_relu",
+      "input_hwc": [
+        32,
+        32,
+        1
+      ],
+      "output_hwc": [
+        16,
+        16,
+        8
+      ],
+      "kernel": 3,
+      "stride": 2,
+      "pad_each_side": 1,
+      "weight_offset": 0,
+      "weight_bytes": 72,
+      "bias_offset": 0,
+      "bias_count": 8,
+      "macs": 18432,
+      "weight_fraction_bits": null,
+      "output_fraction_bits": null
+    },
+    {
+      "name": "conv2",
+      "op": "conv_relu",
+      "input_hwc": [
+        16,
+        16,
+        8
+      ],
+      "output_hwc": [
+        8,
+        8,
+        16
+      ],
+      "kernel": 3,
+      "stride": 2,
+      "pad_each_side": 1,
+      "weight_offset": 72,
+      "weight_bytes": 1152,
+      "bias_offset": 32,
+      "bias_count": 16,
+      "macs": 73728,
+      "weight_fraction_bits": null,
+      "output_fraction_bits": null
+    },
+    {
+      "name": "conv3",
+      "op": "conv_relu",
+      "input_hwc": [
+        8,
+        8,
+        16
+      ],
+      "output_hwc": [
+        4,
+        4,
+        32
+      ],
+      "kernel": 3,
+      "stride": 2,
+      "pad_each_side": 1,
+      "weight_offset": 1224,
+      "weight_bytes": 4608,
+      "bias_offset": 96,
+      "bias_count": 32,
+      "macs": 73728,
+      "weight_fraction_bits": null,
+      "output_fraction_bits": null
+    },
+    {
+      "name": "gap",
+      "op": "gap",
+      "input_hwc": [
+        4,
+        4,
+        32
+      ],
+      "output_elements": 32,
+      "divisor": 16,
+      "rounding": "floor((sum+8)/16)",
+      "macs": 0
+    },
+    {
+      "name": "fc",
+      "op": "fc",
+      "input_elements": 32,
+      "output_elements": 10,
+      "weight_offset": 5832,
+      "weight_bytes": 320,
+      "bias_offset": 224,
+      "bias_count": 10,
+      "macs": 320,
+      "weight_fraction_bits": null,
+      "output_fraction_bits": null,
+      "output_dtype": "signed_int32"
+    }
+  ],
+  "total_weight_bytes": 6152,
+  "total_bias_bytes": 264,
+  "total_macs": 166208,
+  "activation_bank_bytes": [
+    2048,
+    2048
+  ],
+  "argmax_tie_break": "lowest_class_index",
+  "trained_model": null
+}

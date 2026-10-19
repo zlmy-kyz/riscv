@@ -1,0 +1,35 @@
+{
+  "status": "PDS_SOURCE_ENTRY_FORMAT_FIXED_PENDING_USER_REOPEN",
+  "before_sha256": "479aad32be77741c56f7bc87024d09ef244238a31cfcc3c45bc6a1042f0b214d",
+  "after_sha256": "9406e120b09eaa23a91c8cb56cee17e5cfc0ae1a3adb142b8f939c96210df744",
+  "changes": [
+    {
+      "file": "myriscv\\cnn_rgb96_gray32.v",
+      "timespec": "2026-10-16T07:53:32"
+    },
+    {
+      "file": "myriscv\\cnn_int8_mac.v",
+      "timespec": "2026-10-16T07:53:33"
+    },
+    {
+      "file": "myriscv\\cnn_requantize.v",
+      "timespec": "2026-10-16T07:53:33"
+    },
+    {
+      "file": "myriscv\\cnn_gap16.v",
+      "timespec": "2026-10-16T07:53:34"
+    },
+    {
+      "file": "myriscv\\cnn_digits_engine.v",
+      "timespec": "2026-10-16T08:16:53"
+    },
+    {
+      "file": "myriscv\\cnn_mmio.v",
+      "timespec": "2026-10-16T08:18:23"
+    }
+  ],
+  "checked_design_entries": 39,
+  "pds_executed": false,
+  "rtl_changed": false,
+  "note": "Pre-write checks corrected for CRLF and existing board_top alias. Original failed PDS preserved."
+}

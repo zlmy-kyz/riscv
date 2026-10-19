@@ -1,0 +1,14 @@
+{
+  "argv": [
+    "C:/python/python.exe",
+    "D:\\riscv\\RISCV\\sim\\camera_double\\key_20261016_b\\check.py",
+    "--out",
+    "D:\\riscv\\RISCV\\sim\\camera_double\\key_20261016_a\\build\\ds_abi2_key_20261016_a",
+    "--job",
+    "unit",
+    "--report-dir",
+    "D:\\riscv\\RISCV\\sim\\camera_double\\key_20261016_b\\review_a"
+  ],
+  "cwd": "D:\\riscv\\RISCV",
+  "returncode": 0
+}

@@ -1,0 +1,22 @@
+{
+  "status": "MODELSIM_C_MINIMAL_HDL_RESTORED",
+  "date_user_context": "2026-10-19",
+  "identical_inputs_to_previous_diagnostic": true,
+  "loopback_ipv4_ipv6": "PASS",
+  "kernel_runs_passed": 2,
+  "system_settings_changed": false,
+  "project_hdl_test_run": false,
+  "sha256": {
+    "check.py": "0abe20a0b233986d2607a60ed4ac6589aac8899c06da7e0ccf16106dc4f7c686",
+    "kernel_1.log": "5b2f7d11de6ac719f45367ad6f861e7580d057d2b55322dfcdc20b29cb2225b0",
+    "kernel_2.log": "92d56e99f648d1c9c824156c976eef09a772a65ddc744799b5e8a5899e9217c0",
+    "README.md": "92923c792fc7c8bd534d5e76686ef178230c79d4d36c2c4b8132e5a3180daa3f",
+    "results.json": "543b2ef5ba9bf8bbb49e8d39cc39b7a665ce8915d04cdfaae4ac00b9310f2b7a",
+    "tool_health.v": "7b1325cc1d7e470e7282442b58c6e1d1e883eb13926bb616b6cc6fa76fc2b988",
+    "transcript_1.log": "d03111ff269dda4d6e89a57a656267b394ce73c03c045d2a0962fae2f5bfa1bb",
+    "transcript_2.log": "b7e76b2adb9ee9d9231714afa450b7e33f4ce9d394a5dc6afe2c8072a45143db",
+    "version.log": "104137570737849e47cd29a322368852e97c362e8829437745d2a1b5bb9658a6",
+    "vlib.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "vlog.log": "f36e6f25df49d5799d55e301e466ab979a15c424eb6ab924859ee750231916d4"
+  }
+}

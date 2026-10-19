@@ -1,0 +1,14 @@
+{
+  "status": "CAMERA_INI_RESUME_STATIC_INPUT_AND_FAILURE_PRESERVATION_PASS_HDL_NOT_RUN",
+  "manifest_sha256": "0cadecef11c33d41d52b233a9aa629a51791843756f235c829c3fa32c08ce3f7",
+  "prior_manifest_sha256": "859fca5ca0e87c77976b3d3fbe3d80d408c37bb8e62ad9e720ca1d549e3064d3",
+  "project_inputs": 271,
+  "unchanged_original_inputs": 246,
+  "original_failure_files_unchanged": 15,
+  "same_compile_sources": true,
+  "same_thresholds_and_timeouts": true,
+  "new_run_directory_exists": false,
+  "HDL_run": false,
+  "PDS_run": false,
+  "board_run": false
+}

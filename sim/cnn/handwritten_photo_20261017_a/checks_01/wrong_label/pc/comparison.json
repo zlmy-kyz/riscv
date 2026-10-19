@@ -1,0 +1,36 @@
+{
+  "all_10_scores_equal": true,
+  "board_scores": [
+    5830,
+    -6198,
+    -5470,
+    -2711,
+    -1978,
+    -1817,
+    -299,
+    -6141,
+    3344,
+    3734
+  ],
+  "expected_scores": [
+    5830,
+    -6198,
+    -5470,
+    -2711,
+    -1978,
+    -1817,
+    -299,
+    -6141,
+    3344,
+    3734
+  ],
+  "board_class": 0,
+  "expected_class": 0,
+  "argmax_equal": true,
+  "label": 1,
+  "label_match": false,
+  "model_id": "4c8b5aca",
+  "cnn_cycles": 1234567,
+  "cnn_ms": 13.168714666666666,
+  "scope": "One labeled trial; score equality and recognition correctness are separate"
+}

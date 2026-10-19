@@ -1,0 +1,106 @@
+{
+  "seed": 2026101323,
+  "raw_ip_vectors": 128,
+  "multiply_math_vectors": 384,
+  "cases": [
+    {
+      "index": 0,
+      "name": "math_dependencies",
+      "events": 2718,
+      "mul_retirements": 391
+    },
+    {
+      "index": 1,
+      "name": "memory_backpressure",
+      "events": 15,
+      "mul_retirements": 1,
+      "long_memory": true
+    },
+    {
+      "index": 2,
+      "name": "reset_mid_mul",
+      "events": 10,
+      "mul_retirements": 1,
+      "reset_mid_mul": true
+    },
+    {
+      "index": 3,
+      "name": "older_fault_cancel",
+      "events": 22,
+      "mul_retirements": 1,
+      "fault_address": 2147495936,
+      "long_memory": true
+    },
+    {
+      "index": 4,
+      "name": "irq_drain",
+      "events": 24,
+      "mul_retirements": 1,
+      "irq_mul_pc": 2147483700
+    },
+    {
+      "index": 5,
+      "name": "illegal_div_rem_misa",
+      "events": 50,
+      "mul_retirements": 1
+    }
+  ],
+  "isa_cases": [
+    {
+      "name": "lhu",
+      "rom": "MyCpu_test/dat/lhu/lhu_rom.dat",
+      "ram": "MyCpu_test/dat/lhu/lhu_ram.dat",
+      "tohost": 2147487744,
+      "dump": "MyCpu_test/dump/rv32ui-p-lhu.dump"
+    },
+    {
+      "name": "or",
+      "rom": "MyCpu_test/dat/or/or_rom.dat",
+      "ram": null,
+      "tohost": 2147487744,
+      "dump": "MyCpu_test/dump/rv32ui-p-or.dump"
+    }
+  ],
+  "supported_population": [
+    "add",
+    "addi",
+    "and",
+    "andi",
+    "auipc",
+    "beq",
+    "bge",
+    "bgeu",
+    "blt",
+    "bltu",
+    "bne",
+    "jal",
+    "jalr",
+    "lb",
+    "lbu",
+    "ld_st",
+    "lh",
+    "lhu",
+    "lui",
+    "lw",
+    "or",
+    "ori",
+    "sb",
+    "sh",
+    "simple",
+    "sll",
+    "slli",
+    "slt",
+    "slti",
+    "sltiu",
+    "sltu",
+    "sra",
+    "srai",
+    "srl",
+    "srli",
+    "st_ld",
+    "sub",
+    "sw",
+    "xor",
+    "xori"
+  ]
+}

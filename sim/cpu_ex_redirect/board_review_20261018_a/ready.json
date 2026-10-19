@@ -1,0 +1,43 @@
+{
+  "status": "EX_REVIEWED_BOARD_TOOL_READY_NOT_BOARD_OR_FULL_CPU_FUNCTIONAL_PASS",
+  "review_sha256": "1622940f1fbbcbf351f04c6d56579ebd921c1bc63080e6b50f93aff90f4156a2",
+  "tool_sha256": {
+    "tools/uart_loader/candidates/perf_2b/run_ex_redirect_reviewed_measurement.py": "3a7aa2310e74c84008a9ea03094fce7e67818bc09d00eac003871789e9483beb",
+    "tools/uart_loader/candidates/perf_2b/run_ex_redirect_reviewed_measurements.ps1": "e283c750220cbd36806a329dc488a2c019de245c467881c447ef897968275aae"
+  },
+  "plans": {
+    "performance_300": {
+      "responses": 123,
+      "run_count": 1,
+      "serial_opened": false,
+      "transport_plan_equals_036": true,
+      "plan_sha256": "f18b59d3e9e8b4c00bd55f7b623ff9e22a5fac6707747fc2c2ad79aad75fcad6",
+      "relabelled_036_fixture_only": {
+        "source_sha256": "6e61aa065d6380c08a04c5586d05238b1bf0cac75666797ae8787b1564e76a8f",
+        "zero_delta": true,
+        "corrupt_counter_rejected": true,
+        "wrong_artifact_rejected": true,
+        "is_EX_board_evidence": false
+      }
+    },
+    "validation_300": {
+      "responses": 123,
+      "run_count": 1,
+      "serial_opened": false,
+      "transport_plan_equals_036": true,
+      "plan_sha256": "3c075ffabbc10e7c6c73d6ff3db1bddbfe87b969bc0ac4fdf7855f7761c4be69",
+      "relabelled_036_fixture_only": {
+        "source_sha256": "9db1bf09977f6f0e23fb46f265a976746f8045d2271b5d6347c8e1c222efd2d9",
+        "zero_delta": true,
+        "corrupt_counter_rejected": true,
+        "wrong_artifact_rejected": true,
+        "is_EX_board_evidence": false
+      }
+    }
+  },
+  "clock_hz": 93750000,
+  "serial_opened": false,
+  "RTL_modified": false,
+  "HDL_started": false,
+  "PDS_started": false
+}

@@ -1,0 +1,22 @@
+{
+  "status": "CNN_DIAG_ONE_INPUT_PACKAGE_RAW_10_SCORES_VERIFIED",
+  "scores": [
+    -7,
+    -182,
+    89,
+    161,
+    -240,
+    169,
+    137,
+    -57,
+    111,
+    153
+  ],
+  "prediction": 5,
+  "model_id": "05a032af",
+  "cnn_ms": 13.168714666666666,
+  "trained_digit_accuracy": false,
+  "key_HDL": "NOT_COMPLETED",
+  "timing": "PENDING_USER_CONFIRMATION",
+  "scope": "One actual RGB96 and diagnostic parameter package only"
+}

@@ -1,0 +1,293 @@
+{
+  "status": "TASK040_FIX02D_CORE_ATTRIBUTION_RAW_EVIDENCE_ACCEPTED_WITH_DOCUMENTED_REMAINING_GAPS",
+  "sealed_input_files_verified": 17,
+  "include_closure": [
+    {
+      "source": "myriscv/csr_file.v",
+      "include": "csr_defs.vh"
+    },
+    {
+      "source": "myriscv/mycpu_sync.v",
+      "include": "csr_defs.vh"
+    }
+  ],
+  "recorded_commands_checked": 25,
+  "observations": {
+    "fast": {
+      "events_ns": [
+        85,
+        95,
+        95,
+        105,
+        115
+      ],
+      "retired_prefix_rows_checked": 3,
+      "checked_architectural_fields": "pc/inst/we/next_pc and rd/value when architectural we=1",
+      "independent_I_ledger_entries": 399,
+      "I_drop_count": 132,
+      "D_aggregate_audit": [
+        1,
+        1,
+        1,
+        1
+      ],
+      "x31": 0,
+      "mscratch": 0,
+      "intervals_edges": [
+        1,
+        0,
+        1,
+        1
+      ],
+      "target_loaded_from": "response",
+      "actual_old_pending_pc_at_load": 12,
+      "actual_old_buffer_pc_at_load": 0,
+      "ROI": {
+        "start_ns": 85,
+        "end_ns_inclusive": 145,
+        "edges": 7,
+        "classifications": {
+          "8": 5,
+          "4": 2
+        },
+        "OTHER_retire": 3,
+        "OTHER_idfire": 3
+      }
+    },
+    "slowwrong": {
+      "events_ns": [
+        85,
+        95,
+        155,
+        165,
+        175
+      ],
+      "retired_prefix_rows_checked": 3,
+      "checked_architectural_fields": "pc/inst/we/next_pc and rd/value when architectural we=1",
+      "independent_I_ledger_entries": 392,
+      "I_drop_count": 130,
+      "D_aggregate_audit": [
+        1,
+        1,
+        1,
+        1
+      ],
+      "x31": 0,
+      "mscratch": 0,
+      "intervals_edges": [
+        1,
+        6,
+        1,
+        1
+      ],
+      "target_loaded_from": "response",
+      "actual_old_pending_pc_at_load": 12,
+      "actual_old_buffer_pc_at_load": 0,
+      "ROI": {
+        "start_ns": 85,
+        "end_ns_inclusive": 205,
+        "edges": 13,
+        "classifications": {
+          "2": 1,
+          "4": 8,
+          "8": 4
+        },
+        "OTHER_retire": 1,
+        "OTHER_idfire": 2
+      }
+    },
+    "oldmem_d1": {
+      "events_ns": [
+        105,
+        115,
+        115,
+        125,
+        135
+      ],
+      "retired_prefix_rows_checked": 5,
+      "checked_architectural_fields": "pc/inst/we/next_pc and rd/value when architectural we=1",
+      "independent_I_ledger_entries": 399,
+      "I_drop_count": 131,
+      "D_aggregate_audit": [
+        2,
+        2,
+        2,
+        1
+      ],
+      "x31": 0,
+      "mscratch": 0,
+      "intervals_edges": [
+        1,
+        0,
+        1,
+        1
+      ],
+      "target_loaded_from": "response",
+      "actual_old_pending_pc_at_load": 20,
+      "actual_old_buffer_pc_at_load": 0,
+      "ROI": {
+        "start_ns": 105,
+        "end_ns_inclusive": 165,
+        "edges": 7,
+        "classifications": {
+          "8": 5,
+          "4": 2
+        },
+        "OTHER_retire": 4,
+        "OTHER_idfire": 3
+      }
+    },
+    "oldmem_d8": {
+      "events_ns": [
+        105,
+        185,
+        185,
+        195,
+        205
+      ],
+      "retired_prefix_rows_checked": 5,
+      "checked_architectural_fields": "pc/inst/we/next_pc and rd/value when architectural we=1",
+      "independent_I_ledger_entries": 385,
+      "I_drop_count": 125,
+      "D_aggregate_audit": [
+        2,
+        2,
+        2,
+        1
+      ],
+      "x31": 0,
+      "mscratch": 0,
+      "intervals_edges": [
+        8,
+        0,
+        1,
+        1
+      ],
+      "target_loaded_from": "response",
+      "actual_old_pending_pc_at_load": 20,
+      "actual_old_buffer_pc_at_load": 0,
+      "ROI": {
+        "start_ns": 105,
+        "end_ns_inclusive": 305,
+        "edges": 21,
+        "classifications": {
+          "8": 5,
+          "3": 14,
+          "4": 2
+        },
+        "OTHER_retire": 4,
+        "OTHER_idfire": 3
+      }
+    },
+    "nottaken": {
+      "events_ns": [
+        95,
+        0,
+        0,
+        0,
+        0
+      ],
+      "retired_prefix_rows_checked": 5,
+      "checked_architectural_fields": "pc/inst/we/next_pc and rd/value when architectural we=1",
+      "independent_I_ledger_entries": 399,
+      "I_drop_count": 131,
+      "D_aggregate_audit": [
+        1,
+        1,
+        1,
+        1
+      ],
+      "x31": 0,
+      "mscratch": 0,
+      "ROI": {
+        "start_ns": 95,
+        "end_ns_inclusive": 145,
+        "edges": 6,
+        "classifications": {
+          "8": 5,
+          "4": 1
+        },
+        "OTHER_retire": 4,
+        "OTHER_idfire": 4
+      }
+    },
+    "serial": {
+      "events_ns": [
+        105,
+        185,
+        185,
+        205,
+        215
+      ],
+      "retired_prefix_rows_checked": 5,
+      "checked_architectural_fields": "pc/inst/we/next_pc and rd/value when architectural we=1",
+      "independent_I_ledger_entries": 384,
+      "I_drop_count": 124,
+      "D_aggregate_audit": [
+        2,
+        2,
+        2,
+        1
+      ],
+      "x31": 0,
+      "mscratch": 0,
+      "intervals_edges": [
+        8,
+        0,
+        2,
+        1
+      ],
+      "target_loaded_from": "buffer",
+      "actual_old_pending_pc_at_load": 24,
+      "actual_old_buffer_pc_at_load": 24,
+      "ROI": {
+        "start_ns": 105,
+        "end_ns_inclusive": 315,
+        "edges": 22,
+        "classifications": {
+          "8": 5,
+          "3": 14,
+          "6": 2,
+          "4": 1
+        },
+        "OTHER_retire": 3,
+        "OTHER_idfire": 3
+      }
+    }
+  },
+  "accepted_scope": "Six microprograms: physical five-edge timing, eight-edge wrong-address I response, per-I identity/conservation reconstructed from full phase0 trace, architectural retire prefix and x31/mscratch checks, short ROI classification.",
+  "remaining_gaps": [
+    "phase1 old pending/buffer/response-id fields STILL read post-NBA; report claim of frozen OLD snapshots is false. Review uses phase0 ledger instead, does not accept those fields.",
+    "No per-D request/address/data/strobe trace or actual per-D latency witness. D aggregate counts/final memory and load writeback verified, not full D byte/request ownership acceptance.",
+    "commands.json truncates stdout/stderr to last4000 chars, despite report saying full. Full VVP log is separate and reviewed; no tool-version transcript delivered.",
+    "Runner itself omits checking g.we equality and unexpected writes when reference we=0. This offline review DOES compare actual we equality for the recorded prefix.",
+    "Behavioral-model i_busy/response-id use blocking posedge writes. Recorded traces/ledger consistent, but this review does not establish scheduler-independent behavior of the TB.",
+    "This is limited attribution acceptance, not all original task040 evidence requirements closed or complete CPU/SoC/IRQ/reset acceptance."
+  ],
+  "next_action": "Core attribution is now usable; no broad rerun justified solely for already independently reconstructed five-edge/I-identity data. Preserve listed missing D/metadata evidence for any test reuse requiring it. No new board/RTL operation authorized by this review.",
+  "evidence_sha256": {
+    "sim/cpu_ex_redirect/id_ex_attribution_20261018_a/report_fix02.md": "0426beafed46500de7a8af6dbc910a54a011bc879e1071276fa9680f89f09d42",
+    "sim/cpu_ex_redirect/id_ex_attribution_20261018_a/sealed_fix02d/manifest.json": "dcc3e47e371c65ad60eaf394820940c3e8a255b24c132c53403c920ad28c2e33",
+    "sim/cpu_ex_redirect/id_ex_attribution_20261018_a/build/fix02d/commands.json": "04ebae0c2d1fb4e247848c790e6707b60489381254296095eb3cb96b283709e0",
+    "sim/cpu_ex_redirect/id_ex_attribution_20261018_a/build/fix02d/result.json": "211f167943aa19597d09ef661831ce62a78c09caa66da5380bdd90cc8963ce27",
+    "sim/cpu_ex_redirect/id_ex_attribution_20261018_a/build/fix02d/compile.log": "792a5062ec821811123e9e4b33a6bb677d017b00dc8b9c89d04eb32438dd2d72",
+    "sim/cpu_ex_redirect/id_ex_attribution_20261018_a/build/fix02d/tb.vvp": "bb9f9515bd3a4ff56ccf87316c77b061c9cae612a326ef9cf9cd0d203f131aae",
+    "sim/cpu_ex_redirect/id_ex_attribution_20261018_a/review_20261018_03/review_raw.py": "4bbd01c2255489938683bf6b5a3864fe8f21ddd3b17c3c82dcaf409d3e0f8b1a",
+    "sim/cpu_ex_redirect/id_ex_attribution_20261018_a/build/fix02d/fast/run.log": "071c39c6200e756c9b99667e25c7d1f235dbc29e04c4bf22cf1b76da527065c9",
+    "sim/cpu_ex_redirect/id_ex_attribution_20261018_a/build/fix02d/nottaken/run.log": "4dcb2e615d7ba7ccd28fb17b265151da48a763742fa754e59a1aa2882a1cb9cd",
+    "sim/cpu_ex_redirect/id_ex_attribution_20261018_a/build/fix02d/oldmem_d1/run.log": "d037da84697b0ddeb4a6c563c86520faa828336a9b5c4035c5a2cf53f9f628a0",
+    "sim/cpu_ex_redirect/id_ex_attribution_20261018_a/build/fix02d/oldmem_d8/run.log": "bd9be6c0972d59db63d4a08d614e4759c3aaee61a55d7ed52efecec640d39c49",
+    "sim/cpu_ex_redirect/id_ex_attribution_20261018_a/build/fix02d/serial/run.log": "6c6c0c42e6c3ccefdc9ab2ca8766788c48af88e163d0856c79ae565f950dfdec",
+    "sim/cpu_ex_redirect/id_ex_attribution_20261018_a/build/fix02d/slowwrong/run.log": "2c5010e2efc864ad8de81f9c73930d3fc1a2cecb14c7d7bdc1d83c1a7b8cce05",
+    "sim/cpu_ex_redirect/id_ex_attribution_20261018_a/build/fix02d/fast/ref_ret.json": "2851ded7e38e18df7109def68483a5d03cf9b181bfc85792195e6d85d88117ce",
+    "sim/cpu_ex_redirect/id_ex_attribution_20261018_a/build/fix02d/nottaken/ref_ret.json": "489aa3929efb2ce596297ba58c4e75727478fb27712f4d0c7f46436e9e752942",
+    "sim/cpu_ex_redirect/id_ex_attribution_20261018_a/build/fix02d/oldmem_d1/ref_ret.json": "edcb50742e0ebb1e0e602159a1bb311531eccd1ca137ca3cb2dbb3f687cf5636",
+    "sim/cpu_ex_redirect/id_ex_attribution_20261018_a/build/fix02d/oldmem_d8/ref_ret.json": "edcb50742e0ebb1e0e602159a1bb311531eccd1ca137ca3cb2dbb3f687cf5636",
+    "sim/cpu_ex_redirect/id_ex_attribution_20261018_a/build/fix02d/serial/ref_ret.json": "773e62b4873173877dd86348b4e93435f50668fc9074e57b3156ebe61c02e6b3",
+    "sim/cpu_ex_redirect/id_ex_attribution_20261018_a/build/fix02d/slowwrong/ref_ret.json": "2851ded7e38e18df7109def68483a5d03cf9b181bfc85792195e6d85d88117ce"
+  },
+  "RTL_modified": false,
+  "HDL_started": false,
+  "PDS_started": false,
+  "serial_opened": false
+}

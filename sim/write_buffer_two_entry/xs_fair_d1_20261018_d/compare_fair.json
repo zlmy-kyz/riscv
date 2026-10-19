@@ -1,0 +1,95 @@
+{
+  "depth1": {
+    "dir": "sim\\write_buffer_two_entry\\xs_fair_d1_20261018_d",
+    "start": 9,
+    "end": 50,
+    "cycles": 41,
+    "aw_cycles": [
+      18,
+      25,
+      32,
+      44
+    ],
+    "w_cycles": [
+      22,
+      29,
+      36,
+      48
+    ],
+    "aw_to_w": [
+      4,
+      4,
+      4,
+      4
+    ],
+    "backpressure": {
+      "aw_not_ready": 12,
+      "w_not_ready": 28,
+      "d_blocked": 21
+    },
+    "edges": 54
+  },
+  "depth2": {
+    "dir": "sim\\write_buffer_two_entry\\xs_fair_d2_20261018_d",
+    "start": 9,
+    "end": 50,
+    "cycles": 41,
+    "aw_cycles": [
+      18,
+      25,
+      32,
+      44
+    ],
+    "w_cycles": [
+      22,
+      29,
+      36,
+      48
+    ],
+    "aw_to_w": [
+      4,
+      4,
+      4,
+      4
+    ],
+    "backpressure": {
+      "aw_not_ready": 12,
+      "w_not_ready": 28,
+      "d_blocked": 21
+    },
+    "edges": 54
+  },
+  "logical_requests_equal": true,
+  "aw_sequence_equal": true,
+  "w_sequence_equal": true,
+  "memory_equal": true,
+  "aw_to_w_equal": true,
+  "aw_cycles_equal": true,
+  "w_cycles_equal": true,
+  "accept_cycles": {
+    "depth1": [
+      11,
+      22,
+      29,
+      37,
+      41,
+      44
+    ],
+    "depth2": [
+      11,
+      13,
+      22,
+      37,
+      41,
+      44
+    ]
+  },
+  "depth2_never_later": true,
+  "second_store": {
+    "depth1": 13,
+    "depth2": 4
+  },
+  "net_cycles": 0,
+  "net_gain_established": false,
+  "status": "PASS"
+}

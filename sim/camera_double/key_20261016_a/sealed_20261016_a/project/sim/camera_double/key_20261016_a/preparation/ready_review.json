@@ -1,0 +1,31 @@
+{
+  "status": "ABI2_TESTS_SOFTWARE_PREPARED_FUNCTIONAL_NOT_RUN",
+  "date": "2026-10-16",
+  "board_BIN_SHA": "4684f0775e3a611588b0ea5df373dbf5b3d6ce94deda175d6c62a0dda72ed4d2",
+  "small_BIN_SHA": "f46e564f5e85cfb19b856f2b5458718d1d02120cad965efcad9e1a5b91dc8dd0",
+  "board_bytes": 12520,
+  "small_bytes": 4680,
+  "board_instructions": 2586,
+  "small_instructions": 911,
+  "compiled_sources": 48,
+  "compiled_modules": 54,
+  "ModelSim_compile_Errors": 0,
+  "ModelSim_compile_Warnings": 0,
+  "compile_review_sha256": "af198f1e8f40229f7bdbec2f4be6903eb5d9729f529de50893f77fdddb6c22eb",
+  "offline_review_sha256": "be7b1e059592dd31a56c75658cb878a9e5a8446182867d46aa17b921d92b4f63",
+  "golden_patterns": 17,
+  "recursive_include_edges": 5,
+  "vendor_primitives": 3,
+  "GRS_in_both_tops": true,
+  "padded_DDR_program_matches_fixed_small_BIN": true,
+  "successful_history_unchanged": true,
+  "timing": "User confirmed; no PDS/bitstream audit",
+  "HDL_run": false,
+  "serial_opened": false,
+  "PDS_started": false,
+  "limitations": [
+    "Static compilation and host synthetic checks only, not functional/board PASS",
+    "No 7200s SoC, CoreMark, ISA or DDR PHY rerun",
+    "Board commands withheld pending Sol raw review"
+  ]
+}

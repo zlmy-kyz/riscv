@@ -1,0 +1,13 @@
+{
+  "tests/cnn_digits_diag/main.c": "9baf52f3266f64c2008ba67b1605fa41b39809bdabf278fd6515e65b96d1bd59",
+  "tests/cnn_digits_diag/diag.h": "11745957b01780cef6dcbf3a1bd0c1d99433c31647ffcf1df489c1f07a7fa523",
+  "tests/cnn_digits_diag/model_data.h": "6d991c0e240226c96897fd0928598036fbedcddbeced3c9054de8caea4f3325c",
+  "tests/cnn_digits_diag/startup.S": "de7f661eea977dcc17310d05fe0dd6dc5057e28b64200e8e8e0695f5587114a3",
+  "tests/cnn_digits_diag/linker.ld": "7424d67ed5405349c97c84e8466b32dba58c51a2feb0a49221ab2700269452ec",
+  "tests/cnn_digits_diag/pp01_wire.c": "142481516caea9ffcf7bd5f1905fa5dadb8b75db1133bdcbbbd760da63e4fb9c",
+  "tests/cnn_digits_diag/pp01_wire.h": "bf50866d8868dc66dbffee209197ccd9d07b56c964e2e90115719c68fbc2d0f5",
+  "tests/cnn_digits_diag/native_flow.c": "5dbb8dc15a0ef0276566bc0e34d11910210e786f1bf835b57ee7340724106388",
+  "tests/cnn_digits_diag/build.py": "45bedb553dd0b5dad0b004628cce6e9e7741d4b66c65b2eed58e4312977e0e8b",
+  "tools/cnn_digits_diag/run.py": "edf7f98d11334aa45279d7316270ce880cd3606c54b64b85030b6558bc602b4f",
+  "tools/cnn_digits_diag/reference.py": "baafe45bdc7fca87d3492a77a7b28647df8a5012a1ffcce6d608856b9a8a9cad"
+}

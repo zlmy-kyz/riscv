@@ -1,0 +1,831 @@
+{
+  "status": "TASK043_NOT_ACCEPTED_PARTIAL_UNSEALED_TRACE_ONLY",
+  "bridge_sha256": "855318eebf7fc75a0b17d15a620b6d8d08bb54ff9348d663cbcd6aca0883262f",
+  "evidence_sha256": {
+    "sim/write_buffer_two_entry/key_20261018_b/check_key.json": "a42588340082de108e7c3395cdbd36a51bdde1cdfd1d15278b9afdd0cba34f5f",
+    "sim/write_buffer_two_entry/key_20261018_b/wb2.edges.log": "39f803a2c817e004cac2fa7b65da179d62e5b354d2b29c50078137eb5c3f559b",
+    "sim/write_buffer_two_entry/key_20261018_c/inputs_before.sha256": "e61d91fb525d769a01ee74af18c834a3993cdd598e47c1f1386ab9a6c657941d",
+    "sim/write_buffer_two_entry/key_20261018_c/log_vlib.txt": "c21ed5d399e185c71761a30f357f9b92f309bd849613ffcc78ad40d57f65ce3e",
+    "sim/write_buffer_two_entry/key_20261018_c/log_vlog.txt": "6bee315a4078a6ca4a60d64fd36db715118f2185aa65f6a7aa30d548a231f6d9",
+    "sim/write_buffer_two_entry/key_20261018_c/vsim.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "sim/write_buffer_two_entry/tmp_probe/probe_out.txt": "27418d034199b552f00d625955404482a67687e9755253d30a2c53cd08b96539",
+    "sim/write_buffer_two_entry/tmp_probe/retry1.txt": "d48066020ebf323821db79b7476a0a6368662f6639c318f6341a882b802b5060",
+    "sim/write_buffer_two_entry/tmp_probe/t_host.txt": "d744fd724e4e9a361aec63895a4525936e36093093f585f0b2b8a4ec4240f414",
+    "sim/write_buffer_two_entry/tmp_probe/t_noproxy.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "sim/write_buffer_two_entry/tmp_probe/t_sandboxoff.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "sim/write_buffer_two_entry/tmp_probe/t_vsimk.txt": "53dc6db56a8381f6cc44cb3c8949fd67264328b8aa4648c7ebcc34120207d595",
+    "sim/write_buffer_two_entry/tmp_probe/vsim.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "sim/write_buffer_two_entry/tb_wb2_bridge.sv": "aef465173ac40c4033938265c7c66a28f8ba00d3d9ce44a0d4ded670cafce785",
+    "sim/write_buffer_two_entry/run_wb2.ps1": "9bcdb3c5dab2772564d29ce357a19afd49b1e16035705848b179f7755eb37ff4",
+    "sim/write_buffer_two_entry/check_wb2.py": "59cdf0cbd89febf602d9fa2e1cab97e3f89ebc3705255c10fd94bf12688f47fb"
+  },
+  "raw_b": {
+    "edges": 476,
+    "summary": [
+      476,
+      38,
+      37,
+      14,
+      14,
+      80,
+      78,
+      2,
+      2,
+      0
+    ],
+    "counts": {
+      "D_cancel": 2,
+      "I_cancel": 0,
+      "max_occupancy": 2,
+      "D_accept": 80,
+      "store_accept": 41,
+      "D_response": 78,
+      "AW": 38,
+      "W": 37,
+      "load_accept": 39,
+      "D_miss": 12,
+      "AR": 14,
+      "R": 14,
+      "D_hit": 27,
+      "I_accept": 2,
+      "I_response": 2,
+      "store_cancel": 4,
+      "aw_cancel": 1
+    },
+    "trace_consistency_problems": [],
+    "byte_check_count": 41,
+    "load_checks": [
+      {
+        "port": "D",
+        "accepted": 81,
+        "response": 84,
+        "addr": 1024,
+        "kind": "miss",
+        "actual": 3334189221,
+        "expected": 3334189221
+      },
+      {
+        "port": "D",
+        "accepted": 88,
+        "response": 89,
+        "addr": 1024,
+        "kind": "hit",
+        "actual": 286331153,
+        "expected": 286331153
+      },
+      {
+        "port": "D",
+        "accepted": 91,
+        "response": 92,
+        "addr": 1028,
+        "kind": "hit",
+        "actual": 572662306,
+        "expected": 572662306
+      },
+      {
+        "port": "D",
+        "accepted": 105,
+        "response": 108,
+        "addr": 1088,
+        "kind": "miss",
+        "actual": 268827375,
+        "expected": 268827375
+      },
+      {
+        "port": "D",
+        "accepted": 112,
+        "response": 113,
+        "addr": 1088,
+        "kind": "hit",
+        "actual": 2863315899,
+        "expected": 2863315899
+      },
+      {
+        "port": "D",
+        "accepted": 126,
+        "response": 129,
+        "addr": 1152,
+        "kind": "miss",
+        "actual": 1515144249,
+        "expected": 1515144249
+      },
+      {
+        "port": "D",
+        "accepted": 132,
+        "response": 133,
+        "addr": 1152,
+        "kind": "hit",
+        "actual": 1515144249,
+        "expected": 1515144249
+      },
+      {
+        "port": "D",
+        "accepted": 141,
+        "response": 144,
+        "addr": 1280,
+        "kind": "miss",
+        "actual": 4007909581,
+        "expected": 4007909581
+      },
+      {
+        "port": "D",
+        "accepted": 147,
+        "response": 148,
+        "addr": 1280,
+        "kind": "hit",
+        "actual": 2768240640,
+        "expected": 2768240640
+      },
+      {
+        "port": "D",
+        "accepted": 155,
+        "response": 156,
+        "addr": 1284,
+        "kind": "hit",
+        "actual": 437191929,
+        "expected": 437191929
+      },
+      {
+        "port": "D",
+        "accepted": 159,
+        "response": 160,
+        "addr": 1284,
+        "kind": "hit",
+        "actual": 2768240641,
+        "expected": 2768240641
+      },
+      {
+        "port": "D",
+        "accepted": 167,
+        "response": 168,
+        "addr": 1288,
+        "kind": "hit",
+        "actual": 1178284069,
+        "expected": 1178284069
+      },
+      {
+        "port": "D",
+        "accepted": 171,
+        "response": 172,
+        "addr": 1288,
+        "kind": "hit",
+        "actual": 2768240642,
+        "expected": 2768240642
+      },
+      {
+        "port": "D",
+        "accepted": 179,
+        "response": 180,
+        "addr": 1292,
+        "kind": "hit",
+        "actual": 1919376465,
+        "expected": 1919376465
+      },
+      {
+        "port": "D",
+        "accepted": 183,
+        "response": 184,
+        "addr": 1292,
+        "kind": "hit",
+        "actual": 2768240643,
+        "expected": 2768240643
+      },
+      {
+        "port": "D",
+        "accepted": 191,
+        "response": 192,
+        "addr": 1296,
+        "kind": "hit",
+        "actual": 2660468861,
+        "expected": 2660468861
+      },
+      {
+        "port": "D",
+        "accepted": 195,
+        "response": 196,
+        "addr": 1296,
+        "kind": "hit",
+        "actual": 2768240644,
+        "expected": 2768240644
+      },
+      {
+        "port": "D",
+        "accepted": 203,
+        "response": 204,
+        "addr": 1300,
+        "kind": "hit",
+        "actual": 3401561257,
+        "expected": 3401561257
+      },
+      {
+        "port": "D",
+        "accepted": 207,
+        "response": 208,
+        "addr": 1300,
+        "kind": "hit",
+        "actual": 2768240645,
+        "expected": 2768240645
+      },
+      {
+        "port": "D",
+        "accepted": 215,
+        "response": 216,
+        "addr": 1304,
+        "kind": "hit",
+        "actual": 4142653653,
+        "expected": 4142653653
+      },
+      {
+        "port": "D",
+        "accepted": 219,
+        "response": 220,
+        "addr": 1304,
+        "kind": "hit",
+        "actual": 2768240646,
+        "expected": 2768240646
+      },
+      {
+        "port": "D",
+        "accepted": 227,
+        "response": 228,
+        "addr": 1308,
+        "kind": "hit",
+        "actual": 571935745,
+        "expected": 571935745
+      },
+      {
+        "port": "D",
+        "accepted": 231,
+        "response": 232,
+        "addr": 1308,
+        "kind": "hit",
+        "actual": 2768240647,
+        "expected": 2768240647
+      },
+      {
+        "port": "D",
+        "accepted": 240,
+        "response": 243,
+        "addr": 1408,
+        "kind": "miss",
+        "actual": 2188864609,
+        "expected": 2188864609
+      },
+      {
+        "port": "D",
+        "accepted": 246,
+        "response": 247,
+        "addr": 1408,
+        "kind": "hit",
+        "actual": 2192272481,
+        "expected": 2192272481
+      },
+      {
+        "port": "D",
+        "accepted": 255,
+        "response": 258,
+        "addr": 1536,
+        "kind": "miss",
+        "actual": 369819893,
+        "expected": 369819893
+      },
+      {
+        "port": "D",
+        "accepted": 259,
+        "response": 262,
+        "addr": 1472,
+        "kind": "miss",
+        "actual": 3435247275,
+        "expected": 3435247275
+      },
+      {
+        "port": "D",
+        "accepted": 265,
+        "response": 266,
+        "addr": 1536,
+        "kind": "hit",
+        "actual": 369819893,
+        "expected": 369819893
+      },
+      {
+        "port": "D",
+        "accepted": 274,
+        "response": 277,
+        "addr": 5696,
+        "kind": "miss",
+        "actual": 3772107455,
+        "expected": 3772107455
+      },
+      {
+        "port": "D",
+        "accepted": 280,
+        "response": 281,
+        "addr": 5696,
+        "kind": "hit",
+        "actual": 3772107455,
+        "expected": 3772107455
+      },
+      {
+        "port": "D",
+        "accepted": 289,
+        "response": 292,
+        "addr": 1664,
+        "kind": "miss",
+        "actual": 2862584969,
+        "expected": 2862584969
+      },
+      {
+        "port": "D",
+        "accepted": 305,
+        "response": 306,
+        "addr": 1668,
+        "kind": "hit",
+        "actual": 3806520034,
+        "expected": 3806520034
+      },
+      {
+        "port": "D",
+        "accepted": 313,
+        "response": 316,
+        "addr": 1792,
+        "kind": "miss",
+        "actual": 1043539997,
+        "expected": 1043539997
+      },
+      {
+        "port": "D",
+        "accepted": 319,
+        "response": 320,
+        "addr": 1796,
+        "kind": "hit",
+        "actual": 1784632393,
+        "expected": 1784632393
+      },
+      {
+        "port": "D",
+        "accepted": 323,
+        "response": 324,
+        "addr": 1796,
+        "kind": "hit",
+        "actual": 4059165169,
+        "expected": 4059165169
+      },
+      {
+        "port": "D",
+        "accepted": 361,
+        "response": 364,
+        "addr": 1984,
+        "kind": "miss",
+        "actual": 470877947,
+        "expected": 470877947
+      },
+      {
+        "port": "D",
+        "accepted": 368,
+        "response": 369,
+        "addr": 1996,
+        "kind": "hit",
+        "actual": 2694154879,
+        "expected": 2694154879
+      },
+      {
+        "port": "I",
+        "accepted": 410,
+        "response": 418,
+        "addr": 2560,
+        "kind": "miss",
+        "actual": 3064701077,
+        "expected": 3064701077
+      },
+      {
+        "port": "I",
+        "accepted": 421,
+        "response": 426,
+        "addr": 2816,
+        "kind": "miss",
+        "actual": 2964369584,
+        "expected": 2964369584
+      },
+      {
+        "port": "D",
+        "accepted": 429,
+        "response": 432,
+        "addr": 3072,
+        "kind": "miss",
+        "actual": 117174501,
+        "expected": 117174501
+      },
+      {
+        "port": "D",
+        "accepted": 437,
+        "response": 438,
+        "addr": 3072,
+        "kind": "hit",
+        "actual": 3235774465,
+        "expected": 3235774465
+      }
+    ],
+    "cancelled": [
+      {
+        "kind": "physical_store",
+        "accepted": 440,
+        "reset": 441,
+        "aw_sent": false
+      },
+      {
+        "kind": "D_response",
+        "accepted": 440,
+        "reset": 441,
+        "request_kind": "store"
+      },
+      {
+        "kind": "physical_store",
+        "accepted": 449,
+        "reset": 451,
+        "aw_sent": true
+      },
+      {
+        "kind": "physical_store",
+        "accepted": 459,
+        "reset": 461,
+        "aw_sent": false
+      },
+      {
+        "kind": "physical_store",
+        "accepted": 460,
+        "reset": 461,
+        "aw_sent": false
+      },
+      {
+        "kind": "D_response",
+        "accepted": 460,
+        "reset": 461,
+        "request_kind": "store"
+      }
+    ],
+    "witnesses": {
+      "full_pop_push": [
+        {
+          "edge": 23,
+          "line": 27
+        }
+      ]
+    },
+    "known_DDR_bytes": 500,
+    "known_final_dump_mismatches": [],
+    "final_pending": {
+      "stores": 0,
+      "D": 0,
+      "I": 0,
+      "DDR_read": false
+    },
+    "segments": {
+      "G1": {
+        "start": 9,
+        "end": 12,
+        "D_accept": 2,
+        "load_accept": 0,
+        "aw_accept": 0,
+        "w_ready": 0,
+        "same_edge_aw_w": 0,
+        "R": 0
+      },
+      "G1_full": {
+        "start": 12,
+        "end": 19,
+        "D_accept": 0,
+        "load_accept": 0,
+        "aw_accept": 0,
+        "w_ready": 0,
+        "same_edge_aw_w": 0,
+        "R": 0
+      },
+      "G1_release": {
+        "start": 19,
+        "end": 35,
+        "D_accept": 1,
+        "load_accept": 0,
+        "aw_accept": 3,
+        "w_ready": 3,
+        "same_edge_aw_w": 0,
+        "R": 0
+      },
+      "G1_done": {
+        "start": 35,
+        "end": 36,
+        "D_accept": 0,
+        "load_accept": 0,
+        "aw_accept": 0,
+        "w_ready": 0,
+        "same_edge_aw_w": 0,
+        "R": 0
+      },
+      "G2_early_w": {
+        "start": 36,
+        "end": 47,
+        "D_accept": 1,
+        "load_accept": 0,
+        "aw_accept": 1,
+        "w_ready": 6,
+        "same_edge_aw_w": 0,
+        "R": 0
+      },
+      "G2_same_edge": {
+        "start": 47,
+        "end": 55,
+        "D_accept": 1,
+        "load_accept": 0,
+        "aw_accept": 1,
+        "w_ready": 1,
+        "same_edge_aw_w": 0,
+        "R": 0
+      },
+      "G2_zero_strobe": {
+        "start": 55,
+        "end": 63,
+        "D_accept": 1,
+        "load_accept": 0,
+        "aw_accept": 1,
+        "w_ready": 1,
+        "same_edge_aw_w": 0,
+        "R": 0
+      },
+      "G2_init_pause": {
+        "start": 63,
+        "end": 80,
+        "D_accept": 2,
+        "load_accept": 0,
+        "aw_accept": 2,
+        "w_ready": 2,
+        "same_edge_aw_w": 0,
+        "R": 0
+      },
+      "G3_head_tail": {
+        "start": 80,
+        "end": 104,
+        "D_accept": 5,
+        "load_accept": 3,
+        "aw_accept": 2,
+        "w_ready": 2,
+        "same_edge_aw_w": 0,
+        "R": 1
+      },
+      "G3_overlap": {
+        "start": 104,
+        "end": 125,
+        "D_accept": 4,
+        "load_accept": 2,
+        "aw_accept": 2,
+        "w_ready": 2,
+        "same_edge_aw_w": 0,
+        "R": 1
+      },
+      "G3_zero_mask": {
+        "start": 125,
+        "end": 140,
+        "D_accept": 3,
+        "load_accept": 2,
+        "aw_accept": 1,
+        "w_ready": 1,
+        "same_edge_aw_w": 0,
+        "R": 1
+      },
+      "G3_lanes": {
+        "start": 140,
+        "end": 239,
+        "D_accept": 24,
+        "load_accept": 16,
+        "aw_accept": 8,
+        "w_ready": 8,
+        "same_edge_aw_w": 0,
+        "R": 1
+      },
+      "G3_sb": {
+        "start": 239,
+        "end": 254,
+        "D_accept": 3,
+        "load_accept": 2,
+        "aw_accept": 1,
+        "w_ready": 1,
+        "same_edge_aw_w": 0,
+        "R": 1
+      },
+      "G3_other_line": {
+        "start": 254,
+        "end": 273,
+        "D_accept": 4,
+        "load_accept": 3,
+        "aw_accept": 1,
+        "w_ready": 1,
+        "same_edge_aw_w": 0,
+        "R": 2
+      },
+      "G3_same_index": {
+        "start": 273,
+        "end": 288,
+        "D_accept": 3,
+        "load_accept": 2,
+        "aw_accept": 1,
+        "w_ready": 1,
+        "same_edge_aw_w": 0,
+        "R": 1
+      },
+      "G3_promotion": {
+        "start": 288,
+        "end": 312,
+        "D_accept": 4,
+        "load_accept": 2,
+        "aw_accept": 2,
+        "w_ready": 2,
+        "same_edge_aw_w": 0,
+        "R": 1
+      },
+      "\u00014_same_line_forward": {
+        "start": 312,
+        "end": 342,
+        "D_accept": 5,
+        "load_accept": 3,
+        "aw_accept": 2,
+        "w_ready": 2,
+        "same_edge_aw_w": 0,
+        "R": 1
+      },
+      "G4_completion_edge": {
+        "start": 342,
+        "end": 360,
+        "D_accept": 1,
+        "load_accept": 0,
+        "aw_accept": 1,
+        "w_ready": 1,
+        "same_edge_aw_w": 0,
+        "R": 0
+      },
+      "\u0001two_stores_same_tag": {
+        "start": 360,
+        "end": 381,
+        "D_accept": 4,
+        "load_accept": 2,
+        "aw_accept": 2,
+        "w_ready": 2,
+        "same_edge_aw_w": 0,
+        "R": 1
+      },
+      "G5_no_ar": {
+        "start": 381,
+        "end": 389,
+        "D_accept": 2,
+        "load_accept": 0,
+        "aw_accept": 0,
+        "w_ready": 0,
+        "same_edge_aw_w": 0,
+        "R": 0
+      },
+      "G5_head_only": {
+        "start": 389,
+        "end": 408,
+        "D_accept": 0,
+        "load_accept": 0,
+        "aw_accept": 2,
+        "w_ready": 2,
+        "same_edge_aw_w": 0,
+        "R": 0
+      },
+      "G5_i_park": {
+        "start": 408,
+        "end": 420,
+        "D_accept": 1,
+        "load_accept": 0,
+        "aw_accept": 1,
+        "w_ready": 1,
+        "same_edge_aw_w": 0,
+        "R": 1
+      },
+      "G5_same_edge_store": {
+        "start": 420,
+        "end": 428,
+        "D_accept": 1,
+        "load_accept": 0,
+        "aw_accept": 1,
+        "w_ready": 1,
+        "same_edge_aw_w": 0,
+        "R": 1
+      },
+      "G5_later_load": {
+        "start": 428,
+        "end": 439,
+        "D_accept": 3,
+        "load_accept": 2,
+        "aw_accept": 1,
+        "w_ready": 1,
+        "same_edge_aw_w": 0,
+        "R": 1
+      },
+      "G7_head_only": {
+        "start": 439,
+        "end": 448,
+        "D_accept": 1,
+        "load_accept": 0,
+        "aw_accept": 0,
+        "w_ready": 0,
+        "same_edge_aw_w": 0,
+        "R": 0
+      },
+      "G7_after_aw": {
+        "start": 448,
+        "end": 458,
+        "D_accept": 1,
+        "load_accept": 0,
+        "aw_accept": 1,
+        "w_ready": 0,
+        "same_edge_aw_w": 0,
+        "R": 0
+      },
+      "G7_full_reset": {
+        "start": 458,
+        "end": 468,
+        "D_accept": 2,
+        "load_accept": 0,
+        "aw_accept": 0,
+        "w_ready": 0,
+        "same_edge_aw_w": 0,
+        "R": 0
+      },
+      "G7_new_epoch": {
+        "start": 468,
+        "end": 476,
+        "D_accept": 1,
+        "load_accept": 0,
+        "aw_accept": 1,
+        "w_ready": 1,
+        "same_edge_aw_w": 0,
+        "R": 0
+      }
+    }
+  },
+  "c_compile_manifest_current_matches": [
+    {
+      "path": "C:\\pango\\PDS_2022.2-SP6.4\\arch\\vendor\\pango\\verilog\\simulation\\GTP_GRS.v",
+      "recorded": "dae720bcc467ddb4ff99f2753368934e2649b87f6ac63b8a0d7219699bac1dec",
+      "current": "dae720bcc467ddb4ff99f2753368934e2649b87f6ac63b8a0d7219699bac1dec",
+      "size": 2472,
+      "matches": true
+    },
+    {
+      "path": "C:\\pango\\PDS_2022.2-SP6.4\\arch\\vendor\\pango\\verilog\\simulation\\GTP_DRM36K_E1.v",
+      "recorded": "3e372cd60025a439eb7435d770930260e22c40f148ae83c4bdf7398fb65ddb66",
+      "current": "3e372cd60025a439eb7435d770930260e22c40f148ae83c4bdf7398fb65ddb66",
+      "size": 75646,
+      "matches": true
+    },
+    {
+      "path": "D:\\riscv\\RISCV\\ipcore\\icache\\rtl\\ipm2l_sdpram_v1_10_icache.v",
+      "recorded": "a92f88609e3c76bbd55f23dd6d9d08db25494745d16f1715b8e2279ea2857ad4",
+      "current": "a92f88609e3c76bbd55f23dd6d9d08db25494745d16f1715b8e2279ea2857ad4",
+      "size": 68768,
+      "matches": true
+    },
+    {
+      "path": "D:\\riscv\\RISCV\\ipcore\\icache\\icache.v",
+      "recorded": "9e8746619f8afa1c2adfe1e7a48bd63850b98332d40f23c27817a28b3f24de76",
+      "current": "9e8746619f8afa1c2adfe1e7a48bd63850b98332d40f23c27817a28b3f24de76",
+      "size": 7979,
+      "matches": true
+    },
+    {
+      "path": "D:\\riscv\\RISCV\\ipcore\\dcache\\rtl\\ipm2l_sdpram_v1_10_dcache.v",
+      "recorded": "66905d131c90236dabd8feb8e8e586185955b37cb5ba694c047dc331efac303f",
+      "current": "66905d131c90236dabd8feb8e8e586185955b37cb5ba694c047dc331efac303f",
+      "size": 68768,
+      "matches": true
+    },
+    {
+      "path": "D:\\riscv\\RISCV\\ipcore\\dcache\\dcache.v",
+      "recorded": "bf62d32342a11ba6fad55f11c2413716a834c7028e9a1d8660a5f1a5477514a7",
+      "current": "bf62d32342a11ba6fad55f11c2413716a834c7028e9a1d8660a5f1a5477514a7",
+      "size": 8098,
+      "matches": true
+    },
+    {
+      "path": "D:\\riscv\\RISCV\\myriscv\\dual_sram_to_pango_ddr_bridge.v",
+      "recorded": "855318eebf7fc75a0b17d15a620b6d8d08bb54ff9348d663cbcd6aca0883262f",
+      "current": "855318eebf7fc75a0b17d15a620b6d8d08bb54ff9348d663cbcd6aca0883262f",
+      "size": 52747,
+      "matches": true
+    },
+    {
+      "path": "D:\\riscv\\RISCV\\sim\\write_buffer_two_entry\\tb_wb2_bridge.sv",
+      "recorded": "aef465173ac40c4033938265c7c66a28f8ba00d3d9ce44a0d4ded670cafce785",
+      "current": "aef465173ac40c4033938265c7c66a28f8ba00d3d9ce44a0d4ded670cafce785",
+      "size": 35531,
+      "matches": true
+    }
+  ],
+  "limitations": [
+    "b has no sealed inputs/tool command/transcript/exit code; cannot bind it to current RTL or TB.",
+    "b has no initial N records: unobserved DDR bytes cannot be verified.",
+    "ARID/response errors absent from trace; owner inferred only where unique.",
+    "c has compile success, empty vsim.log and no simulation trace/check/meta.",
+    "probe shows RPC socket startup failure; no completed new simulation.",
+    "No user PDS timing-pass receipt recorded; this review authorizes no HDL execution."
+  ]
+}

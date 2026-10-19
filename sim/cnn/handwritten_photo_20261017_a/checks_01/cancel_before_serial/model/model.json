@@ -1,0 +1,208 @@
+{
+  "contract": "digits10_int8_v1",
+  "purpose": "TRAINED_HANDWRITTEN_DIGITS_LOCAL_DATASET",
+  "trained": true,
+  "labels": [
+    "0",
+    "1",
+    "2",
+    "3",
+    "4",
+    "5",
+    "6",
+    "7",
+    "8",
+    "9"
+  ],
+  "model_id": 1284201162,
+  "model_id_hex": "4c8b5aca",
+  "load_words": 6222,
+  "load_bytes": 24888,
+  "load_crc32": 3111424375,
+  "scales": [
+    {
+      "Fin": 7,
+      "Fw": 6,
+      "Fout": 5
+    },
+    {
+      "Fin": 5,
+      "Fw": 5,
+      "Fout": 2
+    },
+    {
+      "Fin": 2,
+      "Fw": 6,
+      "Fout": 0
+    },
+    {
+      "Fin": 0,
+      "Fw": 6,
+      "Fout": 6
+    }
+  ],
+  "shifts": [
+    8,
+    8,
+    8,
+    0
+  ],
+  "weight_layout": "O_KY_KX_I",
+  "activation_layout": "HWC",
+  "weight_offsets": [
+    0,
+    72,
+    1224,
+    5832
+  ],
+  "bias_byte_offsets": [
+    0,
+    32,
+    96,
+    224
+  ],
+  "shapes": [
+    [
+      32,
+      32,
+      1
+    ],
+    [
+      16,
+      16,
+      8
+    ],
+    [
+      8,
+      8,
+      16
+    ],
+    [
+      4,
+      4,
+      32
+    ],
+    [
+      32
+    ],
+    [
+      10
+    ]
+  ],
+  "rounding": "nearest_ties_away_from_zero",
+  "zero_point": 0,
+  "input_fraction_bits": 7,
+  "identity": {
+    "seed": 20261017,
+    "python": "3.13.0 (tags/v3.13.0:60403a5, Oct  7 2024, 09:38:07) [MSC v.1941 64 bit (AMD64)]",
+    "torch": "2.7.1+cu128",
+    "numpy": "2.4.4",
+    "platform": "Windows-11-10.0.26200-SP0",
+    "cuda": "12.8",
+    "gpu": "NVIDIA GeForce RTX 4070 Laptop GPU",
+    "dependencies": {
+      "torch": "2.7.1+cu128",
+      "numpy": "2.4.4",
+      "Pillow": "12.2.0",
+      "filelock": "4.2.0",
+      "typing_extensions": "4.16.0",
+      "sympy": "1.14.0",
+      "networkx": "3.7",
+      "jinja2": "3.1.6",
+      "fsspec": "2026.9.0"
+    },
+    "command": [
+      "tools/cnn_digits_training/train.py",
+      "--data",
+      "sim/cnn/training/handwritten_data_20261017_a",
+      "--out",
+      "sim/cnn/training/handwritten_run_20261017_a"
+    ],
+    "dataset": {
+      "status": "LOCAL_HANDWRITTEN_DATA_PREPARED_NOT_CAMERA_ACCURACY",
+      "seed": 20261017,
+      "dataset_root": "D:\\riscv\\80bfd\\经典手写数字数据集",
+      "images": 5339,
+      "unique_pixels": 5339,
+      "source_bytes": 9941218,
+      "splits": {
+        "train": {
+          "count": 3203,
+          "classes": {
+            "0": 503,
+            "1": 300,
+            "2": 300,
+            "3": 300,
+            "4": 300,
+            "5": 300,
+            "6": 300,
+            "7": 300,
+            "8": 300,
+            "9": 300
+          }
+        },
+        "validation": {
+          "count": 1067,
+          "classes": {
+            "0": 167,
+            "1": 100,
+            "2": 100,
+            "3": 100,
+            "4": 100,
+            "5": 100,
+            "6": 100,
+            "7": 100,
+            "8": 100,
+            "9": 100
+          }
+        },
+        "test": {
+          "count": 1069,
+          "classes": {
+            "0": 169,
+            "1": 100,
+            "2": 100,
+            "3": 100,
+            "4": 100,
+            "5": 100,
+            "6": 100,
+            "7": 100,
+            "8": 100,
+            "9": 100
+          }
+        }
+      },
+      "augmented_train_count": 12812,
+      "augmentation_variants": 4,
+      "preprocessing": "28x28 L -> bicubic 80x80 -> centered white 96RGB -> contract gray32",
+      "augmentation": "train only: side72..84, offset+-4, rotation+-8deg, contrast0.75..1.15, brightness0.8..1",
+      "split_unit": "exact decoded image hash; writer/session identities unavailable; near duplicates not audited",
+      "source_repository": "https://gitcode.com/open-source-toolkit/80bfd.git",
+      "provenance": "Repository README claims Stanford origin; original sample identities not independently established",
+      "sha256": {
+        "dataset.npz": "38e3fd1994b332bbb7fac4d3b7ff8087d0674623489f5440289e6f7795e0d58b",
+        "samples.json": "55c124512f582d30a967f4e1201abca7c2c30743bde2a60235a44097bcf06aa1",
+        "preview.png": "e86959f5669f1689308be7c0b2401f7f37e971d633af32671cbe5c4a88fd93a7"
+      }
+    },
+    "contract_sha256": "b0667c9237075d7a406bd4a32e8fee9bde87e5891c42436fd6cdae17236c0a79",
+    "source_sha256": {
+      "digits10_int8_v1.json": "b0667c9237075d7a406bd4a32e8fee9bde87e5891c42436fd6cdae17236c0a79",
+      "integer_reference.py": "e0584d348d46ea7603912c028a5b59adfb679d1bdbc66edf7aa0b8d426cd83e4",
+      "prepare.py": "89c4c26f78ccd46e13df910a9ed9f15f61fc361858b2cdbc176c4023247e364b",
+      "review.py": "9f8c523615056fd78f9a448a9bc4be64cc6383fb37a4921a3e162a6e34511663",
+      "train.py": "3317ed56879d86a6b29054bdb1da6c49c2083282e640aeb554d8c486c162920b",
+      "单字符数字识别_INT8首版合同_2026-10-16.md": "c23d3950dc0e9a930e7fd7ca90d56e21b875fbf07a7ab378e209422cd7b8cfe9",
+      "数字CNN整网与SoC_ABI1_2026-10-16.md": "2686d02b97da2f7d1f6e3b6509735942e0900a93b108583539bf9888a479683f"
+    },
+    "nondeterminism": "Seed/cudnn deterministic set; cross-version bitwise training reproducibility not claimed"
+  },
+  "camera_accuracy_verified": false,
+  "hardware_verified": false,
+  "sha256": {
+    "weights.bin": "49e5dae4ccf2e4faa82976d88949e79e078d3037f252a3c33158b4b7977cc6e3",
+    "bias.bin": "67f56d428d254095bd1430deac98f7f14ddd7423e7e923ce344214d10f50ccf7",
+    "load_words.bin": "c816999861d52fdd18446c39522c71d277f9221c3c850425af24d2b60df5de36",
+    "load_words.hex": "9ed4edcb7de747921197203f91769f0b969fb67e4af8ccb67ab5b3d1af7ac483"
+  }
+}

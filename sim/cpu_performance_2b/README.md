@@ -1,8 +1,14 @@
 # 2B MMIO 硬件计数器验证
 
+最新实板结果：performance_60_retry1补测通过，六应用6/6 PASS，564协议响应及主门控身份一致。正式performance/validation为17.758519147/18.761056267秒、CPI33.440103/33.216176、IF等待60.1906%/60.8206%。完整成功汇总/四份计数CSV/六份冻结日志在board/main_pds_first/audit_retry1_20261010_a；原人工复位中止及audit_20261010_b的5/6历史保留。详见[实板完整统计与补测记录](../../doc/cpu/CPU计数器2B首轮实板统计与补测_2026-10-10.md)。
+
+离线入口：`python -B sim/cpu_performance_2b/check_board.py --logs sim/cpu_performance_2b/board/main_pds_first --tag <新tag> --performance-60-log sim/cpu_performance_2b/board/main_pds_first/performance_60_retry1.json`；不打开串口，六应用全部通过才返回0，否则返回2并保留部分结果。明确选择补测日志，避免覆盖/误用原中止记录。本轮只审查日志，不修改RTL、重跑仿真或PDS。
+
 设计直接维护在 `myriscv/{mycpu_sync,soc_top,simple_mmio}.v`，根目录 `RISCV.pds` 使用原路径。
 CPU 只增加观察输出，流水线控制与原 32-bit 请求/响应接口保持原逻辑。重复候选设计和未使用的独立PDS工程已清理。
 PDS 编译/综合/布局布线/比特流生成由用户执行；IP/成功镜像保留。
+
+用户21:13新主位流离线审查入口为 `python -B sim/cpu_performance_2b/review_main_pds.py --tag review_new`（从根目录执行，用新tag）。用户22:20补导出后，main_pds_review_20261010_d为ARTIFACT_AUDIT_PASS；新门控main_pds_board_20261010_a冻结输入并已绑定perf_2b上板工具，其NOT_TESTED为创建时状态，最新实板见上文。审查脚本只读取产物，不执行PDS/仿真/串口，不创建部署门控；退出码0不等于审查PASS，须检查JSON状态。通过后的冻结由freeze_main_pds.py另行执行，不覆盖旧门控。详情见[新位流审查](../../doc/board/CPU计数器2B主工程新位流审查_2026-10-10.md)。
 
 ```powershell
 C:/python/python.exe sim/cpu_performance_2b/run.py --suite oracle --tag oracle_new

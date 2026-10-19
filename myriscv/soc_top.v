@@ -27,7 +27,8 @@ module soc_top #(
     parameter [31:0] PERF_START_PC = 32'h400007d0,
     parameter [31:0] PERF_STOP_PC = 32'h400007f4,
     // Camera builds keep registered load data; posted store ACKs may bypass it.
-    parameter integer DDR_POSTED_STORE_ACK_BYPASS_ENABLE = 1
+    parameter integer DDR_POSTED_STORE_ACK_BYPASS_ENABLE = 1,
+    parameter integer PERF_DIAG_ENABLE = 1
 ) (
     output wire cnn_req_valid, cnn_req_write,
     output wire [1:0] cnn_req_size,
@@ -93,6 +94,11 @@ module soc_top #(
     // CPU 使用字节地址；ROM/RAM IP 使用 32 位字地址。
     wire [7:0] perf_events;
     wire [31:0] perf_branch_target, perf_fetch_pc;
+    wire [5:0] perf_cache_events;
+    wire [1:0] perf_cache_enabled;
+    wire [2:0] perf_wait_events;
+    wire [14:0] perf_diag_flags;
+    wire [31:0] perf_diag_target_pc, perf_diag_pending_pc, perf_diag_buffer_pc;
     wire        inst_req_valid;
     wire [31:0] inst_req_addr;
     wire        inst_req_ready;
@@ -191,7 +197,8 @@ module soc_top #(
 
     mycpu_sync #(
         .RESET_PC(RESET_PC),
-        .EXTERNAL_MEM_DRAIN_ENABLE(DDR_WRITE_ORDER_ACTIVE)
+        .EXTERNAL_MEM_DRAIN_ENABLE(DDR_WRITE_ORDER_ACTIVE),
+        .DIAG_PERF_ENABLE((PERF_ENABLE != 0) && (PERF_DIAG_ENABLE != 0))
     ) u_cpu (
         .clk               (clk),
         .resetn            (resetn),
@@ -220,7 +227,9 @@ module soc_top #(
         .debug_wb_rf_wnum  (debug_wb_rf_wnum),
         .debug_wb_rf_wdata (debug_wb_rf_wdata),
         .debug_inst        (debug_inst),
-        .perf_events(perf_events), .perf_branch_target(perf_branch_target), .perf_fetch_pc(perf_fetch_pc)
+        .perf_events(perf_events), .perf_branch_target(perf_branch_target), .perf_fetch_pc(perf_fetch_pc),
+        .perf_diag_flags(perf_diag_flags), .perf_diag_target_pc(perf_diag_target_pc),
+        .perf_diag_pending_pc(perf_diag_pending_pc), .perf_diag_buffer_pc(perf_diag_buffer_pc)
     );
 
     inst_bus_interconnect #(
@@ -427,7 +436,10 @@ module soc_top #(
         .rd_data    (data_ram_rdata)
     );
 
-    simple_mmio #(.PERF_ENABLE(PERF_ENABLE), .PERF_AUTO_ARM(PERF_AUTO_ARM),
+    simple_mmio #(.PERF_ENABLE(PERF_ENABLE),
+        .DIAG_PERF_ENABLE((PERF_ENABLE != 0) && (PERF_DIAG_ENABLE != 0)),
+        .DIAG_DDR_ENABLE(ENABLE_DDR),
+        .CACHE_PERF_ENABLE((PERF_ENABLE != 0) && (ENABLE_DDR != 0)), .PERF_AUTO_ARM(PERF_AUTO_ARM),
         .PERF_START_PC(PERF_START_PC), .PERF_STOP_PC(PERF_STOP_PC)) u_simple_mmio (
         .clk       (clk),
         .resetn    (resetn),
@@ -445,7 +457,11 @@ module soc_top #(
         .perf_events(perf_events), .perf_retire_pc(debug_wb_pc),
         .perf_branch_target(perf_branch_target), .perf_fetch_pc(perf_fetch_pc),
         .perf_ar_fire(ddr_axi_arvalid && ddr_axi_arready),
-        .perf_aw_fire(ddr_axi_awvalid && ddr_axi_awready)
+        .perf_aw_fire(ddr_axi_awvalid && ddr_axi_awready),
+        .perf_cache_events(perf_cache_events), .perf_cache_enabled(perf_cache_enabled),
+        .perf_wait_events(perf_wait_events), .perf_diag_flags(perf_diag_flags),
+        .perf_diag_target_pc(perf_diag_target_pc), .perf_diag_pending_pc(perf_diag_pending_pc),
+        .perf_diag_buffer_pc(perf_diag_buffer_pc)
     );
 
     uart_mmio #(.CLK_HZ(UART_CLK_HZ), .RSP_DELAY_CYCLES(UART_RSP_DELAY_CYCLES)) u_uart_mmio (
@@ -525,12 +541,17 @@ module soc_top #(
                 .PREPROCESS_UNCACHED_ENABLE(ENABLE_PREPROCESS),
                 .CAMERA_UNCACHED_ENABLE(ENABLE_CAMERA),
                 .MEM_DQ_WIDTH(DDR_MEM_DQ_WIDTH),
-                .POSTED_WRITE_ENABLE(DDR_WRITE_ORDER_ACTIVE)
+                .POSTED_WRITE_ENABLE(DDR_WRITE_ORDER_ACTIVE),
+                .CACHE_PERF_ENABLE(PERF_ENABLE),
+                .DIAG_PERF_ENABLE((PERF_ENABLE != 0) && (PERF_DIAG_ENABLE != 0))
             ) u_ddr_bridge (
                 .clk              (clk),
                 .resetn           (resetn),
                 .ddr_init_done    (ddr_init_done),
                 .write_buffer_busy(ddr_write_buffer_busy),
+                .perf_cache_events(perf_cache_events),
+                .perf_cache_enabled(perf_cache_enabled),
+                .perf_wait_events(perf_wait_events),
                 .inst_req_valid   (inst_ddr_req_valid),
                 .inst_req_addr    (inst_ddr_req_addr),
                 .inst_req_ready   (inst_ddr_req_ready),
@@ -570,6 +591,9 @@ module soc_top #(
                 .axi_rvalid       (ddr_axi_rvalid)
             );
         end else begin : g_no_ddr
+            assign perf_cache_events = 6'b0;
+            assign perf_cache_enabled = 2'b0;
+            assign perf_wait_events = 3'b0;
             assign ddr_write_buffer_busy = 1'b0;
             assign inst_ddr_req_ready = 1'b0;
             assign inst_ddr_rsp_valid = 1'b0;

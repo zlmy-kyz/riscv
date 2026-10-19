@@ -1,0 +1,48 @@
+{
+  "status": "MEASUREMENT_LOG_VERIFIED",
+  "application_name": "performance_300",
+  "responses": 123,
+  "run_count": 1,
+  "application": {
+    "status": "COREMARK_FIXED_BIN_MEASUREMENT_PASS",
+    "mode": "performance",
+    "iterations": 300,
+    "ticks": 240454027,
+    "seconds": 2.5648429546666667,
+    "clock_hz": 93750000,
+    "crcfinal": "5275",
+    "formal_benchmark": false,
+    "duration_requirement_met": false,
+    "counters": {
+      "cycles": 240454027,
+      "instret": 108391804,
+      "if_stall_cycles": 1763804,
+      "mem_stall_cycles": 66417820,
+      "branch_flush_cycles": 22147650,
+      "control_redirect_cycles": 0,
+      "control_hold_cycles": 0,
+      "load_use_cycles": 8503889,
+      "other_cycles": 141620864,
+      "ddr_transactions": 5558744,
+      "branch_redirects": 19111364,
+      "ddr_ar_commands": 378768,
+      "ddr_aw_commands": 5179976
+    },
+    "cpi": 2.21837831022722,
+    "timer_start": 299707273,
+    "timer_stop": 540161300,
+    "origin": "ACTUAL_SERIAL",
+    "iterations_per_second": 116.96622573095854,
+    "isa": "rv32i_zmmul",
+    "cycles_per_iteration": 801513.4233333333,
+    "comparison_kind": "Normalize cycles/iteration and iterations/second against RV32I120; different BIN and iteration count",
+    "crc_functional_only": false
+  },
+  "bitstream_local_file": {
+    "path": "D:/riscv/RISCV/generate_bitstream/board_top.sbit",
+    "sha256": "e7a6b244e4757707c2b719070f8a6b159efcfb3e3a04018cc5a086414cefc4b3",
+    "identity_scope": "LOCAL_FILE_ONLY_NOT_OBSERVED_FPGA"
+  },
+  "FPGA_programming_independently_observed": false,
+  "deployment_gate_required": false
+}

@@ -1,0 +1,30 @@
+{
+  "status": "SOURCE_PHOTO_SOFTWARE_READY_USER_BOARD_FIRST_NOT_BOARD_PASS",
+  "firmware_sha256": "2f72e829b3044e1ce8f5996d6b9ddb39877c3c6f15048cf9a040b64bd78d7bd4",
+  "firmware_bytes": 42544,
+  "firmware_manifest": "tests/cnn_digits_photo/build/photo_20261016_a/manifest.json",
+  "model_id": "05a032af",
+  "model_crc": "0ca5949e",
+  "model_load_sha256": "fa210d89f4ef30a4f26e90f556f7ce3e351756df6f22f982b8081335da7fccfd",
+  "source_bytes": 1843200,
+  "RGB96_bytes": 27648,
+  "same_frame_held_until_both_exports": true,
+  "offline_review_sha256": "3663f48a230d410cd5ccf9c8adebef37227d83895fa00202b5e87d2442b55637",
+  "offline_review": "sim/cnn/board_photo_20261016_a/checks_01/review.json",
+  "frozen_manifest_sha256": "c80870cc9612df075ee48db18b5aed88439fb810e53888236d2574a3e2eb5554",
+  "timing_review_sha256": "d29ab880e7e65f14fa38dd1d3797fb580733f471bc8f0b4aa43898c3169d2a6a",
+  "historical_unchanged": {
+    "tests/cnn_digits_diag/build/diag_20261016_c/manifest.json": "c33f3c703ad1434d18f78cbaa9dc2833ba24077d394e2b0812831b8bf3a01e99",
+    "tests/camera_preprocess_photo/build/photo_20261015_d/manifest.json": "1255f0788b0de78a195fe3eea69b366a89322c2746fa2662c6c09ae577d038f5",
+    "sim/cnn/board/diag_20261016_01/result.json": "d92bb3d1f24985594f8268887e0d8c31512342c7f2a89899c84668b7f5d332d7",
+    "sim/cnn/board/diag_20261016_02/result.json": "5a7639036a2d11cb4a9b91ae3271912898e02433747c6f8b2e0f1f5adf2f9502"
+  },
+  "design_unchanged": true,
+  "IP_PDS_unchanged": true,
+  "PDS_started": false,
+  "HDL_run": false,
+  "key_HDL": "NOT_COMPLETED",
+  "board": "NOT_RUN",
+  "timing": "EXISTING_REPORT_MET_BOARD_PHASE_UNMEASURED",
+  "scope": "One same-frame source/PP all-byte check and diagnostic CNN 10-score comparison only"
+}

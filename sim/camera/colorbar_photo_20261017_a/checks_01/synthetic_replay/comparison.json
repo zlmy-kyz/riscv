@@ -1,0 +1,36 @@
+{
+  "all_10_scores_equal": true,
+  "mismatches": [],
+  "board_scores": [
+    -22,
+    -156,
+    86,
+    150,
+    -210,
+    161,
+    125,
+    -62,
+    112,
+    151
+  ],
+  "expected_scores": [
+    -22,
+    -156,
+    86,
+    150,
+    -210,
+    161,
+    125,
+    -62,
+    112,
+    151
+  ],
+  "board_class": 5,
+  "expected_class": 5,
+  "argmax_equal": true,
+  "model_id": "05a032af",
+  "cnn_cycles": 1234567,
+  "cnn_ms": 13.168714666666666,
+  "purpose": "NONTRAINED_DIAGNOSTIC_NOT_DIGIT_ACCURACY",
+  "scope": "One input and parameter package; no hardware layer dumps"
+}

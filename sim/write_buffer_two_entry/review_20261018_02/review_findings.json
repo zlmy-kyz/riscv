@@ -1,0 +1,41 @@
+{
+  "status": "TASK043_PARTIAL_BRIDGE_ACCEPTED_COMPLETE_FUNCTION_AND_CONTROLLED_PERFORMANCE_PENDING",
+  "raw_review": "sim/write_buffer_two_entry/review_20261018_02/review.json",
+  "raw_review_sha256": "68c97ab95a8eb7b88a35708c647bb2e811baeb1d243ede922739ec62bb0f360d",
+  "submitted_report_sha256": "aa6a0e63f788d5be82d32c33e7319c538e648ac7e8821afa6572e00aaf79cda4",
+  "accepted_scope": "Seven sealed posted bridge fragments: raw data, transactions, all8192 final bytes, and legacy/new depth1 44-edge identity.",
+  "performance": {
+    "observed_done_edges": [
+      40,
+      31
+    ],
+    "observed_second_store_edges": [
+      18,
+      11
+    ],
+    "controlled_net_gain": "NOT_ESTABLISHED",
+    "reason": "Short TB changes w_hold to2 only in the blocked depth1 path; depth2 keeps0 and releases backend earlier.",
+    "source": "xs_short_new_d1_20261018_c/src/tb/tb_wb2_bridge.sv:980"
+  },
+  "cross_backend": {
+    "same_counts": true,
+    "same_TB_sha256": false,
+    "raw_edge58_init": [
+      1,
+      0
+    ],
+    "strict_equivalence": "NOT_ESTABLISHED"
+  },
+  "pending": [
+    "fixed backend depth1/depth2 short comparison",
+    "SoC non-DDR/FENCE/IRQ/Camera/PP ordering",
+    "nonposted model, x16 and RUW-off minimal compatibility",
+    "head-other/tail-only-same promotion, warm I hit poison, AR/R same edge",
+    "independent store/load blocking attribution and checker corrections"
+  ],
+  "followup": "DeepSeek/任务043_补正02_集成兼容与固定后端对照.md",
+  "rtl_changed_by_review": false,
+  "HDL_execution_by_review": false,
+  "PDS_by_review": false,
+  "board_by_review": false
+}

@@ -1,0 +1,18 @@
+{
+  "all_equal": false,
+  "first_mismatch": {
+    "output_byte": 17,
+    "x": 5,
+    "y": 0,
+    "channel": "B",
+    "source_x": 321,
+    "source_y": 3,
+    "source_byte": 8322,
+    "source_rgb565": "cdb9",
+    "expected_value": 206,
+    "actual_value": 207
+  },
+  "expected_crc32": 689014442,
+  "actual_crc32": 689014442,
+  "bytes": 27648
+}

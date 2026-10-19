@@ -1,0 +1,222 @@
+{
+  "tag": "ds_inst_hit_overlap_completion_20261017_b",
+  "design": {
+    "source": "myriscv/dual_sram_to_pango_ddr_bridge.v",
+    "sha256": "7ab9d34c3f13caa092c8fbee933cf9e495729dcbe90520a23c9cbdeded52d933"
+  },
+  "parameters": {
+    "MEM_DQ_WIDTH": 32,
+    "INST_LINE_BUFFER_ENABLE": 1,
+    "DATA_LINE_BUFFER_ENABLE": 1,
+    "CAMERA_UNCACHED_ENABLE": 1,
+    "PREPROCESS_UNCACHED_ENABLE": 1,
+    "POSTED_WRITE_ENABLE": 1,
+    "DATA_READ_UNDER_WRITE_ENABLE": 1,
+    "DATA_STORE_FORWARD_ENABLE": 1,
+    "WRITE_BUFFER_TURNOVER_ENABLE": 1,
+    "INST_HIT_UNDER_DATA_MISS_ENABLE": 1
+  },
+  "constants": {
+    "s1_i_fill": "0x00000100",
+    "s1_i_hit": "0x00000104",
+    "s1_d": "0x00001000",
+    "s2_i_pre": "0x00000120",
+    "s2_i_miss": "0x00000140",
+    "s2_d": "0x00001080",
+    "cam_a": "0x01000000",
+    "cam_i1": "0x01000008",
+    "cam_i2": "0x0100000c",
+    "cam_new": "0xa5c30f1e",
+    "pp_a": "0x02000000",
+    "pp_i1": "0x02000008",
+    "pp_i2": "0x0200000c",
+    "pp_new": "0x5e1f2d7b"
+  },
+  "windows": {
+    "camera": [
+      "0x01000000",
+      "0x01400000"
+    ],
+    "preprocess": [
+      "0x02000000",
+      "0x02010000"
+    ]
+  },
+  "expected_sequence": [
+    {
+      "side": "I",
+      "addr": "0x00000100",
+      "kind": "miss",
+      "epoch": 1,
+      "why": "s1_fill"
+    },
+    {
+      "side": "D",
+      "addr": "0x00001000",
+      "kind": "miss",
+      "epoch": 1,
+      "why": "s1_cold_d"
+    },
+    {
+      "side": "I",
+      "addr": "0x00000104",
+      "kind": "hit",
+      "epoch": 1,
+      "why": "s1_independent_hit"
+    },
+    {
+      "side": "I",
+      "addr": "0x00000104",
+      "kind": "miss",
+      "epoch": 2,
+      "why": "s1_cold_read_after_reset"
+    },
+    {
+      "side": "I",
+      "addr": "0x00000120",
+      "kind": "miss",
+      "epoch": 2,
+      "why": "s2_preheat_poison_line"
+    },
+    {
+      "side": "D",
+      "addr": "0x00001080",
+      "kind": "miss",
+      "epoch": 2,
+      "why": "s2_cold_d"
+    },
+    {
+      "side": "I",
+      "addr": "0x00000140",
+      "kind": "miss",
+      "epoch": 2,
+      "why": "s2_parked_miss"
+    },
+    {
+      "side": "I",
+      "addr": "0x00000140",
+      "kind": "miss",
+      "epoch": 3,
+      "why": "s2_cold_read_after_reset"
+    },
+    {
+      "side": "I",
+      "addr": "0x01000000",
+      "kind": "miss",
+      "epoch": 3,
+      "why": "camera_preheat"
+    },
+    {
+      "side": "D",
+      "addr": "0x01000000",
+      "kind": "miss",
+      "epoch": 3,
+      "why": "camera_uncached_read"
+    },
+    {
+      "side": "I",
+      "addr": "0x01000008",
+      "kind": "hit",
+      "epoch": 3,
+      "why": "camera_hit_inside_window"
+    },
+    {
+      "side": "I",
+      "addr": "0x0100000c",
+      "kind": "hit",
+      "epoch": 3,
+      "why": "camera_hit_on_r_edge"
+    },
+    {
+      "side": "D",
+      "addr": "0x01000000",
+      "kind": "miss",
+      "epoch": 3,
+      "why": "camera_reread_after_poke"
+    },
+    {
+      "side": "I",
+      "addr": "0x02000000",
+      "kind": "miss",
+      "epoch": 3,
+      "why": "preprocess_preheat"
+    },
+    {
+      "side": "D",
+      "addr": "0x02000000",
+      "kind": "miss",
+      "epoch": 3,
+      "why": "preprocess_uncached_read"
+    },
+    {
+      "side": "I",
+      "addr": "0x02000008",
+      "kind": "hit",
+      "epoch": 3,
+      "why": "preprocess_hit_inside_window"
+    },
+    {
+      "side": "I",
+      "addr": "0x0200000c",
+      "kind": "hit",
+      "epoch": 3,
+      "why": "preprocess_hit_on_r_edge"
+    },
+    {
+      "side": "D",
+      "addr": "0x02000000",
+      "kind": "miss",
+      "epoch": 3,
+      "why": "preprocess_reread_after_poke"
+    }
+  ],
+  "gates": {
+    "independent_hit": {
+      "reset_edge_offset_from_accept": 1,
+      "cancels": {
+        "I": 1,
+        "D": 1
+      }
+    },
+    "promoted_miss": {
+      "cancels": {
+        "I": 1,
+        "D": 0
+      },
+      "min_edges_to_reset": 2
+    },
+    "uncached": {
+      "d_reads_per_window": 2,
+      "i_hits_per_window": 2,
+      "distinct_lanes": true,
+      "dual_response_edge": true
+    }
+  },
+  "pinned": {
+    "perf": {
+      "on_all_done_minus_d_ar": 19,
+      "off_all_done_minus_d_ar": 25,
+      "saved_cycles": 6,
+      "on_minus_d_accept": 20,
+      "off_minus_d_accept": 26
+    },
+    "cpu": {
+      "i_accept": 46,
+      "i_response": 47,
+      "buffer_hold": [
+        48,
+        61
+      ],
+      "pop": 62,
+      "retire": 66
+    }
+  },
+  "reuse": {
+    "original_run": "sim/cpu_inst_hit_overlap/build/ds_inst_hit_overlap_20261017_a",
+    "original_run_manifest_sha256": "8a055333872a3ce30befeb1c99f432b9fec682cffa801ffc2bc2cdb46fc53f0f",
+    "original_sealed_manifest_sha256": "8a055333872a3ce30befeb1c99f432b9fec682cffa801ffc2bc2cdb46fc53f0f",
+    "review_receipt": "sim/cpu_inst_hit_overlap/review_20261017_01/review.json",
+    "review_receipt_sha256": "3602fe4ea6ef05114ac631e32e951b77e5e27afe79637f118dac3627d5e36fda",
+    "review_status": "TASK033_RAW_REPLAY_PASS_ACCEPTANCE_BLOCKED_COVERAGE_AND_EXECUTION_DEVIATIONS"
+  }
+}

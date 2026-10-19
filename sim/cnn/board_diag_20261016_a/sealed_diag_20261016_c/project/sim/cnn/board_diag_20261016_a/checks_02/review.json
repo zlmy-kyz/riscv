@@ -1,0 +1,917 @@
+{
+  "status": "SOFTWARE_OFFLINE_CHECKS_PASS_NOT_HDL_NOT_BOARD",
+  "evidence_origin": "OFFLINE_SYNTHETIC_TEST",
+  "real_CPU": false,
+  "HDL": false,
+  "serial_opened": false,
+  "PDS": false,
+  "board": false,
+  "checks": [
+    {
+      "name": "model_minus128",
+      "rejected": true,
+      "error": "parameter encoding"
+    },
+    {
+      "name": "model_signextended_word",
+      "rejected": true,
+      "error": "load encoding/CRC"
+    },
+    {
+      "name": "model_shift32",
+      "rejected": true,
+      "error": "load encoding/CRC"
+    },
+    {
+      "name": "model_scale_chain",
+      "rejected": true,
+      "error": "scale/shift"
+    },
+    {
+      "name": "model_crc",
+      "rejected": true,
+      "error": "load encoding/CRC"
+    },
+    {
+      "name": "model_short",
+      "rejected": true,
+      "error": "load encoding/CRC"
+    },
+    {
+      "name": "model_model_id",
+      "rejected": true,
+      "error": "model ID"
+    },
+    {
+      "name": "synthetic_cannot_be_board_normal",
+      "rejected": true,
+      "error": "synthetic is not actual serial"
+    },
+    {
+      "name": "synthetic_cannot_be_board_no_tail",
+      "rejected": true,
+      "error": "synthetic is not actual serial"
+    },
+    {
+      "name": "PC_model_valid",
+      "rejected": true,
+      "error": "banner/model/error: CNN_FAIL REASON=MODEL_ID_COUNT_CRC_VALID GROUP=0 BUF=0 SEQ=0 CLAIMS=0 TARGET_CLAIMS=0 DISCARD_CLAIMS=0 LAST_DISCARD=0 CAM_STATUS=00000001 CAM_ERR=00000000 CAM_BUFSTATE=00000000 CAM_GLOBAL_SEQ=00000000 PP_STATUS=00000000 PP_ERR=00000000 UART_STATUS=00000005 CNN_STATUS=00000000 CNN_ERROR=00000000 LOAD_COUNT=6222 MODEL_CRC=0ca5949e MODEL_ID=05a032af ELAPSED_TICKS=2172000"
+    },
+    {
+      "name": "PC_count",
+      "rejected": true,
+      "error": "banner/model/error: CNN_FAIL REASON=MODEL_UPLOAD_CRC_COUNT GROUP=0 BUF=0 SEQ=0 CLAIMS=0 TARGET_CLAIMS=0 DISCARD_CLAIMS=0 LAST_DISCARD=0 CAM_STATUS=00000001 CAM_ERR=00000000 CAM_BUFSTATE=00000000 CAM_GLOBAL_SEQ=00000000 PP_STATUS=00000000 PP_ERR=00000000 UART_STATUS=00000005 CNN_STATUS=00000010 CNN_ERROR=00000000 LOAD_COUNT=6223 MODEL_CRC=0ca5949e MODEL_ID=05a032af ELAPSED_TICKS=2164000"
+    },
+    {
+      "name": "PC_cnn_error",
+      "rejected": true,
+      "error": "CNN job/error: CNN_FAIL REASON=CNN_ERROR GROUP=1 BUF=0 SEQ=1 CLAIMS=1 TARGET_CLAIMS=1 DISCARD_CLAIMS=0 LAST_DISCARD=0 CAM_STATUS=00000025 CAM_ERR=00000000 CAM_BUFSTATE=0000012b CAM_GLOBAL_SEQ=00000002 PP_STATUS=00000002 PP_ERR=00000000 UART_STATUS=00000005 CNN_STATUS=0000000d CNN_ERROR=00000003 LOAD_COUNT=6222 MODEL_CRC=0ca5949e MODEL_ID=05a032af ELAPSED_TICKS=2532000"
+    },
+    {
+      "name": "PC_timeout",
+      "rejected": true,
+      "error": "CNN job/error: CNN_FAIL REASON=CNN_SOFTWARE_TIMEOUT GROUP=1 BUF=0 SEQ=1 CLAIMS=1 TARGET_CLAIMS=1 DISCARD_CLAIMS=0 LAST_DISCARD=0 CAM_STATUS=00000025 CAM_ERR=00000000 CAM_BUFSTATE=0000012b CAM_GLOBAL_SEQ=00000002 PP_STATUS=00000002 PP_ERR=00000000 UART_STATUS=00000005 CNN_STATUS=00000009 CNN_ERROR=00000000 LOAD_COUNT=6222 MODEL_CRC=0ca5949e MODEL_ID=05a032af ELAPSED_TICKS=17344882000"
+    },
+    {
+      "name": "PC_identity",
+      "rejected": true,
+      "error": "CNN job/error: CNN_FAIL REASON=CNN_RESULT_METADATA GROUP=1 BUF=0 SEQ=1 CLAIMS=1 TARGET_CLAIMS=1 DISCARD_CLAIMS=0 LAST_DISCARD=0 CAM_STATUS=00000025 CAM_ERR=00000000 CAM_BUFSTATE=0000012b CAM_GLOBAL_SEQ=00000002 PP_STATUS=00000002 PP_ERR=00000000 UART_STATUS=00000005 CNN_STATUS=0000000a CNN_ERROR=00000000 LOAD_COUNT=6222 MODEL_CRC=0ca5949e MODEL_ID=05a032af ELAPSED_TICKS=2580000"
+    },
+    {
+      "name": "PC_reads",
+      "rejected": true,
+      "error": "CNN job/error: CNN_FAIL REASON=CNN_RESULT_METADATA GROUP=1 BUF=0 SEQ=1 CLAIMS=1 TARGET_CLAIMS=1 DISCARD_CLAIMS=0 LAST_DISCARD=0 CAM_STATUS=00000025 CAM_ERR=00000000 CAM_BUFSTATE=0000012b CAM_GLOBAL_SEQ=00000002 PP_STATUS=00000002 PP_ERR=00000000 UART_STATUS=00000005 CNN_STATUS=0000000a CNN_ERROR=00000000 LOAD_COUNT=6222 MODEL_CRC=0ca5949e MODEL_ID=05a032af ELAPSED_TICKS=2580000"
+    },
+    {
+      "name": "PC_gray_count",
+      "rejected": true,
+      "error": "CNN job/error: CNN_FAIL REASON=CNN_RESULT_METADATA GROUP=1 BUF=0 SEQ=1 CLAIMS=1 TARGET_CLAIMS=1 DISCARD_CLAIMS=0 LAST_DISCARD=0 CAM_STATUS=00000025 CAM_ERR=00000000 CAM_BUFSTATE=0000012b CAM_GLOBAL_SEQ=00000002 PP_STATUS=00000002 PP_ERR=00000000 UART_STATUS=00000005 CNN_STATUS=0000000a CNN_ERROR=00000000 LOAD_COUNT=6222 MODEL_CRC=0ca5949e MODEL_ID=05a032af ELAPSED_TICKS=2580000"
+    },
+    {
+      "name": "PC_ack",
+      "rejected": true,
+      "error": "raw TX/no retry"
+    },
+    {
+      "name": "PC_release",
+      "rejected": true,
+      "error": "release/error: CNN_FAIL REASON=RELEASE_NOT_ACCEPTED GROUP=1 BUF=0 SEQ=1 CLAIMS=1 TARGET_CLAIMS=1 DISCARD_CLAIMS=0 LAST_DISCARD=0 CAM_STATUS=00000025 CAM_ERR=00000000 CAM_BUFSTATE=0000012b CAM_GLOBAL_SEQ=00000002 PP_STATUS=00000002 PP_ERR=00000000 UART_STATUS=00000005 CNN_STATUS=0000000a CNN_ERROR=00000000 LOAD_COUNT=6222 MODEL_CRC=0ca5949e MODEL_ID=05a032af ELAPSED_TICKS=118000000"
+    },
+    {
+      "name": "PC_score",
+      "rejected": true,
+      "error": "SCORE MISMATCH: [{'index': 0, 'board': -8, 'expected': -7}]"
+    },
+    {
+      "name": "wire_header_crc",
+      "rejected": true,
+      "error": "CN01 header/magic CRC"
+    },
+    {
+      "name": "wire_payload_crc",
+      "rejected": true,
+      "error": "packet data CRC"
+    },
+    {
+      "name": "wire_seq",
+      "rejected": true,
+      "error": "packet identity/order"
+    },
+    {
+      "name": "wire_offset",
+      "rejected": true,
+      "error": "packet identity/order"
+    },
+    {
+      "name": "wire_short",
+      "rejected": true,
+      "error": "offline short raw RX"
+    },
+    {
+      "name": "wire_end_crc",
+      "rejected": true,
+      "error": "END/whole RGB CRC"
+    },
+    {
+      "name": "wire_unclosed_ledger",
+      "rejected": true,
+      "error": "ownership not closed"
+    },
+    {
+      "name": "wire_wrong_class",
+      "rejected": true,
+      "error": "board scores/class inconsistent"
+    },
+    {
+      "name": "wire_error_status",
+      "rejected": true,
+      "error": "CNN job/error: CNN_JOB BUF=0 SEQ=1 MODEL=05a032af MODEL_CRC=0ca5949e PP_CRC=2bcb978a BYTES=27648 READS=864 GRAY=1024 STATUS=0000000a ERROR=00000001 CLASS=5 CYCLES=1234567 PP_CYCLES=303844"
+    },
+    {
+      "name": "independent_C_int64_vs_Python_wide",
+      "patterns": 7,
+      "all_layer_bytes_and_scores_equal": true
+    }
+  ],
+  "reference_patterns": {
+    "black": {
+      "scores": [
+        -44,
+        -213,
+        39,
+        119,
+        -288,
+        194,
+        206,
+        -11,
+        120,
+        262
+      ],
+      "prediction": 9,
+      "stats": [
+        {
+          "min_acc": -693,
+          "max_acc": 1157,
+          "zero": 1296,
+          "saturated": 0,
+          "elements": 2048
+        },
+        {
+          "min_acc": -650,
+          "max_acc": 873,
+          "zero": 272,
+          "saturated": 0,
+          "elements": 1024
+        },
+        {
+          "min_acc": -862,
+          "max_acc": 617,
+          "zero": 270,
+          "saturated": 0,
+          "elements": 512
+        }
+      ],
+      "tensor_sha256": {
+        "gray32": "f991acb1e5897fe61be2decbf1d1b41b165ec8c2317284f8e3d8322c4d052e21",
+        "conv1": "8be7ad4274c5dcb063fd192ebdaad731b0faa322ed38f011b6d042d2b7270b0a",
+        "conv2": "3e4bf3054fe11118a1cfe9e2eec9381e82df4b1616065e8e58ef403c819cd642",
+        "conv3": "39b73cc5771b547651287dad97ce372b2077cdff2d0640807208561e076bc10f",
+        "gap": "62be161cec55e9d0c8b5f824545188f3699957a2df4af70ec489298d47522d74"
+      }
+    },
+    "white": {
+      "scores": [
+        -40,
+        -187,
+        101,
+        169,
+        -241,
+        213,
+        119,
+        -118,
+        135,
+        139
+      ],
+      "prediction": 5,
+      "stats": [
+        {
+          "min_acc": -993,
+          "max_acc": 837,
+          "zero": 1008,
+          "saturated": 0,
+          "elements": 2048
+        },
+        {
+          "min_acc": -524,
+          "max_acc": 563,
+          "zero": 440,
+          "saturated": 0,
+          "elements": 1024
+        },
+        {
+          "min_acc": -618,
+          "max_acc": 347,
+          "zero": 258,
+          "saturated": 0,
+          "elements": 512
+        }
+      ],
+      "tensor_sha256": {
+        "gray32": "b7975b373ba36ffaeae620de5275af2d87e9f7bdf47988d02818b5005d27d7ef",
+        "conv1": "e41709385ebf19eaf70addcc32b99532dcd6760420505d2fcb141d04fce71e2b",
+        "conv2": "2808f6d686a0d1a0884b83c33a6d660959b0449a5f94c348b8faf99caa6077dd",
+        "conv3": "e2d94a0277caa2a51d78a95c6a8e5fcddac4de6eaa8f62d4f7f00792ea617577",
+        "gap": "0ef071052f629c622bb0764ad19cac589bbf46b2c4d577c058979c497ce45278"
+      }
+    },
+    "mid": {
+      "scores": [
+        -10,
+        -181,
+        110,
+        164,
+        -228,
+        148,
+        125,
+        -59,
+        85,
+        132
+      ],
+      "prediction": 3,
+      "stats": [
+        {
+          "min_acc": -191,
+          "max_acc": 162,
+          "zero": 768,
+          "saturated": 0,
+          "elements": 2048
+        },
+        {
+          "min_acc": -246,
+          "max_acc": 242,
+          "zero": 369,
+          "saturated": 0,
+          "elements": 1024
+        },
+        {
+          "min_acc": -415,
+          "max_acc": 323,
+          "zero": 244,
+          "saturated": 0,
+          "elements": 512
+        }
+      ],
+      "tensor_sha256": {
+        "gray32": "5f70bf18a086007016e948b04aed3b82103a36bea41755b6cddfaf10ace3c6ef",
+        "conv1": "76d41c7f300b0ca8475e6076548bd94b435231186d3327a8cdd0eb806652d1ca",
+        "conv2": "acb0f988b3f6596311ffb9135be3e28db8c9e95f211b5658529e304dbfe8eb38",
+        "conv3": "3b3778ad8a40ac7da5cbd390f3a7319b367beccfdfc814e02aae3a4e962f3d28",
+        "gap": "14dbee33126f860014ba5c4ea91ffbcf4c6de1e0ce238a1a06c4868517701611"
+      }
+    },
+    "red": {
+      "scores": [
+        -14,
+        -179,
+        83,
+        132,
+        -255,
+        160,
+        143,
+        -11,
+        96,
+        198
+      ],
+      "prediction": 9,
+      "stats": [
+        {
+          "min_acc": -272,
+          "max_acc": 541,
+          "zero": 1297,
+          "saturated": 0,
+          "elements": 2048
+        },
+        {
+          "min_acc": -345,
+          "max_acc": 450,
+          "zero": 222,
+          "saturated": 0,
+          "elements": 1024
+        },
+        {
+          "min_acc": -548,
+          "max_acc": 439,
+          "zero": 240,
+          "saturated": 0,
+          "elements": 512
+        }
+      ],
+      "tensor_sha256": {
+        "gray32": "cfa35bcc2f57149955e5e4f666e1bda1318596e8b6306e9055087643beb9f190",
+        "conv1": "1318feb40ea6097bfd7d0c10581072093bad48d9a33745c4412f10942314285d",
+        "conv2": "46b23f8e45c09cef1cb2baee35d73b5788d07992462e7e6d04598c0155026efa",
+        "conv3": "8ff59cec4a89c9c276830d80d22625f2ecdcb208bef0b0fd61be3f7905a977e0",
+        "gap": "dde5b2f2f7eaebc82387e997c61bf7f1caf12ca8e4196bdf7e3816ccfa214007"
+      }
+    },
+    "green": {
+      "scores": [
+        -17,
+        -179,
+        120,
+        167,
+        -217,
+        159,
+        126,
+        -91,
+        99,
+        122
+      ],
+      "prediction": 3,
+      "stats": [
+        {
+          "min_acc": -212,
+          "max_acc": 246,
+          "zero": 1248,
+          "saturated": 0,
+          "elements": 2048
+        },
+        {
+          "min_acc": -282,
+          "max_acc": 255,
+          "zero": 424,
+          "saturated": 0,
+          "elements": 1024
+        },
+        {
+          "min_acc": -401,
+          "max_acc": 282,
+          "zero": 237,
+          "saturated": 0,
+          "elements": 512
+        }
+      ],
+      "tensor_sha256": {
+        "gray32": "2be5d9d612a6ba72f42c59dbe8b4a9b39c1608e8b3b6e7f8092e8b3217c62009",
+        "conv1": "ac995f5abb1ea623b41864495003f21d0f66483cd70ababab8db61914ebc0da5",
+        "conv2": "db60f0fe3cb7d13927e733da446dd2158056ba5264789cc7d4ee82543f2a970e",
+        "conv3": "63e98fa8ca29c090fccc63adbbf111fe6c0bca22f09ca6fd7390c1bdd5855983",
+        "gap": "f4005b6d2c2d3e91ce336c7bc0f1acb9c9582571502341974368821398fa70a8"
+      }
+    },
+    "blue": {
+      "scores": [
+        -32,
+        -209,
+        60,
+        123,
+        -279,
+        190,
+        182,
+        -5,
+        104,
+        233
+      ],
+      "prediction": 9,
+      "stats": [
+        {
+          "min_acc": -519,
+          "max_acc": 925,
+          "zero": 1311,
+          "saturated": 0,
+          "elements": 2048
+        },
+        {
+          "min_acc": -536,
+          "max_acc": 719,
+          "zero": 314,
+          "saturated": 0,
+          "elements": 1024
+        },
+        {
+          "min_acc": -725,
+          "max_acc": 552,
+          "zero": 270,
+          "saturated": 0,
+          "elements": 512
+        }
+      ],
+      "tensor_sha256": {
+        "gray32": "4f86898b52f592608c29de2cb014a6ddff250df6ebde409e3b74e215b3d7a6f5",
+        "conv1": "9fe39364a53db958b4afd04cc9f8590acd1bc3d7bc218a75d3ce7f48470bb9d3",
+        "conv2": "1c24c8ba1c324e0ab3104336bf317434f5490273d26347e318635f52cb058d54",
+        "conv3": "e3685e047821ac089fb13a3ff8b2cb050a6be34f3b7d69d27d5d7f67a13a1eae",
+        "gap": "b10c70f7d4c2d83759cd3a44160a877178f1281bb8fcad123aa192c0337d181b"
+      }
+    },
+    "asymmetric": {
+      "scores": [
+        -7,
+        -182,
+        89,
+        161,
+        -240,
+        169,
+        137,
+        -57,
+        111,
+        153
+      ],
+      "prediction": 5,
+      "stats": [
+        {
+          "min_acc": -1192,
+          "max_acc": 1029,
+          "zero": 979,
+          "saturated": 0,
+          "elements": 2048
+        },
+        {
+          "min_acc": -517,
+          "max_acc": 542,
+          "zero": 417,
+          "saturated": 0,
+          "elements": 1024
+        },
+        {
+          "min_acc": -582,
+          "max_acc": 406,
+          "zero": 248,
+          "saturated": 0,
+          "elements": 512
+        }
+      ],
+      "tensor_sha256": {
+        "gray32": "7ae08b838ddc6f9d2702aaaa940a26aaff99aeda761f706a8dea0ba33fa0a79d",
+        "conv1": "6fa52691fbb7e7fd95d4e22b7c99615663366bc07fcb6d0211c3a17fded4f5fc",
+        "conv2": "165101658bfcbb4ae7388647732097b14d34c32f86182aa21b9fbe2f2d6bed3a",
+        "conv3": "6a9ac492b2410b6cfd3cd1ccdabc91d5a56cc1fe4d8276fc7721c5efc3ec46bb",
+        "gap": "8d61518f59c728910ad7b075119e5ee62b765f512963a1bce649eb12ccaf470d"
+      }
+    }
+  },
+  "max_accumulator_bound": 39860,
+  "model": {
+    "contract": "digits10_int8_v1",
+    "purpose": "DETERMINISTIC_NONTRAINED_HARDWARE_DIAGNOSTIC",
+    "seed": "16d10a01",
+    "weight_rule": "LCG(1664525,1013904223), high16 modulo6 selects [-3,-2,-1,1,2,3]",
+    "bias_rule": "(i%3 ? 1 : -1)*(17+(i*29)%197)",
+    "model_id": 94384815,
+    "model_id_hex": "05a032af",
+    "shifts": [
+      5,
+      5,
+      4,
+      0
+    ],
+    "scales": [
+      {
+        "Fin": 7,
+        "Fw": 1,
+        "Fout": 3
+      },
+      {
+        "Fin": 3,
+        "Fw": 3,
+        "Fout": 1
+      },
+      {
+        "Fin": 1,
+        "Fw": 4,
+        "Fout": 1
+      },
+      {
+        "Fin": 1,
+        "Fw": 0,
+        "Fout": 1
+      }
+    ],
+    "load_words": 6222,
+    "load_bytes": 24888,
+    "load_crc32": 212178078,
+    "sha256": {
+      "weights.bin": "04b5b5884f3282326e35654e1efd27afa997242f873a65c834d6028bb2bd5111",
+      "bias.bin": "8cd644ff2a8f38aa63d42442bd40e0a3b96f3497d566391606455808e5607312",
+      "load_words.bin": "fa210d89f4ef30a4f26e90f556f7ce3e351756df6f22f982b8081335da7fccfd"
+    },
+    "trained": false,
+    "contract_sha256": "b0667c9237075d7a406bd4a32e8fee9bde87e5891c42436fd6cdae17236c0a79",
+    "labels": [
+      "0",
+      "1",
+      "2",
+      "3",
+      "4",
+      "5",
+      "6",
+      "7",
+      "8",
+      "9"
+    ],
+    "weights_nonzero": 6152,
+    "weights_negative": 3176,
+    "weights_positive": 2976,
+    "biases_nonzero": 66
+  },
+  "native_firmware_scenarios": {
+    "normal": {
+      "status": 2,
+      "model_words": 6222,
+      "model_crc": 212178078,
+      "camera_starts": 1,
+      "pp_starts": 1,
+      "cnn_starts": 1,
+      "releases": 2,
+      "clock": 117200000
+    },
+    "no_tail": {
+      "status": 2,
+      "model_words": 6222,
+      "model_crc": 212178078,
+      "camera_starts": 1,
+      "pp_starts": 1,
+      "cnn_starts": 1,
+      "releases": 1,
+      "clock": 117200000
+    },
+    "model_valid": {
+      "status": 3,
+      "model_words": 6222,
+      "model_crc": 212178078,
+      "camera_starts": 0,
+      "pp_starts": 0,
+      "cnn_starts": 0,
+      "releases": 0,
+      "clock": 2212000
+    },
+    "count": {
+      "status": 3,
+      "model_words": 6222,
+      "model_crc": 212178078,
+      "camera_starts": 0,
+      "pp_starts": 0,
+      "cnn_starts": 0,
+      "releases": 0,
+      "clock": 2204000
+    },
+    "cnn_error": {
+      "status": 3,
+      "model_words": 6222,
+      "model_crc": 212178078,
+      "camera_starts": 1,
+      "pp_starts": 1,
+      "cnn_starts": 1,
+      "releases": 0,
+      "clock": 2572000
+    },
+    "timeout": {
+      "status": 3,
+      "model_words": 6222,
+      "model_crc": 212178078,
+      "camera_starts": 1,
+      "pp_starts": 1,
+      "cnn_starts": 1,
+      "releases": 0,
+      "clock": 17907390000
+    },
+    "identity": {
+      "status": 3,
+      "model_words": 6222,
+      "model_crc": 212178078,
+      "camera_starts": 1,
+      "pp_starts": 1,
+      "cnn_starts": 1,
+      "releases": 0,
+      "clock": 2620000
+    },
+    "reads": {
+      "status": 3,
+      "model_words": 6222,
+      "model_crc": 212178078,
+      "camera_starts": 1,
+      "pp_starts": 1,
+      "cnn_starts": 1,
+      "releases": 0,
+      "clock": 2620000
+    },
+    "gray_count": {
+      "status": 3,
+      "model_words": 6222,
+      "model_crc": 212178078,
+      "camera_starts": 1,
+      "pp_starts": 1,
+      "cnn_starts": 1,
+      "releases": 0,
+      "clock": 2620000
+    },
+    "ack": {
+      "status": 3,
+      "model_words": 6222,
+      "model_crc": 212178078,
+      "camera_starts": 1,
+      "pp_starts": 1,
+      "cnn_starts": 1,
+      "releases": 0,
+      "clock": 7896000
+    },
+    "release": {
+      "status": 3,
+      "model_words": 6222,
+      "model_crc": 212178078,
+      "camera_starts": 1,
+      "pp_starts": 1,
+      "cnn_starts": 1,
+      "releases": 1,
+      "clock": 118048000
+    },
+    "score": {
+      "status": 2,
+      "model_words": 6222,
+      "model_crc": 212178078,
+      "camera_starts": 1,
+      "pp_starts": 1,
+      "cnn_starts": 1,
+      "releases": 2,
+      "clock": 117200000
+    }
+  },
+  "input_sha256": {
+    "sim/cnn/board_diag_20261016_a/check_software.py": "d644489d7ee0fd3c261f519e8960d4c27b524594883fd5ea95a25051c9a3a259",
+    "tests/cnn_digits_diag/build.py": "45bedb553dd0b5dad0b004628cce6e9e7741d4b66c65b2eed58e4312977e0e8b",
+    "tests/cnn_digits_diag/diag.h": "11745957b01780cef6dcbf3a1bd0c1d99433c31647ffcf1df489c1f07a7fa523",
+    "tests/cnn_digits_diag/linker.ld": "7424d67ed5405349c97c84e8466b32dba58c51a2feb0a49221ab2700269452ec",
+    "tests/cnn_digits_diag/main.c": "9baf52f3266f64c2008ba67b1605fa41b39809bdabf278fd6515e65b96d1bd59",
+    "tests/cnn_digits_diag/model_data.h": "6d991c0e240226c96897fd0928598036fbedcddbeced3c9054de8caea4f3325c",
+    "tests/cnn_digits_diag/native_flow.c": "5dbb8dc15a0ef0276566bc0e34d11910210e786f1bf835b57ee7340724106388",
+    "tests/cnn_digits_diag/native_reference.c": "477895eb219685fd104a51ce7c206de24b3813b8409338a00ece37c76233ee57",
+    "tests/cnn_digits_diag/pp01_wire.c": "142481516caea9ffcf7bd5f1905fa5dadb8b75db1133bdcbbbd760da63e4fb9c",
+    "tests/cnn_digits_diag/pp01_wire.h": "bf50866d8868dc66dbffee209197ccd9d07b56c964e2e90115719c68fbc2d0f5",
+    "tests/cnn_digits_diag/startup.S": "de7f661eea977dcc17310d05fe0dd6dc5057e28b64200e8e8e0695f5587114a3",
+    "tools/cnn_digits_diag/reference.py": "baafe45bdc7fca87d3492a77a7b28647df8a5012a1ffcce6d608856b9a8a9cad",
+    "tools/cnn_digits_diag/run.py": "edf7f98d11334aa45279d7316270ce880cd3606c54b64b85030b6558bc602b4f"
+  },
+  "artifact_sha256": {
+    "compile_actual_firmware_native.command.json": "7bbc7b4efa03c9e2c042f66f9ffe970474f65005ec10b541e8882770582ef6d3",
+    "compile_actual_firmware_native.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "compile_reference.command.json": "3d8cb488917ad7bd39fda058bd8ab0fcb1b6f2a33ea6d871ccc01aa93ba8b249",
+    "compile_reference.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "flow.exe": "e0a0bdc8c8aaaea08fae3464bdb410a00325e949ebaa40bfb970a4c2a81ab57d",
+    "flow_ack.command.json": "43d5ddae27dc79ffe877b47b34b328fbc1002107455031cc1813c857ed8f0366",
+    "flow_ack.log": "6e39dfe9c63291b8d2663248e88749273395204ab1c222b447ff7755ca98a3c5",
+    "flow_cnn_error.command.json": "96e8a139240c7cb259b9d45e7e819f4255064480414d578619c08615b06ce0c5",
+    "flow_cnn_error.log": "a7695726ea4c182b6dfc6e39b779e1d6ad2c95bcc19acfc5ee095fefdd32dfa2",
+    "flow_count.command.json": "745ffa93e1b46ab11a8264352879d888e95f694c8525f347e33336f985b44625",
+    "flow_count.log": "522daa56cf0a3d2fd269da79eeb7b06a3f2ae451da39913fb6e5db6e34e7c044",
+    "flow_gray_count.command.json": "2629794aaee945702f66d7d099800b9dbe57af64c54a3381f88cb2e21b96d67c",
+    "flow_gray_count.log": "c96028e5dded9fdb5437ae285c8118f4c6308654bb638852aa22ccc6b2670785",
+    "flow_identity.command.json": "ecd63eb631560645347c0e1ad85f6c68822de7bf35280c41dfc0039d4d5d6cfd",
+    "flow_identity.log": "c96028e5dded9fdb5437ae285c8118f4c6308654bb638852aa22ccc6b2670785",
+    "flow_model_valid.command.json": "8277e5caa7da83a54ebff1896f83f9e53943ec29a3e4fd915ee4cd13638e9d05",
+    "flow_model_valid.log": "0cec5cba27103dc35a576fc9f0604189f3849792e000bb8ed5728823d037a793",
+    "flow_normal.command.json": "167bc75ba9240e85e463f412eb3502e1854110271c3d028bc18664994d01d516",
+    "flow_normal.log": "40441f750dfa910ce619b30d16fb4cc2680fe63dc72be8391b44d17aa933b7a6",
+    "flow_no_tail.command.json": "715c33a1dcd7d0794bc0f4fdd0580cb483bcba8d4749cd2add5292e757d549a9",
+    "flow_no_tail.log": "48a301431656de830d93fe2c4b44a0db551efc5591712d90f58cd57eb03ce3c2",
+    "flow_reads.command.json": "5b3e36b47f7c90f6106296d54258eb07261f9eae77d9005f7e501619d2842d38",
+    "flow_reads.log": "c96028e5dded9fdb5437ae285c8118f4c6308654bb638852aa22ccc6b2670785",
+    "flow_release.command.json": "4c3e1eb0e8a636867d8116f10f59c4b3a3c1900d7a5de3d1c15fcb911119bd87",
+    "flow_release.log": "633a3909f8223f576b5d173ea893847d7584d8b46786f190400a71022757b3f3",
+    "flow_score.command.json": "dc15a9466c6f8ffaa41fb7eb8a3c1f053b1bda0d6a9f134403aaace1e1ddfce4",
+    "flow_score.log": "40441f750dfa910ce619b30d16fb4cc2680fe63dc72be8391b44d17aa933b7a6",
+    "flow_timeout.command.json": "e91f2cf4e1834877bb0f5cc84077931061549fce7d198b7094833ff63f452621",
+    "flow_timeout.log": "391b886a829ba4ec80497cc0f38571b9bcb7f00de9b0fb83312dc415191adab1",
+    "reference.exe": "da9dfd08c3ca02e4c4442166fd4dfe11d2782de517a8a15f0d304943b3e8a4e4",
+    "reference_asymmetric.command.json": "d9c55a0ccb6d9a2fc7df9ba41908583585dd7512de3b63f8d6defad3f100015e",
+    "reference_asymmetric.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "reference_black.command.json": "dcfae8d6dd2dc2de40a5a3f000ee9ff50b6bc9349f85c1f55d0086d1e265c71b",
+    "reference_black.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "reference_blue.command.json": "7fac671625e899bb09d6902aa4aba9e875cb719db9f77fc172008728dd944854",
+    "reference_blue.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "reference_green.command.json": "b2ea06b5b0d145fcec4b6846e1cc289d3224eb5a895f6132592e3c944e61f5de",
+    "reference_green.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "reference_mid.command.json": "a16b5f1ac183f216c9d1f2479da379c1737fd11004dce9e198ecf54c75365126",
+    "reference_mid.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "reference_red.command.json": "a3c36279041ad9b91707f07187bd8f87601c5b5c0ea67ad4bc41d794d22cd1ca",
+    "reference_red.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "reference_white.command.json": "8f149c18d7133f4cd1c4305cd096a212e33132a3869cd779ed2df675771e44c4",
+    "reference_white.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "wide_RHA.command.json": "bf9c9ecf5cb104fa7f87e40301281b03574070c14637305304386fb868e75b1c",
+    "wide_RHA.log": "a09e04d06915efd0874c2240236bd4322ccbe888491fa7567793741ace40fcb0",
+    "asymmetric/conv1.bin": "6fa52691fbb7e7fd95d4e22b7c99615663366bc07fcb6d0211c3a17fded4f5fc",
+    "asymmetric/conv2.bin": "165101658bfcbb4ae7388647732097b14d34c32f86182aa21b9fbe2f2d6bed3a",
+    "asymmetric/conv3.bin": "6a9ac492b2410b6cfd3cd1ccdabc91d5a56cc1fe4d8276fc7721c5efc3ec46bb",
+    "asymmetric/gap.bin": "8d61518f59c728910ad7b075119e5ee62b765f512963a1bce649eb12ccaf470d",
+    "asymmetric/gray32.bin": "7ae08b838ddc6f9d2702aaaa940a26aaff99aeda761f706a8dea0ba33fa0a79d",
+    "asymmetric/native.trace": "157809de4a3486a1e8aa9ad184375e2127eac951ec16a340ad24e733a3d6e859",
+    "asymmetric/reference.json": "2cca8357116095c1a3a4515fb9a834d2b7cf8e58c9a48c0fa8ee2abd71448457",
+    "asymmetric/rgb96.bin": "9520a9974d63da47181a2b54830c10001a71ec203452950405639276300aceb2",
+    "asymmetric/scores.bin": "3595167698f71cd1463a3ea9ab8a5e70e021d72ea1ce182408fd7cf9389d784d",
+    "bad_model_crc/bias.bin": "8cd644ff2a8f38aa63d42442bd40e0a3b96f3497d566391606455808e5607312",
+    "bad_model_crc/load_words.bin": "fa210d89f4ef30a4f26e90f556f7ce3e351756df6f22f982b8081335da7fccfd",
+    "bad_model_crc/model.json": "8eb1792d803beb434046e1c94d9bcda1346cda8a3706721d607b66cc505621dc",
+    "bad_model_crc/weights.bin": "04b5b5884f3282326e35654e1efd27afa997242f873a65c834d6028bb2bd5111",
+    "bad_model_minus128/bias.bin": "8cd644ff2a8f38aa63d42442bd40e0a3b96f3497d566391606455808e5607312",
+    "bad_model_minus128/load_words.bin": "fa210d89f4ef30a4f26e90f556f7ce3e351756df6f22f982b8081335da7fccfd",
+    "bad_model_minus128/model.json": "8ad41a1754e2e6eadbd54c0e9ac728527de8581fbffe451db256c7efa5bd9b91",
+    "bad_model_minus128/weights.bin": "d3c5139fd6bb80f17ebf8ebd28eedbc134eea66d0490417276f16c7169179736",
+    "bad_model_model_id/bias.bin": "8cd644ff2a8f38aa63d42442bd40e0a3b96f3497d566391606455808e5607312",
+    "bad_model_model_id/load_words.bin": "fa210d89f4ef30a4f26e90f556f7ce3e351756df6f22f982b8081335da7fccfd",
+    "bad_model_model_id/model.json": "9befb96445773a7d9d960b5e805305140f3501389e20dad270be8c501d6b9aa2",
+    "bad_model_model_id/weights.bin": "04b5b5884f3282326e35654e1efd27afa997242f873a65c834d6028bb2bd5111",
+    "bad_model_scale_chain/bias.bin": "8cd644ff2a8f38aa63d42442bd40e0a3b96f3497d566391606455808e5607312",
+    "bad_model_scale_chain/load_words.bin": "fa210d89f4ef30a4f26e90f556f7ce3e351756df6f22f982b8081335da7fccfd",
+    "bad_model_scale_chain/model.json": "39ca6e1c4464e40dfa7b2f8aedb3bbffc89b4e4b2aaa14b9b8f158e907528e56",
+    "bad_model_scale_chain/weights.bin": "04b5b5884f3282326e35654e1efd27afa997242f873a65c834d6028bb2bd5111",
+    "bad_model_shift32/bias.bin": "8cd644ff2a8f38aa63d42442bd40e0a3b96f3497d566391606455808e5607312",
+    "bad_model_shift32/load_words.bin": "fa210d89f4ef30a4f26e90f556f7ce3e351756df6f22f982b8081335da7fccfd",
+    "bad_model_shift32/model.json": "dca82af9fe2eb7fb04070c0db705632185cf6de9c4a9684f8585506be465a701",
+    "bad_model_shift32/weights.bin": "04b5b5884f3282326e35654e1efd27afa997242f873a65c834d6028bb2bd5111",
+    "bad_model_short/bias.bin": "8cd644ff2a8f38aa63d42442bd40e0a3b96f3497d566391606455808e5607312",
+    "bad_model_short/load_words.bin": "d9079b3ed12ea8537f3b7d770b0109bfa17860f577cc631b9ec9c644e690ec6e",
+    "bad_model_short/model.json": "5fd94c9d03d9ae3bb02fac860d4fd632c179dd7d102b03dcc3ad50e034edd0ea",
+    "bad_model_short/weights.bin": "04b5b5884f3282326e35654e1efd27afa997242f873a65c834d6028bb2bd5111",
+    "bad_model_signextended_word/bias.bin": "8cd644ff2a8f38aa63d42442bd40e0a3b96f3497d566391606455808e5607312",
+    "bad_model_signextended_word/load_words.bin": "c8329eeefc81e7cc9e53ac2284852c621dbfc90304e5209072f6f547e409f047",
+    "bad_model_signextended_word/model.json": "f693b91dd30f00a6e4efe29129f05b87d91bd9bc32f081b32e38b1b680058cf0",
+    "bad_model_signextended_word/weights.bin": "04b5b5884f3282326e35654e1efd27afa997242f873a65c834d6028bb2bd5111",
+    "black/conv1.bin": "8be7ad4274c5dcb063fd192ebdaad731b0faa322ed38f011b6d042d2b7270b0a",
+    "black/conv2.bin": "3e4bf3054fe11118a1cfe9e2eec9381e82df4b1616065e8e58ef403c819cd642",
+    "black/conv3.bin": "39b73cc5771b547651287dad97ce372b2077cdff2d0640807208561e076bc10f",
+    "black/gap.bin": "62be161cec55e9d0c8b5f824545188f3699957a2df4af70ec489298d47522d74",
+    "black/gray32.bin": "f991acb1e5897fe61be2decbf1d1b41b165ec8c2317284f8e3d8322c4d052e21",
+    "black/native.trace": "bb56ff4560f7e5d9920f4dce6afbd50c4e40ed59dc3cc182fa01d27133766f6c",
+    "black/reference.json": "04f5074f072338bf886fca2d2c825e546d18ce0e45734f9ff2768061539942c8",
+    "black/rgb96.bin": "0a182a88ffcf20dcc892515a01db9af1a707814b982b9c21e1d9b3b4b203ceef",
+    "black/scores.bin": "94721cc0c4b31a441c8325e7261640d68679841456be05ead8bd1d0998806ec1",
+    "blue/conv1.bin": "9fe39364a53db958b4afd04cc9f8590acd1bc3d7bc218a75d3ce7f48470bb9d3",
+    "blue/conv2.bin": "1c24c8ba1c324e0ab3104336bf317434f5490273d26347e318635f52cb058d54",
+    "blue/conv3.bin": "e3685e047821ac089fb13a3ff8b2cb050a6be34f3b7d69d27d5d7f67a13a1eae",
+    "blue/gap.bin": "b10c70f7d4c2d83759cd3a44160a877178f1281bb8fcad123aa192c0337d181b",
+    "blue/gray32.bin": "4f86898b52f592608c29de2cb014a6ddff250df6ebde409e3b74e215b3d7a6f5",
+    "blue/native.trace": "a5ac1404a087091a420bb108abf42f9d196a24614aabdd2f6395a4da1ed838eb",
+    "blue/reference.json": "85cc0f01d2317d1fd8385e3e1de22deba4c6003a860784c0f8ea93b81f9c9e73",
+    "blue/rgb96.bin": "8f1233bb7fbc3b0d17b2ea14ca2683424b65f4675e39017b4aa9bbe6dd1dbbed",
+    "blue/scores.bin": "4d7f7bcde8a3349e975318557fddcc69de7ec369316beccea06c374e338107f4",
+    "flow_ack/run.fw.rx.bin": "6006053415210a16aa8b7bb8ac2b946316c1a7a44eb6ae568a709768f3294407",
+    "flow_ack/run.fw.tx.bin": "016dbc841a6fc33824d54314f9702e00db9f4af18ae60c42eb605c6027fac529",
+    "flow_ack/run.mmio.log": "e38925d83a067fa46eb53ca8a272a5189f2960b540d5a41dfa8b2ca8ac8b3164",
+    "flow_cnn_error/run.fw.rx.bin": "9ae816716fdd5670857a3a18fdbfb60ad627a67f5b80bf04e88f5f14e75006e0",
+    "flow_cnn_error/run.fw.tx.bin": "055efccd3ff02cf477e7552eeda2c1089aa98612451f449c3c734ae17f108d5b",
+    "flow_cnn_error/run.mmio.log": "e38925d83a067fa46eb53ca8a272a5189f2960b540d5a41dfa8b2ca8ac8b3164",
+    "flow_count/run.fw.rx.bin": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "flow_count/run.fw.tx.bin": "73e75a8f9c9f886a4af6a10332c9002e0657c6aa41287a6ff8e67f5200c867bb",
+    "flow_count/run.mmio.log": "8140ea77a614f5962bb8395e0ba3a969a0e513b9c632cba0a0114ea744e56af3",
+    "flow_gray_count/run.fw.rx.bin": "9ae816716fdd5670857a3a18fdbfb60ad627a67f5b80bf04e88f5f14e75006e0",
+    "flow_gray_count/run.fw.tx.bin": "6662b689f6562b10906dbe20d8db2fe57488080624ba6d10feb6b85d7b82eb56",
+    "flow_gray_count/run.mmio.log": "e38925d83a067fa46eb53ca8a272a5189f2960b540d5a41dfa8b2ca8ac8b3164",
+    "flow_identity/run.fw.rx.bin": "9ae816716fdd5670857a3a18fdbfb60ad627a67f5b80bf04e88f5f14e75006e0",
+    "flow_identity/run.fw.tx.bin": "6662b689f6562b10906dbe20d8db2fe57488080624ba6d10feb6b85d7b82eb56",
+    "flow_identity/run.mmio.log": "e38925d83a067fa46eb53ca8a272a5189f2960b540d5a41dfa8b2ca8ac8b3164",
+    "flow_model_valid/run.fw.rx.bin": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "flow_model_valid/run.fw.tx.bin": "5af12d3a7d570f812dfad2181c7170e8ac53ead84e0cc7886bf26fcb1827a5d5",
+    "flow_model_valid/run.mmio.log": "2539bdd0ea244d9dda872b39ab7d0722045b0d30b0b634bae5ae6048d17fbb75",
+    "flow_normal/run.fw.rx.bin": "6359e1208e8b0a4c0af1a4cdd2e3367eeceb8d7414a5d346181c09c1cd26ec24",
+    "flow_normal/run.fw.tx.bin": "83bf013dc05f8de17f699bb1f7a3f92e6971c8114a541d8e1c4d0a90ea9b2d07",
+    "flow_normal/run.mmio.log": "b6f1a0c1d2066d4c1612cb90d1e9176d5b9b9eab413a3969d146402cfaa256f2",
+    "flow_no_tail/run.fw.rx.bin": "6359e1208e8b0a4c0af1a4cdd2e3367eeceb8d7414a5d346181c09c1cd26ec24",
+    "flow_no_tail/run.fw.tx.bin": "649bf6f2b4564c9579eb80bcd05f1d8ca4bdce1e1a689a4765d5a2b929a88e5d",
+    "flow_no_tail/run.mmio.log": "9328c3de70144ceeaf2e966d46ca7e0d8506a10ff8758baeebf59d4e0a24d0f1",
+    "flow_reads/run.fw.rx.bin": "9ae816716fdd5670857a3a18fdbfb60ad627a67f5b80bf04e88f5f14e75006e0",
+    "flow_reads/run.fw.tx.bin": "6662b689f6562b10906dbe20d8db2fe57488080624ba6d10feb6b85d7b82eb56",
+    "flow_reads/run.mmio.log": "e38925d83a067fa46eb53ca8a272a5189f2960b540d5a41dfa8b2ca8ac8b3164",
+    "flow_release/run.fw.rx.bin": "46a32ba7abaa04cca352a41621fb6949e85e40b4e8e87f2e29e54a4cda1f2c37",
+    "flow_release/run.fw.tx.bin": "5a70273a566ab88ff9d82e6a805dda457ae1c7bfb594b3b146dca87817109275",
+    "flow_release/run.mmio.log": "9328c3de70144ceeaf2e966d46ca7e0d8506a10ff8758baeebf59d4e0a24d0f1",
+    "flow_score/run.fw.rx.bin": "6359e1208e8b0a4c0af1a4cdd2e3367eeceb8d7414a5d346181c09c1cd26ec24",
+    "flow_score/run.fw.tx.bin": "456e4e819405bd52a1e3bd0299abc25e212d9e4820d52aaf6b3964da064f46a9",
+    "flow_score/run.mmio.log": "b6f1a0c1d2066d4c1612cb90d1e9176d5b9b9eab413a3969d146402cfaa256f2",
+    "flow_timeout/run.fw.rx.bin": "9ae816716fdd5670857a3a18fdbfb60ad627a67f5b80bf04e88f5f14e75006e0",
+    "flow_timeout/run.fw.tx.bin": "f45420db42b1fb85cf04788100107bfaff2781af08faebc0b6bcfd0cc9755948",
+    "flow_timeout/run.mmio.log": "e38925d83a067fa46eb53ca8a272a5189f2960b540d5a41dfa8b2ca8ac8b3164",
+    "green/conv1.bin": "ac995f5abb1ea623b41864495003f21d0f66483cd70ababab8db61914ebc0da5",
+    "green/conv2.bin": "db60f0fe3cb7d13927e733da446dd2158056ba5264789cc7d4ee82543f2a970e",
+    "green/conv3.bin": "63e98fa8ca29c090fccc63adbbf111fe6c0bca22f09ca6fd7390c1bdd5855983",
+    "green/gap.bin": "f4005b6d2c2d3e91ce336c7bc0f1acb9c9582571502341974368821398fa70a8",
+    "green/gray32.bin": "2be5d9d612a6ba72f42c59dbe8b4a9b39c1608e8b3b6e7f8092e8b3217c62009",
+    "green/native.trace": "47281b39a0466b59f6749326dbcb6bf3929613df77d310e60cfb3625716260ff",
+    "green/reference.json": "f7054fbe84cfd5df13c9a6f81333aea7f4c6e2185a4b51cb3fc7c200bc70d142",
+    "green/rgb96.bin": "bc077187bae6ab0c04112298faac8a2d928d2e68d87102cf553862df08332b45",
+    "green/scores.bin": "91bc3cef06d20acc4a7b0153c8bdc5adbf16d82021962e3f529328d815256b71",
+    "mid/conv1.bin": "76d41c7f300b0ca8475e6076548bd94b435231186d3327a8cdd0eb806652d1ca",
+    "mid/conv2.bin": "acb0f988b3f6596311ffb9135be3e28db8c9e95f211b5658529e304dbfe8eb38",
+    "mid/conv3.bin": "3b3778ad8a40ac7da5cbd390f3a7319b367beccfdfc814e02aae3a4e962f3d28",
+    "mid/gap.bin": "14dbee33126f860014ba5c4ea91ffbcf4c6de1e0ce238a1a06c4868517701611",
+    "mid/gray32.bin": "5f70bf18a086007016e948b04aed3b82103a36bea41755b6cddfaf10ace3c6ef",
+    "mid/native.trace": "01a420599bf7394077a90d4ed622d0333940382b7245b9588302222f0ea8d23a",
+    "mid/reference.json": "aaae769f24ce54e2aaaf5d43f48e55f2dda4d29e19a85e049d8a812b7d4b168b",
+    "mid/rgb96.bin": "b4f2dab47020ca42b434a7b9afb45379d87553d1be03109b55f9228d6266c15e",
+    "mid/scores.bin": "303b97232a3b3fc0bedde735e3df9f132d47213094d8e5ee13ab13db6043be5f",
+    "pc_mutate_end_crc/rgb96.partial": "9520a9974d63da47181a2b54830c10001a71ec203452950405639276300aceb2",
+    "pc_mutate_header_crc/rgb96.partial": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "pc_mutate_offset/rgb96.partial": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "pc_mutate_payload_crc/rgb96.partial": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "pc_mutate_seq/rgb96.partial": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "pc_mutate_short/rgb96.partial": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "pc_mutate_unclosed_ledger/rgb96.partial": "9520a9974d63da47181a2b54830c10001a71ec203452950405639276300aceb2",
+    "pc_normal/application.bin": "d08909dd14a5226c4a8ae58a6d07b8f3c7d31e46b4d66d6a9e9917a44153bff4",
+    "pc_normal/board_scores.json": "94910c9f50f56693019988208fe501d50a1b00d9cb0c4fd71935e99105038aaf",
+    "pc_normal/comparison.json": "0ff57716a3a27d528cd6957053bc6a0fa1860c68d7042b9c59be0324c3a3ef3b",
+    "pc_normal/gray32.png": "7c7e2aa0d4f97e02bcd90a13f9b68ac0ccbaebef4f1389ed9fc979b26fb38f31",
+    "pc_normal/manifest.json": "c33f3c703ad1434d18f78cbaa9dc2833ba24077d394e2b0812831b8bf3a01e99",
+    "pc_normal/result.json": "51594d41d2ff798c0ff891db2ca8b9829ec3c99064cab31379adb2901e0418dd",
+    "pc_normal/rgb96.bin": "9520a9974d63da47181a2b54830c10001a71ec203452950405639276300aceb2",
+    "pc_normal/rgb96.partial": "9520a9974d63da47181a2b54830c10001a71ec203452950405639276300aceb2",
+    "pc_normal/rgb96.png": "0c38ef14f96450f9fe198ec9e94e5ce33a2c2793d7d194e072bdb900351f4a95",
+    "pc_normal/uart.rx.bin": "7d538954a0d084da8a2aca20f1b234550f93725626f0f9a9ea58dcf17eb93b10",
+    "pc_normal/uart.tx.bin": "0791abbe1a03f22a5ff30031ab7101eaf65d8788faa67c12b4bd44c7dd7750a6",
+    "pc_normal/verified.json": "e4c914be3f077de54a9f62048e603c5088491ca54d804376e6bed78a3da6d392",
+    "pc_no_tail/application.bin": "d08909dd14a5226c4a8ae58a6d07b8f3c7d31e46b4d66d6a9e9917a44153bff4",
+    "pc_no_tail/board_scores.json": "94910c9f50f56693019988208fe501d50a1b00d9cb0c4fd71935e99105038aaf",
+    "pc_no_tail/comparison.json": "0ff57716a3a27d528cd6957053bc6a0fa1860c68d7042b9c59be0324c3a3ef3b",
+    "pc_no_tail/gray32.png": "7c7e2aa0d4f97e02bcd90a13f9b68ac0ccbaebef4f1389ed9fc979b26fb38f31",
+    "pc_no_tail/manifest.json": "c33f3c703ad1434d18f78cbaa9dc2833ba24077d394e2b0812831b8bf3a01e99",
+    "pc_no_tail/result.json": "b0bb2a1ffad1e3c5d10d78225cc6c1a7b7a43198fc6f6f5b020d58d62c0b18f5",
+    "pc_no_tail/rgb96.bin": "9520a9974d63da47181a2b54830c10001a71ec203452950405639276300aceb2",
+    "pc_no_tail/rgb96.partial": "9520a9974d63da47181a2b54830c10001a71ec203452950405639276300aceb2",
+    "pc_no_tail/rgb96.png": "0c38ef14f96450f9fe198ec9e94e5ce33a2c2793d7d194e072bdb900351f4a95",
+    "pc_no_tail/uart.rx.bin": "2e832f28421821d9add990e80437fa3e921d0037479ad2fd3cc038d8e0a7e368",
+    "pc_no_tail/uart.tx.bin": "0791abbe1a03f22a5ff30031ab7101eaf65d8788faa67c12b4bd44c7dd7750a6",
+    "pc_no_tail/verified.json": "e4c914be3f077de54a9f62048e603c5088491ca54d804376e6bed78a3da6d392",
+    "pc_reject_ack/rgb96.partial": "9ca4c23684eccac793cac7fb77e83a41f7fdc94a1a3018b3893f71735b22903a",
+    "pc_reject_release/rgb96.partial": "9520a9974d63da47181a2b54830c10001a71ec203452950405639276300aceb2",
+    "pc_reject_score/board_scores.json": "af92ce60fc71178d286059edbd3e231955be69cc179923f734b60ec4d524fa3b",
+    "pc_reject_score/comparison.json": "f46b7638ca691a9cf0c001821c534fd895e0c3d074b4927aabb03d21ce4eded3",
+    "pc_reject_score/gray32.png": "7c7e2aa0d4f97e02bcd90a13f9b68ac0ccbaebef4f1389ed9fc979b26fb38f31",
+    "pc_reject_score/rgb96.bin": "9520a9974d63da47181a2b54830c10001a71ec203452950405639276300aceb2",
+    "pc_reject_score/rgb96.partial": "9520a9974d63da47181a2b54830c10001a71ec203452950405639276300aceb2",
+    "pc_reject_score/rgb96.png": "0c38ef14f96450f9fe198ec9e94e5ce33a2c2793d7d194e072bdb900351f4a95",
+    "red/conv1.bin": "1318feb40ea6097bfd7d0c10581072093bad48d9a33745c4412f10942314285d",
+    "red/conv2.bin": "46b23f8e45c09cef1cb2baee35d73b5788d07992462e7e6d04598c0155026efa",
+    "red/conv3.bin": "8ff59cec4a89c9c276830d80d22625f2ecdcb208bef0b0fd61be3f7905a977e0",
+    "red/gap.bin": "dde5b2f2f7eaebc82387e997c61bf7f1caf12ca8e4196bdf7e3816ccfa214007",
+    "red/gray32.bin": "cfa35bcc2f57149955e5e4f666e1bda1318596e8b6306e9055087643beb9f190",
+    "red/native.trace": "abe97890f202fce7f711556fb30b51b3145a855fbaaf7e90a10e2577d37f4ae4",
+    "red/reference.json": "558e382c7f01804dd0ff7372bc84c83e79edb0dac1da953c46d76625424800be",
+    "red/rgb96.bin": "3c6216310ddc8f775b3e9659c3f05e22b1a0031bca3d88efdfb1891ba7fb6885",
+    "red/scores.bin": "5385be8a13923fb84866608df707d3d79f94f812f409531fb48ae31ebcc613d4",
+    "white/conv1.bin": "e41709385ebf19eaf70addcc32b99532dcd6760420505d2fcb141d04fce71e2b",
+    "white/conv2.bin": "2808f6d686a0d1a0884b83c33a6d660959b0449a5f94c348b8faf99caa6077dd",
+    "white/conv3.bin": "e2d94a0277caa2a51d78a95c6a8e5fcddac4de6eaa8f62d4f7f00792ea617577",
+    "white/gap.bin": "0ef071052f629c622bb0764ad19cac589bbf46b2c4d577c058979c497ce45278",
+    "white/gray32.bin": "b7975b373ba36ffaeae620de5275af2d87e9f7bdf47988d02818b5005d27d7ef",
+    "white/native.trace": "b64d3b5bf983a8cd665b66ad1749e2ff80531fd6aeffede22881a9054ac16d7e",
+    "white/reference.json": "55da3b98c9efb07bc77d735d2d4af02dc34016742665799bb35ffde45adabaa4",
+    "white/rgb96.bin": "f3ac971cf0d3cf59cb1e194ab3acd9ea1278894dbd47d517f162fab6acd6cfc9",
+    "white/scores.bin": "3b2687413310fd6add7041945804bcd6d2f6e6238424b17e42106073ca85f1fb",
+    "pc_reject_score/integer_reference/conv1.bin": "6fa52691fbb7e7fd95d4e22b7c99615663366bc07fcb6d0211c3a17fded4f5fc",
+    "pc_reject_score/integer_reference/conv2.bin": "165101658bfcbb4ae7388647732097b14d34c32f86182aa21b9fbe2f2d6bed3a",
+    "pc_reject_score/integer_reference/conv3.bin": "6a9ac492b2410b6cfd3cd1ccdabc91d5a56cc1fe4d8276fc7721c5efc3ec46bb",
+    "pc_reject_score/integer_reference/gap.bin": "8d61518f59c728910ad7b075119e5ee62b765f512963a1bce649eb12ccaf470d",
+    "pc_reject_score/integer_reference/gray32.bin": "7ae08b838ddc6f9d2702aaaa940a26aaff99aeda761f706a8dea0ba33fa0a79d",
+    "pc_reject_score/integer_reference/reference.json": "2cca8357116095c1a3a4515fb9a834d2b7cf8e58c9a48c0fa8ee2abd71448457",
+    "pc_reject_score/integer_reference/scores.bin": "3595167698f71cd1463a3ea9ab8a5e70e021d72ea1ce182408fd7cf9389d784d",
+    "pc_no_tail/integer_reference/conv1.bin": "6fa52691fbb7e7fd95d4e22b7c99615663366bc07fcb6d0211c3a17fded4f5fc",
+    "pc_no_tail/integer_reference/conv2.bin": "165101658bfcbb4ae7388647732097b14d34c32f86182aa21b9fbe2f2d6bed3a",
+    "pc_no_tail/integer_reference/conv3.bin": "6a9ac492b2410b6cfd3cd1ccdabc91d5a56cc1fe4d8276fc7721c5efc3ec46bb",
+    "pc_no_tail/integer_reference/gap.bin": "8d61518f59c728910ad7b075119e5ee62b765f512963a1bce649eb12ccaf470d",
+    "pc_no_tail/integer_reference/gray32.bin": "7ae08b838ddc6f9d2702aaaa940a26aaff99aeda761f706a8dea0ba33fa0a79d",
+    "pc_no_tail/integer_reference/reference.json": "2cca8357116095c1a3a4515fb9a834d2b7cf8e58c9a48c0fa8ee2abd71448457",
+    "pc_no_tail/integer_reference/scores.bin": "3595167698f71cd1463a3ea9ab8a5e70e021d72ea1ce182408fd7cf9389d784d",
+    "pc_no_tail/model/bias.bin": "8cd644ff2a8f38aa63d42442bd40e0a3b96f3497d566391606455808e5607312",
+    "pc_no_tail/model/load_words.bin": "fa210d89f4ef30a4f26e90f556f7ce3e351756df6f22f982b8081335da7fccfd",
+    "pc_no_tail/model/model.json": "34b00e1e585cb4e39f812d388b61bd9a1dffba507399430bd4cb4f6bf48c05c1",
+    "pc_no_tail/model/weights.bin": "04b5b5884f3282326e35654e1efd27afa997242f873a65c834d6028bb2bd5111",
+    "pc_normal/integer_reference/conv1.bin": "6fa52691fbb7e7fd95d4e22b7c99615663366bc07fcb6d0211c3a17fded4f5fc",
+    "pc_normal/integer_reference/conv2.bin": "165101658bfcbb4ae7388647732097b14d34c32f86182aa21b9fbe2f2d6bed3a",
+    "pc_normal/integer_reference/conv3.bin": "6a9ac492b2410b6cfd3cd1ccdabc91d5a56cc1fe4d8276fc7721c5efc3ec46bb",
+    "pc_normal/integer_reference/gap.bin": "8d61518f59c728910ad7b075119e5ee62b765f512963a1bce649eb12ccaf470d",
+    "pc_normal/integer_reference/gray32.bin": "7ae08b838ddc6f9d2702aaaa940a26aaff99aeda761f706a8dea0ba33fa0a79d",
+    "pc_normal/integer_reference/reference.json": "2cca8357116095c1a3a4515fb9a834d2b7cf8e58c9a48c0fa8ee2abd71448457",
+    "pc_normal/integer_reference/scores.bin": "3595167698f71cd1463a3ea9ab8a5e70e021d72ea1ce182408fd7cf9389d784d",
+    "pc_normal/model/bias.bin": "8cd644ff2a8f38aa63d42442bd40e0a3b96f3497d566391606455808e5607312",
+    "pc_normal/model/load_words.bin": "fa210d89f4ef30a4f26e90f556f7ce3e351756df6f22f982b8081335da7fccfd",
+    "pc_normal/model/model.json": "34b00e1e585cb4e39f812d388b61bd9a1dffba507399430bd4cb4f6bf48c05c1",
+    "pc_normal/model/weights.bin": "04b5b5884f3282326e35654e1efd27afa997242f873a65c834d6028bb2bd5111"
+  }
+}

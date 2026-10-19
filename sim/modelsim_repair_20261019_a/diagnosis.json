@@ -1,0 +1,35 @@
+{
+  "status": "CLASH_TUN_IPV6_WFP_BLOCK_IDENTIFIED_REPAIR_NOT_APPLIED",
+  "filters": [
+    {
+      "id": "71200",
+      "name": "Meta",
+      "description": "protect ipv6",
+      "layer": "FWPM_LAYER_ALE_AUTH_CONNECT_V6",
+      "action": "FWP_ACTION_PERMIT",
+      "condition_count": 1
+    },
+    {
+      "id": "71204",
+      "name": "Meta",
+      "description": "block ipv6",
+      "layer": "FWPM_LAYER_ALE_AUTH_CONNECT_V6",
+      "action": "FWP_ACTION_BLOCK",
+      "condition_count": 0
+    }
+  ],
+  "system_or_proxy_settings_changed": false,
+  "cli_recovery_verified": false,
+  "sha256": {
+    "admin_context.json": "6eeca49156ec9770b299d87ae989e26604fb9d771f854f01dc66d45b537930c3",
+    "admin_done.txt": "0df6d4eb4bb002496279473f8b729e9962cf805ee3d06afd96c49e75e4d46c69",
+    "admin_loopback.json": "34c0f248666845e9703c3484f213043689fd9db9ca00111c992233a0be56d6f3",
+    "blocked_events.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "ipv6_filters.xml": "529f84c0151b6f0234a65ed7b30a5559d2b407bfb1557d7ef501788c8c345486",
+    "README.md": "d70c2ff8f29fd1d98bd179023f5755efb113917688a9d8006edb17e1e754aab2",
+    "read_admin.ps1": "0d3dfeed4567f577c587a7790786f997211cbe7d3173cdf429eeecaa0590e8d0",
+    "wfpstate.xml": "5d740941812609edad1c052df83065ee3cea2b63d247db8833c2b4c0ff6c698d",
+    "wfp_export.log": "a9e28cbff76f4e68878f91a26928cfe0a33f9771e4a8903a282b35f9c81de3db",
+    "wfp_state_export.log": "e9ceb819e71d6a962b953cc9a6f3ee3d9ddf269f3b8348498b77a5e71f0b3523"
+  }
+}

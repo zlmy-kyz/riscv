@@ -1,0 +1,79 @@
+{
+  "task": "TASK043_SOC_ORDER",
+  "program_a": {
+    "path": "sim/write_buffer_two_entry/soc_wb2_a.hex",
+    "words": 104,
+    "sha256": "81a4000cc48ae407f9ee6b49639f2c0aa864e24a1602b3a15458f07f3d8ac958"
+  },
+  "program_b": {
+    "path": "sim/write_buffer_two_entry/soc_wb2_b.hex",
+    "words": 272,
+    "sha256": "eeba3a48caffdb9375a13db7ad450bd84416e88b6bda3ee10cd7b55116a472b5"
+  },
+  "addresses": {
+    "reset_pc": "0x40000000",
+    "mmio_status": "0x10000010",
+    "uart_tx": "0x10001000",
+    "ram": "0x1000",
+    "data_a": "0x40001000",
+    "data_b": "0x40002000",
+    "camera": "0x41000000",
+    "pp": "0x42000000",
+    "handler": "0x40000100",
+    "fence_pc": "0x4000003c"
+  },
+  "expected": {
+    "ddr_a": [
+      [
+        "0x40001000",
+        17
+      ],
+      [
+        "0x40001020",
+        34
+      ],
+      [
+        "0x40001040",
+        1
+      ]
+    ],
+    "ddr_b": [
+      [
+        "0x40002000",
+        85
+      ],
+      [
+        "0x40002020",
+        102
+      ],
+      [
+        "0x40002040",
+        7
+      ]
+    ],
+    "camera_words": [
+      [
+        "0x40001060",
+        "0xc0de0001"
+      ],
+      [
+        "0x40001080",
+        "0xc0de0002"
+      ]
+    ],
+    "pp_words": [
+      [
+        "0x400010a0",
+        "0xb0b00001"
+      ],
+      [
+        "0x400010c0",
+        "0xb0b00002"
+      ]
+    ],
+    "uart_byte": "0x33",
+    "ram_word": "0x44",
+    "irq_cause": "0x8000000b (external)"
+  },
+  "watchdog_cycles": 200000
+}

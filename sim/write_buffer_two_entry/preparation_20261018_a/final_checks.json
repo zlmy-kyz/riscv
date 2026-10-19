@@ -1,0 +1,13 @@
+{
+  "status": "STATIC_IDENTITY_AND_DOCUMENT_LINKS_PASS",
+  "bridge_sha256": "855318eebf7fc75a0b17d15a620b6d8d08bb54ff9348d663cbcd6aca0883262f",
+  "observer_041_042_text_unchanged": true,
+  "fixed_layout_bin_sha256": {
+    "performance_300": "4a090b360f0889e961c2cfe1e6ae90fa1298bb868d65ae8aebf23f9a01a63310",
+    "validation_300": "8dd0580509e2357e6742b925ae13986abbbf2a5fd206bc7e3b4deec54f224cb4"
+  },
+  "checked_links": 10,
+  "HDL_execution": "NOT_RUN",
+  "PDS": "NOT_RUN",
+  "board": "NOT_RUN"
+}

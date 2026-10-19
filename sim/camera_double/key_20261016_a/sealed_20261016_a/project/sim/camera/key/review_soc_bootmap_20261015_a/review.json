@@ -1,0 +1,162 @@
+{
+  "status": "CAMERA_SCCB_FAULTS_RAW_REVIEW_PASS_SOC_BLOCKED_BY_TEST_BOOT_MAP",
+  "date": "2026-10-15",
+  "manifest_sha256": "0cadecef11c33d41d52b233a9aa629a51791843756f235c829c3fa32c08ce3f7",
+  "inputs_verified": {
+    "live": 271,
+    "sealed": 271,
+    "run": 271
+  },
+  "vendor": 3,
+  "tools": 4,
+  "include_edges": 5,
+  "compiled_modules": 55,
+  "git_before_after_identical": true,
+  "evidence_hashes_verified": 28,
+  "commands": {
+    "vlib": {
+      "returncode": 0,
+      "timed_out": false,
+      "elapsed_seconds": 0.2957677000085823
+    },
+    "compile": {
+      "returncode": 0,
+      "timed_out": false,
+      "elapsed_seconds": 0.8714845000067726
+    },
+    "sccb": {
+      "returncode": 0,
+      "timed_out": false,
+      "elapsed_seconds": 4.149015699978918
+    },
+    "sccb_check": {
+      "returncode": 0,
+      "timed_out": false,
+      "elapsed_seconds": 0.46689310000510886
+    },
+    "faults": {
+      "returncode": 0,
+      "timed_out": false,
+      "elapsed_seconds": 15.236965999996755
+    },
+    "faults_check": {
+      "returncode": 0,
+      "timed_out": false,
+      "elapsed_seconds": 0.46536099998047575
+    },
+    "soc": {
+      "returncode": 0,
+      "timed_out": false,
+      "elapsed_seconds": 2.4552476999815553
+    }
+  },
+  "functional_pass": {
+    "sccb": {
+      "cases": 7,
+      "writes": 244,
+      "readbacks": 8,
+      "nack_byte_positions": 4
+    },
+    "faults": {
+      "cases": 8,
+      "write_prefix_beats": [
+        1024,
+        1023,
+        1,
+        1,
+        1,
+        0,
+        0,
+        0
+      ],
+      "arbiter": [
+        6,
+        6,
+        24,
+        6,
+        10,
+        14,
+        6,
+        32
+      ]
+    }
+  },
+  "independent_arbiter_raw_replay": {
+    "AW": [
+      6,
+      6
+    ],
+    "W": [
+      24,
+      6
+    ]
+  },
+  "warning_counts": {
+    "sccb": {},
+    "faults": {
+      "vsim-3017": 2,
+      "vsim-3722": 33
+    },
+    "soc": {
+      "vsim-3017": 2,
+      "vsim-3722": 26
+    }
+  },
+  "soc_failure": {
+    "time_ps": 3290461,
+    "native_exit": 0,
+    "raw_fatal": true,
+    "bus_bytes": 0,
+    "cpu_bytes": 0,
+    "dvp_bytes": 0,
+    "trap_PC": "NOT_RECORDED",
+    "trap_cause": "NOT_RECORDED",
+    "trap_tval": "NOT_RECORDED",
+    "classification": "Definite TB address-map error invalidates intended DDR CPU program; exact historical trap instruction is unavailable",
+    "configured_reset_pc": "40000000",
+    "effective_ROM_base": "40000000",
+    "effective_RAM_base": "40000000",
+    "intended_ROM_base": "00000000",
+    "intended_RAM_base": "00000000",
+    "first_instruction_target": "ROM, not DDR",
+    "intended_CRC_table_address": "00001000",
+    "old_CRC_table_address_mapped": false
+  },
+  "next_step": "TB-only override ROM/RAM bases to zero; add boot/trap diagnostics; reuse sccb/faults and execute only SoC in a new sealed directory",
+  "RTL_failure_demonstrated": false,
+  "RTL_modified": false,
+  "HDL_rerun_by_review": false,
+  "PDS": "NOT_RUN",
+  "board": "NOT_RUN",
+  "evidence_sha256": {
+    "sim/camera/key/build/ds_camera_ini_resume_20261015_a/bus.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "sim/camera/key/build/ds_camera_ini_resume_20261015_a/compile.command.json": "6c6d32e5a8fe61f97ec8be26cf139a8e10cec459fd04ea39524f253c2b6ad83a",
+    "sim/camera/key/build/ds_camera_ini_resume_20261015_a/compile.stdout.log": "3832b13133d168f261e373f04c9045500aa925e5bb11944cf5b8cd98feb9286c",
+    "sim/camera/key/build/ds_camera_ini_resume_20261015_a/cpu.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "sim/camera/key/build/ds_camera_ini_resume_20261015_a/dvp.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "sim/camera/key/build/ds_camera_ini_resume_20261015_a/evidence_sha256.json": "d190eed226f79938bd0a86a8c91737e0b4a4bae36b17a253f914f562056fc473",
+    "sim/camera/key/build/ds_camera_ini_resume_20261015_a/faults.checked.json": "0747dd10350e30b1179e53c9f6b9534a027a3e18a037973dd9a112336a0c0def",
+    "sim/camera/key/build/ds_camera_ini_resume_20261015_a/faults.command.json": "c1fefa3b836a27752811980926bdd71abfacf157ef971ebf8278eefbc5b90cc9",
+    "sim/camera/key/build/ds_camera_ini_resume_20261015_a/faults.stdout.log": "12554b4daf28b4580fd8e19ab486604b8e44e8e89a59f23a521af7172021924d",
+    "sim/camera/key/build/ds_camera_ini_resume_20261015_a/faults.transcript": "b0caf22b46d9a9c1cc795e1afd036f822321f9502c2c2f1a299574ab4aa247ff",
+    "sim/camera/key/build/ds_camera_ini_resume_20261015_a/faults_check.command.json": "2e420303120be0e6c9097b18c8c5c459e37f0bc4fb1d9aa53aa5981ec57ab044",
+    "sim/camera/key/build/ds_camera_ini_resume_20261015_a/faults_check.stdout.log": "f880b82d19145559464d7145dbb5fb1b0f4b0e593af4d25c21f9e9dfbb71a2bb",
+    "sim/camera/key/build/ds_camera_ini_resume_20261015_a/git_after.json": "256bf87637c599c1edaa39facf5b20f39c3af06ddb0d8e51cab3f3c5779c18c8",
+    "sim/camera/key/build/ds_camera_ini_resume_20261015_a/git_before.json": "256bf87637c599c1edaa39facf5b20f39c3af06ddb0d8e51cab3f3c5779c18c8",
+    "sim/camera/key/build/ds_camera_ini_resume_20261015_a/inputs.json": "0cadecef11c33d41d52b233a9aa629a51791843756f235c829c3fa32c08ce3f7",
+    "sim/camera/key/build/ds_camera_ini_resume_20261015_a/input_identity_after.json": "9322bff0aebb679abd247c044228022ffac48cfa7e6771d926853764923752f7",
+    "sim/camera/key/build/ds_camera_ini_resume_20261015_a/modelsim.ini": "ea76df2046dcca50d407552fa6bea9b02f2c60a0940d0ccf50f9958ca3ff3927",
+    "sim/camera/key/build/ds_camera_ini_resume_20261015_a/result.json": "9b383da256feaadc93584be31487455faa93bca66324e57b1045cd0ccacdb1f0",
+    "sim/camera/key/build/ds_camera_ini_resume_20261015_a/sccb.checked.json": "97ccb2e336c1720cfe06aa338629f941acea4511308d9531fe2e3fc9293940a2",
+    "sim/camera/key/build/ds_camera_ini_resume_20261015_a/sccb.command.json": "6ac2eab8f1a79699c5c2ee92e36d4f376ed4ab9d400b0b73725382adf4975a97",
+    "sim/camera/key/build/ds_camera_ini_resume_20261015_a/sccb.stdout.log": "79f0be13fffa2b09dfb8a8a80e8c399feccca8fee43794a84b6fa9a06009624a",
+    "sim/camera/key/build/ds_camera_ini_resume_20261015_a/sccb.transcript": "8d94e5a1f3fc17e11963b4e25b07b6acd18a5cc7382adca8fbc6f98684b069c6",
+    "sim/camera/key/build/ds_camera_ini_resume_20261015_a/sccb_check.command.json": "eecb2cf5c0bc8711fda3e71e587dd47c32769dea21c6240d2b3b8bf57b125815",
+    "sim/camera/key/build/ds_camera_ini_resume_20261015_a/sccb_check.stdout.log": "e55d4a2681543a2a3725e3c9d05a10e4ff5987b02fc43d41a73c42e29cc2672e",
+    "sim/camera/key/build/ds_camera_ini_resume_20261015_a/soc.command.json": "4667ebbee025a4c0cd73bf53cf7ce37502ab3568a92ac9cf01d2af12763bcb0e",
+    "sim/camera/key/build/ds_camera_ini_resume_20261015_a/soc.stdout.log": "c4b191e97527b5539c2b69e84f6bcbd1a48376a5a31c68681372d4f5d63a9a70",
+    "sim/camera/key/build/ds_camera_ini_resume_20261015_a/soc.transcript": "710844f39aaa75e6ffe5e26a9d535d5c75dfab0ccefedab583e8565660d861fc",
+    "sim/camera/key/build/ds_camera_ini_resume_20261015_a/vlib.command.json": "964995b1b30e0c4d04e5c02219f49f1801da3170f2cb65bd9d18e80807970bd6",
+    "sim/camera/key/build/ds_camera_ini_resume_20261015_a/vlib.stdout.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  }
+}

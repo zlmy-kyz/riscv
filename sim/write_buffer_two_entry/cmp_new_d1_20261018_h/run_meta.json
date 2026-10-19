@@ -1,0 +1,46 @@
+{
+    "tag":  "cmp_new_d1_20261018_h",
+    "status":  "FAIL",
+    "started":  "2026-10-18T23:13:47",
+    "root":  "D:\\riscv\\RISCV",
+    "sealed_src":  "D:\\riscv\\RISCV\\sim\\write_buffer_two_entry\\cmp_new_d1_20261018_h\\src",
+    "legacy":  false,
+    "bridge":  "D:\\riscv\\RISCV\\myriscv\\dual_sram_to_pango_ddr_bridge.v",
+    "params":  {
+                   "Dq":  32,
+                   "Posted":  1,
+                   "Depth":  1,
+                   "Turnover":  1,
+                   "Forward":  1,
+                   "Ruw":  1,
+                   "Icache":  1,
+                   "Dcache":  1,
+                   "Camera":  0,
+                   "Preproc":  0,
+                   "Plane":  1
+               },
+    "tools":  {
+                  "vlib":  "D:\\modelsim\\win64pe\\vlib.exe",
+                  "vlog":  "D:\\modelsim\\win64pe\\vlog.exe",
+                  "vsim":  "D:\\modelsim\\win64pe\\vsim.exe",
+                  "python":  "C:\\Users\\z\u0027l\u0027m\u0027y\u0027k\\.workbuddy\\binaries\\python\\versions\\3.13.12\\python.exe"
+              },
+    "commands":  [
+                     "D:\\modelsim\\win64pe\\vlib.exe work",
+                     "D:\\modelsim\\win64pe\\vlog.exe -sv -work work D:\\riscv\\RISCV\\sim\\write_buffer_two_entry\\cmp_new_d1_20261018_h\\src\\vendor\\GTP_GRS.v D:\\riscv\\RISCV\\sim\\write_buffer_two_entry\\cmp_new_d1_20261018_h\\src\\vendor\\GTP_DRM36K_E1.v D:\\riscv\\RISCV\\sim\\write_buffer_two_entry\\cmp_new_d1_20261018_h\\src\\ipcore\\icache\\rtl\\ipm2l_sdpram_v1_10_icache.v D:\\riscv\\RISCV\\sim\\write_buffer_two_entry\\cmp_new_d1_20261018_h\\src\\ipcore\\icache\\icache.v D:\\riscv\\RISCV\\sim\\write_buffer_two_entry\\cmp_new_d1_20261018_h\\src\\ipcore\\dcache\\rtl\\ipm2l_sdpram_v1_10_dcache.v D:\\riscv\\RISCV\\sim\\write_buffer_two_entry\\cmp_new_d1_20261018_h\\src\\ipcore\\dcache\\dcache.v D:\\riscv\\RISCV\\sim\\write_buffer_two_entry\\cmp_new_d1_20261018_h\\src\\myriscv\\dual_sram_to_pango_ddr_bridge.v D:\\riscv\\RISCV\\sim\\write_buffer_two_entry\\cmp_new_d1_20261018_h\\src\\tb\\tb_wb2_bridge.sv"
+                 ],
+    "exits":  {
+                  "vlib":  0,
+                  "vlog":  0
+              },
+    "timeline":  [
+                     "vlib exit=0 0.2s :: vlib.exe work",
+                     "vlog exit=0 0.7s :: vlog.exe -sv -work work D:\\riscv\\RISCV\\sim\\write_buffer_two_entry\\cmp_new_d1_20261018_h\\src\\vendor\\GTP_GRS.v D:\\riscv\\RISCV\\sim\\write_buffer_two_entry\\cmp_new_d1_20261018_h\\src\\vendor\\GTP_DRM36K_E1.v D:\\riscv\\RISCV\\sim\\write_buffer_two_entry\\cmp_new_d1_20261018_h\\src\\ipcore\\icache\\rtl\\ipm2l_sdpram_v1_10_icache.v D:\\riscv\\RISCV\\sim\\write_buffer_two_entry\\cmp_new_d1_20261018_h\\src\\ipcore\\icache\\icache.v D:\\riscv\\RISCV\\sim\\write_buffer_two_entry\\cmp_new_d1_20261018_h\\src\\ipcore\\dcache\\rtl\\ipm2l_sdpram_v1_10_dcache.v D:\\riscv\\RISCV\\sim\\write_buffer_two_entry\\cmp_new_d1_20261018_h\\src\\ipcore\\dcache\\dcache.v D:\\riscv\\RISCV\\sim\\write_buffer_two_entry\\cmp_new_d1_20261018_h\\src\\myriscv\\dual_sram_to_pango_ddr_bridge.v D:\\riscv\\RISCV\\sim\\write_buffer_two_entry\\cmp_new_d1_20261018_h\\src\\tb\\tb_wb2_bridge.sv"
+                 ],
+    "vsim_result":  null,
+    "vsim_attempts":  0,
+    "check_status":  "NOT_RUN",
+    "identity_drift":  0,
+    "error":  "已添加项。字典中的关键字:“HTTPS_PROXY”所添加的关键字:“https_proxy”",
+    "finished":  "2026-10-18T23:13:48"
+}

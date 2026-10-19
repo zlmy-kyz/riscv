@@ -1,0 +1,9 @@
+{
+  "status": "PREVIOUS_WORKING_SOURCE_BYTES_RECONSTRUCTED_AND_HASH_VERIFIED",
+  "note": "Historical source archive only; original logs and hashes unchanged. Lowercase-only pre-fix parser is separately archived in parser_case_fix01.",
+  "sha256": {
+    "tests/cpu_performance_2b/perf27_software.py": "7f664492c0370a8cb92bcecf2af983970ce00525949cb78e1ae863a382ff9cd2",
+    "tools/uart_loader/candidates/perf_2b/run_perf27_measurement.py": "4be0efead3682e4e238c7f3172983c48cfae3ea51f8fb3885522c2dbf0bdae50",
+    "tools/uart_loader/candidates/perf_2b/run_perf27_measurements.ps1": "7da9c93d14c5d367393ad0666d63ac253461efcf242927a4d4c24af0a2b4157c"
+  }
+}

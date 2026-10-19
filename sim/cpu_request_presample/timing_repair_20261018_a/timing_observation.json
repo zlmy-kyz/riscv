@@ -1,0 +1,19 @@
+{
+  "report": "report_timing/board_top.rtr",
+  "sha256": "37ea907890f3986e573236fce0e0daae8fa80582a4a3a438996d14effdfffab5",
+  "report_date": "Sun Oct 18 01:43:54 2026",
+  "core_mhz": 93.75,
+  "slow_wns_ns": -0.034,
+  "slow_tns_ns": -0.045,
+  "failing_endpoints": 2,
+  "estimated_fmax_mhz": 93.4521,
+  "source": "u_soc/u_soc/u_cpu/if_id_inst[17]",
+  "endpoints": [
+    "inst_overlap_line_match_q[0]/CE",
+    "inst_overlap_line_match_q[5]/CE"
+  ],
+  "logic_levels": 13,
+  "logic_ns": 2.603,
+  "route_ns": 7.629,
+  "limits": "Observed report and current source identities; not an independently reconstructed implementation input set."
+}

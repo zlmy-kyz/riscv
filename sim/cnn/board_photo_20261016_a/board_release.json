@@ -1,0 +1,11 @@
+{
+  "status": "USER_AUTHORIZED_BOARD_PHOTO_DIAGNOSTIC_EXISTING_STA_MET",
+  "firmware_sha256": "2f72e829b3044e1ce8f5996d6b9ddb39877c3c6f15048cf9a040b64bd78d7bd4",
+  "ready_review": "sim/cnn/board_photo_20261016_a/ready_review.json",
+  "ready_review_sha256": "8e2f7c110a75fe3c4c88248cbbbe5320b4969919375535c8de1e0688aa7839d1",
+  "source_bytes": 1843200,
+  "model_id": "05a032af",
+  "PDS_or_new_bitstream_required": false,
+  "board": "NOT_RUN",
+  "key_HDL": "NOT_COMPLETED"
+}

@@ -1,0 +1,590 @@
+{
+  "status": "TASK033_RAW_FUNCTIONAL_EVIDENCE_REVIEW_PASS",
+  "review_kind": "TASK033_INITIAL_AND_COMPLETION_RAW_REVIEW",
+  "bridge_sha256": "7ab9d34c3f13caa092c8fbee933cf9e495729dcbe90520a23c9cbdeded52d933",
+  "manifest_sha256": "fc80eacad2ccde784c4aef9b4f0c2b4207d740af02a0f27de12b691e61efb236",
+  "initial_manifest_sha256": "8a055333872a3ce30befeb1c99f432b9fec682cffa801ffc2bc2cdb46fc53f0f",
+  "copied_inputs": 16,
+  "protected_rows": 311,
+  "independently_checked_protection_drift": [
+    {
+      "path": "RISCV.pds",
+      "expected": "cc5aa75aaf236852cfb44fdd6e501be526bc9e7affd8b75732db6809acb2573f",
+      "actual": "cad3dd20fc50fe0c094a4d41c88dc9330a09f70c5965dd4930af162c6534d10a"
+    }
+  ],
+  "completed": {
+    "status": "PASS",
+    "edges": 196,
+    "episodes": {
+      "1": {
+        "i_acc": 2,
+        "i_rsp": 1,
+        "d_acc": 1,
+        "d_rsp": 0,
+        "i_cancel": 1,
+        "d_cancel": 1,
+        "ar": 2,
+        "r": 1,
+        "reset_rsp": 1
+      },
+      "2": {
+        "i_acc": 3,
+        "i_rsp": 2,
+        "d_acc": 1,
+        "d_rsp": 1,
+        "i_cancel": 1,
+        "d_cancel": 0,
+        "ar": 4,
+        "r": 3,
+        "reset_rsp": 0
+      },
+      "3": {
+        "i_acc": 7,
+        "i_rsp": 7,
+        "d_acc": 4,
+        "d_rsp": 4,
+        "i_cancel": 0,
+        "d_cancel": 0,
+        "ar": 7,
+        "r": 7,
+        "reset_rsp": 0
+      }
+    },
+    "gates": {
+      "independent_hit": {
+        "accept": 19,
+        "reset_edge": 20,
+        "d_accept": 15,
+        "d_ar": 18,
+        "post_ip": "1",
+        "cold_accept": 26,
+        "cold_ar": 29,
+        "cold_resp": 42
+      },
+      "promoted_miss": {
+        "d_accept": 61,
+        "d_ar": 62,
+        "d_resp": 75,
+        "i_accept": 63,
+        "i_ar": 76,
+        "reset_edge": 80,
+        "live_poison": "00000120",
+        "ar_line": "00000140",
+        "cold_accept": 86,
+        "cold_resp": 100
+      },
+      "uncached": [
+        {
+          "first_d": {
+            "accept": 117,
+            "ar": 120,
+            "r": 130,
+            "resp": 131,
+            "data": "878d3af2",
+            "backpressure": 2
+          },
+          "hits": [
+            {
+              "accept": 121,
+              "resp": 122,
+              "addr": "01000008",
+              "lane": 2
+            },
+            {
+              "accept": 130,
+              "resp": 131,
+              "addr": "0100000c",
+              "lane": 3
+            }
+          ],
+          "preheat": {
+            "accept": 102,
+            "ar": 105,
+            "r": 115,
+            "resp": 116
+          },
+          "second_d": {
+            "accept": 133,
+            "ar": 136,
+            "resp": 147,
+            "data": "a5c30f1e"
+          },
+          "poke_edge": 132
+        },
+        {
+          "first_d": {
+            "accept": 163,
+            "ar": 166,
+            "r": 176,
+            "resp": 177,
+            "data": "44ddd3c8",
+            "backpressure": 2
+          },
+          "hits": [
+            {
+              "accept": 167,
+              "resp": 168,
+              "addr": "02000008",
+              "lane": 2
+            },
+            {
+              "accept": 176,
+              "resp": 177,
+              "addr": "0200000c",
+              "lane": 3
+            }
+          ],
+          "preheat": {
+            "accept": 148,
+            "ar": 151,
+            "r": 161,
+            "resp": 162
+          },
+          "second_d": {
+            "accept": 179,
+            "ar": 182,
+            "resp": 193,
+            "data": "5e1f2d7b"
+          },
+          "poke_edge": 178
+        }
+      ]
+    },
+    "accepts": 18,
+    "responses": 15,
+    "cancels": [
+      [
+        20,
+        "I",
+        "00000104"
+      ],
+      [
+        20,
+        "D",
+        "00001000"
+      ],
+      [
+        80,
+        "I",
+        "00000140"
+      ]
+    ],
+    "ars": [
+      [
+        8,
+        "I",
+        "00000100"
+      ],
+      [
+        18,
+        "D",
+        "00001000"
+      ],
+      [
+        29,
+        "I",
+        "00000100"
+      ],
+      [
+        46,
+        "I",
+        "00000120"
+      ],
+      [
+        62,
+        "D",
+        "00001080"
+      ],
+      [
+        76,
+        "I",
+        "00000140"
+      ],
+      [
+        87,
+        "I",
+        "00000140"
+      ],
+      [
+        105,
+        "I",
+        "01000000"
+      ],
+      [
+        120,
+        "D",
+        "01000000"
+      ],
+      [
+        136,
+        "D",
+        "01000000"
+      ],
+      [
+        151,
+        "I",
+        "02000000"
+      ],
+      [
+        166,
+        "D",
+        "02000000"
+      ],
+      [
+        182,
+        "D",
+        "02000000"
+      ]
+    ],
+    "marks": [
+      [
+        "s1_fill",
+        5
+      ],
+      [
+        "s1_dmiss",
+        13
+      ],
+      [
+        "s1_ihit",
+        18
+      ],
+      [
+        "s1_cold",
+        24
+      ],
+      [
+        "s1_cold_done",
+        42
+      ],
+      [
+        "s2_pre",
+        42
+      ],
+      [
+        "s2_dmiss",
+        59
+      ],
+      [
+        "s2_imiss",
+        62
+      ],
+      [
+        "s2_poison",
+        63
+      ],
+      [
+        "s2_drsp",
+        75
+      ],
+      [
+        "s2_iar",
+        76
+      ],
+      [
+        "s2_cold",
+        84
+      ],
+      [
+        "cam_pre",
+        100
+      ],
+      [
+        "cam_dread",
+        116
+      ],
+      [
+        "cam_hit1",
+        120
+      ],
+      [
+        "cam_hit2",
+        130
+      ],
+      [
+        "cam_dual",
+        131
+      ],
+      [
+        "cam_reread",
+        131
+      ],
+      [
+        "cam_done",
+        147
+      ],
+      [
+        "pp_pre",
+        147
+      ],
+      [
+        "pp_dread",
+        162
+      ],
+      [
+        "pp_hit1",
+        166
+      ],
+      [
+        "pp_hit2",
+        176
+      ],
+      [
+        "pp_dual",
+        177
+      ],
+      [
+        "pp_reread",
+        177
+      ],
+      [
+        "pp_done",
+        193
+      ]
+    ]
+  },
+  "reused_legacy": {
+    "status": "PASS",
+    "perf": {
+      "on": {
+        "d_accept": 545,
+        "d_ar": 546,
+        "d_response": 565,
+        "last_i_response": 552,
+        "all_done": 565,
+        "all_done_minus_ar": 19,
+        "all_done_minus_accept": 20
+      },
+      "off": {
+        "d_accept": 575,
+        "d_ar": 576,
+        "d_response": 595,
+        "last_i_response": 601,
+        "all_done": 601,
+        "all_done_minus_ar": 25,
+        "all_done_minus_accept": 26
+      }
+    },
+    "saved_cycles": 6,
+    "accepts": {
+      "on": 92,
+      "off": 92
+    },
+    "cpu_binding": {
+      "i_accept": 46,
+      "i_response": 47,
+      "buffer_hold": [
+        48,
+        61
+      ],
+      "pop": 62,
+      "retire": 66,
+      "d_accept": 45,
+      "inst": "02008093",
+      "wdata": "40001020",
+      "accepts": 8,
+      "pops": 8
+    },
+    "store_guard": {
+      "addr": "00001140",
+      "beat": 138,
+      "word_before": "86d5d99d",
+      "beat_unchanged": true
+    },
+    "legacy_manifest_sha256": "8a055333872a3ce30befeb1c99f432b9fec682cffa801ffc2bc2cdb46fc53f0f"
+  },
+  "synthetic_cases": 10,
+  "evidence_sha256": {
+    "C:\\pango\\PDS_2022.2-SP6.4\\arch\\vendor\\pango\\verilog\\simulation\\GTP_GRS.v": "dae720bcc467ddb4ff99f2753368934e2649b87f6ac63b8a0d7219699bac1dec",
+    "sim/cpu_inst_hit_overlap/build/ds_inst_hit_overlap_completion_20261017_b/src/external/GTP_GRS.v": "dae720bcc467ddb4ff99f2753368934e2649b87f6ac63b8a0d7219699bac1dec",
+    "sim/cpu_inst_hit_overlap/sealed_ds_inst_hit_overlap_completion_20261017_b/src/external/GTP_GRS.v": "dae720bcc467ddb4ff99f2753368934e2649b87f6ac63b8a0d7219699bac1dec",
+    "C:\\pango\\PDS_2022.2-SP6.4\\arch\\vendor\\pango\\verilog\\simulation\\GTP_DRM36K_E1.v": "3e372cd60025a439eb7435d770930260e22c40f148ae83c4bdf7398fb65ddb66",
+    "sim/cpu_inst_hit_overlap/build/ds_inst_hit_overlap_completion_20261017_b/src/external/GTP_DRM36K_E1.v": "3e372cd60025a439eb7435d770930260e22c40f148ae83c4bdf7398fb65ddb66",
+    "sim/cpu_inst_hit_overlap/sealed_ds_inst_hit_overlap_completion_20261017_b/src/external/GTP_DRM36K_E1.v": "3e372cd60025a439eb7435d770930260e22c40f148ae83c4bdf7398fb65ddb66",
+    "ipcore/icache/rtl/ipm2l_sdpram_v1_10_icache.v": "a92f88609e3c76bbd55f23dd6d9d08db25494745d16f1715b8e2279ea2857ad4",
+    "sim/cpu_inst_hit_overlap/build/ds_inst_hit_overlap_completion_20261017_b/src/ipcore/icache/rtl/ipm2l_sdpram_v1_10_icache.v": "a92f88609e3c76bbd55f23dd6d9d08db25494745d16f1715b8e2279ea2857ad4",
+    "sim/cpu_inst_hit_overlap/sealed_ds_inst_hit_overlap_completion_20261017_b/src/ipcore/icache/rtl/ipm2l_sdpram_v1_10_icache.v": "a92f88609e3c76bbd55f23dd6d9d08db25494745d16f1715b8e2279ea2857ad4",
+    "ipcore/icache/icache.v": "9e8746619f8afa1c2adfe1e7a48bd63850b98332d40f23c27817a28b3f24de76",
+    "sim/cpu_inst_hit_overlap/build/ds_inst_hit_overlap_completion_20261017_b/src/ipcore/icache/icache.v": "9e8746619f8afa1c2adfe1e7a48bd63850b98332d40f23c27817a28b3f24de76",
+    "sim/cpu_inst_hit_overlap/sealed_ds_inst_hit_overlap_completion_20261017_b/src/ipcore/icache/icache.v": "9e8746619f8afa1c2adfe1e7a48bd63850b98332d40f23c27817a28b3f24de76",
+    "ipcore/dcache/rtl/ipm2l_sdpram_v1_10_dcache.v": "66905d131c90236dabd8feb8e8e586185955b37cb5ba694c047dc331efac303f",
+    "sim/cpu_inst_hit_overlap/build/ds_inst_hit_overlap_completion_20261017_b/src/ipcore/dcache/rtl/ipm2l_sdpram_v1_10_dcache.v": "66905d131c90236dabd8feb8e8e586185955b37cb5ba694c047dc331efac303f",
+    "sim/cpu_inst_hit_overlap/sealed_ds_inst_hit_overlap_completion_20261017_b/src/ipcore/dcache/rtl/ipm2l_sdpram_v1_10_dcache.v": "66905d131c90236dabd8feb8e8e586185955b37cb5ba694c047dc331efac303f",
+    "ipcore/dcache/dcache.v": "bf62d32342a11ba6fad55f11c2413716a834c7028e9a1d8660a5f1a5477514a7",
+    "sim/cpu_inst_hit_overlap/build/ds_inst_hit_overlap_completion_20261017_b/src/ipcore/dcache/dcache.v": "bf62d32342a11ba6fad55f11c2413716a834c7028e9a1d8660a5f1a5477514a7",
+    "sim/cpu_inst_hit_overlap/sealed_ds_inst_hit_overlap_completion_20261017_b/src/ipcore/dcache/dcache.v": "bf62d32342a11ba6fad55f11c2413716a834c7028e9a1d8660a5f1a5477514a7",
+    "myriscv/dual_sram_to_pango_ddr_bridge.v": "7ab9d34c3f13caa092c8fbee933cf9e495729dcbe90520a23c9cbdeded52d933",
+    "sim/cpu_inst_hit_overlap/build/ds_inst_hit_overlap_completion_20261017_b/src/myriscv/dual_sram_to_pango_ddr_bridge.v": "7ab9d34c3f13caa092c8fbee933cf9e495729dcbe90520a23c9cbdeded52d933",
+    "sim/cpu_inst_hit_overlap/sealed_ds_inst_hit_overlap_completion_20261017_b/src/myriscv/dual_sram_to_pango_ddr_bridge.v": "7ab9d34c3f13caa092c8fbee933cf9e495729dcbe90520a23c9cbdeded52d933",
+    "sim/cpu_inst_hit_overlap/ddr_model_completion.sv": "8039d8ce074aa6544e2491bba2fbe81ba8e22fde5f0568a74b54e8ede6ba1ebb",
+    "sim/cpu_inst_hit_overlap/build/ds_inst_hit_overlap_completion_20261017_b/src/sim/cpu_inst_hit_overlap/ddr_model_completion.sv": "8039d8ce074aa6544e2491bba2fbe81ba8e22fde5f0568a74b54e8ede6ba1ebb",
+    "sim/cpu_inst_hit_overlap/sealed_ds_inst_hit_overlap_completion_20261017_b/src/sim/cpu_inst_hit_overlap/ddr_model_completion.sv": "8039d8ce074aa6544e2491bba2fbe81ba8e22fde5f0568a74b54e8ede6ba1ebb",
+    "sim/cpu_inst_hit_overlap/tb_inst_hit_completion.sv": "d706ecc31a5dab513c0b69d2b1cfe78ea1cac01406113ed3b9006b1c72cb774a",
+    "sim/cpu_inst_hit_overlap/build/ds_inst_hit_overlap_completion_20261017_b/src/sim/cpu_inst_hit_overlap/tb_inst_hit_completion.sv": "d706ecc31a5dab513c0b69d2b1cfe78ea1cac01406113ed3b9006b1c72cb774a",
+    "sim/cpu_inst_hit_overlap/sealed_ds_inst_hit_overlap_completion_20261017_b/src/sim/cpu_inst_hit_overlap/tb_inst_hit_completion.sv": "d706ecc31a5dab513c0b69d2b1cfe78ea1cac01406113ed3b9006b1c72cb774a",
+    "sim/cpu_inst_hit_overlap/prepare_completion.py": "11076e821e51d1c9968fccef7624a843a0435b575080a774a56f0f3f52c2a8ca",
+    "sim/cpu_inst_hit_overlap/build/ds_inst_hit_overlap_completion_20261017_b/src/sim/cpu_inst_hit_overlap/prepare_completion.py": "11076e821e51d1c9968fccef7624a843a0435b575080a774a56f0f3f52c2a8ca",
+    "sim/cpu_inst_hit_overlap/sealed_ds_inst_hit_overlap_completion_20261017_b/src/sim/cpu_inst_hit_overlap/prepare_completion.py": "11076e821e51d1c9968fccef7624a843a0435b575080a774a56f0f3f52c2a8ca",
+    "sim/cpu_inst_hit_overlap/seal_completion.py": "5752f5c48fadc55d55ee4cffbbbad899e10718c5fe11bf5f0a0d4c59ed06a982",
+    "sim/cpu_inst_hit_overlap/build/ds_inst_hit_overlap_completion_20261017_b/src/sim/cpu_inst_hit_overlap/seal_completion.py": "5752f5c48fadc55d55ee4cffbbbad899e10718c5fe11bf5f0a0d4c59ed06a982",
+    "sim/cpu_inst_hit_overlap/sealed_ds_inst_hit_overlap_completion_20261017_b/src/sim/cpu_inst_hit_overlap/seal_completion.py": "5752f5c48fadc55d55ee4cffbbbad899e10718c5fe11bf5f0a0d4c59ed06a982",
+    "sim/cpu_inst_hit_overlap/run_completion.py": "c01ade947b955b7abeb05c66fdaefa7110883e42b6da3158600578c601cbf8b3",
+    "sim/cpu_inst_hit_overlap/build/ds_inst_hit_overlap_completion_20261017_b/src/sim/cpu_inst_hit_overlap/run_completion.py": "c01ade947b955b7abeb05c66fdaefa7110883e42b6da3158600578c601cbf8b3",
+    "sim/cpu_inst_hit_overlap/sealed_ds_inst_hit_overlap_completion_20261017_b/src/sim/cpu_inst_hit_overlap/run_completion.py": "c01ade947b955b7abeb05c66fdaefa7110883e42b6da3158600578c601cbf8b3",
+    "sim/cpu_inst_hit_overlap/check_completion.py": "436d5217e3f7490f1afa04e401db1ff41f7837aae6e04a91de01867f5ecb7cdd",
+    "sim/cpu_inst_hit_overlap/build/ds_inst_hit_overlap_completion_20261017_b/src/sim/cpu_inst_hit_overlap/check_completion.py": "436d5217e3f7490f1afa04e401db1ff41f7837aae6e04a91de01867f5ecb7cdd",
+    "sim/cpu_inst_hit_overlap/sealed_ds_inst_hit_overlap_completion_20261017_b/src/sim/cpu_inst_hit_overlap/check_completion.py": "436d5217e3f7490f1afa04e401db1ff41f7837aae6e04a91de01867f5ecb7cdd",
+    "sim/cpu_inst_hit_overlap/selftest_completion.py": "d404e393668e3838fcf0e72637b9fa48b526a533f175f5e83a85854906d46614",
+    "sim/cpu_inst_hit_overlap/build/ds_inst_hit_overlap_completion_20261017_b/src/sim/cpu_inst_hit_overlap/selftest_completion.py": "d404e393668e3838fcf0e72637b9fa48b526a533f175f5e83a85854906d46614",
+    "sim/cpu_inst_hit_overlap/sealed_ds_inst_hit_overlap_completion_20261017_b/src/sim/cpu_inst_hit_overlap/selftest_completion.py": "d404e393668e3838fcf0e72637b9fa48b526a533f175f5e83a85854906d46614",
+    "sim/cpu_inst_hit_overlap/inputs_completion.json": "daae6e040b2982a11ca85c8cf2d637a31e8d728bff66d134f0f8258414d9d89e",
+    "sim/cpu_inst_hit_overlap/build/ds_inst_hit_overlap_completion_20261017_b/src/sim/cpu_inst_hit_overlap/inputs_completion.json": "daae6e040b2982a11ca85c8cf2d637a31e8d728bff66d134f0f8258414d9d89e",
+    "sim/cpu_inst_hit_overlap/sealed_ds_inst_hit_overlap_completion_20261017_b/src/sim/cpu_inst_hit_overlap/inputs_completion.json": "daae6e040b2982a11ca85c8cf2d637a31e8d728bff66d134f0f8258414d9d89e",
+    "sim/cpu_inst_hit_overlap/completion_plan.txt": "f3804c1ae43c2f51d0118c77f1e3fa9f2af6c22091688e273bca0a817d295e03",
+    "sim/cpu_inst_hit_overlap/build/ds_inst_hit_overlap_completion_20261017_b/src/sim/cpu_inst_hit_overlap/completion_plan.txt": "f3804c1ae43c2f51d0118c77f1e3fa9f2af6c22091688e273bca0a817d295e03",
+    "sim/cpu_inst_hit_overlap/sealed_ds_inst_hit_overlap_completion_20261017_b/src/sim/cpu_inst_hit_overlap/completion_plan.txt": "f3804c1ae43c2f51d0118c77f1e3fa9f2af6c22091688e273bca0a817d295e03",
+    "sim/cpu_inst_hit_overlap/build/ds_inst_hit_overlap_completion_20261017_b/completion.edges.log": "c6786614f21e5e801486b2bf03a662aa2e224f448dabf298e3f38a2f16e430a8",
+    "sim/cpu_inst_hit_overlap/build/ds_inst_hit_overlap_completion_20261017_b/completion.mem.log": "07ba4928f411eaeed19fbed09cf7a45700be992bfeb807860060bc7b48fe744f",
+    "sim/cpu_inst_hit_overlap/build/ds_inst_hit_overlap_completion_20261017_b/completion.tok.log": "2b9748a29f0952aca61d5a317586f37b40a9f2201d08ce3d8fdb0aa63450674d",
+    "sim/cpu_inst_hit_overlap/build/ds_inst_hit_overlap_completion_20261017_b/git_after_diff.txt": "305721709bd52b3afc87971169661e4f1ded524b6db707032b462d086310ccc7",
+    "sim/cpu_inst_hit_overlap/build/ds_inst_hit_overlap_completion_20261017_b/git_after_head.txt": "639effd2ce43f671b0b1e974e74a9a0e39ef23f6e46b6f14cd667c1f7dbb8ad3",
+    "sim/cpu_inst_hit_overlap/build/ds_inst_hit_overlap_completion_20261017_b/git_after_status.txt": "75988f12c0805a2589f6871064132312826b5013bd73aa0324287e6ec0896a93",
+    "sim/cpu_inst_hit_overlap/build/ds_inst_hit_overlap_completion_20261017_b/git_before_diff.txt": "305721709bd52b3afc87971169661e4f1ded524b6db707032b462d086310ccc7",
+    "sim/cpu_inst_hit_overlap/build/ds_inst_hit_overlap_completion_20261017_b/git_before_head.txt": "639effd2ce43f671b0b1e974e74a9a0e39ef23f6e46b6f14cd667c1f7dbb8ad3",
+    "sim/cpu_inst_hit_overlap/build/ds_inst_hit_overlap_completion_20261017_b/git_before_status.txt": "75988f12c0805a2589f6871064132312826b5013bd73aa0324287e6ec0896a93",
+    "sim/cpu_inst_hit_overlap/build/ds_inst_hit_overlap_completion_20261017_b/manifest.json": "fc80eacad2ccde784c4aef9b4f0c2b4207d740af02a0f27de12b691e61efb236",
+    "sim/cpu_inst_hit_overlap/build/ds_inst_hit_overlap_completion_20261017_b/run_meta.json": "10ad16e2924c489126391676473a9708c862b69a02a8fd469b3334c3313f69dc",
+    "sim/cpu_inst_hit_overlap/build/ds_inst_hit_overlap_completion_20261017_b/tools.json": "8261f188ca38a669cdd2c411a41e1f099fc934144d8fc3551b3a6d4853da462f",
+    "sim/cpu_inst_hit_overlap/build/ds_inst_hit_overlap_completion_20261017_b/logs/check_completion.console.txt": "b2eb6bed5e37fd63a1f9bf60fea13eee54980ad0a5b1a9cf86eeef1862ea25f4",
+    "sim/cpu_inst_hit_overlap/build/ds_inst_hit_overlap_completion_20261017_b/logs/check_legacy.console.txt": "ab052dad2af6ca7aa162d1623c8c4c7c6c4c2825e9bbb9cf464a022d5503b050",
+    "sim/cpu_inst_hit_overlap/build/ds_inst_hit_overlap_completion_20261017_b/logs/completion.transcript": "c774968f73381220901bca93f4350505eae7ac2350397b8155204613ddc0f6cf",
+    "sim/cpu_inst_hit_overlap/build/ds_inst_hit_overlap_completion_20261017_b/logs/selftest_completion.console.txt": "608bb18299b8f493f3d1f7db012264d0300a1a04ea5d4b85a78ac4d4e32ff3db",
+    "sim/cpu_inst_hit_overlap/build/ds_inst_hit_overlap_completion_20261017_b/logs/sim_completion.console.txt": "f79e95063a7eaf2d77c67867bea4c452e59192b2281e100c839b249bca2203e0",
+    "sim/cpu_inst_hit_overlap/build/ds_inst_hit_overlap_completion_20261017_b/logs/vlib_work.console.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "sim/cpu_inst_hit_overlap/build/ds_inst_hit_overlap_completion_20261017_b/logs/vlog_work.console.txt": "55f03e89a58224794072fc5f716262fe35ad7f226c7df3e519a0fd0d92be6173",
+    "sim/cpu_inst_hit_overlap/build/ds_inst_hit_overlap_20261017_a/bridge_off.edges.log": "6bb4c136cfbe49ea62fd7a4cf6aead4d20875cffa93eda142f464d8da98dc6b3",
+    "sim/cpu_inst_hit_overlap/build/ds_inst_hit_overlap_20261017_a/bridge_off.mem.log": "d1f84e7b248178960919892231e20830b0ccf8ea048d822f765a3351e6beb554",
+    "sim/cpu_inst_hit_overlap/build/ds_inst_hit_overlap_20261017_a/bridge_off.tok.log": "0071f6cc9a5e710257806fa3b8ad4cc30e6d5004924db1f38ec9fd638adeeb6f",
+    "sim/cpu_inst_hit_overlap/build/ds_inst_hit_overlap_20261017_a/bridge_on.edges.log": "b8d325905aad4f1de70c95ada7f88dabfe4f4a6b64f738e80967d483540b3968",
+    "sim/cpu_inst_hit_overlap/build/ds_inst_hit_overlap_20261017_a/bridge_on.mem.log": "d1f84e7b248178960919892231e20830b0ccf8ea048d822f765a3351e6beb554",
+    "sim/cpu_inst_hit_overlap/build/ds_inst_hit_overlap_20261017_a/bridge_on.tok.log": "aabc9a38e7859239a53858d86cd4ec8955cba2aa5de302efaa9f6937c11e5d16",
+    "sim/cpu_inst_hit_overlap/build/ds_inst_hit_overlap_20261017_a/git_after_diff.txt": "cd1b3c606aedbb7a93ea365f1ea5c3137bdc1c08f4f3c8685173b204861ed625",
+    "sim/cpu_inst_hit_overlap/build/ds_inst_hit_overlap_20261017_a/git_after_head.txt": "639effd2ce43f671b0b1e974e74a9a0e39ef23f6e46b6f14cd667c1f7dbb8ad3",
+    "sim/cpu_inst_hit_overlap/build/ds_inst_hit_overlap_20261017_a/git_after_status.txt": "75988f12c0805a2589f6871064132312826b5013bd73aa0324287e6ec0896a93",
+    "sim/cpu_inst_hit_overlap/build/ds_inst_hit_overlap_20261017_a/git_before_diff.txt": "cd1b3c606aedbb7a93ea365f1ea5c3137bdc1c08f4f3c8685173b204861ed625",
+    "sim/cpu_inst_hit_overlap/build/ds_inst_hit_overlap_20261017_a/git_before_head.txt": "639effd2ce43f671b0b1e974e74a9a0e39ef23f6e46b6f14cd667c1f7dbb8ad3",
+    "sim/cpu_inst_hit_overlap/build/ds_inst_hit_overlap_20261017_a/git_before_status.txt": "75988f12c0805a2589f6871064132312826b5013bd73aa0324287e6ec0896a93",
+    "sim/cpu_inst_hit_overlap/build/ds_inst_hit_overlap_20261017_a/manifest.json": "8a055333872a3ce30befeb1c99f432b9fec682cffa801ffc2bc2cdb46fc53f0f",
+    "sim/cpu_inst_hit_overlap/build/ds_inst_hit_overlap_20261017_a/run_meta.json": "bf21cb60a329ae39a930950c8f54908d61439c47be17439ee1c6abeb273bd756",
+    "sim/cpu_inst_hit_overlap/build/ds_inst_hit_overlap_20261017_a/soc.edges.log": "6ea89325a4845b07fa5ecccac988edcd194020c0acf2582a448b44d02758f7b3",
+    "sim/cpu_inst_hit_overlap/build/ds_inst_hit_overlap_20261017_a/soc.mem.log": "aa368f7d987fc2b0a22ea3872dd24179589bf2910375a55cd3744bee4f8f7439",
+    "sim/cpu_inst_hit_overlap/build/ds_inst_hit_overlap_20261017_a/tools.json": "8261f188ca38a669cdd2c411a41e1f099fc934144d8fc3551b3a6d4853da462f",
+    "sim/cpu_inst_hit_overlap/build/ds_inst_hit_overlap_20261017_a/logs/bridge_off.transcript": "f50997a0da2cc42521dee2cfc75c847a8fb60df7e0b1cf6fb92620fadb0a155f",
+    "sim/cpu_inst_hit_overlap/build/ds_inst_hit_overlap_20261017_a/logs/bridge_on.transcript": "59b51c4f45ffc440610ff252a9ce8b77ee6a8a50bb9ee77bc7ea02bd2f49651d",
+    "sim/cpu_inst_hit_overlap/build/ds_inst_hit_overlap_20261017_a/logs/check_bridge_off.console.txt": "917bfdc0834b23439b205503a5085049de808ce2d3ba3a921142111882d0eed1",
+    "sim/cpu_inst_hit_overlap/build/ds_inst_hit_overlap_20261017_a/logs/check_bridge_on.console.txt": "54d70ab92f2d453a0aeb7ee0bc8b793cf03f6f6e24b7e8f1080c27f5120ee019",
+    "sim/cpu_inst_hit_overlap/build/ds_inst_hit_overlap_20261017_a/logs/check_soc.console.txt": "4c3f976240a9afb7c089786eacb074c32893ee020d593b952ba4e2ff49d93cb5",
+    "sim/cpu_inst_hit_overlap/build/ds_inst_hit_overlap_20261017_a/logs/selftest.console.txt": "962d3aa05242461d6fe92dba3b61b31eac13d7fe0963a0d80e7c2181ab4427a8",
+    "sim/cpu_inst_hit_overlap/build/ds_inst_hit_overlap_20261017_a/logs/sim_bridge_off.console.txt": "ae01dc3795cd76a3ec90b9cc3b1a1cdff4ceea79a48e3c2e60522522afd39dcb",
+    "sim/cpu_inst_hit_overlap/build/ds_inst_hit_overlap_20261017_a/logs/sim_bridge_on.console.txt": "5bd65f5a9cc375b8a5c6d380257a207764b6476183e4387dbe9af78893fd9a4c",
+    "sim/cpu_inst_hit_overlap/build/ds_inst_hit_overlap_20261017_a/logs/sim_soc.console.txt": "5962f4a104987291488aa481e54ac01b338adc372a51d7c2d229cbf406305b6e",
+    "sim/cpu_inst_hit_overlap/build/ds_inst_hit_overlap_20261017_a/logs/soc.transcript": "ca54d06105696cdd9255fdf769b0129a14eb5bb35375efd80327e5a15950e8a9",
+    "sim/cpu_inst_hit_overlap/build/ds_inst_hit_overlap_20261017_a/logs/vlib_soc.console.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "sim/cpu_inst_hit_overlap/build/ds_inst_hit_overlap_20261017_a/logs/vlib_work.console.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "sim/cpu_inst_hit_overlap/build/ds_inst_hit_overlap_20261017_a/logs/vlog_soc.console.txt": "4b1280d17ae966fb00d277d0cfc03c1b95ddf74bab976acf1c91caa44c8f2f3f",
+    "sim/cpu_inst_hit_overlap/build/ds_inst_hit_overlap_20261017_a/logs/vlog_work.console.txt": "204d12a0e7bd37c806e2ef0c3dbdf892205cb02d7c99a13fb134395912d2442f",
+    "sim/cpu_inst_hit_overlap/build/ds_inst_hit_overlap_20261017_a/src/external/GTP_APM_E2.v": "7211b9646140c6c7fc0c261a3fe2ee599b538f39d0714bcb9ff5ec0caee007de",
+    "sim/cpu_inst_hit_overlap/build/ds_inst_hit_overlap_20261017_a/src/external/GTP_DRM36K_E1.v": "3e372cd60025a439eb7435d770930260e22c40f148ae83c4bdf7398fb65ddb66",
+    "sim/cpu_inst_hit_overlap/build/ds_inst_hit_overlap_20261017_a/src/external/GTP_GRS.v": "dae720bcc467ddb4ff99f2753368934e2649b87f6ac63b8a0d7219699bac1dec",
+    "sim/cpu_inst_hit_overlap/build/ds_inst_hit_overlap_20261017_a/src/myriscv/alu.v": "fa58eb7d36f5f8b767dbd62e85098457f2e14abd9909c23b441bee6468920fb6",
+    "sim/cpu_inst_hit_overlap/build/ds_inst_hit_overlap_20261017_a/src/myriscv/br_alu.v": "d33fe375029e88a5c44b4d6ad1e5caf8cbc8fd950dddcbf5f981cb4c14d0dd73",
+    "sim/cpu_inst_hit_overlap/build/ds_inst_hit_overlap_20261017_a/src/myriscv/csr_defs.vh": "2cab6c5255e392161be69b1f75f283f301d5e6227533bd80b52bf4a14312f422",
+    "sim/cpu_inst_hit_overlap/build/ds_inst_hit_overlap_20261017_a/src/myriscv/csr_file.v": "c0c105873d9ab2f8d309ebfd723cf59097adf3d5dbfa6fa2e7e1900eaffb4499",
+    "sim/cpu_inst_hit_overlap/build/ds_inst_hit_overlap_20261017_a/src/myriscv/data_bram_adapter.v": "ccaec17880444a0b73271c19bb0c34ff7e3185ad30ffcb7945aef4afdb47b3ab",
+    "sim/cpu_inst_hit_overlap/build/ds_inst_hit_overlap_20261017_a/src/myriscv/data_bus_interconnect.v": "b59d38413b01775f66f29959509ea4a10616e50c9a87eb6f8b55947be9fe4994",
+    "sim/cpu_inst_hit_overlap/build/ds_inst_hit_overlap_20261017_a/src/myriscv/dual_sram_to_pango_ddr_bridge.v": "7ab9d34c3f13caa092c8fbee933cf9e495729dcbe90520a23c9cbdeded52d933",
+    "sim/cpu_inst_hit_overlap/build/ds_inst_hit_overlap_20261017_a/src/myriscv/inst_bram_adapter.v": "04b248c005b7c512b0fc830ffd34f1c9d9f4b9b7151755bf89db5f61ec1b794c",
+    "sim/cpu_inst_hit_overlap/build/ds_inst_hit_overlap_20261017_a/src/myriscv/inst_bus_interconnect.v": "e38a6c540f7f1f4cff59a0d4eeeeb289519d7913e6b5100c9e0606d4db29b72d",
+    "sim/cpu_inst_hit_overlap/build/ds_inst_hit_overlap_20261017_a/src/myriscv/l_alu.v": "6dc7fff19f1ffca8f02017b3d78e4b97f636ed49d69b56ead5d474a662de8436",
+    "sim/cpu_inst_hit_overlap/build/ds_inst_hit_overlap_20261017_a/src/myriscv/mycpu_sync.v": "b1114fa388b0da4a3c914da38f1b169d607b8ebed839dd018eab37fd0f4a41d3",
+    "sim/cpu_inst_hit_overlap/build/ds_inst_hit_overlap_20261017_a/src/myriscv/regfile.v": "acae02088c67005e9c18213901a914e642d6689a27107fca06add6e48e3aa48e",
+    "sim/cpu_inst_hit_overlap/build/ds_inst_hit_overlap_20261017_a/src/myriscv/simple_mmio.v": "b8b91df5042f466194cb98de03dad084c0d7a411e627fdc8f1d2c29cb62ebfc7",
+    "sim/cpu_inst_hit_overlap/build/ds_inst_hit_overlap_20261017_a/src/myriscv/soc_top.v": "047cf3ccecbcd002c4b648883e7706d488813e22ba1b37eca8c2ab396c56821a",
+    "sim/cpu_inst_hit_overlap/build/ds_inst_hit_overlap_20261017_a/src/myriscv/uart_mmio.v": "0f51c37d806230dff85cdff589ad8b12a4965dc76eb1ed92a88475659001ace7",
+    "sim/cpu_inst_hit_overlap/build/ds_inst_hit_overlap_20261017_a/src/myriscv/uart_rx.v": "d602552bfc6269c1ed87ef2c4f094bd4f7d600f3ac81db1b860c485fa6a2bb4e",
+    "sim/cpu_inst_hit_overlap/build/ds_inst_hit_overlap_20261017_a/src/myriscv/uart_rx_fifo.v": "e0377aebb6b43b8c76bcaf1b5854d14ba9e1e5141fda60bfedc558eac9728047",
+    "sim/cpu_inst_hit_overlap/build/ds_inst_hit_overlap_20261017_a/src/myriscv/uart_tx.v": "bc132b3a229fea8894b52fe60bfed0f376a4097b0a3f074fab48e02bfe15ab4f",
+    "sim/cpu_inst_hit_overlap/build/ds_inst_hit_overlap_20261017_a/src/sim/cpu_inst_hit_overlap/check_evidence.py": "9ba9ee82e3a8ca4b17e62cc1a8f39f955e0c380b5698dcd9dc71e1a890b553a7",
+    "sim/cpu_inst_hit_overlap/build/ds_inst_hit_overlap_20261017_a/src/sim/cpu_inst_hit_overlap/ddr_model.sv": "42e35282b70a741dacbe850bb1faff0461cd5855fe0c6c8121268669b7e537ad",
+    "sim/cpu_inst_hit_overlap/build/ds_inst_hit_overlap_20261017_a/src/sim/cpu_inst_hit_overlap/inputs.json": "1323268b3ef9316b71d91152681a188c9b615bef2913bdca45c6c63b5706a975",
+    "sim/cpu_inst_hit_overlap/build/ds_inst_hit_overlap_20261017_a/src/sim/cpu_inst_hit_overlap/plan_bridge.txt": "72ecad920e17d2fc097f814bf6ed0b20702e0430f51e1767c37a6cf0cbbe7480",
+    "sim/cpu_inst_hit_overlap/build/ds_inst_hit_overlap_20261017_a/src/sim/cpu_inst_hit_overlap/prepare_program.py": "3aa1edf60c0959ec0f420177a44e5c7ce4ae70896280de5d47a78d700ad09c28",
+    "sim/cpu_inst_hit_overlap/build/ds_inst_hit_overlap_20261017_a/src/sim/cpu_inst_hit_overlap/run.py": "50a91879a75aa622df426e88613e2f63204992b958864f1ffd0cb3f6412a54a3",
+    "sim/cpu_inst_hit_overlap/build/ds_inst_hit_overlap_20261017_a/src/sim/cpu_inst_hit_overlap/seal_inputs.py": "87f49a40874989c380eefc15f592749f47c66edbe9b3b3e8156ee4bf6bbe687a",
+    "sim/cpu_inst_hit_overlap/build/ds_inst_hit_overlap_20261017_a/src/sim/cpu_inst_hit_overlap/selftest.py": "f714cbcb55cb6d1c5516d14e6a9cd0411303c234785970801f34b36eac9998a4",
+    "sim/cpu_inst_hit_overlap/build/ds_inst_hit_overlap_20261017_a/src/sim/cpu_inst_hit_overlap/soc_fault_camera.hex": "1d95a85ddf7722efd29ae3a0d932311cc24e9d7bc15038b0a774478cfc1088d0",
+    "sim/cpu_inst_hit_overlap/build/ds_inst_hit_overlap_20261017_a/src/sim/cpu_inst_hit_overlap/soc_fault_pp.hex": "767b7fced54230420f67a2e9be7bdb72165e2ab074bb35b1cc7ea5a9f5e209fe",
+    "sim/cpu_inst_hit_overlap/build/ds_inst_hit_overlap_20261017_a/src/sim/cpu_inst_hit_overlap/soc_program.hex": "697f6a1d704a74acff03cf733397e05d6fb0bedd804621eacd9fae8cedfb783d",
+    "sim/cpu_inst_hit_overlap/build/ds_inst_hit_overlap_20261017_a/src/sim/cpu_inst_hit_overlap/tb_inst_hit_overlap.sv": "79811a51fb800c6ff888f008a09e3438df90f939afbf7fc1628b411706ccb030",
+    "sim/cpu_inst_hit_overlap/build/ds_inst_hit_overlap_20261017_a/src/sim/cpu_inst_hit_overlap/tb_inst_hit_overlap_soc.sv": "36eeb96859c8ce24f8213262194978b6b056edf358b076eef8f7241d9ab51487",
+    "sim/cpu_inst_hit_overlap/build/ds_inst_hit_overlap_20261017_a/src/ipcore/data_ram/data_ram.v": "3aaeaa115bb1c4c4a8e889c509b8e1db523da0cd26f0f8922e2a1b22adacc851",
+    "sim/cpu_inst_hit_overlap/build/ds_inst_hit_overlap_20261017_a/src/ipcore/dcache/dcache.v": "bf62d32342a11ba6fad55f11c2413716a834c7028e9a1d8660a5f1a5477514a7",
+    "sim/cpu_inst_hit_overlap/build/ds_inst_hit_overlap_20261017_a/src/ipcore/icache/icache.v": "9e8746619f8afa1c2adfe1e7a48bd63850b98332d40f23c27817a28b3f24de76",
+    "sim/cpu_inst_hit_overlap/build/ds_inst_hit_overlap_20261017_a/src/ipcore/inst_rom/inst_rom.v": "593c8f941f86f9450c6367b2f52f325556dc62a7480758151b8ff454f7596628",
+    "sim/cpu_inst_hit_overlap/build/ds_inst_hit_overlap_20261017_a/src/ipcore/mul/mul.v": "83cf8cea4dfbfe96ff5eaed145e101031fdda4c9168b059f89a3bb3886831d78",
+    "sim/cpu_inst_hit_overlap/build/ds_inst_hit_overlap_20261017_a/src/ipcore/mul/rtl/ipm2l_mult_v1_3_mul.v": "54a82aff28b710c2304a96340254016b3c147238f1cd6c5f3faeef0d5fd499e3",
+    "sim/cpu_inst_hit_overlap/build/ds_inst_hit_overlap_20261017_a/src/ipcore/mul/rtl/ipm2l_apm_data_pipeline/ipm2l_apm_data_pipeline.v": "de6205cd1dd12b04cc8c2eab595aec4900c74506c5f74a5014ccf7597aac627d",
+    "sim/cpu_inst_hit_overlap/build/ds_inst_hit_overlap_20261017_a/src/ipcore/mul/rtl/ipm2l_apm_data_pipeline/ipm2l_apm_distributed_sdpram.v": "3a72f2099aed40ab0035701fa54e04148e13ea4047ee2939db5ebf542391f345",
+    "sim/cpu_inst_hit_overlap/build/ds_inst_hit_overlap_20261017_a/src/ipcore/mul/rtl/ipm2l_apm_data_pipeline/ipm2l_apm_distributed_shiftregister.v": "6739127e7f379a000ef514fcf0a8bce52aea69f98ac67cffd639363ea469d4d8",
+    "sim/cpu_inst_hit_overlap/build/ds_inst_hit_overlap_20261017_a/src/ipcore/inst_rom/rtl/inst_rom_init_param.v": "77fdcc689dcfdfac13258f3754ae1f60351f806b055e7f4ae0e75e130a3af3a0",
+    "sim/cpu_inst_hit_overlap/build/ds_inst_hit_overlap_20261017_a/src/ipcore/inst_rom/rtl/ipm2l_rom_v1_8_inst_rom.v": "76fd84c0398125c332f42bea3210dfe732fbc9e5a70f15bc077f1609ddfe6236",
+    "sim/cpu_inst_hit_overlap/build/ds_inst_hit_overlap_20261017_a/src/ipcore/inst_rom/rtl/ipm2l_spram_v1_8_inst_rom.v": "70077245ec917ad69edb2a253bec716b0131957b4feb76f060a91b3ab8d28b15",
+    "sim/cpu_inst_hit_overlap/build/ds_inst_hit_overlap_20261017_a/src/ipcore/icache/rtl/ipm2l_sdpram_v1_10_icache.v": "a92f88609e3c76bbd55f23dd6d9d08db25494745d16f1715b8e2279ea2857ad4",
+    "sim/cpu_inst_hit_overlap/build/ds_inst_hit_overlap_20261017_a/src/ipcore/dcache/rtl/ipm2l_sdpram_v1_10_dcache.v": "66905d131c90236dabd8feb8e8e586185955b37cb5ba694c047dc331efac303f",
+    "sim/cpu_inst_hit_overlap/build/ds_inst_hit_overlap_20261017_a/src/ipcore/data_ram/rtl/data_ram_init_param.v": "ad79a0fe32e541c0ec03f05fa44c4fd9870b9cd6bc3686815b4e25c222b550d3",
+    "sim/cpu_inst_hit_overlap/build/ds_inst_hit_overlap_20261017_a/src/ipcore/data_ram/rtl/ipm2l_spram_v1_8_data_ram.v": "51f398d4e6830b777c2bb8fe3ca926379a76891e87bb72d2870e046c9fe0bca7",
+    "sim/cpu_inst_hit_overlap/sealed_ds_inst_hit_overlap_completion_20261017_b/manifest.json": "fc80eacad2ccde784c4aef9b4f0c2b4207d740af02a0f27de12b691e61efb236",
+    "sim/cpu_inst_hit_overlap/sealed_ds_inst_hit_overlap_completion_20261017_b/tools.json": "8261f188ca38a669cdd2c411a41e1f099fc934144d8fc3551b3a6d4853da462f",
+    "sim/cpu_inst_hit_overlap/review_20261017_01/review.json": "3602fe4ea6ef05114ac631e32e951b77e5e27afe79637f118dac3627d5e36fda",
+    "sim/cpu_inst_hit_overlap/review_20261017_02/audit.py": "27506c07b30ae304ec135f1d616a89195b29e404024515d011cb0a396368a0a0",
+    "sim/cpu_inst_hit_overlap/review_20261017_02/selftest_replay.txt": "608bb18299b8f493f3d1f7db012264d0300a1a04ea5d4b85a78ac4d4e32ff3db"
+  },
+  "design_and_test_sha256": {
+    "C:\\pango\\PDS_2022.2-SP6.4\\arch\\vendor\\pango\\verilog\\simulation\\GTP_GRS.v": "dae720bcc467ddb4ff99f2753368934e2649b87f6ac63b8a0d7219699bac1dec",
+    "C:\\pango\\PDS_2022.2-SP6.4\\arch\\vendor\\pango\\verilog\\simulation\\GTP_DRM36K_E1.v": "3e372cd60025a439eb7435d770930260e22c40f148ae83c4bdf7398fb65ddb66",
+    "ipcore/icache/rtl/ipm2l_sdpram_v1_10_icache.v": "a92f88609e3c76bbd55f23dd6d9d08db25494745d16f1715b8e2279ea2857ad4",
+    "ipcore/icache/icache.v": "9e8746619f8afa1c2adfe1e7a48bd63850b98332d40f23c27817a28b3f24de76",
+    "ipcore/dcache/rtl/ipm2l_sdpram_v1_10_dcache.v": "66905d131c90236dabd8feb8e8e586185955b37cb5ba694c047dc331efac303f",
+    "ipcore/dcache/dcache.v": "bf62d32342a11ba6fad55f11c2413716a834c7028e9a1d8660a5f1a5477514a7",
+    "myriscv/dual_sram_to_pango_ddr_bridge.v": "7ab9d34c3f13caa092c8fbee933cf9e495729dcbe90520a23c9cbdeded52d933",
+    "sim/cpu_inst_hit_overlap/ddr_model_completion.sv": "8039d8ce074aa6544e2491bba2fbe81ba8e22fde5f0568a74b54e8ede6ba1ebb",
+    "sim/cpu_inst_hit_overlap/tb_inst_hit_completion.sv": "d706ecc31a5dab513c0b69d2b1cfe78ea1cac01406113ed3b9006b1c72cb774a",
+    "sim/cpu_inst_hit_overlap/prepare_completion.py": "11076e821e51d1c9968fccef7624a843a0435b575080a774a56f0f3f52c2a8ca",
+    "sim/cpu_inst_hit_overlap/seal_completion.py": "5752f5c48fadc55d55ee4cffbbbad899e10718c5fe11bf5f0a0d4c59ed06a982",
+    "sim/cpu_inst_hit_overlap/run_completion.py": "c01ade947b955b7abeb05c66fdaefa7110883e42b6da3158600578c601cbf8b3",
+    "sim/cpu_inst_hit_overlap/check_completion.py": "436d5217e3f7490f1afa04e401db1ff41f7837aae6e04a91de01867f5ecb7cdd",
+    "sim/cpu_inst_hit_overlap/selftest_completion.py": "d404e393668e3838fcf0e72637b9fa48b526a533f175f5e83a85854906d46614",
+    "sim/cpu_inst_hit_overlap/inputs_completion.json": "daae6e040b2982a11ca85c8cf2d637a31e8d728bff66d134f0f8258414d9d89e",
+    "sim/cpu_inst_hit_overlap/completion_plan.txt": "f3804c1ae43c2f51d0118c77f1e3fa9f2af6c22091688e273bca0a817d295e03"
+  },
+  "software_sha256": {
+    "tests/cpu_performance_2b/build/measure_zmmul300_20261013_a/performance_300/program.bin": "677ee766fd0fc34d1558d778a343743a1cd9287ecdbbc182cb4681af3374517d",
+    "tests/cpu_performance_2b/build/measure_zmmul300_20261013_a/validation_300/program.bin": "461c635c46c86c8e719ced403b045bca468ded7299870bf2f87f8547ce11719b"
+  },
+  "limitations": [
+    "Functional Pango user-port model, no DDR PHY or board run.",
+    "Standalone Camera/PP I addresses stress cache isolation; real SoC permission remains forbidden and was separately verified.",
+    "Original first-failure execution deviation remains recorded; original failed and successful evidence remains unchanged.",
+    "Executor metadata_only classification included design IP files; all were independently checked byte-for-byte here.",
+    "Controlled bridge workload saves 6 cycles; CoreMark benefit is unmeasured."
+  ],
+  "board": "NOT_RUN",
+  "pds_report_independently_reviewed": false,
+  "historical_board_baseline": {
+    "task": "032",
+    "performance_cycles": 210246597,
+    "validation_cycles": 210056980,
+    "scope": "Historical integrated configuration differs; do not attribute all delta solely to 033."
+  }
+}

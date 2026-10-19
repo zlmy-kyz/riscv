@@ -1,0 +1,64 @@
+{
+  "status": "CAMERA_UART_OFFLINE_NATIVE_C_AND_PROTOCOL_CHECK_PASS_NOT_BOARD",
+  "native_C": [
+    {
+      "bytes": 0,
+      "CRC": "00000000"
+    },
+    {
+      "bytes": 9,
+      "CRC": "cbf43926"
+    },
+    {
+      "bytes": 256,
+      "CRC": "29058c73"
+    },
+    {
+      "bytes": 1843200,
+      "CRC": "ad4e00c3"
+    },
+    {
+      "bytes": 1843200,
+      "CRC": "68c5601b"
+    }
+  ],
+  "headers_C_vs_Python": 3,
+  "wire_cases": {
+    "positive": {
+      "status": "OFFLINE_SYNTHETIC_WIRE_REPLAY_PASS",
+      "frames": 2,
+      "crc32": [
+        "ad4e00c3",
+        "68c5601b"
+      ],
+      "visual_review": "NOT_CONFIRMED"
+    },
+    "bad_header": {
+      "status": "EXPECTED_REJECTION",
+      "reason": "CAM1 magic/header CRC"
+    },
+    "bad_payload": {
+      "status": "EXPECTED_REJECTION",
+      "reason": "CAM1 block CRC"
+    },
+    "bad_seq": {
+      "status": "EXPECTED_REJECTION",
+      "reason": "CAM1 sequence/offset"
+    },
+    "bad_offset": {
+      "status": "EXPECTED_REJECTION",
+      "reason": "CAM1 sequence/offset"
+    },
+    "same_scene": {
+      "status": "EXPECTED_REJECTION",
+      "reason": "scene change not observed: CRC unchanged"
+    },
+    "tampered_rx": {
+      "status": "EXPECTED_REJECTION",
+      "reason": "raw RX payload"
+    }
+  },
+  "HDL_run": false,
+  "serial_opened": false,
+  "board": "NOT_RUN"
+}

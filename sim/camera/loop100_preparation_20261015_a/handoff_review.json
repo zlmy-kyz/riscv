@@ -1,0 +1,29 @@
+{
+  "status": "LOOP100_FIXED_BUILD_NATIVE_OFFLINE_PASS_BOARD_PENDING",
+  "date": "2026-10-15",
+  "manifest_sha256": "48095be4a669da91ba7f9585f2b8397bb58e358da32f7e72eb8da8c4a177754c",
+  "bin_sha256": "82f6698dfeb820219a698b5d752c9c0d033e734ecde52c99b33ad805ad3c7cc6",
+  "bytes": 10896,
+  "bin_crc32": "7c9c3d04",
+  "instructions_audited": 2187,
+  "loader_responses": 89,
+  "RUN_commands": 1,
+  "frames": 100,
+  "protected_design_IP_PDS_files": 207,
+  "protected_files_unchanged": true,
+  "successful_two_frame_evidence_unchanged": true,
+  "offline_review_sha256": "deea1edf94cc265e17a00b006858af832874f2f681ad2a986f7262b5ab8292bf",
+  "native_cases": 14,
+  "host_cases": 8,
+  "initial_native_fixture_compile_failure": "offline_tests/ retained; MinGW fixture printf corrected, firmware unchanged",
+  "HDL_run": false,
+  "serial_opened": false,
+  "PDS_started": false,
+  "board": "NOT_RUN",
+  "new_board_log_directory_exists": false,
+  "limits": [
+    "Native mock MMIO verifies software only; not real CPU/RTL or physical DDR",
+    "No image export/PC whole-frame CRC this run; same CRC is legal",
+    "Scene change to be performed by user; actual 100-frame evidence pending"
+  ]
+}

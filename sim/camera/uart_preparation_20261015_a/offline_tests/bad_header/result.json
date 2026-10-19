@@ -1,0 +1,109 @@
+{
+  "status": "EXPECTED_OFFLINE_REJECTION",
+  "evidence_origin": "OFFLINE_SYNTHETIC_TEST",
+  "serial_opened": false,
+  "application": {
+    "status": "OFFLINE_FIXTURE_NOT_A_BOARD_IMAGE",
+    "bin_path": "sim/camera/uart_preparation_20261015_a/offline_tests/offline_fixture.bin",
+    "bin_sha256": "785b0751fc2c53dc14a4ce3d800e69ef9ce1009eb327ccf458afe09c242c26c9",
+    "bytes": 1024,
+    "crc32": 3070970918
+  },
+  "loader_records": [
+    {
+      "name": "PING_fresh_loader",
+      "tx_offset": 0,
+      "rx_offset": 0,
+      "result": "PASS"
+    },
+    {
+      "name": "LOAD_0_READY",
+      "tx_offset": 36,
+      "rx_offset": 60,
+      "result": "PASS"
+    },
+    {
+      "name": "LOAD_0_ACK",
+      "tx_offset": 68,
+      "rx_offset": 120,
+      "result": "PASS"
+    },
+    {
+      "name": "LOAD_256_READY",
+      "tx_offset": 328,
+      "rx_offset": 180,
+      "result": "PASS"
+    },
+    {
+      "name": "LOAD_256_ACK",
+      "tx_offset": 360,
+      "rx_offset": 240,
+      "result": "PASS"
+    },
+    {
+      "name": "LOAD_512_READY",
+      "tx_offset": 620,
+      "rx_offset": 300,
+      "result": "PASS"
+    },
+    {
+      "name": "LOAD_512_ACK",
+      "tx_offset": 652,
+      "rx_offset": 360,
+      "result": "PASS"
+    },
+    {
+      "name": "LOAD_768_READY",
+      "tx_offset": 912,
+      "rx_offset": 420,
+      "result": "PASS"
+    },
+    {
+      "name": "LOAD_768_ACK",
+      "tx_offset": 944,
+      "rx_offset": 480,
+      "result": "PASS"
+    },
+    {
+      "name": "VERIFY_whole_DDR",
+      "tx_offset": 1204,
+      "rx_offset": 540,
+      "result": "PASS"
+    },
+    {
+      "name": "RUN_once",
+      "tx_offset": 1240,
+      "rx_offset": 600,
+      "result": "PASS"
+    }
+  ],
+  "frames": [
+    {
+      "capture_tx_offset": 1276,
+      "summary": {
+        "seq": 1,
+        "pixels": 921600,
+        "bytes": 1843200,
+        "writes": 57600,
+        "crc32": 2907570371,
+        "lines": [
+          "FRAME=1 PIXELS=921600 BYTES=1843200 WRITES=57600",
+          "CRC_CAPTURE=ad4e00c3 CRC_CPU=ad4e00c3 CRC_REREAD=ad4e00c3",
+          "REREAD=OK OVERFLOW=0 ERROR=0 CPU_CHECK=PASS"
+        ],
+        "rx_start": 715,
+        "rx_end": 866
+      },
+      "export_tx_offset": 1277,
+      "export_rx_start": 866,
+      "chunks": []
+    }
+  ],
+  "requested_frames": 2,
+  "summary_only": false,
+  "user_KEY0_confirmation": true,
+  "manifest_sha256": "eb5c204c3c02c654aecfc20d93032fe947f2ecdacd4da319710898106b6a3632",
+  "ready_rx_start": 660,
+  "ready_rx_end": 715,
+  "error": "CAM1 magic/header CRC"
+}

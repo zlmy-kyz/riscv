@@ -1,0 +1,51 @@
+{
+  "status": "CAMERA_SOC_BOOT_MAP_TB_ONLY_STATIC_REPAIR_PASS_HDL_NOT_RUN",
+  "compile_exit": 0,
+  "compiled_modules": 55,
+  "HDL_run": false,
+  "RTL_modified": false,
+  "PDS_run": false,
+  "board_run": false,
+  "parameter_elaboration": {
+    "old": {
+      "INST_ROM_BASE": "40000000",
+      "DATA_RAM_BASE": "40000000",
+      "RESET_PC": "40000000"
+    },
+    "fixed": {
+      "INST_ROM_BASE": "00000000",
+      "DATA_RAM_BASE": "00000000",
+      "RESET_PC": "40000000"
+    }
+  },
+  "partial_elaboration_limit": "Icarus compile only; unexpanded vendor/IP ignored; no vvp executed",
+  "unchanged_prior_inputs": 271,
+  "SoC_image_sha256": "54349ad9aab43e7b56b4a33f9939080835d28e8b58a10c0b99130aa25c944c84",
+  "original_TB_sha256": "27e0cff07a13237be6f75020047f27b3cfa0fa902d7d314254c3470e930a751b",
+  "fixed_TB_sha256": "1bce2e8558d7e355f8c21c07a1de4edd8ced7bdb36ce72a017c2f4a7079f703d",
+  "reused_jobs": [
+    "sccb",
+    "faults"
+  ],
+  "new_jobs": [
+    "vlib",
+    "compile",
+    "soc",
+    "soc_check"
+  ],
+  "evidence_sha256": {
+    "compile.command.json": "7d2d81cfcf7589b607da11d99b6723f80fbd6c6ba171a9411df350ed4e14453d",
+    "compile.log": "2c21663a66052ab3ec6078ffdae79cda5cf7e7d99d7d82688d656772a59eb26a",
+    "fixed.partial.command.json": "c59ec8129c0fe9488d9e00ba2d27622c51afd161b1f6dd6f02ece595608e236a",
+    "fixed.partial.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "fixed.partial.vvp": "32273414de8150e4ce1592f6108e074dbef26dea357c2d7ff13a18c7dea61637",
+    "modelsim.ini": "ea76df2046dcca50d407552fa6bea9b02f2c60a0940d0ccf50f9958ca3ff3927",
+    "old.partial.command.json": "0b6a92783673ed20221b31b687ae63d5aff0d0ffe653ceab887fd2ba45b5fe91",
+    "old.partial.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "old.partial.vvp": "4cf6f5210575d9a61be177e499c17acf5eab88cff07635948787f9acfb6cae38",
+    "raw_review.log": "4f1136ae7f8e3186dd62c5de2535f708a33de8398886beaebbb5b1c38ff8b564",
+    "tb_only.diff": "546831ae01de329ea7854617555ee0762221b1952290adc3688b6c25f652a690",
+    "vlib.command.json": "4faac9b05e4b0395759743bc06a56e21942428eab4fe32150e96b252c1e1c33c",
+    "vlib.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  }
+}

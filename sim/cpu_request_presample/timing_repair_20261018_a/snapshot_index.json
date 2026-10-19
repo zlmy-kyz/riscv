@@ -1,0 +1,13 @@
+{
+  "previous_manifest": "D:\\riscv\\RISCV\\sim\\cpu_request_presample\\preparation_20261018_a\\after_manifest.json",
+  "changed_since_036_preparation": [
+    "RISCV.pds",
+    "report_timing/board_top.rtr"
+  ],
+  "copied_inputs": [
+    "RISCV.pds",
+    "myriscv/dual_sram_to_pango_ddr_bridge.v",
+    "report_timing/board_top.rtr"
+  ],
+  "remaining_inputs": "Unchanged; reuse previous preparation inputs and hashes."
+}

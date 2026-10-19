@@ -1,0 +1,2933 @@
+{
+  "status": "TASK043_PARTIAL_BRIDGE_EVIDENCE_REVIEWED_FULL_ACCEPTANCE_PENDING",
+  "runs": {
+    "xs_key_20261018_c": {
+      "status": "OBSERVED_TRACE_BYTE_AND_IDENTITY_REVIEW_PASS",
+      "meta": {
+        "tag": "xs_key_20261018_c",
+        "status": "PASS",
+        "backend": "xsim",
+        "started": "2026-10-18T23:37:55",
+        "root": "D:\\riscv\\RISCV",
+        "sealed_src": "D:\\riscv\\RISCV\\sim\\write_buffer_two_entry\\xs_key_20261018_c\\src",
+        "top": "tb_wb2_key",
+        "short": false,
+        "legacy": false,
+        "bridge": "D:\\riscv\\RISCV\\myriscv\\dual_sram_to_pango_ddr_bridge.v",
+        "bridge_sha256": "855318eebf7fc75a0b17d15a620b6d8d08bb54ff9348d663cbcd6aca0883262f",
+        "params": {
+          "Dq": 32,
+          "Posted": 1,
+          "Depth": 2,
+          "Turnover": 1,
+          "Forward": 1,
+          "Ruw": 1,
+          "Icache": 1,
+          "Dcache": 1,
+          "Camera": 0,
+          "Preproc": 0,
+          "Plane": 0
+        },
+        "tools": {
+          "xvlog": "D:\\Xilinx\\Vivado\\2019.2\\bin\\xvlog.bat",
+          "xelab": "D:\\Xilinx\\Vivado\\2019.2\\bin\\xelab.bat",
+          "xsim": "D:\\Xilinx\\Vivado\\2019.2\\bin\\xsim.bat",
+          "python": "C:\\Users\\z'l'm'y'k\\.workbuddy\\binaries\\python\\versions\\3.13.12\\python.exe"
+        },
+        "commands": [
+          "D:\\Xilinx\\Vivado\\2019.2\\bin\\xvlog.bat --sv D:\\riscv\\RISCV\\sim\\write_buffer_two_entry\\xs_key_20261018_c\\src\\vendor\\GTP_GRS.v D:\\riscv\\RISCV\\sim\\write_buffer_two_entry\\xs_key_20261018_c\\src\\vendor\\GTP_DRM36K_E1.v D:\\riscv\\RISCV\\sim\\write_buffer_two_entry\\xs_key_20261018_c\\src\\ipcore\\icache\\rtl\\ipm2l_sdpram_v1_10_icache.v D:\\riscv\\RISCV\\sim\\write_buffer_two_entry\\xs_key_20261018_c\\src\\ipcore\\icache\\icache.v D:\\riscv\\RISCV\\sim\\write_buffer_two_entry\\xs_key_20261018_c\\src\\ipcore\\dcache\\rtl\\ipm2l_sdpram_v1_10_dcache.v D:\\riscv\\RISCV\\sim\\write_buffer_two_entry\\xs_key_20261018_c\\src\\ipcore\\dcache\\dcache.v D:\\riscv\\RISCV\\sim\\write_buffer_two_entry\\xs_key_20261018_c\\src\\myriscv\\dual_sram_to_pango_ddr_bridge.v D:\\riscv\\RISCV\\sim\\write_buffer_two_entry\\xs_key_20261018_c\\src\\tb\\tb_wb2_bridge.sv D:\\riscv\\RISCV\\sim\\write_buffer_two_entry\\xs_key_20261018_c\\src\\tb\\tb_wb2_variants.sv",
+          "D:\\Xilinx\\Vivado\\2019.2\\bin\\xelab.bat tb_wb2_key -s snap -debug off",
+          "D:\\Xilinx\\Vivado\\2019.2\\bin\\xsim.bat snap -runall",
+          "C:\\Users\\z'l'm'y'k\\.workbuddy\\binaries\\python\\versions\\3.13.12\\python.exe -B D:\\riscv\\RISCV\\sim\\write_buffer_two_entry\\xs_key_20261018_c\\src\\tools\\check_wb2.py D:\\riscv\\RISCV\\sim\\write_buffer_two_entry\\xs_key_20261018_c"
+        ],
+        "exits": {
+          "xvlog": 0,
+          "xelab": 0,
+          "xsim": 0,
+          "check": 0
+        },
+        "timeline": [
+          "xvlog exit=0 1.6s :: xvlog.bat --sv D:\\riscv\\RISCV\\sim\\write_buffer_two_entry\\xs_key_20261018_c\\src\\vendor\\GTP_GRS.v D:\\riscv\\RISCV\\sim\\write_buffer_two_entry\\xs_key_20261018_c\\src\\vendor\\GTP_DRM36K_E1.v D:\\riscv\\RISCV\\sim\\write_buffer_two_entry\\xs_key_20261018_c\\src\\ipcore\\icache\\rtl\\ipm2l_sdpram_v1_10_icache.v D:\\riscv\\RISCV\\sim\\write_buffer_two_entry\\xs_key_20261018_c\\src\\ipcore\\icache\\icache.v D:\\riscv\\RISCV\\sim\\write_buffer_two_entry\\xs_key_20261018_c\\src\\ipcore\\dcache\\rtl\\ipm2l_sdpram_v1_10_dcache.v D:\\riscv\\RISCV\\sim\\write_buffer_two_entry\\xs_key_20261018_c\\src\\ipcore\\dcache\\dcache.v D:\\riscv\\RISCV\\sim\\write_buffer_two_entry\\xs_key_20261018_c\\src\\myriscv\\dual_sram_to_pango_ddr_bridge.v D:\\riscv\\RISCV\\sim\\write_buffer_two_entry\\xs_key_20261018_c\\src\\tb\\tb_wb2_bridge.sv D:\\riscv\\RISCV\\sim\\write_buffer_two_entry\\xs_key_20261018_c\\src\\tb\\tb_wb2_variants.sv",
+          "xelab exit=0 10.5s :: xelab.bat tb_wb2_key -s snap -debug off",
+          "xsim exit=0 7.8s :: xsim.bat snap -runall",
+          "check exit=0 0.5s :: check_wb2.py -B D:\\riscv\\RISCV\\sim\\write_buffer_two_entry\\xs_key_20261018_c\\src\\tools\\check_wb2.py D:\\riscv\\RISCV\\sim\\write_buffer_two_entry\\xs_key_20261018_c"
+        ],
+        "sim_result": "RESULT: PASS wb2 edges=433 aw=41 w=40 ar=17 r=17 dacc=90 drsp=88 iacc=2 irsp=2",
+        "check_status": "PASS",
+        "identity_drift": 0,
+        "error": null,
+        "finished": "2026-10-18T23:38:16",
+        "modelsim_note": "ModelSim 10.6c unavailable on this machine: machine-level block on IPv6 loopback prevents its kernel RPC (\"RPC_Init ... ::1\"). Same TB/DUT executed on Vivado xsim 2019.2."
+      },
+      "manifest": {
+        "vendor\\GTP_GRS.v": "dae720bcc467ddb4ff99f2753368934e2649b87f6ac63b8a0d7219699bac1dec",
+        "vendor\\GTP_DRM36K_E1.v": "3e372cd60025a439eb7435d770930260e22c40f148ae83c4bdf7398fb65ddb66",
+        "ipcore\\icache\\rtl\\ipm2l_sdpram_v1_10_icache.v": "a92f88609e3c76bbd55f23dd6d9d08db25494745d16f1715b8e2279ea2857ad4",
+        "ipcore\\icache\\icache.v": "9e8746619f8afa1c2adfe1e7a48bd63850b98332d40f23c27817a28b3f24de76",
+        "ipcore\\dcache\\rtl\\ipm2l_sdpram_v1_10_dcache.v": "66905d131c90236dabd8feb8e8e586185955b37cb5ba694c047dc331efac303f",
+        "ipcore\\dcache\\dcache.v": "bf62d32342a11ba6fad55f11c2413716a834c7028e9a1d8660a5f1a5477514a7",
+        "myriscv\\dual_sram_to_pango_ddr_bridge.v": "855318eebf7fc75a0b17d15a620b6d8d08bb54ff9348d663cbcd6aca0883262f",
+        "tb\\tb_wb2_bridge.sv": "7cb865f4c7103b93f0e2188d11d9e9ce18a38b609cb428c9b212b4ad3b93628b",
+        "tb\\tb_wb2_variants.sv": "259ae7ceded5eaef19159b65996df1757ba68ca0c9d2b5d1e3907e35743444b5",
+        "tools\\check_wb2.py": "851908ee94a177d408a89137d67e7a002f9f658cb526e5c03cf223494d3c624c",
+        "tools\\run_xsim.ps1": "76e2f74115e44b42c99fb784106fd03866290eddddc84f9daf51248b4c5c3402"
+      },
+      "evidence_sha256": {
+        "sim/write_buffer_two_entry/xs_key_20261018_c/check_key.json": "078e349f759b0a05fc8738bd4865b5b0375b8c852bdb706728b047d07052b0cb",
+        "sim/write_buffer_two_entry/xs_key_20261018_c/inputs_after.sha256": "13d679ae12d24807019ba79d5ed50756bd8dad594b14b48aef1658278009bf5f",
+        "sim/write_buffer_two_entry/xs_key_20261018_c/inputs_before.sha256": "13d679ae12d24807019ba79d5ed50756bd8dad594b14b48aef1658278009bf5f",
+        "sim/write_buffer_two_entry/xs_key_20261018_c/log_check.txt": "078e349f759b0a05fc8738bd4865b5b0375b8c852bdb706728b047d07052b0cb",
+        "sim/write_buffer_two_entry/xs_key_20261018_c/log_xelab.txt": "0cc20d3bd781a521b90cb64732afae616c60c01fdf3e04b61d96243020a4b735",
+        "sim/write_buffer_two_entry/xs_key_20261018_c/log_xsim.txt": "52fa905227df160dff32bcb875d0ebecd438fefa22cc435f0eae08568fde8a91",
+        "sim/write_buffer_two_entry/xs_key_20261018_c/log_xvlog.txt": "3af0344a1d5a4509410a4dee81db691bf8398357afc7b62c1047a741606ede96",
+        "sim/write_buffer_two_entry/xs_key_20261018_c/run_meta.json": "5709c3719451413c4c1a62e073f427d817f3b24745946ad4d09f0546f19713fb",
+        "sim/write_buffer_two_entry/xs_key_20261018_c/wb2.edges.log": "bd2aba600ebd26776542749dce2e89f3e657fa833b9c79033b8a9bcef510c3ca",
+        "sim/write_buffer_two_entry/xs_key_20261018_c/webtalk_27736.backup.log": "a0e3388b17799d67f7375318ad01d7e012d30fa57d007d4e22752e46ba168ea3",
+        "sim/write_buffer_two_entry/xs_key_20261018_c/xelab.log": "c458a604b0926014f2623d5c1f89cc8039fad208b93d8335646c3bdabe1316f0",
+        "sim/write_buffer_two_entry/xs_key_20261018_c/xsim.log": "6c932781dc587565c3705a6c310adac27cf1cce35a5fbb815ddca91e58c220c7",
+        "sim/write_buffer_two_entry/xs_key_20261018_c/xvlog.log": "293f8bbecc24f17235a4183982391bcf694007bb2f07c63ac30439ae0d901bcf"
+      },
+      "counts": {
+        "store_cancel": 4,
+        "AW_cancel": 1,
+        "D_cancel": 2,
+        "I_cancel": 0,
+        "max_occupancy": 2,
+        "D_accept": 90,
+        "store_accept": 44,
+        "D_response": 88,
+        "AW": 41,
+        "W": 40,
+        "same_edge_AW_W": 1,
+        "load_accept": 46,
+        "AR": 17,
+        "R": 17,
+        "same_line_W_load_blocked": 2,
+        "other_W_load": 3,
+        "I_accept": 2,
+        "I_miss": 2,
+        "I_response": 2
+      },
+      "issues": [],
+      "witness": [
+        {
+          "kind": "full_pop_push",
+          "edge": 23,
+          "line": 283
+        }
+      ],
+      "read_checks": [
+        {
+          "port": "D",
+          "accepted": 68,
+          "response": 71,
+          "addr": 1024,
+          "actual": 3334189221,
+          "expected": 3334189221
+        },
+        {
+          "port": "D",
+          "accepted": 75,
+          "response": 76,
+          "addr": 1024,
+          "actual": 286331153,
+          "expected": 286331153
+        },
+        {
+          "port": "D",
+          "accepted": 78,
+          "response": 79,
+          "addr": 1028,
+          "actual": 572662306,
+          "expected": 572662306
+        },
+        {
+          "port": "D",
+          "accepted": 86,
+          "response": 89,
+          "addr": 1088,
+          "actual": 268827375,
+          "expected": 268827375
+        },
+        {
+          "port": "D",
+          "accepted": 93,
+          "response": 94,
+          "addr": 1088,
+          "actual": 2863315899,
+          "expected": 2863315899
+        },
+        {
+          "port": "D",
+          "accepted": 101,
+          "response": 104,
+          "addr": 1152,
+          "actual": 1515144249,
+          "expected": 1515144249
+        },
+        {
+          "port": "D",
+          "accepted": 107,
+          "response": 108,
+          "addr": 1152,
+          "actual": 1515144249,
+          "expected": 1515144249
+        },
+        {
+          "port": "D",
+          "accepted": 113,
+          "response": 116,
+          "addr": 1280,
+          "actual": 4007909581,
+          "expected": 4007909581
+        },
+        {
+          "port": "D",
+          "accepted": 119,
+          "response": 120,
+          "addr": 1280,
+          "actual": 2768240640,
+          "expected": 2768240640
+        },
+        {
+          "port": "D",
+          "accepted": 124,
+          "response": 125,
+          "addr": 1284,
+          "actual": 437191929,
+          "expected": 437191929
+        },
+        {
+          "port": "D",
+          "accepted": 128,
+          "response": 129,
+          "addr": 1284,
+          "actual": 2768240641,
+          "expected": 2768240641
+        },
+        {
+          "port": "D",
+          "accepted": 133,
+          "response": 134,
+          "addr": 1288,
+          "actual": 1178284069,
+          "expected": 1178284069
+        },
+        {
+          "port": "D",
+          "accepted": 137,
+          "response": 138,
+          "addr": 1288,
+          "actual": 2768240642,
+          "expected": 2768240642
+        },
+        {
+          "port": "D",
+          "accepted": 142,
+          "response": 143,
+          "addr": 1292,
+          "actual": 1919376465,
+          "expected": 1919376465
+        },
+        {
+          "port": "D",
+          "accepted": 146,
+          "response": 147,
+          "addr": 1292,
+          "actual": 2768240643,
+          "expected": 2768240643
+        },
+        {
+          "port": "D",
+          "accepted": 151,
+          "response": 152,
+          "addr": 1296,
+          "actual": 2660468861,
+          "expected": 2660468861
+        },
+        {
+          "port": "D",
+          "accepted": 155,
+          "response": 156,
+          "addr": 1296,
+          "actual": 2768240644,
+          "expected": 2768240644
+        },
+        {
+          "port": "D",
+          "accepted": 160,
+          "response": 161,
+          "addr": 1300,
+          "actual": 3401561257,
+          "expected": 3401561257
+        },
+        {
+          "port": "D",
+          "accepted": 164,
+          "response": 165,
+          "addr": 1300,
+          "actual": 2768240645,
+          "expected": 2768240645
+        },
+        {
+          "port": "D",
+          "accepted": 169,
+          "response": 170,
+          "addr": 1304,
+          "actual": 4142653653,
+          "expected": 4142653653
+        },
+        {
+          "port": "D",
+          "accepted": 173,
+          "response": 174,
+          "addr": 1304,
+          "actual": 2768240646,
+          "expected": 2768240646
+        },
+        {
+          "port": "D",
+          "accepted": 178,
+          "response": 179,
+          "addr": 1308,
+          "actual": 571935745,
+          "expected": 571935745
+        },
+        {
+          "port": "D",
+          "accepted": 182,
+          "response": 183,
+          "addr": 1308,
+          "actual": 2768240647,
+          "expected": 2768240647
+        },
+        {
+          "port": "D",
+          "accepted": 188,
+          "response": 191,
+          "addr": 1408,
+          "actual": 2188864609,
+          "expected": 2188864609
+        },
+        {
+          "port": "D",
+          "accepted": 194,
+          "response": 195,
+          "addr": 1408,
+          "actual": 2192272481,
+          "expected": 2192272481
+        },
+        {
+          "port": "D",
+          "accepted": 200,
+          "response": 203,
+          "addr": 1536,
+          "actual": 369819893,
+          "expected": 369819893
+        },
+        {
+          "port": "D",
+          "accepted": 204,
+          "response": 207,
+          "addr": 1472,
+          "actual": 3435247275,
+          "expected": 3435247275
+        },
+        {
+          "port": "D",
+          "accepted": 210,
+          "response": 211,
+          "addr": 1536,
+          "actual": 369819893,
+          "expected": 369819893
+        },
+        {
+          "port": "D",
+          "accepted": 216,
+          "response": 219,
+          "addr": 5696,
+          "actual": 3772107455,
+          "expected": 3772107455
+        },
+        {
+          "port": "D",
+          "accepted": 222,
+          "response": 223,
+          "addr": 5696,
+          "actual": 3772107455,
+          "expected": 3772107455
+        },
+        {
+          "port": "D",
+          "accepted": 228,
+          "response": 231,
+          "addr": 1664,
+          "actual": 2862584969,
+          "expected": 2862584969
+        },
+        {
+          "port": "D",
+          "accepted": 244,
+          "response": 245,
+          "addr": 1668,
+          "actual": 3806520034,
+          "expected": 3806520034
+        },
+        {
+          "port": "D",
+          "accepted": 252,
+          "response": 255,
+          "addr": 1792,
+          "actual": 1043539997,
+          "expected": 1043539997
+        },
+        {
+          "port": "D",
+          "accepted": 258,
+          "response": 259,
+          "addr": 1796,
+          "actual": 1784632393,
+          "expected": 1784632393
+        },
+        {
+          "port": "D",
+          "accepted": 262,
+          "response": 263,
+          "addr": 1796,
+          "actual": 4059165169,
+          "expected": 4059165169
+        },
+        {
+          "port": "D",
+          "accepted": 282,
+          "response": 285,
+          "addr": 1856,
+          "actual": 2289922663,
+          "expected": 2289922663
+        },
+        {
+          "port": "D",
+          "accepted": 292,
+          "response": 293,
+          "addr": 1856,
+          "actual": 305419896,
+          "expected": 305419896
+        },
+        {
+          "port": "D",
+          "accepted": 296,
+          "response": 299,
+          "addr": 1920,
+          "actual": 3536305329,
+          "expected": 3536305329
+        },
+        {
+          "port": "D",
+          "accepted": 305,
+          "response": 306,
+          "addr": 1920,
+          "actual": 3536305329,
+          "expected": 3536305329
+        },
+        {
+          "port": "D",
+          "accepted": 309,
+          "response": 312,
+          "addr": 1984,
+          "actual": 470877947,
+          "expected": 470877947
+        },
+        {
+          "port": "D",
+          "accepted": 319,
+          "response": 320,
+          "addr": 1984,
+          "actual": 168430090,
+          "expected": 168430090
+        },
+        {
+          "port": "D",
+          "accepted": 323,
+          "response": 324,
+          "addr": 1984,
+          "actual": 168430090,
+          "expected": 168430090
+        },
+        {
+          "port": "D",
+          "accepted": 328,
+          "response": 329,
+          "addr": 1996,
+          "actual": 2694154879,
+          "expected": 2694154879
+        },
+        {
+          "port": "D",
+          "accepted": 360,
+          "response": 363,
+          "addr": 2304,
+          "actual": 2390980717,
+          "expected": 2390980717
+        },
+        {
+          "port": "I",
+          "accepted": 367,
+          "response": 375,
+          "addr": 2560,
+          "actual": 3064701077,
+          "expected": 3064701077
+        },
+        {
+          "port": "I",
+          "accepted": 378,
+          "response": 383,
+          "addr": 2816,
+          "actual": 2964369584,
+          "expected": 2964369584
+        },
+        {
+          "port": "D",
+          "accepted": 386,
+          "response": 389,
+          "addr": 3072,
+          "actual": 117174501,
+          "expected": 117174501
+        },
+        {
+          "port": "D",
+          "accepted": 394,
+          "response": 395,
+          "addr": 3072,
+          "actual": 3235774465,
+          "expected": 3235774465
+        }
+      ],
+      "all_8192_final_bytes_match": true,
+      "marks": {
+        "G1": 9,
+        "G1_full": 12,
+        "G1_release": 19,
+        "G1_done": 35,
+        "G2_early_w": 36,
+        "G2_same_edge": 47,
+        "G2_zero_strobe": 51,
+        "G2_init_pause": 56,
+        "G3_head_tail": 67,
+        "G3_overlap": 85,
+        "G3_zero_mask": 100,
+        "G3_lanes": 112,
+        "G3_sb": 187,
+        "G3_other_line": 199,
+        "G3_same_index": 215,
+        "G3_promotion": 227,
+        "\u00014_same_line_forward": 251,
+        "G4_completion_edge": 281,
+        "G4_head_other_line": 295,
+        "G4_tail_same_line": 308,
+        "\u0001two_stores_same_tag": 322,
+        "G5_no_ar": 335,
+        "G5_head_only": 344,
+        "G5_i_park": 365,
+        "G5_same_edge_store": 377,
+        "G5_later_load": 385,
+        "G7_head_only": 396,
+        "G7_after_aw": 405,
+        "G7_full_reset": 415,
+        "G7_new_epoch": 425
+      },
+      "accepts": [
+        [
+          10,
+          1,
+          0,
+          2711724449,
+          15,
+          2
+        ],
+        [
+          11,
+          1,
+          160,
+          2998055602,
+          15,
+          2
+        ],
+        [
+          23,
+          1,
+          320,
+          3284386755,
+          15,
+          2
+        ],
+        [
+          37,
+          1,
+          512,
+          3570717908,
+          15,
+          2
+        ],
+        [
+          48,
+          1,
+          576,
+          3857049061,
+          15,
+          2
+        ],
+        [
+          52,
+          1,
+          640,
+          4294967295,
+          0,
+          2
+        ],
+        [
+          57,
+          1,
+          704,
+          286335522,
+          15,
+          2
+        ],
+        [
+          58,
+          1,
+          768,
+          858997828,
+          15,
+          2
+        ],
+        [
+          68,
+          0,
+          1024,
+          0,
+          0,
+          2
+        ],
+        [
+          72,
+          1,
+          1024,
+          286331153,
+          15,
+          2
+        ],
+        [
+          73,
+          1,
+          1028,
+          572662306,
+          15,
+          2
+        ],
+        [
+          75,
+          0,
+          1024,
+          0,
+          0,
+          2
+        ],
+        [
+          78,
+          0,
+          1028,
+          0,
+          0,
+          2
+        ],
+        [
+          86,
+          0,
+          1088,
+          0,
+          0,
+          2
+        ],
+        [
+          90,
+          1,
+          1088,
+          2863311530,
+          15,
+          2
+        ],
+        [
+          91,
+          1,
+          1088,
+          3149642683,
+          3,
+          2
+        ],
+        [
+          93,
+          0,
+          1088,
+          0,
+          0,
+          2
+        ],
+        [
+          101,
+          0,
+          1152,
+          0,
+          0,
+          2
+        ],
+        [
+          105,
+          1,
+          1152,
+          195890093,
+          0,
+          2
+        ],
+        [
+          107,
+          0,
+          1152,
+          0,
+          0,
+          2
+        ],
+        [
+          113,
+          0,
+          1280,
+          0,
+          0,
+          2
+        ],
+        [
+          117,
+          1,
+          1280,
+          2768240640,
+          15,
+          2
+        ],
+        [
+          119,
+          0,
+          1280,
+          0,
+          0,
+          2
+        ],
+        [
+          124,
+          0,
+          1284,
+          0,
+          0,
+          2
+        ],
+        [
+          126,
+          1,
+          1284,
+          2768240641,
+          15,
+          2
+        ],
+        [
+          128,
+          0,
+          1284,
+          0,
+          0,
+          2
+        ],
+        [
+          133,
+          0,
+          1288,
+          0,
+          0,
+          2
+        ],
+        [
+          135,
+          1,
+          1288,
+          2768240642,
+          15,
+          2
+        ],
+        [
+          137,
+          0,
+          1288,
+          0,
+          0,
+          2
+        ],
+        [
+          142,
+          0,
+          1292,
+          0,
+          0,
+          2
+        ],
+        [
+          144,
+          1,
+          1292,
+          2768240643,
+          15,
+          2
+        ],
+        [
+          146,
+          0,
+          1292,
+          0,
+          0,
+          2
+        ],
+        [
+          151,
+          0,
+          1296,
+          0,
+          0,
+          2
+        ],
+        [
+          153,
+          1,
+          1296,
+          2768240644,
+          15,
+          2
+        ],
+        [
+          155,
+          0,
+          1296,
+          0,
+          0,
+          2
+        ],
+        [
+          160,
+          0,
+          1300,
+          0,
+          0,
+          2
+        ],
+        [
+          162,
+          1,
+          1300,
+          2768240645,
+          15,
+          2
+        ],
+        [
+          164,
+          0,
+          1300,
+          0,
+          0,
+          2
+        ],
+        [
+          169,
+          0,
+          1304,
+          0,
+          0,
+          2
+        ],
+        [
+          171,
+          1,
+          1304,
+          2768240646,
+          15,
+          2
+        ],
+        [
+          173,
+          0,
+          1304,
+          0,
+          0,
+          2
+        ],
+        [
+          178,
+          0,
+          1308,
+          0,
+          0,
+          2
+        ],
+        [
+          180,
+          1,
+          1308,
+          2768240647,
+          15,
+          2
+        ],
+        [
+          182,
+          0,
+          1308,
+          0,
+          0,
+          2
+        ],
+        [
+          188,
+          0,
+          1408,
+          0,
+          0,
+          2
+        ],
+        [
+          192,
+          1,
+          1410,
+          11206656,
+          4,
+          2
+        ],
+        [
+          194,
+          0,
+          1408,
+          0,
+          0,
+          2
+        ],
+        [
+          200,
+          0,
+          1536,
+          0,
+          0,
+          2
+        ],
+        [
+          204,
+          0,
+          1472,
+          0,
+          0,
+          2
+        ],
+        [
+          208,
+          1,
+          1472,
+          3233857728,
+          15,
+          2
+        ],
+        [
+          210,
+          0,
+          1536,
+          0,
+          0,
+          2
+        ],
+        [
+          216,
+          0,
+          5696,
+          0,
+          0,
+          2
+        ],
+        [
+          220,
+          1,
+          1600,
+          3503345872,
+          15,
+          2
+        ],
+        [
+          222,
+          0,
+          5696,
+          0,
+          0,
+          2
+        ],
+        [
+          228,
+          0,
+          1664,
+          0,
+          0,
+          2
+        ],
+        [
+          232,
+          1,
+          1664,
+          3789677025,
+          15,
+          2
+        ],
+        [
+          233,
+          1,
+          1668,
+          3806520034,
+          15,
+          2
+        ],
+        [
+          244,
+          0,
+          1668,
+          0,
+          0,
+          2
+        ],
+        [
+          252,
+          0,
+          1792,
+          0,
+          0,
+          2
+        ],
+        [
+          256,
+          1,
+          1792,
+          4042322160,
+          15,
+          2
+        ],
+        [
+          258,
+          0,
+          1796,
+          0,
+          0,
+          2
+        ],
+        [
+          260,
+          1,
+          1796,
+          4059165169,
+          15,
+          2
+        ],
+        [
+          262,
+          0,
+          1796,
+          0,
+          0,
+          2
+        ],
+        [
+          282,
+          0,
+          1856,
+          0,
+          0,
+          2
+        ],
+        [
+          287,
+          1,
+          1856,
+          305419896,
+          15,
+          2
+        ],
+        [
+          292,
+          0,
+          1856,
+          305419896,
+          15,
+          2
+        ],
+        [
+          296,
+          0,
+          1920,
+          0,
+          0,
+          2
+        ],
+        [
+          301,
+          1,
+          1856,
+          1431677610,
+          15,
+          2
+        ],
+        [
+          305,
+          0,
+          1920,
+          1431677610,
+          15,
+          2
+        ],
+        [
+          309,
+          0,
+          1984,
+          0,
+          0,
+          2
+        ],
+        [
+          314,
+          1,
+          1984,
+          168430090,
+          15,
+          2
+        ],
+        [
+          315,
+          1,
+          1988,
+          185273099,
+          15,
+          2
+        ],
+        [
+          319,
+          0,
+          1984,
+          185273099,
+          15,
+          2
+        ],
+        [
+          323,
+          0,
+          1984,
+          0,
+          0,
+          2
+        ],
+        [
+          325,
+          1,
+          1988,
+          16843009,
+          15,
+          2
+        ],
+        [
+          326,
+          1,
+          1992,
+          33686018,
+          15,
+          2
+        ],
+        [
+          328,
+          0,
+          1996,
+          0,
+          0,
+          2
+        ],
+        [
+          336,
+          1,
+          2048,
+          1364283729,
+          15,
+          2
+        ],
+        [
+          337,
+          1,
+          2112,
+          1381126738,
+          15,
+          2
+        ],
+        [
+          360,
+          0,
+          2304,
+          1381126738,
+          15,
+          2
+        ],
+        [
+          366,
+          1,
+          2176,
+          1515870810,
+          15,
+          2
+        ],
+        [
+          378,
+          1,
+          2816,
+          2964369584,
+          15,
+          2
+        ],
+        [
+          386,
+          0,
+          3072,
+          0,
+          0,
+          2
+        ],
+        [
+          390,
+          1,
+          3072,
+          3235774465,
+          15,
+          2
+        ],
+        [
+          394,
+          0,
+          3072,
+          0,
+          0,
+          2
+        ],
+        [
+          397,
+          1,
+          3328,
+          3735879681,
+          15,
+          2
+        ],
+        [
+          406,
+          1,
+          3392,
+          3735879682,
+          15,
+          2
+        ],
+        [
+          416,
+          1,
+          3456,
+          3735879683,
+          15,
+          2
+        ],
+        [
+          417,
+          1,
+          3520,
+          3735879684,
+          15,
+          2
+        ],
+        [
+          426,
+          1,
+          3584,
+          1611464705,
+          15,
+          2
+        ]
+      ],
+      "AW": [
+        0,
+        40,
+        80,
+        128,
+        144,
+        160,
+        176,
+        192,
+        256,
+        256,
+        272,
+        272,
+        288,
+        320,
+        320,
+        320,
+        320,
+        320,
+        320,
+        320,
+        320,
+        352,
+        368,
+        400,
+        416,
+        416,
+        448,
+        448,
+        464,
+        464,
+        496,
+        496,
+        496,
+        496,
+        512,
+        528,
+        544,
+        704,
+        768,
+        848,
+        896
+      ],
+      "W": [
+        [
+          0,
+          2711724449,
+          15
+        ],
+        [
+          40,
+          2998055602,
+          15
+        ],
+        [
+          80,
+          3284386755,
+          15
+        ],
+        [
+          128,
+          3570717908,
+          15
+        ],
+        [
+          144,
+          3857049061,
+          15
+        ],
+        [
+          160,
+          4294967295,
+          0
+        ],
+        [
+          176,
+          286335522,
+          15
+        ],
+        [
+          192,
+          858997828,
+          15
+        ],
+        [
+          256,
+          286331153,
+          15
+        ],
+        [
+          256,
+          2459565875921944576,
+          240
+        ],
+        [
+          272,
+          2863311530,
+          15
+        ],
+        [
+          272,
+          3149642683,
+          3
+        ],
+        [
+          288,
+          195890093,
+          0
+        ],
+        [
+          320,
+          2768240640,
+          15
+        ],
+        [
+          320,
+          11889503020553076736,
+          240
+        ],
+        [
+          320,
+          51065026657415424487007977472,
+          3840
+        ],
+        [
+          320,
+          219322619542195606571921177726888706048,
+          61440
+        ],
+        [
+          320,
+          941983478547062989182222593690165219739685617664,
+          983040
+        ],
+        [
+          320,
+          4045788235193454772720550742695240408334886380844372459520,
+          15728640
+        ],
+        [
+          320,
+          17376528162974546217476559150820357871863689237704736023745518370816,
+          251658240
+        ],
+        [
+          320,
+          74631620204958580751652964994049983717690334519486155748840653310325531082752,
+          4026531840
+        ],
+        [
+          352,
+          11206656,
+          4
+        ],
+        [
+          368,
+          3233857728,
+          15
+        ],
+        [
+          400,
+          3503345872,
+          15
+        ],
+        [
+          416,
+          3789677025,
+          15
+        ],
+        [
+          416,
+          16348879057598808064,
+          240
+        ],
+        [
+          448,
+          4042322160,
+          15
+        ],
+        [
+          448,
+          17433981649917313024,
+          240
+        ],
+        [
+          464,
+          305419896,
+          15
+        ],
+        [
+          464,
+          1431677610,
+          15
+        ],
+        [
+          496,
+          168430090,
+          15
+        ],
+        [
+          496,
+          795741901033570304,
+          240
+        ],
+        [
+          496,
+          72340172821233664,
+          240
+        ],
+        [
+          496,
+          621397352908373282508505088,
+          3840
+        ],
+        [
+          512,
+          1364283729,
+          15
+        ],
+        [
+          528,
+          1381126738,
+          15
+        ],
+        [
+          544,
+          1515870810,
+          15
+        ],
+        [
+          704,
+          2964369584,
+          15
+        ],
+        [
+          768,
+          3235774465,
+          15
+        ],
+        [
+          896,
+          1611464705,
+          15
+        ]
+      ],
+      "summary": [
+        433,
+        41,
+        40,
+        17,
+        17,
+        90,
+        88,
+        2,
+        2,
+        0,
+        44,
+        42,
+        46,
+        2,
+        4,
+        2,
+        0
+      ],
+      "vendor_diagnostics": [
+        "IPSpecCheck: 04030130 ipm2l_flex_sdpram parameter setting error !!!: c_WR_ADDR_WIDTH must between 9-20 when DRM Resource is 36K",
+        "IPSpecCheck: 04030130 ipm2l_flex_sdpram parameter setting error !!!: c_WR_ADDR_WIDTH must between 9-20 when DRM Resource is 36K"
+      ]
+    },
+    "xs_short_old_20261018_c": {
+      "status": "OBSERVED_TRACE_BYTE_AND_IDENTITY_REVIEW_PASS",
+      "meta": {
+        "tag": "xs_short_old_20261018_c",
+        "status": "PASS",
+        "backend": "xsim",
+        "started": "2026-10-18T23:38:59",
+        "root": "D:\\riscv\\RISCV",
+        "sealed_src": "D:\\riscv\\RISCV\\sim\\write_buffer_two_entry\\xs_short_old_20261018_c\\src",
+        "top": "tb_wb2_short_old",
+        "short": true,
+        "legacy": true,
+        "bridge": "D:\\riscv\\RISCV\\sim\\write_buffer_two_entry\\preparation_20261018_a\\before\\dual_sram_to_pango_ddr_bridge.v",
+        "bridge_sha256": "57f13e335ebcbba9b1d45ff4712284f4786d8291041c0d80ad82138309a95b35",
+        "params": {
+          "Dq": 32,
+          "Posted": 1,
+          "Depth": 1,
+          "Turnover": 1,
+          "Forward": 1,
+          "Ruw": 1,
+          "Icache": 1,
+          "Dcache": 1,
+          "Camera": 0,
+          "Preproc": 0,
+          "Plane": 1
+        },
+        "tools": {
+          "xvlog": "D:\\Xilinx\\Vivado\\2019.2\\bin\\xvlog.bat",
+          "xelab": "D:\\Xilinx\\Vivado\\2019.2\\bin\\xelab.bat",
+          "xsim": "D:\\Xilinx\\Vivado\\2019.2\\bin\\xsim.bat",
+          "python": "C:\\Users\\z'l'm'y'k\\.workbuddy\\binaries\\python\\versions\\3.13.12\\python.exe"
+        },
+        "commands": [
+          "D:\\Xilinx\\Vivado\\2019.2\\bin\\xvlog.bat --sv --define LEGACY_BRIDGE D:\\riscv\\RISCV\\sim\\write_buffer_two_entry\\xs_short_old_20261018_c\\src\\vendor\\GTP_GRS.v D:\\riscv\\RISCV\\sim\\write_buffer_two_entry\\xs_short_old_20261018_c\\src\\vendor\\GTP_DRM36K_E1.v D:\\riscv\\RISCV\\sim\\write_buffer_two_entry\\xs_short_old_20261018_c\\src\\ipcore\\icache\\rtl\\ipm2l_sdpram_v1_10_icache.v D:\\riscv\\RISCV\\sim\\write_buffer_two_entry\\xs_short_old_20261018_c\\src\\ipcore\\icache\\icache.v D:\\riscv\\RISCV\\sim\\write_buffer_two_entry\\xs_short_old_20261018_c\\src\\ipcore\\dcache\\rtl\\ipm2l_sdpram_v1_10_dcache.v D:\\riscv\\RISCV\\sim\\write_buffer_two_entry\\xs_short_old_20261018_c\\src\\ipcore\\dcache\\dcache.v D:\\riscv\\RISCV\\sim\\write_buffer_two_entry\\xs_short_old_20261018_c\\src\\myriscv\\dual_sram_to_pango_ddr_bridge.v D:\\riscv\\RISCV\\sim\\write_buffer_two_entry\\xs_short_old_20261018_c\\src\\tb\\tb_wb2_bridge.sv D:\\riscv\\RISCV\\sim\\write_buffer_two_entry\\xs_short_old_20261018_c\\src\\tb\\tb_wb2_variants.sv",
+          "D:\\Xilinx\\Vivado\\2019.2\\bin\\xelab.bat tb_wb2_short_old -s snap -debug off",
+          "D:\\Xilinx\\Vivado\\2019.2\\bin\\xsim.bat snap -runall",
+          "C:\\Users\\z'l'm'y'k\\.workbuddy\\binaries\\python\\versions\\3.13.12\\python.exe -B D:\\riscv\\RISCV\\sim\\write_buffer_two_entry\\xs_short_old_20261018_c\\src\\tools\\check_wb2.py --short D:\\riscv\\RISCV\\sim\\write_buffer_two_entry\\xs_short_old_20261018_c"
+        ],
+        "exits": {
+          "xvlog": 0,
+          "xelab": 0,
+          "xsim": 0,
+          "check": 0
+        },
+        "timeline": [
+          "xvlog exit=0 1.7s :: xvlog.bat --sv --define LEGACY_BRIDGE D:\\riscv\\RISCV\\sim\\write_buffer_two_entry\\xs_short_old_20261018_c\\src\\vendor\\GTP_GRS.v D:\\riscv\\RISCV\\sim\\write_buffer_two_entry\\xs_short_old_20261018_c\\src\\vendor\\GTP_DRM36K_E1.v D:\\riscv\\RISCV\\sim\\write_buffer_two_entry\\xs_short_old_20261018_c\\src\\ipcore\\icache\\rtl\\ipm2l_sdpram_v1_10_icache.v D:\\riscv\\RISCV\\sim\\write_buffer_two_entry\\xs_short_old_20261018_c\\src\\ipcore\\icache\\icache.v D:\\riscv\\RISCV\\sim\\write_buffer_two_entry\\xs_short_old_20261018_c\\src\\ipcore\\dcache\\rtl\\ipm2l_sdpram_v1_10_dcache.v D:\\riscv\\RISCV\\sim\\write_buffer_two_entry\\xs_short_old_20261018_c\\src\\ipcore\\dcache\\dcache.v D:\\riscv\\RISCV\\sim\\write_buffer_two_entry\\xs_short_old_20261018_c\\src\\myriscv\\dual_sram_to_pango_ddr_bridge.v D:\\riscv\\RISCV\\sim\\write_buffer_two_entry\\xs_short_old_20261018_c\\src\\tb\\tb_wb2_bridge.sv D:\\riscv\\RISCV\\sim\\write_buffer_two_entry\\xs_short_old_20261018_c\\src\\tb\\tb_wb2_variants.sv",
+          "xelab exit=0 10.2s :: xelab.bat tb_wb2_short_old -s snap -debug off",
+          "xsim exit=0 7.8s :: xsim.bat snap -runall",
+          "check exit=0 0.5s :: check_wb2.py -B D:\\riscv\\RISCV\\sim\\write_buffer_two_entry\\xs_short_old_20261018_c\\src\\tools\\check_wb2.py --short D:\\riscv\\RISCV\\sim\\write_buffer_two_entry\\xs_short_old_20261018_c"
+        ],
+        "sim_result": "RESULT: PASS wb2 edges=44 aw=4 w=4 ar=1 r=1 dacc=6 drsp=6 iacc=0 irsp=0",
+        "check_status": "PASS",
+        "identity_drift": 0,
+        "error": null,
+        "finished": "2026-10-18T23:39:19",
+        "modelsim_note": "ModelSim 10.6c unavailable on this machine: machine-level block on IPv6 loopback prevents its kernel RPC (\"RPC_Init ... ::1\"). Same TB/DUT executed on Vivado xsim 2019.2."
+      },
+      "manifest": {
+        "vendor\\GTP_GRS.v": "dae720bcc467ddb4ff99f2753368934e2649b87f6ac63b8a0d7219699bac1dec",
+        "vendor\\GTP_DRM36K_E1.v": "3e372cd60025a439eb7435d770930260e22c40f148ae83c4bdf7398fb65ddb66",
+        "ipcore\\icache\\rtl\\ipm2l_sdpram_v1_10_icache.v": "a92f88609e3c76bbd55f23dd6d9d08db25494745d16f1715b8e2279ea2857ad4",
+        "ipcore\\icache\\icache.v": "9e8746619f8afa1c2adfe1e7a48bd63850b98332d40f23c27817a28b3f24de76",
+        "ipcore\\dcache\\rtl\\ipm2l_sdpram_v1_10_dcache.v": "66905d131c90236dabd8feb8e8e586185955b37cb5ba694c047dc331efac303f",
+        "ipcore\\dcache\\dcache.v": "bf62d32342a11ba6fad55f11c2413716a834c7028e9a1d8660a5f1a5477514a7",
+        "myriscv\\dual_sram_to_pango_ddr_bridge.v": "57f13e335ebcbba9b1d45ff4712284f4786d8291041c0d80ad82138309a95b35",
+        "tb\\tb_wb2_bridge.sv": "7cb865f4c7103b93f0e2188d11d9e9ce18a38b609cb428c9b212b4ad3b93628b",
+        "tb\\tb_wb2_variants.sv": "259ae7ceded5eaef19159b65996df1757ba68ca0c9d2b5d1e3907e35743444b5",
+        "tools\\check_wb2.py": "851908ee94a177d408a89137d67e7a002f9f658cb526e5c03cf223494d3c624c",
+        "tools\\run_xsim.ps1": "76e2f74115e44b42c99fb784106fd03866290eddddc84f9daf51248b4c5c3402"
+      },
+      "evidence_sha256": {
+        "sim/write_buffer_two_entry/xs_short_old_20261018_c/check_short.json": "c1200503b845944890a66d342965ffaa5474323935e1a61383d34bfad2449e67",
+        "sim/write_buffer_two_entry/xs_short_old_20261018_c/inputs_after.sha256": "e9740512a0ac9f18a0b80361746ed7d4a17f75f529fceafa0e387d9d42e181e5",
+        "sim/write_buffer_two_entry/xs_short_old_20261018_c/inputs_before.sha256": "e9740512a0ac9f18a0b80361746ed7d4a17f75f529fceafa0e387d9d42e181e5",
+        "sim/write_buffer_two_entry/xs_short_old_20261018_c/log_check.txt": "c1200503b845944890a66d342965ffaa5474323935e1a61383d34bfad2449e67",
+        "sim/write_buffer_two_entry/xs_short_old_20261018_c/log_xelab.txt": "539cd04b7c3afe97f22f858cdec848d4cd1d712732da03a0a2ef8034a19f1d51",
+        "sim/write_buffer_two_entry/xs_short_old_20261018_c/log_xsim.txt": "fabb88274f4a8b0b834936901ca1fb27128270cee984eaa44cc50bf91b2fa07e",
+        "sim/write_buffer_two_entry/xs_short_old_20261018_c/log_xvlog.txt": "4fc94e090b4ae50ac2ee8ae319aac5c1e53b9fc1a82844ef0de9e9b911649bba",
+        "sim/write_buffer_two_entry/xs_short_old_20261018_c/run_meta.json": "5a199dcf09cd58f4e6a9a052ba4fdd76a6247cef339b3489046da9fe715b4865",
+        "sim/write_buffer_two_entry/xs_short_old_20261018_c/wb2.edges.log": "069a30b1ab5a644216b1f80cf204f04ec79f6c62f85ee6d267393039f0ca5602",
+        "sim/write_buffer_two_entry/xs_short_old_20261018_c/webtalk_27404.backup.log": "45010bf4cfd124f13d3e0d1e320ebd37d0ec57ef3179640eb829a876368d3e98",
+        "sim/write_buffer_two_entry/xs_short_old_20261018_c/xelab.log": "f2a1038e492d5abdc5a6513faccbd003f2df7eb559ba6f8a821bad1543f0a5f2",
+        "sim/write_buffer_two_entry/xs_short_old_20261018_c/xsim.log": "47a823493015e7c5695c962a00788659963efdbb05b9d25f025eb31b52635d01",
+        "sim/write_buffer_two_entry/xs_short_old_20261018_c/xvlog.log": "963d7a8748012b8a1587d89c6852c03dbab96681bfe4037699cabafbbff3de13"
+      },
+      "counts": {
+        "store_cancel": 0,
+        "AW_cancel": 0,
+        "D_cancel": 0,
+        "I_cancel": 0,
+        "max_occupancy": 1,
+        "D_accept": 6,
+        "store_accept": 4,
+        "D_response": 6,
+        "AW": 4,
+        "W": 4,
+        "load_accept": 2,
+        "AR": 1,
+        "R": 1
+      },
+      "issues": [],
+      "witness": [],
+      "read_checks": [
+        {
+          "port": "D",
+          "accepted": 30,
+          "response": 33,
+          "addr": 512,
+          "actual": 1986748501,
+          "expected": 1986748501
+        },
+        {
+          "port": "D",
+          "accepted": 36,
+          "response": 37,
+          "addr": 512,
+          "actual": 3857049061,
+          "expected": 3857049061
+        }
+      ],
+      "all_8192_final_bytes_match": true,
+      "marks": {
+        "S": 9,
+        "S_done": 40
+      },
+      "accepts": [
+        [
+          10,
+          1,
+          0,
+          2711724449,
+          15,
+          2
+        ],
+        [
+          18,
+          1,
+          160,
+          2998055602,
+          15,
+          2
+        ],
+        [
+          24,
+          1,
+          448,
+          3570717908,
+          15,
+          2
+        ],
+        [
+          30,
+          0,
+          512,
+          0,
+          0,
+          2
+        ],
+        [
+          34,
+          1,
+          512,
+          3857049061,
+          15,
+          2
+        ],
+        [
+          36,
+          0,
+          512,
+          0,
+          0,
+          2
+        ]
+      ],
+      "AW": [
+        0,
+        40,
+        112,
+        128
+      ],
+      "W": [
+        [
+          0,
+          2711724449,
+          15
+        ],
+        [
+          40,
+          2998055602,
+          15
+        ],
+        [
+          112,
+          3570717908,
+          15
+        ],
+        [
+          128,
+          3857049061,
+          15
+        ]
+      ],
+      "summary": [
+        44,
+        4,
+        4,
+        1,
+        1,
+        6,
+        6,
+        0,
+        0,
+        0,
+        4,
+        4,
+        2,
+        0,
+        0,
+        0,
+        0
+      ],
+      "vendor_diagnostics": [
+        "IPSpecCheck: 04030130 ipm2l_flex_sdpram parameter setting error !!!: c_WR_ADDR_WIDTH must between 9-20 when DRM Resource is 36K",
+        "IPSpecCheck: 04030130 ipm2l_flex_sdpram parameter setting error !!!: c_WR_ADDR_WIDTH must between 9-20 when DRM Resource is 36K"
+      ]
+    },
+    "xs_short_new_d1_20261018_c": {
+      "status": "OBSERVED_TRACE_BYTE_AND_IDENTITY_REVIEW_PASS",
+      "meta": {
+        "tag": "xs_short_new_d1_20261018_c",
+        "status": "PASS",
+        "backend": "xsim",
+        "started": "2026-10-18T23:38:38",
+        "root": "D:\\riscv\\RISCV",
+        "sealed_src": "D:\\riscv\\RISCV\\sim\\write_buffer_two_entry\\xs_short_new_d1_20261018_c\\src",
+        "top": "tb_wb2_short_new_d1",
+        "short": true,
+        "legacy": false,
+        "bridge": "D:\\riscv\\RISCV\\myriscv\\dual_sram_to_pango_ddr_bridge.v",
+        "bridge_sha256": "855318eebf7fc75a0b17d15a620b6d8d08bb54ff9348d663cbcd6aca0883262f",
+        "params": {
+          "Dq": 32,
+          "Posted": 1,
+          "Depth": 1,
+          "Turnover": 1,
+          "Forward": 1,
+          "Ruw": 1,
+          "Icache": 1,
+          "Dcache": 1,
+          "Camera": 0,
+          "Preproc": 0,
+          "Plane": 1
+        },
+        "tools": {
+          "xvlog": "D:\\Xilinx\\Vivado\\2019.2\\bin\\xvlog.bat",
+          "xelab": "D:\\Xilinx\\Vivado\\2019.2\\bin\\xelab.bat",
+          "xsim": "D:\\Xilinx\\Vivado\\2019.2\\bin\\xsim.bat",
+          "python": "C:\\Users\\z'l'm'y'k\\.workbuddy\\binaries\\python\\versions\\3.13.12\\python.exe"
+        },
+        "commands": [
+          "D:\\Xilinx\\Vivado\\2019.2\\bin\\xvlog.bat --sv D:\\riscv\\RISCV\\sim\\write_buffer_two_entry\\xs_short_new_d1_20261018_c\\src\\vendor\\GTP_GRS.v D:\\riscv\\RISCV\\sim\\write_buffer_two_entry\\xs_short_new_d1_20261018_c\\src\\vendor\\GTP_DRM36K_E1.v D:\\riscv\\RISCV\\sim\\write_buffer_two_entry\\xs_short_new_d1_20261018_c\\src\\ipcore\\icache\\rtl\\ipm2l_sdpram_v1_10_icache.v D:\\riscv\\RISCV\\sim\\write_buffer_two_entry\\xs_short_new_d1_20261018_c\\src\\ipcore\\icache\\icache.v D:\\riscv\\RISCV\\sim\\write_buffer_two_entry\\xs_short_new_d1_20261018_c\\src\\ipcore\\dcache\\rtl\\ipm2l_sdpram_v1_10_dcache.v D:\\riscv\\RISCV\\sim\\write_buffer_two_entry\\xs_short_new_d1_20261018_c\\src\\ipcore\\dcache\\dcache.v D:\\riscv\\RISCV\\sim\\write_buffer_two_entry\\xs_short_new_d1_20261018_c\\src\\myriscv\\dual_sram_to_pango_ddr_bridge.v D:\\riscv\\RISCV\\sim\\write_buffer_two_entry\\xs_short_new_d1_20261018_c\\src\\tb\\tb_wb2_bridge.sv D:\\riscv\\RISCV\\sim\\write_buffer_two_entry\\xs_short_new_d1_20261018_c\\src\\tb\\tb_wb2_variants.sv",
+          "D:\\Xilinx\\Vivado\\2019.2\\bin\\xelab.bat tb_wb2_short_new_d1 -s snap -debug off",
+          "D:\\Xilinx\\Vivado\\2019.2\\bin\\xsim.bat snap -runall",
+          "C:\\Users\\z'l'm'y'k\\.workbuddy\\binaries\\python\\versions\\3.13.12\\python.exe -B D:\\riscv\\RISCV\\sim\\write_buffer_two_entry\\xs_short_new_d1_20261018_c\\src\\tools\\check_wb2.py --short D:\\riscv\\RISCV\\sim\\write_buffer_two_entry\\xs_short_new_d1_20261018_c"
+        ],
+        "exits": {
+          "xvlog": 0,
+          "xelab": 0,
+          "xsim": 0,
+          "check": 0
+        },
+        "timeline": [
+          "xvlog exit=0 1.7s :: xvlog.bat --sv D:\\riscv\\RISCV\\sim\\write_buffer_two_entry\\xs_short_new_d1_20261018_c\\src\\vendor\\GTP_GRS.v D:\\riscv\\RISCV\\sim\\write_buffer_two_entry\\xs_short_new_d1_20261018_c\\src\\vendor\\GTP_DRM36K_E1.v D:\\riscv\\RISCV\\sim\\write_buffer_two_entry\\xs_short_new_d1_20261018_c\\src\\ipcore\\icache\\rtl\\ipm2l_sdpram_v1_10_icache.v D:\\riscv\\RISCV\\sim\\write_buffer_two_entry\\xs_short_new_d1_20261018_c\\src\\ipcore\\icache\\icache.v D:\\riscv\\RISCV\\sim\\write_buffer_two_entry\\xs_short_new_d1_20261018_c\\src\\ipcore\\dcache\\rtl\\ipm2l_sdpram_v1_10_dcache.v D:\\riscv\\RISCV\\sim\\write_buffer_two_entry\\xs_short_new_d1_20261018_c\\src\\ipcore\\dcache\\dcache.v D:\\riscv\\RISCV\\sim\\write_buffer_two_entry\\xs_short_new_d1_20261018_c\\src\\myriscv\\dual_sram_to_pango_ddr_bridge.v D:\\riscv\\RISCV\\sim\\write_buffer_two_entry\\xs_short_new_d1_20261018_c\\src\\tb\\tb_wb2_bridge.sv D:\\riscv\\RISCV\\sim\\write_buffer_two_entry\\xs_short_new_d1_20261018_c\\src\\tb\\tb_wb2_variants.sv",
+          "xelab exit=0 10s :: xelab.bat tb_wb2_short_new_d1 -s snap -debug off",
+          "xsim exit=0 7.8s :: xsim.bat snap -runall",
+          "check exit=0 0.5s :: check_wb2.py -B D:\\riscv\\RISCV\\sim\\write_buffer_two_entry\\xs_short_new_d1_20261018_c\\src\\tools\\check_wb2.py --short D:\\riscv\\RISCV\\sim\\write_buffer_two_entry\\xs_short_new_d1_20261018_c"
+        ],
+        "sim_result": "RESULT: PASS wb2 edges=44 aw=4 w=4 ar=1 r=1 dacc=6 drsp=6 iacc=0 irsp=0",
+        "check_status": "PASS",
+        "identity_drift": 0,
+        "error": null,
+        "finished": "2026-10-18T23:38:58",
+        "modelsim_note": "ModelSim 10.6c unavailable on this machine: machine-level block on IPv6 loopback prevents its kernel RPC (\"RPC_Init ... ::1\"). Same TB/DUT executed on Vivado xsim 2019.2."
+      },
+      "manifest": {
+        "vendor\\GTP_GRS.v": "dae720bcc467ddb4ff99f2753368934e2649b87f6ac63b8a0d7219699bac1dec",
+        "vendor\\GTP_DRM36K_E1.v": "3e372cd60025a439eb7435d770930260e22c40f148ae83c4bdf7398fb65ddb66",
+        "ipcore\\icache\\rtl\\ipm2l_sdpram_v1_10_icache.v": "a92f88609e3c76bbd55f23dd6d9d08db25494745d16f1715b8e2279ea2857ad4",
+        "ipcore\\icache\\icache.v": "9e8746619f8afa1c2adfe1e7a48bd63850b98332d40f23c27817a28b3f24de76",
+        "ipcore\\dcache\\rtl\\ipm2l_sdpram_v1_10_dcache.v": "66905d131c90236dabd8feb8e8e586185955b37cb5ba694c047dc331efac303f",
+        "ipcore\\dcache\\dcache.v": "bf62d32342a11ba6fad55f11c2413716a834c7028e9a1d8660a5f1a5477514a7",
+        "myriscv\\dual_sram_to_pango_ddr_bridge.v": "855318eebf7fc75a0b17d15a620b6d8d08bb54ff9348d663cbcd6aca0883262f",
+        "tb\\tb_wb2_bridge.sv": "7cb865f4c7103b93f0e2188d11d9e9ce18a38b609cb428c9b212b4ad3b93628b",
+        "tb\\tb_wb2_variants.sv": "259ae7ceded5eaef19159b65996df1757ba68ca0c9d2b5d1e3907e35743444b5",
+        "tools\\check_wb2.py": "851908ee94a177d408a89137d67e7a002f9f658cb526e5c03cf223494d3c624c",
+        "tools\\run_xsim.ps1": "76e2f74115e44b42c99fb784106fd03866290eddddc84f9daf51248b4c5c3402"
+      },
+      "evidence_sha256": {
+        "sim/write_buffer_two_entry/xs_short_new_d1_20261018_c/check_short.json": "c1200503b845944890a66d342965ffaa5474323935e1a61383d34bfad2449e67",
+        "sim/write_buffer_two_entry/xs_short_new_d1_20261018_c/compare_vs_old.json": "e152873a9497380e6540a1b168a7dc7b1daf45b9e3ad9707cf2385da9e170922",
+        "sim/write_buffer_two_entry/xs_short_new_d1_20261018_c/inputs_after.sha256": "13d679ae12d24807019ba79d5ed50756bd8dad594b14b48aef1658278009bf5f",
+        "sim/write_buffer_two_entry/xs_short_new_d1_20261018_c/inputs_before.sha256": "13d679ae12d24807019ba79d5ed50756bd8dad594b14b48aef1658278009bf5f",
+        "sim/write_buffer_two_entry/xs_short_new_d1_20261018_c/log_check.txt": "c1200503b845944890a66d342965ffaa5474323935e1a61383d34bfad2449e67",
+        "sim/write_buffer_two_entry/xs_short_new_d1_20261018_c/log_xelab.txt": "0b4b72e75e01122077f364889f902ed121d4bc69ef0b006a17cedd6415980323",
+        "sim/write_buffer_two_entry/xs_short_new_d1_20261018_c/log_xsim.txt": "9bad976bd0f404c6b9fb1f81159302d58e2c0ddef2b00dc7ce8564e3b8a66e6f",
+        "sim/write_buffer_two_entry/xs_short_new_d1_20261018_c/log_xvlog.txt": "773fe7d96e7eee60a75dd71603b6c84a0601fc4f5e7d22a6e15bfacc6ad86eee",
+        "sim/write_buffer_two_entry/xs_short_new_d1_20261018_c/run_meta.json": "93eb02605ef63d6fec662bbcf823f52e658deac18fcc17d0f7547339abb00a5f",
+        "sim/write_buffer_two_entry/xs_short_new_d1_20261018_c/wb2.edges.log": "069a30b1ab5a644216b1f80cf204f04ec79f6c62f85ee6d267393039f0ca5602",
+        "sim/write_buffer_two_entry/xs_short_new_d1_20261018_c/webtalk_32648.backup.log": "91c5f837b13b32d9fc47979894dabb493eb9d52290ae7d6c6be299e20454e7f9",
+        "sim/write_buffer_two_entry/xs_short_new_d1_20261018_c/xelab.log": "fef4051c0dbb6fbd87089a1b809e2e045fbc2f500fdb25b68ce82c8ceb2c3875",
+        "sim/write_buffer_two_entry/xs_short_new_d1_20261018_c/xsim.log": "b12044e586002357707cf6a7366624c961e421a38b23e59c0dec049ec9759630",
+        "sim/write_buffer_two_entry/xs_short_new_d1_20261018_c/xvlog.log": "960db702eede9c408cd4d6aea8545da6d38d3bf3d8a6ada7c5552b9f26a8e367"
+      },
+      "counts": {
+        "store_cancel": 0,
+        "AW_cancel": 0,
+        "D_cancel": 0,
+        "I_cancel": 0,
+        "max_occupancy": 1,
+        "D_accept": 6,
+        "store_accept": 4,
+        "D_response": 6,
+        "AW": 4,
+        "W": 4,
+        "load_accept": 2,
+        "AR": 1,
+        "R": 1
+      },
+      "issues": [],
+      "witness": [],
+      "read_checks": [
+        {
+          "port": "D",
+          "accepted": 30,
+          "response": 33,
+          "addr": 512,
+          "actual": 1986748501,
+          "expected": 1986748501
+        },
+        {
+          "port": "D",
+          "accepted": 36,
+          "response": 37,
+          "addr": 512,
+          "actual": 3857049061,
+          "expected": 3857049061
+        }
+      ],
+      "all_8192_final_bytes_match": true,
+      "marks": {
+        "S": 9,
+        "S_done": 40
+      },
+      "accepts": [
+        [
+          10,
+          1,
+          0,
+          2711724449,
+          15,
+          2
+        ],
+        [
+          18,
+          1,
+          160,
+          2998055602,
+          15,
+          2
+        ],
+        [
+          24,
+          1,
+          448,
+          3570717908,
+          15,
+          2
+        ],
+        [
+          30,
+          0,
+          512,
+          0,
+          0,
+          2
+        ],
+        [
+          34,
+          1,
+          512,
+          3857049061,
+          15,
+          2
+        ],
+        [
+          36,
+          0,
+          512,
+          0,
+          0,
+          2
+        ]
+      ],
+      "AW": [
+        0,
+        40,
+        112,
+        128
+      ],
+      "W": [
+        [
+          0,
+          2711724449,
+          15
+        ],
+        [
+          40,
+          2998055602,
+          15
+        ],
+        [
+          112,
+          3570717908,
+          15
+        ],
+        [
+          128,
+          3857049061,
+          15
+        ]
+      ],
+      "summary": [
+        44,
+        4,
+        4,
+        1,
+        1,
+        6,
+        6,
+        0,
+        0,
+        0,
+        4,
+        4,
+        2,
+        0,
+        0,
+        0,
+        0
+      ],
+      "vendor_diagnostics": [
+        "IPSpecCheck: 04030130 ipm2l_flex_sdpram parameter setting error !!!: c_WR_ADDR_WIDTH must between 9-20 when DRM Resource is 36K",
+        "IPSpecCheck: 04030130 ipm2l_flex_sdpram parameter setting error !!!: c_WR_ADDR_WIDTH must between 9-20 when DRM Resource is 36K"
+      ]
+    },
+    "xs_short_new_d2_20261018_c": {
+      "status": "OBSERVED_TRACE_BYTE_AND_IDENTITY_REVIEW_PASS",
+      "meta": {
+        "tag": "xs_short_new_d2_20261018_c",
+        "status": "PASS",
+        "backend": "xsim",
+        "started": "2026-10-18T23:38:17",
+        "root": "D:\\riscv\\RISCV",
+        "sealed_src": "D:\\riscv\\RISCV\\sim\\write_buffer_two_entry\\xs_short_new_d2_20261018_c\\src",
+        "top": "tb_wb2_short_new_d2",
+        "short": true,
+        "legacy": false,
+        "bridge": "D:\\riscv\\RISCV\\myriscv\\dual_sram_to_pango_ddr_bridge.v",
+        "bridge_sha256": "855318eebf7fc75a0b17d15a620b6d8d08bb54ff9348d663cbcd6aca0883262f",
+        "params": {
+          "Dq": 32,
+          "Posted": 1,
+          "Depth": 2,
+          "Turnover": 1,
+          "Forward": 1,
+          "Ruw": 1,
+          "Icache": 1,
+          "Dcache": 1,
+          "Camera": 0,
+          "Preproc": 0,
+          "Plane": 1
+        },
+        "tools": {
+          "xvlog": "D:\\Xilinx\\Vivado\\2019.2\\bin\\xvlog.bat",
+          "xelab": "D:\\Xilinx\\Vivado\\2019.2\\bin\\xelab.bat",
+          "xsim": "D:\\Xilinx\\Vivado\\2019.2\\bin\\xsim.bat",
+          "python": "C:\\Users\\z'l'm'y'k\\.workbuddy\\binaries\\python\\versions\\3.13.12\\python.exe"
+        },
+        "commands": [
+          "D:\\Xilinx\\Vivado\\2019.2\\bin\\xvlog.bat --sv D:\\riscv\\RISCV\\sim\\write_buffer_two_entry\\xs_short_new_d2_20261018_c\\src\\vendor\\GTP_GRS.v D:\\riscv\\RISCV\\sim\\write_buffer_two_entry\\xs_short_new_d2_20261018_c\\src\\vendor\\GTP_DRM36K_E1.v D:\\riscv\\RISCV\\sim\\write_buffer_two_entry\\xs_short_new_d2_20261018_c\\src\\ipcore\\icache\\rtl\\ipm2l_sdpram_v1_10_icache.v D:\\riscv\\RISCV\\sim\\write_buffer_two_entry\\xs_short_new_d2_20261018_c\\src\\ipcore\\icache\\icache.v D:\\riscv\\RISCV\\sim\\write_buffer_two_entry\\xs_short_new_d2_20261018_c\\src\\ipcore\\dcache\\rtl\\ipm2l_sdpram_v1_10_dcache.v D:\\riscv\\RISCV\\sim\\write_buffer_two_entry\\xs_short_new_d2_20261018_c\\src\\ipcore\\dcache\\dcache.v D:\\riscv\\RISCV\\sim\\write_buffer_two_entry\\xs_short_new_d2_20261018_c\\src\\myriscv\\dual_sram_to_pango_ddr_bridge.v D:\\riscv\\RISCV\\sim\\write_buffer_two_entry\\xs_short_new_d2_20261018_c\\src\\tb\\tb_wb2_bridge.sv D:\\riscv\\RISCV\\sim\\write_buffer_two_entry\\xs_short_new_d2_20261018_c\\src\\tb\\tb_wb2_variants.sv",
+          "D:\\Xilinx\\Vivado\\2019.2\\bin\\xelab.bat tb_wb2_short_new_d2 -s snap -debug off",
+          "D:\\Xilinx\\Vivado\\2019.2\\bin\\xsim.bat snap -runall",
+          "C:\\Users\\z'l'm'y'k\\.workbuddy\\binaries\\python\\versions\\3.13.12\\python.exe -B D:\\riscv\\RISCV\\sim\\write_buffer_two_entry\\xs_short_new_d2_20261018_c\\src\\tools\\check_wb2.py --short D:\\riscv\\RISCV\\sim\\write_buffer_two_entry\\xs_short_new_d2_20261018_c"
+        ],
+        "exits": {
+          "xvlog": 0,
+          "xelab": 0,
+          "xsim": 0,
+          "check": 0
+        },
+        "timeline": [
+          "xvlog exit=0 1.7s :: xvlog.bat --sv D:\\riscv\\RISCV\\sim\\write_buffer_two_entry\\xs_short_new_d2_20261018_c\\src\\vendor\\GTP_GRS.v D:\\riscv\\RISCV\\sim\\write_buffer_two_entry\\xs_short_new_d2_20261018_c\\src\\vendor\\GTP_DRM36K_E1.v D:\\riscv\\RISCV\\sim\\write_buffer_two_entry\\xs_short_new_d2_20261018_c\\src\\ipcore\\icache\\rtl\\ipm2l_sdpram_v1_10_icache.v D:\\riscv\\RISCV\\sim\\write_buffer_two_entry\\xs_short_new_d2_20261018_c\\src\\ipcore\\icache\\icache.v D:\\riscv\\RISCV\\sim\\write_buffer_two_entry\\xs_short_new_d2_20261018_c\\src\\ipcore\\dcache\\rtl\\ipm2l_sdpram_v1_10_dcache.v D:\\riscv\\RISCV\\sim\\write_buffer_two_entry\\xs_short_new_d2_20261018_c\\src\\ipcore\\dcache\\dcache.v D:\\riscv\\RISCV\\sim\\write_buffer_two_entry\\xs_short_new_d2_20261018_c\\src\\myriscv\\dual_sram_to_pango_ddr_bridge.v D:\\riscv\\RISCV\\sim\\write_buffer_two_entry\\xs_short_new_d2_20261018_c\\src\\tb\\tb_wb2_bridge.sv D:\\riscv\\RISCV\\sim\\write_buffer_two_entry\\xs_short_new_d2_20261018_c\\src\\tb\\tb_wb2_variants.sv",
+          "xelab exit=0 10.1s :: xelab.bat tb_wb2_short_new_d2 -s snap -debug off",
+          "xsim exit=0 7.8s :: xsim.bat snap -runall",
+          "check exit=0 0.5s :: check_wb2.py -B D:\\riscv\\RISCV\\sim\\write_buffer_two_entry\\xs_short_new_d2_20261018_c\\src\\tools\\check_wb2.py --short D:\\riscv\\RISCV\\sim\\write_buffer_two_entry\\xs_short_new_d2_20261018_c"
+        ],
+        "sim_result": "RESULT: PASS wb2 edges=35 aw=4 w=4 ar=1 r=1 dacc=6 drsp=6 iacc=0 irsp=0",
+        "check_status": "PASS",
+        "identity_drift": 0,
+        "error": null,
+        "finished": "2026-10-18T23:38:37",
+        "modelsim_note": "ModelSim 10.6c unavailable on this machine: machine-level block on IPv6 loopback prevents its kernel RPC (\"RPC_Init ... ::1\"). Same TB/DUT executed on Vivado xsim 2019.2."
+      },
+      "manifest": {
+        "vendor\\GTP_GRS.v": "dae720bcc467ddb4ff99f2753368934e2649b87f6ac63b8a0d7219699bac1dec",
+        "vendor\\GTP_DRM36K_E1.v": "3e372cd60025a439eb7435d770930260e22c40f148ae83c4bdf7398fb65ddb66",
+        "ipcore\\icache\\rtl\\ipm2l_sdpram_v1_10_icache.v": "a92f88609e3c76bbd55f23dd6d9d08db25494745d16f1715b8e2279ea2857ad4",
+        "ipcore\\icache\\icache.v": "9e8746619f8afa1c2adfe1e7a48bd63850b98332d40f23c27817a28b3f24de76",
+        "ipcore\\dcache\\rtl\\ipm2l_sdpram_v1_10_dcache.v": "66905d131c90236dabd8feb8e8e586185955b37cb5ba694c047dc331efac303f",
+        "ipcore\\dcache\\dcache.v": "bf62d32342a11ba6fad55f11c2413716a834c7028e9a1d8660a5f1a5477514a7",
+        "myriscv\\dual_sram_to_pango_ddr_bridge.v": "855318eebf7fc75a0b17d15a620b6d8d08bb54ff9348d663cbcd6aca0883262f",
+        "tb\\tb_wb2_bridge.sv": "7cb865f4c7103b93f0e2188d11d9e9ce18a38b609cb428c9b212b4ad3b93628b",
+        "tb\\tb_wb2_variants.sv": "259ae7ceded5eaef19159b65996df1757ba68ca0c9d2b5d1e3907e35743444b5",
+        "tools\\check_wb2.py": "851908ee94a177d408a89137d67e7a002f9f658cb526e5c03cf223494d3c624c",
+        "tools\\run_xsim.ps1": "76e2f74115e44b42c99fb784106fd03866290eddddc84f9daf51248b4c5c3402"
+      },
+      "evidence_sha256": {
+        "sim/write_buffer_two_entry/xs_short_new_d2_20261018_c/check_short.json": "d8c947e3127ae46bb98fdcdb2651fa7de2b28997266f25a718f3ae9132777456",
+        "sim/write_buffer_two_entry/xs_short_new_d2_20261018_c/compare_vs_d1.json": "b9e1ec85a730d5bbc2a5d002a21d81d92d06f84d33353a8eb611d22f55fd069c",
+        "sim/write_buffer_two_entry/xs_short_new_d2_20261018_c/inputs_after.sha256": "13d679ae12d24807019ba79d5ed50756bd8dad594b14b48aef1658278009bf5f",
+        "sim/write_buffer_two_entry/xs_short_new_d2_20261018_c/inputs_before.sha256": "13d679ae12d24807019ba79d5ed50756bd8dad594b14b48aef1658278009bf5f",
+        "sim/write_buffer_two_entry/xs_short_new_d2_20261018_c/log_check.txt": "d8c947e3127ae46bb98fdcdb2651fa7de2b28997266f25a718f3ae9132777456",
+        "sim/write_buffer_two_entry/xs_short_new_d2_20261018_c/log_xelab.txt": "367c84e6a9cd4d8ee22eeb6b04953fa5af4e3608b77aa12dd4c08960d2935a05",
+        "sim/write_buffer_two_entry/xs_short_new_d2_20261018_c/log_xsim.txt": "f0b163a5b1fe8d218117fca496596c4611bced2ece100fbfc104775abab17634",
+        "sim/write_buffer_two_entry/xs_short_new_d2_20261018_c/log_xvlog.txt": "e3fa7192f92290444f4f15c7897856f3b95162834e9d3e88535c73bf2d5cdd01",
+        "sim/write_buffer_two_entry/xs_short_new_d2_20261018_c/run_meta.json": "f47bda45d915357a788a7fd263fcd86a64d7c80d6fbae9286c403c2471253e05",
+        "sim/write_buffer_two_entry/xs_short_new_d2_20261018_c/wb2.edges.log": "fd3feb350b64efe0266831f6f1a2aa7c9eaceb1519ac22ffbfe80bdae2c800c5",
+        "sim/write_buffer_two_entry/xs_short_new_d2_20261018_c/webtalk_31420.backup.log": "68140f83d1a8124e0c40decd54d401d7ecb77c534de1da021e867f3932f7dc31",
+        "sim/write_buffer_two_entry/xs_short_new_d2_20261018_c/xelab.log": "c330b3a044c4935b9da8b839b7ef8b83c316d2c4d771a141654769029a70edde",
+        "sim/write_buffer_two_entry/xs_short_new_d2_20261018_c/xsim.log": "e99c8bc987b7c1140aebc2bc43141d3fcc317bf0dc511ea08e12d193c6fcd0d3",
+        "sim/write_buffer_two_entry/xs_short_new_d2_20261018_c/xvlog.log": "ea1ed564a2cd6b0d8d85af61540e28ff82facf6ac7929f7f4661540e51bb4b55"
+      },
+      "counts": {
+        "store_cancel": 0,
+        "AW_cancel": 0,
+        "D_cancel": 0,
+        "I_cancel": 0,
+        "max_occupancy": 2,
+        "D_accept": 6,
+        "store_accept": 4,
+        "D_response": 6,
+        "AW": 4,
+        "W": 4,
+        "load_accept": 2,
+        "AR": 1,
+        "R": 1,
+        "same_line_W_load_blocked": 1
+      },
+      "issues": [],
+      "witness": [],
+      "read_checks": [
+        {
+          "port": "D",
+          "accepted": 21,
+          "response": 24,
+          "addr": 512,
+          "actual": 1986748501,
+          "expected": 1986748501
+        },
+        {
+          "port": "D",
+          "accepted": 28,
+          "response": 29,
+          "addr": 512,
+          "actual": 3857049061,
+          "expected": 3857049061
+        }
+      ],
+      "all_8192_final_bytes_match": true,
+      "marks": {
+        "S": 9,
+        "S_done": 31
+      },
+      "accepts": [
+        [
+          10,
+          1,
+          0,
+          2711724449,
+          15,
+          2
+        ],
+        [
+          11,
+          1,
+          160,
+          2998055602,
+          15,
+          2
+        ],
+        [
+          17,
+          1,
+          448,
+          3570717908,
+          15,
+          2
+        ],
+        [
+          21,
+          0,
+          512,
+          0,
+          0,
+          2
+        ],
+        [
+          25,
+          1,
+          512,
+          3857049061,
+          15,
+          2
+        ],
+        [
+          28,
+          0,
+          512,
+          0,
+          0,
+          2
+        ]
+      ],
+      "AW": [
+        0,
+        40,
+        112,
+        128
+      ],
+      "W": [
+        [
+          0,
+          2711724449,
+          15
+        ],
+        [
+          40,
+          2998055602,
+          15
+        ],
+        [
+          112,
+          3570717908,
+          15
+        ],
+        [
+          128,
+          3857049061,
+          15
+        ]
+      ],
+      "summary": [
+        35,
+        4,
+        4,
+        1,
+        1,
+        6,
+        6,
+        0,
+        0,
+        0,
+        4,
+        4,
+        2,
+        0,
+        0,
+        0,
+        0
+      ],
+      "vendor_diagnostics": [
+        "IPSpecCheck: 04030130 ipm2l_flex_sdpram parameter setting error !!!: c_WR_ADDR_WIDTH must between 9-20 when DRM Resource is 36K",
+        "IPSpecCheck: 04030130 ipm2l_flex_sdpram parameter setting error !!!: c_WR_ADDR_WIDTH must between 9-20 when DRM Resource is 36K"
+      ]
+    },
+    "xs_compat_noturnover_20261018_c": {
+      "status": "OBSERVED_TRACE_BYTE_AND_IDENTITY_REVIEW_PASS",
+      "meta": {
+        "tag": "xs_compat_noturnover_20261018_c",
+        "status": "PASS",
+        "backend": "xsim",
+        "started": "2026-10-18T23:39:41",
+        "root": "D:\\riscv\\RISCV",
+        "sealed_src": "D:\\riscv\\RISCV\\sim\\write_buffer_two_entry\\xs_compat_noturnover_20261018_c\\src",
+        "top": "tb_wb2_compat_noturnover",
+        "short": true,
+        "legacy": false,
+        "bridge": "D:\\riscv\\RISCV\\myriscv\\dual_sram_to_pango_ddr_bridge.v",
+        "bridge_sha256": "855318eebf7fc75a0b17d15a620b6d8d08bb54ff9348d663cbcd6aca0883262f",
+        "params": {
+          "Dq": 32,
+          "Posted": 1,
+          "Depth": 2,
+          "Turnover": 0,
+          "Forward": 1,
+          "Ruw": 1,
+          "Icache": 1,
+          "Dcache": 1,
+          "Camera": 0,
+          "Preproc": 0,
+          "Plane": 1
+        },
+        "tools": {
+          "xvlog": "D:\\Xilinx\\Vivado\\2019.2\\bin\\xvlog.bat",
+          "xelab": "D:\\Xilinx\\Vivado\\2019.2\\bin\\xelab.bat",
+          "xsim": "D:\\Xilinx\\Vivado\\2019.2\\bin\\xsim.bat",
+          "python": "C:\\Users\\z'l'm'y'k\\.workbuddy\\binaries\\python\\versions\\3.13.12\\python.exe"
+        },
+        "commands": [
+          "D:\\Xilinx\\Vivado\\2019.2\\bin\\xvlog.bat --sv D:\\riscv\\RISCV\\sim\\write_buffer_two_entry\\xs_compat_noturnover_20261018_c\\src\\vendor\\GTP_GRS.v D:\\riscv\\RISCV\\sim\\write_buffer_two_entry\\xs_compat_noturnover_20261018_c\\src\\vendor\\GTP_DRM36K_E1.v D:\\riscv\\RISCV\\sim\\write_buffer_two_entry\\xs_compat_noturnover_20261018_c\\src\\ipcore\\icache\\rtl\\ipm2l_sdpram_v1_10_icache.v D:\\riscv\\RISCV\\sim\\write_buffer_two_entry\\xs_compat_noturnover_20261018_c\\src\\ipcore\\icache\\icache.v D:\\riscv\\RISCV\\sim\\write_buffer_two_entry\\xs_compat_noturnover_20261018_c\\src\\ipcore\\dcache\\rtl\\ipm2l_sdpram_v1_10_dcache.v D:\\riscv\\RISCV\\sim\\write_buffer_two_entry\\xs_compat_noturnover_20261018_c\\src\\ipcore\\dcache\\dcache.v D:\\riscv\\RISCV\\sim\\write_buffer_two_entry\\xs_compat_noturnover_20261018_c\\src\\myriscv\\dual_sram_to_pango_ddr_bridge.v D:\\riscv\\RISCV\\sim\\write_buffer_two_entry\\xs_compat_noturnover_20261018_c\\src\\tb\\tb_wb2_bridge.sv D:\\riscv\\RISCV\\sim\\write_buffer_two_entry\\xs_compat_noturnover_20261018_c\\src\\tb\\tb_wb2_variants.sv",
+          "D:\\Xilinx\\Vivado\\2019.2\\bin\\xelab.bat tb_wb2_compat_noturnover -s snap -debug off",
+          "D:\\Xilinx\\Vivado\\2019.2\\bin\\xsim.bat snap -runall",
+          "C:\\Users\\z'l'm'y'k\\.workbuddy\\binaries\\python\\versions\\3.13.12\\python.exe -B D:\\riscv\\RISCV\\sim\\write_buffer_two_entry\\xs_compat_noturnover_20261018_c\\src\\tools\\check_wb2.py --short D:\\riscv\\RISCV\\sim\\write_buffer_two_entry\\xs_compat_noturnover_20261018_c"
+        ],
+        "exits": {
+          "xvlog": 0,
+          "xelab": 0,
+          "xsim": 0,
+          "check": 0
+        },
+        "timeline": [
+          "xvlog exit=0 1.7s :: xvlog.bat --sv D:\\riscv\\RISCV\\sim\\write_buffer_two_entry\\xs_compat_noturnover_20261018_c\\src\\vendor\\GTP_GRS.v D:\\riscv\\RISCV\\sim\\write_buffer_two_entry\\xs_compat_noturnover_20261018_c\\src\\vendor\\GTP_DRM36K_E1.v D:\\riscv\\RISCV\\sim\\write_buffer_two_entry\\xs_compat_noturnover_20261018_c\\src\\ipcore\\icache\\rtl\\ipm2l_sdpram_v1_10_icache.v D:\\riscv\\RISCV\\sim\\write_buffer_two_entry\\xs_compat_noturnover_20261018_c\\src\\ipcore\\icache\\icache.v D:\\riscv\\RISCV\\sim\\write_buffer_two_entry\\xs_compat_noturnover_20261018_c\\src\\ipcore\\dcache\\rtl\\ipm2l_sdpram_v1_10_dcache.v D:\\riscv\\RISCV\\sim\\write_buffer_two_entry\\xs_compat_noturnover_20261018_c\\src\\ipcore\\dcache\\dcache.v D:\\riscv\\RISCV\\sim\\write_buffer_two_entry\\xs_compat_noturnover_20261018_c\\src\\myriscv\\dual_sram_to_pango_ddr_bridge.v D:\\riscv\\RISCV\\sim\\write_buffer_two_entry\\xs_compat_noturnover_20261018_c\\src\\tb\\tb_wb2_bridge.sv D:\\riscv\\RISCV\\sim\\write_buffer_two_entry\\xs_compat_noturnover_20261018_c\\src\\tb\\tb_wb2_variants.sv",
+          "xelab exit=0 10.2s :: xelab.bat tb_wb2_compat_noturnover -s snap -debug off",
+          "xsim exit=0 7.7s :: xsim.bat snap -runall",
+          "check exit=0 0.5s :: check_wb2.py -B D:\\riscv\\RISCV\\sim\\write_buffer_two_entry\\xs_compat_noturnover_20261018_c\\src\\tools\\check_wb2.py --short D:\\riscv\\RISCV\\sim\\write_buffer_two_entry\\xs_compat_noturnover_20261018_c"
+        ],
+        "sim_result": "RESULT: PASS wb2 edges=35 aw=4 w=4 ar=1 r=1 dacc=6 drsp=6 iacc=0 irsp=0",
+        "check_status": "PASS",
+        "identity_drift": 0,
+        "error": null,
+        "finished": "2026-10-18T23:40:01",
+        "modelsim_note": "ModelSim 10.6c unavailable on this machine: machine-level block on IPv6 loopback prevents its kernel RPC (\"RPC_Init ... ::1\"). Same TB/DUT executed on Vivado xsim 2019.2."
+      },
+      "manifest": {
+        "vendor\\GTP_GRS.v": "dae720bcc467ddb4ff99f2753368934e2649b87f6ac63b8a0d7219699bac1dec",
+        "vendor\\GTP_DRM36K_E1.v": "3e372cd60025a439eb7435d770930260e22c40f148ae83c4bdf7398fb65ddb66",
+        "ipcore\\icache\\rtl\\ipm2l_sdpram_v1_10_icache.v": "a92f88609e3c76bbd55f23dd6d9d08db25494745d16f1715b8e2279ea2857ad4",
+        "ipcore\\icache\\icache.v": "9e8746619f8afa1c2adfe1e7a48bd63850b98332d40f23c27817a28b3f24de76",
+        "ipcore\\dcache\\rtl\\ipm2l_sdpram_v1_10_dcache.v": "66905d131c90236dabd8feb8e8e586185955b37cb5ba694c047dc331efac303f",
+        "ipcore\\dcache\\dcache.v": "bf62d32342a11ba6fad55f11c2413716a834c7028e9a1d8660a5f1a5477514a7",
+        "myriscv\\dual_sram_to_pango_ddr_bridge.v": "855318eebf7fc75a0b17d15a620b6d8d08bb54ff9348d663cbcd6aca0883262f",
+        "tb\\tb_wb2_bridge.sv": "7cb865f4c7103b93f0e2188d11d9e9ce18a38b609cb428c9b212b4ad3b93628b",
+        "tb\\tb_wb2_variants.sv": "259ae7ceded5eaef19159b65996df1757ba68ca0c9d2b5d1e3907e35743444b5",
+        "tools\\check_wb2.py": "851908ee94a177d408a89137d67e7a002f9f658cb526e5c03cf223494d3c624c",
+        "tools\\run_xsim.ps1": "76e2f74115e44b42c99fb784106fd03866290eddddc84f9daf51248b4c5c3402"
+      },
+      "evidence_sha256": {
+        "sim/write_buffer_two_entry/xs_compat_noturnover_20261018_c/check_short.json": "d8c947e3127ae46bb98fdcdb2651fa7de2b28997266f25a718f3ae9132777456",
+        "sim/write_buffer_two_entry/xs_compat_noturnover_20261018_c/inputs_after.sha256": "13d679ae12d24807019ba79d5ed50756bd8dad594b14b48aef1658278009bf5f",
+        "sim/write_buffer_two_entry/xs_compat_noturnover_20261018_c/inputs_before.sha256": "13d679ae12d24807019ba79d5ed50756bd8dad594b14b48aef1658278009bf5f",
+        "sim/write_buffer_two_entry/xs_compat_noturnover_20261018_c/log_check.txt": "d8c947e3127ae46bb98fdcdb2651fa7de2b28997266f25a718f3ae9132777456",
+        "sim/write_buffer_two_entry/xs_compat_noturnover_20261018_c/log_xelab.txt": "47380d73dcf797d18248099bc70c3d08032a48f7c6a7611222258b0157017e79",
+        "sim/write_buffer_two_entry/xs_compat_noturnover_20261018_c/log_xsim.txt": "af164cf4b0e884adcbdfea1ffd308f8e7dd79cee4c1dda505933b85d0482dd1c",
+        "sim/write_buffer_two_entry/xs_compat_noturnover_20261018_c/log_xvlog.txt": "17428985a8204e7c33827f32be5261ed0106418d030973c333ee77f01d1222de",
+        "sim/write_buffer_two_entry/xs_compat_noturnover_20261018_c/run_meta.json": "6a4c536663cfaaa8b1fc3a1ab8ed801da74809ffcddc452b33c489e91cf8e1fd",
+        "sim/write_buffer_two_entry/xs_compat_noturnover_20261018_c/wb2.edges.log": "fd3feb350b64efe0266831f6f1a2aa7c9eaceb1519ac22ffbfe80bdae2c800c5",
+        "sim/write_buffer_two_entry/xs_compat_noturnover_20261018_c/webtalk_28456.backup.log": "96905c215f66709bfcd941418a2602c26d78125c82a17f7902a929c3c26061fa",
+        "sim/write_buffer_two_entry/xs_compat_noturnover_20261018_c/xelab.log": "ae0584ca790bd13b2531f6fe28836ee768bdfe08155f18df128321c3efac554e",
+        "sim/write_buffer_two_entry/xs_compat_noturnover_20261018_c/xsim.log": "893049f11b8cb16babdbfc8945a48a41f37b22f086ac67da9f8024a511396f66",
+        "sim/write_buffer_two_entry/xs_compat_noturnover_20261018_c/xvlog.log": "152eb79e5e29cd3799cfc84c370657a296decd12d2d37149827728575c942cf7"
+      },
+      "counts": {
+        "store_cancel": 0,
+        "AW_cancel": 0,
+        "D_cancel": 0,
+        "I_cancel": 0,
+        "max_occupancy": 2,
+        "D_accept": 6,
+        "store_accept": 4,
+        "D_response": 6,
+        "AW": 4,
+        "W": 4,
+        "load_accept": 2,
+        "AR": 1,
+        "R": 1,
+        "same_line_W_load_blocked": 1
+      },
+      "issues": [],
+      "witness": [],
+      "read_checks": [
+        {
+          "port": "D",
+          "accepted": 21,
+          "response": 24,
+          "addr": 512,
+          "actual": 1986748501,
+          "expected": 1986748501
+        },
+        {
+          "port": "D",
+          "accepted": 28,
+          "response": 29,
+          "addr": 512,
+          "actual": 3857049061,
+          "expected": 3857049061
+        }
+      ],
+      "all_8192_final_bytes_match": true,
+      "marks": {
+        "S": 9,
+        "S_done": 31
+      },
+      "accepts": [
+        [
+          10,
+          1,
+          0,
+          2711724449,
+          15,
+          2
+        ],
+        [
+          11,
+          1,
+          160,
+          2998055602,
+          15,
+          2
+        ],
+        [
+          17,
+          1,
+          448,
+          3570717908,
+          15,
+          2
+        ],
+        [
+          21,
+          0,
+          512,
+          0,
+          0,
+          2
+        ],
+        [
+          25,
+          1,
+          512,
+          3857049061,
+          15,
+          2
+        ],
+        [
+          28,
+          0,
+          512,
+          0,
+          0,
+          2
+        ]
+      ],
+      "AW": [
+        0,
+        40,
+        112,
+        128
+      ],
+      "W": [
+        [
+          0,
+          2711724449,
+          15
+        ],
+        [
+          40,
+          2998055602,
+          15
+        ],
+        [
+          112,
+          3570717908,
+          15
+        ],
+        [
+          128,
+          3857049061,
+          15
+        ]
+      ],
+      "summary": [
+        35,
+        4,
+        4,
+        1,
+        1,
+        6,
+        6,
+        0,
+        0,
+        0,
+        4,
+        4,
+        2,
+        0,
+        0,
+        0,
+        0
+      ],
+      "vendor_diagnostics": [
+        "IPSpecCheck: 04030130 ipm2l_flex_sdpram parameter setting error !!!: c_WR_ADDR_WIDTH must between 9-20 when DRM Resource is 36K",
+        "IPSpecCheck: 04030130 ipm2l_flex_sdpram parameter setting error !!!: c_WR_ADDR_WIDTH must between 9-20 when DRM Resource is 36K"
+      ]
+    },
+    "xs_compat_no_forward_20261018_c": {
+      "status": "OBSERVED_TRACE_BYTE_AND_IDENTITY_REVIEW_PASS",
+      "meta": {
+        "tag": "xs_compat_no_forward_20261018_c",
+        "status": "PASS",
+        "backend": "xsim",
+        "started": "2026-10-18T23:40:02",
+        "root": "D:\\riscv\\RISCV",
+        "sealed_src": "D:\\riscv\\RISCV\\sim\\write_buffer_two_entry\\xs_compat_no_forward_20261018_c\\src",
+        "top": "tb_wb2_compat_no_forward",
+        "short": true,
+        "legacy": false,
+        "bridge": "D:\\riscv\\RISCV\\myriscv\\dual_sram_to_pango_ddr_bridge.v",
+        "bridge_sha256": "855318eebf7fc75a0b17d15a620b6d8d08bb54ff9348d663cbcd6aca0883262f",
+        "params": {
+          "Dq": 32,
+          "Posted": 1,
+          "Depth": 2,
+          "Turnover": 1,
+          "Forward": 0,
+          "Ruw": 1,
+          "Icache": 1,
+          "Dcache": 1,
+          "Camera": 0,
+          "Preproc": 0,
+          "Plane": 1
+        },
+        "tools": {
+          "xvlog": "D:\\Xilinx\\Vivado\\2019.2\\bin\\xvlog.bat",
+          "xelab": "D:\\Xilinx\\Vivado\\2019.2\\bin\\xelab.bat",
+          "xsim": "D:\\Xilinx\\Vivado\\2019.2\\bin\\xsim.bat",
+          "python": "C:\\Users\\z'l'm'y'k\\.workbuddy\\binaries\\python\\versions\\3.13.12\\python.exe"
+        },
+        "commands": [
+          "D:\\Xilinx\\Vivado\\2019.2\\bin\\xvlog.bat --sv D:\\riscv\\RISCV\\sim\\write_buffer_two_entry\\xs_compat_no_forward_20261018_c\\src\\vendor\\GTP_GRS.v D:\\riscv\\RISCV\\sim\\write_buffer_two_entry\\xs_compat_no_forward_20261018_c\\src\\vendor\\GTP_DRM36K_E1.v D:\\riscv\\RISCV\\sim\\write_buffer_two_entry\\xs_compat_no_forward_20261018_c\\src\\ipcore\\icache\\rtl\\ipm2l_sdpram_v1_10_icache.v D:\\riscv\\RISCV\\sim\\write_buffer_two_entry\\xs_compat_no_forward_20261018_c\\src\\ipcore\\icache\\icache.v D:\\riscv\\RISCV\\sim\\write_buffer_two_entry\\xs_compat_no_forward_20261018_c\\src\\ipcore\\dcache\\rtl\\ipm2l_sdpram_v1_10_dcache.v D:\\riscv\\RISCV\\sim\\write_buffer_two_entry\\xs_compat_no_forward_20261018_c\\src\\ipcore\\dcache\\dcache.v D:\\riscv\\RISCV\\sim\\write_buffer_two_entry\\xs_compat_no_forward_20261018_c\\src\\myriscv\\dual_sram_to_pango_ddr_bridge.v D:\\riscv\\RISCV\\sim\\write_buffer_two_entry\\xs_compat_no_forward_20261018_c\\src\\tb\\tb_wb2_bridge.sv D:\\riscv\\RISCV\\sim\\write_buffer_two_entry\\xs_compat_no_forward_20261018_c\\src\\tb\\tb_wb2_variants.sv",
+          "D:\\Xilinx\\Vivado\\2019.2\\bin\\xelab.bat tb_wb2_compat_no_forward -s snap -debug off",
+          "D:\\Xilinx\\Vivado\\2019.2\\bin\\xsim.bat snap -runall",
+          "C:\\Users\\z'l'm'y'k\\.workbuddy\\binaries\\python\\versions\\3.13.12\\python.exe -B D:\\riscv\\RISCV\\sim\\write_buffer_two_entry\\xs_compat_no_forward_20261018_c\\src\\tools\\check_wb2.py --short D:\\riscv\\RISCV\\sim\\write_buffer_two_entry\\xs_compat_no_forward_20261018_c"
+        ],
+        "exits": {
+          "xvlog": 0,
+          "xelab": 0,
+          "xsim": 0,
+          "check": 0
+        },
+        "timeline": [
+          "xvlog exit=0 1.6s :: xvlog.bat --sv D:\\riscv\\RISCV\\sim\\write_buffer_two_entry\\xs_compat_no_forward_20261018_c\\src\\vendor\\GTP_GRS.v D:\\riscv\\RISCV\\sim\\write_buffer_two_entry\\xs_compat_no_forward_20261018_c\\src\\vendor\\GTP_DRM36K_E1.v D:\\riscv\\RISCV\\sim\\write_buffer_two_entry\\xs_compat_no_forward_20261018_c\\src\\ipcore\\icache\\rtl\\ipm2l_sdpram_v1_10_icache.v D:\\riscv\\RISCV\\sim\\write_buffer_two_entry\\xs_compat_no_forward_20261018_c\\src\\ipcore\\icache\\icache.v D:\\riscv\\RISCV\\sim\\write_buffer_two_entry\\xs_compat_no_forward_20261018_c\\src\\ipcore\\dcache\\rtl\\ipm2l_sdpram_v1_10_dcache.v D:\\riscv\\RISCV\\sim\\write_buffer_two_entry\\xs_compat_no_forward_20261018_c\\src\\ipcore\\dcache\\dcache.v D:\\riscv\\RISCV\\sim\\write_buffer_two_entry\\xs_compat_no_forward_20261018_c\\src\\myriscv\\dual_sram_to_pango_ddr_bridge.v D:\\riscv\\RISCV\\sim\\write_buffer_two_entry\\xs_compat_no_forward_20261018_c\\src\\tb\\tb_wb2_bridge.sv D:\\riscv\\RISCV\\sim\\write_buffer_two_entry\\xs_compat_no_forward_20261018_c\\src\\tb\\tb_wb2_variants.sv",
+          "xelab exit=0 10s :: xelab.bat tb_wb2_compat_no_forward -s snap -debug off",
+          "xsim exit=0 7.9s :: xsim.bat snap -runall",
+          "check exit=0 0.5s :: check_wb2.py -B D:\\riscv\\RISCV\\sim\\write_buffer_two_entry\\xs_compat_no_forward_20261018_c\\src\\tools\\check_wb2.py --short D:\\riscv\\RISCV\\sim\\write_buffer_two_entry\\xs_compat_no_forward_20261018_c"
+        ],
+        "sim_result": "RESULT: PASS wb2 edges=35 aw=4 w=4 ar=1 r=1 dacc=6 drsp=6 iacc=0 irsp=0",
+        "check_status": "PASS",
+        "identity_drift": 0,
+        "error": null,
+        "finished": "2026-10-18T23:40:22",
+        "modelsim_note": "ModelSim 10.6c unavailable on this machine: machine-level block on IPv6 loopback prevents its kernel RPC (\"RPC_Init ... ::1\"). Same TB/DUT executed on Vivado xsim 2019.2."
+      },
+      "manifest": {
+        "vendor\\GTP_GRS.v": "dae720bcc467ddb4ff99f2753368934e2649b87f6ac63b8a0d7219699bac1dec",
+        "vendor\\GTP_DRM36K_E1.v": "3e372cd60025a439eb7435d770930260e22c40f148ae83c4bdf7398fb65ddb66",
+        "ipcore\\icache\\rtl\\ipm2l_sdpram_v1_10_icache.v": "a92f88609e3c76bbd55f23dd6d9d08db25494745d16f1715b8e2279ea2857ad4",
+        "ipcore\\icache\\icache.v": "9e8746619f8afa1c2adfe1e7a48bd63850b98332d40f23c27817a28b3f24de76",
+        "ipcore\\dcache\\rtl\\ipm2l_sdpram_v1_10_dcache.v": "66905d131c90236dabd8feb8e8e586185955b37cb5ba694c047dc331efac303f",
+        "ipcore\\dcache\\dcache.v": "bf62d32342a11ba6fad55f11c2413716a834c7028e9a1d8660a5f1a5477514a7",
+        "myriscv\\dual_sram_to_pango_ddr_bridge.v": "855318eebf7fc75a0b17d15a620b6d8d08bb54ff9348d663cbcd6aca0883262f",
+        "tb\\tb_wb2_bridge.sv": "7cb865f4c7103b93f0e2188d11d9e9ce18a38b609cb428c9b212b4ad3b93628b",
+        "tb\\tb_wb2_variants.sv": "259ae7ceded5eaef19159b65996df1757ba68ca0c9d2b5d1e3907e35743444b5",
+        "tools\\check_wb2.py": "851908ee94a177d408a89137d67e7a002f9f658cb526e5c03cf223494d3c624c",
+        "tools\\run_xsim.ps1": "76e2f74115e44b42c99fb784106fd03866290eddddc84f9daf51248b4c5c3402"
+      },
+      "evidence_sha256": {
+        "sim/write_buffer_two_entry/xs_compat_no_forward_20261018_c/check_short.json": "eafcff01bac7a4b400d7932d4a4dc7c26a700740e0bdc3dc078096d17c1d4e95",
+        "sim/write_buffer_two_entry/xs_compat_no_forward_20261018_c/inputs_after.sha256": "13d679ae12d24807019ba79d5ed50756bd8dad594b14b48aef1658278009bf5f",
+        "sim/write_buffer_two_entry/xs_compat_no_forward_20261018_c/inputs_before.sha256": "13d679ae12d24807019ba79d5ed50756bd8dad594b14b48aef1658278009bf5f",
+        "sim/write_buffer_two_entry/xs_compat_no_forward_20261018_c/log_check.txt": "eafcff01bac7a4b400d7932d4a4dc7c26a700740e0bdc3dc078096d17c1d4e95",
+        "sim/write_buffer_two_entry/xs_compat_no_forward_20261018_c/log_xelab.txt": "e4abf33936b82efa6ab39972a40f1b93ccdec347a357a722dcc8709a3dee490a",
+        "sim/write_buffer_two_entry/xs_compat_no_forward_20261018_c/log_xsim.txt": "3646b696dfc663d9f1b9652fea47cdc2401626cacc8d900c2359b8506355973f",
+        "sim/write_buffer_two_entry/xs_compat_no_forward_20261018_c/log_xvlog.txt": "341abe75f67c1a98ebc44aa7b41959ac978e09f19fccd5cb855a6d208e237cf9",
+        "sim/write_buffer_two_entry/xs_compat_no_forward_20261018_c/run_meta.json": "6c871076e8828d94d2424475121ef7d51ce556a3a3e9ff917ec5fde3ef2a46ff",
+        "sim/write_buffer_two_entry/xs_compat_no_forward_20261018_c/wb2.edges.log": "fd3feb350b64efe0266831f6f1a2aa7c9eaceb1519ac22ffbfe80bdae2c800c5",
+        "sim/write_buffer_two_entry/xs_compat_no_forward_20261018_c/webtalk_27032.backup.log": "5a6810c9fac189e53c1b407844b869c808c8a4579c2b465e18f2d978aadb3ed5",
+        "sim/write_buffer_two_entry/xs_compat_no_forward_20261018_c/xelab.log": "3812fef53d547cdd7bdfce1cd62e8aa060c542d66357a1d44166f34d5a0d1b2d",
+        "sim/write_buffer_two_entry/xs_compat_no_forward_20261018_c/xsim.log": "639f4024efb0e782e2804c6139884eb8334925bc120c4f56ffc323e1b1642204",
+        "sim/write_buffer_two_entry/xs_compat_no_forward_20261018_c/xvlog.log": "e0ea9d7cc9f055e09b71b5879b8807f58753a60146a7939a36b5d334f5bb941f"
+      },
+      "counts": {
+        "store_cancel": 0,
+        "AW_cancel": 0,
+        "D_cancel": 0,
+        "I_cancel": 0,
+        "max_occupancy": 2,
+        "D_accept": 6,
+        "store_accept": 4,
+        "D_response": 6,
+        "AW": 4,
+        "W": 4,
+        "load_accept": 2,
+        "AR": 1,
+        "R": 1,
+        "same_line_W_load_blocked": 1
+      },
+      "issues": [],
+      "witness": [],
+      "read_checks": [
+        {
+          "port": "D",
+          "accepted": 21,
+          "response": 24,
+          "addr": 512,
+          "actual": 1986748501,
+          "expected": 1986748501
+        },
+        {
+          "port": "D",
+          "accepted": 28,
+          "response": 29,
+          "addr": 512,
+          "actual": 3857049061,
+          "expected": 3857049061
+        }
+      ],
+      "all_8192_final_bytes_match": true,
+      "marks": {
+        "S": 9,
+        "S_done": 31
+      },
+      "accepts": [
+        [
+          10,
+          1,
+          0,
+          2711724449,
+          15,
+          2
+        ],
+        [
+          11,
+          1,
+          160,
+          2998055602,
+          15,
+          2
+        ],
+        [
+          17,
+          1,
+          448,
+          3570717908,
+          15,
+          2
+        ],
+        [
+          21,
+          0,
+          512,
+          0,
+          0,
+          2
+        ],
+        [
+          25,
+          1,
+          512,
+          3857049061,
+          15,
+          2
+        ],
+        [
+          28,
+          0,
+          512,
+          0,
+          0,
+          2
+        ]
+      ],
+      "AW": [
+        0,
+        40,
+        112,
+        128
+      ],
+      "W": [
+        [
+          0,
+          2711724449,
+          15
+        ],
+        [
+          40,
+          2998055602,
+          15
+        ],
+        [
+          112,
+          3570717908,
+          15
+        ],
+        [
+          128,
+          3857049061,
+          15
+        ]
+      ],
+      "summary": [
+        35,
+        4,
+        4,
+        1,
+        1,
+        6,
+        6,
+        0,
+        0,
+        0,
+        4,
+        4,
+        2,
+        0,
+        0,
+        0,
+        0
+      ],
+      "vendor_diagnostics": [
+        "IPSpecCheck: 04030130 ipm2l_flex_sdpram parameter setting error !!!: c_WR_ADDR_WIDTH must between 9-20 when DRM Resource is 36K",
+        "IPSpecCheck: 04030130 ipm2l_flex_sdpram parameter setting error !!!: c_WR_ADDR_WIDTH must between 9-20 when DRM Resource is 36K"
+      ]
+    },
+    "xs_compat_linebuf_off_20261018_c": {
+      "status": "OBSERVED_TRACE_BYTE_AND_IDENTITY_REVIEW_PASS",
+      "meta": {
+        "tag": "xs_compat_linebuf_off_20261018_c",
+        "status": "PASS",
+        "backend": "xsim",
+        "started": "2026-10-18T23:40:23",
+        "root": "D:\\riscv\\RISCV",
+        "sealed_src": "D:\\riscv\\RISCV\\sim\\write_buffer_two_entry\\xs_compat_linebuf_off_20261018_c\\src",
+        "top": "tb_wb2_compat_linebuf_off",
+        "short": true,
+        "legacy": false,
+        "bridge": "D:\\riscv\\RISCV\\myriscv\\dual_sram_to_pango_ddr_bridge.v",
+        "bridge_sha256": "855318eebf7fc75a0b17d15a620b6d8d08bb54ff9348d663cbcd6aca0883262f",
+        "params": {
+          "Dq": 32,
+          "Posted": 1,
+          "Depth": 2,
+          "Turnover": 1,
+          "Forward": 1,
+          "Ruw": 1,
+          "Icache": 0,
+          "Dcache": 0,
+          "Camera": 0,
+          "Preproc": 0,
+          "Plane": 1
+        },
+        "tools": {
+          "xvlog": "D:\\Xilinx\\Vivado\\2019.2\\bin\\xvlog.bat",
+          "xelab": "D:\\Xilinx\\Vivado\\2019.2\\bin\\xelab.bat",
+          "xsim": "D:\\Xilinx\\Vivado\\2019.2\\bin\\xsim.bat",
+          "python": "C:\\Users\\z'l'm'y'k\\.workbuddy\\binaries\\python\\versions\\3.13.12\\python.exe"
+        },
+        "commands": [
+          "D:\\Xilinx\\Vivado\\2019.2\\bin\\xvlog.bat --sv D:\\riscv\\RISCV\\sim\\write_buffer_two_entry\\xs_compat_linebuf_off_20261018_c\\src\\vendor\\GTP_GRS.v D:\\riscv\\RISCV\\sim\\write_buffer_two_entry\\xs_compat_linebuf_off_20261018_c\\src\\vendor\\GTP_DRM36K_E1.v D:\\riscv\\RISCV\\sim\\write_buffer_two_entry\\xs_compat_linebuf_off_20261018_c\\src\\ipcore\\icache\\rtl\\ipm2l_sdpram_v1_10_icache.v D:\\riscv\\RISCV\\sim\\write_buffer_two_entry\\xs_compat_linebuf_off_20261018_c\\src\\ipcore\\icache\\icache.v D:\\riscv\\RISCV\\sim\\write_buffer_two_entry\\xs_compat_linebuf_off_20261018_c\\src\\ipcore\\dcache\\rtl\\ipm2l_sdpram_v1_10_dcache.v D:\\riscv\\RISCV\\sim\\write_buffer_two_entry\\xs_compat_linebuf_off_20261018_c\\src\\ipcore\\dcache\\dcache.v D:\\riscv\\RISCV\\sim\\write_buffer_two_entry\\xs_compat_linebuf_off_20261018_c\\src\\myriscv\\dual_sram_to_pango_ddr_bridge.v D:\\riscv\\RISCV\\sim\\write_buffer_two_entry\\xs_compat_linebuf_off_20261018_c\\src\\tb\\tb_wb2_bridge.sv D:\\riscv\\RISCV\\sim\\write_buffer_two_entry\\xs_compat_linebuf_off_20261018_c\\src\\tb\\tb_wb2_variants.sv",
+          "D:\\Xilinx\\Vivado\\2019.2\\bin\\xelab.bat tb_wb2_compat_linebuf_off -s snap -debug off",
+          "D:\\Xilinx\\Vivado\\2019.2\\bin\\xsim.bat snap -runall",
+          "C:\\Users\\z'l'm'y'k\\.workbuddy\\binaries\\python\\versions\\3.13.12\\python.exe -B D:\\riscv\\RISCV\\sim\\write_buffer_two_entry\\xs_compat_linebuf_off_20261018_c\\src\\tools\\check_wb2.py --short D:\\riscv\\RISCV\\sim\\write_buffer_two_entry\\xs_compat_linebuf_off_20261018_c"
+        ],
+        "exits": {
+          "xvlog": 0,
+          "xelab": 0,
+          "xsim": 0,
+          "check": 0
+        },
+        "timeline": [
+          "xvlog exit=0 1.7s :: xvlog.bat --sv D:\\riscv\\RISCV\\sim\\write_buffer_two_entry\\xs_compat_linebuf_off_20261018_c\\src\\vendor\\GTP_GRS.v D:\\riscv\\RISCV\\sim\\write_buffer_two_entry\\xs_compat_linebuf_off_20261018_c\\src\\vendor\\GTP_DRM36K_E1.v D:\\riscv\\RISCV\\sim\\write_buffer_two_entry\\xs_compat_linebuf_off_20261018_c\\src\\ipcore\\icache\\rtl\\ipm2l_sdpram_v1_10_icache.v D:\\riscv\\RISCV\\sim\\write_buffer_two_entry\\xs_compat_linebuf_off_20261018_c\\src\\ipcore\\icache\\icache.v D:\\riscv\\RISCV\\sim\\write_buffer_two_entry\\xs_compat_linebuf_off_20261018_c\\src\\ipcore\\dcache\\rtl\\ipm2l_sdpram_v1_10_dcache.v D:\\riscv\\RISCV\\sim\\write_buffer_two_entry\\xs_compat_linebuf_off_20261018_c\\src\\ipcore\\dcache\\dcache.v D:\\riscv\\RISCV\\sim\\write_buffer_two_entry\\xs_compat_linebuf_off_20261018_c\\src\\myriscv\\dual_sram_to_pango_ddr_bridge.v D:\\riscv\\RISCV\\sim\\write_buffer_two_entry\\xs_compat_linebuf_off_20261018_c\\src\\tb\\tb_wb2_bridge.sv D:\\riscv\\RISCV\\sim\\write_buffer_two_entry\\xs_compat_linebuf_off_20261018_c\\src\\tb\\tb_wb2_variants.sv",
+          "xelab exit=0 6.9s :: xelab.bat tb_wb2_compat_linebuf_off -s snap -debug off",
+          "xsim exit=0 7.7s :: xsim.bat snap -runall",
+          "check exit=0 0.6s :: check_wb2.py -B D:\\riscv\\RISCV\\sim\\write_buffer_two_entry\\xs_compat_linebuf_off_20261018_c\\src\\tools\\check_wb2.py --short D:\\riscv\\RISCV\\sim\\write_buffer_two_entry\\xs_compat_linebuf_off_20261018_c"
+        ],
+        "sim_result": "RESULT: PASS wb2 edges=37 aw=4 w=4 ar=2 r=2 dacc=6 drsp=6 iacc=0 irsp=0",
+        "check_status": "PASS",
+        "identity_drift": 0,
+        "error": null,
+        "finished": "2026-10-18T23:40:40",
+        "modelsim_note": "ModelSim 10.6c unavailable on this machine: machine-level block on IPv6 loopback prevents its kernel RPC (\"RPC_Init ... ::1\"). Same TB/DUT executed on Vivado xsim 2019.2."
+      },
+      "manifest": {
+        "vendor\\GTP_GRS.v": "dae720bcc467ddb4ff99f2753368934e2649b87f6ac63b8a0d7219699bac1dec",
+        "vendor\\GTP_DRM36K_E1.v": "3e372cd60025a439eb7435d770930260e22c40f148ae83c4bdf7398fb65ddb66",
+        "ipcore\\icache\\rtl\\ipm2l_sdpram_v1_10_icache.v": "a92f88609e3c76bbd55f23dd6d9d08db25494745d16f1715b8e2279ea2857ad4",
+        "ipcore\\icache\\icache.v": "9e8746619f8afa1c2adfe1e7a48bd63850b98332d40f23c27817a28b3f24de76",
+        "ipcore\\dcache\\rtl\\ipm2l_sdpram_v1_10_dcache.v": "66905d131c90236dabd8feb8e8e586185955b37cb5ba694c047dc331efac303f",
+        "ipcore\\dcache\\dcache.v": "bf62d32342a11ba6fad55f11c2413716a834c7028e9a1d8660a5f1a5477514a7",
+        "myriscv\\dual_sram_to_pango_ddr_bridge.v": "855318eebf7fc75a0b17d15a620b6d8d08bb54ff9348d663cbcd6aca0883262f",
+        "tb\\tb_wb2_bridge.sv": "7cb865f4c7103b93f0e2188d11d9e9ce18a38b609cb428c9b212b4ad3b93628b",
+        "tb\\tb_wb2_variants.sv": "259ae7ceded5eaef19159b65996df1757ba68ca0c9d2b5d1e3907e35743444b5",
+        "tools\\check_wb2.py": "851908ee94a177d408a89137d67e7a002f9f658cb526e5c03cf223494d3c624c",
+        "tools\\run_xsim.ps1": "76e2f74115e44b42c99fb784106fd03866290eddddc84f9daf51248b4c5c3402"
+      },
+      "evidence_sha256": {
+        "sim/write_buffer_two_entry/xs_compat_linebuf_off_20261018_c/check_short.json": "7b1a40cc03ecc5be8c8ed86f18f7a12f88b8c5af4875266b19a50f73d125ec40",
+        "sim/write_buffer_two_entry/xs_compat_linebuf_off_20261018_c/inputs_after.sha256": "13d679ae12d24807019ba79d5ed50756bd8dad594b14b48aef1658278009bf5f",
+        "sim/write_buffer_two_entry/xs_compat_linebuf_off_20261018_c/inputs_before.sha256": "13d679ae12d24807019ba79d5ed50756bd8dad594b14b48aef1658278009bf5f",
+        "sim/write_buffer_two_entry/xs_compat_linebuf_off_20261018_c/log_check.txt": "7b1a40cc03ecc5be8c8ed86f18f7a12f88b8c5af4875266b19a50f73d125ec40",
+        "sim/write_buffer_two_entry/xs_compat_linebuf_off_20261018_c/log_xelab.txt": "7a1e4925895350c4a9763bbf736daa693e62f133e01d750d2148a80c5d028dc0",
+        "sim/write_buffer_two_entry/xs_compat_linebuf_off_20261018_c/log_xsim.txt": "f8ed4e2b031a81012bd492fe083264f7c2e4e180b8e9f5a699f25498159c5f79",
+        "sim/write_buffer_two_entry/xs_compat_linebuf_off_20261018_c/log_xvlog.txt": "04892330887d4b219be928c471caff0b4487228489e110bb7872064607ab24bc",
+        "sim/write_buffer_two_entry/xs_compat_linebuf_off_20261018_c/run_meta.json": "01484be6b86fac462b63c0627727f073c63f5471b6bbd823cb613ae648e26333",
+        "sim/write_buffer_two_entry/xs_compat_linebuf_off_20261018_c/wb2.edges.log": "f9135d0aeaaa5a2d05b3e74260a6fefae388066d8b37d47957512344fd0e6aa0",
+        "sim/write_buffer_two_entry/xs_compat_linebuf_off_20261018_c/webtalk_32400.backup.log": "1e0616859b209c31576221529ca4d08efeb6dd294a3d72a6b3f8c2337ee84312",
+        "sim/write_buffer_two_entry/xs_compat_linebuf_off_20261018_c/xelab.log": "8db3e94974fc760c00a1993038434d6f9ddbf4833b7a3925c517884eaf9a945b",
+        "sim/write_buffer_two_entry/xs_compat_linebuf_off_20261018_c/xsim.log": "36f715313e3717ba7661555d82a811699d887dd849b3786107b19ea0edaa0951",
+        "sim/write_buffer_two_entry/xs_compat_linebuf_off_20261018_c/xvlog.log": "e94dd1e297dddf416943efe51f10ca8ba586e949b30af968d1a06238d0371109"
+      },
+      "counts": {
+        "store_cancel": 0,
+        "AW_cancel": 0,
+        "D_cancel": 0,
+        "I_cancel": 0,
+        "max_occupancy": 2,
+        "D_accept": 6,
+        "store_accept": 4,
+        "D_response": 6,
+        "AW": 4,
+        "W": 4,
+        "load_accept": 2,
+        "AR": 2,
+        "R": 2,
+        "same_line_W_load_blocked": 1
+      },
+      "issues": [],
+      "witness": [],
+      "read_checks": [
+        {
+          "port": "D",
+          "accepted": 21,
+          "response": 24,
+          "addr": 512,
+          "actual": 1986748501,
+          "expected": 1986748501
+        },
+        {
+          "port": "D",
+          "accepted": 28,
+          "response": 31,
+          "addr": 512,
+          "actual": 3857049061,
+          "expected": 3857049061
+        }
+      ],
+      "all_8192_final_bytes_match": true,
+      "marks": {
+        "S": 9,
+        "S_done": 33
+      },
+      "accepts": [
+        [
+          10,
+          1,
+          0,
+          2711724449,
+          15,
+          2
+        ],
+        [
+          11,
+          1,
+          160,
+          2998055602,
+          15,
+          2
+        ],
+        [
+          17,
+          1,
+          448,
+          3570717908,
+          15,
+          2
+        ],
+        [
+          21,
+          0,
+          512,
+          0,
+          0,
+          2
+        ],
+        [
+          25,
+          1,
+          512,
+          3857049061,
+          15,
+          2
+        ],
+        [
+          28,
+          0,
+          512,
+          0,
+          0,
+          2
+        ]
+      ],
+      "AW": [
+        0,
+        40,
+        112,
+        128
+      ],
+      "W": [
+        [
+          0,
+          2711724449,
+          15
+        ],
+        [
+          40,
+          2998055602,
+          15
+        ],
+        [
+          112,
+          3570717908,
+          15
+        ],
+        [
+          128,
+          3857049061,
+          15
+        ]
+      ],
+      "summary": [
+        37,
+        4,
+        4,
+        2,
+        2,
+        6,
+        6,
+        0,
+        0,
+        0,
+        4,
+        4,
+        2,
+        0,
+        0,
+        0,
+        0
+      ],
+      "vendor_diagnostics": []
+    }
+  },
+  "comparison": {
+    "legacy_all_external_edges_identical": true,
+    "legacy_marks_identical": true,
+    "depth_logical_accepts_identical": true,
+    "depth_AW_identical": true,
+    "depth_W_identical": true,
+    "depth_final_memory_identical": true,
+    "done_edges": [
+      40,
+      31
+    ],
+    "second_store_accept": [
+      18,
+      11
+    ]
+  },
+  "cross_backend": {
+    "modelsim_TB_sha256": "0c52836355c0b3c4c02af95e20f0b6d63601b1183d21789595d260f1b7d75262",
+    "xsim_TB_sha256": "7cb865f4c7103b93f0e2188d11d9e9ce18a38b609cb428c9b212b4ad3b93628b",
+    "same_TB": false,
+    "same_external_rows": false
+  },
+  "limits": [
+    "SoC RAM/MMIO/FENCE/IRQ/Camera/PP integration absent.",
+    "x16 and read-under-write disabled not executed; nonposted fails in posted-only TB model.",
+    "Key has two I misses, no warm I-hit poison; no AR/R same-edge stimulus.",
+    "Head-other/tail-same held-load promotion not triggered; current tail scenario has both in same line.",
+    "Submitted checker only counts I responses and fills D cache on I R; short nonposted PASS has an operator-precedence escape.",
+    "No standalone store/load blocking attribution or application CoreMark/board result.",
+    "Vendor IPSpecCheck 04030130 display retained in old/new runs; not a clean vendor diagnostic result.",
+    "No new RTL, HDL, PDS, board operation or environment change by this audit."
+  ]
+}

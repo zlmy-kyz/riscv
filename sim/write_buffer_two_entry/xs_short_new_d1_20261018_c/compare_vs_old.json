@@ -1,0 +1,52 @@
+{
+  "a": "sim\\write_buffer_two_entry\\xs_short_new_d1_20261018_c",
+  "b": "sim\\write_buffer_two_entry\\xs_short_old_20261018_c",
+  "identity": {
+    "edges_a": 44,
+    "edges_b": 44,
+    "first_diff": null,
+    "mark_diff": [],
+    "identical": true
+  },
+  "logical": {
+    "accepts_equal": true,
+    "accepts_count": [
+      6,
+      6
+    ],
+    "wbeats_equal": true,
+    "wbeats_count": [
+      4,
+      4
+    ],
+    "awbeats_equal": true,
+    "memory_equal": true,
+    "done_cycle": [
+      40,
+      40
+    ],
+    "accept_cycles": [
+      [
+        10,
+        18,
+        24,
+        30,
+        34,
+        36
+      ],
+      [
+        10,
+        18,
+        24,
+        30,
+        34,
+        36
+      ]
+    ],
+    "never_later": true,
+    "strictly_earlier": [],
+    "earlier_at_done": false
+  },
+  "mode": "identity",
+  "status": "PASS"
+}

@@ -1,0 +1,29 @@
+[
+  {
+    "name": "bridge_x32_enabled",
+    "cwd": "D:\\riscv\\RISCV",
+    "argv": [
+      "D:/iverilog/bin/iverilog.exe",
+      "-g2005",
+      "-tnull",
+      "-i",
+      "-I",
+      "myriscv",
+      "-I",
+      "ipcore/icache/rtl",
+      "-I",
+      "ipcore/dcache/rtl",
+      "-s",
+      "dual_sram_to_pango_ddr_bridge",
+      "-P",
+      "dual_sram_to_pango_ddr_bridge.MEM_DQ_WIDTH=32",
+      "myriscv/dual_sram_to_pango_ddr_bridge.v",
+      "ipcore/icache/icache.v",
+      "ipcore/icache/rtl/ipm2l_sdpram_v1_10_icache.v",
+      "ipcore/dcache/dcache.v",
+      "ipcore/dcache/rtl/ipm2l_sdpram_v1_10_dcache.v"
+    ],
+    "exit_code": 2,
+    "output": "ipcore/icache/rtl/ipm2l_sdpram_v1_10_icache.v:617: error: Concatenation operand \"('sd8)*(DATA_LOOP_NUM)\" has indefinite width.\r\nipcore/icache/rtl/ipm2l_sdpram_v1_10_icache.v:560: warning: @* found no sensitivities so it will never trigger.\r\nipcore/icache/rtl/ipm2l_sdpram_v1_10_icache.v:707: warning: @* found no sensitivities so it will never trigger.\r\nipcore/dcache/rtl/ipm2l_sdpram_v1_10_dcache.v:617: error: Concatenation operand \"('sd8)*(DATA_LOOP_NUM)\" has indefinite width.\r\nipcore/dcache/rtl/ipm2l_sdpram_v1_10_dcache.v:560: warning: @* found no sensitivities so it will never trigger.\r\nipcore/dcache/rtl/ipm2l_sdpram_v1_10_dcache.v:707: warning: @* found no sensitivities so it will never trigger.\r\n2 error(s) during elaboration.\r\n"
+  }
+]

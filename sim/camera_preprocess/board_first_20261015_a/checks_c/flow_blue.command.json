@@ -1,0 +1,11 @@
+{
+  "argv": [
+    "D:\\riscv\\RISCV\\sim\\camera_preprocess\\board_first_20261015_a\\checks_c\\native_flow.exe",
+    "D:\\riscv\\RISCV\\sim\\camera_preprocess\\board_first_20261015_a\\checks_c\\blue\\input.rgb565",
+    "D:\\riscv\\RISCV\\sim\\camera_preprocess\\board_first_20261015_a\\checks_c\\blue\\golden.rgb",
+    "normal",
+    "D:\\riscv\\RISCV\\sim\\camera_preprocess\\board_first_20261015_a\\checks_c\\blue\\native"
+  ],
+  "cwd": "D:\\riscv\\RISCV",
+  "returncode": 0
+}

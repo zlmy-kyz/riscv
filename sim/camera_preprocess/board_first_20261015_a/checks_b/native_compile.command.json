@@ -1,0 +1,18 @@
+{
+  "argv": [
+    "D:/mingw64/bin/gcc.exe",
+    "-std=c11",
+    "-O2",
+    "-Wall",
+    "-Wextra",
+    "-Werror",
+    "-Wno-int-to-pointer-cast",
+    "D:\\riscv\\RISCV\\tests\\camera_preprocess_photo\\native_flow.c",
+    "D:\\riscv\\RISCV\\tests\\camera_preprocess_photo\\preprocess_ref.c",
+    "D:\\riscv\\RISCV\\tests\\camera_preprocess_photo\\pp01_wire.c",
+    "-o",
+    "D:\\riscv\\RISCV\\sim\\camera_preprocess\\board_first_20261015_a\\checks_b\\native_flow.exe"
+  ],
+  "cwd": "D:\\riscv\\RISCV",
+  "returncode": 0
+}

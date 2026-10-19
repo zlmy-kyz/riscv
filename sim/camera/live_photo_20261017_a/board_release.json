@@ -1,0 +1,13 @@
+{
+  "status": "USER_AUTHORIZED_NEW_LIVE_PHOTO_BOARD_DIAGNOSTIC",
+  "firmware_sha256": "2f72e829b3044e1ce8f5996d6b9ddb39877c3c6f15048cf9a040b64bd78d7bd4",
+  "hardware_manifest_sha256": "93b8ce96cc7c7f17284a93a3ae65801b6229a08dca140525bae9c820c9d5b253",
+  "tool_sha256": "2a63b8e8446f246fc3fd8e438a5006753709aa2e5d36c9ac7fb5e16c8644326b",
+  "ready_review": "sim/camera/live_photo_20261017_a/ready_review.json",
+  "ready_review_sha256": "f79f2ebb44d0c3e29535aad664d2adf1d3abaa42f8d83ff592d2c5430632f5d8",
+  "new_bitstream_required": true,
+  "connector": "J10",
+  "PDS_or_bitstream_receipt_required": false,
+  "key_HDL": "NOT_COMPLETED",
+  "board": "NOT_RUN"
+}

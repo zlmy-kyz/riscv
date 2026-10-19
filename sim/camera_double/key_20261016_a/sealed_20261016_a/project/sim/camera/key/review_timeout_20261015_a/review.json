@@ -1,0 +1,115 @@
+{
+  "status": "SOC_TIMEOUT_COMPLETE_PREFIXES_REVIEWED_NOT_FULL_PASS",
+  "date": "2026-10-15",
+  "manifest_sha256": "44437cb7042b70b7430336105696b7aacc84863cc51c0d2629afca12af33eecb",
+  "inputs": 317,
+  "command": {
+    "argv": [
+      "D:\\modelsim\\win64pe\\vsim.exe",
+      "-batch",
+      "-modelsimini",
+      "modelsim.ini",
+      "-lib",
+      "D:\\riscv\\RISCV\\sim\\camera\\key\\build\\ds_camera_soc_bootmap_20261015_a\\work",
+      "tb_camera_soc_bootmap",
+      "+CONFIG=D:/riscv/RISCV/sim/camera/key/build/ds_camera_soc_bootmap_20261015_a/inputs/project/sim/camera/key/generated/config.hex",
+      "+DAT=D:/riscv/RISCV/sim/camera/key/build/ds_camera_soc_bootmap_20261015_a/inputs/project/sim/camera/key/generated/cpu.dat",
+      "+FRAME1=D:/riscv/RISCV/sim/camera/key/build/ds_camera_soc_bootmap_20261015_a/inputs/project/sim/camera/key/generated/frame1.hex",
+      "+FRAME2=D:/riscv/RISCV/sim/camera/key/build/ds_camera_soc_bootmap_20261015_a/inputs/project/sim/camera/key/generated/frame2.hex",
+      "+BUS=D:/riscv/RISCV/sim/camera/key/build/ds_camera_soc_bootmap_20261015_a/bus.log",
+      "+CPU=D:/riscv/RISCV/sim/camera/key/build/ds_camera_soc_bootmap_20261015_a/cpu.log",
+      "+DVP=D:/riscv/RISCV/sim/camera/key/build/ds_camera_soc_bootmap_20261015_a/dvp.log",
+      "-logfile",
+      "D:\\riscv\\RISCV\\sim\\camera\\key\\build\\ds_camera_soc_bootmap_20261015_a\\soc.transcript",
+      "-do",
+      "onerror {quit -code 3 -f}; run -all; quit -f"
+    ],
+    "cwd": "D:\\riscv\\RISCV\\sim\\camera\\key\\build\\ds_camera_soc_bootmap_20261015_a",
+    "timeout_seconds": 7200,
+    "start_utc": "2026-10-15T10:41:01Z",
+    "returncode": 1,
+    "timed_out": true,
+    "elapsed_seconds": 7200.487982199993
+  },
+  "first_16_retirements_match_image": true,
+  "full_DVP_frames_checked": 2,
+  "camera_W": {
+    "1": 57600,
+    "2": 57600
+  },
+  "DONE": [
+    {
+      "frame": 1,
+      "cycle": 3178629,
+      "last_W": 3178627,
+      "CRC": "ad4e00c3"
+    },
+    {
+      "frame": 2,
+      "cycle": 27960479,
+      "last_W": 27960477,
+      "CRC": "68c5601b"
+    }
+  ],
+  "CPU_frame_load_prefixes": [
+    3,
+    460803,
+    73042
+  ],
+  "native_frame_AR_prefixes": [
+    3,
+    460803,
+    73013
+  ],
+  "native_frame_R_prefixes": [
+    3,
+    460803,
+    73013
+  ],
+  "CPU_reported_CRC": [
+    [
+      1,
+      "ad4e00c3"
+    ]
+  ],
+  "CPU_scratch_W": 302955,
+  "truncated_last_lines": {
+    "bus.log": {
+      "line": 1904181,
+      "bytes": 11,
+      "text": "AR 2 314944"
+    },
+    "cpu.log": {
+      "line": 533856,
+      "bytes": 10,
+      "text": "LOAD 2 314"
+    }
+  },
+  "pending_write": null,
+  "pending_read": null,
+  "limitation": "Hard kill left independently buffered prefixes. Frame2 CPU CRC, final coverage and completion are missing. Original run remains STOPPED_FIRST_FAILURE.",
+  "decision": "No continuation of the expensive full-frame real-CPU simulation; reuse unit successes and audited prefixes; remaining acceptance moves to user-operated UART frame/CRC/image tests.",
+  "RTL_functional_failure_observed": false,
+  "HDL_rerun": false,
+  "PDS_run": false,
+  "serial_opened": false,
+  "evidence_sha256": {
+    "sim/camera/key/build/ds_camera_soc_bootmap_20261015_a/bus.log": "a81528fc524ed74d51bc1c0496ea5bcd771184a00308bd784037e8aab0ea7d11",
+    "sim/camera/key/build/ds_camera_soc_bootmap_20261015_a/compile.command.json": "1bbd275f19570d3869dcb139639f971ebf98f5408b0f5e92b3daa0345409216f",
+    "sim/camera/key/build/ds_camera_soc_bootmap_20261015_a/compile.stdout.log": "164960b65c109611b2141a40c80edf027fb634dca4bc240abcf4c0a899ea3723",
+    "sim/camera/key/build/ds_camera_soc_bootmap_20261015_a/cpu.log": "3ad1b51c78aa367b406bbaad769f594c7d6789db245b6f28126c27e25b036798",
+    "sim/camera/key/build/ds_camera_soc_bootmap_20261015_a/dvp.log": "e1bbde810d7f038d911830704b5dab6bb6874951e29632743c422b85017deeee",
+    "sim/camera/key/build/ds_camera_soc_bootmap_20261015_a/evidence_sha256.json": "de3c16fc999a37b04ad453ad7cd3223220b683c6e0e7ca0b7f1763e777751f8a",
+    "sim/camera/key/build/ds_camera_soc_bootmap_20261015_a/git_after.json": "0b874c8596e304892bd4ccb8b997edd2055cd86a56923505777810dd3e2d9861",
+    "sim/camera/key/build/ds_camera_soc_bootmap_20261015_a/git_before.json": "0b874c8596e304892bd4ccb8b997edd2055cd86a56923505777810dd3e2d9861",
+    "sim/camera/key/build/ds_camera_soc_bootmap_20261015_a/inputs.json": "44437cb7042b70b7430336105696b7aacc84863cc51c0d2629afca12af33eecb",
+    "sim/camera/key/build/ds_camera_soc_bootmap_20261015_a/input_identity_after.json": "6941983c2f2f591acd56da2cd1f6c353eb62545d5a2479fdb3c463c593ffbd32",
+    "sim/camera/key/build/ds_camera_soc_bootmap_20261015_a/modelsim.ini": "ea76df2046dcca50d407552fa6bea9b02f2c60a0940d0ccf50f9958ca3ff3927",
+    "sim/camera/key/build/ds_camera_soc_bootmap_20261015_a/result.json": "d9dca43bb3a33a82a931be7e085c30478b7ef518aabf714ec5390a68300eb826",
+    "sim/camera/key/build/ds_camera_soc_bootmap_20261015_a/soc.command.json": "21d421f14c80b74e47f514b49ea7c5dc58c1c8357a00a8c98037df9b4dc43746",
+    "sim/camera/key/build/ds_camera_soc_bootmap_20261015_a/soc.stdout.log": "e52d08e03b3931b76ab91e12241e5a849fcff78f4fc79d9b8b57f37545db19e4",
+    "sim/camera/key/build/ds_camera_soc_bootmap_20261015_a/soc.transcript": "2141d761678f386dc25c9bfcae52e515c030deed2095d95664f88e9639906a99",
+    "sim/camera/key/build/ds_camera_soc_bootmap_20261015_a/vlib.command.json": "10405385ac3d2fc5e363b28e58ef394ca731898bbf94f1e0163048bfa2a2a680",
+    "sim/camera/key/build/ds_camera_soc_bootmap_20261015_a/vlib.stdout.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  }
+}

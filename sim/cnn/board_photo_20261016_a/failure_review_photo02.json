@@ -1,0 +1,61 @@
+{
+  "status": "CAMERA_FRAME_FORMAT_FAILURE_RAW_CONFIRMED_ROOT_CAUSE_UNRESOLVED",
+  "failure_directory": "sim/cnn/board/photo_20261016_02",
+  "failure": "ValueError('CNN job/error: CNN_FAIL REASON=CAMERA_ERROR GROUP=1 BUF=0 SEQ=0 CLAIMS=0 TARGET_CLAIMS=0 DISCARD_CLAIMS=0 LAST_DISCARD=0 CAM_STATUS=00000031 CAM_ERR=00000003 CAM_BUFSTATE=00000100 CAM_GLOBAL_SEQ=00000000 PP_STATUS=00000000 PP_ERR=00000000 UART_STATUS=00000002 CNN_STATUS=00000008 CNN_ERROR=00000000 LOAD_COUNT=6222 MODEL_CRC=0ca5949e MODEL_ID=05a032af ELAPSED_TICKS=69543011')",
+  "failure_raw_sha256": {
+    "result.json": "d44dcc77c31e528bce239d2bad28e04b623e063ad696c143765ff5d151f5694e",
+    "manifest.json": "d20f9b65a53fa988c7a598bf96bc2538732933956ba44274303cd47ca14c03c5",
+    "application.bin": "2f72e829b3044e1ce8f5996d6b9ddb39877c3c6f15048cf9a040b64bd78d7bd4",
+    "uart.rx.bin": "a6faca656f6872c12ee7fd70eaca4e92f05dbb068cad439d03ccae86e246897f",
+    "uart.tx.bin": "b942a2082ccecd0a2d4ccad447bb3a1705a9fa07e06e5df8d306ea7be7d57716"
+  },
+  "failed_stage": "first Camera capture before publication, claim, PP, CNN or export",
+  "loader_raw_responses_verified": true,
+  "raw_rx_tx_consumed_exactly": true,
+  "model": {
+    "valid": true,
+    "words": 6222,
+    "CRC": "0ca5949e",
+    "ID": "05a032af"
+  },
+  "camera": {
+    "error_code": 3,
+    "error_meaning": "DVP format",
+    "config_done": true,
+    "dual_mode": true,
+    "busy": false,
+    "stream_enabled": false,
+    "overflow": false,
+    "global_seq": 0,
+    "claimed": 0,
+    "both_buffers_free": true
+  },
+  "stage": {
+    "PP_started": false,
+    "CNN_started": false,
+    "CNN_status": "00000008"
+  },
+  "elapsed_since_app_ticks": 69543011,
+  "elapsed_since_app_seconds": 0.7417921173333333,
+  "RTL_format_conditions": [
+    "HREF high at accepted frame-start",
+    "bytes exceed2560 or lines exceed720",
+    "HREF fall with wrong line byte count or too many lines",
+    "VSYNC frame-end without exact720 complete lines / HREF low"
+  ],
+  "limitation": "single format code cannot distinguish line, row, start/end or sampled signal cause; not proof of RTL bug",
+  "prior_success_directory": "sim/cnn/board/photo_20261016_01",
+  "prior_source_sha256": "5a1a58f6548434d243352572528396890e9c72ecd940aa00026bc66b42f6e08b",
+  "prior_source_visual": "dense green/purple dots already visible in source.png",
+  "prior_source_crc_closed": true,
+  "prior_preprocess_all_27648_bytes_equal": true,
+  "prior_CNN_all_10_scores_equal": true,
+  "primary_direction": "Sensor/DVP physical interface or sampling phase; output formatting/UART/CNN not supported as cause. Capture CRC to PC closure points upstream of capture CRC.",
+  "current_design_matches_sealed_40_files": true,
+  "RTL_modified": false,
+  "software_modified": false,
+  "PDS_started": false,
+  "HDL_started": false,
+  "retry": false,
+  "next_minimum": "Astra/hardware diagnosis with existing good/bad raw evidence: check sensor actual PCLK/data/HREF/VSYNC phase and link integrity or fixed color-bar output; add precise format-reason diagnostics only through authorized RTL workflow, never relax counts or mask error"
+}

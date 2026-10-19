@@ -1,0 +1,12 @@
+{
+  "argv": [
+    "D:\\riscv\\RISCV\\sim\\cnn\\board_photo_20261016_a\\checks_01\\flow.exe",
+    "D:\\riscv\\RISCV\\sim\\cnn\\board_photo_20261016_a\\checks_01\\input.rgb565",
+    "D:\\riscv\\RISCV\\sim\\cnn\\board_photo_20261016_a\\checks_01\\wrong_pp.rgb",
+    "D:\\riscv\\RISCV\\sim\\cnn\\board_photo_20261016_a\\checks_01\\wrong_pp_scores.bin",
+    "D:\\riscv\\RISCV\\tests\\cnn_digits_diag\\model\\diag_20261016_a\\load_words.bin",
+    "pp_mismatch",
+    "D:\\riscv\\RISCV\\sim\\cnn\\board_photo_20261016_a\\checks_01\\pp_mismatch\\run"
+  ],
+  "returncode": 0
+}

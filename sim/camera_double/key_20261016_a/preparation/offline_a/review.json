@@ -1,0 +1,24 @@
+{
+  "status": "ABI2_REFERENCE_AND_HOST_OFFLINE_PASS",
+  "patterns": 17,
+  "outcomes": {
+    "full100_plus_tail_same_CRC_allowed": true,
+    "CRC_mismatch": "REJECTED",
+    "duplicate_sequence": "REJECTED",
+    "wrong_ABI": "REJECTED",
+    "error_status": "REJECTED",
+    "bad_statistics": "REJECTED",
+    "bad_geometry": "REJECTED",
+    "zero_duration": "REJECTED",
+    "synthetic_as_board": "REJECTED",
+    "corrupt_original_RX": "REJECTED"
+  },
+  "evidence_origin": "OFFLINE_SYNTHETIC_TEST",
+  "serial_opened": false,
+  "HDL": false,
+  "source_sha256": {
+    "sim/camera_double/key_20261016_a/prepare.py": "71f63094a3dfec88c79bad7c5a1c8af21b54c083824ec211f8cb4205ba4eb432",
+    "sim/camera_double/key_20261016_a/offline.py": "d7fb8ef3209702dc4d348dd8820103feed92411f2e9acd680af0903f6ce9cd8e",
+    "tools/camera_uart/double100.py": "6fe770e2942e8a5d3f16d2841f86617be8689886eb6129a1f36ec264133dd8e1"
+  }
+}

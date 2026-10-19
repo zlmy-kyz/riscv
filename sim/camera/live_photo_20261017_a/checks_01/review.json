@@ -1,0 +1,17 @@
+{
+  "status": "STOPPED_FIRST_OFFLINE_FAILURE",
+  "evidence_origin": "OFFLINE_SYNTHETIC_TEST",
+  "serial_opened": false,
+  "PDS_started": false,
+  "HDL_run": false,
+  "firmware_rebuilt": false,
+  "checks": [],
+  "error": "AssertionError()",
+  "input_sha256": {
+    "sim/camera/live_photo_20261017_a/check_tool.py": "2b8c104618464cd5d9eed6bfb93a204731574db478593c11bb694d7c1acbcdb7",
+    "tools/cnn_live_photo/run.py": "2a63b8e8446f246fc3fd8e438a5006753709aa2e5d36c9ac7fb5e16c8644326b",
+    "sim/camera/live_photo_20261017_a/hardware.json": "93b8ce96cc7c7f17284a93a3ae65801b6229a08dca140525bae9c820c9d5b253",
+    "tests/cnn_digits_photo/build/photo_20261016_a/manifest.json": "d20f9b65a53fa988c7a598bf96bc2538732933956ba44274303cd47ca14c03c5"
+  },
+  "artifact_sha256": {}
+}

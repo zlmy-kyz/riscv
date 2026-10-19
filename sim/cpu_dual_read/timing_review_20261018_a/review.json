@@ -1,0 +1,23 @@
+{
+  "status": "PDS_REPORT_ALL_CONSTRAINTS_MET_OBSERVED_NOT_FUNCTIONAL_PASS",
+  "report_date": "2026-10-18 00:48:20 (report text)",
+  "report_sha256": "0b696230347dc2aa901564b18203bee7c9ddffd84954cd34a8cf79df2c851baa",
+  "core_clock_mhz": 93.75,
+  "slow_setup_wns_ns": 0.151,
+  "slow_setup_tns_ns": 0,
+  "slow_setup_failing_endpoints": 0,
+  "estimated_fmax_mhz": 95.0963,
+  "source_identity_scope": "Current files observed; not independent reconstruction of PDS input set or FPGA identity",
+  "source_sha256": {
+    "myriscv\\soc_top.v": "cd3d820aee9ad2572e52972ba4f8942221054d42ea7457e87f7517a90322232b",
+    "myriscv\\dual_sram_to_pango_ddr_bridge.v": "1abf54fe01fb76659943fd14818154cfffe1bde23cd9f996b711b185452afe67",
+    "myriscv\\inst_bram_adapter.v": "fa4ac709ef35b606f02f17b96383f5f0c0f09bd76bba1af8065343e2e9456b7d",
+    "myriscv\\br_alu.v": "d33fe375029e88a5c44b4d6ad1e5caf8cbc8fd950dddcbf5f981cb4c14d0dd73",
+    "myriscv\\simple_mmio.v": "b8b91df5042f466194cb98de03dad084c0d7a411e627fdc8f1d2c29cb62ebfc7",
+    "myriscv\\mycpu_sync.v": "b1114fa388b0da4a3c914da38f1b169d607b8ebed839dd018eab37fd0f4a41d3"
+  },
+  "changes_this_review": [],
+  "HDL_run": false,
+  "PDS_run": false,
+  "serial_opened": false
+}

@@ -1,0 +1,18 @@
+{
+  "all_equal": false,
+  "first_mismatch": {
+    "output_byte": 123,
+    "x": 41,
+    "y": 0,
+    "channel": "R",
+    "source_x": 591,
+    "source_y": 3,
+    "source_byte": 8862,
+    "source_rgb565": "1696",
+    "expected_value": 16,
+    "actual_value": 24
+  },
+  "expected_crc32": 2923203318,
+  "actual_crc32": 2650106262,
+  "bytes": 27648
+}

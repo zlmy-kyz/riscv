@@ -1,0 +1,6 @@
+{
+  "status": "EXPECTED_SHORT_STREAM_REJECTION",
+  "error": "UART timeout/short read",
+  "seconds": 0.0020058000227436423,
+  "serial_opened": false
+}

@@ -1,0 +1,57 @@
+{
+    "tag":  "xs_probe_ruw0_20261018_d",
+    "status":  "PASS",
+    "backend":  "xsim",
+    "started":  "2026-10-19T00:13:07",
+    "root":  "D:\\riscv\\RISCV",
+    "sealed_src":  "D:\\riscv\\RISCV\\sim\\write_buffer_two_entry\\xs_probe_ruw0_20261018_d\\src",
+    "top":  "tb_wb2_ruw0",
+    "short":  false,
+    "check_mode":  "ruw0",
+    "legacy":  false,
+    "bridge":  "D:\\riscv\\RISCV\\myriscv\\dual_sram_to_pango_ddr_bridge.v",
+    "bridge_sha256":  "855318eebf7fc75a0b17d15a620b6d8d08bb54ff9348d663cbcd6aca0883262f",
+    "params":  {
+                   "Dq":  32,
+                   "Posted":  1,
+                   "Depth":  2,
+                   "Turnover":  1,
+                   "Forward":  1,
+                   "Ruw":  0,
+                   "Icache":  1,
+                   "Dcache":  1,
+                   "Camera":  0,
+                   "Preproc":  0,
+                   "Plane":  6
+               },
+    "tools":  {
+                  "xvlog":  "D:\\Xilinx\\Vivado\\2019.2\\bin\\xvlog.bat",
+                  "xelab":  "D:\\Xilinx\\Vivado\\2019.2\\bin\\xelab.bat",
+                  "xsim":  "D:\\Xilinx\\Vivado\\2019.2\\bin\\xsim.bat",
+                  "python":  "C:\\Users\\z\u0027l\u0027m\u0027y\u0027k\\.workbuddy\\binaries\\python\\versions\\3.13.12\\python.exe"
+              },
+    "commands":  [
+                     "D:\\Xilinx\\Vivado\\2019.2\\bin\\xvlog.bat --sv D:\\riscv\\RISCV\\sim\\write_buffer_two_entry\\xs_probe_ruw0_20261018_d\\src\\vendor\\GTP_GRS.v D:\\riscv\\RISCV\\sim\\write_buffer_two_entry\\xs_probe_ruw0_20261018_d\\src\\vendor\\GTP_DRM36K_E1.v D:\\riscv\\RISCV\\sim\\write_buffer_two_entry\\xs_probe_ruw0_20261018_d\\src\\ipcore\\icache\\rtl\\ipm2l_sdpram_v1_10_icache.v D:\\riscv\\RISCV\\sim\\write_buffer_two_entry\\xs_probe_ruw0_20261018_d\\src\\ipcore\\icache\\icache.v D:\\riscv\\RISCV\\sim\\write_buffer_two_entry\\xs_probe_ruw0_20261018_d\\src\\ipcore\\dcache\\rtl\\ipm2l_sdpram_v1_10_dcache.v D:\\riscv\\RISCV\\sim\\write_buffer_two_entry\\xs_probe_ruw0_20261018_d\\src\\ipcore\\dcache\\dcache.v D:\\riscv\\RISCV\\sim\\write_buffer_two_entry\\xs_probe_ruw0_20261018_d\\src\\myriscv\\dual_sram_to_pango_ddr_bridge.v D:\\riscv\\RISCV\\sim\\write_buffer_two_entry\\xs_probe_ruw0_20261018_d\\src\\tb\\tb_wb2_bridge.sv D:\\riscv\\RISCV\\sim\\write_buffer_two_entry\\xs_probe_ruw0_20261018_d\\src\\tb\\tb_wb2_variants.sv",
+                     "D:\\Xilinx\\Vivado\\2019.2\\bin\\xelab.bat tb_wb2_ruw0 -s snap -debug off",
+                     "D:\\Xilinx\\Vivado\\2019.2\\bin\\xsim.bat snap -runall",
+                     "C:\\Users\\z\u0027l\u0027m\u0027y\u0027k\\.workbuddy\\binaries\\python\\versions\\3.13.12\\python.exe -B D:\\riscv\\RISCV\\sim\\write_buffer_two_entry\\xs_probe_ruw0_20261018_d\\src\\tools\\check_wb2.py --plane ruw0 D:\\riscv\\RISCV\\sim\\write_buffer_two_entry\\xs_probe_ruw0_20261018_d"
+                 ],
+    "exits":  {
+                  "xvlog":  0,
+                  "xelab":  0,
+                  "xsim":  0,
+                  "check":  0
+              },
+    "timeline":  [
+                     "xvlog exit=0 1.8s :: xvlog.bat --sv D:\\riscv\\RISCV\\sim\\write_buffer_two_entry\\xs_probe_ruw0_20261018_d\\src\\vendor\\GTP_GRS.v D:\\riscv\\RISCV\\sim\\write_buffer_two_entry\\xs_probe_ruw0_20261018_d\\src\\vendor\\GTP_DRM36K_E1.v D:\\riscv\\RISCV\\sim\\write_buffer_two_entry\\xs_probe_ruw0_20261018_d\\src\\ipcore\\icache\\rtl\\ipm2l_sdpram_v1_10_icache.v D:\\riscv\\RISCV\\sim\\write_buffer_two_entry\\xs_probe_ruw0_20261018_d\\src\\ipcore\\icache\\icache.v D:\\riscv\\RISCV\\sim\\write_buffer_two_entry\\xs_probe_ruw0_20261018_d\\src\\ipcore\\dcache\\rtl\\ipm2l_sdpram_v1_10_dcache.v D:\\riscv\\RISCV\\sim\\write_buffer_two_entry\\xs_probe_ruw0_20261018_d\\src\\ipcore\\dcache\\dcache.v D:\\riscv\\RISCV\\sim\\write_buffer_two_entry\\xs_probe_ruw0_20261018_d\\src\\myriscv\\dual_sram_to_pango_ddr_bridge.v D:\\riscv\\RISCV\\sim\\write_buffer_two_entry\\xs_probe_ruw0_20261018_d\\src\\tb\\tb_wb2_bridge.sv D:\\riscv\\RISCV\\sim\\write_buffer_two_entry\\xs_probe_ruw0_20261018_d\\src\\tb\\tb_wb2_variants.sv",
+                     "xelab exit=0 10.7s :: xelab.bat tb_wb2_ruw0 -s snap -debug off",
+                     "xsim exit=0 8.1s :: xsim.bat snap -runall",
+                     "check exit=0 0.5s :: check_wb2.py -B D:\\riscv\\RISCV\\sim\\write_buffer_two_entry\\xs_probe_ruw0_20261018_d\\src\\tools\\check_wb2.py --plane ruw0 D:\\riscv\\RISCV\\sim\\write_buffer_two_entry\\xs_probe_ruw0_20261018_d"
+                 ],
+    "sim_result":  "RESULT: PASS wb2 edges=34 aw=2 w=2 ar=2 r=2 dacc=4 drsp=4 iacc=0 irsp=0",
+    "check_status":  "PASS",
+    "identity_drift":  0,
+    "error":  null,
+    "finished":  "2026-10-19T00:13:29",
+    "modelsim_note":  "ModelSim 10.6c unavailable on this machine: machine-level block on IPv6 loopback prevents its kernel RPC (\"RPC_Init ... ::1\"). Same TB/DUT executed on Vivado xsim 2019.2."
+}

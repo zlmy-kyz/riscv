@@ -1,0 +1,68 @@
+{
+  "publications": [
+    [
+      1,
+      0,
+      1
+    ],
+    [
+      2,
+      1,
+      2
+    ],
+    [
+      3,
+      0,
+      3
+    ],
+    [
+      4,
+      1,
+      4
+    ],
+    [
+      5,
+      0,
+      5
+    ],
+    [
+      7,
+      0,
+      6
+    ],
+    [
+      10,
+      0,
+      7
+    ],
+    [
+      12,
+      0,
+      8
+    ]
+  ],
+  "illegal_MMIO_responses": 19,
+  "permissions": 132,
+  "frame_edges_per_publication": [
+    11,
+    1,
+    1,
+    1,
+    11,
+    11,
+    11,
+    11
+  ],
+  "cases": [
+    "ABORT_DRAIN_PRESERVE",
+    "FULL_WAIT_STABLE",
+    "MISSING_PCLK_TIMEOUT",
+    "OVERFLOW_PRESERVE",
+    "RESET_CLEAR",
+    "SHORT_FRAME_PRESERVE",
+    "STOP_ALLOCATION_RACE",
+    "STOP_DRAIN"
+  ],
+  "status": "ABI2_INDEPENDENT_RAW_CHECK_PASS",
+  "DVP_input_frames": 15
+}

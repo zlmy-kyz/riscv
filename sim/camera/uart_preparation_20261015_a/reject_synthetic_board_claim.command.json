@@ -1,0 +1,10 @@
+{
+  "argv": [
+    "C:\\python\\python.exe",
+    "tools/camera_uart/capture.py",
+    "--verify",
+    "sim\\camera\\uart_preparation_20261015_a\\offline_tests\\positive"
+  ],
+  "returncode": 1,
+  "serial_opened": false
+}

@@ -1,0 +1,30 @@
+{
+  "context": "requested outside sandbox",
+  "sockets": [
+    {
+      "address": "127.0.0.1",
+      "result": "listen_connect_ok"
+    },
+    {
+      "address": "::1",
+      "result": "failed",
+      "error": "[WinError 10013] \u4ee5\u4e00\u79cd\u8bbf\u95ee\u6743\u9650\u4e0d\u5141\u8bb8\u7684\u65b9\u5f0f\u505a\u4e86\u4e00\u4e2a\u8bbf\u95ee\u5957\u63a5\u5b57\u7684\u5c1d\u8bd5\u3002",
+      "winerror": 10013
+    }
+  ],
+  "argv": [
+    "D:\\modelsim\\win64pe\\vsim.exe",
+    "-c",
+    "-onfinish",
+    "exit",
+    "-l",
+    "transcript_outside.log",
+    "work.tool_health",
+    "-do",
+    "run -all; quit -f"
+  ],
+  "exit_code": null,
+  "timed_out": true,
+  "kernel_marker": false,
+  "rpc_error": true
+}

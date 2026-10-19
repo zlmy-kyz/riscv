@@ -1,0 +1,28 @@
+{
+  "status": "TASK034_USER_AUTHORIZED_DIRECT_BOARD_TOOL_READY_NOT_DYNAMIC_FUNCTIONAL_PASS",
+  "user_reported_timing": "PASS_NOT_INDEPENDENTLY_REVIEWED",
+  "dynamic_simulation": "NOT_RUN",
+  "tool_sha256": {
+    "tools/uart_loader/candidates/perf_2b/run_posted_store_ack_measurement.py": "6798b9f9c16634d5a62ff3dfbad8b2edd79fca5e8cddfe209a78e89ea2b2e624",
+    "tools/uart_loader/candidates/perf_2b/run_posted_store_ack_measurements.ps1": "57fb01c09cab7485e63eeb68c95d1172667e7b4e88bbe34d756ebe0e52a90ff7"
+  },
+  "plans": {
+    "performance_300": {
+      "plan_sha256": "39e8cb155006d164a5da439ac567f8f5f84b7170d407ac14bd8dec5ccf4bdd4a",
+      "bin_sha256": "677ee766fd0fc34d1558d778a343743a1cd9287ecdbbc182cb4681af3374517d",
+      "responses": 123,
+      "run_count": 1,
+      "serial_opened": false
+    },
+    "validation_300": {
+      "plan_sha256": "b2109dad2d59afbf07ea3177556a796a74a6f42e5b5de1168c4fd79659485512",
+      "bin_sha256": "461c635c46c86c8e719ced403b045bca468ded7299870bf2f87f8547ce11719b",
+      "responses": 123,
+      "run_count": 1,
+      "serial_opened": false
+    }
+  },
+  "per_round_reprogram_same_034_bitstream": true,
+  "RTL_modified": false,
+  "serial_opened": false
+}

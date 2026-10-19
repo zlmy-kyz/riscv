@@ -1,0 +1,10 @@
+{
+  "argv": [
+    "C:\\python\\python.exe",
+    "-X",
+    "utf8",
+    "D:\\riscv\\RISCV\\tools\\cnn_dvp_test_photo\\run.py",
+    "--plan-only"
+  ],
+  "returncode": 0
+}

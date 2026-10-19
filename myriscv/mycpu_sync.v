@@ -4,8 +4,9 @@ module mycpu_sync #(
     // 兼容现有地址 0 测试；运行链接在 0x8000_0000 的 riscv-tests 时覆写此参数。
     parameter [31:0] RESET_PC = 32'h0000_0000,
     parameter integer EXTERNAL_MEM_DRAIN_ENABLE = 0,
-    // Ordinary ID branches may launch their target while flushing wrong-path IF.
-    parameter integer BRANCH_FETCH_TURNOVER_ENABLE = 1
+    // Ordinary EX redirects may submit their registered target while flushing IF.
+    parameter integer BRANCH_FETCH_TURNOVER_ENABLE = 1,
+    parameter integer DIAG_PERF_ENABLE = 0
 ) (
     input  wire        clk,
     input  wire        resetn,
@@ -41,14 +42,18 @@ module mycpu_sync #(
     // Read-only observation sideband; never feeds pipeline control.
     output wire [7:0]  perf_events,
     output wire [31:0] perf_branch_target,
-    output wire [31:0] perf_fetch_pc
+    output wire [31:0] perf_fetch_pc,
+    output wire [14:0] perf_diag_flags,
+    output wire [31:0] perf_diag_target_pc,
+    output wire [31:0] perf_diag_pending_pc,
+    output wire [31:0] perf_diag_buffer_pc
 );
 
     // ================================================================================
     // 流水结构: IF | ID | EX | MEM | WB
     //   IF  : 指令请求/响应、顺序预取、响应缓冲与错路响应丢弃
-    //   ID  : 译码 / 立即数 / 寄存器堆读 / 转发选择 / 分支判定 / PC 重定向 / load-use 阻塞
-    //   EX  : ALU → 访存地址；通过 valid/ready 提交 load/store 请求
+    //   ID  : 译码 / 立即数 / 寄存器堆读 / 转发选择 / 分支判定 / load-use 阻塞
+    //   EX  : 使用寄存的分支结果重定向；ALU → 访存地址；提交 load/store 请求
     //   MEM : 保持事务直到 rsp_valid；load 经 l_alu 后锁进 MEM/WB
     //   WB  : 写寄存器堆 + 调试口
     // 指令侧和数据侧都采用类 SRAM 请求/响应总线；每侧首版各自单 outstanding。
@@ -82,9 +87,10 @@ module mycpu_sync #(
     wire       inst_if_id_accept;
     wire       inst_buffer_pop;
     wire       inst_turnover_safe;
+    wire       branch_fetch_redirect;
     // 普通分支的重定向改在 EX 级产生：ID 只判定 taken/target 并随指令寄存，
     // 目标取指由 EX 重定向发起，把 "ID 比较 -> 取指地址 -> 互连 -> 桥" 这条
-    // 跨级组合链在 ID/EX 处切断。代价是每次 taken 分支晚一拍启动取指。
+    // 跨级组合链在 ID/EX 处切断；EX 跳转当拍可提交该寄存目标。
     wire       ex_br_redirect;
     reg        id_ex_br_taken;
     reg [31:0] id_ex_br_target;
@@ -370,24 +376,29 @@ module mycpu_sync #(
     assign inst_turnover_safe = !inst_pending ||
                                 (inst_rsp_valid &&
                                  (inst_pending_drop || inst_if_id_accept));
-    // A branch flush discards the IF buffer and any response completing now.
-    // An outstanding request without a response still occupies the sole slot.
-    // Trap/MRET redirects keep the original request suppression and drain path.
-    // Trap/MRET/EX 分支重定向当拍都不再发取指请求：目标地址先写入 pc，
-    // 下一拍再以 pc 发起请求。这正是 ID 判定 + EX 重定向换取组合链断开
-    // 所付出的那一拍，不能再用分支当拍提交目标（030 的同拍接续已移除，
-    // BRANCH_FETCH_TURNOVER_ENABLE 仅为兼容外部传参而保留，不再生效）。
-    assign inst_req_valid = resetn && fetch_valid && !redirect_valid &&
-                            inst_turnover_safe &&
-                            (!inst_buffer_valid || inst_buffer_pop);
-    assign inst_req_addr = pc;
+    // EX redirect discards the OLD buffer and completing response, so only an
+    // outstanding request WITHOUT its response can prevent target submission.
+    // Use the registered ID/EX target; no live ID compare/target enters this mux.
+    // ex_br_redirect already excludes older faults, trap and MRET. Those control
+    // redirects retain request suppression; parameter 0 retains the prior IF.
+    assign branch_fetch_redirect = (BRANCH_FETCH_TURNOVER_ENABLE != 0) &&
+                                    branch_redirect;
+    assign inst_req_valid = resetn && fetch_valid &&
+                            (branch_fetch_redirect ?
+                             (!inst_pending || inst_rsp_valid) :
+                             (!redirect_valid && inst_turnover_safe &&
+                              (!inst_buffer_valid || inst_buffer_pop)));
+    assign inst_req_addr = branch_fetch_redirect ? id_ex_br_target : pc;
     assign inst_req_fire = inst_req_valid && inst_req_ready;
 
     always @(posedge clk) begin
         if (!resetn)
             pc <= RESET_PC;
         else if (redirect_valid)
-            pc <= redirect_pc;
+            // Accepted target is now owned by pending_pc; do not fetch it twice.
+            // Backpressure or an old unfinished request leaves target for retry.
+            pc <= (branch_fetch_redirect && inst_req_fire) ?
+                  (id_ex_br_target + 32'd4) : redirect_pc;
         else if (inst_req_fire)
             pc <= pc + 32'd4;
     end
@@ -1430,4 +1441,14 @@ module mycpu_sync #(
     assign perf_events[7] = inst_if_id_accept && (inst_buffer_valid || inst_response_good);
     assign perf_branch_target = redirect_pc;
     assign perf_fetch_pc = inst_buffer_valid ? inst_buffer_pc : inst_pending_pc;
+    // 042 raw observation sideband: capture these together BEFORE comparing
+    // PCs in the MMIO observer. No diagnostic signal feeds pipeline control.
+    assign perf_diag_flags = (DIAG_PERF_ENABLE != 0) ?
+        {id_ex_needs_bus, ex_mul_ready, ex_mem_complete, ex_mem_valid,
+         older_fault_for_ex, id_ex_exc_valid, id_ex_br_taken, id_ex_valid,
+         inst_rsp_error, inst_buffer_error, inst_buffer_valid, inst_rsp_valid,
+         inst_pending, (trap_redirect_req || mret_redirect_req), branch_redirect} : 15'b0;
+    assign perf_diag_target_pc = (DIAG_PERF_ENABLE != 0) ? id_ex_br_target : 32'b0;
+    assign perf_diag_pending_pc = (DIAG_PERF_ENABLE != 0) ? inst_pending_pc : 32'b0;
+    assign perf_diag_buffer_pc = (DIAG_PERF_ENABLE != 0) ? inst_buffer_pc : 32'b0;
 endmodule
