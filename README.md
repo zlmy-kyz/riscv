@@ -1,6 +1,8 @@
 # RISCV FPGA 工程
 
-本仓库包含面向 **RK3568_MES2L100H / PG2L100H-6IFBG484** 板卡的五级流水 RV32I CPU、SoC、Pango DDR3 集成工程、支持轮询与 RX 中断的 UART，以及启动镜像和仿真入口。PDS 工程为 [`RISCV.pds`](RISCV.pds)，当前板级顶层为 `board_top`。
+**2026-10-19视觉交接入口：[同学复现说明](doc/cnn/视觉识别同学交接与复现_2026-10-19.md)、[完整操作手册](tools/vision_handoff/README_交接.md)、[复现ZIP](share/vision_handoff_20261019_a.zip)。** 当前PDS器件为 **PG2L200H、FBB676、速度级-6**，顶层`board_top`；单摄像头CAM2/J5、载板J10，真实图像，手写模型4c8b5aca。板/PC整数分数一致不等于识别准确率通过，当前有8/1错识别0的完整证据。下文10月10日功能/硬件状态是历史，不能当当前状态，最新以交接记录为准。
+
+本仓库包含五级流水RISC-V CPU、SoC、Pango DDR3、UART、摄像头预处理和CNN及软件/证据入口，也保留原PG2L100H/FBG484阶段材料。PDS工程为[`RISCV.pds`](RISCV.pds)。旧`impl.tcl`含历史命令，不要代替当前PDS工程运行。
 
 2026-10-10：UART Loader、统一BSP及十轮复位下载/VERIFY/RUN已有实板PASS。当前源码另已加入 **13项64-bit MMIO性能计数器**，直接维护在 `myriscv/`；主路径仿真回归通过。用户已生成21:13新主位流并于22:20补导出实现网表，源码/时序/资源/初始化审查通过，新上板门控与工具已绑定，计数器实板待验收。尚未实现Cache、RV32M、DMA、摄像头或CNN加速器。性能起点见 [CPU性能优化约定](doc/CPU性能优化起点与验收约定_2026-10-10.md)，最新状态以 [开发交接](doc/CODEX_HANDOFF.md) 为准。
 

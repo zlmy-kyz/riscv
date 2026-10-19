@@ -6,7 +6,10 @@ module mycpu_sync #(
     parameter integer EXTERNAL_MEM_DRAIN_ENABLE = 0,
     // Ordinary EX redirects may submit their registered target while flushing IF.
     parameter integer BRANCH_FETCH_TURNOVER_ENABLE = 1,
-    parameter integer DIAG_PERF_ENABLE = 0
+    parameter integer DIAG_PERF_ENABLE = 0,
+    // Reuse a matching, successful OLD I response on an ordinary EX redirect.
+    parameter integer BRANCH_RESPONSE_REUSE_ENABLE = 1,
+    parameter integer DETAIL_PERF_ENABLE = 0
 ) (
     input  wire        clk,
     input  wire        resetn,
@@ -46,7 +49,8 @@ module mycpu_sync #(
     output wire [14:0] perf_diag_flags,
     output wire [31:0] perf_diag_target_pc,
     output wire [31:0] perf_diag_pending_pc,
-    output wire [31:0] perf_diag_buffer_pc
+    output wire [31:0] perf_diag_buffer_pc,
+    output wire [15:0] perf_detail_cpu
 );
 
     // ================================================================================
@@ -82,6 +86,8 @@ module mycpu_sync #(
     reg [31:0] inst_buffer_pc;
     reg [31:0] inst_buffer_data;
     reg        inst_buffer_error;
+    wire       branch_response_reuse;
+    wire [31:0] branch_target_next_pc;
     wire       inst_req_fire;
     wire       inst_response_good;
     wire       inst_if_id_accept;
@@ -383,12 +389,25 @@ module mycpu_sync #(
     // redirects retain request suppression; parameter 0 retains the prior IF.
     assign branch_fetch_redirect = (BRANCH_FETCH_TURNOVER_ENABLE != 0) &&
                                     branch_redirect;
+    // 044: only an accepted, completing I request owns usable response data.
+    // Compare registered PCs, never live ID operands. Ordered stores must have
+    // drained before reusing a response; old buffer entries are still flushed.
+    // A prior drop is superseded only by a new ordinary redirect to THIS PC.
+    assign branch_response_reuse = (BRANCH_RESPONSE_REUSE_ENABLE != 0) &&
+                                    branch_fetch_redirect && fetch_valid &&
+                                    inst_pending && inst_rsp_valid && !inst_rsp_error &&
+                                    (inst_pending_pc == id_ex_br_target) &&
+                                    ((EXTERNAL_MEM_DRAIN_ENABLE == 0) || !memory_order_busy);
+    assign branch_target_next_pc = id_ex_br_target + 32'd4;
     assign inst_req_valid = resetn && fetch_valid &&
                             (branch_fetch_redirect ?
                              (!inst_pending || inst_rsp_valid) :
                              (!redirect_valid && inst_turnover_safe &&
                               (!inst_buffer_valid || inst_buffer_pop)));
-    assign inst_req_addr = branch_fetch_redirect ? id_ex_br_target : pc;
+    // A reused target is already delivered to IF/ID below. Use the freed I slot
+    // for target+4, so avoiding the duplicate fetch also removes a fetch bubble.
+    assign inst_req_addr = branch_fetch_redirect ?
+                           (branch_response_reuse ? branch_target_next_pc : id_ex_br_target) : pc;
     assign inst_req_fire = inst_req_valid && inst_req_ready;
 
     always @(posedge clk) begin
@@ -397,8 +416,9 @@ module mycpu_sync #(
         else if (redirect_valid)
             // Accepted target is now owned by pending_pc; do not fetch it twice.
             // Backpressure or an old unfinished request leaves target for retry.
-            pc <= (branch_fetch_redirect && inst_req_fire) ?
-                  (id_ex_br_target + 32'd4) : redirect_pc;
+            pc <= branch_response_reuse ?
+                  (inst_req_fire ? branch_target_next_pc + 32'd4 : branch_target_next_pc) :
+                  ((branch_fetch_redirect && inst_req_fire) ? branch_target_next_pc : redirect_pc);
         else if (inst_req_fire)
             pc <= pc + 32'd4;
     end
@@ -455,6 +475,16 @@ module mycpu_sync #(
             if_id_inst <= 32'h00000000;
             if_id_pc <= 32'h00000000;
             if_id_valid <= 1'b0;
+            if_id_access_fault <= 1'b0;
+        end
+        else if (branch_response_reuse) begin
+            // Consume the OLD pending response on this redirect edge; a new
+            // target+4 acceptance may replace pending_pc only AFTER this edge.
+            // id_fire remains blocked by branch_redirect, so the discarded ID
+            // instruction cannot issue. Reset, trap and MRET retain priority.
+            if_id_inst <= inst_rsp_rdata;
+            if_id_pc <= inst_pending_pc;
+            if_id_valid <= 1'b1;
             if_id_access_fault <= 1'b0;
         end
         else if (kill_if_id) begin
@@ -1438,9 +1468,11 @@ module mycpu_sync #(
     assign perf_events[4] = if_id_valid && load_use;
     assign perf_events[5] = branch_redirect;
     assign perf_events[6] = fetch_valid && inst_if_id_accept && !inst_buffer_valid && !inst_response_good;
-    assign perf_events[7] = inst_if_id_accept && (inst_buffer_valid || inst_response_good);
+    assign perf_events[7] = branch_response_reuse ||
+                            (inst_if_id_accept && (inst_buffer_valid || inst_response_good));
     assign perf_branch_target = redirect_pc;
-    assign perf_fetch_pc = inst_buffer_valid ? inst_buffer_pc : inst_pending_pc;
+    assign perf_fetch_pc = branch_response_reuse ? inst_pending_pc :
+                           (inst_buffer_valid ? inst_buffer_pc : inst_pending_pc);
     // 042 raw observation sideband: capture these together BEFORE comparing
     // PCs in the MMIO observer. No diagnostic signal feeds pipeline control.
     assign perf_diag_flags = (DIAG_PERF_ENABLE != 0) ?
@@ -1451,4 +1483,13 @@ module mycpu_sync #(
     assign perf_diag_target_pc = (DIAG_PERF_ENABLE != 0) ? id_ex_br_target : 32'b0;
     assign perf_diag_pending_pc = (DIAG_PERF_ENABLE != 0) ? inst_pending_pc : 32'b0;
     assign perf_diag_buffer_pc = (DIAG_PERF_ENABLE != 0) ? inst_buffer_pc : 32'b0;
+    // 046 observation begin: raw levels only, no fanback into CPU control.
+    assign perf_detail_cpu = (DETAIL_PERF_ENABLE != 0) ?
+        {3'b0, data_rsp_valid,
+         (normal_retire && mem_wb_inst[6:0] == 7'b0110011 &&
+          mem_wb_inst[31:25] == 7'b0000001 && !mem_wb_inst[14]),
+         mul_done, mul_busy, mul_start, (kill_id_ex || ex_exc_valid),
+         older_fault_for_ex, ex_mem_ready, ex_mul_ready, id_ex_mul, id_ex_valid,
+         (id_ex_valid && id_ex_needs_bus && !data_req_ready),
+         (ex_mem_valid && !ex_mem_complete)} : 16'b0;
 endmodule

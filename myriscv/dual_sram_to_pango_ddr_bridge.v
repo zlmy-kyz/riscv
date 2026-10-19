@@ -20,7 +20,7 @@
 //   * x32 D 写命中在 DDR 写完成时按字节更新；写 miss 不分配。
 //   * posted 模式 store 入缓冲即响应；下一写可在旧写完成边沿接续，读 miss 等排空。
 //     D 命中读经一拍资格寄存后与旧写重叠；两条同字写按字节由新覆盖旧。
-//     同行读不在缓存写完成边沿接受，避免依赖 DRM 的读写碰撞语义。
+//     同写队头行的读避开写完成边沿；仅队尾同行时可读并前递队尾字节。
 //     I 命中可继续，I miss 可先锁存但 AR 等排空；SoC 接 FENCE/IRQ 与非 DDR 排空。
 //     x16 保留原数组和写命中失效策略。
 //   * 旧响应周期可同时接受下一请求；同步 DRM 输出在接受边沿后才更新，
@@ -53,7 +53,10 @@ module dual_sram_to_pango_ddr_bridge #(
     parameter integer CACHE_PERF_ENABLE = 0,
     parameter integer DIAG_PERF_ENABLE = 0,
     // Supported depths: 1 (legacy) or 2. Physical AW/W remains strictly serial.
-    parameter integer WRITE_BUFFER_DEPTH = 2
+    parameter integer WRITE_BUFFER_DEPTH = 2,
+    // Track the current writing head, allowing a tail-only matching load on head pop.
+    parameter integer DATA_READ_TAIL_OVERLAP_ENABLE = 1,
+    parameter integer DETAIL_PERF_ENABLE = 0
 ) (
     input  wire                          clk,
     input  wire                          resetn,
@@ -108,7 +111,8 @@ module dual_sram_to_pango_ddr_bridge #(
     // Every I verdict is exactly one edge after acceptance (including x16).
     output wire [5:0]                    perf_cache_events,
     output wire [1:0]                    perf_cache_enabled,
-    output wire [2:0]                    perf_wait_events
+    output wire [2:0]                    perf_wait_events,
+    output wire [15:0]                   perf_detail_bridge
 );
 
     localparam [2:0] STATE_IDLE   = 3'd0;
@@ -471,12 +475,17 @@ module dual_sram_to_pango_ddr_bridge #(
                 (DATA_READ_UNDER_WRITE_ENABLE != 0) && data_line_hit &&
                 ((DATA_STORE_FORWARD_ENABLE != 0) ||
                  !(write_buffer_head_read_line_match || write_buffer_tail_read_line_match));
-            // Cover BOTH entries: a pop may promote the tail after this snapshot.
-            // With a held load there can be no new store push; remaining lines
-            // are a subset of this snapshot. Conservatively guard either match
-            // on head completion, avoiding a live tag compare in ready.
-            data_read_overlap_same_line <=
-                write_buffer_head_read_line_match || write_buffer_tail_read_line_match;
+            // 045: only the CURRENT head can write DRM on a completion edge.
+            // Predict the post-edge head: a pop promotes the OLD tail. A held,
+            // unaccepted load excludes a store push; accepted requests clear
+            // permit above, so neither a new address nor a push inherits it.
+            // Keep the full-line comparison registered, off the ready path.
+            // A tail-only match can read while an unrelated head completes;
+            // the unchanged response snapshot forwards the younger bytes.
+            data_read_overlap_same_line <= (DATA_READ_TAIL_OVERLAP_ENABLE != 0) ?
+                (write_buffer_complete ? write_buffer_tail_read_line_match :
+                                         write_buffer_head_read_line_match) :
+                (write_buffer_head_read_line_match || write_buffer_tail_read_line_match);
         end
     end
     assign data_line_write_hit = take_data && data_req_write && !camera_data_addr && !preprocess_data_addr &&
@@ -936,4 +945,13 @@ module dual_sram_to_pango_ddr_bridge #(
     wire [11:0] _unused_sideband = {data_req_size, axi_wusero_id,
                                     axi_wusero_last, axi_rid, axi_rlast};
 
+    // 046 observation begin: all comparisons stay off arbitration/response control.
+    assign perf_detail_bridge = (DETAIL_PERF_ENABLE != 0) ?
+        {ddr_init_done, data_req_ready,
+         (!front_slot_available && response_target == TARGET_INST), take_data,
+         (read_address_phase && response_target == TARGET_INST), write_buffer_busy,
+         idle_ready, data_req_valid, write_buffer_tail_read_line_match,
+         write_buffer_head_read_line_match, write_buffer_complete,
+         data_read_overlap_same_line, data_read_overlap_permit, data_line_hit,
+         data_req_write, perf_wait_events[2]} : 16'b0;
 endmodule

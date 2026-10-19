@@ -1,0 +1,14 @@
+{
+  "status": "BUNDLE_CREATED_PENDING_EXTRACTED_COPY_VALIDATION",
+  "files": 6219,
+  "archive": "share/vision_handoff_20261019_a.zip",
+  "archive_bytes": 33342312,
+  "archive_sha256": "4aa6cc4173f6c0a3d402bd98c8ffe66257b92f6f84d45ebe912fc8d29b85bad1",
+  "package_manifest_sha256": "ef2b0815199c6241145bd7a11dfeae907d2e835807b773d646b2249f07e5c5b4",
+  "pds_source_inputs": 189,
+  "captures": 7,
+  "source_images": 5339,
+  "source_originals_changed": false,
+  "serial_opened": false,
+  "PDS_started": false
+}

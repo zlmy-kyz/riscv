@@ -7,6 +7,7 @@
 
 
 ddr3 the_instance_name (
+  .ref_clk(ref_clk),                                    // input
   .resetn(resetn),                                      // input
   .core_clk(core_clk),                                  // output
   .pll_lock(pll_lock),                                  // output
@@ -21,8 +22,8 @@ ddr3 the_instance_name (
   .axi_awlen(axi_awlen),                                // input [3:0]
   .axi_awready(axi_awready),                            // output
   .axi_awvalid(axi_awvalid),                            // input
-  .axi_wdata(axi_wdata),                                // input [127:0]
-  .axi_wstrb(axi_wstrb),                                // input [15:0]
+  .axi_wdata(axi_wdata),                                // input [255:0]
+  .axi_wstrb(axi_wstrb),                                // input [31:0]
   .axi_wready(axi_wready),                              // output
   .axi_wusero_id(axi_wusero_id),                        // output [3:0]
   .axi_wusero_last(axi_wusero_last),                    // output
@@ -32,10 +33,24 @@ ddr3 the_instance_name (
   .axi_arlen(axi_arlen),                                // input [3:0]
   .axi_arready(axi_arready),                            // output
   .axi_arvalid(axi_arvalid),                            // input
-  .axi_rdata(axi_rdata),                                // output [127:0]
+  .axi_rdata(axi_rdata),                                // output [255:0]
   .axi_rid(axi_rid),                                    // output [3:0]
   .axi_rlast(axi_rlast),                                // output
   .axi_rvalid(axi_rvalid),                              // output
+  .axi_awid(axi_awid),                                  // input [7:0]
+  .axi_awsize(axi_awsize),                              // input [2:0]
+  .axi_awburst(axi_awburst),                            // input [1:0]
+  .axi_wlast(axi_wlast),                                // input
+  .axi_wvalid(axi_wvalid),                              // input
+  .axi_bready(axi_bready),                              // input
+  .axi_bid(axi_bid),                                    // output [7:0]
+  .axi_bresp(axi_bresp),                                // output [1:0]
+  .axi_bvalid(axi_bvalid),                              // output
+  .axi_arid(axi_arid),                                  // input [7:0]
+  .axi_arsize(axi_arsize),                              // input [2:0]
+  .axi_arburst(axi_arburst),                            // input [1:0]
+  .axi_rready(axi_rready),                              // input
+  .axi_rresp(axi_rresp),                                // output [1:0]
   .apb_clk(apb_clk),                                    // input
   .apb_rst_n(apb_rst_n),                                // input
   .apb_sel(apb_sel),                                    // input
@@ -56,26 +71,41 @@ ddr3 the_instance_name (
   .mem_odt(mem_odt),                                    // output
   .mem_a(mem_a),                                        // output [14:0]
   .mem_ba(mem_ba),                                      // output [2:0]
-  .mem_dqs(mem_dqs),                                    // inout [1:0]
-  .mem_dqs_n(mem_dqs_n),                                // inout [1:0]
-  .mem_dq(mem_dq),                                      // inout [15:0]
-  .mem_dm(mem_dm),                                      // output [1:0]
+  .mem_dqs(mem_dqs),                                    // inout [3:0]
+  .mem_dqs_n(mem_dqs_n),                                // inout [3:0]
+  .mem_dq(mem_dq),                                      // inout [31:0]
+  .mem_dm(mem_dm),                                      // output [3:0]
+  .dfi_address(dfi_address),                            // input [59:0]
+  .dfi_bank(dfi_bank),                                  // input [11:0]
+  .dfi_cs_n(dfi_cs_n),                                  // input [3:0]
+  .dfi_cas_n(dfi_cas_n),                                // input [3:0]
+  .dfi_ras_n(dfi_ras_n),                                // input [3:0]
+  .dfi_we_n(dfi_we_n),                                  // input [3:0]
+  .dfi_cke(dfi_cke),                                    // input [3:0]
+  .dfi_odt(dfi_odt),                                    // input [3:0]
+  .dfi_wrdata_en(dfi_wrdata_en),                        // input [3:0]
+  .dfi_wrdata(dfi_wrdata),                              // input [255:0]
+  .dfi_wrdata_mask(dfi_wrdata_mask),                    // input [31:0]
+  .dfi_rddata(dfi_rddata),                              // output [255:0]
+  .dfi_rddata_valid(dfi_rddata_valid),                  // output
+  .dfi_reset_n(dfi_reset_n),                            // input
+  .dfi_phyupd_req(dfi_phyupd_req),                      // output
+  .dfi_phyupd_ack(dfi_phyupd_ack),                      // input
+  .dfi_error(dfi_error),                                // output
   .dbg_gate_start(dbg_gate_start),                      // input
   .dbg_cpd_start(dbg_cpd_start),                        // input
   .dbg_ddrphy_rst_n(dbg_ddrphy_rst_n),                  // input
   .dbg_gpll_scan_rst(dbg_gpll_scan_rst),                // input
   .samp_position_dyn_adj(samp_position_dyn_adj),        // input
-  .init_samp_position_even(init_samp_position_even),    // input [15:0]
-  .init_samp_position_odd(init_samp_position_odd),      // input [15:0]
+  .init_samp_position_even(init_samp_position_even),    // input [31:0]
   .wrcal_position_dyn_adj(wrcal_position_dyn_adj),      // input
-  .init_wrcal_position(init_wrcal_position),            // input [15:0]
+  .init_wrcal_position(init_wrcal_position),            // input [31:0]
   .force_read_clk_ctrl(force_read_clk_ctrl),            // input
-  .init_slip_step(init_slip_step),                      // input [7:0]
-  .init_read_clk_ctrl(init_read_clk_ctrl),              // input [5:0]
+  .init_slip_step(init_slip_step),                      // input [15:0]
+  .init_read_clk_ctrl(init_read_clk_ctrl),              // input [11:0]
   .debug_calib_ctrl(debug_calib_ctrl),                  // output [33:0]
-  .dbg_slice_status(dbg_slice_status),                  // output [33:0]
-  .dbg_slice_state(dbg_slice_state),                    // output [43:0]
-  .debug_data(debug_data),                              // output [137:0]
+  .dbg_slice_state(dbg_slice_state),                    // output [95:0]
+  .debug_data(debug_data),                              // output [299:0]
   .dbg_dll_upd_state(dbg_dll_upd_state),                // output [1:0]
   .debug_gpll_dps_phase(debug_gpll_dps_phase),          // output [8:0]
   .dbg_rst_dps_state(dbg_rst_dps_state),                // output [2:0]

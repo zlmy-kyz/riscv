@@ -1,0 +1,32 @@
+{
+  "status": "VISION_HANDOFF_EXTRACTED_COPY_VALIDATION_PASS_NOT_HDL_OR_ACCURACY_ACCEPTANCE",
+  "serial_opened": false,
+  "PDS_started": false,
+  "HDL_run": false,
+  "retrained": false,
+  "archive_sha256": "4aa6cc4173f6c0a3d402bd98c8ffe66257b92f6f84d45ebe912fc8d29b85bad1",
+  "archive_bytes": 33342312,
+  "files_checked": 6219,
+  "source_images_checked": 5339,
+  "actual_capture_raw_replays": 7,
+  "recorded_label_mismatches": 5,
+  "PDS_setup_inputs": 153,
+  "PDS_relocation_paths_verified": true,
+  "rejects_existing_directory": true,
+  "rejects_tampered_input": true,
+  "preserved_original_inputs": 178,
+  "peer_review_sha256": "71af81e9514d986d05c72dea3291caa005362cfb46e23bfff6ece8b284f59cd7",
+  "relocation_review_sha256": "06950a2dd454a0139fd5335ba3003077b11647a225f58572d7efa1d8b367acf1",
+  "validation_script_sha256": "55e5ce8b6088e459ba1c8a9925dce80522fbc5713f704790b04afd7be73514c5",
+  "artifact_sha256": {
+    "create_pds_workspace.command.json": "57ca885613c746b6d9cb64da95e12ba1a82afc3a1f34abc357075f15e5d05443",
+    "create_pds_workspace.log": "06950a2dd454a0139fd5335ba3003077b11647a225f58572d7efa1d8b367acf1",
+    "peer_review.json": "71af81e9514d986d05c72dea3291caa005362cfb46e23bfff6ece8b284f59cd7",
+    "reject_existing_workspace.command.json": "94295c1440a34cc208faa1034d3abe09387a9c7479611393ea7e647838cc2159",
+    "reject_existing_workspace.log": "0acd15917ca11941bf0c81e742409dfa0a7ec69dd1384d3c091ad2f631c5a4e4",
+    "reject_tampered_input.command.json": "31512c826ef7fb93870da0347cd8548f41d8b05299c60eee9df7fd34fe1ec595",
+    "reject_tampered_input.log": "7b2c4d89d7d1a78f471ae3fdfa2393cd7f72d8c1047cda1e51a471ced7970431",
+    "verify_relocated_package.command.json": "1e826e8a790a53b2087a94afe40f7e5e70ce9d0e80eee4612897c0e12a63ab6a",
+    "verify_relocated_package.log": "71af81e9514d986d05c72dea3291caa005362cfb46e23bfff6ece8b284f59cd7"
+  }
+}

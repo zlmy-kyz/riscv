@@ -16,7 +16,8 @@ module simple_mmio #(
     // Default off for existing standalone MMIO benches with no cache sideband.
     parameter integer CACHE_PERF_ENABLE = 0,
     parameter integer DIAG_PERF_ENABLE = 0,
-    parameter integer DIAG_DDR_ENABLE = 0
+    parameter integer DIAG_DDR_ENABLE = 0,
+    parameter integer DETAIL_PERF_ENABLE = 0
 ) (
     input  wire        clk,
     input  wire        resetn,
@@ -40,7 +41,8 @@ module simple_mmio #(
     input wire [1:0] perf_cache_enabled,
     input wire [2:0] perf_wait_events,
     input wire [14:0] perf_diag_flags,
-    input wire [31:0] perf_diag_target_pc, perf_diag_pending_pc, perf_diag_buffer_pc
+    input wire [31:0] perf_diag_target_pc, perf_diag_pending_pc, perf_diag_buffer_pc,
+    input wire [15:0] perf_detail_cpu, perf_detail_bridge
 );
 
     reg        pending;
@@ -55,6 +57,7 @@ module simple_mmio #(
     generate if (PERF_ENABLE != 0) begin : g_perf
         cpu_perf_counters #(.AUTO_ARM(PERF_AUTO_ARM), .CACHE_PERF_ENABLE(CACHE_PERF_ENABLE),
             .DIAG_PERF_ENABLE(DIAG_PERF_ENABLE), .DIAG_DDR_ENABLE(DIAG_DDR_ENABLE),
+            .DETAIL_PERF_ENABLE(DETAIL_PERF_ENABLE),
             .DEFAULT_START_PC(PERF_START_PC),
             .DEFAULT_STOP_PC(PERF_STOP_PC)) u_perf (
             .clk(clk), .resetn(resetn), .events(perf_events), .retire_pc(perf_retire_pc),
@@ -66,7 +69,8 @@ module simple_mmio #(
             .cache_events(perf_cache_events), .cache_enabled(perf_cache_enabled),
             .wait_events(perf_wait_events), .diag_flags(perf_diag_flags),
             .diag_target_pc(perf_diag_target_pc), .diag_pending_pc(perf_diag_pending_pc),
-            .diag_buffer_pc(perf_diag_buffer_pc));
+            .diag_buffer_pc(perf_diag_buffer_pc),
+            .detail_cpu(perf_detail_cpu), .detail_bridge(perf_detail_bridge));
     end else begin : g_no_perf
         assign perf_rdata=0;
         assign perf_error=1;
@@ -172,7 +176,8 @@ module cpu_perf_counters #(
     parameter [31:0] DEFAULT_STOP_PC=32'h400007f4,
     parameter integer CACHE_PERF_ENABLE=0,
     parameter integer DIAG_PERF_ENABLE=0,
-    parameter integer DIAG_DDR_ENABLE=0
+    parameter integer DIAG_DDR_ENABLE=0,
+    parameter integer DETAIL_PERF_ENABLE=0
 ) (
     input wire clk, resetn,
     input wire [7:0] events,
@@ -190,7 +195,8 @@ module cpu_perf_counters #(
     input wire [1:0] cache_enabled,
     input wire [2:0] wait_events,
     input wire [14:0] diag_flags,
-    input wire [31:0] diag_target_pc, diag_pending_pc, diag_buffer_pc
+    input wire [31:0] diag_target_pc, diag_pending_pc, diag_buffer_pc,
+    input wire [15:0] detail_cpu, detail_bridge
 );
     localparam IDLE=2'd0, ARMED=2'd1, RUNNING=2'd2, DONE=2'd3;
     reg [1:0] state;
@@ -242,6 +248,23 @@ module cpu_perf_counters #(
                                (diag_pending_pc_q == diag_target_pc_q);
     wire diag_tail_pending = diag_sample_q || (|diag_delta_q) || diag_start_q;
     wire diag_snapshot_ready = (state == DONE) && !diag_tail_pending;
+    // 046: independent raw-edge capture -> event decode -> 64-bit bank.
+    // Source edge E is accumulated on E+2; ROI and clear/start follow E.
+    reg [63:0] detail_count [0:18];
+    reg [15:0] detail_cpu_q, detail_bridge_q;
+    reg [3:0] detail_class_q;
+    reg detail_retire_q, detail_sample_q, detail_start_q, detail_start_qq;
+    reg detail_clear_q, detail_clear_qq, detail_hit_pending;
+    reg [18:0] detail_delta_q;
+    integer detail_k;
+    wire detail_mul_wait = detail_cpu_q[2] && detail_cpu_q[3] &&
+                          !detail_cpu_q[4] && !detail_cpu_q[6] && !detail_cpu_q[7];
+    wire detail_tail_opportunity = detail_bridge_q[15] && detail_bridge_q[8] &&
+        detail_bridge_q[9] && detail_bridge_q[10] && !detail_bridge_q[1] &&
+        detail_bridge_q[2] && detail_bridge_q[5] && !detail_bridge_q[6] && detail_bridge_q[7];
+    wire detail_tail_pending = detail_sample_q || detail_start_q || detail_start_qq ||
+                              detail_clear_q || detail_clear_qq || (|detail_delta_q);
+    wire detail_snapshot_ready = (state == DONE) && !detail_tail_pending;
     always @* begin
         if(events[1]) classification=5;
         else if(events[3]) classification=3;
@@ -285,6 +308,14 @@ module cpu_perf_counters #(
                     error=write;
                 end
                 12'h138: begin rdata=32'd8; error=write; end
+                12'h300: begin rdata=32'h44343601; error=write; end // D46, v1
+                12'h304: begin
+                    rdata={27'b0,detail_tail_pending,detail_snapshot_ready,1'b0,
+                        ((DETAIL_PERF_ENABLE != 0) && (DIAG_DDR_ENABLE != 0)),
+                        (DETAIL_PERF_ENABLE != 0)};
+                    error=write;
+                end
+                12'h308: begin rdata=32'd19; error=write; end
                 default: if(addr>=12'h140 && addr<=12'h1a4) begin
                     // A frozen bank is its own snapshot. Never expose torn live reads.
                     error=write || state!=DONE;
@@ -297,6 +328,10 @@ module cpu_perf_counters #(
                     error=write || !diag_snapshot_ready;
                     rdata=addr[2] ? diag_count[(addr-12'h280)>>3][63:32] :
                                          diag_count[(addr-12'h280)>>3][31:0];
+                end else if(addr>=12'h340 && addr<=12'h3d4) begin
+                    error=write || !detail_snapshot_ready;
+                    rdata=addr[2] ? detail_count[(addr-12'h340)>>3][63:32] :
+                                         detail_count[(addr-12'h340)>>3][31:0];
                 end
             endcase
         end
@@ -316,7 +351,11 @@ module cpu_perf_counters #(
             ddr_q<=ddr_increment;classification_q<=classification;
             // Track branch recovery even outside ROI, matching the 2A observer.
             if(events[1]) recovering<=0;
-            else if(events[5]) begin recovering<=1; recovery_target<=branch_target; end
+            else if(events[5]) begin
+                // 044: the redirect target can be delivered to IF/ID on this very edge.
+                recovering<=!(events[7] && fetch_pc==branch_target);
+                recovery_target<=branch_target;
+            end
             else if(recovering && delivered) recovering<=0;
             if(state==ARMED && events[0] && retire_pc==start_pc) start_seen<=1;
             if(state==RUNNING && events[0] && retire_pc==stop_pc) stop_seen<=1;
@@ -343,6 +382,56 @@ module cpu_perf_counters #(
                 count[10]<=(start_q?64'd0:count[10])+{63'd0,branch_q};
                 count[11]<=(start_q?64'd0:count[11])+{63'd0,ar_q};
                 count[12]<=(start_q?64'd0:count[12])+{63'd0,aw_q};
+            end
+        end
+    end
+    // 046 observation bank: no assignment here feeds CPU, bridge, or old banks.
+    always @(posedge clk) begin
+        if (!resetn) begin
+            detail_cpu_q<=0; detail_bridge_q<=0; detail_class_q<=8;
+            detail_retire_q<=0; detail_sample_q<=0; detail_start_q<=0; detail_start_qq<=0;
+            detail_clear_q<=0; detail_clear_qq<=0; detail_hit_pending<=0; detail_delta_q<=0;
+            for(detail_k=0;detail_k<19;detail_k=detail_k+1) detail_count[detail_k]<=0;
+        end else begin
+            detail_cpu_q <= (DETAIL_PERF_ENABLE != 0) ? detail_cpu : 16'b0;
+            detail_bridge_q <= (DETAIL_PERF_ENABLE != 0) ? detail_bridge : 16'b0;
+            detail_class_q<=classification; detail_retire_q<=events[0];
+            detail_sample_q <= (DETAIL_PERF_ENABLE != 0) && sample;
+            detail_start_q<=start_event; detail_start_qq<=detail_start_q;
+            detail_clear_q<=arm || cancel; detail_clear_qq<=detail_clear_q;
+            // Track accepted DDR hit ownership even OUTSIDE ROI. New acceptance
+            // wins an old response completion; a later live address is irrelevant.
+            if(detail_cpu_q[12]) detail_hit_pending<=0;
+            if(detail_bridge_q[12])
+                detail_hit_pending<=!detail_bridge_q[1] && detail_bridge_q[2];
+            detail_delta_q[0]<=detail_sample_q && detail_bridge_q[0] && detail_bridge_q[1];
+            detail_delta_q[1]<=detail_sample_q && detail_bridge_q[0] && !detail_bridge_q[1] && !detail_bridge_q[2];
+            detail_delta_q[2]<=detail_sample_q && detail_bridge_q[0] && !detail_bridge_q[1] && detail_bridge_q[2] && !detail_bridge_q[3];
+            detail_delta_q[3]<=detail_sample_q && detail_bridge_q[0] && !detail_bridge_q[1] && detail_bridge_q[2] && detail_bridge_q[3];
+            detail_delta_q[4]<=detail_sample_q && detail_bridge_q[15] && detail_bridge_q[10] && detail_bridge_q[11];
+            detail_delta_q[5]<=detail_sample_q && detail_tail_opportunity;
+            detail_delta_q[6]<=detail_sample_q && detail_tail_opportunity && detail_bridge_q[12];
+            detail_delta_q[7]<=detail_sample_q && detail_cpu_q[8];
+            detail_delta_q[8]<=detail_sample_q && detail_cpu_q[11];
+            detail_delta_q[9]<=detail_sample_q && detail_cpu_q[9];
+            detail_delta_q[10]<=detail_sample_q && detail_mul_wait;
+            detail_delta_q[11]<=detail_sample_q && detail_mul_wait && detail_cpu_q[5];
+            detail_delta_q[12]<=detail_sample_q && detail_cpu_q[2] && detail_cpu_q[3] &&
+                detail_cpu_q[10] && !detail_cpu_q[5] && !detail_cpu_q[6] && !detail_cpu_q[7];
+            detail_delta_q[13]<=detail_sample_q && detail_class_q==8 && !detail_retire_q && detail_mul_wait;
+            detail_delta_q[14]<=detail_sample_q && detail_class_q==3 && detail_cpu_q[0];
+            detail_delta_q[15]<=detail_sample_q && detail_class_q==3 && !detail_cpu_q[0] && detail_cpu_q[1];
+            detail_delta_q[16]<=detail_sample_q && detail_class_q==3 && detail_cpu_q[0] && detail_hit_pending;
+            detail_delta_q[17]<=detail_sample_q && detail_bridge_q[15] && detail_bridge_q[8] &&
+                !detail_bridge_q[9] && detail_bridge_q[13];
+            detail_delta_q[18]<=detail_sample_q && detail_class_q==8 && !detail_retire_q && !detail_cpu_q[2];
+            if(detail_clear_qq) begin
+                for(detail_k=0;detail_k<19;detail_k=detail_k+1) detail_count[detail_k]<=0;
+            end else begin
+                for(detail_k=0;detail_k<19;detail_k=detail_k+1) begin
+                    if(detail_start_qq) detail_count[detail_k]<=detail_delta_q[detail_k] ? 64'd1 : 64'd0;
+                    else if(detail_delta_q[detail_k]) detail_count[detail_k]<=detail_count[detail_k]+64'd1;
+                end
             end
         end
     end

@@ -5,3 +5,7 @@ tests/**/*.elf binary
 # Preserve the provided CoreMark package and regression baseline byte identities.
 coremark-main/** -text
 sim/cpu_performance_2b/build/frozen_inputs/myriscv/*.v -text
+
+# The vision handoff ZIP preserves original sealed text and binary byte identities.
+share/vision_handoff_*.zip binary
+share/vision_handoff_*.zip.sha256 -text
