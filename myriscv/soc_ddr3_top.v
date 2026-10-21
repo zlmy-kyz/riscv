@@ -9,6 +9,8 @@ module soc_ddr3_top #(
     parameter integer ENABLE_CAMERA = 0,
     parameter integer CAMERA_COLORBAR_ENABLE = 0,
     parameter integer CAMERA_DVP_TEST_ENABLE = 0,
+    // Keep the proven benchmark D response timing when camera logic is absent.
+    parameter integer DDR_DATA_RSP_REGISTER_ENABLE = ENABLE_CAMERA,
     parameter [31:0] RESET_PC = 32'h0000_0000,
     parameter [31:0] DDR_BASE = 32'h4000_0000,
     parameter integer CORE_CLK_HZ = 100_000_000,
@@ -264,6 +266,7 @@ module soc_ddr3_top #(
         .ENABLE_CNN(CNN_ACTIVE),
         .ENABLE_PREPROCESS(PREPROCESS_ACTIVE),
         .ENABLE_CAMERA(ENABLE_CAMERA),
+        .DDR_DATA_RSP_REGISTER_ENABLE(DDR_DATA_RSP_REGISTER_ENABLE),
         .RESET_PC(RESET_PC),
         .ENABLE_DDR(1),
         .DDR_BASE(DDR_BASE),

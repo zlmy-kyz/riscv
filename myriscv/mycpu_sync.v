@@ -9,7 +9,16 @@ module mycpu_sync #(
     parameter integer DIAG_PERF_ENABLE = 0,
     // Reuse a matching, successful OLD I response on an ordinary EX redirect.
     parameter integer BRANCH_RESPONSE_REUSE_ENABLE = 1,
-    parameter integer DETAIL_PERF_ENABLE = 0
+    parameter integer DETAIL_PERF_ENABLE = 0,
+    parameter integer BRANCH_PREDICT_ENABLE = 0,
+    parameter integer PREDICT_PERF_ENABLE = 0,
+    // 054: predict JALR from its most recently normally retired target.
+    parameter integer JALR_PREDICT_ENABLE = 0,
+    // Supported capacities are 16 (054) and 32 (055).
+    parameter integer BTB_ENTRIES = 16,
+    parameter integer JALR_DIAG_ENABLE = 0,
+    // 057: a separate, tagged 16-row next-target table for non-return JALR.
+    parameter integer INDIRECT_TARGET_ENABLE = 0
 ) (
     input  wire        clk,
     input  wire        resetn,
@@ -50,7 +59,12 @@ module mycpu_sync #(
     output wire [31:0] perf_diag_target_pc,
     output wire [31:0] perf_diag_pending_pc,
     output wire [31:0] perf_diag_buffer_pc,
-    output wire [15:0] perf_detail_cpu
+    output wire [15:0] perf_detail_cpu,
+    output wire [24:0] perf_predict_events,
+    output wire [31:0] perf_predict_config,
+    output wire [19:0] perf_jalr_diag_events,
+    output wire [31:0] perf_jalr_diag_config,
+    output wire [31:0] perf_indirect_config
 );
 
     // ================================================================================
@@ -76,6 +90,10 @@ module mycpu_sync #(
                      FLOW_IRQ_CHECK = 3'd3,
                      FLOW_IRQ_DRAIN = 3'd4;
 
+    // 056 observation only: use the retired instruction's saved IF metadata.
+    wire jd_retire, jd_return, jd_link, jd_other;
+    wire jd_miss, jd_hit, jd_fallback, jd_noquery;
+
     // IF、全局流水控制与中断仲裁
     reg fetch_valid;
     reg [31:0] pc;              // 下一笔取指请求的字节地址
@@ -100,6 +118,44 @@ module mycpu_sync #(
     wire       ex_br_redirect;
     reg        id_ex_br_taken;
     reg [31:0] id_ex_br_target;
+    // 053: effective successor metadata, not a live table re-query. Bits:
+    // [4] recovery fallback, [3] ordinary query used, [2] hit,
+    // [1] effective predicted taken, [0] queried JAL type.
+    reg [31:0] pending_pred_next_pc, buffer_pred_next_pc, if_id_pred_next_pc;
+    reg [31:0] id_ex_pred_next_pc, ex_mem_pred_next_pc, mem_wb_pred_next_pc;
+    reg [4:0] pending_pred_meta, buffer_pred_meta, if_id_pred_meta;
+    reg [4:0] id_ex_pred_meta, ex_mem_pred_meta, mem_wb_pred_meta;
+    reg ex_mem_br_taken, mem_wb_br_taken;
+    localparam integer BTB_INDEX_BITS = (BTB_ENTRIES == 32) ? 5 : 4;
+    localparam integer BTB_TAG_BITS = 30 - BTB_INDEX_BITS;
+    localparam [7:0] BTB_CONFIG_ROWS = BTB_ENTRIES;
+    reg [BTB_ENTRIES-1:0] predict_valid, predict_is_jal, predict_is_jalr, predict_is_indirect;
+    reg [BTB_TAG_BITS-1:0] predict_tag [0:BTB_ENTRIES-1];
+    reg [29:0] predict_target [0:BTB_ENTRIES-1];
+    reg [1:0] predict_counter [0:BTB_ENTRIES-1];
+    wire [BTB_INDEX_BITS-1:0] predict_query_index = pc[BTB_INDEX_BITS+1:2];
+    wire [BTB_INDEX_BITS-1:0] predict_write_index = mem_wb_pc[BTB_INDEX_BITS+1:2];
+    integer predict_k;
+    wire predict_hit, predict_taken;
+    wire [31:0] predict_next_pc, branch_recovery_pc;
+    wire [4:0] predict_meta;
+    wire predict_wb_b, predict_wb_jal, predict_wb_jalr, predict_wb_unconditional;
+    wire predict_wb_match, predict_wb_same_type;
+    wire predict_allocate, predict_b_update, predict_clear, predict_replace;
+    wire predict_wb_next_wrong;
+    // A full (source PC, previous target) tag prevents hash aliases from
+    // choosing a target belonging to another indirect jump.
+    reg [15:0] indirect_valid;
+    reg [29:0] indirect_pc [0:15];
+    reg [29:0] indirect_previous [0:15];
+    reg [29:0] indirect_next [0:15];
+    wire [3:0] indirect_query_index = predict_target[predict_query_index][3:0] ^
+                                      predict_target[predict_query_index][4:1];
+    wire [3:0] indirect_write_index = predict_target[predict_write_index][3:0] ^
+                                      predict_target[predict_write_index][4:1];
+    wire indirect_query_hit, indirect_train, indirect_wb_eligible;
+    wire [29:0] predict_chosen_target;
+    integer indirect_k;
     wire load_use;
     wire frontend_hold, bubble_id_ex, id_fire;
     wire data_pipeline_stall;
@@ -364,6 +420,27 @@ module mycpu_sync #(
     wire [31:0] mret_redirect_target;
 
     // ==================== ① IF 段 ====================
+    // Query the registered ordinary request PC. Nonblocking table training
+    // takes effect AFTER this edge; it cannot rewrite accepted metadata.
+    assign predict_hit = (BRANCH_PREDICT_ENABLE != 0) && predict_valid[predict_query_index] &&
+                         (predict_tag[predict_query_index] == pc[31:BTB_INDEX_BITS+2]);
+    assign predict_taken = predict_hit &&
+        (predict_is_jal[predict_query_index] ||
+         ((JALR_PREDICT_ENABLE != 0) && predict_is_jalr[predict_query_index]) ||
+         predict_counter[predict_query_index][1]);
+    assign indirect_query_hit = (INDIRECT_TARGET_ENABLE != 0) &&
+        (JALR_PREDICT_ENABLE != 0) && predict_hit &&
+        predict_is_jalr[predict_query_index] && predict_is_indirect[predict_query_index] &&
+        indirect_valid[indirect_query_index] &&
+        indirect_pc[indirect_query_index] == pc[31:2] &&
+        indirect_previous[indirect_query_index] == predict_target[predict_query_index];
+    assign predict_chosen_target = indirect_query_hit ? indirect_next[indirect_query_index] :
+                                   predict_target[predict_query_index];
+    assign predict_next_pc = predict_taken ? {predict_chosen_target,2'b00} : pc + 32'd4;
+    assign predict_meta = {1'b0,(BRANCH_PREDICT_ENABLE != 0),predict_hit,predict_taken,
+                           (predict_hit && predict_is_jal[predict_query_index])};
+    // Disabled mode retains the old taken/target redirect, including target=PC+4.
+    assign branch_recovery_pc = (BRANCH_PREDICT_ENABLE != 0) ? id_ex_next_pc : id_ex_br_target;
     // pc 始终指向下一笔尚未接受的请求。已接受请求的 PC 单独锁在 pending_pc，
     // 因而响应延迟、前端暂停或分支重定向都不会破坏 (PC, instruction) 配对。
     always @(posedge clk) begin
@@ -396,9 +473,9 @@ module mycpu_sync #(
     assign branch_response_reuse = (BRANCH_RESPONSE_REUSE_ENABLE != 0) &&
                                     branch_fetch_redirect && fetch_valid &&
                                     inst_pending && inst_rsp_valid && !inst_rsp_error &&
-                                    (inst_pending_pc == id_ex_br_target) &&
+                                    (inst_pending_pc == branch_recovery_pc) &&
                                     ((EXTERNAL_MEM_DRAIN_ENABLE == 0) || !memory_order_busy);
-    assign branch_target_next_pc = id_ex_br_target + 32'd4;
+    assign branch_target_next_pc = branch_recovery_pc + 32'd4;
     assign inst_req_valid = resetn && fetch_valid &&
                             (branch_fetch_redirect ?
                              (!inst_pending || inst_rsp_valid) :
@@ -407,7 +484,7 @@ module mycpu_sync #(
     // A reused target is already delivered to IF/ID below. Use the freed I slot
     // for target+4, so avoiding the duplicate fetch also removes a fetch bubble.
     assign inst_req_addr = branch_fetch_redirect ?
-                           (branch_response_reuse ? branch_target_next_pc : id_ex_br_target) : pc;
+                           (branch_response_reuse ? branch_target_next_pc : branch_recovery_pc) : pc;
     assign inst_req_fire = inst_req_valid && inst_req_ready;
 
     always @(posedge clk) begin
@@ -420,7 +497,7 @@ module mycpu_sync #(
                   (inst_req_fire ? branch_target_next_pc + 32'd4 : branch_target_next_pc) :
                   ((branch_fetch_redirect && inst_req_fire) ? branch_target_next_pc : redirect_pc);
         else if (inst_req_fire)
-            pc <= pc + 32'd4;
+            pc <= predict_next_pc;
     end
 
     // 单 outstanding 请求跟踪。重定向不能撤销已接受请求，所以把它标记为
@@ -442,6 +519,45 @@ module mycpu_sync #(
                 inst_pending_pc   <= inst_req_addr;
                 inst_pending_drop <= 1'b0;
             end
+        end
+    end
+
+    // Predictor metadata follows actual request ownership even on a final old
+    // response + new request edge. Recovery requests deliberately use PC+4.
+    always @(posedge clk) begin
+        if (!resetn) begin
+            pending_pred_next_pc<=0; pending_pred_meta<=0;
+        end else if (inst_req_fire) begin
+            pending_pred_next_pc <= branch_fetch_redirect ? inst_req_addr + 32'd4 : predict_next_pc;
+            pending_pred_meta <= branch_fetch_redirect ? 5'b10000 : predict_meta;
+        end
+    end
+    always @(posedge clk) begin
+        if (!resetn || redirect_valid) begin
+            buffer_pred_next_pc<=0; buffer_pred_meta<=0;
+        end else if (inst_response_good && !inst_if_id_accept) begin
+            buffer_pred_next_pc<=pending_pred_next_pc; buffer_pred_meta<=pending_pred_meta;
+        end else if (inst_buffer_pop) begin
+            buffer_pred_next_pc<=0; buffer_pred_meta<=0;
+        end
+    end
+    always @(posedge clk) begin
+        if (!resetn || !fetch_valid) begin
+            if_id_pred_next_pc<=0; if_id_pred_meta<=0;
+        end else if (branch_response_reuse) begin
+            // 044 delivers R and resumes sequentially at R+4. Override the
+            // OLD query's entire effective policy, not only its successor.
+            if_id_pred_next_pc<=branch_target_next_pc; if_id_pred_meta<=5'b10000;
+        end else if (kill_if_id) begin
+            if_id_pred_next_pc<=0; if_id_pred_meta<=0;
+        end else if (frontend_hold) begin
+            if_id_pred_next_pc<=if_id_pred_next_pc; if_id_pred_meta<=if_id_pred_meta;
+        end else if (inst_buffer_valid) begin
+            if_id_pred_next_pc<=buffer_pred_next_pc; if_id_pred_meta<=buffer_pred_meta;
+        end else if (inst_response_good) begin
+            if_id_pred_next_pc<=pending_pred_next_pc; if_id_pred_meta<=pending_pred_meta;
+        end else begin
+            if_id_pred_next_pc<=0; if_id_pred_meta<=0;
         end
     end
 
@@ -806,6 +922,17 @@ module mycpu_sync #(
         end
     end
 
+    always @(posedge clk) begin
+        if (!resetn || kill_id_ex) begin
+            id_ex_pred_next_pc<=0; id_ex_pred_meta<=0;
+        end else if (data_pipeline_stall) begin
+            id_ex_pred_next_pc<=id_ex_pred_next_pc; id_ex_pred_meta<=id_ex_pred_meta;
+        end else if (id_fire) begin
+            id_ex_pred_next_pc<=if_id_pred_next_pc; id_ex_pred_meta<=if_id_pred_meta;
+        end else begin
+            id_ex_pred_next_pc<=0; id_ex_pred_meta<=0;
+        end
+    end
     // Multiply metadata follows the same hold/kill rules as the ID/EX operands.
     always @(posedge clk) begin
         if (!resetn || kill_id_ex) begin
@@ -915,7 +1042,7 @@ module mycpu_sync #(
                .alu_src2(id_ex_src2), .alu_result(alu_result));
 
     // One signed 33x33 IP covers signed/unsigned 32-bit products by extension.
-    // The generated mul has XY/M/P/OUT registers (4 CE-enabled pipeline edges).
+    // 058 generated mul has X/P registers (2 CE-enabled pipeline edges).
     // Keep operands in ID/EX; sample p on the following edge, after its NBA update.
     assign mul_operand_a = {((id_ex_mul_op == 2'b01) || (id_ex_mul_op == 2'b10)) && id_ex_src1[31], id_ex_src1};
     assign mul_operand_b = {(id_ex_mul_op == 2'b01) && id_ex_src2[31], id_ex_src2};
@@ -940,7 +1067,7 @@ module mycpu_sync #(
         end else if (mul_start) begin
             mul_busy <= 1'b1;
             mul_done <= 1'b0;
-            mul_count <= 3'd4;
+            mul_count <= 3'd2;
         end else if (mul_busy) begin
             if (mul_count == 3'd1) begin
                 mul_busy <= 1'b0;
@@ -1017,8 +1144,11 @@ module mycpu_sync #(
     // - 停顿（EX/MEM 等响应、乘法未完、访存不可发射）时不跳，避免重复重定向；
     // - 本条自身异常、或更老指令已有故障时不跳，等 trap 覆盖 PC；
     // - 同步 trap / MRET 在 WB 提交，比 EX 分支更老，必须优先。
-    assign ex_br_redirect = resetn && id_ex_advance && id_ex_br_taken &&
-                            !id_ex_exc_valid && !older_fault_for_ex &&
+    assign ex_br_redirect = resetn && id_ex_advance &&
+                            ((BRANCH_PREDICT_ENABLE != 0) ?
+                             (!ex_exc_valid && !id_ex_mret && (id_ex_pred_next_pc != id_ex_next_pc)) :
+                             (id_ex_br_taken && !id_ex_exc_valid)) &&
+                            !older_fault_for_ex &&
                             !trap_redirect_req && !mret_redirect_req;
 
     // Multiply can forward only after completion; its result survives MEM backpressure.
@@ -1080,6 +1210,16 @@ module mycpu_sync #(
         end
     end
 
+    always @(posedge clk) begin
+        if (!resetn || kill_ex_mem) begin
+            ex_mem_pred_next_pc<=0; ex_mem_pred_meta<=0; ex_mem_br_taken<=0;
+        end else if (id_ex_advance) begin
+            ex_mem_pred_next_pc<=id_ex_pred_next_pc;
+            ex_mem_pred_meta<=id_ex_pred_meta; ex_mem_br_taken<=id_ex_br_taken;
+        end else if (ex_mem_complete) begin
+            ex_mem_pred_next_pc<=0; ex_mem_pred_meta<=0; ex_mem_br_taken<=0;
+        end
+    end
     always @(posedge clk) begin
         if (!resetn || kill_ex_mem)
             ex_mem_next_pc <= 32'b0;
@@ -1187,6 +1327,14 @@ module mycpu_sync #(
         end
     end
 
+    always @(posedge clk) begin
+        if (!resetn || kill_mem_wb || !ex_mem_complete) begin
+            mem_wb_pred_next_pc<=0; mem_wb_pred_meta<=0; mem_wb_br_taken<=0;
+        end else begin
+            mem_wb_pred_next_pc<=ex_mem_pred_next_pc;
+            mem_wb_pred_meta<=ex_mem_pred_meta; mem_wb_br_taken<=ex_mem_br_taken;
+        end
+    end
     always @(posedge clk) begin
         if (!resetn || kill_mem_wb || !ex_mem_complete)
             mem_wb_next_pc <= 32'b0;
@@ -1419,7 +1567,7 @@ module mycpu_sync #(
     assign branch_redirect = ex_br_redirect;
     assign redirect_valid = trap_redirect_req || mret_redirect_req || branch_redirect;
     assign redirect_pc = trap_redirect_req ? trap_redirect_target :
-                         mret_redirect_req ? mret_redirect_target : id_ex_br_target;
+                         mret_redirect_req ? mret_redirect_target : branch_recovery_pc;
     assign kill_if_id = redirect_valid || serial_issue;
     assign kill_id_ex = trap_redirect_req || mret_redirect_req;
     assign kill_ex_mem = trap_redirect_req || mret_redirect_req;
@@ -1461,6 +1609,82 @@ module mycpu_sync #(
         end
     end
 
+    // 053 WB training: only normally retired instructions may change a row.
+    // Use the CURRENT row value; no stale query-time counter writeback.
+    assign predict_wb_b = mem_wb_inst[6:0] == 7'b1100011;
+    assign predict_wb_jal = mem_wb_inst[6:0] == 7'b1101111;
+    assign predict_wb_jalr = mem_wb_inst[6:0] == 7'b1100111;
+    assign predict_wb_unconditional = predict_wb_jal ||
+                                      ((JALR_PREDICT_ENABLE != 0) && predict_wb_jalr);
+    assign predict_wb_match = predict_valid[predict_write_index] &&
+                              predict_tag[predict_write_index] == mem_wb_pc[31:BTB_INDEX_BITS+2];
+    assign predict_wb_same_type = predict_wb_match &&
+        (predict_is_jal[predict_write_index] == predict_wb_jal) &&
+        (predict_is_jalr[predict_write_index] == ((JALR_PREDICT_ENABLE != 0) && predict_wb_jalr));
+    assign predict_allocate = (BRANCH_PREDICT_ENABLE != 0) && normal_retire &&
+        ((predict_wb_b && mem_wb_br_taken) || predict_wb_unconditional) && !predict_wb_same_type;
+    assign predict_b_update = (BRANCH_PREDICT_ENABLE != 0) && normal_retire &&
+                             predict_wb_b && predict_wb_same_type;
+    assign predict_clear = (BRANCH_PREDICT_ENABLE != 0) && normal_retire &&
+                           !predict_wb_b && !predict_wb_unconditional && predict_wb_match;
+    assign predict_replace = predict_allocate && predict_valid[predict_write_index];
+    assign predict_wb_next_wrong = mem_wb_pred_next_pc != mem_wb_next_pc;
+    always @(posedge clk) begin
+        if (!resetn) begin
+            predict_valid<=0; predict_is_jal<=0; predict_is_jalr<=0; predict_is_indirect<=0;
+            for (predict_k=0;predict_k<BTB_ENTRIES;predict_k=predict_k+1) begin
+                predict_tag[predict_k]<=0; predict_target[predict_k]<=0;
+                predict_counter[predict_k]<=2'b01;
+            end
+        end else if ((BRANCH_PREDICT_ENABLE != 0) && normal_retire) begin
+            if (predict_allocate) begin
+                predict_valid[predict_write_index]<=1'b1;
+                predict_is_jal[predict_write_index]<=predict_wb_jal;
+                predict_is_jalr[predict_write_index]<=(JALR_PREDICT_ENABLE != 0) && predict_wb_jalr;
+                predict_is_indirect[predict_write_index]<=indirect_wb_eligible;
+                predict_tag[predict_write_index]<=mem_wb_pc[31:BTB_INDEX_BITS+2];
+                predict_target[predict_write_index]<=mem_wb_next_pc[31:2];
+                predict_counter[predict_write_index]<=predict_wb_unconditional ? 2'b11 : 2'b10;
+            end else if (predict_b_update) begin
+                if (mem_wb_br_taken) begin
+                    if (predict_counter[predict_write_index] != 2'b11)
+                        predict_counter[predict_write_index]<=predict_counter[predict_write_index]+2'b01;
+                    predict_target[predict_write_index]<=mem_wb_next_pc[31:2];
+                end else if (predict_counter[predict_write_index] != 2'b00)
+                    predict_counter[predict_write_index]<=predict_counter[predict_write_index]-2'b01;
+            end else if (predict_wb_unconditional && predict_wb_same_type) begin
+                // JALR is unconditional too. Its last retired target is a
+                // prediction only; EX still compares the actual successor.
+                predict_target[predict_write_index]<=mem_wb_next_pc[31:2];
+                if (predict_wb_jalr) predict_is_indirect[predict_write_index]<=indirect_wb_eligible;
+            end else if (predict_clear) predict_valid[predict_write_index]<=1'b0;
+        end
+    end
+
+    // Calls writing a link register already have a stable direct target and
+    // must not compete with the variable-target, no-link population.
+    assign indirect_wb_eligible = predict_wb_jalr &&
+        (mem_wb_inst[11:7] == 5'd0) && !jd_return;
+    assign indirect_train = (INDIRECT_TARGET_ENABLE != 0) &&
+        (BRANCH_PREDICT_ENABLE != 0) && (JALR_PREDICT_ENABLE != 0) &&
+        normal_retire && indirect_wb_eligible &&
+        predict_wb_same_type && predict_is_indirect[predict_write_index];
+    always @(posedge clk) begin
+        if (!resetn) begin
+            indirect_valid<=0;
+            for (indirect_k=0;indirect_k<16;indirect_k=indirect_k+1) begin
+                indirect_pc[indirect_k]<=0;
+                indirect_previous[indirect_k]<=0;
+                indirect_next[indirect_k]<=0;
+            end
+        end else if (indirect_train) begin
+            indirect_valid[indirect_write_index]<=1'b1;
+            indirect_pc[indirect_write_index]<=mem_wb_pc[31:2];
+            indirect_previous[indirect_write_index]<=predict_target[predict_write_index];
+            indirect_next[indirect_write_index]<=mem_wb_next_pc[31:2];
+        end
+    end
+
     assign perf_events[0] = normal_retire || mret_commit;
     assign perf_events[1] = trap_redirect_req || mret_redirect_req;
     assign perf_events[2] = flow_state != FLOW_RUN || serial_candidate || fault_inflight || irq_candidate;
@@ -1480,9 +1704,62 @@ module mycpu_sync #(
          older_fault_for_ex, id_ex_exc_valid, id_ex_br_taken, id_ex_valid,
          inst_rsp_error, inst_buffer_error, inst_buffer_valid, inst_rsp_valid,
          inst_pending, (trap_redirect_req || mret_redirect_req), branch_redirect} : 15'b0;
-    assign perf_diag_target_pc = (DIAG_PERF_ENABLE != 0) ? id_ex_br_target : 32'b0;
+    assign perf_diag_target_pc = (DIAG_PERF_ENABLE != 0) ? branch_recovery_pc : 32'b0;
     assign perf_diag_pending_pc = (DIAG_PERF_ENABLE != 0) ? inst_pending_pc : 32'b0;
     assign perf_diag_buffer_pc = (DIAG_PERF_ENABLE != 0) ? inst_buffer_pc : 32'b0;
+    // Predictor observer: source-edge event flags, captured with ROI in MMIO.
+    // Query flags include wrong-path requests; retirement flags do not.
+    assign perf_predict_config = {8'b0,8'd2,BTB_CONFIG_ROWS,7'b0,(BRANCH_PREDICT_ENABLE != 0)};
+    assign perf_predict_events = (PREDICT_PERF_ENABLE != 0) ? {
+        normal_retire, predict_replace, predict_clear, predict_b_update, predict_allocate,
+        (normal_retire && mem_wb_pred_meta[4]),
+        (normal_retire && mem_wb_pred_meta[3] && mem_wb_pred_meta[1]),
+        (normal_retire && mem_wb_pred_meta[3] && mem_wb_pred_meta[2]),
+        (normal_retire && mem_wb_pred_meta[3]),
+        (normal_retire && !predict_wb_b && !predict_wb_jal && !predict_wb_jalr && predict_wb_next_wrong),
+        (normal_retire && predict_wb_jalr && predict_wb_next_wrong),
+        (normal_retire && predict_wb_jal && predict_wb_next_wrong),
+        (normal_retire && predict_wb_b && predict_wb_next_wrong),
+        (normal_retire && predict_wb_b && (mem_wb_pred_meta[1] != mem_wb_br_taken)),
+        (normal_retire && predict_wb_b && mem_wb_pred_meta[1]),
+        (normal_retire && predict_wb_jalr), (normal_retire && predict_wb_jal),
+        (normal_retire && predict_wb_b && mem_wb_br_taken), (normal_retire && predict_wb_b),
+        ex_br_redirect, branch_response_reuse,
+        (inst_req_fire && branch_fetch_redirect),
+        (inst_req_fire && !redirect_valid && predict_taken),
+        (inst_req_fire && !redirect_valid && predict_hit),
+        (inst_req_fire && !redirect_valid && (BRANCH_PREDICT_ENABLE != 0))} : 25'b0;
+    // 056 JALR diagnosis. Return form is a syntactic ABI hint, not proof of a return.
+    // No table lookup at WB: hit/miss belong to THIS instruction's IF acceptance.
+    assign jd_retire = normal_retire && predict_wb_jalr;
+    assign jd_return = mem_wb_inst[11:7] == 5'd0 && mem_wb_inst[31:20] == 12'd0 &&
+                       (mem_wb_inst[19:15] == 5'd1 || mem_wb_inst[19:15] == 5'd5);
+    assign jd_link = mem_wb_inst[11:7] == 5'd1 || mem_wb_inst[11:7] == 5'd5;
+    assign jd_other = !jd_return && !jd_link;
+    assign jd_miss = mem_wb_pred_meta[3] && !mem_wb_pred_meta[2];
+    assign jd_hit = mem_wb_pred_meta[3] && mem_wb_pred_meta[2];
+    assign jd_fallback = mem_wb_pred_meta[4];
+    assign jd_noquery = !mem_wb_pred_meta[3] && !mem_wb_pred_meta[4];
+    // [31:16] ABI version, [15:8] BTB rows, [1] JALR policy, [0] global BP.
+    assign perf_jalr_diag_config = {16'd1,BTB_CONFIG_ROWS,6'b0,
+        (JALR_PREDICT_ENABLE != 0),(BRANCH_PREDICT_ENABLE != 0)};
+    // Independent feature readback; JD56's frozen observer ABI stays intact.
+    assign perf_indirect_config = {16'd1,BTB_CONFIG_ROWS,5'b0,
+        (BRANCH_PREDICT_ENABLE != 0),
+        ((INDIRECT_TARGET_ENABLE != 0) && (JALR_PREDICT_ENABLE != 0) &&
+         (BRANCH_PREDICT_ENABLE != 0)),(JALR_PREDICT_ENABLE != 0)};
+    assign perf_jalr_diag_events = ((JALR_DIAG_ENABLE != 0) && jd_retire) ? {
+        (jd_return && jd_miss && predict_wb_next_wrong), // 19
+        (jd_return && jd_hit && predict_wb_next_wrong),  // 18
+        (jd_noquery && predict_wb_next_wrong),          // 17
+        (jd_fallback && predict_wb_next_wrong),         // 16
+        (jd_hit && predict_wb_next_wrong),              // 15
+        (jd_miss && predict_wb_next_wrong),             // 14
+        (jd_return && jd_noquery), (jd_return && jd_fallback), // 13,12
+        (jd_return && jd_hit), (jd_return && jd_miss),   // 11,10
+        (jd_return && predict_wb_next_wrong), predict_wb_next_wrong, // 9,8
+        jd_noquery, jd_fallback, jd_hit, jd_miss,        // 7..4
+        jd_other, jd_link, jd_return, 1'b1} : 20'b0;    // 3..0
     // 046 observation begin: raw levels only, no fanback into CPU control.
     assign perf_detail_cpu = (DETAIL_PERF_ENABLE != 0) ?
         {3'b0, data_rsp_valid,

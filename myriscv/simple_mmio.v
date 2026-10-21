@@ -17,7 +17,10 @@ module simple_mmio #(
     parameter integer CACHE_PERF_ENABLE = 0,
     parameter integer DIAG_PERF_ENABLE = 0,
     parameter integer DIAG_DDR_ENABLE = 0,
-    parameter integer DETAIL_PERF_ENABLE = 0
+    parameter integer DETAIL_PERF_ENABLE = 0,
+    parameter integer WRITE_DIAG_PERF_ENABLE = 0,
+    parameter integer PREDICT_PERF_ENABLE = 0,
+    parameter integer JALR_DIAG_ENABLE = 0
 ) (
     input  wire        clk,
     input  wire        resetn,
@@ -42,7 +45,13 @@ module simple_mmio #(
     input wire [2:0] perf_wait_events,
     input wire [14:0] perf_diag_flags,
     input wire [31:0] perf_diag_target_pc, perf_diag_pending_pc, perf_diag_buffer_pc,
-    input wire [15:0] perf_detail_cpu, perf_detail_bridge
+    input wire [15:0] perf_detail_cpu, perf_detail_bridge,
+    input wire [127:0] perf_write_diag,
+    input wire [24:0] perf_predict_events,
+    input wire [31:0] perf_predict_config,
+    input wire [19:0] perf_jalr_diag_events,
+    input wire [31:0] perf_jalr_diag_config,
+    input wire [31:0] perf_indirect_config
 );
 
     reg        pending;
@@ -58,6 +67,9 @@ module simple_mmio #(
         cpu_perf_counters #(.AUTO_ARM(PERF_AUTO_ARM), .CACHE_PERF_ENABLE(CACHE_PERF_ENABLE),
             .DIAG_PERF_ENABLE(DIAG_PERF_ENABLE), .DIAG_DDR_ENABLE(DIAG_DDR_ENABLE),
             .DETAIL_PERF_ENABLE(DETAIL_PERF_ENABLE),
+            .WRITE_DIAG_PERF_ENABLE(WRITE_DIAG_PERF_ENABLE),
+            .PREDICT_PERF_ENABLE(PREDICT_PERF_ENABLE),
+            .JALR_DIAG_ENABLE(JALR_DIAG_ENABLE),
             .DEFAULT_START_PC(PERF_START_PC),
             .DEFAULT_STOP_PC(PERF_STOP_PC)) u_perf (
             .clk(clk), .resetn(resetn), .events(perf_events), .retire_pc(perf_retire_pc),
@@ -70,7 +82,11 @@ module simple_mmio #(
             .wait_events(perf_wait_events), .diag_flags(perf_diag_flags),
             .diag_target_pc(perf_diag_target_pc), .diag_pending_pc(perf_diag_pending_pc),
             .diag_buffer_pc(perf_diag_buffer_pc),
-            .detail_cpu(perf_detail_cpu), .detail_bridge(perf_detail_bridge));
+            .detail_cpu(perf_detail_cpu), .detail_bridge(perf_detail_bridge),
+            .write_diag(perf_write_diag),
+            .predict_events(perf_predict_events), .predict_config(perf_predict_config),
+            .jalr_diag_events(perf_jalr_diag_events), .jalr_diag_config(perf_jalr_diag_config),
+            .indirect_config(perf_indirect_config));
     end else begin : g_no_perf
         assign perf_rdata=0;
         assign perf_error=1;
@@ -177,7 +193,10 @@ module cpu_perf_counters #(
     parameter integer CACHE_PERF_ENABLE=0,
     parameter integer DIAG_PERF_ENABLE=0,
     parameter integer DIAG_DDR_ENABLE=0,
-    parameter integer DETAIL_PERF_ENABLE=0
+    parameter integer DETAIL_PERF_ENABLE=0,
+    parameter integer WRITE_DIAG_PERF_ENABLE=0,
+    parameter integer PREDICT_PERF_ENABLE=0,
+    parameter integer JALR_DIAG_ENABLE=0
 ) (
     input wire clk, resetn,
     input wire [7:0] events,
@@ -196,7 +215,13 @@ module cpu_perf_counters #(
     input wire [2:0] wait_events,
     input wire [14:0] diag_flags,
     input wire [31:0] diag_target_pc, diag_pending_pc, diag_buffer_pc,
-    input wire [15:0] detail_cpu, detail_bridge
+    input wire [15:0] detail_cpu, detail_bridge,
+    input wire [127:0] write_diag,
+    input wire [24:0] predict_events,
+    input wire [31:0] predict_config,
+    input wire [19:0] jalr_diag_events,
+    input wire [31:0] jalr_diag_config,
+    input wire [31:0] indirect_config
 );
     localparam IDLE=2'd0, ARMED=2'd1, RUNNING=2'd2, DONE=2'd3;
     reg [1:0] state;
@@ -265,6 +290,49 @@ module cpu_perf_counters #(
     wire detail_tail_pending = detail_sample_q || detail_start_q || detail_start_qq ||
                               detail_clear_q || detail_clear_qq || (|detail_delta_q);
     wire detail_snapshot_ready = (state == DONE) && !detail_tail_pending;
+    // 051 independent bank. Capture edge E, decode E+1, accumulate E+2.
+    // No shared enable/ready/tail state with any of the original 46 counters.
+    reg [127:0] write_diag_q;
+    reg write_sample_q, write_start_q, write_start_qq, write_clear_q, write_clear_qq;
+    reg [21:0] write_delta_q;
+    reg [63:0] write_count [0:21];
+    integer write_k;
+    wire write_head_active = write_diag_q[95] && write_diag_q[96] &&
+                             (write_diag_q[94:92] != 0);
+    wire write_aw_wait = write_head_active && !write_diag_q[97] && !write_diag_q[98];
+    wire write_aw_to_w_wait = write_head_active && !write_diag_q[97] &&
+                              write_diag_q[98] && !write_diag_q[99];
+    wire write_w_wait = write_head_active && write_diag_q[97] && !write_diag_q[99];
+    wire write_match_base = write_head_active && write_diag_q[106] &&
+                            write_diag_q[107] && write_diag_q[110];
+    wire write_tail_word_match = (write_diag_q[91:62] == write_diag_q[31:2]);
+    wire write_head_word_match = (write_diag_q[61:32] == write_diag_q[31:2]);
+    // Active merge configurations are x32, so a line contains eight words.
+    wire write_tail_other_word = (write_diag_q[91:65] == write_diag_q[31:5]) &&
+                                 !write_tail_word_match;
+    wire write_tail_pending = write_sample_q || write_start_q || write_start_qq ||
+                              write_clear_q || write_clear_qq || (|write_delta_q);
+    wire write_snapshot_ready = (state == DONE) && !write_tail_pending;
+    // 053 source-edge predictor events, independent two-stage observation bank.
+    reg [24:0] predict_events_q, predict_delta_q;
+    reg predict_sample_q, predict_start_q, predict_start_qq;
+    reg predict_clear_q, predict_clear_qq;
+    reg [63:0] predict_count [0:24];
+    integer predict_k;
+    wire [31:0] predict_config_active = (PREDICT_PERF_ENABLE != 0) ? predict_config : 32'b0;
+    wire predict_tail_pending = predict_sample_q || predict_start_q || predict_start_qq ||
+                                 predict_clear_q || predict_clear_qq || (|predict_delta_q);
+    wire predict_snapshot_ready = (state == DONE) && !predict_tail_pending;
+    // 056 independent observer; source-edge ROI and two-cycle drain.
+    reg [19:0] jalr_diag_events_q, jalr_diag_delta_q;
+    reg jalr_diag_sample_q, jalr_diag_start_q, jalr_diag_start_qq;
+    reg jalr_diag_clear_q, jalr_diag_clear_qq;
+    reg [63:0] jalr_diag_count [0:19];
+    integer jalr_diag_k;
+    wire [31:0] jalr_diag_config_active = (JALR_DIAG_ENABLE != 0) ? jalr_diag_config : 32'b0;
+    wire jalr_diag_tail_pending = jalr_diag_sample_q || jalr_diag_start_q || jalr_diag_start_qq ||
+                                 jalr_diag_clear_q || jalr_diag_clear_qq || (|jalr_diag_delta_q);
+    wire jalr_diag_snapshot_ready = (state == DONE) && !jalr_diag_tail_pending;
     always @* begin
         if(events[1]) classification=5;
         else if(events[3]) classification=3;
@@ -316,6 +384,40 @@ module cpu_perf_counters #(
                     error=write;
                 end
                 12'h308: begin rdata=32'd19; error=write; end
+                12'h400: begin rdata=32'h57535101; error=write; end // WSQ, v1
+                12'h404: begin
+                    rdata={27'b0,write_tail_pending,write_snapshot_ready,1'b0,
+                        ((WRITE_DIAG_PERF_ENABLE != 0) && (DIAG_DDR_ENABLE != 0)),
+                        (WRITE_DIAG_PERF_ENABLE != 0)};
+                    error=write;
+                end
+                12'h408: begin rdata=32'd22; error=write; end
+                12'h40c: begin
+                    // Configuration constants only: [2:0] capacity, [8] posted,
+                    // [9] merge, [10] turnover. Disabled source reads zero.
+                    rdata=(WRITE_DIAG_PERF_ENABLE != 0) ?
+                          {21'b0,write_diag[114],write_diag[110],write_diag[96],
+                           5'b0,write_diag[113:111]} : 32'b0;
+                    error=write;
+                end
+                12'h500: begin rdata=32'h42503101; error=write; end // BP1, v1
+                12'h504: begin
+                    rdata={27'b0,predict_tail_pending,predict_snapshot_ready,1'b0,
+                           predict_config_active[0],(PREDICT_PERF_ENABLE != 0)};
+                    error=write;
+                end
+                12'h508: begin rdata=32'd25; error=write; end
+                12'h50c: begin rdata=predict_config_active; error=write; end
+                12'h700: begin rdata=32'h4a443601; error=write; end // JD56, v1
+                12'h704: begin
+                    rdata={27'b0,jalr_diag_tail_pending,jalr_diag_snapshot_ready,1'b0,
+                           jalr_diag_config_active[0],(JALR_DIAG_ENABLE != 0)};
+                    error=write;
+                end
+                12'h708: begin rdata=32'd20; error=write; end
+                12'h70c: begin rdata=jalr_diag_config_active; error=write; end
+                12'h710: begin rdata=32'h494e3537; error=write; end // IN57
+                12'h714: begin rdata=indirect_config; error=write; end
                 default: if(addr>=12'h140 && addr<=12'h1a4) begin
                     // A frozen bank is its own snapshot. Never expose torn live reads.
                     error=write || state!=DONE;
@@ -332,6 +434,18 @@ module cpu_perf_counters #(
                     error=write || !detail_snapshot_ready;
                     rdata=addr[2] ? detail_count[(addr-12'h340)>>3][63:32] :
                                          detail_count[(addr-12'h340)>>3][31:0];
+                end else if(addr>=12'h440 && addr<=12'h4ec) begin
+                    error=write || !write_snapshot_ready;
+                    rdata=addr[2] ? write_count[(addr-12'h440)>>3][63:32] :
+                                         write_count[(addr-12'h440)>>3][31:0];
+                end else if(addr>=12'h540 && addr<=12'h604) begin
+                    error=write || !predict_snapshot_ready;
+                    rdata=addr[2] ? predict_count[(addr-12'h540)>>3][63:32] :
+                                         predict_count[(addr-12'h540)>>3][31:0];
+                end else if(addr>=12'h740 && addr<=12'h7dc) begin
+                    error=write || !jalr_diag_snapshot_ready;
+                    rdata=addr[2] ? jalr_diag_count[(addr-12'h740)>>3][63:32] :
+                                         jalr_diag_count[(addr-12'h740)>>3][31:0];
                 end
             endcase
         end
@@ -382,6 +496,106 @@ module cpu_perf_counters #(
                 count[10]<=(start_q?64'd0:count[10])+{63'd0,branch_q};
                 count[11]<=(start_q?64'd0:count[11])+{63'd0,ar_q};
                 count[12]<=(start_q?64'd0:count[12])+{63'd0,aw_q};
+            end
+        end
+    end
+    // 053 source E capture, E+1 membership/decode, E+2 accumulation. Every
+    // effective query/retirement flag travels with its OWN source-edge ROI.
+    always @(posedge clk) begin
+        if (!resetn) begin
+            predict_events_q<=0; predict_delta_q<=0; predict_sample_q<=0;
+            predict_start_q<=0; predict_start_qq<=0; predict_clear_q<=0; predict_clear_qq<=0;
+            for(predict_k=0;predict_k<25;predict_k=predict_k+1) predict_count[predict_k]<=0;
+        end else begin
+            predict_events_q <= (PREDICT_PERF_ENABLE != 0) ? predict_events : 25'b0;
+            predict_sample_q <= (PREDICT_PERF_ENABLE != 0) && sample;
+            predict_delta_q <= predict_events_q & {25{predict_sample_q}};
+            predict_start_q<=start_event; predict_start_qq<=predict_start_q;
+            predict_clear_q<=arm || cancel; predict_clear_qq<=predict_clear_q;
+            if(predict_clear_qq) begin
+                for(predict_k=0;predict_k<25;predict_k=predict_k+1) predict_count[predict_k]<=0;
+            end else begin
+                for(predict_k=0;predict_k<25;predict_k=predict_k+1) begin
+                    if(predict_start_qq) predict_count[predict_k]<=predict_delta_q[predict_k] ? 64'd1 : 64'd0;
+                    else if(predict_delta_q[predict_k]) predict_count[predict_k]<=predict_count[predict_k]+64'd1;
+                end
+            end
+        end
+    end
+    // 056 source E capture, E+1 membership/decode, E+2 accumulation. Every
+    // effective query/retirement flag travels with its OWN source-edge ROI.
+    always @(posedge clk) begin
+        if (!resetn) begin
+            jalr_diag_events_q<=0; jalr_diag_delta_q<=0; jalr_diag_sample_q<=0;
+            jalr_diag_start_q<=0; jalr_diag_start_qq<=0; jalr_diag_clear_q<=0; jalr_diag_clear_qq<=0;
+            for(jalr_diag_k=0;jalr_diag_k<20;jalr_diag_k=jalr_diag_k+1) jalr_diag_count[jalr_diag_k]<=0;
+        end else begin
+            jalr_diag_events_q <= (JALR_DIAG_ENABLE != 0) ? jalr_diag_events : 20'b0;
+            jalr_diag_sample_q <= (JALR_DIAG_ENABLE != 0) && sample;
+            jalr_diag_delta_q <= jalr_diag_events_q & {20{jalr_diag_sample_q}};
+            jalr_diag_start_q<=start_event; jalr_diag_start_qq<=jalr_diag_start_q;
+            jalr_diag_clear_q<=arm || cancel; jalr_diag_clear_qq<=jalr_diag_clear_q;
+            if(jalr_diag_clear_qq) begin
+                for(jalr_diag_k=0;jalr_diag_k<20;jalr_diag_k=jalr_diag_k+1) jalr_diag_count[jalr_diag_k]<=0;
+            end else begin
+                for(jalr_diag_k=0;jalr_diag_k<20;jalr_diag_k=jalr_diag_k+1) begin
+                    if(jalr_diag_start_qq) jalr_diag_count[jalr_diag_k]<=jalr_diag_delta_q[jalr_diag_k] ? 64'd1 : 64'd0;
+                    else if(jalr_diag_delta_q[jalr_diag_k]) jalr_diag_count[jalr_diag_k]<=jalr_diag_count[jalr_diag_k]+64'd1;
+                end
+            end
+        end
+    end
+    // 051: all levels/events and ROI membership belong to the SAME source edge.
+    // Opportunity counters are cycle counts, NOT distinct unaccepted stores.
+    always @(posedge clk) begin
+        if (!resetn) begin
+            write_diag_q<=0; write_sample_q<=0; write_start_q<=0; write_start_qq<=0;
+            write_clear_q<=0; write_clear_qq<=0; write_delta_q<=0;
+            for(write_k=0;write_k<22;write_k=write_k+1) write_count[write_k]<=0;
+        end else begin
+            write_diag_q <= (WRITE_DIAG_PERF_ENABLE != 0) ? write_diag : 128'b0;
+            write_sample_q <= (WRITE_DIAG_PERF_ENABLE != 0) && sample;
+            write_start_q<=start_event; write_start_qq<=write_start_q;
+            write_clear_q<=arm || cancel; write_clear_qq<=write_clear_q;
+            write_delta_q[0]<=write_sample_q && write_aw_wait;
+            write_delta_q[1]<=write_sample_q && write_aw_to_w_wait;
+            write_delta_q[2]<=write_sample_q && write_w_wait;
+            write_delta_q[3]<=write_sample_q && write_diag_q[100];
+            write_delta_q[4]<=write_sample_q && write_head_active && write_diag_q[94:92]==1;
+            write_delta_q[5]<=write_sample_q && write_head_active && write_diag_q[94:92]==2;
+            write_delta_q[6]<=write_sample_q && write_head_active && write_diag_q[94:92]==3;
+            write_delta_q[7]<=write_sample_q && write_head_active && write_diag_q[94:92]==4;
+            write_delta_q[8]<=write_sample_q && write_diag_q[105] && write_aw_wait;
+            write_delta_q[9]<=write_sample_q && write_diag_q[105] && write_aw_to_w_wait;
+            write_delta_q[10]<=write_sample_q && write_diag_q[105] && write_w_wait;
+            write_delta_q[11]<=write_sample_q && write_diag_q[105] &&
+                !write_aw_wait && !write_aw_to_w_wait && !write_w_wait;
+            write_delta_q[12]<=write_sample_q && write_diag_q[101];
+            write_delta_q[13]<=write_sample_q && write_diag_q[102];
+            write_delta_q[14]<=write_sample_q && write_diag_q[104];
+            // Full refusal opportunities exclude an old-head pop. A request
+            // held for N cycles can contribute N samples; no ownership implied.
+            write_delta_q[15]<=write_sample_q && write_match_base && write_diag_q[105] &&
+                write_diag_q[94:92]>=2 && write_diag_q[94:92]==write_diag_q[113:111] &&
+                !write_diag_q[100] && write_diag_q[109] && write_tail_word_match;
+            write_delta_q[16]<=write_sample_q && write_match_base && write_diag_q[94:92]==1 &&
+                write_diag_q[108] && write_head_word_match && write_aw_wait;
+            write_delta_q[17]<=write_sample_q && write_match_base && write_diag_q[94:92]==1 &&
+                write_diag_q[108] && write_head_word_match && (write_aw_to_w_wait || write_w_wait);
+            write_delta_q[18]<=write_sample_q && write_match_base && write_diag_q[101] &&
+                write_diag_q[94:92]>=2 && write_diag_q[109] && write_tail_other_word;
+            write_delta_q[19]<=write_sample_q && write_match_base && write_diag_q[105] &&
+                write_diag_q[94:92]>=2 && write_diag_q[94:92]==write_diag_q[113:111] &&
+                !write_diag_q[100] && write_diag_q[109] && write_tail_other_word;
+            write_delta_q[20]<=write_sample_q && write_diag_q[103];
+            write_delta_q[21]<=write_sample_q && write_head_active && !write_diag_q[97] && write_diag_q[98];
+            if(write_clear_qq) begin
+                for(write_k=0;write_k<22;write_k=write_k+1) write_count[write_k]<=0;
+            end else begin
+                for(write_k=0;write_k<22;write_k=write_k+1) begin
+                    if(write_start_qq) write_count[write_k]<=write_delta_q[write_k] ? 64'd1 : 64'd0;
+                    else if(write_delta_q[write_k]) write_count[write_k]<=write_count[write_k]+64'd1;
+                end
             end
         end
     end

@@ -42,15 +42,15 @@ localparam INREG_EN            = 0 ; //@IPC enum 0,1
 
 localparam PIPEREG_EN_1        = 1 ; //@IPC enum 0,1
 
-localparam PIPEREG_EN_2        = 1 ; //@IPC enum 0,1
+localparam PIPEREG_EN_2        = 0 ; //@IPC enum 0,1
 
 localparam PIPEREG_EN_3        = 1 ; //@IPC enum 0,1
 
-localparam OUTREG_EN           = 1 ; //@IPC enum 0,1
+localparam OUTREG_EN           = 0 ; //@IPC enum 0,1
 
 //tmp variable for ipc purpose 
 
-localparam PIPE_STATUS         = 4 ; //@IPC enum 0,1,2,3,4,5
+localparam PIPE_STATUS         = 2 ; //@IPC enum 0,1,2,3,4,5
 
 localparam ASYNC_RST_BOOL      = 0 ; //@IPC bool
 
