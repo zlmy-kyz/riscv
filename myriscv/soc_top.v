@@ -28,6 +28,9 @@ module soc_top #(
     parameter [31:0] PERF_STOP_PC = 32'h400007f4,
     // Camera builds keep registered load data; posted store ACKs may bypass it.
     parameter integer DDR_POSTED_STORE_ACK_BYPASS_ENABLE = 1,
+    // Independent of the camera peripheral: benchmark builds keep the
+    // registered load response and fast posted-store ACK timing cut.
+    parameter integer DDR_DATA_RSP_REGISTER_ENABLE = ENABLE_CAMERA,
     parameter integer PERF_DIAG_ENABLE = 1,
     parameter integer PERF_DETAIL_ENABLE = 1,
     parameter integer DDR_WRITE_BUFFER_DEPTH = 4,
@@ -514,7 +517,7 @@ module soc_top #(
         if (ENABLE_DDR != 0) begin : g_ddr
             wire bridge_data_rsp_valid, bridge_data_rsp_error;
             wire [31:0] bridge_data_rsp_rdata;
-            if (ENABLE_CAMERA != 0) begin : g_camera_data_rsp_register
+            if (DDR_DATA_RSP_REGISTER_ENABLE != 0) begin : g_camera_data_rsp_register
                 // Keep the D-cache DRM -> load forwarding -> ID branch -> I-ROM
                 // timing cut. Only posted store ACKs, which carry no load data,
                 // bypass this stage. Their order still comes from the write buffer.
