@@ -8,7 +8,9 @@
 //   * x16/x32 DDR3 IP 的每个数据拍分别为 128/256 bit，CPU 为 32 bit。
 //
 // 本模块的事务策略：
-//   * 最多保留一笔 DDR 读；可选 x32 两条顺序写缓冲独立于前端响应槽；
+//   * 最多保留一笔 DDR 读；可选 x32 1/2/4条顺序写队列独立于前端响应槽；
+//     可将新store合并至未暴露AW的最后一条同字记录；可选在同行异字时
+//     放入该记录的第二槽，组合成同一单拍W，不修改正在服务的队头。
 //   * 只产生单拍访问（AWLEN/ARLEN = 0）；
 //   * 输入地址是地址译码器减去 DDR_BASE 后的“DDR 局部字节地址”；
 //   * 控制器地址按 MEM_DQ_WIDTH bit 字计数，每拍 8 字对齐；
@@ -19,7 +21,8 @@
 //   * 读命中不发 DDR 命令；写仍直达 DDR，I 命中行在写接受时失效。
 //   * x32 D 写命中在 DDR 写完成时按字节更新；写 miss 不分配。
 //   * posted 模式 store 入缓冲即响应；下一写可在旧写完成边沿接续，读 miss 等排空。
-//     D 命中读经一拍资格寄存后与旧写重叠；两条同字写按字节由新覆盖旧。
+//     x32 D 可先接受查询，下一拍命中响应；RAM同行写碰撞用已接地址重读。
+//     关闭早查询时保留一拍资格路径；队内同字写按字节由新覆盖旧。
 //     同写队头行的读避开写完成边沿；仅队尾同行时可读并前递队尾字节。
 //     I 命中可继续，I miss 可先锁存但 AR 等排空；SoC 接 FENCE/IRQ 与非 DDR 排空。
 //     x16 保留原数组和写命中失效策略。
@@ -52,11 +55,24 @@ module dual_sram_to_pango_ddr_bridge #(
     // Read-only observation; never feeds arbitration, cache state or DDR control.
     parameter integer CACHE_PERF_ENABLE = 0,
     parameter integer DIAG_PERF_ENABLE = 0,
-    // Supported depths: 1 (legacy) or 2. Physical AW/W remains strictly serial.
+    // Supported depths: 1, 2 (legacy default), or 4. Physical AW/W stays serial.
     parameter integer WRITE_BUFFER_DEPTH = 2,
     // Track the current writing head, allowing a tail-only matching load on head pop.
     parameter integer DATA_READ_TAIL_OVERLAP_ENABLE = 1,
-    parameter integer DETAIL_PERF_ENABLE = 0
+    parameter integer DETAIL_PERF_ENABLE = 0,
+    // 048: accept a D query before its hit verdict, without a live tag on ready.
+    // Requires posted x32, D cache, read-under-write and byte forwarding.
+    parameter integer DATA_READ_EARLY_LOOKUP_ENABLE = 1,
+    // 049: same-word byte merge into the youngest non-head pending entry.
+    // Match never enters ready; zero-strobe/uncached stores remain separate.
+    parameter integer WRITE_BUFFER_MERGE_ENABLE = 1,
+    // 050: merge the old tail on the edge it becomes a NEW head, before its AW.
+    // Zero restores 049's conservative exclusion of count=2 pop+merge.
+    parameter integer WRITE_BUFFER_PROMOTE_MERGE_ENABLE = 1,
+    // 059: pack one different 32-bit word from the same DDR beat into an
+    // unpublished tail entry. AWLEN remains zero and the head stays immutable.
+    parameter integer WRITE_BUFFER_LINE_PAIR_ENABLE = 0,
+    parameter integer WRITE_DIAG_PERF_ENABLE = 0
 ) (
     input  wire                          clk,
     input  wire                          resetn,
@@ -112,7 +128,8 @@ module dual_sram_to_pango_ddr_bridge #(
     output wire [5:0]                    perf_cache_events,
     output wire [1:0]                    perf_cache_enabled,
     output wire [2:0]                    perf_wait_events,
-    output wire [15:0]                   perf_detail_bridge
+    output wire [15:0]                   perf_detail_bridge,
+    output wire [127:0]                  perf_write_diag
 );
 
     localparam [2:0] STATE_IDLE   = 3'd0;
@@ -124,6 +141,7 @@ module dual_sram_to_pango_ddr_bridge #(
     // x32 I lookup: registered row hits resolve alongside synchronous DRM data.
     // Hit responds now; miss issues AR now, just as the former RSP/RADDR split.
     localparam [2:0] STATE_INST_LOOKUP = 3'd6;
+    localparam [2:0] STATE_DATA_LOOKUP = 3'd7;
 
     localparam TARGET_INST = 1'b0;
     localparam TARGET_DATA = 1'b1;
@@ -133,32 +151,64 @@ module dual_sram_to_pango_ddr_bridge #(
     localparam integer LANE_BITS = BEAT_ADDR_BITS - 2;
     localparam integer TAG_BITS = 32 - BEAT_ADDR_BITS;
     localparam integer POSTED_WRITE_ACTIVE = (POSTED_WRITE_ENABLE != 0) && (MEM_DQ_WIDTH == 32);
-    localparam integer WRITE_BUFFER_SECOND_ACTIVE = POSTED_WRITE_ACTIVE && (WRITE_BUFFER_DEPTH == 2);
+    localparam integer WRITE_BUFFER_CAPACITY = (WRITE_BUFFER_DEPTH == 1) ? 1 :
+                                               ((WRITE_BUFFER_DEPTH == 4) ? 4 : 2);
+    localparam integer WRITE_BUFFER_SECOND_ACTIVE = POSTED_WRITE_ACTIVE && (WRITE_BUFFER_CAPACITY >= 2);
+    localparam integer WRITE_BUFFER_FOUR_ACTIVE = POSTED_WRITE_ACTIVE && (WRITE_BUFFER_CAPACITY == 4);
     localparam integer INST_LOOKUP_ACTIVE = (MEM_DQ_WIDTH == 32) && (INST_LINE_BUFFER_ENABLE != 0);
     localparam integer INST_OVERLAP_ACTIVE = INST_LOOKUP_ACTIVE &&
                                              ((INST_HIT_UNDER_DATA_MISS_ENABLE != 0) ||
                                               (INST_WITH_DATA_REQ_ENABLE != 0));
     localparam integer INST_PARALLEL_REQ_ACTIVE = INST_LOOKUP_ACTIVE &&
                                                   (INST_WITH_DATA_REQ_ENABLE != 0);
+    localparam integer DATA_EARLY_LOOKUP_ACTIVE = POSTED_WRITE_ACTIVE &&
+        (DATA_LINE_BUFFER_ENABLE != 0) && (DATA_READ_UNDER_WRITE_ENABLE != 0) &&
+        (DATA_STORE_FORWARD_ENABLE != 0) && (DATA_READ_EARLY_LOOKUP_ENABLE != 0);
+    localparam integer WRITE_BUFFER_MERGE_ACTIVE = POSTED_WRITE_ACTIVE &&
+        WRITE_BUFFER_SECOND_ACTIVE && (DATA_LINE_BUFFER_ENABLE != 0) &&
+        (DATA_READ_UNDER_WRITE_ENABLE != 0) && (DATA_STORE_FORWARD_ENABLE != 0) &&
+        (WRITE_BUFFER_MERGE_ENABLE != 0);
+    localparam integer WRITE_BUFFER_LINE_PAIR_ACTIVE = WRITE_BUFFER_MERGE_ACTIVE &&
+        (WRITE_BUFFER_LINE_PAIR_ENABLE != 0);
 
-    // Ordered head and optional younger tail. Only the head can issue AW/W.
-    // No combining; a valid tail always implies a valid head.
-    reg write_buffer_valid;
+    // 047: packed ordered slots, oldest at 0. Only slot 0 issues AW/W.
+    // Constant-index head/next aliases preserve the existing control/data ports.
+    // Only the youngest OLD non-head may absorb a later store.
+    // A promoted NEW head is updated before its first AW; the OLD head stays fixed.
+    reg [2:0] write_buffer_count;
+    reg [CTRL_ADDR_WIDTH-1:0] write_queue_ctrl_addr [0:3];
+    reg [LANE_BITS-1:0] write_queue_lane [0:3];
+    reg [31:0] write_queue_wdata [0:3];
+    reg [3:0] write_queue_wstrb [0:3];
+    reg write_queue_pair_valid [0:3];
+    reg [LANE_BITS-1:0] write_queue_pair_lane [0:3];
+    reg [31:0] write_queue_pair_wdata [0:3];
+    reg [3:0] write_queue_pair_wstrb [0:3];
+    reg [TAG_BITS-1:0] write_queue_line_tag [0:3];
+    reg write_queue_hit [0:3];
+    integer write_slot;
+    wire write_buffer_full = (write_buffer_count == WRITE_BUFFER_CAPACITY);
+    wire write_buffer_valid = (write_buffer_count != 0);
     reg write_buffer_aw_sent;
-    reg [CTRL_ADDR_WIDTH-1:0] write_buffer_ctrl_addr;
-    reg [LANE_BITS-1:0] write_buffer_lane;
-    reg [31:0] write_buffer_wdata;
-    reg [3:0] write_buffer_wstrb;
-    reg [TAG_BITS-1:0] write_buffer_line_tag;
-    reg write_buffer_hit;
-    reg write_buffer_tail_valid;
-    reg [CTRL_ADDR_WIDTH-1:0] write_buffer_tail_ctrl_addr;
-    reg [LANE_BITS-1:0] write_buffer_tail_lane;
-    reg [31:0] write_buffer_tail_wdata;
-    reg [3:0] write_buffer_tail_wstrb;
-    reg [TAG_BITS-1:0] write_buffer_tail_line_tag;
-    reg write_buffer_tail_hit;
+    wire [CTRL_ADDR_WIDTH-1:0] write_buffer_ctrl_addr = write_queue_ctrl_addr[0];
+    wire [LANE_BITS-1:0] write_buffer_lane = write_queue_lane[0];
+    wire [31:0] write_buffer_wdata = write_queue_wdata[0];
+    wire [3:0] write_buffer_wstrb = write_queue_wstrb[0];
+    wire [TAG_BITS-1:0] write_buffer_line_tag = write_queue_line_tag[0];
+    wire write_buffer_hit = write_queue_hit[0];
+    wire write_buffer_tail_valid = WRITE_BUFFER_SECOND_ACTIVE && (write_buffer_count >= 2);
+    wire [CTRL_ADDR_WIDTH-1:0] write_buffer_tail_ctrl_addr = write_queue_ctrl_addr[1];
+    wire [LANE_BITS-1:0] write_buffer_tail_lane = write_queue_lane[1];
+    wire [31:0] write_buffer_tail_wdata = write_queue_wdata[1];
+    wire [3:0] write_buffer_tail_wstrb = write_queue_wstrb[1];
+    wire [TAG_BITS-1:0] write_buffer_tail_line_tag = write_queue_line_tag[1];
+    wire write_buffer_tail_hit = write_queue_hit[1];
     wire write_buffer_push;
+    wire write_buffer_append;
+    wire write_buffer_merge;
+    wire [3:0] write_buffer_merge_source;
+    wire [3:0] write_buffer_pair_source;
+    wire [31:0] write_buffer_merge_byte_mask;
     wire write_buffer_complete;
     wire write_buffer_turnover_ready;
     wire [5:0] data_ram_write_index;
@@ -171,6 +221,18 @@ module dual_sram_to_pango_ddr_bridge #(
     wire write_buffer_tail_read_line_match;
     wire [31:0] write_buffer_head_forward_mask;
     wire [31:0] write_buffer_tail_forward_mask;
+    wire write_buffer_extra2_read_line_match, write_buffer_extra3_read_line_match;
+    wire write_buffer_any_read_line_match;
+    wire [31:0] write_buffer_extra2_forward_mask, write_buffer_extra3_forward_mask;
+    wire [31:0] write_queue_forward_mask [0:3];
+    wire [31:0] write_queue_forward_data [0:3];
+    reg data_lookup_hit_q;
+    reg data_lookup_retry_q;
+    reg [8:0] data_lookup_rd_addr;
+    wire take_data_lookup;
+    wire data_lookup_response;
+    wire data_lookup_replay;
+    wire [8:0] data_drm_rd_addr;
 
     reg [2:0] state;
     reg       response_target;
@@ -239,15 +301,22 @@ module dual_sram_to_pango_ddr_bridge #(
     // 主 DDR 事务槽仍数据优先；并行 I 查询不修改主槽的 D 事务字段。
     assign inst_lookup_response = INST_LOOKUP_ACTIVE &&
                                   (state == STATE_INST_LOOKUP) && inst_line_hit;
+    assign data_lookup_response = DATA_EARLY_LOOKUP_ACTIVE && ddr_init_done &&
+                                  (state == STATE_DATA_LOOKUP) &&
+                                  data_lookup_hit_q && !data_lookup_retry_q;
     assign front_slot_available = (state == STATE_IDLE) || (state == STATE_RSP) ||
-                                  inst_lookup_response;
+                                  inst_lookup_response || data_lookup_response;
     assign idle_ready = front_slot_available && ddr_init_done;
     assign read_address_phase = (state == STATE_RADDR) ||
                                 (INST_LOOKUP_ACTIVE && (state == STATE_INST_LOOKUP) &&
-                                 !inst_line_hit);
+                                 !inst_line_hit) ||
+                                (DATA_EARLY_LOOKUP_ACTIVE && ddr_init_done &&
+                                 (state == STATE_DATA_LOOKUP) && !data_lookup_hit_q);
 
     // 两端同时请求时先完成流水线中的 load/store，避免数据相关停顿继续扩大。
-    // Hit eligibility/line relation are registered, keeping tag comparison off ready.
+    // 048 queries own the main slot before the registered hit verdict. A miss
+    // waits for the whole write queue; a DRM collision replays the saved address.
+    // Legacy eligibility/line relation stay registered, off ready, when disabled.
     // The requester holds valid/address/type until accepted; permit is consumed once.
     // Only stores reuse a completing entry. Loads keep the existing DRM collision guard.
     // Completion depends on the OLD AW/W fields, never on the incoming store.
@@ -255,10 +324,13 @@ module dual_sram_to_pango_ddr_bridge #(
                                         data_req_write && write_buffer_complete;
     assign data_req_ready = idle_ready && (!write_buffer_busy ||
                              (data_req_write && WRITE_BUFFER_SECOND_ACTIVE &&
-                              !write_buffer_tail_valid) ||
+                              !write_buffer_full) ||
                              write_buffer_turnover_ready ||
+                             (!data_req_write && DATA_EARLY_LOOKUP_ACTIVE) ||
                              (!data_req_write && data_read_overlap_permit &&
                               !(data_read_overlap_same_line && write_buffer_complete)));
+    assign take_data_lookup = DATA_EARLY_LOOKUP_ACTIVE && take_data &&
+                              !data_req_write && write_buffer_busy;
     // The extra slot accepts a lookup, NOT a second DDR read. A hit returns
     // next cycle; a miss holds its address/verdict until the shared slot is free.
     // No live I-address/tag comparison enters ready. A simultaneous same-line
@@ -266,7 +338,9 @@ module dual_sram_to_pango_ddr_bridge #(
     assign data_read_miss_busy = INST_OVERLAP_ACTIVE &&
                                  (INST_HIT_UNDER_DATA_MISS_ENABLE != 0) && ddr_init_done &&
                                  (response_target == TARGET_DATA) &&
-                                 ((state == STATE_RADDR) || (state == STATE_RDATA));
+                                 ((state == STATE_RADDR) || (state == STATE_RDATA) ||
+                                  (DATA_EARLY_LOOKUP_ACTIVE &&
+                                   (state == STATE_DATA_LOOKUP) && !data_lookup_hit_q));
     // No live D tag/hit check on I ready: accept a lookup beside any ACCEPTED
     // D request. The main slot remains D-owned; an I miss parks in its saved slot.
     // take_data already includes write-buffer/read-collision/backpressure gates.
@@ -455,16 +529,65 @@ module dual_sram_to_pango_ddr_bridge #(
                             (data_req_addr[31:BEAT_ADDR_BITS] == write_buffer_line_tag);
     assign write_buffer_tail_read_line_match = WRITE_BUFFER_SECOND_ACTIVE && write_buffer_tail_valid &&
                             (data_req_addr[31:BEAT_ADDR_BITS] == write_buffer_tail_line_tag);
-    assign write_buffer_head_forward_mask = ((DATA_STORE_FORWARD_ENABLE != 0) &&
-                            data_line_hit && write_buffer_head_read_line_match &&
-                            (data_req_addr[BEAT_ADDR_BITS-1:2] == write_buffer_lane)) ?
-                            {{8{write_buffer_wstrb[3]}}, {8{write_buffer_wstrb[2]}},
-                             {8{write_buffer_wstrb[1]}}, {8{write_buffer_wstrb[0]}}} : 32'b0;
-    assign write_buffer_tail_forward_mask = ((DATA_STORE_FORWARD_ENABLE != 0) &&
-                            data_line_hit && write_buffer_tail_read_line_match &&
-                            (data_req_addr[BEAT_ADDR_BITS-1:2] == write_buffer_tail_lane)) ?
-                            {{8{write_buffer_tail_wstrb[3]}}, {8{write_buffer_tail_wstrb[2]}},
-                             {8{write_buffer_tail_wstrb[1]}}, {8{write_buffer_tail_wstrb[0]}}} : 32'b0;
+    assign write_buffer_extra2_read_line_match = WRITE_BUFFER_FOUR_ACTIVE && (write_buffer_count >= 3) &&
+                            (data_req_addr[31:BEAT_ADDR_BITS] == write_queue_line_tag[2]);
+    assign write_buffer_extra3_read_line_match = WRITE_BUFFER_FOUR_ACTIVE && (write_buffer_count >= 4) &&
+                            (data_req_addr[31:BEAT_ADDR_BITS] == write_queue_line_tag[3]);
+    assign write_buffer_any_read_line_match = write_buffer_head_read_line_match ||
+                            write_buffer_tail_read_line_match || write_buffer_extra2_read_line_match ||
+                            write_buffer_extra3_read_line_match;
+    // Each physical entry has one primary word and optionally a different
+    // word in that same beat. Select the matching lane before younger-entry
+    // priority is applied to the accepted read's immutable snapshot.
+    genvar forward_entry;
+    generate for (forward_entry=0; forward_entry<4; forward_entry=forward_entry+1) begin : g_write_forward
+        wire pair_match = write_queue_pair_valid[forward_entry] &&
+            (data_req_addr[BEAT_ADDR_BITS-1:2] == write_queue_pair_lane[forward_entry]);
+        wire primary_match =
+            (data_req_addr[BEAT_ADDR_BITS-1:2] == write_queue_lane[forward_entry]);
+        wire [3:0] selected_strobe = pair_match ? write_queue_pair_wstrb[forward_entry] :
+                                                  write_queue_wstrb[forward_entry];
+        assign write_queue_forward_mask[forward_entry] =
+            ((DATA_STORE_FORWARD_ENABLE != 0) && data_line_hit &&
+             (write_buffer_count > forward_entry) &&
+             (data_req_addr[31:BEAT_ADDR_BITS] == write_queue_line_tag[forward_entry]) &&
+             (pair_match || primary_match)) ?
+            {{8{selected_strobe[3]}}, {8{selected_strobe[2]}},
+             {8{selected_strobe[1]}}, {8{selected_strobe[0]}}} : 32'b0;
+        assign write_queue_forward_data[forward_entry] = pair_match ?
+            write_queue_pair_wdata[forward_entry] : write_queue_wdata[forward_entry];
+    end endgenerate
+    assign write_buffer_head_forward_mask = write_queue_forward_mask[0];
+    assign write_buffer_tail_forward_mask = write_queue_forward_mask[1];
+    assign write_buffer_extra2_forward_mask = write_queue_forward_mask[2];
+    assign write_buffer_extra3_forward_mask = write_queue_forward_mask[3];
+
+    // 048: only an accepted lookup confers ownership. The first synchronous
+    // read uses the live address on that acceptance edge. On a write collision,
+    // discard the undefined DRM word and reread the SAVED row/word until clean.
+    // Compare physical rows, not full tags: no assumption about mixed-port
+    // same-row read/write behavior, byte masks, or zero-strobe writes is needed.
+    // A responding lookup uses the old DRM output on its consumption edge;
+    // replay is then false so a simultaneous new acceptance reads its own bus.
+    assign data_lookup_replay = DATA_EARLY_LOOKUP_ACTIVE &&
+                                (state == STATE_DATA_LOOKUP) &&
+                                data_lookup_hit_q && data_lookup_retry_q;
+    assign data_drm_rd_addr = data_lookup_replay ? data_lookup_rd_addr : data_req_addr[10:2];
+    always @(posedge clk) begin
+        if (!resetn || !ddr_init_done) begin
+            data_lookup_hit_q <= 1'b0;
+            data_lookup_retry_q <= 1'b0;
+            data_lookup_rd_addr <= 9'b0;
+        end else if (take_data_lookup) begin
+            data_lookup_hit_q <= data_line_hit;
+            data_lookup_retry_q <= data_line_store &&
+                                   (data_read_line_index == data_ram_write_index);
+            data_lookup_rd_addr <= data_req_addr[10:2];
+        end else if (data_lookup_replay) begin
+            data_lookup_retry_q <= data_line_store &&
+                                   (data_lookup_rd_addr[8:3] == data_ram_write_index);
+        end
+    end
     always @(posedge clk) begin
         if (!resetn || !ddr_init_done || !write_buffer_busy || take_data ||
             !data_req_valid || data_req_write) begin
@@ -474,7 +597,7 @@ module dual_sram_to_pango_ddr_bridge #(
             data_read_overlap_permit <= POSTED_WRITE_ACTIVE &&
                 (DATA_READ_UNDER_WRITE_ENABLE != 0) && data_line_hit &&
                 ((DATA_STORE_FORWARD_ENABLE != 0) ||
-                 !(write_buffer_head_read_line_match || write_buffer_tail_read_line_match));
+                 !write_buffer_any_read_line_match);
             // 045: only the CURRENT head can write DRM on a completion edge.
             // Predict the post-edge head: a pop promotes the OLD tail. A held,
             // unaccepted load excludes a store push; accepted requests clear
@@ -485,7 +608,7 @@ module dual_sram_to_pango_ddr_bridge #(
             data_read_overlap_same_line <= (DATA_READ_TAIL_OVERLAP_ENABLE != 0) ?
                 (write_buffer_complete ? write_buffer_tail_read_line_match :
                                          write_buffer_head_read_line_match) :
-                (write_buffer_head_read_line_match || write_buffer_tail_read_line_match);
+                write_buffer_any_read_line_match;
         end
     end
     assign data_line_write_hit = take_data && data_req_write && !camera_data_addr && !preprocess_data_addr &&
@@ -495,7 +618,9 @@ module dual_sram_to_pango_ddr_bridge #(
                             (response_target == TARGET_DATA) &&
                             axi_rvalid && (axi_rid == 4'd1) && axi_rlast &&
                             ((state == STATE_RDATA) ||
-                             ((state == STATE_RADDR) && axi_arvalid && axi_arready));
+                             (((state == STATE_RADDR) ||
+                               (DATA_EARLY_LOOKUP_ACTIVE && state == STATE_DATA_LOOKUP &&
+                                !data_lookup_hit_q)) && axi_arvalid && axi_arready));
 
     // D RAM 仍只在实际单拍写完成边沿更新。
     // Posted 模式使用独立写缓冲字段，取指不能覆盖写地址/行/槽/数据。
@@ -524,7 +649,7 @@ module dual_sram_to_pango_ddr_bridge #(
                 .wr_clk(clk),
                 .wr_rst(!resetn),
                 .wr_byte_en(data_line_fill ? 32'hffff_ffff : axi_wstrb),
-                .rd_addr(data_req_addr[10:2]),
+                .rd_addr(data_drm_rd_addr),
                 .rd_data(data_drm_rdata),
                 .rd_clk(clk),
                 .rd_rst(!resetn)
@@ -547,7 +672,7 @@ module dual_sram_to_pango_ddr_bridge #(
         end
     endgenerate
 
-    // x32 D 写命中保留 valid/tag；同行读接受边沿避开缓存写完成边沿。
+    // x32 D 写命中保留 valid/tag；早查询丢弃碰撞读，旧资格路径避开该边沿。
     // 命中读不填充，不能改变写条的命中元数据。
     // I-Cache 仍独立失效；x16 D 保留原失效行为。
     always @(posedge clk) begin
@@ -602,10 +727,16 @@ module dual_sram_to_pango_ddr_bridge #(
     // CPU 已经依据 addr[1:0] 将字节/半字数据和 strobe 放到正确的 32 bit
     // 字节位置；这里再把整个 32 bit 字移动到对应的用户拍内槽。
     assign axi_wdata = POSTED_WRITE_ACTIVE ?
-                       ({{(8*MEM_DQ_WIDTH-32){1'b0}}, write_buffer_wdata} << (write_buffer_lane * 32)) :
+                       (({{(8*MEM_DQ_WIDTH-32){1'b0}}, write_buffer_wdata} << (write_buffer_lane * 32)) |
+                        (write_queue_pair_valid[0] ?
+                         ({{(8*MEM_DQ_WIDTH-32){1'b0}}, write_queue_pair_wdata[0]} <<
+                          (write_queue_pair_lane[0] * 32)) : {(8*MEM_DQ_WIDTH){1'b0}})) :
                        ({{(8*MEM_DQ_WIDTH-32){1'b0}}, request_wdata} << (request_lane * 32));
     assign axi_wstrb = POSTED_WRITE_ACTIVE ?
-                       ({{(MEM_DQ_WIDTH-4){1'b0}}, write_buffer_wstrb} << (write_buffer_lane * 4)) :
+                       (({{(MEM_DQ_WIDTH-4){1'b0}}, write_buffer_wstrb} << (write_buffer_lane * 4)) |
+                        (write_queue_pair_valid[0] ?
+                         ({{(MEM_DQ_WIDTH-4){1'b0}}, write_queue_pair_wstrb[0]} <<
+                          (write_queue_pair_lane[0] * 4)) : {MEM_DQ_WIDTH{1'b0}})) :
                        ({{(MEM_DQ_WIDTH-4){1'b0}}, request_wstrb} << (request_lane * 4));
 
     assign axi_araddr    = request_ctrl_addr;
@@ -625,7 +756,7 @@ module dual_sram_to_pango_ddr_bridge #(
                             inst_drm_rdata : response_rdata;
     assign inst_rsp_error = 1'b0;
 
-    assign data_rsp_valid = (state == STATE_RSP) &&
+    assign data_rsp_valid = ((state == STATE_RSP) || data_lookup_response) &&
                             (response_target == TARGET_DATA);
     // Forward fields belong to this response, not to the live/draining write entry.
     assign data_drm_with_forward = (data_drm_rdata & ~response_forward_mask) |
@@ -633,70 +764,143 @@ module dual_sram_to_pango_ddr_bridge #(
     assign data_rsp_rdata = response_from_data_drm ? data_drm_with_forward : response_rdata;
     assign data_rsp_error = 1'b0;
 
-    // All ordering boundaries and AR wait for the WHOLE queue, including tail.
+    // All ordering boundaries and AR wait for the WHOLE queue, including slots 2/3.
     assign write_buffer_busy = POSTED_WRITE_ACTIVE &&
-                               (write_buffer_valid || write_buffer_tail_valid);
+                               (write_buffer_count != 0);
     assign write_buffer_push = POSTED_WRITE_ACTIVE && take_data && data_req_write;
+    // 049: a logical store still gets its normal acceptance/ACK/I invalidation.
+    // Physical queue growth is separate. Never use a match to bypass full ready.
+    assign write_buffer_merge_byte_mask =
+        {{8{data_req_wstrb[3]}}, {8{data_req_wstrb[2]}},
+         {8{data_req_wstrb[1]}}, {8{data_req_wstrb[0]}}};
+    assign write_buffer_merge_source[0] = 1'b0;
+    assign write_buffer_pair_source[0] = 1'b0;
+    genvar merge_entry;
+    generate
+        for (merge_entry=1; merge_entry<4; merge_entry=merge_entry+1) begin : g_write_merge
+            if (WRITE_BUFFER_MERGE_ACTIVE && (WRITE_BUFFER_CAPACITY > merge_entry)) begin : g_active
+                // A pop shifts old slot j to j-1. 050 permits j=1: the OLD
+                // head alone supplies this edge's AW/W; the promoted slot's
+                // merged bytes are registered before its first AW next cycle.
+                // Pop clears aw_sent, so no new head can inherit old AW ownership.
+                // The last entry has no younger accepted store to cross.
+                wire tail_eligible = write_buffer_push &&
+                    (write_buffer_count == merge_entry+1) &&
+                    (!write_buffer_complete || (merge_entry >= 2) ||
+                     (WRITE_BUFFER_PROMOTE_MERGE_ENABLE != 0)) &&
+                    !camera_data_addr && !preprocess_data_addr &&
+                    (|data_req_wstrb) && (|write_queue_wstrb[merge_entry]);
+                assign write_buffer_merge_source[merge_entry] = tail_eligible &&
+                    ({write_queue_line_tag[merge_entry], write_queue_lane[merge_entry]} ==
+                     data_req_addr[31:2]) || write_buffer_pair_source[merge_entry];
+                // A second word shares the OLD unpublished tail's single W
+                // beat. Never alter an AW-visible head or cross a third word.
+                assign write_buffer_pair_source[merge_entry] =
+                    WRITE_BUFFER_LINE_PAIR_ACTIVE && tail_eligible &&
+                    !write_queue_pair_valid[merge_entry] &&
+                    (write_queue_line_tag[merge_entry] == data_req_addr[31:BEAT_ADDR_BITS]) &&
+                    (write_queue_lane[merge_entry] != data_req_addr[BEAT_ADDR_BITS-1:2]);
+            end else begin : g_inactive
+                assign write_buffer_merge_source[merge_entry] = 1'b0;
+                assign write_buffer_pair_source[merge_entry] = 1'b0;
+            end
+        end
+    endgenerate
+    assign write_buffer_merge = |write_buffer_merge_source;
+    assign write_buffer_append = write_buffer_push && !write_buffer_merge;
     // WREADY is meaningful only after AW acceptance or on its acceptance edge.
     assign write_buffer_complete = POSTED_WRITE_ACTIVE && resetn && ddr_init_done &&
                                     write_buffer_valid && axi_wready &&
                                     (write_buffer_aw_sent || axi_awready);
     always @(posedge clk) begin
         if (!resetn) begin
-            write_buffer_valid <= 1'b0;
+            write_buffer_count <= 3'd0;
             write_buffer_aw_sent <= 1'b0;
-            write_buffer_ctrl_addr <= {CTRL_ADDR_WIDTH{1'b0}};
-            write_buffer_lane <= {LANE_BITS{1'b0}};
-            write_buffer_wdata <= 32'b0;
-            write_buffer_wstrb <= 4'b0;
-            write_buffer_line_tag <= {TAG_BITS{1'b0}};
-            write_buffer_hit <= 1'b0;
-            write_buffer_tail_valid <= 1'b0;
-            write_buffer_tail_ctrl_addr <= {CTRL_ADDR_WIDTH{1'b0}};
-            write_buffer_tail_lane <= {LANE_BITS{1'b0}};
-            write_buffer_tail_wdata <= 32'b0;
-            write_buffer_tail_wstrb <= 4'b0;
-            write_buffer_tail_line_tag <= {TAG_BITS{1'b0}};
-            write_buffer_tail_hit <= 1'b0;
+            for (write_slot=0; write_slot<4; write_slot=write_slot+1) begin
+                write_queue_ctrl_addr[write_slot] <= {CTRL_ADDR_WIDTH{1'b0}};
+                write_queue_lane[write_slot] <= {LANE_BITS{1'b0}};
+                write_queue_wdata[write_slot] <= 32'b0;
+                write_queue_wstrb[write_slot] <= 4'b0;
+                write_queue_pair_valid[write_slot] <= 1'b0;
+                write_queue_pair_lane[write_slot] <= {LANE_BITS{1'b0}};
+                write_queue_pair_wdata[write_slot] <= 32'b0;
+                write_queue_pair_wstrb[write_slot] <= 4'b0;
+                write_queue_line_tag[write_slot] <= {TAG_BITS{1'b0}};
+                write_queue_hit[write_slot] <= 1'b0;
+            end
         end else if (POSTED_WRITE_ACTIVE) begin
             // init loss pauses the queue; SoC reset cancels it. Never reissue accepted AW.
             if (write_buffer_complete) begin
-                write_buffer_valid <= write_buffer_tail_valid;
                 write_buffer_aw_sent <= 1'b0;
-                write_buffer_tail_valid <= 1'b0;
-                if (write_buffer_tail_valid) begin
-                    write_buffer_ctrl_addr <= write_buffer_tail_ctrl_addr;
-                    write_buffer_lane <= write_buffer_tail_lane;
-                    write_buffer_wdata <= write_buffer_tail_wdata;
-                    write_buffer_wstrb <= write_buffer_tail_wstrb;
-                    write_buffer_line_tag <= write_buffer_tail_line_tag;
-                    write_buffer_hit <= write_buffer_tail_hit;
+                for (write_slot=0; write_slot<3; write_slot=write_slot+1) begin
+                    write_queue_ctrl_addr[write_slot] <= write_queue_ctrl_addr[write_slot+1];
+                    write_queue_lane[write_slot] <= write_queue_lane[write_slot+1];
+                    write_queue_wdata[write_slot] <= write_queue_wdata[write_slot+1];
+                    write_queue_wstrb[write_slot] <= write_queue_wstrb[write_slot+1];
+                    write_queue_pair_valid[write_slot] <= write_queue_pair_valid[write_slot+1];
+                    write_queue_pair_lane[write_slot] <= write_queue_pair_lane[write_slot+1];
+                    write_queue_pair_wdata[write_slot] <= write_queue_pair_wdata[write_slot+1];
+                    write_queue_pair_wstrb[write_slot] <= write_queue_pair_wstrb[write_slot+1];
+                    write_queue_line_tag[write_slot] <= write_queue_line_tag[write_slot+1];
+                    write_queue_hit[write_slot] <= write_queue_hit[write_slot+1];
                 end
             end else if (axi_awvalid && axi_awready) begin
                 write_buffer_aw_sent <= 1'b1;
             end
-            // Old head updates D RAM on a pop. A promoted tail must get its own
-            // AW; no new AW or data can replace the old head before that edge.
-            // Empty or sole-head pop -> incoming store is head. Otherwise it
-            // is tail (including full pop+push, after OLD tail becomes head).
-            if (write_buffer_push) begin
-                if (!write_buffer_valid || (write_buffer_complete && !write_buffer_tail_valid)) begin
-                    write_buffer_valid <= 1'b1;
-                    write_buffer_aw_sent <= 1'b0;
-                    write_buffer_ctrl_addr <= selected_ctrl_addr;
-                    write_buffer_lane <= data_req_addr[BEAT_ADDR_BITS-1:2];
-                    write_buffer_wdata <= data_req_wdata;
-                    write_buffer_wstrb <= data_req_wstrb;
-                    write_buffer_line_tag <= data_req_addr[31:BEAT_ADDR_BITS];
-                    write_buffer_hit <= data_line_write_hit;
-                end else if (WRITE_BUFFER_SECOND_ACTIVE) begin
-                    write_buffer_tail_valid <= 1'b1;
-                    write_buffer_tail_ctrl_addr <= selected_ctrl_addr;
-                    write_buffer_tail_lane <= data_req_addr[BEAT_ADDR_BITS-1:2];
-                    write_buffer_tail_wdata <= data_req_wdata;
-                    write_buffer_tail_wstrb <= data_req_wstrb;
-                    write_buffer_tail_line_tag <= data_req_addr[31:BEAT_ADDR_BITS];
-                    write_buffer_tail_hit <= data_line_write_hit;
+            if (write_buffer_append && !write_buffer_complete)
+                write_buffer_count <= write_buffer_count + 3'd1;
+            else if (write_buffer_complete && !write_buffer_append)
+                write_buffer_count <= write_buffer_count - 3'd1;
+            // Append at OLD count, or OLD count-1 on pop. This assignment wins
+            // the shift at that slot. The consumed head still uses OLD fields.
+            // Slots at/above count are invalid; their stale data is never owned.
+            if (write_buffer_append) begin
+                for (write_slot=0; write_slot<4; write_slot=write_slot+1) begin
+                    if ((!write_buffer_complete && write_buffer_count == write_slot) ||
+                        (write_buffer_complete && write_buffer_count == write_slot+1)) begin
+                        write_queue_ctrl_addr[write_slot] <= selected_ctrl_addr;
+                        write_queue_lane[write_slot] <= data_req_addr[BEAT_ADDR_BITS-1:2];
+                        write_queue_wdata[write_slot] <= data_req_wdata;
+                        write_queue_wstrb[write_slot] <= data_req_wstrb;
+                        write_queue_pair_valid[write_slot] <= 1'b0;
+                        write_queue_pair_lane[write_slot] <= {LANE_BITS{1'b0}};
+                        write_queue_pair_wdata[write_slot] <= 32'b0;
+                        write_queue_pair_wstrb[write_slot] <= 4'b0;
+                        write_queue_line_tag[write_slot] <= data_req_addr[31:BEAT_ADDR_BITS];
+                        write_queue_hit[write_slot] <= data_line_write_hit;
+                    end
+                end
+            end
+            // These constant-source assignments win the shift at the merge
+            // destination. Address/lane/tag remain those of that same word.
+            // A pop consumes OLD head data; no merged byte reaches that W.
+            for (write_slot=1; write_slot<4; write_slot=write_slot+1) begin
+                if (write_buffer_merge_source[write_slot]) begin
+                    if (write_buffer_pair_source[write_slot] && write_buffer_complete) begin
+                        write_queue_pair_valid[write_slot-1] <= 1'b1;
+                        write_queue_pair_lane[write_slot-1] <= data_req_addr[BEAT_ADDR_BITS-1:2];
+                        write_queue_pair_wdata[write_slot-1] <= data_req_wdata;
+                        write_queue_pair_wstrb[write_slot-1] <= data_req_wstrb;
+                        write_queue_hit[write_slot-1] <= write_queue_hit[write_slot] | data_line_write_hit;
+                    end else if (write_buffer_pair_source[write_slot]) begin
+                        write_queue_pair_valid[write_slot] <= 1'b1;
+                        write_queue_pair_lane[write_slot] <= data_req_addr[BEAT_ADDR_BITS-1:2];
+                        write_queue_pair_wdata[write_slot] <= data_req_wdata;
+                        write_queue_pair_wstrb[write_slot] <= data_req_wstrb;
+                        write_queue_hit[write_slot] <= write_queue_hit[write_slot] | data_line_write_hit;
+                    end else if (write_buffer_complete) begin
+                        write_queue_wdata[write_slot-1] <=
+                            (write_queue_wdata[write_slot] & ~write_buffer_merge_byte_mask) |
+                            (data_req_wdata & write_buffer_merge_byte_mask);
+                        write_queue_wstrb[write_slot-1] <= write_queue_wstrb[write_slot] | data_req_wstrb;
+                        write_queue_hit[write_slot-1] <= write_queue_hit[write_slot] | data_line_write_hit;
+                    end else begin
+                        write_queue_wdata[write_slot] <=
+                            (write_queue_wdata[write_slot] & ~write_buffer_merge_byte_mask) |
+                            (data_req_wdata & write_buffer_merge_byte_mask);
+                        write_queue_wstrb[write_slot] <= write_queue_wstrb[write_slot] | data_req_wstrb;
+                        write_queue_hit[write_slot] <= write_queue_hit[write_slot] | data_line_write_hit;
+                    end
                 end
             end
         end
@@ -706,7 +910,7 @@ module dual_sram_to_pango_ddr_bridge #(
     // D acceptance wins, then a parked I miss, otherwise sample the live I bus.
     // These fields confer no ownership: only the unchanged FSM can launch a
     // transaction. Unaccepted samples are overwritten before any valid use.
-    // RADDR/RDATA, LOOKUP miss and nonposted W phases keep the old fields.
+    // RADDR/RDATA, LOOKUP miss/replay and nonposted W phases keep the old fields.
     // A response consumed on this edge still observes their pre-edge values.
     assign field_sample_addr = take_data ? data_req_addr :
                                promote_inst_overlap ? inst_overlap_addr : inst_req_addr;
@@ -751,15 +955,23 @@ module dual_sram_to_pango_ddr_bridge #(
                 state <= STATE_IDLE;
                 if (take_data) begin
                     response_from_inst_drm <= 1'b0;
-                    response_from_data_drm <= (MEM_DQ_WIDTH == 32) && data_line_hit;
-                    // Snapshot both entries for this response. Younger bytes
-                    // override older bytes; other bytes still come from DRM.
+                    response_from_data_drm <= (MEM_DQ_WIDTH == 32) &&
+                                              (take_data_lookup || data_line_hit);
+                    // Snapshot all valid entries for this response. The last
+                    // accepted byte wins independently, even across four stores.
                     response_forward_mask <= write_buffer_head_forward_mask |
-                                             write_buffer_tail_forward_mask;
+                                             write_buffer_tail_forward_mask |
+                                             write_buffer_extra2_forward_mask |
+                                             write_buffer_extra3_forward_mask;
                     response_forward_data <=
-                        (write_buffer_wdata & write_buffer_head_forward_mask &
-                         ~write_buffer_tail_forward_mask) |
-                        (write_buffer_tail_wdata & write_buffer_tail_forward_mask);
+                        (write_queue_forward_data[0] & write_buffer_head_forward_mask &
+                         ~write_buffer_tail_forward_mask & ~write_buffer_extra2_forward_mask &
+                         ~write_buffer_extra3_forward_mask) |
+                        (write_queue_forward_data[1] & write_buffer_tail_forward_mask &
+                         ~write_buffer_extra2_forward_mask & ~write_buffer_extra3_forward_mask) |
+                        (write_queue_forward_data[2] & write_buffer_extra2_forward_mask &
+                         ~write_buffer_extra3_forward_mask) |
+                        (write_queue_forward_data[3] & write_buffer_extra3_forward_mask);
                     response_target   <= TARGET_DATA;
                     request_wdata     <= data_req_wdata;
                     request_wstrb     <= data_req_wstrb;
@@ -769,6 +981,11 @@ module dual_sram_to_pango_ddr_bridge #(
                     if (data_req_write) begin
                         // Response confirms ordered entry ownership, not DDR completion.
                         state <= POSTED_WRITE_ACTIVE ? STATE_RSP : STATE_WADDR;
+                    end else if (take_data_lookup) begin
+                        // No hit/tag or write collision verdict controls ready.
+                        // Hit returns next cycle; a miss can issue AR directly
+                        // from LOOKUP after the WHOLE posted queue has drained.
+                        state <= STATE_DATA_LOOKUP;
                     end else if (data_line_hit) begin
                         if (MEM_DQ_WIDTH != 32)
                             response_rdata <= data_legacy_rdata;
@@ -812,6 +1029,29 @@ module dual_sram_to_pango_ddr_bridge #(
                 end
             end else begin
                 case (state)
+                    STATE_DATA_LOOKUP: begin
+                        if (!ddr_init_done) begin
+                            // Tag valid bits are invalidated on init loss. Keep
+                            // accepted address/forward ownership; re-fetch after
+                            // recovery rather than return a stale hit verdict.
+                            state <= STATE_DATA_LOOKUP;
+                        end else if (!data_lookup_hit_q) begin
+                            response_from_data_drm <= 1'b0;
+                            state <= STATE_RADDR;
+                            if (axi_arvalid && axi_arready) begin
+                                if (axi_rvalid) begin
+                                    response_rdata <= axi_rdata[request_lane * 32 +: 32];
+                                    state <= STATE_RSP;
+                                end else begin
+                                    state <= STATE_RDATA;
+                                end
+                            end
+                        end
+                        // A colliding hit holds this state and all transaction
+                        // fields while the saved synchronous read is retried.
+                        // A clean hit uses the front-slot branch above, allowing
+                        // old response consumption plus a new request on one edge.
+                    end
                     STATE_INST_LOOKUP, STATE_RADDR: begin
                         // Misses return the captured DDR beat, including an R beat
                         // arriving on the AR acceptance edge. Clear before RSP;
@@ -954,4 +1194,42 @@ module dual_sram_to_pango_ddr_bridge #(
          write_buffer_head_read_line_match, write_buffer_complete,
          data_read_overlap_same_line, data_read_overlap_permit, data_line_hit,
          data_req_write, perf_wait_events[2]} : 16'b0;
+    // 051 write-service observation: raw source edge only. Address comparisons
+    // and counter enables are decoded AFTER capture in MMIO, never on ready.
+    // [31:0] live byte address, [61:32] head word, [91:62] youngest word,
+    // [94:92] pre-edge count, [95] init, [96] posted, [97] AW-sent,
+    // [98] AWREADY, [99] WREADY, [100] pop, [101] logical push,
+    // [102] merge, [103] append, [104] promote merge, [105] old store wait,
+    // [106] live store with front slot available, [107] cacheable nonzero mask,
+    // [108:109] head/youngest nonzero mask, [110] merge configuration active.
+    // [113:111] capacity, [114] turnover configuration; other bits zero.
+    generate if (WRITE_DIAG_PERF_ENABLE != 0) begin : g_write_diag
+        localparam [2:0] OBS_CAPACITY = WRITE_BUFFER_CAPACITY;
+        reg [29:0] youngest_word;
+        reg youngest_nonzero;
+        integer obs_slot;
+        always @* begin
+            youngest_word = 30'b0;
+            youngest_nonzero = 1'b0;
+            for (obs_slot=0; obs_slot<4; obs_slot=obs_slot+1) begin
+                if (write_buffer_count == obs_slot+1) begin
+                    youngest_word = {write_queue_line_tag[obs_slot], write_queue_lane[obs_slot]};
+                    youngest_nonzero = |write_queue_wstrb[obs_slot];
+                end
+            end
+        end
+        assign perf_write_diag = {13'b0, (WRITE_BUFFER_TURNOVER_ENABLE != 0),
+            OBS_CAPACITY, (WRITE_BUFFER_MERGE_ACTIVE != 0),
+            youngest_nonzero, (|write_buffer_wstrb),
+            (!camera_data_addr && !preprocess_data_addr && (|data_req_wstrb)),
+            (data_req_valid && data_req_write && idle_ready),
+            (perf_wait_events[2] && data_req_write),
+            (write_buffer_merge_source[1] && write_buffer_complete),
+            write_buffer_append, write_buffer_merge, write_buffer_push,
+            write_buffer_complete, axi_wready, axi_awready, write_buffer_aw_sent,
+            (POSTED_WRITE_ACTIVE != 0), ddr_init_done, write_buffer_count,
+            youngest_word, {write_buffer_line_tag, write_buffer_lane}, data_req_addr};
+    end else begin : g_no_write_diag
+        assign perf_write_diag = 128'b0;
+    end endgenerate
 endmodule
